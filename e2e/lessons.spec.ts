@@ -235,6 +235,22 @@ test.describe('derivation animation (x = ρ cos φ, y = ρ sin φ)', () => {
         for (const key of mustShow[i]) await expect(player.locator(`.anim-label[data-key="${key}"]`), `step ${i + 1}: ${key}`).toBeVisible();
         await player.locator('.stepper-fig').screenshot({ path: `test-results/screens/anim-${lang}-step${i + 1}.png` });
       }
+      // second animation: spherical coordinates
+      const sph = page.locator('.stepper').nth(1);
+      await sph.locator('.stepper-fig').scrollIntoViewIfNeeded();
+      await page.waitForTimeout(300);
+      await expect(sph).toHaveAttribute('data-playing', '0');
+      const mustShowSph: Record<number, string[]> = {
+        0: ['lab-M', 'lab-r', 'lab-theta', 'lab-Mz'], 1: ['lab-legz', 'lab-legrho', 'lab-ghost', 'box-readout'], 2: ['lab-legx', 'lab-legy', 'box-subst'],
+        3: ['box-floor', 'box-vert', 'box-sum'], 4: ['box-tan', 'lab-theta'],
+      };
+      for (let i = 0; i < 5; i++) {
+        await sph.locator('.step-num').nth(i).click();
+        await expect(sph).toHaveAttribute('data-t', '1.000');
+        await expect(sph.locator('.tex-error')).toHaveCount(0);
+        for (const key of mustShowSph[i]) await expect(sph.locator(`.anim-label[data-key="${key}"]`), `sph step ${i + 1}: ${key}`).toBeVisible();
+        await sph.locator('.stepper-fig').screenshot({ path: `test-results/screens/anim-sph-${lang}-step${i + 1}.png` });
+      }
     });
   }
 });

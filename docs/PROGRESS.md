@@ -11,7 +11,8 @@
 8. Implementation tested (`npm run check` green).
 9. Documented here and in `SESSION_LOG.md`.
 10. Complete in **both languages** (German and English), passing the e2e language-leak test.
-11. Every symbol typeset by KaTeX (e2e `plainTextMath`); derivations with motion animated and their running frames inspected.
+11. Every symbol typeset by KaTeX, one glyph per symbol (e2e `plainTextMath`, lint).
+12. **Visualisation first:** every concept has a figure, every derivation a step-synchronised animation whose final frames match the captions; review boxes explained with a picture; running frames inspected in light/dark, iPad/phone.
 
 `complete` additionally requires the student's sign-off after working through the lesson.
 

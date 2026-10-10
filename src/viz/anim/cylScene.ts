@@ -15,38 +15,14 @@
 import { type Vec3, add, scale, sub } from '../../physics/vec';
 import { fmtNum, type Lang } from '../../i18n';
 import { OBLIQUE, TOP, centroid, ease, lerpView, outerSquares, project, seg, triangle, type P2, type View } from './geometry';
+import { DEG, H, TAU, W, arrowHead, sceneBuilder, wrap as wrapAngle, type Anchor, type Ink, type Scene, type SceneLabel } from './scene';
+export type { Scene, SceneLabel } from './scene';
 
-export const W = 400, H = 300;
+export { W, H, labelBox } from './scene';
 export const RHO = 1.6;
 export const PHI0 = (40 * Math.PI) / 180;
 export const Z0 = 1.3;
-const TAU = 2 * Math.PI;
-const DEG = Math.PI / 180;
-
-export type Ink = 'muted' | 'point' | 'angle' | 'x' | 'y' | 'rho' | 'fg';
-export type Anchor = 'c' | 'l' | 'r' | 'tl' | 'tr';
-export interface Shape {
-  key: string;
-  kind: 'line' | 'polyline' | 'polygon' | 'circle';
-  cls: string;
-  pts: P2[];
-  r?: number;
-  o?: number;
-}
-export interface SceneLabel {
-  key: string;
-  at: P2;
-  tex: string;
-  ink: Ink;
-  anchor: Anchor;
-  o: number;
-  box?: boolean;
-  rows?: { tex: string; ink: Ink }[];
-}
-export interface Scene { shapes: Shape[]; labels: SceneLabel[]; phi: number }
-
-/** φ in [0, 2π). */
-export const wrap = (phi: number) => ((phi % TAU) + TAU) % TAU;
+export const wrap = wrapAngle;
 
 /** φ as a function of (step, t). In the sweep, φ moves in whole degrees so drawing and readout agree. */
 export function phiAt(step: number, t: number): number {
@@ -67,53 +43,13 @@ export function phiAt(step: number, t: number): number {
 export const GHOSTS = [1, 2, 3].map((k) => PHI0 + (k * Math.PI) / 2);
 export const SIGNS = [String.raw`x<0,\ y>0`, String.raw`x<0,\ y<0`, String.raw`x>0,\ y<0`];
 
-// ---------------------------------------------------------------- label boxes (estimated)
-const FONT = 15.6; // label font size in viewBox units (matches the CSS clamp at a 400 px wide figure)
-/** Rough rendered width of a TeX label in viewBox units; good enough for keeping labels inside the frame. */
-export function texWidth(tex: string): number {
-  const s = tex
-    .replace(/\\ /g, '\u0000') // explicit TeX space
-    .replace(/ /g, '') // source spaces are ignored by KaTeX
-    .replace(/\u0000/g, ' ')
-    .replace(/\\(dfrac|tfrac)\{([^}]*)\}\{([^}]*)\}/g, (_, _c, a, b) => (a.length > b.length ? a : b))
-    .replace(/\\(varphi|rho|theta|psi|pi)/g, 'a')
-    .replace(/\\(cos|sin|tan)/g, 'aaa')
-    .replace(/\\circ/g, '.')
-    .replace(/\\colon/g, ':')
-    .replace(/\{,\}/g, ',')
-    .replace(/\\[,!]|\\ /g, ' ')
-    .replace(/[{}^_]/g, '');
-  return s.length * 0.56 * FONT + 6;
-}
-export function labelBox(l: SceneLabel): { x0: number; y0: number; x1: number; y1: number } {
-  const rows = l.rows ?? [{ tex: l.tex, ink: l.ink }];
-  const w = Math.max(...rows.map((r) => texWidth(r.tex))) + (l.box ? 16 : 0);
-  const h = rows.length * (/\\(dfrac|tfrac)/.test(l.tex) ? 2.3 : 1.35) * FONT + (l.box ? 12 : 0);
-  const [x, y] = l.at;
-  switch (l.anchor) {
-    case 'l': return { x0: x, y0: y - h / 2, x1: x + w, y1: y + h / 2 };
-    case 'r': return { x0: x - w, y0: y - h / 2, x1: x, y1: y + h / 2 };
-    case 'tl': return { x0: x, y0: y, x1: x + w, y1: y + h };
-    case 'tr': return { x0: x - w, y0: y, x1: x, y1: y + h };
-    default: return { x0: x - w / 2, y0: y - h / 2, x1: x + w / 2, y1: y + h / 2 };
-  }
-}
-const PAD = 4;
-/** Shift a label so that its (estimated) box lies inside the figure. */
-function clampLabel(l: SceneLabel): SceneLabel {
-  const b = labelBox(l);
-  const dx = b.x0 < PAD ? PAD - b.x0 : b.x1 > W - PAD ? W - PAD - b.x1 : 0;
-  const dy = b.y0 < PAD ? PAD - b.y0 : b.y1 > H - PAD ? H - PAD - b.y1 : 0;
-  return dx || dy ? { ...l, at: [l.at[0] + dx, l.at[1] + dy] } : l;
-}
-
 // ---------------------------------------------------------------- the scene
 export function cylScene(step: number, t: number, lang: Lang): Scene {
   const num = (v: number) => fmtNum(v, 2, lang, true);
-  const shapes: Shape[] = [];
-  const labels: SceneLabel[] = [];
+  const sb = sceneBuilder();
   const L = (key: string, at: P2, tex: string, ink: Ink, o = 1, anchor: Anchor = 'c', extra: Partial<SceneLabel> = {}) =>
-    labels.push({ key, at, tex, ink, anchor, o, ...extra });
+    sb.label(key, at, tex, ink, o, anchor, extra);
+  const shapes = sb.shapes;
 
   // camera: oblique in step 0, moves to the top view at the start of step 1
   const camK = step === 0 ? 0 : step === 1 ? ease(seg(t, 0, 0.3)) : 1;
@@ -184,7 +120,7 @@ export function cylScene(step: number, t: number, lang: Lang): Scene {
       const parts: [Vec3[], string, string, Ink, number][] = [
         [sq.sx, 'an-sq-x', 'x^2', 'x', seg(t, 0.08, 0.3)],
         [sq.sy, 'an-sq-y', 'y^2', 'y', seg(t, 0.22, 0.45)],
-        [sq.sr, 'an-sq-r', String.raw`\rho^2`, 'rho', seg(t, 0.42, 0.65)],
+        [sq.sr, 'an-sq-rho', String.raw`\rho^2`, 'rho', seg(t, 0.42, 0.65)],
       ];
       for (const [poly, cls, tex, ink, o] of parts) {
         shapes.push({ key: cls, kind: 'polygon', cls, pts: poly.map(P), o });
@@ -208,7 +144,7 @@ export function cylScene(step: number, t: number, lang: Lang): Scene {
         shapes.push({ key: `g-tri-${k}`, kind: 'polygon', cls: 'an-tri', pts: [P(gt.O), P(gt.F), P(gt.Mxy)], o: o * 0.8 });
         shapes.push({ key: `g-x-${k}`, kind: 'line', cls: 'an-leg-x thin', pts: [P(gt.O), P(gt.F)], o });
         shapes.push({ key: `g-y-${k}`, kind: 'line', cls: 'an-leg-y thin', pts: [P(gt.F), P(gt.Mxy)], o });
-        shapes.push({ key: `g-h-${k}`, kind: 'line', cls: 'an-hyp thin', pts: [P(gt.O), P(gt.Mxy)], o });
+        shapes.push({ key: `g-h-${k}`, kind: 'line', cls: 'an-rho thin', pts: [P(gt.O), P(gt.Mxy)], o });
         shapes.push({ key: `g-p-${k}`, kind: 'circle', cls: 'an-point', pts: [P(gt.Mxy)], r: 3, o });
         L(`lab-sign-${k}`, P(scale((RHO + 0.42) / RHO, gt.Mxy)), SIGNS[k], 'fg', 0.9);
       });
@@ -228,7 +164,7 @@ export function cylScene(step: number, t: number, lang: Lang): Scene {
       shapes.push({ key: 'ra', kind: 'polyline', cls: 'an-ra', pts: [P(add(F, dO)), P(add(add(F, dO), dM)), P(add(F, dM))], o: fillK });
     }
     // hypotenuse ρ (drawn under the legs, so a coinciding leg keeps its colour in the limiting cases)
-    shapes.push({ key: 'hyp', kind: 'line', cls: 'an-hyp', pts: [pO, P(scale(hypK, Mxy))], o: hypK > 0 ? 1 : 0 });
+    shapes.push({ key: 'hyp', kind: 'line', cls: 'an-rho', pts: [pO, P(scale(hypK, Mxy))], o: hypK > 0 ? 1 : 0 });
     // perpendicular from M_xy to the x-axis → becomes the y-leg
     shapes.push({ key: 'perp', kind: 'line', cls: legK > 0 ? 'an-leg-y' : 'an-guide', pts: [pM, P(add(Mxy, scale(perpK, sub(F, Mxy))))], o: perpK > 0 ? 1 : 0 });
     if (legK > 0) shapes.push({ key: 'legx', kind: 'line', cls: 'an-leg-x', pts: [pO, pF], o: legK });
@@ -284,7 +220,7 @@ export function cylScene(step: number, t: number, lang: Lang): Scene {
     }
   }
 
-  return { shapes, labels: labels.filter((l) => l.o > 0.02).map(clampLabel), phi: phiN };
+  return sb.finish({ phi: phiN });
 }
 
 /** Move a point that sits on (or next to) an axis a little off it, so the axis line does not cross its label. */
@@ -293,10 +229,4 @@ function avoidAxes(p: Vec3): Vec3 {
   if (Math.abs(px) < 0.25) px = px < 0 ? px - 0.32 : -0.32;
   if (Math.abs(py) < 0.2) py = py < 0 ? py - 0.25 : -0.25;
   return [px, py, p[2]];
-}
-
-function arrowHead(from: P2, to: P2, size = 7): P2[] {
-  const dx = to[0] - from[0], dy = to[1] - from[1], len = Math.hypot(dx, dy) || 1;
-  const ux = dx / len, uy = dy / len;
-  return [to, [to[0] - size * ux + size * 0.45 * uy, to[1] - size * uy - size * 0.45 * ux], [to[0] - size * ux - size * 0.45 * uy, to[1] - size * uy + size * 0.45 * ux]];
 }

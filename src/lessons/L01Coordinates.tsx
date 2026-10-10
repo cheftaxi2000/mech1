@@ -2,10 +2,12 @@ import { Box, De, Derivation, Section, Src } from '../components/Blocks';
 import { M, MD } from '../components/Tex';
 import { Choice, NumericAnswer, Predict } from '../components/Quiz';
 import { CoordinateExplorer } from '../viz/CoordinateExplorer';
-import { QuadrantTrap } from '../viz/QuadrantTrap';
+import { ArctanDemo } from '../viz/ArctanDemo';
 import { T, useTr } from '../i18n';
 import { StepPlayer } from '../viz/anim/StepPlayer';
-import { CylDerivationFigure } from '../viz/anim/CylDerivationFigure';
+import { AnimFigure } from '../viz/anim/AnimFigure';
+import { cylScene } from '../viz/anim/cylScene';
+import { sphScene } from '../viz/anim/sphScene';
 
 const t = String.raw;
 
@@ -184,33 +186,38 @@ export default function L01Coordinates() {
                 en={<><b>Sanity check (limiting cases).</b> <M p=":">{t`\varphi = 0`}</M> <M p=",">{t`(x,y) = (\rho, 0)`}</M> on the positive <M>x</M>-axis&nbsp;✓. <M p=":">{t`\varphi = \pi/2`}</M> <M p=",">{t`(x,y) = (0, \rho)`}</M> on the positive <M>y</M>-axis&nbsp;✓.</>} /> },
             ]}
           >
-            {(step, tt) => <CylDerivationFigure step={step} t={tt} />}
+            {(step, tt) => <AnimFigure build={cylScene} step={step} t={tt} />}
           </StepPlayer>
         </Derivation>
         <Box kind="review" title={<T de={<>R-001 · <M>{t`\varphi = \arctan(y/x)`}</M> stimmt nur für <M>{t`x > 0`}</M></>} en={<>R-001 · <M>{t`\varphi = \arctan(y/x)`}</M> is only correct for <M>{t`x > 0`}</M></>} />}>
-          <T
-            de={<p>
-              <M>\tan</M> hat die Periode <M p=",">\pi</M> deshalb kann <M>{t`\tan\varphi = y/x`}</M> nicht zwischen <M>\varphi</M> und <M>{t`\varphi+\pi`}</M> unterscheiden.
-              Der <M>\arctan</M> des Taschenrechners liefert immer Werte in <M p=".">{t`(-\tfrac{\pi}{2}, \tfrac{\pi}{2})`}</M> Für Punkte mit <M>{t`x<0`}</M> liegt er um <M>\pi</M> daneben,
-              für <M>{t`x = 0`}</M> ist er nicht definiert. Die Formel im Skript ist die übliche Kurzschreibweise, bei der «den richtigen Quadranten wählen» stillschweigend
-              vorausgesetzt wird. Korrekte Version (Ergänzung):
-            </p>}
-            en={<p>
-              <M>\tan</M> has period <M p=",">\pi</M> so <M>{t`\tan\varphi = y/x`}</M> cannot distinguish <M>\varphi</M> from <M p=".">{t`\varphi+\pi`}</M>{' '}
-              The calculator's <M>\arctan</M> always answers in <M p=".">{t`(-\tfrac{\pi}{2}, \tfrac{\pi}{2})`}</M> For points with <M>{t`x<0`}</M> it is off by <M p=",">\pi</M>{' '}
-              and for <M>{t`x = 0`}</M> it is undefined. The formula in the notes is the standard shorthand, with “choose the correct quadrant” left implicit.
-              Correct version (supplement):
-            </p>}
-          />
-          <T
-            de={<MD>{t`\varphi = \begin{cases} \arctan(y/x) & x>0 \\ \arctan(y/x) + \pi & x<0 \\ \pi/2 & x = 0,\ y>0 \\ 3\pi/2 & x=0,\ y<0 \end{cases}\qquad(\text{danach auf } [0,2\pi) \text{ reduzieren})`}</MD>}
-            en={<MD>{t`\varphi = \begin{cases} \arctan(y/x) & x>0 \\ \arctan(y/x) + \pi & x<0 \\ \pi/2 & x = 0,\ y>0 \\ 3\pi/2 & x=0,\ y<0 \end{cases}\qquad(\text{then reduce to } [0,2\pi))`}</MD>}
-          />
-          <T
-            de={<p>Genau das berechnet <code>atan2(y, x)</code>. Probier es aus:</p>}
-            en={<p>This is what <code>atan2(y, x)</code> computes. Try it:</p>}
-          />
-          <QuadrantTrap />
+          <div className="r001">
+            <ArctanDemo />
+            <div>
+              <T
+                de={<>
+                  <p>Der <M>\arctan</M> des Taschenrechners liefert nur Winkel zwischen <M>{t`-90^\circ`}</M> und <M p=":">{t`+90^\circ`}</M> Er «kennt» nur die rechte Halbebene.</p>
+                  <p>Ein Punkt <M>M</M> links der <M>y</M>-Achse und der gegenüberliegende Punkt <M>{t`(-x,-y)`}</M> haben dasselbe Verhältnis <M p=",">{t`y/x`}</M> der <M>\arctan</M> verwechselt sie.</p>
+                  <p><b>Regel:</b> Für <M>{t`x < 0`}</M> addiert man <M p=".">{t`180^\circ`}</M></p>
+                </>}
+                en={<>
+                  <p>The calculator's <M>\arctan</M> only returns angles between <M>{t`-90^\circ`}</M> and <M p=":">{t`+90^\circ`}</M> it only “knows” the right half-plane.</p>
+                  <p>A point <M>M</M> left of the <M>y</M>-axis and the opposite point <M>{t`(-x,-y)`}</M> have the same ratio <M p=",">{t`y/x`}</M> so <M>\arctan</M> mixes them up.</p>
+                  <p><b>Rule:</b> for <M>{t`x < 0`}</M> add <M p=".">{t`180^\circ`}</M></p>
+                </>}
+              />
+            </div>
+          </div>
+          <details className="more">
+            <summary><T de="Ganz genau: Fallunterscheidung (atan2)" en="In full: all cases (atan2)" /></summary>
+            <T
+              de={<MD>{t`\varphi = \begin{cases} \arctan(y/x) & x>0 \\ \arctan(y/x) + 180^\circ & x<0 \\ 90^\circ & x = 0,\ y>0 \\ 270^\circ & x=0,\ y<0 \end{cases}\qquad(\text{danach auf } [0^\circ,360^\circ) \text{ reduzieren})`}</MD>}
+              en={<MD>{t`\varphi = \begin{cases} \arctan(y/x) & x>0 \\ \arctan(y/x) + 180^\circ & x<0 \\ 90^\circ & x = 0,\ y>0 \\ 270^\circ & x=0,\ y<0 \end{cases}\qquad(\text{then reduce to } [0^\circ,360^\circ))`}</MD>}
+            />
+            <T
+              de={<p>Die Formel im Skript ist die übliche Kurzschreibweise, bei der «den richtigen Quadranten wählen» stillschweigend vorausgesetzt wird. Programmiersprachen haben dafür <code>atan2(y, x)</code>.</p>}
+              en={<p>The formula in the notes is the usual shorthand, with “choose the correct quadrant” left implicit. Programming languages provide <code>atan2(y, x)</code> for this.</p>}
+            />
+          </details>
         </Box>
         <Box kind="supplement" title={<T de={<>Wertebereiche und der Sonderfall auf der <M>z</M>-Achse</>} en={<>Ranges and the special case on the <M>z</M>-axis</>} />}>
           <T
@@ -284,39 +291,36 @@ export default function L01Coordinates() {
           </ul>}
         />
         <Derivation title={<T de="die sphärischen Formeln aus den zylindrischen" en="the spherical formulas from the cylindrical ones" />}>
-          <T
-            de={<ol>
-              <li>Betrachte die vertikale Ebene, die die <M>z</M>-Achse und <M>M</M> enthält. Darin bilden <M p=",">O</M> <M>M</M> und der Fusspunkt des Lotes von <M>M</M> auf die <M>z</M>-Achse ein rechtwinkliges Dreieck mit Hypotenuse <M>r</M> und Winkel <M>\theta</M> bei <M p=".">O</M></li>
-              <li>Kathete entlang der <M>z</M>-Achse: <M p=".">{t`z = r\cos\theta`}</M> Die Kathete senkrecht dazu ist genau der Abstand zur <M>z</M>-Achse: <M p=".">{t`\rho = r\sin\theta`}</M></li>
-              <li>Setze <M>{t`\rho = r\sin\theta`}</M> und <M>{t`\varphi = \psi`}</M> in <M>{t`x = \rho\cos\varphi,\ y = \rho\sin\varphi`}</M> ein:
-                <MD>{t`x = r\sin\theta\cos\psi,\qquad y = r\sin\theta\sin\psi.`}</MD></li>
-              <li>Konsistenzkontrolle: <M>{t`x^2+y^2+z^2 = r^2\sin^2\theta(\cos^2\psi+\sin^2\psi) + r^2\cos^2\theta = r^2`}</M>&nbsp;✓.</li>
-              <li>Umkehrung: Aus Schritt 2 folgt <M p=".">{t`\tan\theta = \rho/z = \sqrt{x^2+y^2}/z`}</M></li>
-            </ol>}
-            en={<ol>
-              <li>Look at the vertical plane that contains the <M>z</M>-axis and <M p=".">M</M> In it, <M p=",">O</M> <M>M</M> and the foot of the perpendicular from <M>M</M> onto the <M>z</M>-axis form a right triangle with hypotenuse <M>r</M> and angle <M>\theta</M> at <M p=".">O</M></li>
-              <li>Side along the <M>z</M>-axis: <M p=".">{t`z = r\cos\theta`}</M> The side perpendicular to it is exactly the distance from the <M>z</M>-axis: <M p=".">{t`\rho = r\sin\theta`}</M></li>
-              <li>Insert <M>{t`\rho = r\sin\theta`}</M> and <M>{t`\varphi = \psi`}</M> into <M p=":">{t`x = \rho\cos\varphi,\ y = \rho\sin\varphi`}</M>
-                <MD>{t`x = r\sin\theta\cos\psi,\qquad y = r\sin\theta\sin\psi.`}</MD></li>
-              <li>Consistency check: <M>{t`x^2+y^2+z^2 = r^2\sin^2\theta(\cos^2\psi+\sin^2\psi) + r^2\cos^2\theta = r^2`}</M>&nbsp;✓.</li>
-              <li>Inverse: from step 2, <M p=".">{t`\tan\theta = \rho/z = \sqrt{x^2+y^2}/z`}</M></li>
-            </ol>}
-          />
+          <StepPlayer
+            label={tr('Animation der Herleitung der sphärischen Koordinaten', 'Animation of the derivation of the spherical coordinates')}
+            steps={[
+              { ms: 5000, holdMs: 3000, caption: <T
+                de={<>Betrachte die senkrechte Ebene, die die <M>z</M>-Achse und <M>M</M> enthält. Darin bilden <M p=",">O</M> <M>M</M> und der Fusspunkt <M>{t`M_z`}</M> des Lotes von <M>M</M> auf die <M>z</M>-Achse ein rechtwinkliges Dreieck mit Hypotenuse <M>r</M> und Winkel <M>\theta</M> bei <M p=".">O</M></>}
+                en={<>Look at the vertical plane that contains the <M>z</M>-axis and <M p=".">M</M> In it, <M p=",">O</M> <M>M</M> and the foot <M>{t`M_z`}</M> of the perpendicular from <M>M</M> onto the <M>z</M>-axis form a right triangle with hypotenuse <M>r</M> and angle <M>\theta</M> at <M p=".">O</M></>} /> },
+              { ms: 10000, holdMs: 4000, caption: <T
+                de={<>Wir schauen frontal auf diese Ebene. Kathete entlang der <M>z</M>-Achse: <M p=".">{t`z = r\cos\theta`}</M> Die Kathete senkrecht dazu ist genau der Abstand zur <M>z</M>-Achse: <M p=".">{t`\rho = r\sin\theta`}</M> Für <M>{t`\theta > 90^\circ`}</M> liegt <M>M</M> unterhalb der <M>xy</M>-Ebene: <M>z</M> wird negativ, während <M>{t`\rho = r\sin\theta \ge 0`}</M> bleibt, weil <M p=".">{t`0 \le \theta \le \pi`}</M></>}
+                en={<>We look straight at this plane. Side along the <M>z</M>-axis: <M p=".">{t`z = r\cos\theta`}</M> The side perpendicular to it is exactly the distance from the <M>z</M>-axis: <M p=".">{t`\rho = r\sin\theta`}</M> For <M>{t`\theta > 90^\circ`}</M> the point <M>M</M> lies below the <M>xy</M>-plane: <M>z</M> becomes negative, while <M>{t`\rho = r\sin\theta \ge 0`}</M> stays non-negative because <M p=".">{t`0 \le \theta \le \pi`}</M></>} /> },
+              { ms: 9000, holdMs: 4000, caption: <T
+                de={<>Senkrecht nach unten projiziert, ist die Kathete <M>\rho</M> genau die Strecke <M p=".">{t`OM_{xy}`}</M> Von oben gesehen gilt deshalb wie bei den Zylinderkoordinaten <M p=",">{t`x = \rho\cos\varphi`}</M> <M>{t`y = \rho\sin\varphi`}</M> mit <M p=".">{t`\varphi = \psi`}</M> Einsetzen von <M>{t`\rho = r\sin\theta`}</M> ergibt
+                  <MD>{t`x = r\sin\theta\cos\psi,\qquad y = r\sin\theta\sin\psi.`}</MD></>}
+                en={<>Projected straight down, the side <M>\rho</M> is exactly the segment <M p=".">{t`OM_{xy}`}</M> Seen from above, therefore, as for cylindrical coordinates, <M p=",">{t`x = \rho\cos\varphi`}</M> <M>{t`y = \rho\sin\varphi`}</M> with <M p=".">{t`\varphi = \psi`}</M> Inserting <M>{t`\rho = r\sin\theta`}</M> gives
+                  <MD>{t`x = r\sin\theta\cos\psi,\qquad y = r\sin\theta\sin\psi.`}</MD></>} /> },
+              { ms: 7000, holdMs: 3000, caption: <T
+                de={<>Konsistenzkontrolle: <M>{t`x^2+y^2+z^2 = r^2\sin^2\theta(\cos^2\psi+\sin^2\psi) + r^2\cos^2\theta = r^2`}</M>&nbsp;✓. Geometrisch ist das zweimal Pythagoras: im Boden <M p=",">{t`\rho^2 = x^2+y^2`}</M> im senkrechten Dreieck <M p=".">{t`r^2 = \rho^2 + z^2`}</M></>}
+                en={<>Consistency check: <M>{t`x^2+y^2+z^2 = r^2\sin^2\theta(\cos^2\psi+\sin^2\psi) + r^2\cos^2\theta = r^2`}</M>&nbsp;✓. Geometrically this is Pythagoras twice: in the floor <M p=",">{t`\rho^2 = x^2+y^2`}</M> in the vertical triangle <M p=".">{t`r^2 = \rho^2 + z^2`}</M></>} /> },
+              { ms: 4500, caption: <T
+                de={<>Umkehrung: Aus Schritt 2 folgt <M p=".">{t`\tan\theta = \rho/z = \sqrt{x^2+y^2}/z`}</M></>}
+                en={<>Inverse: from step 2, <M p=".">{t`\tan\theta = \rho/z = \sqrt{x^2+y^2}/z`}</M></>} /> },
+            ]}
+          >
+            {(step, tt) => <AnimFigure build={sphScene} step={step} t={tt} />}
+          </StepPlayer>
         </Derivation>
-        <Box kind="review" title={<T de={<>R-001 (nochmals) · <M>{t`\theta = \arctan\big(\sqrt{x^2+y^2}/z\big)`}</M> versagt für <M>{t`z < 0`}</M></>} en={<>R-001 (again) · <M>{t`\theta = \arctan\big(\sqrt{x^2+y^2}/z\big)`}</M> fails for <M>{t`z < 0`}</M></>} />}>
+        <Box kind="review" title={<T de={<>R-001 · dasselbe bei <M>\theta</M></>} en={<>R-001 · the same for <M>\theta</M></>} />}>
           <T
-            de={<p>
-              Für einen Punkt unterhalb der <M>xy</M>-Ebene, z. B. <M p=",">{t`(1,0,-1)`}</M> ist das wahre <M p=",">{t`\theta = 135^\circ`}</M> aber <M p=".">{t`\arctan(1/(-1)) = -45^\circ`}</M>{' '}
-              Für <M>{t`z = 0`}</M> ist der Bruch nicht definiert, obwohl <M>{t`\theta = 90^\circ`}</M> völlig in Ordnung ist.
-              Eine Form, die nie eine Quadrantenkorrektur braucht (Ergänzung): Der <M>{t`\arccos`}</M> liefert Werte in <M p=",">{t`[0,\pi]`}</M> genau dem Wertebereich von <M p=".">\theta</M> Also
-            </p>}
-            en={<p>
-              For a point below the <M>xy</M>-plane, e.g. <M p=",">{t`(1,0,-1)`}</M> the true <M>{t`\theta = 135^\circ`}</M> but <M p=".">{t`\arctan(1/(-1)) = -45^\circ`}</M>{' '}
-              For <M>{t`z = 0`}</M> the fraction is undefined although <M>{t`\theta = 90^\circ`}</M> is perfectly fine.
-              A form that never needs a quadrant correction (supplement): <M>{t`\arccos`}</M> returns values in <M p=",">{t`[0,\pi]`}</M> exactly the range of <M p=".">\theta</M> So
-            </p>}
+            de={<p><M>{t`\theta = \arctan\big(\sqrt{x^2+y^2}/z\big)`}</M> stimmt nur oberhalb der <M>xy</M>-Ebene <M p=".">{t`(z > 0)`}</M> Immer richtig ist <M p=",">{t`\theta = \arccos(z/r)`}</M> denn <M>\arccos</M> liefert genau die Winkel von <M>{t`0^\circ`}</M> bis <M p=".">{t`180^\circ`}</M> (In der Animation oben: für <M>{t`\theta > 90^\circ`}</M> wird <M>z</M> negativ.)</p>}
+            en={<p><M>{t`\theta = \arctan\big(\sqrt{x^2+y^2}/z\big)`}</M> is only correct above the <M>xy</M>-plane <M p=".">{t`(z > 0)`}</M> Always correct is <M p=",">{t`\theta = \arccos(z/r)`}</M> because <M>\arccos</M> returns exactly the angles from <M>{t`0^\circ`}</M> to <M p=".">{t`180^\circ`}</M> (In the animation above: for <M p=",">{t`\theta > 90^\circ`}</M> <M>z</M> becomes negative.)</p>}
           />
-          <MD>{t`\theta = \arccos\!\left(\frac{z}{r}\right),\qquad r > 0.`}</MD>
         </Box>
         <T
           de={<>

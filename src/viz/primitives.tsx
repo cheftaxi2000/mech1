@@ -44,7 +44,7 @@ export function Arrow({ from = [0, 0, 0], to, color, width = 2 }: { from?: Vec3;
  * scene failed to render with React 19 (docs/DECISIONS.md, D-004).
  * `sub` is drawn as a subscript, e.g. <Label sub="xy">M</Label>.
  */
-export function Label({ at, children, sub, color = '#0f172a', size = 0.06 }: { at: Vec3; children: string; sub?: string; color?: string; size?: number }) {
+export function Label({ at, children, sub, color = '#0f172a', size = 0.068 }: { at: Vec3; children: string; sub?: string; color?: string; size?: number }) {
   const fontReady = useKatexFontReady();
   const { texture, aspect } = useMemo(() => {
     const px = 72, font = KATEX_MATH_FONT(px), subFont = KATEX_MATH_FONT(Math.round(px * 0.7));

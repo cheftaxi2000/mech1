@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { GHOSTS, H, PHI0, RHO, W, cylScene, labelBox, phiAt, wrap, type SceneLabel } from './cylScene';
+import { labelOverlap } from './scene';
 
 const STEPS = [0, 1, 2, 3, 4];
 const LANGS = ['de', 'en'] as const;
@@ -90,11 +91,11 @@ describe('final frames show what the captions say (resting frame / reduced motio
   });
   it('step 4: squares and both formulas', () => {
     const sc = cylScene(3, 1, 'de');
-    for (const k of ['lab-an-sq-x', 'lab-an-sq-y', 'lab-an-sq-r', 'box-pyth', 'box-tan']) expect(label(sc.labels, k)?.o, k).toBeGreaterThan(0.9);
+    for (const k of ['lab-an-sq-x', 'lab-an-sq-y', 'lab-an-sq-rho', 'box-pyth', 'box-tan']) expect(label(sc.labels, k)?.o, k).toBeGreaterThan(0.9);
   });
   it('step 5: ends at φ = π/2 with both limiting cases shown', () => {
     const sc = cylScene(4, 1, 'de');
-    expect(sc.phi).toBeCloseTo(Math.PI / 2);
+    expect(sc.data.phi).toBeCloseTo(Math.PI / 2);
     expect(label(sc.labels, 'box-lim0')?.o).toBe(1);
     expect(label(sc.labels, 'box-lim90')?.o).toBe(1);
     expect(sc.shapes.some((s) => s.key === 'lim0-x')).toBe(true);
@@ -102,12 +103,7 @@ describe('final frames show what the captions say (resting frame / reduced motio
 });
 
 describe('labels do not cover each other in the frames a student rests on', () => {
-  const overlap = (a: SceneLabel, b: SceneLabel) => {
-    const A = labelBox(a), B = labelBox(b);
-    const w = Math.min(A.x1, B.x1) - Math.max(A.x0, B.x0), h = Math.min(A.y1, B.y1) - Math.max(A.y0, B.y0);
-    if (w <= 0 || h <= 0) return 0;
-    return (w * h) / Math.min((A.x1 - A.x0) * (A.y1 - A.y0), (B.x1 - B.x0) * (B.y1 - B.y0));
-  };
+  const overlap = labelOverlap;
   for (const lang of LANGS) for (const step of STEPS) {
     it(`[${lang}] step ${step + 1}, final frame`, () => {
       const ls = cylScene(step, 1, lang).labels.filter((l) => l.o > 0.5);

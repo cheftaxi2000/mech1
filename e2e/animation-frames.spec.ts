@@ -13,6 +13,33 @@ const PLAN: { step: number; at: number[] }[] = [
 ];
 const MS = [4500, 5500, 10000, 5500, 8000];
 
+const PLAN_SPH: { step: number; at: number[] }[] = [
+  { step: 0, at: [0.15, 0.5, 0.8] },
+  { step: 1, at: [0.15, 0.35, 0.55, 0.68, 0.85] },
+  { step: 2, at: [0.12, 0.3, 0.55, 0.75, 0.92] },
+  { step: 3, at: [0.15, 0.45, 0.7, 0.9] },
+  { step: 4, at: [0.2, 0.6] },
+];
+const MS_SPH = [5000, 10000, 9000, 7000, 4500];
+
+test('[de] capture spherical animation frames', async ({ page }) => {
+  test.setTimeout(120_000);
+  await page.addInitScript(() => localStorage.setItem('mech1.lang', 'de'));
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto('/#koordinaten');
+  const player = page.locator('.stepper').nth(1);
+  await player.locator('.stepper-fig').scrollIntoViewIfNeeded();
+  for (const { step, at } of PLAN_SPH) {
+    await player.locator('.step-num').nth(step).click();
+    const t0 = Date.now();
+    for (const frac of at) {
+      const wait = t0 + frac * MS_SPH[step] - Date.now();
+      if (wait > 0) await page.waitForTimeout(wait);
+      await player.locator('.stepper-fig').screenshot({ path: `test-results/frames/sph-s${step + 1}-${String(Math.round(frac * 100)).padStart(3, '0')}.png` });
+    }
+  }
+});
+
 for (const lang of ['de', 'en'] as const) {
   test(`[${lang}] capture animation frames`, async ({ page }) => {
     test.setTimeout(120_000);
@@ -63,4 +90,17 @@ test('[review] explorer, phone layout, dark mode', async ({ page }) => {
   await page.locator('.stepper .step-num').nth(2).click();
   await page.waitForTimeout(300);
   await page.screenshot({ path: 'test-results/frames/review-dark-ipad-step3.png' });
+});
+
+test('[review] R-001 boxes (arctan demo) on iPad and phone', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('mech1.lang', 'de'));
+  for (const [w, h, name] of [[1180, 820, 'ipad'], [390, 844, 'phone']] as const) {
+    await page.setViewportSize({ width: w, height: h });
+    await page.goto('/#koordinaten');
+    const boxes = page.locator('.box-review');
+    await boxes.first().scrollIntoViewIfNeeded();
+    await page.waitForTimeout(2500); // let the demo run a little
+    await boxes.first().screenshot({ path: `test-results/frames/review-r001-${name}.png` });
+    await boxes.nth(1).screenshot({ path: `test-results/frames/review-r001b-${name}.png` });
+  }
 });

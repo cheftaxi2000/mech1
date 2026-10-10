@@ -4,6 +4,17 @@ Interactive learning platform for the ETH Zürich **Mechanik I** course (lecture
 The student wants **depth over coverage**: mastering 10 pages well beats skimming 150.
 Correctness > clarity > visuals > speed.
 
+## Visualisation first — the student's #1 requirement (never skip)
+
+Visualising is the most important part of learning mechanics. Every lesson is judged first by its pictures.
+- **Every concept with a geometric or physical meaning gets a figure**: interactive (sliders, dragging) where the student can explore, animated where something moves or is constructed.
+- **Every derivation gets a step-synchronised animation** (`StepPlayer` + a pure scene in `src/viz/anim/`), one animation step per derivation step, each step's final frame showing exactly what its caption says.
+- **Source problems (review boxes) are explained with a picture first**, text second, and kept short; long details go into a collapsible `<details className="more">`.
+- Figures follow the lecture's own drawings (orientation of axes, point names like `M_x`, `M_xy`, `M_z`) and one colour system everywhere: x blue, y amber, z green, ρ teal, r dark, angles purple, points red.
+- Keep explanations simple: short sentences, one idea per step, the picture does the heavy lifting.
+- Before calling a lesson done, **look at the rendered frames yourself** (`test-results/screens/`, `REVIEW_FRAMES=1 …` → `test-results/frames/`) in light and dark mode, on iPad and phone width. Passing tests do not prove a figure is right.
+- When unsure whether something needs a visual: it does.
+
 ## Start of every session
 
 1. Read `docs/PROGRESS.md` (where we are), `docs/REVIEW_LOG.md` (open issues), and the latest entry in `docs/SESSION_LOG.md`.

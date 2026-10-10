@@ -32,6 +32,18 @@ describe('lesson source lint', () => {
     expect(bad).toEqual([]);
   });
 
+  it('one glyph per symbol everywhere: \\varphi (never \\phi or ϕ), \\theta (never \\vartheta), \\rho (never \\varrho)', () => {
+    const all = (d: string): string[] => readdirSync(d, { withFileTypes: true }).flatMap((e) =>
+      e.isDirectory() ? all(join(d, e.name)) : /\.(tsx?|css)$/.test(e.name) && !e.name.endsWith('.test.ts') ? [join(d, e.name)] : []);
+    const bad: string[] = [];
+    for (const f of all(join(__dirname, '..'))) {
+      readFileSync(f, 'utf8').split('\n').forEach((line, i) => {
+        if (/\\phi(?![a-zA-Z])|\\vartheta|\\varrho|\u03d5|\u03d1/.test(line)) bad.push(`${f.split('/src/')[1]}:${i + 1}`);
+      });
+    }
+    expect(bad).toEqual([]);
+  });
+
   it('every written lesson is registered in the curriculum and vice versa', () => {
     const registered = TOPICS.filter((t) => t.component).length;
     expect(registered).toBe(files.length);

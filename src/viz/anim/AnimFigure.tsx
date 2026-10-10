@@ -1,17 +1,21 @@
 import { useMemo } from 'react';
 import { M } from '../../components/Tex';
-import { useLang } from '../../i18n';
-import { H, W, cylScene } from './cylScene';
+import { useLang, type Lang } from '../../i18n';
 import type { P2 } from './geometry';
+import { H, W, type Scene } from './scene';
 
 const pts = (ps: P2[]) => ps.map((p) => `${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(' ');
 
-/** Renders cylScene(step, t): SVG shapes plus KaTeX labels positioned in % of the figure. */
-export function CylDerivationFigure({ step, t }: { step: number; t: number }) {
+/**
+ * Renders a pure scene (cylScene, sphScene, …): SVG shapes plus KaTeX labels positioned in % of the figure.
+ * scene.data values become data-* attributes (used by tests, e.g. data-phi).
+ */
+export function AnimFigure({ build, step, t }: { build: (step: number, t: number, lang: Lang) => Scene; step: number; t: number }) {
   const lang = useLang();
-  const scene = useMemo(() => cylScene(step, t, lang), [step, t, lang]);
+  const scene = useMemo(() => build(step, t, lang), [build, step, t, lang]);
+  const data = Object.fromEntries(Object.entries(scene.data).map(([k, v]) => [`data-${k}`, v.toFixed(4)]));
   return (
-    <div className="anim-fig" data-phi={scene.phi.toFixed(4)}>
+    <div className="anim-fig" {...data}>
       <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet">
         {scene.shapes.map((s) => {
           const o = s.o ?? 1;
