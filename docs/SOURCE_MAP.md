@@ -16,7 +16,7 @@ Source file: `Mitschrift.pdf` (uploaded 2026-10-10, 22 PDF pages, A4; typeset no
 | 4 | 6 | scalar/vector components, eq. (1), basis ↔ coordinates, §1.1.2 cylindrical basis, eq. (2) | typeset |
 | 5 | 7 | §1.1.3 spherical basis (figure only + 2 lines) | typeset, mostly empty |
 | 6 | 8 | Ch. 2 velocity: 1D, velocity vector, §2.1, arc length, speed ṡ, v = ṡ τ | typeset |
-| — | 9 | **missing** (presumably proof of v = ṙ in Cartesian basis and start of the cylindrical derivation) | — |
+| (screenshot) | 9 | v̲ = ṙ̲ = τ̲ ṡ via chain rule; §2.2 explicit velocity in Cartesian basis, start of cylindrical | typeset + handwritten strike-throughs; supplied separately 2026-10-10 as an iPad screenshot (GoodNotes page 11) |
 | 7 | 10 | e_ρ, e_φ in Cartesian basis, ė_ρ = φ̇ e_φ, velocity in cyl. and sph. basis, Beispiel (unsolved) | typeset + handwritten |
 | 8 | 11 | Kreisbewegung, ω = φ̇ e_z, v = ω × r | typeset + handwritten |
 | 9 | (none) | two photographed lecture slides "Kreisbewegung" (slide label L5) | photos |
@@ -74,9 +74,25 @@ Equation numbers in parentheses are the lecture's own.
 ### p. 8 — 2 Geschwindigkeit
 - Geradlinige Bewegung: x(t) skalare Funktion; v = dx/dt = ẋ = lim_{Δt→0} (x(t+Δt) − x(t))/Δt.
 - Gesucht für 3D: v̲ ⟺ r̲(t). Geschwindigkeitsvektor v̲ liegt tangential an Bahnkurve.
-- Zu zeigen: v̲ = ṙ̲ = (ẋ, ẏ, ż) für kartesische Basis. (Proof presumably on missing p. 9 → **R-002**.)
+- Zu zeigen: v̲ = ṙ̲ = (ẋ, ẏ, ż) für kartesische Basis. (Proof on p. 9.)
 - 2.1 figure: r̲(t), r̲(t+Δt), Δr̲, arc Δs, Bogenlänge s, τ̲ tangentialer Einheitsvektor.
 - Schnelligkeit ṡ = lim (s(t+Δt) − s(t))/Δt = lim Δs/Δt. v̲ = ṡ · τ̲. ṡ: wie schnell? τ̲: in welche Richtung?
+
+### p. 9 (supplied separately as a screenshot; not in the PDF)
+- Vektorfunktion r̲(t): ṙ̲ = lim_{Δt→0} (r̲(t+Δt) − r̲(t))/Δt = lim_{Δt→0} Δr̲/Δt.
+- Δr̲ = r̲(t+Δt) − r̲(t) → r̲(t) + Δr̲ = r̲(t+Δt).
+- für Δt → 0: ṙ̲ ∥ Δr̲. Δr̲ ∥ τ̲ → ṙ̲ ∥ τ̲, v̲ (siehe Figur [= Fig. on p. 8]). → R-014
+- r̲(t) → r̲(s) = r̲(s(t)).
+  dr̲/dt = ṙ̲ = (dr̲/ds)(ds/dt) (Kettenregel), ds/dt = ṡ (underbrace).
+  dr̲/ds = lim_{Δs→0} Δr̲/Δs = τ̲.
+  ṙ̲ = (dr̲/ds) · ṡ = τ̲ · ṡ = v̲. → R-014
+- **2.2 Explizite Darstellung der Geschwindigkeit.** "Darstellung von r̲ = ṙ̲, d.h. v̲:" → R-013
+- • Kartesische Basis: r̲(t) = x(t) e̲_x + y(t) e̲_y + z(t) e̲_z;
+  ṙ̲ = ẋ e̲_x + x ė̲_x + ẏ e̲_y + y ė̲_y + ż e̲_z + z ė̲_z, with the three terms x ė̲_x, y ė̲_y, z ė̲_z struck through (constant basis);
+  highlighted: **ṙ̲ = ẋ e̲_x + ẏ e̲_y + ż e̲_z**.
+- • Zylindrische Basis: r̲ = ρ(t) · e̲_ρ(φ(t)) + z(t) e̲_z;
+  ṙ̲ = ρ̇ e̲_ρ + ρ ė̲_ρ + ż e̲_z + z ė̲_z (last term struck through);
+  ė̲_ρ ≠ 0. e̲_ρ: beschreibe als Vektor in einer konstanten Basis! (continues on p. 10 with e̲_ρ = cos φ e̲_x + sin φ e̲_y).
 
 ### p. 10
 - e̲_ρ = cos φ e̲_x + sin φ e̲_y; e̲_φ = −sin φ e̲_x + cos φ e̲_y (figure).

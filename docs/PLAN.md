@@ -1,7 +1,7 @@
 # Plan
 
 ## What the source actually contains
-22 PDF pages = printed pp. 3–23 (minus p. 9) + one page of slide photos + one handwritten page. Three chapters:
+22 PDF pages = printed pp. 3–23 (minus p. 9, supplied separately as a screenshot) + one page of slide photos + one handwritten page. Three chapters:
 1. Bewegung eines materiellen Punktes (coordinates, vectors, bases) — pp. 3–7
 2. Geschwindigkeit (velocity, speed, curvilinear bases, circular motion) — pp. 8–11
 3. Starrer Körper (SdpG, translation, rotation, rolling, Kreiselung, general motion) — pp. 12–23
@@ -15,7 +15,7 @@ The user prompt mentions ~150 pages; this PDF is the first 23. More material wil
 | 1 | koordinaten | 3–4 | — | ✅ 3D coordinate explorer; quadrant trap |
 | 2 | vektoren | 5 | 1 | drag a̲, b̲: live dot product as projection, cross product as oriented parallelogram area; right-hand rule check |
 | 3 | basen | 5–7 | 1, 2 | local basis at M moves with M; "same vector, different components" widget; (R, φ, z₀) vs (R, 0, z₀) |
-| 4 | geschwindigkeit | 8 (+9 missing) | 3 | secant Δr̲/Δt → tangent as Δt → 0 animation; ṡ vs |v̲|; v̲ = ṡ τ̲ |
+| 4 | geschwindigkeit | 8–9 | 3 | secant Δr̲/Δt → tangent as Δt → 0 animation; chord vs arc length → ratio 1; chain rule v̲ = τ̲ṡ; product rule in Cartesian vs cylindrical basis (why ė̲_ρ ≠ 0 is the whole story) |
 | 5 | v-krummlinig | 10 | 3, 4 | ė̲_ρ = φ̇ e̲_φ visual (rotating basis); decompose v̲ into ρ̇, ρφ̇, ż parts live; solve p. 10 Beispiel |
 | 6 | kreisbewegung | 11 + slides | 5 | ω̲ × r̲ field; why z₀ drops out; Winkelschnelligkeit vs Winkelgeschwindigkeit |
 | 7 | sdpg | 12–13 | 2, 4 | rigid bar with arbitrary end velocities: projections must match; ladder simulation (R-006) |
@@ -56,7 +56,7 @@ Adapt to the topic; never pad.
 - Deployment (GitHub Pages or Claude artifact) — ask the student.
 
 ## Open questions for the student
-1. Missing printed pages 1–2 and 9 (R-002) — can you upload them?
+1. ~~Missing p. 9~~ (received). Printed pages 1–2 (R-002): do they contain anything beyond a title page / contents?
 2. R-004/R-005 (cube example p. 19) — is there an official solution?
 3. Teaching language: English with German terms (current) — or German throughout?
 4. May the lecture PDF be committed to this repo (D-003)?

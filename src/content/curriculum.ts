@@ -30,7 +30,7 @@ export const TOPICS: Topic[] = [
   { id: 'koordinaten', chapter: '1', title: 'Lage & Koordinaten', titleEn: 'Position, reference body, coordinate systems', pages: '3–4', status: 'review', component: lazy(() => import('../lessons/L01Coordinates')) },
   { id: 'vektoren', chapter: '1', title: 'Vektoren, Skalar- & Kreuzprodukt', titleEn: 'Vectors, dot and cross product', pages: '5', status: 'planned' },
   { id: 'basen', chapter: '1', title: 'Kartesische, zylindrische, sphärische Basis', titleEn: 'Local bases', pages: '5–7', status: 'planned' },
-  { id: 'geschwindigkeit', chapter: '2', title: 'Geschwindigkeitsvektor & Schnelligkeit', titleEn: 'Velocity vector and speed', pages: '8 (9 missing)', status: 'planned' },
+  { id: 'geschwindigkeit', chapter: '2', title: 'Geschwindigkeitsvektor & Schnelligkeit', titleEn: 'Velocity vector and speed', pages: '8–9', status: 'planned' },
   { id: 'v-krummlinig', chapter: '2', title: 'Geschwindigkeit in Zylinder-/Kugelkoordinaten', titleEn: 'Velocity in curvilinear bases', pages: '10', status: 'planned' },
   { id: 'kreisbewegung', chapter: '2', title: 'Kreisbewegung & Winkelgeschwindigkeit', titleEn: 'Circular motion, ω × r', pages: '11 + slides', status: 'planned' },
   { id: 'sdpg', chapter: '3', title: 'Starrer Körper & SdpG', titleEn: 'Rigid body, projected velocities', pages: '12–13', status: 'planned' },

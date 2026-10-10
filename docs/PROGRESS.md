@@ -20,7 +20,7 @@
 | koordinaten | 3–4 | **review** | Checklist 1–9 ✅. Awaiting student. Polish backlog below. |
 | vektoren | 5 | planned | |
 | basen | 5–7 | planned | |
-| geschwindigkeit | 8 | planned | blocked in part by missing p. 9 (R-002) — can be written from p. 8 + standard derivation, labelled as supplement |
+| geschwindigkeit | 8–9 | planned | p. 9 now available and transcribed; its claims verified (R-013, R-014) |
 | v-krummlinig | 10 | planned | formulas already verified in tests |
 | kreisbewegung | 11 | planned | ω × r verified |
 | sdpg | 12–13 | planned | SdpG + ladder verified |

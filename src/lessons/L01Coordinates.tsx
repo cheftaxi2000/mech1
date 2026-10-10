@@ -244,7 +244,7 @@ export default function L01Coordinates() {
         <ul>
           <li><b>Next (p. 5):</b> vectors, scalar and cross product, orthonormal bases. A position becomes a vector <M>{t`\underline r(t)`}</M>.</li>
           <li><b>pp. 6–7:</b> the cylindrical and spherical <em>bases</em> are unit vectors tangent to the coordinate lines from this lesson — so <M>{t`\underline e_\varphi`}</M> is tangent to the φ-circle.</li>
-          <li><b>p. 10:</b> because <M>{t`\underline e_\rho`}</M> turns when <M>\varphi</M> changes, velocity in cylindrical coordinates is <M>{t`\dot\rho\,\underline e_\rho + \rho\dot\varphi\,\underline e_\varphi + \dot z\,\underline e_z`}</M>.</li>
+          <li><b>pp. 9–10:</b> because <M>{t`\underline e_\rho`}</M> turns when <M>\varphi</M> changes, velocity in cylindrical coordinates is <M>{t`\dot\rho\,\underline e_\rho + \rho\dot\varphi\,\underline e_\varphi + \dot z\,\underline e_z`}</M>.</li>
           <li><b>p. 11 and p. 16:</b> circular motion is “only <M>\varphi</M> changes”; the lecture's proof that rigid rotation is circular motion is done in cylindrical coordinates.</li>
         </ul>
       </Section>

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { numericVelocity, velocityCylindrical, velocitySpherical, speed } from './kinematics';
 import { cylToCart, sphToCart, eRho, ePhi } from './coords';
-import { cross, scale, add, vecApproxEqual, type Vec3 } from './vec';
+import { cross, dot, norm, scale, sub, add, vecApproxEqual, type Vec3 } from './vec';
 
 describe('velocity in curvilinear bases (lecture p. 10)', () => {
   it('cylindrical: ṙ = ρ̇e_ρ + ρφ̇e_φ + że_z matches numerical differentiation', () => {
@@ -47,5 +47,36 @@ describe('Kreisbewegung (lecture p. 11)', () => {
       const v1 = scale(R * phiDot, ePhi(phi));
       expect(vecApproxEqual(cross([0, 0, phiDot], r), v1)).toBe(true);
     }
+  });
+});
+
+describe('p. 9: v = ṙ = (dr/ds)·ṡ = τ ṡ', () => {
+  // Helix traversed with non-uniform speed: φ = t², so ṡ changes with time.
+  const R = 1.2, c = 0.5;
+  const r = (t: number): Vec3 => [R * Math.cos(t * t), R * Math.sin(t * t), c * t];
+  // Arc length s(t) from 0, by summing many small chords (independent of the closed form).
+  const arc = (t: number, n = 20000) => {
+    let s = 0, prev = r(0);
+    for (let i = 1; i <= n; i++) { const p = r((t * i) / n); s += norm(sub(p, prev)); prev = p; }
+    return s;
+  };
+  it('chord / arc → 1 as Δt → 0, so dr/ds = lim Δr/Δs has length 1', () => {
+    const t = 0.9;
+    const ratio = (dt: number) => norm(sub(r(t + dt), r(t))) / (arc(t + dt) - arc(t));
+    expect(ratio(0.3)).toBeLessThan(0.999); // a long chord is visibly shorter than its arc
+    expect(ratio(1e-3)).toBeCloseTo(1, 5);
+  });
+  it('ṡ = |ṙ|: speed from arc length agrees with the magnitude of the velocity vector', () => {
+    for (const t of [0.4, 1.1]) {
+      const h = 1e-3;
+      const sDot = (arc(t + h) - arc(t - h)) / (2 * h);
+      expect(sDot).toBeCloseTo(norm(numericVelocity(r, t)), 4);
+    }
+  });
+  it('τ = ṙ/ṡ is tangent: parallel to the chord direction in the limit', () => {
+    const t = 0.7, v = numericVelocity(r, t);
+    const chord = sub(r(t + 1e-4), r(t));
+    const cos = dot(v, chord) / (norm(v) * norm(chord));
+    expect(cos).toBeCloseTo(1, 6);
   });
 });

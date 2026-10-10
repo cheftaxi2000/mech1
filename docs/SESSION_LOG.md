@@ -8,3 +8,8 @@
 - Bugs caught by the new tests and fixed: angle rounding made M drift when switching coordinate systems; drei `<Html>` lost the first label (D-004); JSX swallowed spaces; phone-width overflow from wide equations.
 - The original user prompt was cut off after "3. FIRST ACTION: INSPECT, PLAN AND PREPARE … inspect the repository, available files, environment,". Ask for the rest — it may change priorities.
 - Next: student reviews lesson 1 and answers the open questions in PLAN.md; then lesson 2 (vektoren, p. 5).
+
+## 2026-10-10 — Session 1, continued: page 9
+- Student supplied printed p. 9 as an iPad screenshot. Transcribed into SOURCE_MAP (v̲ = τ̲ṡ via chain rule; §2.2 Cartesian velocity; start of cylindrical).
+- New review items: R-013 (typo "r̲ = ṙ̲"), R-014 (implicit limit / unit-length / invertibility assumptions in the v̲ = τ̲ṡ derivation). Added 3 verification tests (chord/arc → 1, ṡ = |ṙ̲|, tangent direction).
+- Screenshot not committed (same reasoning as D-003).
