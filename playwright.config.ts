@@ -5,6 +5,7 @@ const executablePath = process.env.CHROMIUM_PATH;
 
 export default defineConfig({
   testDir: 'e2e',
+  outputDir: 'test-results/pw', // keep test-results/screens and /frames across runs
   timeout: 30_000,
   use: {
     baseURL: 'http://localhost:4173',

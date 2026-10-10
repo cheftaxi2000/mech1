@@ -52,6 +52,21 @@ function textOutsideMathAndGerman(loc: ReturnType<Page['locator']>) {
   });
 }
 
+/** Greek letters and math symbols must never appear as plain text: they belong in KaTeX (<M>), so they look the same everywhere. */
+async function plainTextMath(page: Page): Promise<string[]> {
+  return page.evaluate(() => {
+    const RE = /[\u0370-\u03FF\u1F00-\u1FFF√²³⟂⊥∥≤≥≠]/;
+    const bad: string[] = [];
+    const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    while (w.nextNode()) {
+      const n = w.currentNode, p = n.parentElement;
+      if (!p || p.closest('.katex, script, style, code, title')) continue;
+      if (RE.test(n.textContent ?? '')) bad.push((n.textContent ?? '').trim().slice(0, 80));
+    }
+    return bad;
+  });
+}
+
 const LEAK: Record<Lang, RegExp> = {
   // English function words must not appear in German mode, and vice versa.
   de: /\b(the|and|is|are|of|with|which|this|that|from|only)\b/gi,
@@ -66,6 +81,7 @@ for (const lang of LANGS) {
     const i = lang === 'de' ? 0 : 1;
     for (const t of TOPICS) await expect(page.getByRole('navigation').getByText(t.title[i], { exact: true })).toBeVisible();
     for (const ch of Object.values(CHAPTERS)) await expect(page.getByRole('navigation').getByText(ch[i], { exact: true })).toBeVisible();
+    expect(await plainTextMath(page)).toEqual([]);
     expect(errors).toEqual([]);
   });
 
@@ -87,6 +103,7 @@ for (const lang of LANGS) {
       const hits = [...new Set((text.match(LEAK[lang]) ?? []).map((w) => w.toLowerCase()))];
       const context = hits.slice(0, 5).map((w) => text.match(new RegExp(`.{0,40}\\b${w}\\b.{0,40}`, 'i'))?.[0]);
       expect(hits, `leaked words, e.g.:\n${context.join('\n')}`).toEqual([]);
+      expect(await plainTextMath(page), 'Greek letters / math symbols outside KaTeX').toEqual([]);
     });
   }
 }
@@ -136,4 +153,48 @@ test('phone width: no horizontal page scroll', async ({ page }) => {
   await expect(page.locator('article.lesson h2').first()).toBeVisible();
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
   expect(overflow).toBeLessThanOrEqual(0);
+});
+
+test.describe('derivation animation (x = ρ cos φ, y = ρ sin φ)', () => {
+  test('autoplays when scrolled into view, can pause, and a step can be replayed', async ({ page }) => {
+    const errors = trackErrors(page);
+    await open(page, 'de', '#koordinaten');
+    const player = page.locator('.stepper').first();
+    await expect(player).toHaveAttribute('data-playing', '0');
+    await player.scrollIntoViewIfNeeded();
+    await expect(player).toHaveAttribute('data-playing', '1');
+    await page.waitForTimeout(600);
+    const t1 = Number(await player.getAttribute('data-t'));
+    expect(t1).toBeGreaterThan(0);
+    await player.getByRole('button', { name: 'Pause' }).click();
+    const tPaused = await player.getAttribute('data-t');
+    await page.waitForTimeout(400);
+    await expect(player).toHaveAttribute('data-t', tPaused!);
+    await player.getByRole('button', { name: 'Schritt 3 abspielen' }).click();
+    await expect(player).toHaveAttribute('data-step', '2');
+    await expect(player.locator('.stepper-steps li').nth(2)).toHaveClass(/active/);
+    await page.waitForTimeout(4500); // half-way through the sweep (it eases in): φ has left the first quadrant
+    const phi = Number(await player.locator('.anim-fig').getAttribute('data-phi'));
+    expect(phi).toBeGreaterThan(Math.PI / 2);
+    expect(errors).toEqual([]);
+  });
+
+  for (const lang of LANGS) {
+    test(`[${lang}] reduced motion: every step jumps to its final frame (screenshots)`, async ({ page }) => {
+      await page.emulateMedia({ reducedMotion: 'reduce' });
+      await open(page, lang, '#koordinaten');
+      const player = page.locator('.stepper').first();
+      await player.scrollIntoViewIfNeeded();
+      const n = await player.locator('.step-num').count();
+      expect(n).toBe(5);
+      for (let i = 0; i < n; i++) {
+        await player.locator('.step-num').nth(i).click();
+        await expect(player).toHaveAttribute('data-step', String(i));
+        await expect(player).toHaveAttribute('data-t', '1.000');
+        await expect(player).toHaveAttribute('data-playing', '0');
+        await expect(player.locator('.tex-error')).toHaveCount(0);
+        await player.locator('.stepper-fig').screenshot({ path: `test-results/screens/anim-${lang}-step${i + 1}.png` });
+      }
+    });
+  }
 });

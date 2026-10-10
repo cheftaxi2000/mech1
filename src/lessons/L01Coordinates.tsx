@@ -3,11 +3,14 @@ import { M, MD } from '../components/Tex';
 import { Choice, NumericAnswer, Predict } from '../components/Quiz';
 import { CoordinateExplorer } from '../viz/CoordinateExplorer';
 import { QuadrantTrap } from '../viz/QuadrantTrap';
-import { T } from '../i18n';
+import { T, useTr } from '../i18n';
+import { StepPlayer } from '../viz/anim/StepPlayer';
+import { CylDerivationFigure } from '../viz/anim/CylDerivationFigure';
 
 const t = String.raw;
 
 export default function L01Coordinates() {
+  const tr = useTr();
   return (
     <article className="lesson">
       <T
@@ -68,21 +71,6 @@ export default function L01Coordinates() {
                 platform and for someone sitting in the moving train. The reference body is the thing you measure <em>from</em>. It must be rigid,
                 otherwise your rulers would stretch while you measure.
               </p>
-            </>}
-          />
-        </Box>
-        <Box kind="supplement" title={<T de="Warum starr?" en="Why rigid?" />}>
-          <T
-            de={<>
-              Würde sich der Bezugskörper verformen, könnten zwei Messungen desselben ruhenden Punktes verschiedene Koordinaten liefern.
-              Die Bewegung wäre dann teilweise ein Artefakt des Messinstruments. Die Starrheit garantiert, dass die Achsen ihre Längen und die
-              Winkel zwischen ihnen behalten. (Starre Körper sind das Hauptthema von Kapitel 3. Dort sind sie die <em>Objekte</em>, die sich bewegen;
-              hier sind sie die <em>Bühne</em>.)
-            </>}
-            en={<>
-              If the reference body deformed, two measurements of the same, motionless point could give different coordinates. Motion would then be
-              partly an artefact of the measuring device. Rigidity guarantees that the axes keep their lengths and the angles between them.
-              (Rigid bodies return as the main topic of chapter 3. There they are the <em>objects</em> that move; here they are the <em>stage</em>.)
             </>}
           />
         </Box>
@@ -148,7 +136,7 @@ export default function L01Coordinates() {
       </Section>
 
       {/* ------------------------------------------------------------------ 3 */}
-      <Section id="cylindrical" title={<T de="3. Zylindrische Koordinaten ρ, φ, z" en="3. Cylindrical coordinates (zylindrische Koordinaten) ρ, φ, z" />}>
+      <Section id="cylindrical" title={<T de={<>3. Zylindrische Koordinaten <M>{t`\rho, \varphi, z`}</M></>} en={<>3. Cylindrical coordinates (zylindrische Koordinaten) <M>{t`\rho, \varphi, z`}</M></>} />}>
         <Box kind="lecture" src={<Src p={'3–4'} fig="Fig. 1.8, 1.10" />}>
           <T de="Beziehung zwischen kartesischen und zylindrischen Koordinaten:" en="Relation between Cartesian and cylindrical coordinates:" />
           <MD>{t`x = \rho\cos\varphi,\qquad y = \rho\sin\varphi,\qquad z = z`}</MD>
@@ -176,28 +164,30 @@ export default function L01Coordinates() {
           </>}
         />
         <Derivation title={<M>{t`x = \rho\cos\varphi,\ y = \rho\sin\varphi`}</M>}>
-          <T
-            de={<>
-              <ol>
-                <li>Projiziere <M>M</M> senkrecht nach unten auf <M>{t`M_{xy}`}</M>. Das ändert <M>x</M> und <M>y</M> nicht; wir können also ganz in der <M>xy</M>-Ebene arbeiten.</li>
-                <li>In dieser Ebene bilden <M>O</M>, <M>{t`M_{xy}`}</M> und der Fusspunkt des Lotes von <M>{t`M_{xy}`}</M> auf die <M>x</M>-Achse ein rechtwinkliges Dreieck mit Hypotenuse <M>\rho</M> und Winkel <M>\varphi</M> bei <M>O</M>.</li>
-                <li>Ankathete <M>{t`= \rho\cos\varphi = x`}</M>, Gegenkathete <M>{t`= \rho\sin\varphi = y`}</M>. Mit den vorzeichenbehafteten Funktionen cos und sin (Einheitskreis) gilt das in allen vier Quadranten, nicht nur im ersten.</li>
-                <li>Umkehrung: Pythagoras liefert <M>{t`\rho^2 = x^2+y^2`}</M>; die Division der beiden Gleichungen liefert <M>{t`\tan\varphi = y/x`}</M>.</li>
-              </ol>
-              <p><b>Plausibilitätskontrolle (Grenzfälle).</b> <M>{t`\varphi = 0`}</M>: <M>{t`(x,y) = (\rho, 0)`}</M>, auf der positiven <M>x</M>-Achse ✓. <M>{t`\varphi = \pi/2`}</M>: <M>{t`(0,\rho)`}</M> ✓.</p>
-            </>}
-            en={<>
-              <ol>
-                <li>Project <M>M</M> straight down to <M>{t`M_{xy}`}</M>. This does not change <M>x</M> or <M>y</M>, so we can work entirely in the <M>xy</M>-plane.</li>
-                <li>In that plane, <M>O</M>, <M>{t`M_{xy}`}</M> and the foot of the perpendicular from <M>{t`M_{xy}`}</M> onto the <M>x</M>-axis form a right triangle with hypotenuse <M>\rho</M> and angle <M>\varphi</M> at <M>O</M>.</li>
-                <li>Adjacent side <M>{t`= \rho\cos\varphi = x`}</M>, opposite side <M>{t`= \rho\sin\varphi = y`}</M>. With the signed functions cos and sin (unit circle) this holds in all four quadrants, not just the first.</li>
-                <li>Inverse: Pythagoras gives <M>{t`\rho^2 = x^2+y^2`}</M>; dividing the two equations gives <M>{t`\tan\varphi = y/x`}</M>.</li>
-              </ol>
-              <p><b>Sanity check (limiting cases).</b> <M>{t`\varphi = 0`}</M>: <M>{t`(x,y) = (\rho, 0)`}</M>, on the positive <M>x</M>-axis ✓. <M>{t`\varphi = \pi/2`}</M>: <M>{t`(0,\rho)`}</M> ✓.</p>
-            </>}
-          />
+          <StepPlayer
+            label={tr('Animation der Herleitung von x = ρ cos φ, y = ρ sin φ', 'Animation of the derivation of x = ρ cos φ, y = ρ sin φ')}
+            steps={[
+              { ms: 4600, caption: <T
+                de={<>Projiziere <M>M</M> senkrecht nach unten auf <M>{t`M_{xy}`}</M>. Das ändert <M>x</M> und <M>y</M> nicht; wir können also ganz in der <M>xy</M>-Ebene arbeiten und schauen von oben auf sie.</>}
+                en={<>Project <M>M</M> straight down to <M>{t`M_{xy}`}</M>. This does not change <M>x</M> or <M>y</M>, so we can work entirely in the <M>xy</M>-plane and look at it from above.</>} /> },
+              { ms: 3800, caption: <T
+                de={<>In dieser Ebene bilden <M>O</M>, <M>{t`M_{xy}`}</M> und der Fusspunkt des Lotes von <M>{t`M_{xy}`}</M> auf die <M>x</M>-Achse ein rechtwinkliges Dreieck mit Hypotenuse <M>\rho</M> und Winkel <M>\varphi</M> bei <M>O</M>.</>}
+                en={<>In that plane, <M>O</M>, <M>{t`M_{xy}`}</M> and the foot of the perpendicular from <M>{t`M_{xy}`}</M> onto the <M>x</M>-axis form a right triangle with hypotenuse <M>\rho</M> and angle <M>\varphi</M> at <M>O</M>.</>} /> },
+              { ms: 9000, caption: <T
+                de={<>Ankathete <M>{t`= \rho\cos\varphi = x`}</M>, Gegenkathete <M>{t`= \rho\sin\varphi = y`}</M>. Mit den vorzeichenbehafteten Funktionen <M>\cos</M> und <M>\sin</M> (Einheitskreis) gilt das in allen vier Quadranten, nicht nur im ersten: Die Animation lässt <M>\varphi</M> einmal ganz herumlaufen.</>}
+                en={<>Adjacent side <M>{t`= \rho\cos\varphi = x`}</M>, opposite side <M>{t`= \rho\sin\varphi = y`}</M>. With the signed functions <M>\cos</M> and <M>\sin</M> (unit circle) this holds in all four quadrants, not just the first: the animation takes <M>\varphi</M> once all the way round.</>} /> },
+              { ms: 5200, caption: <T
+                de={<>Umkehrung: Pythagoras liefert <M>{t`\rho^2 = x^2+y^2`}</M>; die Division der beiden Gleichungen liefert <M>{t`\tan\varphi = y/x`}</M>.</>}
+                en={<>Inverse: Pythagoras gives <M>{t`\rho^2 = x^2+y^2`}</M>; dividing the two equations gives <M>{t`\tan\varphi = y/x`}</M>.</>} /> },
+              { ms: 8000, caption: <T
+                de={<><b>Plausibilitätskontrolle (Grenzfälle).</b> <M>{t`\varphi = 0`}</M>: <M>{t`(x,y) = (\rho, 0)`}</M>, auf der positiven <M>x</M>-Achse ✓. <M>{t`\varphi = \pi/2`}</M>: <M>{t`(0,\rho)`}</M> ✓.</>}
+                en={<><b>Sanity check (limiting cases).</b> <M>{t`\varphi = 0`}</M>: <M>{t`(x,y) = (\rho, 0)`}</M>, on the positive <M>x</M>-axis ✓. <M>{t`\varphi = \pi/2`}</M>: <M>{t`(0,\rho)`}</M> ✓.</>} /> },
+            ]}
+          >
+            {(step, tt) => <CylDerivationFigure step={step} t={tt} />}
+          </StepPlayer>
         </Derivation>
-        <Box kind="review" title={<T de="R-001 · φ = arctan(y/x) stimmt nur für x > 0" en="R-001 · φ = arctan(y/x) is only correct for x > 0" />}>
+        <Box kind="review" title={<T de={<>R-001 · <M>{t`\varphi = \arctan(y/x)`}</M> stimmt nur für <M>{t`x > 0`}</M></>} en={<>R-001 · <M>{t`\varphi = \arctan(y/x)`}</M> is only correct for <M>{t`x > 0`}</M></>} />}>
           <T
             de={<p>
               <M>\tan</M> hat die Periode <M>\pi</M>, deshalb kann <M>{t`\tan\varphi = y/x`}</M> nicht zwischen <M>\varphi</M> und <M>{t`\varphi+\pi`}</M> unterscheiden.
@@ -222,7 +212,7 @@ export default function L01Coordinates() {
           />
           <QuadrantTrap />
         </Box>
-        <Box kind="supplement" title={<T de="Wertebereiche und der Sonderfall auf der z-Achse" en="Ranges and the special case on the z-axis" />}>
+        <Box kind="supplement" title={<T de={<>Wertebereiche und der Sonderfall auf der <M>z</M>-Achse</>} en={<>Ranges and the special case on the <M>z</M>-axis</>} />}>
           <T
             de={<>
               Die übliche Konvention, die im Skript nicht explizit steht, ist <M>{t`\rho \ge 0`}</M>, <M>{t`0 \le \varphi < 2\pi`}</M>, <M>{t`z\in\mathbb{R}`}</M>.
@@ -258,7 +248,7 @@ export default function L01Coordinates() {
       </Section>
 
       {/* ------------------------------------------------------------------ 4 */}
-      <Section id="spherical" title={<T de="4. Sphärische Koordinaten r, θ, ψ" en="4. Spherical coordinates (sphärische Koordinaten) r, θ, ψ" />}>
+      <Section id="spherical" title={<T de={<>4. Sphärische Koordinaten <M>{t`r, \theta, \psi`}</M></>} en={<>4. Spherical coordinates (sphärische Koordinaten) <M>{t`r, \theta, \psi`}</M></>} />}>
         <Box kind="lecture" src={<Src p={4} fig="Fig. 1.12" />}>
           <T de="Beziehung zwischen kartesischen und sphärischen Koordinaten:" en="Relation between Cartesian and spherical coordinates:" />
           <MD>{t`x = r\sin\theta\cos\psi,\qquad y = r\sin\theta\sin\psi,\qquad z = r\cos\theta`}</MD>
@@ -313,7 +303,7 @@ export default function L01Coordinates() {
             </ol>}
           />
         </Derivation>
-        <Box kind="review" title={<T de="R-001 (nochmals) · θ = arctan(√(x²+y²)/z) versagt für z < 0" en="R-001 (again) · θ = arctan(√(x²+y²)/z) fails for z < 0" />}>
+        <Box kind="review" title={<T de={<>R-001 (nochmals) · <M>{t`\theta = \arctan\big(\sqrt{x^2+y^2}/z\big)`}</M> versagt für <M>{t`z < 0`}</M></>} en={<>R-001 (again) · <M>{t`\theta = \arctan\big(\sqrt{x^2+y^2}/z\big)`}</M> fails for <M>{t`z < 0`}</M></>} />}>
           <T
             de={<p>
               Für einen Punkt unterhalb der <M>xy</M>-Ebene, z. B. <M>{t`(1,0,-1)`}</M>, ist das wahre <M>{t`\theta = 135^\circ`}</M>, aber <M>{t`\arctan(1/(-1)) = -45^\circ`}</M>.
@@ -419,19 +409,19 @@ export default function L01Coordinates() {
 
       {/* ------------------------------------------------------------------ 7 */}
       <Section id="misconceptions" title={<T de="7. Typische Missverständnisse" en="7. Typical misconceptions" />}>
-        <Box kind="misconception" title={<T de="«ρ und r sind derselbe Abstand.»" en="“ρ and r are the same distance.”" />}>
+        <Box kind="misconception" title={<T de={<>«<M>\rho</M> und <M>r</M> sind derselbe Abstand.»</>} en={<>“<M>\rho</M> and <M>r</M> are the same distance.”</>} />}>
           <T
             de={<><M>\rho</M> ist der Abstand zur <M>z</M>-<em>Achse</em>, <M>r</M> der Abstand zum <em>Ursprung</em>. Sie stimmen nur in der <M>xy</M>-Ebene überein; allgemein gilt <M>{t`\rho = r\sin\theta \le r`}</M>.</>}
             en={<><M>\rho</M> is the distance from the <M>z</M>-<em>axis</em>, <M>r</M> from the <em>origin</em>. They agree only in the <M>xy</M>-plane; in general <M>{t`\rho = r\sin\theta \le r`}</M>.</>}
           />
         </Box>
-        <Box kind="misconception" title={<T de="«θ wird von der xy-Ebene aus nach oben gemessen.»" en="“θ is measured up from the xy-plane.”" />}>
+        <Box kind="misconception" title={<T de={<>«<M>\theta</M> wird von der <M>xy</M>-Ebene aus nach oben gemessen.»</>} en={<>“<M>\theta</M> is measured up from the <M>xy</M>-plane.”</>} />}>
           <T
             de={<>Das wäre die geografische Breite. In diesem Kurs wird <M>\theta</M> von der <M>+z</M>-Achse aus gemessen; Punkte unterhalb der <M>xy</M>-Ebene haben <M>{t`\theta > 90^\circ`}</M>.</>}
             en={<>That would be the geographic latitude. In this course <M>\theta</M> is measured from the <M>+z</M>-axis; points below the <M>xy</M>-plane have <M>{t`\theta > 90^\circ`}</M>.</>}
           />
         </Box>
-        <Box kind="misconception" title={<T de="«(ρ, φ, z) sind die Komponenten des Ortsvektors.»" en="“(ρ, φ, z) are the components of the position vector.”" />}>
+        <Box kind="misconception" title={<T de={<>«<M>{t`(\rho, \varphi, z)`}</M> sind die Komponenten des Ortsvektors.»</>} en={<>“<M>{t`(\rho, \varphi, z)`}</M> are the components of the position vector.”</>} />}>
           <T
             de={<>
               <p>Koordinaten sind keine Vektorkomponenten, und Koordinatentripel kann man nicht wie Vektoren addieren. Gegenbeispiel: Die Punkte
@@ -449,7 +439,7 @@ export default function L01Coordinates() {
             </>}
           />
         </Box>
-        <Box kind="misconception" title={<T de="«arctan(y/x) liefert immer φ.»" en="“arctan(y/x) always gives φ.”" />}>
+        <Box kind="misconception" title={<T de={<>«<M>{t`\arctan(y/x)`}</M> liefert immer <M>\varphi</M>.»</>} en={<>“<M>{t`\arctan(y/x)`}</M> always gives <M>\varphi</M>.”</>} />}>
           <T de={<>Nur für <M>{t`x>0`}</M> (R-001). Prüfe immer den Quadranten.</>} en={<>Only for <M>{t`x>0`}</M> (R-001). Always check the quadrant.</>} />
         </Box>
       </Section>
@@ -520,13 +510,13 @@ export default function L01Coordinates() {
         <T
           de={<ul>
             <li><b>Als Nächstes (S. 5):</b> Vektoren, Skalar- und Kreuzprodukt, orthonormierte Basen. Eine Lage wird zu einem Vektor <M>{t`\underline r(t)`}</M>.</li>
-            <li><b>S. 6–7:</b> Die zylindrische und die sphärische <em>Basis</em> bestehen aus Einheitsvektoren tangential zu den Koordinatenlinien dieser Lektion; <M>{t`\underline e_\varphi`}</M> ist also tangential zum φ-Kreis.</li>
+            <li><b>S. 6–7:</b> Die zylindrische und die sphärische <em>Basis</em> bestehen aus Einheitsvektoren tangential zu den Koordinatenlinien dieser Lektion; <M>{t`\underline e_\varphi`}</M> ist also tangential zum <M>\varphi</M>-Kreis.</li>
             <li><b>S. 9–10:</b> Weil sich <M>{t`\underline e_\rho`}</M> dreht, wenn sich <M>\varphi</M> ändert, ist die Geschwindigkeit in zylindrischen Koordinaten <M>{t`\dot\rho\,\underline e_\rho + \rho\dot\varphi\,\underline e_\varphi + \dot z\,\underline e_z`}</M>.</li>
             <li><b>S. 11 und S. 16:</b> Kreisbewegung heisst «nur <M>\varphi</M> ändert sich»; der Beweis der Vorlesung, dass eine starre Rotation eine Kreisbewegung ist, wird in zylindrischen Koordinaten geführt.</li>
           </ul>}
           en={<ul>
             <li><b>Next (p. 5):</b> vectors, scalar and cross product, orthonormal bases. A position becomes a vector <M>{t`\underline r(t)`}</M>.</li>
-            <li><b>pp. 6–7:</b> the cylindrical and spherical <em>bases</em> are unit vectors tangent to the coordinate lines from this lesson, so <M>{t`\underline e_\varphi`}</M> is tangent to the φ-circle.</li>
+            <li><b>pp. 6–7:</b> the cylindrical and spherical <em>bases</em> are unit vectors tangent to the coordinate lines from this lesson, so <M>{t`\underline e_\varphi`}</M> is tangent to the <M>\varphi</M>-circle.</li>
             <li><b>pp. 9–10:</b> because <M>{t`\underline e_\rho`}</M> turns when <M>\varphi</M> changes, velocity in cylindrical coordinates is <M>{t`\dot\rho\,\underline e_\rho + \rho\dot\varphi\,\underline e_\varphi + \dot z\,\underline e_z`}</M>.</li>
             <li><b>p. 11 and p. 16:</b> circular motion is “only <M>\varphi</M> changes”; the lecture's proof that rigid rotation is circular motion is done in cylindrical coordinates.</li>
           </ul>}

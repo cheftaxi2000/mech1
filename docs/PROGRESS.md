@@ -11,6 +11,7 @@
 8. Implementation tested (`npm run check` green).
 9. Documented here and in `SESSION_LOG.md`.
 10. Complete in **both languages** (German and English), passing the e2e language-leak test.
+11. Every symbol typeset by KaTeX (e2e `plainTextMath`); derivations with motion animated and their running frames inspected.
 
 `complete` additionally requires the student's sign-off after working through the lesson.
 
@@ -18,7 +19,7 @@
 
 | Topic | Pages | Status | Notes |
 |---|---|---|---|
-| koordinaten | 3–4 | **review** | Checklist 1–10 ✅ (DE + EN). Awaiting student. Polish backlog below. |
+| koordinaten | 3–4 | **review** | Checklist 1–11 ✅ (DE + EN). Student feedback round 1 applied (box removed, typography, animated cylindrical derivation). Spherical derivation not yet animated (candidate). |
 | vektoren | 5 | planned | |
 | basen | 5–7 | planned | |
 | geschwindigkeit | 8–9 | planned | p. 9 now available and transcribed; its claims verified (R-013, R-014) |

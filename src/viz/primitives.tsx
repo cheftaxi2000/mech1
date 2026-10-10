@@ -1,5 +1,6 @@
 import { Line } from '@react-three/drei';
 import { useEffect, useMemo } from 'react';
+import { KATEX_MATH_FONT, useKatexFontReady } from './useKatexFont';
 import * as THREE from 'three';
 import type { Vec3 } from '../physics/vec';
 
@@ -35,25 +36,28 @@ export function Arrow({ from = [0, 0, 0], to, color, width = 2 }: { from?: Vec3;
 }
 
 /**
- * Text label drawn into a sprite (constant on-screen size). Used instead of drei <Html>,
- * whose first instance per scene failed to render with React 19 (see docs/DECISIONS.md, D-004).
+ * Text label drawn into a sprite (constant on-screen size), in KaTeX's math italic so it matches the
+ * formulas in the text (same φ, ρ, x glyphs). Used instead of drei <Html>, whose first instance per
+ * scene failed to render with React 19 (docs/DECISIONS.md, D-004).
  * `sub` is drawn as a subscript, e.g. <Label sub="xy">M</Label>.
  */
-export function Label({ at, children, sub, color = '#0f172a', size = 0.055 }: { at: Vec3; children: string; sub?: string; color?: string; size?: number }) {
+export function Label({ at, children, sub, color = '#0f172a', size = 0.06 }: { at: Vec3; children: string; sub?: string; color?: string; size?: number }) {
+  const fontReady = useKatexFontReady();
   const { texture, aspect } = useMemo(() => {
-    const px = 64, font = `italic 600 ${px}px "Times New Roman", serif`, subFont = `italic 600 ${px * 0.62}px "Times New Roman", serif`;
+    const px = 72, font = KATEX_MATH_FONT(px), subFont = KATEX_MATH_FONT(Math.round(px * 0.7));
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d')!;
     ctx.font = font; const w1 = ctx.measureText(children).width;
     ctx.font = subFont; const w2 = sub ? ctx.measureText(sub).width + 4 : 0;
-    canvas.width = Math.ceil(w1 + w2 + 16); canvas.height = Math.ceil(px * 1.4);
+    canvas.width = Math.ceil(w1 + w2 + 20); canvas.height = Math.ceil(px * 1.45);
     ctx.textBaseline = 'alphabetic'; ctx.fillStyle = color;
-    ctx.font = font; ctx.fillText(children, 8, px);
-    if (sub) { ctx.font = subFont; ctx.fillText(sub, 8 + w1 + 2, px * 1.22); }
+    ctx.font = font; ctx.fillText(children, 10, px);
+    if (sub) { ctx.font = subFont; ctx.fillText(sub, 10 + w1 + 2, px * 1.25); }
     const texture = new THREE.CanvasTexture(canvas);
     texture.colorSpace = THREE.SRGBColorSpace;
+    texture.anisotropy = 4;
     return { texture, aspect: canvas.width / canvas.height };
-  }, [children, sub, color]);
+  }, [children, sub, color, fontReady]);
   useEffect(() => () => texture.dispose(), [texture]);
   return (
     <sprite position={at as [number, number, number]} scale={[size * aspect, size, 1]} renderOrder={10}>
