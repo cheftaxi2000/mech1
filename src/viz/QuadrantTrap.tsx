@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { cartToCyl, lectureArctanPhi } from '../physics/coords';
 import { M } from '../components/Tex';
+import { T } from '../i18n';
 
 const S = 120; // px per unit
 const deg = (r: number) => (r * 180) / Math.PI;
@@ -25,7 +26,7 @@ export function QuadrantTrap() {
   };
   return (
     <figure className="trap">
-      <svg ref={svg} viewBox="-180 -180 360 360" onPointerMove={move} onPointerDown={move} role="img" aria-label="xy-plane: drag point M">
+      <svg ref={svg} viewBox="-180 -180 360 360" onPointerMove={move} onPointerDown={move} role="img" aria-label="xy-Ebene / xy-plane: M">
         <line x1={-175} y1={0} x2={175} y2={0} className="ax" /><line x1={0} y1={175} x2={0} y2={-175} className="ax" />
         <text x={165} y={16} className="axl">x</text><text x={8} y={-165} className="axl">y</text>
         <path d={arc(phi, 40)} className="arc-true" />
@@ -35,9 +36,17 @@ export function QuadrantTrap() {
         <text x={x * S + 12} y={-y * S - 10} className="axl">M</text>
       </svg>
       <figcaption>
-        <p>Drag <b>M</b>. Purple: the true angle <M>{`\\varphi = ${deg(phi).toFixed(0)}^\\circ`}</M>.
-          {' '}{Number.isNaN(naive) ? <>Here <M>x=0</M>, so <M>y/x</M> is not even defined.</> :
-            <>Orange/green: <M>{`\\arctan(y/x) = ${deg(naive).toFixed(0)}^\\circ`}</M> — {wrong ? <b className="bad">wrong quadrant!</b> : <b className="ok">agrees (x &gt; 0)</b>}</>}
+        <p>
+          <T de={<>Ziehe <b>M</b>. Violett: der wahre Winkel <M>{`\\varphi = ${deg(phi).toFixed(0)}^\\circ`}</M>.</>}
+            en={<>Drag <b>M</b>. Purple: the true angle <M>{`\\varphi = ${deg(phi).toFixed(0)}^\\circ`}</M>.</>} />{' '}
+          {Number.isNaN(naive)
+            ? <T de={<>Hier ist <M>x=0</M>, also ist <M>y/x</M> gar nicht definiert.</>} en={<>Here <M>x=0</M>, so <M>y/x</M> is not even defined.</>} />
+            : <>
+                <T de="Orange/grün:" en="Orange/green:" /> <M>{`\\arctan(y/x) = ${deg(naive).toFixed(0)}^\\circ`}</M> –{' '}
+                {wrong
+                  ? <b className="bad"><T de="falscher Quadrant!" en="wrong quadrant!" /></b>
+                  : <b className="ok"><T de="stimmt (x > 0)" en="agrees (x > 0)" /></b>}
+              </>}
         </p>
       </figcaption>
     </figure>

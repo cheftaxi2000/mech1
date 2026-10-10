@@ -10,6 +10,7 @@
 7. Active checks are meaningful (every wrong option explained).
 8. Implementation tested (`npm run check` green).
 9. Documented here and in `SESSION_LOG.md`.
+10. Complete in **both languages** (German and English), passing the e2e language-leak test.
 
 `complete` additionally requires the student's sign-off after working through the lesson.
 
@@ -17,7 +18,7 @@
 
 | Topic | Pages | Status | Notes |
 |---|---|---|---|
-| koordinaten | 3–4 | **review** | Checklist 1–9 ✅. Awaiting student. Polish backlog below. |
+| koordinaten | 3–4 | **review** | Checklist 1–10 ✅ (DE + EN). Awaiting student. Polish backlog below. |
 | vektoren | 5 | planned | |
 | basen | 5–7 | planned | |
 | geschwindigkeit | 8–9 | planned | p. 9 now available and transcribed; its claims verified (R-013, R-014) |

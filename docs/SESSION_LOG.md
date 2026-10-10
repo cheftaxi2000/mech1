@@ -17,3 +17,7 @@
 ## 2026-10-10 — Session 1, continued: published
 - Published the app as a private artifact (D-008): https://claude.ai/artifact/NKD6xQuLjVjgiubQrXyvy4
 - Hash routes changed from `#/topic` to `#topic`; theme tokens restructured for explicit light/dark choice.
+
+## 2026-10-10 — Session 1, continued: Deutsch / English
+- Student asked for a language choice. Added `src/i18n.tsx` (LangProvider, `<T>`, `useTr`, `fmtNum`, toggle), translated all UI, the explorer, the quadrant widget and lesson 1 completely into German.
+- New e2e tests run every lesson in both languages, reveal all hidden quiz explanations and fail if function words of the other language appear (mutation-tested: a planted English phrase in a hidden German solution was caught). Also: toggle switches and is remembered after reload; German number format in the explorer.

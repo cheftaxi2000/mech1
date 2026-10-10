@@ -4,11 +4,11 @@ import { Arrow, Axes, C, Curve, Dashed, Dot, Label } from './primitives';
 import { cartToCyl, cartToSph, cylToCart, sphToCart } from '../physics/coords';
 import type { Vec3 } from '../physics/vec';
 import { M } from '../components/Tex';
+import { fmtNum, tupleSep, useLang, useTr } from '../i18n';
 
 export type Mode = 'cart' | 'cyl' | 'sph';
 const deg = (r: number) => (r * 180) / Math.PI;
 const rad = (d: number) => (d * Math.PI) / 180;
-const f2 = (x: number) => (Math.abs(x) < 5e-3 ? 0 : x).toFixed(2);
 
 interface SliderDef { key: string; tex: string; min: number; max: number; step: number; unit?: string }
 const SLIDERS: Record<Mode, SliderDef[]> = {
@@ -46,6 +46,10 @@ function toCart(mode: Mode, s: Record<string, number>): Vec3 {
  * the point M, its construction lines, and the three coordinate lines through M.
  */
 export function CoordinateExplorer({ initialMode = 'cyl', lockMode = false }: { initialMode?: Mode; lockMode?: boolean }) {
+  const lang = useLang(), tr = useTr();
+  const f2 = (x: number) => fmtNum(x, 2, lang, true); // inside TeX
+  const f2h = (x: number) => fmtNum(x, 2, lang); // plain HTML
+  const sep = tupleSep(lang);
   const [mode, setMode] = useState<Mode>(initialMode);
   const [vals, setVals] = useState<Record<string, number>>(() => toSliders(initialMode, cylToCart({ rho: 1.5, phi: rad(40), z: 1.2 })));
   const [showLines, setShowLines] = useState(true);
@@ -60,21 +64,21 @@ export function CoordinateExplorer({ initialMode = 'cyl', lockMode = false }: { 
   const lines = useMemo(() => {
     const L = 2.6;
     if (mode === 'cart') return [
-      { f: (t: number): Vec3 => [t, p[1], p[2]], t0: -L, t1: L, c: C.line1, name: 'x-line' },
-      { f: (t: number): Vec3 => [p[0], t, p[2]], t0: -L, t1: L, c: C.line2, name: 'y-line' },
-      { f: (t: number): Vec3 => [p[0], p[1], t], t0: -L, t1: L, c: C.line3, name: 'z-line' },
+      { f: (t: number): Vec3 => [t, p[1], p[2]], t0: -L, t1: L, c: C.line1, name: tr('x-Linie', 'x-line') },
+      { f: (t: number): Vec3 => [p[0], t, p[2]], t0: -L, t1: L, c: C.line2, name: tr('y-Linie', 'y-line') },
+      { f: (t: number): Vec3 => [p[0], p[1], t], t0: -L, t1: L, c: C.line3, name: tr('z-Linie', 'z-line') },
     ];
     if (mode === 'cyl') return [
-      { f: (t: number) => cylToCart({ rho: t, phi: cyl.phi, z: p[2] }), t0: 0, t1: L, c: C.line1, name: 'ρ-line (ray ⟂ z-axis)' },
-      { f: (t: number) => cylToCart({ rho: cyl.rho, phi: t, z: p[2] }), t0: 0, t1: 2 * Math.PI, c: C.line2, name: 'φ-line (circle)' },
-      { f: (t: number) => cylToCart({ rho: cyl.rho, phi: cyl.phi, z: t }), t0: -L, t1: L, c: C.line3, name: 'z-line (vertical)' },
+      { f: (t: number) => cylToCart({ rho: t, phi: cyl.phi, z: p[2] }), t0: 0, t1: L, c: C.line1, name: tr('ρ-Linie (Strahl ⟂ z-Achse)', 'ρ-line (ray ⟂ z-axis)') },
+      { f: (t: number) => cylToCart({ rho: cyl.rho, phi: t, z: p[2] }), t0: 0, t1: 2 * Math.PI, c: C.line2, name: tr('φ-Linie (Kreis)', 'φ-line (circle)') },
+      { f: (t: number) => cylToCart({ rho: cyl.rho, phi: cyl.phi, z: t }), t0: -L, t1: L, c: C.line3, name: tr('z-Linie (vertikal)', 'z-line (vertical)') },
     ];
     return [
-      { f: (t: number) => sphToCart({ r: t, theta: sph.theta, psi: sph.psi }), t0: 0, t1: L, c: C.line1, name: 'r-line (ray from O)' },
-      { f: (t: number) => sphToCart({ r: sph.r, theta: t, psi: sph.psi }), t0: 0, t1: Math.PI, c: C.line2, name: 'θ-line (meridian)' },
-      { f: (t: number) => sphToCart({ r: sph.r, theta: sph.theta, psi: t }), t0: 0, t1: 2 * Math.PI, c: C.line3, name: 'ψ-line (circle of latitude)' },
+      { f: (t: number) => sphToCart({ r: t, theta: sph.theta, psi: sph.psi }), t0: 0, t1: L, c: C.line1, name: tr('r-Linie (Strahl von O)', 'r-line (ray from O)') },
+      { f: (t: number) => sphToCart({ r: sph.r, theta: t, psi: sph.psi }), t0: 0, t1: Math.PI, c: C.line2, name: tr('θ-Linie (Meridian)', 'θ-line (meridian)') },
+      { f: (t: number) => sphToCart({ r: sph.r, theta: sph.theta, psi: t }), t0: 0, t1: 2 * Math.PI, c: C.line3, name: tr('ψ-Linie (Breitenkreis)', 'ψ-line (circle of latitude)') },
     ];
-  }, [mode, p[0], p[1], p[2]]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [mode, lang, p[0], p[1], p[2]]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const azimuth = mode === 'sph' ? sph.psi : cyl.phi;
   const arcR = 0.45;
@@ -85,7 +89,7 @@ export function CoordinateExplorer({ initialMode = 'cyl', lockMode = false }: { 
         <div className="tabs" role="tablist">
           {(['cart', 'cyl', 'sph'] as Mode[]).map((m) => (
             <button key={m} role="tab" aria-selected={mode === m} className={mode === m ? 'active' : ''} onClick={() => switchMode(m)}>
-              {{ cart: 'Kartesisch', cyl: 'Zylindrisch', sph: 'Sphärisch' }[m]}
+              {{ cart: tr('Kartesisch', 'Cartesian'), cyl: tr('Zylindrisch', 'Cylindrical'), sph: tr('Sphärisch', 'Spherical') }[m]}
             </button>
           ))}
         </div>
@@ -123,10 +127,10 @@ export function CoordinateExplorer({ initialMode = 'cyl', lockMode = false }: { 
             <M>{s.tex}</M>
             <input type="range" min={s.min} max={s.max} step={s.step} value={vals[s.key]}
               onChange={(e) => setVals({ ...vals, [s.key]: Number(e.target.value) })} aria-label={s.key} />
-            <span className="val">{s.unit ? `${Math.round(vals[s.key])}${s.unit}` : f2(vals[s.key])}</span>
+            <span className="val">{s.unit ? `${Math.round(vals[s.key])}${s.unit}` : f2h(vals[s.key])}</span>
           </label>
         ))}
-        <label className="toggle"><input type="checkbox" checked={showLines} onChange={(e) => setShowLines(e.target.checked)} /> coordinate lines through M</label>
+        <label className="toggle"><input type="checkbox" checked={showLines} onChange={(e) => setShowLines(e.target.checked)} /> {tr('Koordinatenlinien durch M', 'coordinate lines through M')}</label>
         {showLines && (
           <ul className="legend">
             {lines.map((l) => <li key={l.name}><span className="swatch" style={{ background: l.c }} />{l.name}</li>)}
@@ -136,12 +140,12 @@ export function CoordinateExplorer({ initialMode = 'cyl', lockMode = false }: { 
       <figcaption>
         <table className="readout">
           <tbody>
-            <tr><th>Kartesisch</th><td><M>{`(x,y,z) = (${f2(p[0])},\\ ${f2(p[1])},\\ ${f2(p[2])})`}</M></td></tr>
-            <tr><th>Zylindrisch</th><td><M>{`(\\rho,\\varphi,z) = (${f2(cyl.rho)},\\ ${deg(cyl.phi).toFixed(0)}^\\circ,\\ ${f2(cyl.z)})`}</M></td></tr>
-            <tr><th>Sphärisch</th><td><M>{`(r,\\theta,\\psi) = (${f2(sph.r)},\\ ${deg(sph.theta).toFixed(0)}^\\circ,\\ ${deg(sph.psi).toFixed(0)}^\\circ)`}</M></td></tr>
+            <tr><th>{tr('Kartesisch', 'Cartesian')}</th><td><M>{`(x,y,z) = (${f2(p[0])}${sep}${f2(p[1])}${sep}${f2(p[2])})`}</M></td></tr>
+            <tr><th>{tr('Zylindrisch', 'Cylindrical')}</th><td><M>{`(\\rho,\\varphi,z) = (${f2(cyl.rho)}${sep}${deg(cyl.phi).toFixed(0)}^\\circ${sep}${f2(cyl.z)})`}</M></td></tr>
+            <tr><th>{tr('Sphärisch', 'Spherical')}</th><td><M>{`(r,\\theta,\\psi) = (${f2(sph.r)}${sep}${deg(sph.theta).toFixed(0)}^\\circ${sep}${deg(sph.psi).toFixed(0)}^\\circ)`}</M></td></tr>
           </tbody>
         </table>
-        {cyl.rho < 0.03 && <p className="warn">M is on the z-axis: φ and ψ are undefined here (every angle describes the same point).</p>}
+        {cyl.rho < 0.03 && <p className="warn">{tr('M liegt auf der z-Achse: φ und ψ sind hier nicht definiert (jeder Winkel beschreibt denselben Punkt).', 'M is on the z-axis: φ and ψ are undefined here (every angle describes the same point).')}</p>}
       </figcaption>
     </figure>
   );

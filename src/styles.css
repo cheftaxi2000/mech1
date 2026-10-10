@@ -97,3 +97,12 @@ b.bad { color: var(--bad); } b.ok { color: var(--ok); }
 }
 .katex-display { overflow-x: auto; overflow-y: hidden; padding: 2px 0; }
 .readout { display: block; overflow-x: auto; }
+.sidebar-top { display: flex; flex-direction: column; gap: 10px; margin-bottom: 6px; }
+.sidebar-top .brand { margin-bottom: 0; }
+.lang-toggle { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; align-self: flex-start; }
+.lang-toggle button { font: inherit; font-size: 0.85rem; padding: 4px 12px; border: 0; background: var(--bg); color: var(--fg); cursor: pointer; }
+.lang-toggle button + button { border-left: 1px solid var(--line); }
+.lang-toggle button.active { background: var(--accent); color: var(--panel); font-weight: 600; }
+.lang-toggle button:focus-visible, .quiz button:focus-visible, .tabs button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.lesson-head .sub { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.lesson-head .sub .status { margin-left: 0; }

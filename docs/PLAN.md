@@ -58,6 +58,6 @@ Adapt to the topic; never pad.
 ## Open questions for the student
 1. ~~Missing p. 9~~ (received). Printed pages 1–2 (R-002): do they contain anything beyond a title page / contents?
 2. R-004/R-005 (cube example p. 19) — is there an official solution?
-3. Teaching language: English with German terms (current) — or German throughout?
+3. ~~Teaching language~~ — decided: both, switchable (D-002).
 4. May the lecture PDF be committed to this repo (D-003)?
 5. Remaining ~130 pages: when should they be added?

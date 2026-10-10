@@ -17,7 +17,7 @@ Correctness > clarity > visuals > speed.
 - **Source problems get a review ID** (`R-xxx` in `docs/REVIEW_LOG.md`) and a `review` box in the lesson. Do not silently "fix" the source.
 - **Every formula shown must be verified**: a test in `src/physics/*.test.ts` (numeric check of a closed form, or of a worked example), or a derivation shown step by step in the lesson. Numerical agreement is a check, not a proof — say so where it matters.
 - **A topic is "review" status only when the full checklist in `docs/PROGRESS.md` is satisfied.** It becomes "complete" only after the student signs off.
-- Teaching language: English explanations, German lecture terms kept and glossed (`<De en="…">…</De>`). (D-002)
+- **Two complete languages, switchable (Deutsch / English).** Every visible text exists in both: lessons wrap content in `<T de={…} en={…} />`, components use `useTr()`. German uses Swiss orthography (ss, not ß), «Guillemets», decimal comma (`fmtNum`, `{,}` inside TeX) and `;` between tuple entries. In English mode, German lecture terms stay visible via `<De en="gloss">Begriff</De>`. Formulas are shared, never duplicated with different content. The e2e "no text in the other language" test enforces this. (D-002)
 
 ## Commands
 
@@ -51,6 +51,7 @@ Follow `docs/PLAN.md` § "Lesson anatomy". In short: orientation → lecture box
 
 Authoring gotchas:
 - Inside JSX, a line break between text and an inline element swallows the space. Add `{' '}` (the lint test enforces this).
+- Write the German text as proper German, not a word-for-word translation of the English (and vice versa). In German mode, lecture boxes quote the Skript's own wording where possible.
 - TeX in JSX: use ``<M>{t`\rho`}</M>`` with `const t = String.raw`.
 - 3D labels: use `<Label>` (sprite). Do **not** use drei `<Html>` (D-004).
 - Three.js scenes are z-up; pass physics coordinates directly.
