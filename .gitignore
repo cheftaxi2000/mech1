@@ -1,0 +1,7 @@
+node_modules/
+dist/
+test-results/
+playwright-report/
+*.tsbuildinfo
+# Lecture PDFs are not committed by default (see docs/SOURCE_MAP.md).
+source/*.pdf

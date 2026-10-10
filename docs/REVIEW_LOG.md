@@ -1,0 +1,19 @@
+# Review log — issues found in the source material
+
+Every issue has an ID. Lessons reference it in a `review` box. Status: **open** (needs the student / official solution), **handled** (lesson explains it; no input needed), **closed**.
+"Verified" means a test in `src/physics/*.test.ts` checks the claim.
+
+| ID | Page | Issue | Status |
+|---|---|---|---|
+| R-001 | 4 | Inverse formulas φ = arctan(y/x), ψ = arctan(y/x), θ = arctan(√(x²+y²)/z) are only valid for x > 0 (resp. z > 0); undefined for x = 0 (z = 0). Correct: atan2 / quadrant correction; θ = arccos(z/r). | handled in L01, verified (`coords.test.ts`) |
+| R-002 | 1–2, 9 | Printed pages 1–2 and 9 are missing from the PDF. p. 9 presumably contains the proof v̲ = ṙ̲ (Cartesian) announced on p. 8 and the start of the cylindrical velocity derivation. | **open** — ask student for the pages |
+| R-003 | 17 | (a) Typo: in "φ̇_P(e̲_z×r̲_P)·r̲_Q = −φ̇_P(e̲_z×r̲_Q)·r̲_P", the middle term should carry **φ̇_Q**. (b) Gap: the final step divides by (e̲_z×r̲_P)·r̲_Q, which is 0 when P, Q and μ are coplanar; then compare both with a third point R off that plane. | handled when writing the Rotation lesson; (b) verified |
+| R-004 | 19 | Typed data says v̲_A = (v, 0, v); the handwritten solution uses v̲_A = (v, 0, −v). Both are valid rotation fields about E: handwritten → ω̲ = (v/a)(1,0,1), axis E→C (matches the red μ in the figure); typed → ω̲ = (v/a)(−1,2,1), axis does not pass through C. Most likely the typed "+v" is a typo. | **open** — confirm with official solution; both verified |
+| R-005 | 19 | Handwritten variant 1 (ω̲ = (0,2ω,ω), v̲_C = ω̲ × EC with EC = (0,0,a)) is unfinished and inconsistent with the figure (C drawn at (a,a,a) ⇒ EC = (a,0,a)); an axis through E with direction (0,2,1) does not pass through C, contradicting the red μ line. | **open** — do not teach until clarified |
+| R-006 | 13 | Ladder: figure labels the floor angle φ, solution uses α. Direction convention (A moves toward the wall, +x) inferred from "Leiter bewegt sich nach oben". v_V = v_H cot α. | handled, verified (`rigid.test.ts`) |
+| R-007 | 23 | Cube general motion: v_Bz left blank — it is 0, so v̲_B = (−2v, v, 0). Point coordinates and given velocities were inferred from the vectors used in the handwritten solution; everything is mutually consistent (SdpG holds). | handled, verified |
+| R-008 | 10, 14, 23 | Unsolved/empty examples: p. 10 r̲ = (at, at, ba²t²) (note: needs [b] = 1/m if [a] = m/s); p. 14 cube translation (empty); p. 23 tetrahedron (empty). Solutions written for the app are supplements. | p. 10 verified; rest open |
+| R-009 | 15 | "v̲_C ∥ μ = 0 aus SdpG; v̲_C ⊥ μ = 0 sonst Winkeländerung" is shorthand for "the component of v̲_C parallel (perpendicular) to μ vanishes". | note for Rotation lesson |
+| R-010 | 16 | Proof uses D (foot of the perpendicular from P on μ) as a body point with v̲_D = 0 — this relies on property 1 (all points of μ at rest), and on D belonging to the body (or a rigid extension of it). | note for Rotation lesson |
+| R-011 | 22 | "ω̲* = ω̲** da B, C, M beliebig": (ω̲*−ω̲**) × CM = 0 for all M forces ω̲* = ω̲** only because CM takes at least two non-parallel directions. | note for General-motion lesson |
+| R-012 | 21 | Kreiselung proof: concluding v̲_A = 0 from v̲_A ⊥ AM, AN, AO needs those three vectors to span space (O, A, M, N not coplanar), and v̲_M ∦ v̲_N so that E_M ∩ E_N is a line. Also: O ∈ E_M because |r̲_M| = const ⇒ v̲_M ⊥ r̲_M (written by hand, worth stating). | note for Kreiselung lesson |

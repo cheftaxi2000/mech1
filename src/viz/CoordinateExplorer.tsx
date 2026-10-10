@@ -1,0 +1,148 @@
+import { useCallback, useMemo, useState } from 'react';
+import { Scene } from './Scene';
+import { Arrow, Axes, C, Curve, Dashed, Dot, Label } from './primitives';
+import { cartToCyl, cartToSph, cylToCart, sphToCart } from '../physics/coords';
+import type { Vec3 } from '../physics/vec';
+import { M } from '../components/Tex';
+
+export type Mode = 'cart' | 'cyl' | 'sph';
+const deg = (r: number) => (r * 180) / Math.PI;
+const rad = (d: number) => (d * Math.PI) / 180;
+const f2 = (x: number) => (Math.abs(x) < 5e-3 ? 0 : x).toFixed(2);
+
+interface SliderDef { key: string; tex: string; min: number; max: number; step: number; unit?: string }
+const SLIDERS: Record<Mode, SliderDef[]> = {
+  cart: [
+    { key: 'x', tex: 'x', min: -2, max: 2, step: 0.05 },
+    { key: 'y', tex: 'y', min: -2, max: 2, step: 0.05 },
+    { key: 'z', tex: 'z', min: -2, max: 2, step: 0.05 },
+  ],
+  cyl: [
+    { key: 'rho', tex: '\\rho', min: 0, max: 2.5, step: 0.05 },
+    { key: 'phi', tex: '\\varphi', min: 0, max: 359, step: 1, unit: '°' },
+    { key: 'z', tex: 'z', min: -2, max: 2, step: 0.05 },
+  ],
+  sph: [
+    { key: 'r', tex: 'r', min: 0, max: 2.5, step: 0.05 },
+    { key: 'theta', tex: '\\theta', min: 0, max: 180, step: 1, unit: '°' },
+    { key: 'psi', tex: '\\psi', min: 0, max: 359, step: 1, unit: '°' },
+  ],
+};
+
+/** Slider values (angles in degrees) for a Cartesian point in the given mode. */
+function toSliders(mode: Mode, p: Vec3): Record<string, number> {
+  if (mode === 'cart') return { x: p[0], y: p[1], z: p[2] };
+  if (mode === 'cyl') { const c = cartToCyl(p); return { rho: c.rho, phi: deg(c.phi), z: c.z }; }
+  const s = cartToSph(p); return { r: s.r, theta: deg(s.theta), psi: deg(s.psi) };
+}
+function toCart(mode: Mode, s: Record<string, number>): Vec3 {
+  if (mode === 'cart') return [s.x, s.y, s.z];
+  if (mode === 'cyl') return cylToCart({ rho: s.rho, phi: rad(s.phi), z: s.z });
+  return sphToCart({ r: s.r, theta: rad(s.theta), psi: rad(s.psi) });
+}
+
+/**
+ * Interactive version of lecture Figs. 1.4/1.7 (Cartesian), 1.8/1.10 (cylindrical), 1.12 (spherical):
+ * the point M, its construction lines, and the three coordinate lines through M.
+ */
+export function CoordinateExplorer({ initialMode = 'cyl', lockMode = false }: { initialMode?: Mode; lockMode?: boolean }) {
+  const [mode, setMode] = useState<Mode>(initialMode);
+  const [vals, setVals] = useState<Record<string, number>>(() => toSliders(initialMode, cylToCart({ rho: 1.5, phi: rad(40), z: 1.2 })));
+  const [showLines, setShowLines] = useState(true);
+  const p = toCart(mode, vals);
+
+  const switchMode = useCallback((m: Mode) => { setVals(toSliders(m, p)); setMode(m); }, [p]);
+
+  const cyl = cartToCyl(p), sph = cartToSph(p);
+  const Mxy: Vec3 = [p[0], p[1], 0];
+
+  // Coordinate lines through M: vary one coordinate, freeze the other two.
+  const lines = useMemo(() => {
+    const L = 2.6;
+    if (mode === 'cart') return [
+      { f: (t: number): Vec3 => [t, p[1], p[2]], t0: -L, t1: L, c: C.line1, name: 'x-line' },
+      { f: (t: number): Vec3 => [p[0], t, p[2]], t0: -L, t1: L, c: C.line2, name: 'y-line' },
+      { f: (t: number): Vec3 => [p[0], p[1], t], t0: -L, t1: L, c: C.line3, name: 'z-line' },
+    ];
+    if (mode === 'cyl') return [
+      { f: (t: number) => cylToCart({ rho: t, phi: cyl.phi, z: p[2] }), t0: 0, t1: L, c: C.line1, name: 'ρ-line (ray ⟂ z-axis)' },
+      { f: (t: number) => cylToCart({ rho: cyl.rho, phi: t, z: p[2] }), t0: 0, t1: 2 * Math.PI, c: C.line2, name: 'φ-line (circle)' },
+      { f: (t: number) => cylToCart({ rho: cyl.rho, phi: cyl.phi, z: t }), t0: -L, t1: L, c: C.line3, name: 'z-line (vertical)' },
+    ];
+    return [
+      { f: (t: number) => sphToCart({ r: t, theta: sph.theta, psi: sph.psi }), t0: 0, t1: L, c: C.line1, name: 'r-line (ray from O)' },
+      { f: (t: number) => sphToCart({ r: sph.r, theta: t, psi: sph.psi }), t0: 0, t1: Math.PI, c: C.line2, name: 'θ-line (meridian)' },
+      { f: (t: number) => sphToCart({ r: sph.r, theta: sph.theta, psi: t }), t0: 0, t1: 2 * Math.PI, c: C.line3, name: 'ψ-line (circle of latitude)' },
+    ];
+  }, [mode, p[0], p[1], p[2]]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const azimuth = mode === 'sph' ? sph.psi : cyl.phi;
+  const arcR = 0.45;
+
+  return (
+    <figure className="explorer">
+      {!lockMode && (
+        <div className="tabs" role="tablist">
+          {(['cart', 'cyl', 'sph'] as Mode[]).map((m) => (
+            <button key={m} role="tab" aria-selected={mode === m} className={mode === m ? 'active' : ''} onClick={() => switchMode(m)}>
+              {{ cart: 'Kartesisch', cyl: 'Zylindrisch', sph: 'Sphärisch' }[m]}
+            </button>
+          ))}
+        </div>
+      )}
+      <Scene>
+        <Axes />
+        <Dot at={p} />
+        <Label at={[p[0], p[1], p[2] + 0.18]} color={C.point}>M</Label>
+        {/* Construction: projection M_xy and its links */}
+        <Dashed pts={[p, Mxy]} />
+        <Dashed pts={[[0, 0, 0], Mxy]} />
+        <Dot at={Mxy} color={C.construct} r={0.03} />
+        <Label at={[Mxy[0], Mxy[1], -0.15]} color={C.construct} sub="xy">M</Label>
+        {mode === 'cart' && (<>
+          <Dashed pts={[Mxy, [p[0], 0, 0]]} /><Dashed pts={[Mxy, [0, p[1], 0]]} />
+        </>)}
+        {mode === 'sph' && <Arrow to={p} color={C.line1} width={1.5} />}
+        {mode !== 'cart' && cyl.rho > 0.05 && (
+          <>
+            <Curve f={(t) => [arcR * Math.cos(t), arcR * Math.sin(t), 0]} t0={0} t1={azimuth} color={C.angle} width={2} />
+            <Label at={[0.62 * Math.cos(azimuth / 2), 0.62 * Math.sin(azimuth / 2), 0]} color={C.angle}>{mode === 'sph' ? 'ψ' : 'φ'}</Label>
+          </>
+        )}
+        {mode === 'sph' && sph.r > 0.05 && (
+          <>
+            <Curve f={(t) => sphToCart({ r: 0.55, theta: t, psi: sph.psi })} t0={0} t1={sph.theta} color={C.angle} width={2} />
+            <Label at={sphToCart({ r: 0.72, theta: sph.theta / 2, psi: sph.psi })} color={C.angle}>θ</Label>
+          </>
+        )}
+        {showLines && lines.map((l) => <Curve key={l.name} f={l.f} t0={l.t0} t1={l.t1} color={l.c} />)}
+      </Scene>
+      <div className="controls">
+        {SLIDERS[mode].map((s) => (
+          <label key={s.key} className="slider">
+            <M>{s.tex}</M>
+            <input type="range" min={s.min} max={s.max} step={s.step} value={vals[s.key]}
+              onChange={(e) => setVals({ ...vals, [s.key]: Number(e.target.value) })} aria-label={s.key} />
+            <span className="val">{s.unit ? `${Math.round(vals[s.key])}${s.unit}` : f2(vals[s.key])}</span>
+          </label>
+        ))}
+        <label className="toggle"><input type="checkbox" checked={showLines} onChange={(e) => setShowLines(e.target.checked)} /> coordinate lines through M</label>
+        {showLines && (
+          <ul className="legend">
+            {lines.map((l) => <li key={l.name}><span className="swatch" style={{ background: l.c }} />{l.name}</li>)}
+          </ul>
+        )}
+      </div>
+      <figcaption>
+        <table className="readout">
+          <tbody>
+            <tr><th>Kartesisch</th><td><M>{`(x,y,z) = (${f2(p[0])},\\ ${f2(p[1])},\\ ${f2(p[2])})`}</M></td></tr>
+            <tr><th>Zylindrisch</th><td><M>{`(\\rho,\\varphi,z) = (${f2(cyl.rho)},\\ ${deg(cyl.phi).toFixed(0)}^\\circ,\\ ${f2(cyl.z)})`}</M></td></tr>
+            <tr><th>Sphärisch</th><td><M>{`(r,\\theta,\\psi) = (${f2(sph.r)},\\ ${deg(sph.theta).toFixed(0)}^\\circ,\\ ${deg(sph.psi).toFixed(0)}^\\circ)`}</M></td></tr>
+          </tbody>
+        </table>
+        {cyl.rho < 0.03 && <p className="warn">M is on the z-axis: φ and ψ are undefined here (every angle describes the same point).</p>}
+      </figcaption>
+    </figure>
+  );
+}
