@@ -26,7 +26,10 @@ npm run dev        # local dev server
 npm test           # vitest: physics verification + content lint
 npm run test:e2e   # playwright: renders every lesson in Chromium; fails on console/KaTeX errors
 npm run check      # typecheck + unit + build + e2e — run before every commit
+npm run build:artifact  # build for publishing (see below)
 ```
+
+**Where the student sees it:** https://claude.ai/artifact/NKD6xQuLjVjgiubQrXyvy4 (private). After changing lessons, run `npm run build:artifact` and republish to that same URL (details: `docs/DECISIONS.md` D-008).
 In the cloud container, e2e needs `CHROMIUM_PATH=/opt/pw-browsers/chromium-1194/chrome-linux/chrome`.
 E2E writes screenshots to `test-results/screens/` — **look at them** after changing a visual; passing tests do not prove a figure is right.
 

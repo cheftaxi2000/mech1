@@ -13,3 +13,7 @@
 - Student supplied printed p. 9 as an iPad screenshot. Transcribed into SOURCE_MAP (v̲ = τ̲ṡ via chain rule; §2.2 Cartesian velocity; start of cylindrical).
 - New review items: R-013 (typo "r̲ = ṙ̲"), R-014 (implicit limit / unit-length / invertibility assumptions in the v̲ = τ̲ṡ derivation). Added 3 verification tests (chord/arc → 1, ṡ = |ṙ̲|, tangent direction).
 - Screenshot not committed (same reasoning as D-003).
+
+## 2026-10-10 — Session 1, continued: published
+- Published the app as a private artifact (D-008): https://claude.ai/artifact/NKD6xQuLjVjgiubQrXyvy4
+- Hash routes changed from `#/topic` to `#topic`; theme tokens restructured for explicit light/dark choice.
