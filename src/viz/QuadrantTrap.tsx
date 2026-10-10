@@ -37,15 +37,15 @@ export function QuadrantTrap() {
       </svg>
       <figcaption>
         <p>
-          <T de={<>Ziehe <b>M</b>. Violett: der wahre Winkel <M>{`\\varphi = ${deg(phi).toFixed(0)}^\\circ`}</M>.</>}
-            en={<>Drag <b>M</b>. Purple: the true angle <M>{`\\varphi = ${deg(phi).toFixed(0)}^\\circ`}</M>.</>} />{' '}
+          <T de={<>Ziehe <M p=".">M</M> Violett: der wahre Winkel <M p=".">{`\\varphi = ${deg(phi).toFixed(0)}^\\circ`}</M></>}
+            en={<>Drag <M p=".">M</M> Purple: the true angle <M p=".">{`\\varphi = ${deg(phi).toFixed(0)}^\\circ`}</M></>} />{' '}
           {Number.isNaN(naive)
-            ? <T de={<>Hier ist <M>x=0</M>, also ist <M>y/x</M> gar nicht definiert.</>} en={<>Here <M>x=0</M>, so <M>y/x</M> is not even defined.</>} />
+            ? <T de={<>Hier ist <M p=",">x=0</M> also ist <M>y/x</M> gar nicht definiert.</>} en={<>Here <M p=",">x=0</M> so <M>y/x</M> is not even defined.</>} />
             : <>
                 <T de="Orange/grün:" en="Orange/green:" /> <M>{`\\arctan(y/x) = ${deg(naive).toFixed(0)}^\\circ`}</M> –{' '}
                 {wrong
                   ? <b className="bad"><T de="falscher Quadrant!" en="wrong quadrant!" /></b>
-                  : <b className="ok"><T de="stimmt (x > 0)" en="agrees (x > 0)" /></b>}
+                  : <b className="ok"><T de={<>stimmt (<M p=")">{'x > 0'}</M></>} en={<>agrees (<M p=")">{'x > 0'}</M></>} /></b>}
               </>}
         </p>
       </figcaption>

@@ -19,7 +19,7 @@
 
 | Topic | Pages | Status | Notes |
 |---|---|---|---|
-| koordinaten | 3–4 | **review** | Checklist 1–11 ✅ (DE + EN). Student feedback round 1 applied (box removed, typography, animated cylindrical derivation). Spherical derivation not yet animated (candidate). |
+| koordinaten | 3–4 | **review** | Checklist 1–11 ✅ (DE + EN). Student feedback round 1 applied (box removed, typography, animated cylindrical derivation) and independently reviewed (44 confirmed findings, all fixed). Spherical derivation not yet animated (candidate). |
 | vektoren | 5 | planned | |
 | basen | 5–7 | planned | |
 | geschwindigkeit | 8–9 | planned | p. 9 now available and transcribed; its claims verified (R-013, R-014) |
@@ -33,6 +33,8 @@
 | allgemein | 22–23 | planned | cube example verified (R-007) |
 
 ## Polish backlog
+- Animation: during the four-quadrant sweep, labels near O can briefly crowd each other in quadrants II/III (transient, final frames are clean and tested).
+- Spherical derivation (z = r cos θ, ρ = r sin θ): same treatment as the cylindrical one.
 - koordinaten: labels O, θ, ψ crowd each other when M is near the origin; consider offsetting the O label and drawing angle labels outside the arcs.
 - koordinaten: optional "animate φ" button to preview Kreisbewegung.
 - Bundle size: three.js chunk > 500 kB; split the 3D figures into their own lazy chunk when more lessons exist.

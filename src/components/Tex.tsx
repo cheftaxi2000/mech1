@@ -20,10 +20,19 @@ function render(tex: string, displayMode: boolean): { html: string; error?: stri
   }
 }
 
-export function M({ children }: { children: string }) {
-  const { html, error } = useMemo(() => render(children, false), [children]);
+/** Inline formulas up to this length never break across lines (KaTeX would otherwise break after = or <). */
+const NOBREAK_MAX = 48;
+
+/**
+ * Inline math. `p` = punctuation that directly follows the formula ("." "," ":" ")" …): it is kept on
+ * the same line as the formula (a KaTeX box allows a line break before the next character otherwise).
+ */
+export function M({ children, p }: { children: string; p?: string }) {
+  const tex = children.length <= NOBREAK_MAX ? `{${children}}` : children;
+  const { html, error } = useMemo(() => render(tex, false), [tex]);
   if (error) return <code className="tex-error" title={error}>{children}</code>;
-  return <span dangerouslySetInnerHTML={{ __html: html }} />;
+  const math = <span dangerouslySetInnerHTML={{ __html: html }} />;
+  return p ? <span className="nowrap">{math}{p}</span> : math;
 }
 
 export function MD({ children, tag }: { children: string; tag?: string }) {

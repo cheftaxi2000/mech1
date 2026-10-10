@@ -6,7 +6,7 @@
 | e̲_x, e̲_y, e̲_z | Cartesian orthonormal basis | p. 5 | `\e{x}` |
 | e̲₁ × e̲₂ = e̲₃ | right-handed system (Rechtssystem) | p. 5 | `src/physics/vec.ts cross` |
 | x'Ox | oriented axis through O | p. 3 | — |
-| M_x, M_y, M_z, M_xy | projections of M on axes / xy-plane | p. 3, Fig 1.4 | label `<Label sub="xy">M</Label>` |
+| M_x, M_y, M_z, M_xy | projections of M on axes / xy-plane (M_x is also the foot of the perpendicular from M_xy onto the x-axis — used in the animated derivation) | p. 3, Fig 1.4 | label `<Label sub="xy">M</Label>` |
 | F_x(t), F_ρ(t), … | the *function* describing a coordinate in time | pp. 3–4 | — |
 | ρ, φ, z | cylindrical: distance from z-axis, azimuth from +x, height | p. 3 | `Cylindrical {rho, phi, z}` |
 | r, θ, ψ | spherical: distance from O, **polar angle from +z**, **azimuth ψ** | p. 4 | `Spherical {r, theta, psi}` |

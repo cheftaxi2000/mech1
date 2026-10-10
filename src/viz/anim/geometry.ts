@@ -15,10 +15,13 @@ export const camera = (alpha: number, beta: number): Cam => ({
 });
 
 export interface View { alpha: number; beta: number; cx: number; cy: number; s: number }
-/** Lecture-style oblique view (Fig. 1.4/1.8): x toward the viewer (down-left), y right, z up. */
-export const OBLIQUE: View = { alpha: (28 * Math.PI) / 180, beta: (20 * Math.PI) / 180, cx: 190, cy: 205, s: 62 };
+/**
+ * The lecture's oblique view (Fig. 1.4, 1.8): z up, x-axis toward the lower right (≈ 24° below the
+ * horizontal), y-axis toward the upper right (≈ 24° above). Measured on the figures of p. 3.
+ */
+export const OBLIQUE: View = { alpha: -Math.PI / 4, beta: (27 * Math.PI) / 180, cx: 140, cy: 190, s: 86 };
 /** Looking down the z-axis: x right, y up (as in the lecture's 2D figure on p. 10). */
-export const TOP: View = { alpha: -Math.PI / 2, beta: Math.PI / 2, cx: 200, cy: 170, s: 66 };
+export const TOP: View = { alpha: -Math.PI / 2, beta: Math.PI / 2, cx: 200, cy: 168, s: 60 };
 
 const lerp = (a: number, b: number, k: number) => a + (b - a) * k;
 export const lerpView = (a: View, b: View, k: number): View => ({

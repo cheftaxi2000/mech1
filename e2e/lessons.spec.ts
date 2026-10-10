@@ -18,8 +18,9 @@ async function open(page: Page, lang: Lang, hash = '') {
 }
 
 /** Reveal every hidden explanation (choice feedback, predictions, numeric solutions) and return all lesson text. */
-async function allLessonText(page: Page): Promise<string> {
+async function allLessonText(page: Page, mathHits: string[] = []): Promise<string> {
   const chunks: string[] = [];
+  const scanFeedback = async () => mathHits.push(...(await plainTextMath(page, 'article.lesson .quiz-feedback')));
   const quizzes = page.locator('article.lesson .quiz');
   for (let q = 0; q < (await quizzes.count()); q++) {
     const quiz = quizzes.nth(q);
@@ -27,16 +28,18 @@ async function allLessonText(page: Page): Promise<string> {
     for (let i = 0; i < (await choices.count()); i++) {
       await choices.nth(i).click();
       chunks.push(await textOutsideMathAndGerman(quiz.locator('.quiz-feedback')));
+      await scanFeedback();
     }
     if (await quiz.locator('.numeric').count()) {
       await quiz.locator('input').fill('-999');
       await quiz.locator('.numeric button').click();
       await quiz.locator('summary').click();
       chunks.push(await textOutsideMathAndGerman(quiz.locator('.quiz-feedback')));
+      await scanFeedback();
     }
     if (await quiz.locator('.predict, :scope.predict').count() || (await quiz.getAttribute('class'))?.includes('predict')) {
       const reveal = quiz.locator(':scope > button');
-      if (await reveal.count()) await reveal.click();
+      if (await reveal.count()) { await reveal.click(); await scanFeedback(); }
     }
   }
   chunks.push(await textOutsideMathAndGerman(page.locator('main')));
@@ -52,19 +55,27 @@ function textOutsideMathAndGerman(loc: ReturnType<Page['locator']>) {
   });
 }
 
-/** Greek letters and math symbols must never appear as plain text: they belong in KaTeX (<M>), so they look the same everywhere. */
-async function plainTextMath(page: Page): Promise<string[]> {
-  return page.evaluate(() => {
-    const RE = /[\u0370-\u03FF\u1F00-\u1FFF√²³⟂⊥∥≤≥≠]/;
+/**
+ * Mathematics must never appear as plain text: Greek letters, math symbols, lone variables (x, y, z, M, O, F)
+ * and relations like "x > 0" belong in KaTeX (<M>), so they look the same everywhere (D-010).
+ * `scope` limits the scan to part of the page (e.g. one quiz feedback).
+ */
+async function plainTextMath(page: Page, scope = 'body'): Promise<string[]> {
+  return page.evaluate((sel) => {
+    const SYMBOL = /[\u0370-\u03FF\u1F00-\u1FFF√²³⟂⊥∥≤≥≠−×∈∞±]/;
+    const LONE_VAR = /(^|[^\p{L}\p{N}])[xyzMOF](?=$|[^\p{L}\p{N}.'’-])/u;
+    const RELATION = /[A-Za-z0-9]\s*[<>=]\s*[A-Za-z0-9]/;
     const bad: string[] = [];
-    const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
-    while (w.nextNode()) {
-      const n = w.currentNode, p = n.parentElement;
-      if (!p || p.closest('.katex, script, style, code, title')) continue;
-      if (RE.test(n.textContent ?? '')) bad.push((n.textContent ?? '').trim().slice(0, 80));
+    for (const root of document.querySelectorAll(sel)) {
+      const w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+      while (w.nextNode()) {
+        const n = w.currentNode, p = n.parentElement, s = n.textContent ?? '';
+        if (!p || p.closest('.katex, script, style, code, title, svg, .slider .val')) continue;
+        if (SYMBOL.test(s) || LONE_VAR.test(s) || RELATION.test(s)) bad.push(s.trim().slice(0, 80));
+      }
     }
     return bad;
-  });
+  }, scope);
 }
 
 const LEAK: Record<Lang, RegExp> = {
@@ -99,11 +110,12 @@ for (const lang of LANGS) {
     test(`[${lang}] lesson "${topic.id}" contains no text in the other language`, async ({ page }) => {
       await open(page, lang, `#${topic.id}`);
       await expect(page.locator('article.lesson h2').first()).toBeVisible();
-      const text = await allLessonText(page);
+      const mathHits: string[] = [];
+      const text = await allLessonText(page, mathHits);
       const hits = [...new Set((text.match(LEAK[lang]) ?? []).map((w) => w.toLowerCase()))];
       const context = hits.slice(0, 5).map((w) => text.match(new RegExp(`.{0,40}\\b${w}\\b.{0,40}`, 'i'))?.[0]);
       expect(hits, `leaked words, e.g.:\n${context.join('\n')}`).toEqual([]);
-      expect(await plainTextMath(page), 'Greek letters / math symbols outside KaTeX').toEqual([]);
+      expect([...mathHits, ...(await plainTextMath(page))], 'mathematics outside KaTeX').toEqual([]);
     });
   }
 }
@@ -132,7 +144,7 @@ test('coordinate explorer: switching systems keeps the point fixed (German numbe
   await explorer.getByRole('tab', { name: 'Kartesisch' }).click();
   await expect(cart).toHaveText(before);
   await explorer.getByLabel('z', { exact: true }).fill('-1');
-  await expect(explorer.locator('.slider .val').nth(2)).toHaveText('-1,00');
+  await expect(explorer.locator('.slider .val').nth(2)).toHaveText('\u22121,00'); // true minus sign
   await explorer.screenshot({ path: 'test-results/screens/explorer-cart.png' });
   await explorer.getByRole('tab', { name: 'Sphärisch' }).click();
   await explorer.screenshot({ path: 'test-results/screens/explorer-sph.png' });
@@ -156,16 +168,14 @@ test('phone width: no horizontal page scroll', async ({ page }) => {
 });
 
 test.describe('derivation animation (x = ρ cos φ, y = ρ sin φ)', () => {
-  test('autoplays when scrolled into view, can pause, and a step can be replayed', async ({ page }) => {
+  test('autoplays when the figure scrolls into view, pauses, and the sweep reaches quadrant II', async ({ page }) => {
     const errors = trackErrors(page);
     await open(page, 'de', '#koordinaten');
     const player = page.locator('.stepper').first();
     await expect(player).toHaveAttribute('data-playing', '0');
-    await player.scrollIntoViewIfNeeded();
+    await player.locator('.stepper-fig').scrollIntoViewIfNeeded();
     await expect(player).toHaveAttribute('data-playing', '1');
-    await page.waitForTimeout(600);
-    const t1 = Number(await player.getAttribute('data-t'));
-    expect(t1).toBeGreaterThan(0);
+    await expect.poll(async () => Number(await player.getAttribute('data-t'))).toBeGreaterThan(0);
     await player.getByRole('button', { name: 'Pause' }).click();
     const tPaused = await player.getAttribute('data-t');
     await page.waitForTimeout(400);
@@ -173,26 +183,56 @@ test.describe('derivation animation (x = ρ cos φ, y = ρ sin φ)', () => {
     await player.getByRole('button', { name: 'Schritt 3 abspielen' }).click();
     await expect(player).toHaveAttribute('data-step', '2');
     await expect(player.locator('.stepper-steps li').nth(2)).toHaveClass(/active/);
-    await page.waitForTimeout(4500); // half-way through the sweep (it eases in): φ has left the first quadrant
+    await expect.poll(async () => Number(await player.getAttribute('data-t')), { timeout: 20_000 }).toBeGreaterThan(0.45);
+    await player.getByRole('button', { name: 'Pause' }).click();
     const phi = Number(await player.locator('.anim-fig').getAttribute('data-phi'));
-    expect(phi).toBeGreaterThan(Math.PI / 2);
+    expect(phi).toBeGreaterThan(Math.PI / 2); // left quadrant I …
+    expect(phi).toBeLessThan((3 * Math.PI) / 2); // … but not yet quadrant IV
+    // the y-leg label keeps the y colour whatever the quadrant (it once took the ρ colour for x < 0)
+    for (const el of await player.locator('.anim-label.ink-y').all()) {
+      const [c, token] = await el.evaluate((n) => [getComputedStyle(n).color, getComputedStyle(n).getPropertyValue('--c-y-text')]);
+      const probe = await page.evaluate((tok) => { const d = document.createElement('div'); d.style.color = tok; document.body.append(d); const c2 = getComputedStyle(d).color; d.remove(); return c2; }, token.trim());
+      expect(c).toBe(probe);
+    }
+    expect(errors).toEqual([]);
+  });
+
+  test('"Next" during the pause between steps goes to exactly the next step (no skipped step)', async ({ page }) => {
+    const errors = trackErrors(page);
+    await open(page, 'de', '#koordinaten');
+    const player = page.locator('.stepper').first();
+    await player.locator('.stepper-fig').scrollIntoViewIfNeeded();
+    await expect(player).toHaveAttribute('data-playing', '1');
+    // wait for the hold after step 1: step 0 finished, still playing
+    await expect.poll(async () => `${await player.getAttribute('data-step')}|${await player.getAttribute('data-t')}`, { timeout: 15_000 }).toBe('0|1.000');
+    await player.getByRole('button', { name: 'Nächster Schritt' }).click();
+    await expect(player).toHaveAttribute('data-step', '1');
+    await page.waitForTimeout(3500); // longer than the old hold: it must not push us on to step 3
+    await expect(player).toHaveAttribute('data-step', '1');
     expect(errors).toEqual([]);
   });
 
   for (const lang of LANGS) {
-    test(`[${lang}] reduced motion: every step jumps to its final frame (screenshots)`, async ({ page }) => {
+    test(`[${lang}] reduced motion: no autoplay; each step shows a final frame that matches its caption`, async ({ page }) => {
       await page.emulateMedia({ reducedMotion: 'reduce' });
       await open(page, lang, '#koordinaten');
       const player = page.locator('.stepper').first();
-      await player.scrollIntoViewIfNeeded();
+      await player.locator('.stepper-fig').scrollIntoViewIfNeeded();
+      await page.waitForTimeout(500);
+      await expect(player).toHaveAttribute('data-playing', '0');
       const n = await player.locator('.step-num').count();
       expect(n).toBe(5);
+      const mustShow: Record<number, string[]> = {
+        0: ['lab-M', 'lab-Mxy0'], 1: ['lab-Mx', 'lab-rho', 'lab-phi'], 2: ['lab-sign-0', 'lab-sign-1', 'lab-sign-2', 'box-readout'],
+        3: ['box-pyth', 'box-tan'], 4: ['box-lim0', 'box-lim90'],
+      };
       for (let i = 0; i < n; i++) {
         await player.locator('.step-num').nth(i).click();
         await expect(player).toHaveAttribute('data-step', String(i));
         await expect(player).toHaveAttribute('data-t', '1.000');
         await expect(player).toHaveAttribute('data-playing', '0');
         await expect(player.locator('.tex-error')).toHaveCount(0);
+        for (const key of mustShow[i]) await expect(player.locator(`.anim-label[data-key="${key}"]`), `step ${i + 1}: ${key}`).toBeVisible();
         await player.locator('.stepper-fig').screenshot({ path: `test-results/screens/anim-${lang}-step${i + 1}.png` });
       }
     });

@@ -45,7 +45,8 @@ export function T({ de, en }: { de: ReactNode; en: ReactNode }) {
 /** Number formatting: German uses a decimal comma. `tex` protects the comma from KaTeX's punctuation spacing. */
 export function fmtNum(x: number, digits: number, lang: Lang, tex = false): string {
   const s = (Math.abs(x) < 0.5 * 10 ** -digits ? 0 : x).toFixed(digits);
-  return lang === 'de' ? s.replace('.', tex ? '{,}' : ',') : s;
+  const d = lang === 'de' ? s.replace('.', tex ? '{,}' : ',') : s;
+  return tex ? d : d.replace(/^-/, '\u2212'); // plain text gets a true minus sign, like KaTeX
 }
 
 /** Separator between tuple entries: "(1,15; 0,96)" in German avoids clashing with the decimal comma. */

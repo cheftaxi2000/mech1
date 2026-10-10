@@ -23,6 +23,15 @@ describe('lesson source lint', () => {
     expect(bad, 'add {\' \'} at the end of these lines').toEqual([]);
   });
 
+  it.each(files)('%s: punctuation after a formula is attached via <M p="…"> (never wraps to a new line)', (f) => {
+    const src = readFileSync(join(dir, f), 'utf8');
+    // `{ text: <M>…</M>,` in a quiz option is a JavaScript separator, not text
+    const isJsSeparator = (line: string) => /\{ text: <M>.*<\/M>,/.test(line);
+    const bad = src.split('\n').flatMap((line, i) =>
+      (/<\/M>[.,:;!?]/.test(line) && !isJsSeparator(line)) || / ✓/.test(line) ? [`${f}:${i + 1}`] : []);
+    expect(bad).toEqual([]);
+  });
+
   it('every written lesson is registered in the curriculum and vice versa', () => {
     const registered = TOPICS.filter((t) => t.component).length;
     expect(registered).toBe(files.length);

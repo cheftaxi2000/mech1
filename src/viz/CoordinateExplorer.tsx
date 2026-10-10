@@ -74,7 +74,7 @@ export function CoordinateExplorer({ initialMode = 'cyl', lockMode = false }: { 
       { f: (t: number) => cylToCart({ rho: cyl.rho, phi: cyl.phi, z: t }), t0: -L, t1: L, c: C.line3, name: tr(<><M>z</M>-Linie (vertikal)</>, <><M>z</M>-line (vertical)</>) },
     ];
     return [
-      { f: (t: number) => sphToCart({ r: t, theta: sph.theta, psi: sph.psi }), t0: 0, t1: L, c: C.line1, name: tr(<><M>r</M>-Linie (Strahl von <M>O</M>)</>, <><M>r</M>-line (ray from <M>O</M>)</>) },
+      { f: (t: number) => sphToCart({ r: t, theta: sph.theta, psi: sph.psi }), t0: 0, t1: L, c: C.line1, name: tr(<><M>r</M>-Linie (Strahl von <M p=")">O</M></>, <><M>r</M>-line (ray from <M p=")">O</M></>) },
       { f: (t: number) => sphToCart({ r: sph.r, theta: t, psi: sph.psi }), t0: 0, t1: Math.PI, c: C.line2, name: tr(<><M>\theta</M>-Linie (Meridian)</>, <><M>\theta</M>-line (meridian)</>) },
       { f: (t: number) => sphToCart({ r: sph.r, theta: sph.theta, psi: t }), t0: 0, t1: 2 * Math.PI, c: C.line3, name: tr(<><M>\psi</M>-Linie (Breitenkreis)</>, <><M>\psi</M>-line (circle of latitude)</>) },
     ];
@@ -102,7 +102,7 @@ export function CoordinateExplorer({ initialMode = 'cyl', lockMode = false }: { 
         <Dashed pts={[p, Mxy]} />
         <Dashed pts={[[0, 0, 0], Mxy]} />
         <Dot at={Mxy} color={C.construct} r={0.03} />
-        <Label at={[Mxy[0], Mxy[1], -0.15]} color={C.construct} sub="xy">M</Label>
+        <Label at={[Mxy[0], Mxy[1], -0.17]} color={C.axis} sub="xy">M</Label>
         {mode === 'cart' && (<>
           <Dashed pts={[Mxy, [p[0], 0, 0]]} /><Dashed pts={[Mxy, [0, p[1], 0]]} />
         </>)}
@@ -110,13 +110,13 @@ export function CoordinateExplorer({ initialMode = 'cyl', lockMode = false }: { 
         {mode !== 'cart' && cyl.rho > 0.05 && (
           <>
             <Curve f={(t) => [arcR * Math.cos(t), arcR * Math.sin(t), 0]} t0={0} t1={azimuth} color={C.angle} width={2} />
-            <Label at={[0.62 * Math.cos(azimuth / 2), 0.62 * Math.sin(azimuth / 2), 0]} color={C.angle}>{mode === 'sph' ? 'ψ' : 'φ'}</Label>
+            <Label at={[0.8 * Math.cos(azimuth / 2), 0.8 * Math.sin(azimuth / 2), 0]} color={C.angle}>{mode === 'sph' ? 'ψ' : 'φ'}</Label>
           </>
         )}
         {mode === 'sph' && sph.r > 0.05 && (
           <>
             <Curve f={(t) => sphToCart({ r: 0.55, theta: t, psi: sph.psi })} t0={0} t1={sph.theta} color={C.angle} width={2} />
-            <Label at={sphToCart({ r: 0.72, theta: sph.theta / 2, psi: sph.psi })} color={C.angle}>θ</Label>
+            <Label at={sphToCart({ r: 0.85, theta: sph.theta / 2, psi: sph.psi })} color={C.angle}>θ</Label>
           </>
         )}
         {showLines && lines.map((l, i) => <Curve key={i} f={l.f} t0={l.t0} t1={l.t1} color={l.c} />)}

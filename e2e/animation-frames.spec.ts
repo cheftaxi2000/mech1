@@ -5,13 +5,13 @@ import { test } from '@playwright/test';
 test.skip(!process.env.REVIEW_FRAMES, 'set REVIEW_FRAMES=1 to capture animation frames');
 
 const PLAN: { step: number; at: number[] }[] = [
-  { step: 0, at: [0, 0.3, 0.5, 0.7, 0.85] },
-  { step: 1, at: [0.2, 0.45, 0.7] },
-  { step: 2, at: [0.1, 0.35, 0.5, 0.62, 0.75, 0.88] },
+  { step: 0, at: [0.1, 0.35, 0.6] },
+  { step: 1, at: [0.1, 0.2, 0.45, 0.75] },
+  { step: 2, at: [0.2, 0.35, 0.5, 0.62, 0.75, 0.88] },
   { step: 3, at: [0.15, 0.35, 0.55, 0.8] },
   { step: 4, at: [0.1, 0.25, 0.5, 0.7, 0.95] },
 ];
-const MS = [4600, 3800, 9000, 5200, 8000];
+const MS = [4500, 5500, 10000, 5500, 8000];
 
 for (const lang of ['de', 'en'] as const) {
   test(`[${lang}] capture animation frames`, async ({ page }) => {
@@ -32,3 +32,35 @@ for (const lang of ['de', 'en'] as const) {
     }
   });
 }
+
+test('[review] explorer, phone layout, dark mode', async ({ page }) => {
+  test.setTimeout(120_000);
+  await page.addInitScript(() => localStorage.setItem('mech1.lang', 'de'));
+  // 3D explorer in all three modes (lecture-oriented camera, KaTeX-font labels with halo)
+  await page.setViewportSize({ width: 1180, height: 820 });
+  await page.goto('/#koordinaten');
+  const ex = page.locator('.explorer').first();
+  await ex.scrollIntoViewIfNeeded();
+  for (const [tab, name] of [['Kartesisch', 'cart'], ['Zylindrisch', 'cyl'], ['Sphärisch', 'sph']] as const) {
+    await ex.getByRole('tab', { name: tab }).click();
+    await page.waitForTimeout(400);
+    await ex.screenshot({ path: `test-results/frames/review-explorer-${name}.png` });
+  }
+  // phone portrait: the figure stays on screen while the captions scroll (sticky)
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('/#koordinaten');
+  const player = page.locator('.stepper').first();
+  await player.locator('.stepper-steps li').nth(3).scrollIntoViewIfNeeded();
+  await player.locator('.step-num').nth(3).click();
+  await page.waitForTimeout(300);
+  await page.screenshot({ path: 'test-results/frames/review-phone-step4.png' });
+  // dark mode, iPad portrait
+  await page.emulateMedia({ colorScheme: 'dark', reducedMotion: 'reduce' });
+  await page.setViewportSize({ width: 820, height: 1180 });
+  await page.goto('/#koordinaten');
+  await page.locator('.stepper').first().locator('.stepper-fig').scrollIntoViewIfNeeded();
+  await page.locator('.stepper .step-num').nth(2).click();
+  await page.waitForTimeout(300);
+  await page.screenshot({ path: 'test-results/frames/review-dark-ipad-step3.png' });
+});

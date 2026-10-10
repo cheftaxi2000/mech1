@@ -21,3 +21,11 @@
 ## 2026-10-10 — Session 1, continued: Deutsch / English
 - Student asked for a language choice. Added `src/i18n.tsx` (LangProvider, `<T>`, `useTr`, `fmtNum`, toggle), translated all UI, the explorer, the quadrant widget and lesson 1 completely into German.
 - New e2e tests run every lesson in both languages, reveal all hidden quiz explanations and fail if function words of the other language appear (mutation-tested: a planted English phrase in a hidden German solution was caught). Also: toggle switches and is remembered after reload; German number format in the explorer.
+
+## 2026-10-10 — Session 1, continued: student feedback round 1 (screenshots)
+- Requests: (1) remove the "Warum starr?" box; (2) Greek letters must always look like the formulas (a heading's φ was a different glyph); (3) an animation for the derivation x = ρ cos φ, y = ρ sin φ.
+- Done: box removed; every symbol typeset by KaTeX, 3D/SVG labels in KaTeX_Math (D-010) with an e2e check for plain-text math (Greek, symbols, lone variables, relations — also inside every revealed quiz explanation); StepPlayer + animated derivation (D-009).
+- Independent review workflow (5 lenses: maths, visuals, language, code, requirements; each finding adversarially verified): 44 confirmed, 6 rejected. All 44 fixed, among them: final frames that did not show their captions (now tested per step), a skipped-step / crash bug in the player when pressing Next during the pause, x-axis orientation not matching Fig. 1.4/1.8 (start view and 3D explorer now match the lecture), y-label colour collision for x < 0, phone layout (sticky figure), touch targets, contrast, line breaks inside formulas, readout rounding, ✓ wrapping alone, plain-text M / "x > 0".
+- New: `cylScene.ts` pure scene + per-frame unit tests; `<M p=…>` punctuation attachment + lint; true minus in plain-text numbers; lecture-oriented explorer camera.
+- Republished to the artifact URL (D-008).
+- Next: student reviews lesson 1 + animation; then lesson 2 (vektoren, p. 5). Candidate: animate the spherical derivation.

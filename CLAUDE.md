@@ -18,7 +18,7 @@ Correctness > clarity > visuals > speed.
 - **Every formula shown must be verified**: a test in `src/physics/*.test.ts` (numeric check of a closed form, or of a worked example), or a derivation shown step by step in the lesson. Numerical agreement is a check, not a proof — say so where it matters.
 - **A topic is "review" status only when the full checklist in `docs/PROGRESS.md` is satisfied.** It becomes "complete" only after the student signs off.
 - **Every mathematical symbol is typeset by KaTeX** — in headings, box titles, legends, quiz options, everywhere. Never type ρ, φ, θ, ψ, √, ², ⊥ … as plain text (a heading's φ would come out as a different glyph than the formula's \varphi). 3D sprite labels and SVG text use the KaTeX_Math font. The e2e test `plainTextMath` enforces this. (D-010)
-- **Two complete languages, switchable (Deutsch / English).** Every visible text exists in both: lessons wrap content in `<T de={…} en={…} />`, components use `useTr()`. German uses Swiss orthography (ss, not ß), «Guillemets», decimal comma (`fmtNum`, `{,}` inside TeX) and `;` between tuple entries. In English mode, German lecture terms stay visible via `<De en="gloss">Begriff</De>`. Formulas are shared, never duplicated with different content. The e2e "no text in the other language" test enforces this. (D-002)
+- **Two complete languages, switchable (Deutsch / English).** Every visible text exists in both: lessons wrap content in `<T de={…} en={…} />`, components use `useTr()`. German uses Swiss orthography (ss, not ß), «Guillemets», decimal comma (`fmtNum`, `{,}` inside TeX) and `;` between tuple entries that contain decimal numbers (symbolic tuples like `(\rho, 0)` keep commas). In English mode, German lecture terms stay visible via `<De en="gloss">Begriff</De>`. Formulas are shared, never duplicated with different content. The e2e "no text in the other language" test enforces this. (D-002)
 
 ## Commands
 
@@ -52,10 +52,11 @@ Follow `docs/PLAN.md` § "Lesson anatomy". In short: orientation → lecture box
 
 Authoring gotchas:
 - Inside JSX, a line break between text and an inline element swallows the space. Add `{' '}` (the lint test enforces this).
+- Punctuation right after a formula goes into the formula's `p` prop: `<M p=".">{t`x = 0`}</M>` — otherwise the period can wrap onto the next line on its own (lint-enforced). Use `&nbsp;✓` for check marks.
 - Write the German text as proper German, not a word-for-word translation of the English (and vice versa). In German mode, lecture boxes quote the Skript's own wording where possible.
 - TeX in JSX: use ``<M>{t`\rho`}</M>`` with `const t = String.raw`.
 - 3D labels: use `<Label>` (sprite, KaTeX_Math font). Do **not** use drei `<Html>` (D-004).
-- Derivations that move (a construction, a sweep, a limit) get a step-synchronised animation: `<StepPlayer steps={[{ms, caption}]}>{(step, t) => <Figure …/>}</StepPlayer>` with an SVG figure + KaTeX labels (see `src/viz/anim/`). Put the geometry in pure functions with unit tests; check the running frames (`REVIEW_FRAMES=1 npx playwright test e2e/animation-frames.spec.ts` → `test-results/frames/`), not only end states. (D-009)
+- Derivations that move (a construction, a sweep, a limit) get a step-synchronised animation: `<StepPlayer steps={[{ms, holdMs, caption}]}>{(step, t) => <Figure …/>}</StepPlayer>`, the figure built from a pure scene function like `viz/anim/cylScene.ts` (unit-test every frame: labels inside, colours, final frames). **Each step's final frame must show what its caption says.** 3D views start in the lecture's orientation (Fig. 1.4: x down-right, y up-right). Check the running frames (`REVIEW_FRAMES=1 npx playwright test e2e/animation-frames.spec.ts` → `test-results/frames/`), not only end states. (D-009)
 - Three.js scenes are z-up; pass physics coordinates directly.
 
 ## End of every session

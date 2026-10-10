@@ -5,6 +5,9 @@ import * as THREE from 'three';
 import type { Vec3 } from '../physics/vec';
 
 /** Scene colours shared by all 3D figures (kept in one place so diagrams stay consistent). */
+/** Background of the 3D scenes (kept light in both themes, see styles.css --scene-bg). */
+export const SCENE_BG = '#f6f7f9';
+
 export const C = {
   axis: '#64748b',
   point: '#e11d48',
@@ -45,14 +48,16 @@ export function Label({ at, children, sub, color = '#0f172a', size = 0.06 }: { a
   const fontReady = useKatexFontReady();
   const { texture, aspect } = useMemo(() => {
     const px = 72, font = KATEX_MATH_FONT(px), subFont = KATEX_MATH_FONT(Math.round(px * 0.7));
+    const halo = Math.round(px / 7); // light outline so axis and curve lines do not cut through the glyphs
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d')!;
     ctx.font = font; const w1 = ctx.measureText(children).width;
     ctx.font = subFont; const w2 = sub ? ctx.measureText(sub).width + 4 : 0;
-    canvas.width = Math.ceil(w1 + w2 + 20); canvas.height = Math.ceil(px * 1.45);
-    ctx.textBaseline = 'alphabetic'; ctx.fillStyle = color;
-    ctx.font = font; ctx.fillText(children, 10, px);
-    if (sub) { ctx.font = subFont; ctx.fillText(sub, 10 + w1 + 2, px * 1.25); }
+    canvas.width = Math.ceil(w1 + w2 + 20 + 2 * halo); canvas.height = Math.ceil(px * 1.45 + 2 * halo);
+    ctx.textBaseline = 'alphabetic'; ctx.lineJoin = 'round'; ctx.lineWidth = halo; ctx.strokeStyle = SCENE_BG; ctx.fillStyle = color;
+    const draw = (txt: string, f: string, x: number, y: number) => { ctx.font = f; ctx.strokeText(txt, x, y); ctx.fillText(txt, x, y); };
+    draw(children, font, 10 + halo, px + halo);
+    if (sub) draw(sub, subFont, 10 + halo + w1 + 2, px * 1.25 + halo);
     const texture = new THREE.CanvasTexture(canvas);
     texture.colorSpace = THREE.SRGBColorSpace;
     texture.anisotropy = 4;
@@ -76,7 +81,7 @@ export function Axes({ size = 2.4 }: { size?: number }) {
           <Label at={[t[0] * 1.07, t[1] * 1.07, t[2] * 1.07]} color={C.axis}>{'xyz'[i]}</Label>
         </group>
       ))}
-      <Label at={[-0.12, -0.12, -0.05]} color={C.axis}>O</Label>
+      <Label at={[-0.16, -0.16, -0.14]} color={C.axis}>O</Label>
     </group>
   );
 }

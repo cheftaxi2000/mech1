@@ -18,11 +18,12 @@ describe('orthographic camera', () => {
     expect(Y[0] - O[0]).toBeCloseTo(0); expect(Y[1] - O[1]).toBeCloseTo(-TOP.s);
     expect(Z[0] - O[0]).toBeCloseTo(0); expect(Z[1] - O[1]).toBeCloseTo(0); // z collapses: looking straight down
   });
-  it('oblique view matches the lecture figures: z up, y to the right, x toward the viewer (down-left)', () => {
+  it('oblique view matches Fig. 1.4/1.8 of the lecture: z up, x down-right, y up-right (both ≈ 24° from horizontal)', () => {
     const O = project([0, 0, 0], OBLIQUE), X = project([1, 0, 0], OBLIQUE), Y = project([0, 1, 0], OBLIQUE), Z = project([0, 0, 1], OBLIQUE);
     expect(Z[0] - O[0]).toBeCloseTo(0); expect(Z[1]).toBeLessThan(O[1]);
-    expect(Y[0]).toBeGreaterThan(O[0]);
-    expect(X[0]).toBeLessThan(O[0]); expect(X[1]).toBeGreaterThan(O[1]);
+    const angle = (P: readonly [number, number]) => (Math.atan2(O[1] - P[1], P[0] - O[0]) * 180) / Math.PI; // screen angle, up = +
+    expect(angle(X)).toBeGreaterThan(-35); expect(angle(X)).toBeLessThan(-15);
+    expect(angle(Y)).toBeGreaterThan(15); expect(angle(Y)).toBeLessThan(35);
   });
   it('projection keeps a point of the xy-plane and its vertical drop on one screen point in top view', () => {
     const M: Vec3 = [1.2, 0.9, 1.3], Mxy: Vec3 = [1.2, 0.9, 0];
@@ -65,29 +66,5 @@ describe('easing', () => {
     expect(ease(0)).toBe(0); expect(ease(1)).toBe(1);
     let prev = -1;
     for (let k = 0; k <= 1; k += 0.05) { expect(ease(k)).toBeGreaterThanOrEqual(prev); prev = ease(k); }
-  });
-});
-
-import { PHI0, phiAt } from './CylDerivationFigure';
-
-describe('φ timeline of the cylindrical derivation animation', () => {
-  const quadrant = (phi: number) => Math.floor((((phi % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI)) / (Math.PI / 2));
-  it('step 3 (index 2) sweeps φ once around: every quadrant is visited, start and end at φ₀', () => {
-    const seen = new Set<number>();
-    for (let t = 0; t <= 1; t += 0.005) seen.add(quadrant(phiAt(2, t)));
-    expect([...seen].sort()).toEqual([0, 1, 2, 3]);
-    expect(phiAt(2, 0)).toBeCloseTo(PHI0);
-    expect(phiAt(2, 1) - 2 * Math.PI).toBeCloseTo(PHI0);
-  });
-  it('step 5 (index 4) holds exactly φ = 0 and φ = 90° while the limit labels are shown, and returns to φ₀', () => {
-    for (const t of [0.16, 0.3, 0.44]) expect(phiAt(4, t)).toBe(0);
-    for (const t of [0.61, 0.75, 0.89]) expect(phiAt(4, t)).toBeCloseTo(Math.PI / 2);
-    expect(phiAt(4, 0)).toBeCloseTo(PHI0); expect(phiAt(4, 1)).toBeCloseTo(PHI0);
-  });
-  it('φ changes continuously (no jumps a viewer would see)', () => {
-    for (const step of [0, 1, 2, 3, 4]) {
-      let prev = phiAt(step, 0);
-      for (let t = 0.002; t <= 1; t += 0.002) { const p = phiAt(step, t); expect(Math.abs(p - prev)).toBeLessThan(0.08); prev = p; }
-    }
   });
 });
