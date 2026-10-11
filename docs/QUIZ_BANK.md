@@ -131,3 +131,37 @@ The student wants the chapters to be pure explanation; questions will come back 
           explain={<T de={<><M p=".">{t`1\cdot3 + 2\cdot(-1) + 0\cdot4 = 1`}</M> Positiv, also ist der Winkel kleiner als <M p=".">{t`90^\circ`}</M></>} en={<><M p=".">{t`1\cdot3 + 2\cdot(-1) + 0\cdot4 = 1`}</M> Positive, so the angle is less than <M p=".">{t`90^\circ`}</M></>} />}
         />
 ```
+
+## Question ideas, lessons 3–8 (not yet written as components)
+
+Short ideas for the quiz part at the end of the course (D-015). Every answer must be checked against the lesson and a test before it becomes a question.
+
+### L03 basen (pp. 6–7)
+- Which direction does e_φ point at the point (ρ, φ, z) = (2, 90°, 1)? (−x direction.)
+- Is r = ρ e_ρ + z e_z or r = ρ e_ρ + φ e_φ + z e_z? Why is there no e_φ term?
+- True/false: e_ρ, e_φ, e_z are the same three vectors at every point.
+
+### L04 geschwindigkeit (pp. 8–9)
+- A car drives 3 km in 2 min; is 90 km/h the velocity or the mean speed? What would the speedometer show?
+- Why is Δr ∥ τ only in the limit Δt → 0? (Chord vs. tangent.)
+- v = ṡ τ: what are |v| and the direction of v when s(t) = 4t²?
+
+### L05 v-krummlinig (p. 10)
+- Compute v for ρ = 2, ρ̇ = 1, φ̇ = 3, ż = 0 in cylindrical components; what is |v|?
+- Why is ė_ρ = φ̇ e_φ and not 0? (e_ρ turns when φ changes.)
+- True/false: v always lies tangential to the circle about the z-axis. (Only if ρ̇ = ż = 0.)
+
+### L06 kreisbewegung (p. 11)
+- A point on a circle of radius 0,5 m with φ̇ = 4 s⁻¹: |v| = ? (2 m/s.)
+- Does v = ω × r depend on which point of the axis is used as origin? (No: ω × (r + λω) = ω × r.)
+- Direction of ω for a wheel turning counterclockwise seen from above.
+
+### L07 sdpg (pp. 12–13)
+- v_A = (2, 1, 0), A→B = (1, 0, 0): which x-component must v_B have? (2.)
+- Ladder: floor angle α = 30°, bottom slides at v_H = 1 m/s: v_V = ? (cot 30° ≈ 1,73 m/s.)
+- Why does a stretching body violate the SdpG?
+
+### L08 translation (pp. 13–14)
+- A Ferris-wheel gondola: are all its points on circles? Is it a rotation or a translation? Why?
+- Circles of the same size with different centres vs. circles with one centre and different radii: which motion is which?
+- Slider crank: at which crank angles is the rod in momentary translation? Are the rod's points' accelerations then also equal? (No — momentary only.)

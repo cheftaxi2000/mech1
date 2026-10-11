@@ -263,3 +263,32 @@ test('[review] sdpg: proof animation and figures', async ({ page }) => {
     }
   }
 });
+
+test('[review] translation: Fig. 3.4 animation and figures', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('mech1.lang', 'de'));
+  for (const [w, h, name, scheme] of [[1180, 820, 'ipad', 'light'], [390, 844, 'phone', 'light'], [820, 1180, 'ipad-dark', 'dark']] as const) {
+    await page.emulateMedia({ colorScheme: scheme, reducedMotion: 'reduce' });
+    await page.setViewportSize({ width: w, height: h });
+    await page.goto('/#translation');
+    await page.locator('article.lesson h2').first().waitFor();
+    const st = page.locator('.stepper').first();
+    for (let i = 0; i < 4; i++) {
+      await st.locator('.step-num').nth(i).click();
+      await page.waitForTimeout(300);
+      await st.locator('.stepper-fig').screenshot({ path: `test-results/frames/trans-${name}-step${i + 1}.png` });
+    }
+    const figs = page.locator('article.lesson figure.vdemo');
+    for (let i = 0; i < (await figs.count()); i++) {
+      await figs.nth(i).scrollIntoViewIfNeeded(); await page.waitForTimeout(300);
+      await figs.nth(i).screenshot({ path: `test-results/frames/trans-${name}-fig${i + 1}.png` });
+    }
+    if (name === 'ipad') {
+      for (const tab of ['geradlinig', 'Vergleich: Drehung']) {
+        await figs.first().getByRole('tab', { name: tab }).click(); await page.waitForTimeout(200);
+        await figs.first().screenshot({ path: `test-results/frames/trans-ipad-fig1-${tab.slice(0, 5)}.png` });
+      }
+      await figs.nth(1).getByRole('button', { name: 'Kurbel senkrecht' }).click(); await page.waitForTimeout(200);
+      await figs.nth(1).screenshot({ path: 'test-results/frames/trans-ipad-fig2-vertical.png' });
+    }
+  }
+});

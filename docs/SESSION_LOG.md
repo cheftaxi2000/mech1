@@ -69,3 +69,8 @@
 
 ## 2026-10-11 — lesson 7 (sdpg, pp. 12–13)
 - Student away for an hour, asked to continue. `L07Rigid.tsx`, `sdpgScene.ts` (+test), `RigidFigures.tsx` (SdpgDemo, LadderDemo), `sdpg.test.ts`. kreisbewegung → complete.
+
+## 2026-10-11 — lesson 8 (translation, pp. 13–14)
+- Student: "weiter nächstes kapitel" → sdpg complete. `L08Translation.tsx`, `transScene.ts` (+test), `TranslationFigures.tsx` (TranslationDemo with pure `demoFrame` + `freeSpot` label placement, `translationDemo.test.ts`; SliderCrank), `physics/translation.ts` (+test). R-016 (bowl figure) logged and handled in a `<details>`.
+- Frame review (REVIEW_FRAMES entry added): point labels were covered by the velocity arrows in the circular mode, the rotation comparison had tiny arrows and a back-and-forth swing → labels now dodge arrows (tested for all modes and 50 phases), rotation is a full turn about the black dot (concentric circles, clearly different speeds), short arrows get short heads.
+- Next: student reviews lesson 8; then Rotation (pp. 15–19).
