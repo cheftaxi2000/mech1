@@ -22,8 +22,8 @@
 |---|---|---|---|
 | koordinaten | 3–4 | **complete** | Signed off by the student 2026-10-11. Quizzes moved to the quiz bank (D-015). |
 | vektoren | 5 | **complete** | Signed off by the student 2026-10-11. Quizzes moved to the quiz bank (D-015). |
-| basen | 6–7 | **review** | Pure explanation (D-015): components (1), the tangent rule, cylindrical basis with a 4-step 3D animation (`cylBasisFrame.ts`, 6 frame tests), e_ρ/e_φ preview (p. 10), spherical basis + components (supplement), explorer with the local basis (`basis` prop), 2 misconception boxes; `bases.test.ts` (8 tests). Frames inspected iPad + phone. **Awaiting sign-off.** |
-| geschwindigkeit | 8–9 | planned | p. 9 now available and transcribed; its claims verified (R-013, R-014) |
+| basen | 6–7 | **complete** | Signed off by the student 2026-10-11. |
+| geschwindigkeit | 8–9 | **review** | Rectilinear motion with a secant→tangent figure (`SecantDemo`), the derivation v = ṙ = ṡτ as a 4-step animation (`velScene.ts`, 7 frame tests: Δt → 0, chord → tangent, \|Δr\|/Δs → 1), chain-rule calculation with R-014 in a collapsible note, Cartesian velocity with the struck-out ė terms (R-013 one sentence), 3D helix with v, τ and components (`HelixVelocity`), 3 misconception boxes; `velocity.test.ts`. Frames inspected iPad, phone, dark. **Awaiting sign-off.** |
 | v-krummlinig | 10 | planned | formulas already verified in tests |
 | kreisbewegung | 11 | planned | ω × r verified |
 | sdpg | 12–13 | planned | SdpG + ladder verified |

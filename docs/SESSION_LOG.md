@@ -47,3 +47,7 @@
 - Lesson 3 `L03Bases.tsx` (pp. 6–7): scalar/vector components, the "tangent to the coordinate lines" rule as a recipe, cylindrical basis animated in 3D (`CylBasisAnim` + pure `cylBasisFrame`), p. 10 preview of e_ρ, e_φ, misconception r = ρe_ρ + φe_φ + ze_z (the notes' "Falsch!"), spherical basis + Cartesian components (supplement, scale factors 1, r, r sin θ), explorer with local basis, key points and outlook.
 - Shared: `useFullscreen.tsx` (extracted), Scene `camera`/`target` props and a portrait field-of-view fit, explorer `basis` prop.
 - Next: student reviews lesson 3; then Kapitel 2 Geschwindigkeit (pp. 8–9).
+
+## 2026-10-11 — Session 1, continued: lesson 3 signed off; lesson 4 (geschwindigkeit)
+- basen → complete. Lesson 4 `L04Velocity.tsx` (pp. 8–9), pure explanation: rectilinear motion + `SecantDemo` (Δt slider, secant vs tangent), what is wanted in 3D, §2.1 with a 4-step animation (`velScene.ts`: trajectory/arc length, chord Δr and arc Δs, Δt → 0 with |Δr|/Δs readout, v = ṡτ), chain-rule calculation, R-014 in `<details>`, §2.2 Cartesian basis with \cancel'd ė-terms, `HelixVelocity` 3D figure (components head to tail, τ, ṡ constant), cylindrical preview (ė_ρ ≠ 0), 3 misconceptions.
+- Next: student reviews lesson 4; then v-krummlinig (p. 10).

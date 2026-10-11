@@ -145,3 +145,32 @@ test('[review] basen: cylindrical-basis animation (final frames) and explorer wi
     }
   }
 });
+
+test('[review] geschwindigkeit: animation steps, running frames, figures', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('mech1.lang', 'de'));
+  for (const [w, h, name, scheme] of [[1180, 820, 'ipad', 'light'], [390, 844, 'phone', 'light'], [820, 1180, 'ipad-dark', 'dark']] as const) {
+    await page.emulateMedia({ colorScheme: scheme, reducedMotion: 'reduce' });
+    await page.setViewportSize({ width: w, height: h });
+    await page.goto('/#geschwindigkeit');
+    await page.locator('article.lesson h2').first().waitFor();
+    const st = page.locator('.stepper').first();
+    for (let i = 0; i < 4; i++) {
+      await st.locator('.step-num').nth(i).click();
+      await page.waitForTimeout(300);
+      await st.locator('.stepper-fig').screenshot({ path: `test-results/frames/vel-${name}-step${i + 1}.png` });
+    }
+    const figs = page.locator('article.lesson figure.vdemo, article.lesson figure.explorer');
+    for (let i = 0; i < (await figs.count()); i++) {
+      await figs.nth(i).scrollIntoViewIfNeeded(); await page.waitForTimeout(400);
+      await figs.nth(i).screenshot({ path: `test-results/frames/vel-${name}-fig${i + 1}.png` });
+    }
+  }
+  // running frames of the limit step
+  await page.emulateMedia({ colorScheme: 'light', reducedMotion: 'no-preference' });
+  await page.setViewportSize({ width: 1180, height: 820 });
+  await page.goto('/#geschwindigkeit');
+  await page.locator('article.lesson h2').first().waitFor();
+  const st = page.locator('.stepper').first();
+  await st.locator('.step-num').nth(2).click();
+  for (let k = 0; k < 4; k++) { await page.waitForTimeout(1500); await st.locator('.stepper-fig').screenshot({ path: `test-results/frames/vel-running-${k}.png` }); }
+});

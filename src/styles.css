@@ -251,3 +251,22 @@ b.bad { color: var(--bad); } b.ok { color: var(--ok); }
 .fig-note { color: var(--muted); font-size: 0.93rem; margin-top: -6px; }
 .connections { margin-top: 22px; }
 @media (max-width: 480px) { .v-result { font-size: 0.86rem; } }
+/* velocity animation (lesson geschwindigkeit) */
+.an-curve { fill: none; stroke: var(--muted); stroke-width: 2; stroke-linecap: round; }
+.an-s { fill: none; stroke: var(--c-rho); stroke-width: 5; stroke-opacity: 0.35; stroke-linecap: round; }
+.an-ds { fill: none; stroke: var(--c-rho); stroke-width: 5; stroke-linecap: round; }
+.an-r-head { fill: var(--c-r); } .an-o { fill: var(--fg); }
+.an-dr { stroke: var(--c-x); stroke-width: 2.4; } .an-dr-head { fill: var(--c-x); }
+.an-v { stroke: var(--c-point); stroke-width: 3; stroke-linecap: round; } .an-v.thin { stroke-width: 2; stroke-dasharray: 5 3; } .an-v-head { fill: var(--c-point); }
+.an-tau { stroke: var(--fg); stroke-width: 3.4; stroke-linecap: round; } .an-tau-head { fill: var(--fg); }
+.an-tangent { stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 6 5; }
+.vdemo-fig.wide { max-width: 640px; }
+.vdemo-label.small { font-size: clamp(11px, 3.2cqw, 15px); } .vdemo-label.point { color: var(--c-point); } .vdemo-label.rho { color: var(--c-rho-text); }
+.v-track { stroke: var(--muted); stroke-width: 1.4; } .v-track-head { fill: var(--muted); }
+.v-span { stroke: var(--muted); stroke-width: 1.2; marker-start: none; }
+.v-m { fill: var(--c-point); } .v-ghost { fill: none; stroke: var(--c-point); stroke-width: 1.6; stroke-dasharray: 3 2; }
+.v-axis { stroke: var(--muted); stroke-width: 1.2; }
+.v-graph { fill: none; stroke: var(--fg); stroke-width: 2.2; }
+.v-sec { stroke: var(--c-x); stroke-width: 2; } .v-tan { stroke: var(--c-point); stroke-width: 1.6; stroke-dasharray: 6 4; }
+.v-dt { stroke: var(--c-x); stroke-width: 1.2; stroke-dasharray: 3 3; } .v-dx { stroke: var(--c-rho); stroke-width: 2.4; }
+.wide-slider { width: min(420px, 100%); }
