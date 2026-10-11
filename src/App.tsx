@@ -1,4 +1,6 @@
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
+import { NotesLayer } from './notes/StickyNotes';
+import { NotesProvider, useNotes } from './notes/store';
 import { CHAPTERS, TOPICS, type Status, type Topic } from './content/curriculum';
 import { LangToggle, T, useLang, useTr } from './i18n';
 
@@ -48,6 +50,7 @@ function Home() {
 
 function TopicPage({ topic }: { topic: Topic }) {
   const lang = useLang(), tr = useTr();
+  const wrapRef = useRef<HTMLDivElement>(null);
   const C = topic.component;
   return (
     <>
@@ -59,8 +62,11 @@ function TopicPage({ topic }: { topic: Topic }) {
           <span className={`status status-${topic.status}`}>{tr(...STATUS_LABEL[topic.status])}</span>
         </div>
       </header>
-      {C ? <Suspense fallback={<p>{tr('Wird geladen …', 'Loading…')}</p>}><C /></Suspense>
-        : <p className="placeholder">{tr('Diese Lektion ist noch nicht geschrieben.', 'This lesson has not been written yet.')}</p>}
+      <div className="lesson-wrap" ref={wrapRef}>
+        {C ? <Suspense fallback={<p>{tr('Wird geladen …', 'Loading…')}</p>}><C /></Suspense>
+          : <p className="placeholder">{tr('Diese Lektion ist noch nicht geschrieben.', 'This lesson has not been written yet.')}</p>}
+        {C && <NotesLayer topic={topic.id} wrapRef={wrapRef} />}
+      </div>
     </>
   );
 }
@@ -89,6 +95,31 @@ function ChapterList({ route, onPick }: { route: string; onPick?: () => void }) 
   );
 }
 
+/** All pinned notes, grouped by lesson; a click opens the lesson and brings the note into view. */
+function NotesList({ onPick }: { onPick: () => void }) {
+  const tr = useTr();
+  const { notes, setFocusId, backend } = useNotes();
+  const withText = notes.filter((n) => n.text.trim());
+  return (
+    <div className="chapter notes-list">
+      <div className="chapter-name">{tr('Meine Notizen', 'My notes')} ({withText.length})</div>
+      {withText.length === 0
+        ? <p className="notes-empty">{tr('Noch keine Notizen. In jeder Lektion unten rechts auf «Notiz» tippen.', 'No notes yet. In any lesson, tap “Note” at the bottom right.')}</p>
+        : <ul>
+          {TOPICS.filter((t) => withText.some((n) => n.topic === t.id)).map((t) => withText.filter((n) => n.topic === t.id).sort((a, b) => a.createdAt - b.createdAt).map((n) => (
+            <li key={n.id}>
+              <a href={`#${t.id}`} onClick={() => { setFocusId(n.id); onPick(); }}>
+                <span className={`note-swatch c-${n.color}`} />
+                <span className="note-snippet"><b>{tr(...t.title)}</b>{n.text.trim().split('\n')[0].slice(0, 60)}</span>
+              </a>
+            </li>
+          )))}
+        </ul>}
+      <p className="notes-where">{backend === 'cloud' ? tr('Privat gespeichert – nur du siehst deine Notizen.', 'Saved privately – only you see your notes.') : tr('In diesem Browser gespeichert.', 'Saved in this browser.')}</p>
+    </div>
+  );
+}
+
 export function App() {
   const route = useHashRoute();
   const tr = useTr();
@@ -102,6 +133,7 @@ export function App() {
   }, [menu]);
   useEffect(() => setMenu(false), [route]);
   return (
+    <NotesProvider>
     <div className="layout">
       <header className="topbar">
         <button type="button" className="burger" onClick={() => setMenu((m) => !m)} aria-expanded={menu} aria-controls="chapters"
@@ -115,8 +147,10 @@ export function App() {
       <div className={`drawer-backdrop${menu ? ' open' : ''}`} onClick={() => setMenu(false)} aria-hidden="true" />
       <nav id="chapters" className={`drawer${menu ? ' open' : ''}`} aria-label={tr('Kapitel', 'Chapters')} inert={!menu}>
         <ChapterList route={route} onPick={() => setMenu(false)} />
+        <NotesList onPick={() => setMenu(false)} />
       </nav>
       <main className="content">{topic ? <TopicPage topic={topic} /> : <Home />}</main>
     </div>
+    </NotesProvider>
   );
 }

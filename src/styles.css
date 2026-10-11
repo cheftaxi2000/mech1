@@ -272,3 +272,88 @@ b.bad { color: var(--bad); } b.ok { color: var(--ok); }
 .wide-slider { width: min(420px, 100%); }
 .an-erho { stroke: var(--c-rho); stroke-width: 3.4; stroke-linecap: round; } .an-erho-head { fill: var(--c-rho); } .an-erho.thin { stroke-width: 2.2; stroke-opacity: 0.75; }
 .an-ephi { stroke: var(--c-angle); stroke-width: 3.4; stroke-linecap: round; } .an-ephi-head { fill: var(--c-angle); }
+
+/* ---- sticky notes (Haftnotizen) ---- */
+.lesson-wrap { position: relative; }
+.sticky {
+  --paper: #fff59d; --paper2: #ffe866; --ink: #3d3322;
+  position: absolute; z-index: 20; width: 210px; padding: 22px 14px 8px; color: var(--ink);
+  background: linear-gradient(170deg, var(--paper) 0%, var(--paper) 62%, var(--paper2) 100%);
+  border-radius: 2px 2px 3px 22px / 2px 2px 3px 10px;
+  box-shadow: 0 1px 1px rgb(0 0 0 / 0.06), 0 6px 10px -4px rgb(0 0 0 / 0.18), 0 18px 24px -14px rgb(0 0 0 / 0.35);
+  transform: rotate(var(--tilt, 0deg)); transform-origin: 50% 0;
+  transition: transform 0.18s ease, box-shadow 0.18s ease; touch-action: none; cursor: grab;
+  animation: sticky-in 0.28s cubic-bezier(.2,1.4,.4,1);
+}
+@keyframes sticky-in { from { transform: rotate(var(--tilt, 0deg)) translateY(-10px) scale(0.92); opacity: 0; } }
+.sticky::after { /* lifted bottom-right corner */
+  content: ''; position: absolute; right: 0; bottom: 0; width: 28px; height: 22px; border-radius: 0 0 3px 0;
+  background: linear-gradient(135deg, transparent 45%, rgb(0 0 0 / 0.07) 50%, rgb(255 255 255 / 0.55) 56%, var(--paper2) 80%);
+  pointer-events: none;
+}
+.sticky:hover, .sticky:focus-within { box-shadow: 0 1px 1px rgb(0 0 0 / 0.06), 0 10px 16px -6px rgb(0 0 0 / 0.22), 0 26px 30px -16px rgb(0 0 0 / 0.4); z-index: 21; }
+.sticky.dragging { cursor: grabbing; z-index: 22; transform: rotate(0deg) scale(1.03); box-shadow: 0 30px 40px -18px rgb(0 0 0 / 0.45); transition: none; }
+.sticky.flash { animation: sticky-flash 1.4s ease; }
+@keyframes sticky-flash { 0%, 100% { outline: 0 solid transparent; } 20%, 60% { outline: 4px solid color-mix(in srgb, var(--accent) 60%, transparent); outline-offset: 4px; } }
+.sticky.c-pink { --paper: #ffd6e5; --paper2: #ffbfd6; }
+.sticky.c-green { --paper: #d4f5c9; --paper2: #bdecac; }
+.sticky.c-blue { --paper: #d3e9ff; --paper2: #b9dbff; }
+.sticky-tape { /* translucent tape strip = drag handle */
+  position: absolute; top: -11px; left: 50%; width: 78px; height: 24px; transform: translateX(-50%) rotate(-2deg);
+  background: linear-gradient(180deg, rgb(250 248 240 / 0.92), rgb(228 222 205 / 0.88));
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.18); border-left: 1px dashed rgb(0 0 0 / 0.08); border-right: 1px dashed rgb(0 0 0 / 0.08); clip-path: polygon(3% 0, 97% 4%, 100% 100%, 0 96%);
+}
+.sticky textarea {
+  display: block; width: 100%; min-height: 3.2em; resize: none; overflow: hidden; border: 0; outline: 0; padding: 0; margin: 0;
+  background: transparent; color: var(--ink); font: 500 23px/1.22 'Caveat', 'Bradley Hand', 'Segoe Print', cursive; cursor: text;
+}
+.sticky textarea::placeholder { color: rgb(61 51 34 / 0.45); }
+.sticky-tools { display: flex; align-items: center; gap: 4px; margin-top: 6px; padding-top: 6px; border-top: 1px dashed rgb(61 51 34 / 0.18); opacity: 0; transition: opacity 0.15s; }
+.sticky:hover .sticky-tools, .sticky:focus-within .sticky-tools { opacity: 1; }
+@media (hover: none) { .sticky-tools { opacity: 0.85; } }
+.sticky-colors { display: flex; gap: 6px; margin-right: auto; }
+.sticky .dot { width: 18px; height: 18px; padding: 0; border-radius: 50%; border: 1.5px solid rgb(61 51 34 / 0.35); cursor: pointer; background: #fff59d; }
+.sticky .dot.c-pink { background: #ffc4d9; } .sticky .dot.c-green { background: #c3eeb3; } .sticky .dot.c-blue { background: #bcdcff; }
+.sticky .dot.on { border-color: var(--ink); box-shadow: 0 0 0 2px rgb(255 255 255 / 0.8); }
+.sticky-btn { width: 30px; height: 30px; display: grid; place-items: center; border: 0; border-radius: 8px; background: transparent; color: var(--ink); cursor: pointer; }
+.sticky-btn:hover { background: rgb(61 51 34 / 0.08); }
+.sticky-btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.sticky button:focus-visible { outline: 2px solid rgb(61 51 34 / 0.5); outline-offset: 2px; }
+.sticky textarea:focus, .sticky textarea:focus-visible { outline: none; }
+.sticky.folded { width: 52px; height: 52px; padding: 0; border-radius: 2px 2px 3px 14px; }
+.sticky.folded::after { width: 16px; height: 14px; }
+.sticky-unfold { width: 100%; height: 100%; border: 0; background: transparent; cursor: pointer; font: 700 26px/1 'Caveat', cursive; color: var(--ink); }
+@media (max-width: 520px) { .sticky:not(.folded) { width: 172px; padding: 20px 12px 6px; } .sticky textarea { font-size: 21px; } }
+@media (prefers-reduced-motion: reduce) { .sticky, .sticky.flash { animation: none; transition: none; } }
+
+.notes-overlay { position: absolute; inset: 0; z-index: 19; cursor: crosshair; background: color-mix(in srgb, #fde047 7%, transparent);
+  outline: 2px dashed color-mix(in srgb, #d4a106 55%, transparent); outline-offset: -2px; border-radius: 8px; }
+.note-fab {
+  position: fixed; z-index: 25; right: max(18px, env(safe-area-inset-right)); bottom: max(18px, env(safe-area-inset-bottom));
+  display: flex; align-items: center; gap: 8px; height: 52px; padding: 0 18px 0 12px; border: 0; border-radius: 26px; cursor: pointer;
+  background: #fff176; color: #3d3322; font-family: inherit; font-size: 15px; font-weight: 600;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 0.1), 0 10px 22px -8px rgb(0 0 0 / 0.4); transition: transform 0.15s, background 0.15s;
+}
+.note-fab:hover { transform: translateY(-2px) rotate(-1.5deg); }
+.note-fab:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.note-fab.active { background: var(--fg); color: var(--bg); }
+.note-fab svg { width: 28px; height: 28px; }
+.note-fab .fab-paper { fill: #ffe14d; stroke: #3d3322; stroke-width: 1.6; stroke-linejoin: round; }
+.note-fab .fab-fold { fill: #f5c400; stroke: #3d3322; stroke-width: 1.6; stroke-linejoin: round; }
+.note-fab .fab-plus, .note-fab .fab-x { fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; }
+.notes-hint {
+  position: fixed; z-index: 26; left: 50%; bottom: max(84px, calc(env(safe-area-inset-bottom) + 84px)); transform: translateX(-50%);
+  display: flex; align-items: center; gap: 12px; padding: 10px 10px 10px 16px; border-radius: 12px; width: max-content; max-width: calc(100vw - 32px);
+  background: var(--fg); color: var(--bg); font-size: 0.95rem; box-shadow: 0 10px 30px -10px rgb(0 0 0 / 0.5); animation: hint-in 0.2s ease;
+}
+@keyframes hint-in { from { opacity: 0; transform: translate(-50%, 8px); } }
+.notes-hint button { font: inherit; font-weight: 600; padding: 6px 12px; border-radius: 8px; border: 0; cursor: pointer; background: color-mix(in srgb, var(--bg) 18%, transparent); color: inherit; }
+.notes-list { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 4px; }
+.notes-list li a { align-items: flex-start; }
+.note-swatch { flex: none; width: 14px; height: 14px; margin-top: 4px; border-radius: 2px 2px 2px 6px; background: #fff176; box-shadow: 0 1px 2px rgb(0 0 0 / 0.2); }
+.note-swatch.c-pink { background: #ffc4d9; } .note-swatch.c-green { background: #c3eeb3; } .note-swatch.c-blue { background: #bcdcff; }
+.note-snippet { display: flex; flex-direction: column; font-size: 0.9rem; line-height: 1.3; }
+.note-snippet b { font-size: 0.75rem; font-weight: 600; color: var(--muted); }
+.notes-empty, .notes-where { font-size: 0.85rem; color: var(--muted); margin: 6px 8px; }
+
+.notes-hint > span { flex: 1; }

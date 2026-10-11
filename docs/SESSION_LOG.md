@@ -57,3 +57,7 @@
 - `L05CurvVelocity.tsx`: written to the new explanation-style rules. `erhoScene.ts` (ė_ρ = φ̇ e_φ in 5 steps: components of e_ρ, e_φ as e_ρ turned by 90°, Δe_ρ for a turn Δφ, Δφ → 0 with |Δe_ρ|/Δφ → 1, ė_ρ = φ̇ e_φ), `CurvilinearVelocity` (cyl/sph tabs, rate sliders, terms head to tail, trajectory), `PathVelocity` (generic; helix now uses it), p. 10 example solved as a supplement.
 - Fixes: phone overflow from a long unbreakable h1 (title changed to «Zylinder- und Kugelkoordinaten», h1 overflow-wrap); `.katex-display` position: relative; scene label-width estimate knows \Delta, \v, \tau.
 - Next: student reviews lesson 5; then Kreisbewegung (p. 11).
+
+## 2026-10-11 — Session 1, continued: sticky notes
+- Student asked for pinnable, realistic, beautiful post-it notes before continuing. Built `src/notes/` (model + tests, store with db/localStorage backends and a per-note write queue, `NotesLayer`/`StickyNote` UI) and a «Meine Notizen» list in the drawer (D-016). e2e `notes.spec.ts` (pin, type, recolour, drag, persist across reload, fold, list, delete + undo, empty note discarded; iPad + phone).
+- Lesson 5 (v-krummlinig) still awaiting sign-off; next lesson: Kreisbewegung (p. 11).
