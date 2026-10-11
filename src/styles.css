@@ -276,54 +276,68 @@ b.bad { color: var(--bad); } b.ok { color: var(--ok); }
 /* ---- sticky notes (Haftnotizen) ---- */
 .lesson-wrap { position: relative; }
 .sticky {
-  --paper: #fff59d; --paper2: #ffe866; --ink: #3d3322;
-  position: absolute; z-index: 20; width: 210px; padding: 22px 14px 8px; color: var(--ink);
-  background: linear-gradient(170deg, var(--paper) 0%, var(--paper) 62%, var(--paper2) 100%);
-  border-radius: 2px 2px 3px 22px / 2px 2px 3px 10px;
-  box-shadow: 0 1px 1px rgb(0 0 0 / 0.06), 0 6px 10px -4px rgb(0 0 0 / 0.18), 0 18px 24px -14px rgb(0 0 0 / 0.35);
+  --paper: #fff6c4; --paper2: #ffefa1; --band: #f7e07a; --ink: #2b2a26; --ink2: rgb(43 42 38 / 0.56);
+  position: absolute; z-index: 20; width: 248px; color: var(--ink);
+  background: linear-gradient(176deg, var(--paper) 0%, var(--paper) 55%, var(--paper2) 100%);
+  border-radius: 3px 3px 6px 6px;
+  box-shadow:
+    0 0 0 1px rgb(0 0 0 / 0.04),
+    0 1px 2px rgb(0 0 0 / 0.06),
+    0 6px 12px -4px rgb(0 0 0 / 0.12),
+    0 22px 28px -18px rgb(0 0 0 / 0.38);
   transform: rotate(var(--tilt, 0deg)); transform-origin: 50% 0;
-  transition: transform 0.18s ease, box-shadow 0.18s ease; touch-action: none; cursor: grab;
-  animation: sticky-in 0.28s cubic-bezier(.2,1.4,.4,1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease; touch-action: none;
+  animation: sticky-in 0.32s cubic-bezier(.2, 1.25, .35, 1);
 }
-@keyframes sticky-in { from { transform: rotate(var(--tilt, 0deg)) translateY(-10px) scale(0.92); opacity: 0; } }
-.sticky::after { /* lifted bottom-right corner */
-  content: ''; position: absolute; right: 0; bottom: 0; width: 28px; height: 22px; border-radius: 0 0 3px 0;
-  background: linear-gradient(135deg, transparent 45%, rgb(0 0 0 / 0.07) 50%, rgb(255 255 255 / 0.55) 56%, var(--paper2) 80%);
-  pointer-events: none;
+@keyframes sticky-in { from { transform: translateY(-8px) scale(0.96); opacity: 0; } }
+.sticky:hover, .sticky:focus-within {
+  transform: rotate(0deg) translateY(-1px); z-index: 21;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.05), 0 2px 4px rgb(0 0 0 / 0.06), 0 12px 20px -6px rgb(0 0 0 / 0.16), 0 30px 36px -22px rgb(0 0 0 / 0.42);
 }
-.sticky:hover, .sticky:focus-within { box-shadow: 0 1px 1px rgb(0 0 0 / 0.06), 0 10px 16px -6px rgb(0 0 0 / 0.22), 0 26px 30px -16px rgb(0 0 0 / 0.4); z-index: 21; }
-.sticky.dragging { cursor: grabbing; z-index: 22; transform: rotate(0deg) scale(1.03); box-shadow: 0 30px 40px -18px rgb(0 0 0 / 0.45); transition: none; }
+.sticky.dragging { z-index: 22; transform: rotate(0deg) scale(1.02); transition: none; box-shadow: 0 0 0 1px rgb(0 0 0 / 0.05), 0 26px 40px -16px rgb(0 0 0 / 0.45); }
 .sticky.flash { animation: sticky-flash 1.4s ease; }
-@keyframes sticky-flash { 0%, 100% { outline: 0 solid transparent; } 20%, 60% { outline: 4px solid color-mix(in srgb, var(--accent) 60%, transparent); outline-offset: 4px; } }
-.sticky.c-pink { --paper: #ffd6e5; --paper2: #ffbfd6; }
-.sticky.c-green { --paper: #d4f5c9; --paper2: #bdecac; }
-.sticky.c-blue { --paper: #d3e9ff; --paper2: #b9dbff; }
-.sticky-tape { /* translucent tape strip = drag handle */
-  position: absolute; top: -11px; left: 50%; width: 78px; height: 24px; transform: translateX(-50%) rotate(-2deg);
-  background: linear-gradient(180deg, rgb(250 248 240 / 0.92), rgb(228 222 205 / 0.88));
-  box-shadow: 0 1px 3px rgb(0 0 0 / 0.18); border-left: 1px dashed rgb(0 0 0 / 0.08); border-right: 1px dashed rgb(0 0 0 / 0.08); clip-path: polygon(3% 0, 97% 4%, 100% 100%, 0 96%);
+@keyframes sticky-flash { 0%, 100% { outline: 0 solid transparent; } 20%, 60% { outline: 3px solid color-mix(in srgb, var(--accent) 65%, transparent); outline-offset: 4px; } }
+.sticky.c-pink { --paper: #ffe4ec; --paper2: #ffd5e1; --band: #f8bfd0; }
+.sticky.c-green { --paper: #e6f5da; --paper2: #d8eec7; --band: #bfe0a6; }
+.sticky.c-blue { --paper: #e2f0ff; --paper2: #d2e7fd; --band: #b4d4f6; }
+/* adhesive strip = drag handle */
+.sticky-band {
+  height: 18px; display: grid; place-items: center; cursor: grab; border-radius: 3px 3px 0 0;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--band) 85%, white), var(--band));
+  box-shadow: inset 0 -1px 0 rgb(0 0 0 / 0.05);
 }
-.sticky textarea {
-  display: block; width: 100%; min-height: 3.2em; resize: none; overflow: hidden; border: 0; outline: 0; padding: 0; margin: 0;
-  background: transparent; color: var(--ink); font: 500 23px/1.22 'Caveat', 'Bradley Hand', 'Segoe Print', cursive; cursor: text;
+.sticky.dragging .sticky-band { cursor: grabbing; }
+.sticky-band svg { width: 26px; height: 8px; fill: rgb(43 42 38 / 0.32); }
+.sticky-body { padding: 10px 14px 4px; }
+.sticky-title, .sticky-text {
+  display: block; width: 100%; border: 0; outline: 0; padding: 0; margin: 0; background: transparent; color: var(--ink); font-family: inherit;
 }
-.sticky textarea::placeholder { color: rgb(61 51 34 / 0.45); }
-.sticky-tools { display: flex; align-items: center; gap: 4px; margin-top: 6px; padding-top: 6px; border-top: 1px dashed rgb(61 51 34 / 0.18); opacity: 0; transition: opacity 0.15s; }
-.sticky:hover .sticky-tools, .sticky:focus-within .sticky-tools { opacity: 1; }
-@media (hover: none) { .sticky-tools { opacity: 0.85; } }
-.sticky-colors { display: flex; gap: 6px; margin-right: auto; }
-.sticky .dot { width: 18px; height: 18px; padding: 0; border-radius: 50%; border: 1.5px solid rgb(61 51 34 / 0.35); cursor: pointer; background: #fff59d; }
-.sticky .dot.c-pink { background: #ffc4d9; } .sticky .dot.c-green { background: #c3eeb3; } .sticky .dot.c-blue { background: #bcdcff; }
-.sticky .dot.on { border-color: var(--ink); box-shadow: 0 0 0 2px rgb(255 255 255 / 0.8); }
-.sticky-btn { width: 30px; height: 30px; display: grid; place-items: center; border: 0; border-radius: 8px; background: transparent; color: var(--ink); cursor: pointer; }
-.sticky-btn:hover { background: rgb(61 51 34 / 0.08); }
-.sticky-btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-.sticky button:focus-visible { outline: 2px solid rgb(61 51 34 / 0.5); outline-offset: 2px; }
-.sticky textarea:focus, .sticky textarea:focus-visible { outline: none; }
-.sticky.folded { width: 52px; height: 52px; padding: 0; border-radius: 2px 2px 3px 14px; }
-.sticky.folded::after { width: 16px; height: 14px; }
-.sticky-unfold { width: 100%; height: 100%; border: 0; background: transparent; cursor: pointer; font: 700 26px/1 'Caveat', cursive; color: var(--ink); }
-@media (max-width: 520px) { .sticky:not(.folded) { width: 172px; padding: 20px 12px 6px; } .sticky textarea { font-size: 21px; } }
+.sticky-title { font-size: 15.5px; font-weight: 650; letter-spacing: -0.01em; line-height: 1.3; padding-bottom: 6px; margin-bottom: 6px; border-bottom: 1px solid rgb(43 42 38 / 0.1); }
+.sticky-text { font-size: 14.5px; line-height: 1.5; resize: none; overflow: hidden; min-height: 3em; }
+.sticky-title::placeholder, .sticky-text::placeholder { color: rgb(43 42 38 / 0.38); font-weight: inherit; }
+.sticky-title:focus, .sticky-text:focus { outline: none; }
+.sticky-foot { display: flex; align-items: center; gap: 2px; padding: 4px 8px 6px 14px; opacity: 0.55; transition: opacity 0.15s; }
+.sticky:hover .sticky-foot, .sticky:focus-within .sticky-foot { opacity: 1; }
+@media (hover: none) { .sticky-foot { opacity: 0.9; } }
+.sticky-date { font-size: 11.5px; color: var(--ink2); font-variant-numeric: tabular-nums; margin-right: auto; }
+.sticky-colors { display: flex; gap: 5px; margin-right: 4px; }
+.sticky .dot { width: 16px; height: 16px; padding: 0; border-radius: 50%; cursor: pointer; border: 0;
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.14); background: #ffe98a; transition: transform 0.12s; }
+.sticky .dot:hover { transform: scale(1.15); }
+.sticky .dot.c-pink { background: #f9bdd0; } .sticky .dot.c-green { background: #b9dea0; } .sticky .dot.c-blue { background: #a9cdf5; }
+.sticky .dot.on { box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.2), 0 0 0 2px var(--paper), 0 0 0 3px rgb(43 42 38 / 0.55); }
+.sticky-btn { width: 28px; height: 28px; display: grid; place-items: center; border: 0; border-radius: 7px; background: transparent; color: var(--ink2); cursor: pointer; transition: background 0.12s, color 0.12s; }
+.sticky-btn:hover { background: rgb(43 42 38 / 0.08); color: var(--ink); }
+.sticky-btn.danger:hover { background: rgb(185 28 28 / 0.1); color: #b91c1c; }
+.sticky-btn svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.sticky button:focus-visible { outline: 2px solid rgb(43 42 38 / 0.55); outline-offset: 2px; }
+/* folded: a small paper tab with the title */
+.sticky.folded { width: auto; max-width: 200px; border-radius: 4px; }
+.sticky-pill { display: flex; align-items: center; gap: 7px; max-width: 200px; height: 34px; padding: 0 12px 0 10px; border: 0; background: transparent;
+  color: var(--ink); font-family: inherit; font-size: 13.5px; font-weight: 600; line-height: 1; cursor: pointer; border-top: 4px solid var(--band); border-radius: 4px; }
+.sticky-pill svg { flex: none; width: 15px; height: 15px; fill: none; stroke: var(--ink2); stroke-width: 1.4; stroke-linejoin: round; }
+.sticky-pill span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@media (max-width: 520px) { .sticky:not(.folded) { width: 212px; } .sticky-text { font-size: 14px; } }
 @media (prefers-reduced-motion: reduce) { .sticky, .sticky.flash { animation: none; transition: none; } }
 
 .notes-overlay { position: absolute; inset: 0; z-index: 19; cursor: crosshair; background: color-mix(in srgb, #fde047 7%, transparent);
@@ -354,7 +368,10 @@ b.bad { color: var(--bad); } b.ok { color: var(--ok); }
 .note-swatch.c-pink { background: #ffc4d9; } .note-swatch.c-green { background: #c3eeb3; } .note-swatch.c-blue { background: #bcdcff; }
 .note-snippet { display: flex; flex-direction: column; font-size: 0.9rem; line-height: 1.3; }
 .note-snippet b { font-size: 0.75rem; font-weight: 600; color: var(--muted); }
+.note-snippet strong { font-weight: 600; } .note-snippet span { color: var(--muted); font-size: 0.85rem; }
 .notes-empty, .notes-where { font-size: 0.85rem; color: var(--muted); margin: 6px 8px; }
 
 .notes-hint > span { flex: 1; }
 .swatch.dashed { background: repeating-linear-gradient(90deg, currentColor 0 4px, transparent 4px 7px); }
+/* an empty title stays hidden until the note is being edited */
+.sticky:not(:focus-within):not(:hover) .sticky-title:placeholder-shown { height: 0; padding: 0; margin: 0; border-color: transparent; opacity: 0; } /* still focusable */

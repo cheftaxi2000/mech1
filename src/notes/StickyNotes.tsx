@@ -1,12 +1,10 @@
 import { useCallback, useEffect, useLayoutEffect, useRef, useState, type RefObject } from 'react';
-import '@fontsource/caveat/latin-500.css';
-import '@fontsource/caveat/latin-700.css';
-import { useTr } from '../i18n';
+import { useLang, useTr } from '../i18n';
 import { NOTE_COLORS, NOTE_W, anchorAt, newId, positionOf, tiltOf, type Note, type NoteColor, type Rect } from './model';
 import { useNotes } from './store';
 
 const rectOf = (el: Element): Rect => { const r = el.getBoundingClientRect(); return { left: r.left, top: r.top, width: r.width, height: r.height }; };
-const noteWidth = () => (typeof window !== 'undefined' && window.innerWidth < 520 ? 172 : NOTE_W);
+const noteWidth = () => (typeof window !== 'undefined' && window.innerWidth < 520 ? 212 : NOTE_W);
 
 /** The section under a viewport point (ignoring the placing overlay and notes). */
 function sectionAt(x: number, y: number, wrap: HTMLElement): HTMLElement | null {
@@ -67,7 +65,7 @@ export function NotesLayer({ topic, wrapRef }: { topic: string; wrapRef: RefObje
     const sec = sectionAt(e.clientX, e.clientY, wrap);
     const w = noteWidth();
     const a = anchorAt(e.clientX - w / 2, e.clientY - 18, rectOf(wrap), sec ? rectOf(sec) : null, w);
-    const n: Note = { id: newId(), kind: 'note', topic, section: sec?.id ?? '', fx: a.fx, fy: a.fy, text: '', color: 'yellow', folded: false, createdAt: Date.now(), updatedAt: Date.now() };
+    const n: Note = { id: newId(), kind: 'note', topic, section: sec?.id ?? '', fx: a.fx, fy: a.fy, title: '', text: '', color: 'yellow', folded: false, createdAt: Date.now(), updatedAt: Date.now() };
     add(n); setEditing(n.id); setPlacing(false);
   };
 
@@ -102,22 +100,28 @@ export function NotesLayer({ topic, wrapRef }: { topic: string; wrapRef: RefObje
   );
 }
 
+const COLOR_NAME: Record<NoteColor, [string, string]> = { yellow: ['Gelb', 'Yellow'], pink: ['Rosa', 'Pink'], green: ['Grün', 'Green'], blue: ['Blau', 'Blue'] };
+
 function StickyNote({ note, pos, wrap, autoFocus, onDone, onChange, onDelete }: {
   note: Note; pos: { left: number; top: number }; wrap: HTMLElement; autoFocus: boolean; onDone(): void;
   onChange(patch: Partial<Note>, now?: boolean): void; onDelete(silent?: boolean): void;
 }) {
-  const tr = useTr();
+  const tr = useTr(), lang = useLang();
+  const box = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLInputElement>(null);
   const ta = useRef<HTMLTextAreaElement>(null);
   const [drag, setDrag] = useState<{ dx: number; dy: number; x: number; y: number } | null>(null);
+  const [title, setTitle] = useState(note.title);
   const [text, setText] = useState(note.text);
+  useEffect(() => { if (document.activeElement !== titleRef.current) setTitle(note.title); }, [note.title]);
   useEffect(() => { if (document.activeElement !== ta.current) setText(note.text); }, [note.text]);
 
   const grow = useCallback(() => { const el = ta.current; if (!el) return; el.style.height = 'auto'; el.style.height = `${el.scrollHeight}px`; }, []);
   useLayoutEffect(grow, [text, note.folded, grow]);
-  useEffect(() => { if (autoFocus && ta.current) { ta.current.focus(); onDone(); } }, [autoFocus, onDone]);
+  useEffect(() => { if (autoFocus && titleRef.current) { titleRef.current.focus(); onDone(); } }, [autoFocus, onDone]);
 
   const startDrag = (e: React.PointerEvent) => {
-    if ((e.target as HTMLElement).closest('button, textarea')) return;
+    if ((e.target as HTMLElement).closest('button, textarea, input')) return;
     e.preventDefault();
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
     setDrag({ dx: 0, dy: 0, x: e.clientX, y: e.clientY });
@@ -127,50 +131,65 @@ function StickyNote({ note, pos, wrap, autoFocus, onDone, onChange, onDelete }: 
     if (!drag) return;
     const moved = Math.hypot(drag.dx, drag.dy) > 4;
     setDrag(null);
-    if (!moved) { if (note.folded) onChange({ folded: false }, true); return; }
+    if (!moved) return;
     const w = rectOf(wrap);
     const left = pos.left + drag.dx + w.left, top = pos.top + drag.dy + w.top; // new top-left corner in viewport coordinates
     const sec = sectionAt(Math.min(w.left + w.width - 1, left + 20), Math.max(top, 0) + 4, wrap);
-    const a = anchorAt(left, top, w, sec ? rectOf(sec) : null, note.folded ? 52 : noteWidth());
+    const a = anchorAt(left, top, w, sec ? rectOf(sec) : null, note.folded ? 120 : noteWidth());
     onChange({ section: sec?.id ?? '', fx: a.fx, fy: a.fy }, true);
     e.stopPropagation();
+  };
+  // leaving a note that is still completely empty removes it (but not right after it was created)
+  const onBlurNote = (e: React.FocusEvent) => {
+    if (box.current?.contains(e.relatedTarget as Node | null)) return;
+    if (!title.trim() && !text.trim()) { if (Date.now() - note.createdAt > 600) onDelete(true); return; }
+    if (title !== note.title || text !== note.text) onChange({ title, text }, true);
   };
 
   const style = {
     left: pos.left + (drag?.dx ?? 0), top: pos.top + (drag?.dy ?? 0),
     ['--tilt' as string]: `${drag ? 0 : tiltOf(note.id)}deg`,
   };
-  const label = text.trim().split('\n')[0].slice(0, 40);
+  const heading = title.trim() || text.trim().split('\n')[0].slice(0, 40) || tr('Notiz', 'Note');
+  const date = new Intl.DateTimeFormat(lang === 'de' ? 'de-CH' : 'en-GB', { day: 'numeric', month: 'short' }).format(new Date(note.updatedAt || note.createdAt));
+
   if (note.folded) {
     return (
       <div className={`sticky folded c-${note.color}${drag ? ' dragging' : ''}`} style={style} data-note={note.id}
         onPointerDown={startDrag} onPointerMove={moveDrag} onPointerUp={endDrag}>
-        <button type="button" className="sticky-unfold" onClick={() => onChange({ folded: false }, true)} aria-label={tr(`Notiz öffnen: ${label}`, `Open note: ${label}`)} title={label}>
-          <span aria-hidden="true">{label ? label[0] : '✎'}</span>
+        <button type="button" className="sticky-pill" onClick={() => onChange({ folded: false }, true)} aria-label={tr(`Notiz öffnen: ${heading}`, `Open note: ${heading}`)}>
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 2.5h10v8l-3 3H3z" /><path d="M10 13.5v-3h3" /></svg>
+          <span>{heading}</span>
         </button>
       </div>
     );
   }
   return (
-    <div className={`sticky c-${note.color}${drag ? ' dragging' : ''}`} style={style} data-note={note.id}
-      onPointerDown={startDrag} onPointerMove={moveDrag} onPointerUp={endDrag}>
-      <div className="sticky-tape" aria-hidden="true" />
-      <textarea ref={ta} value={text} rows={2} placeholder={tr('Notiz schreiben …', 'Write a note …')} aria-label={tr('Notiz', 'Note')}
-        onChange={(e) => { setText(e.target.value); onChange({ text: e.target.value }); }}
-        onBlur={() => { if (!text.trim()) { if (Date.now() - note.createdAt > 600) onDelete(true); else ta.current?.focus(); } else if (text !== note.text) onChange({ text }, true); }} />
-      <div className="sticky-tools">
+    <div ref={box} className={`sticky c-${note.color}${drag ? ' dragging' : ''}`} style={style} data-note={note.id}
+      onPointerDown={startDrag} onPointerMove={moveDrag} onPointerUp={endDrag} onBlur={onBlurNote}>
+      <div className="sticky-band" title={tr('Ziehen zum Verschieben', 'Drag to move')}>
+        <svg viewBox="0 0 24 8" aria-hidden="true">{[3, 9, 15, 21].flatMap((x) => [<circle key={`a${x}`} cx={x} cy={2} r={1.1} />, <circle key={`b${x}`} cx={x} cy={6} r={1.1} />])}</svg>
+      </div>
+      <div className="sticky-body">
+        <input ref={titleRef} className="sticky-title" value={title} maxLength={80} placeholder={tr('Titel', 'Title')} aria-label={tr('Titel der Notiz', 'Note title')}
+          onChange={(e) => { setTitle(e.target.value); onChange({ title: e.target.value }); }}
+          onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); ta.current?.focus(); } }} />
+        <textarea ref={ta} className="sticky-text" value={text} rows={2} placeholder={tr('Notiz schreiben …', 'Write a note …')} aria-label={tr('Notiz', 'Note')}
+          onChange={(e) => { setText(e.target.value); onChange({ text: e.target.value }); }} />
+      </div>
+      <div className="sticky-foot">
+        <span className="sticky-date">{date}</span>
         <div className="sticky-colors" role="group" aria-label={tr('Farbe', 'Colour')}>
-          {NOTE_COLORS.map((c: NoteColor) => (
+          {NOTE_COLORS.map((c) => (
             <button key={c} type="button" className={`dot c-${c}${note.color === c ? ' on' : ''}`} aria-pressed={note.color === c}
-              aria-label={tr({ yellow: 'Gelb', pink: 'Rosa', green: 'Grün', blue: 'Blau' }[c], c)}
-              onPointerDown={(e) => e.preventDefault()} onClick={() => onChange({ color: c }, true)} />
+              aria-label={tr(...COLOR_NAME[c])} title={tr(...COLOR_NAME[c])} onClick={() => onChange({ color: c }, true)} />
           ))}
         </div>
-        <button type="button" className="sticky-btn" onPointerDown={(e) => e.preventDefault()} onClick={() => onChange({ folded: true }, true)} aria-label={tr('Zusammenklappen', 'Fold')} title={tr('Zusammenklappen', 'Fold')}>
-          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 12l5-5 5 5" /></svg>
+        <button type="button" className="sticky-btn" onClick={() => onChange({ title, text, folded: true }, true)} aria-label={tr('Zusammenklappen', 'Fold')} title={tr('Zusammenklappen', 'Fold')}>
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 12.5l5-5 5 5" /></svg>
         </button>
-        <button type="button" className="sticky-btn" onPointerDown={(e) => e.preventDefault()} onClick={() => onDelete()} aria-label={tr('Löschen', 'Delete')} title={tr('Löschen', 'Delete')}>
-          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 6h12M8 6V4h4v2M6 6l1 10h6l1-10" /></svg>
+        <button type="button" className="sticky-btn danger" onClick={() => onDelete()} aria-label={tr('Löschen', 'Delete')} title={tr('Löschen', 'Delete')}>
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4.5 6h11M8 6V4.5h4V6M6.2 6l.8 9.5h6l.8-9.5" /></svg>
         </button>
       </div>
     </div>

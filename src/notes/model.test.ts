@@ -13,7 +13,7 @@ describe('sticky-note placement', () => {
   it('keeps the note inside the lesson width', () => {
     const a = anchorAt(890, 700, wrap, sec);
     const p = positionOf(a, wrap, sec);
-    expect(p.left + 210).toBeLessThanOrEqual(800);
+    expect(p.left + 248).toBeLessThanOrEqual(800);
   });
   it('follows its section when the layout reflows (section moved and taller)', () => {
     const a = anchorAt(300, 850, wrap, sec);
@@ -22,12 +22,12 @@ describe('sticky-note placement', () => {
   });
   it('tilt is stable and small', () => {
     expect(tiltOf('abc')).toBe(tiltOf('abc'));
-    for (const id of ['a', 'n1', 'xyz123']) expect(Math.abs(tiltOf(id))).toBeLessThanOrEqual(2.5);
+    for (const id of ['a', 'n1', 'xyz123']) expect(Math.abs(tiltOf(id))).toBeLessThanOrEqual(0.8);
   });
   it('parseNote rejects malformed data and clamps numbers', () => {
     expect(parseNote('x', null)).toBeNull();
     expect(parseNote('x', { kind: 'other' })).toBeNull();
     const n = parseNote('x', { kind: 'note', topic: 'koordinaten', text: 'hi', fx: 7, fy: -1, color: 'red' })!;
-    expect(n.fx).toBe(1); expect(n.fy).toBe(0); expect(n.color).toBe('yellow');
+    expect(n.fx).toBe(1); expect(n.fy).toBe(0); expect(n.color).toBe('yellow'); expect(n.title).toBe('');
   });
 });

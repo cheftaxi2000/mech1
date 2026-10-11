@@ -14,6 +14,7 @@ export interface Note {
   section: string; // section element id ('' = top of the lesson)
   fx: number;
   fy: number;
+  title: string;
   text: string;
   color: NoteColor;
   folded: boolean;
@@ -21,15 +22,15 @@ export interface Note {
   updatedAt: number;
 }
 
-export const NOTE_W = 210; // px, unfolded width (phone: CSS shrinks it)
+export const NOTE_W = 248; // px, unfolded width (phone: 212, see noteWidth)
 
 export const clamp01 = (x: number) => Math.min(1, Math.max(0, x));
 
-/** Small stable tilt in degrees (−2.5 … 2.5) derived from the id, like a note stuck on by hand. */
+/** Very small stable tilt in degrees (−0.8 … 0.8) derived from the id: a note stuck on by hand, but tidy. */
 export function tiltOf(id: string): number {
   let h = 0;
   for (let i = 0; i < id.length; i++) h = (h * 31 + id.charCodeAt(i)) | 0;
-  return ((Math.abs(h) % 51) - 25) / 10;
+  return ((Math.abs(h) % 17) - 8) / 10;
 }
 
 export interface Rect { left: number; top: number; width: number; height: number }
@@ -59,7 +60,8 @@ export function parseNote(id: string, d: unknown): Note | null {
   const num = (v: unknown, dflt: number) => (typeof v === 'number' && Number.isFinite(v) ? v : dflt);
   return {
     id, kind: 'note', topic: o.topic, section: typeof o.section === 'string' ? o.section : '',
-    fx: clamp01(num(o.fx, 0.1)), fy: clamp01(num(o.fy, 0)), text: o.text.slice(0, 4000),
+    fx: clamp01(num(o.fx, 0.1)), fy: clamp01(num(o.fy, 0)),
+    title: typeof o.title === 'string' ? o.title.slice(0, 120) : '', text: o.text.slice(0, 4000),
     color: NOTE_COLORS.includes(o.color as NoteColor) ? (o.color as NoteColor) : 'yellow',
     folded: o.folded === true, createdAt: num(o.createdAt, 0), updatedAt: num(o.updatedAt, 0),
   };

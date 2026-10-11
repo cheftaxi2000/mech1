@@ -20,6 +20,9 @@ for (const [w, h, name] of [[1180, 820, 'ipad'], [390, 844, 'phone']] as const) 
     await page.mouse.click(box.x + box.width * 0.55, Math.max(box.y, 0) + h * 0.4);
     const note = page.locator('.sticky').first();
     await expect(note).toBeVisible();
+    await expect(note.getByRole('textbox', { name: 'Titel der Notiz' })).toBeFocused();
+    await page.keyboard.type('Winkel');
+    await page.keyboard.press('Enter');
     await expect(note.locator('textarea')).toBeFocused();
     await page.keyboard.type('Merke: phi immer von +x aus messen!');
     await note.getByRole('button', { name: 'Rosa' }).click();
@@ -28,7 +31,7 @@ for (const [w, h, name] of [[1180, 820, 'ipad'], [390, 844, 'phone']] as const) 
     await page.screenshot({ path: `test-results/screens/notes-note-${name}.png` });
     // move by dragging the tape
     const nb = (await note.boundingBox())!;
-    await page.mouse.move(nb.x + nb.width / 2, nb.y + 8);
+    await page.mouse.move(nb.x + nb.width / 2, nb.y + 6);
     await page.mouse.down();
     await page.mouse.move(nb.x + nb.width / 2 - 40, nb.y + 68, { steps: 5 });
     await page.mouse.up();
@@ -39,14 +42,18 @@ for (const [w, h, name] of [[1180, 820, 'ipad'], [390, 844, 'phone']] as const) 
     await page.locator('article.lesson h2').first().waitFor();
     const again = page.locator('.sticky').first();
     await expect(again.locator('textarea')).toHaveValue('Merke: phi immer von +x aus messen!');
+    await expect(again.getByRole('textbox', { name: 'Titel der Notiz' })).toHaveValue('Winkel');
     // fold and unfold
     await again.hover();
     await again.getByRole('button', { name: 'Zusammenklappen' }).click();
     await expect(page.locator('.sticky.folded')).toBeVisible();
+    await expect(page.locator('.sticky.folded')).toContainText('Winkel');
+    await page.screenshot({ path: `test-results/screens/notes-folded-${name}.png` });
     await page.locator('.sticky.folded').getByRole('button').click();
     await expect(page.locator('.sticky textarea')).toBeVisible();
     // listed in the menu
     await page.getByRole('button', { name: 'Kapitel' }).click();
+    await expect(page.locator('#chapters')).toContainText('Winkel');
     await expect(page.locator('#chapters')).toContainText('Merke: phi immer');
     await page.screenshot({ path: `test-results/screens/notes-list-${name}.png` });
     await page.keyboard.press('Escape');

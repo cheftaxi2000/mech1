@@ -99,7 +99,7 @@ function ChapterList({ route, onPick }: { route: string; onPick?: () => void }) 
 function NotesList({ onPick }: { onPick: () => void }) {
   const tr = useTr();
   const { notes, setFocusId, backend } = useNotes();
-  const withText = notes.filter((n) => n.text.trim());
+  const withText = notes.filter((n) => n.text.trim() || n.title.trim());
   return (
     <div className="chapter notes-list">
       <div className="chapter-name">{tr('Meine Notizen', 'My notes')} ({withText.length})</div>
@@ -110,7 +110,7 @@ function NotesList({ onPick }: { onPick: () => void }) {
             <li key={n.id}>
               <a href={`#${t.id}`} onClick={() => { setFocusId(n.id); onPick(); }}>
                 <span className={`note-swatch c-${n.color}`} />
-                <span className="note-snippet"><b>{tr(...t.title)}</b>{n.text.trim().split('\n')[0].slice(0, 60)}</span>
+                <span className="note-snippet"><b>{tr(...t.title)}</b><strong>{n.title.trim() || n.text.trim().split('\n')[0].slice(0, 60)}</strong>{n.title.trim() && n.text.trim() ? <span>{n.text.trim().split('\n')[0].slice(0, 60)}</span> : null}</span>
               </a>
             </li>
           )))}
