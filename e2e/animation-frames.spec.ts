@@ -332,3 +332,27 @@ test('[review] rotation: proofs, explorer, foot demo, cube', async ({ page }) =>
     }
   }
 });
+
+test('[review] rollen: rolling cylinder and wheel on a belt', async ({ page }) => {
+  test.setTimeout(180_000);
+  await page.addInitScript(() => localStorage.setItem('mech1.lang', 'de'));
+  for (const [w, h, name, scheme] of [[1180, 820, 'ipad', 'light'], [390, 844, 'phone', 'light'], [820, 1180, 'ipad-dark', 'dark']] as const) {
+    await page.emulateMedia({ colorScheme: scheme, reducedMotion: 'reduce' });
+    await page.setViewportSize({ width: w, height: h });
+    await page.goto('/#home'); await page.goto('/#rollen');
+    await page.locator('article.lesson h2').first().waitFor();
+    const st = page.locator('.stepper').first();
+    await st.scrollIntoViewIfNeeded();
+    for (let i = 0; i < 4; i++) {
+      await st.locator('.step-num').nth(i).click(); await page.waitForTimeout(300);
+      await st.locator('.stepper-fig').screenshot({ path: `test-results/frames/roll-${name}-step${i + 1}.png` });
+    }
+    const fig = page.locator('article.lesson figure.vdemo').first();
+    await fig.scrollIntoViewIfNeeded();
+    for (const [k, label] of [['roll', 'Rollen'], ['locked', 'Rad blockiert'], ['spin', 'Durchdrehen'], ['belt', 'Band läuft']] as const) {
+      if (name !== 'ipad' && k !== 'roll') continue;
+      await fig.getByRole('button', { name: label, exact: true }).click(); await page.waitForTimeout(200);
+      await fig.screenshot({ path: `test-results/frames/roll-${name}-wheel-${k}.png` });
+    }
+  }
+});

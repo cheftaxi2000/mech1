@@ -80,3 +80,8 @@
 - Shared: `sceneTestKit.ts` (inside / overlap checks for scene tests), anchors `bl`/`br` for scene labels, `texWidth` now handles control words before spaces (`\\times r`, `\\v r`) and more macros.
 - Frame review fixes: door turned to face the camera, camera pulled back so the axis and ω fit, slider labels on one line, FootDemo readouts wrap between formulas on the phone, cube camera and labels, proof-2 view from higher up (right angles readable).
 - Next: student reviews lesson 9; then Rollen (p. 20).
+
+## 2026-10-11 — lesson 10 (rollen, p. 20)
+- Student: "Passt" → rotation complete. `L10Rolling.tsx`, `rollScene.ts` (+test), `RollingFigures.tsx` (`RollingWheel`), `physics/rolling.ts` (+test). No new source issues on p. 20.
+- KaTeX in strict mode rejects « » inside \\text — the lecture's contact conditions are written as a list with inline formulas instead.
+- Next: student reviews lesson 10; then Kreiselung (pp. 20–21, R-012).

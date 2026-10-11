@@ -407,3 +407,13 @@ b.bad { color: var(--bad); } b.ok { color: var(--ok); }
 .slider.text-label { grid-template-columns: 5.6em 1fr 4.5em; }
 .rt-readout { display: flex; flex-wrap: wrap; justify-content: center; column-gap: 0.9em; row-gap: 2px; }
 .rt-readout .katex { white-space: nowrap; }
+.rl-mark { stroke: var(--c-point); stroke-width: 2.6; stroke-linecap: round; opacity: 0.85; } .rl-mark.hidden { stroke-width: 1.4; stroke-dasharray: 3 4; opacity: 0.5; }
+.rl-belt { fill: color-mix(in srgb, var(--muted) 22%, var(--panel)); stroke: var(--muted); stroke-width: 1; }
+.rl-tick { stroke: var(--muted); stroke-width: 1.4; }
+.rl-trail { fill: none; stroke: var(--c-point); stroke-width: 1.5; stroke-dasharray: 5 4; opacity: 0.75; }
+.rl-wheel { fill: color-mix(in srgb, var(--muted) 10%, transparent); stroke: var(--fg); stroke-width: 2.4; }
+.rl-spoke { stroke: var(--muted); stroke-width: 1.6; }
+.rl-vbelt line { stroke: var(--c-x); stroke-width: 3; } .rl-vbelt polygon { fill: var(--c-x); }
+.rl-mc { fill: var(--c-angle); stroke: var(--panel); stroke-width: 1.5; }
+.rl-ground { fill: color-mix(in srgb, var(--muted) 9%, transparent); stroke: var(--muted); stroke-opacity: 0.6; stroke-width: 1; stroke-dasharray: 5 4; }
+.v-result.neg .tr-chip { color: var(--bad); background: color-mix(in srgb, var(--bad) 14%, transparent); }

@@ -172,3 +172,9 @@ Short ideas for the quiz part at the end of the course (D-015). Every answer mus
 - |ω| = 2 s⁻¹, M at distance 0,3 m from the axis and 0,5 m from O on the axis: |v_M| = ? (0,6 m/s — distance from the axis, not |OM|.)
 - In v = ω × r, r from a point off the axis: what goes wrong? (Points on the axis would move.)
 - Cube p. 19: from v_A = (v,0,−v), E at rest, find ω; does the axis pass through C?
+
+### L10 rollen (p. 20)
+- A bicycle rides at 18 km/h. How fast is the top of the tyre, the hub, the contact point? (36, 18, 0 km/h.)
+- Wheel R = 0,3 m rolls with v_C = 3 m/s on the ground: ω = ? (10 s⁻¹.)
+- Wheel on a belt running backwards at 1 m/s, v_C = 2 m/s, R = 0,5 m: which ω makes it roll? (v_C − ωR = u ⇒ ω = 6 s⁻¹.)
+- Locked wheel sliding: where is the momentary centre? (None — translation.)
