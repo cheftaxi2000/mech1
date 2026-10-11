@@ -29,3 +29,9 @@
 - New: `cylScene.ts` pure scene + per-frame unit tests; `<M p=…>` punctuation attachment + lint; true minus in plain-text numbers; lecture-oriented explorer camera.
 - Republished to the artifact URL (D-008).
 - Next: student reviews lesson 1 + animation; then lesson 2 (vektoren, p. 5). Candidate: animate the spherical derivation.
+
+## 2026-10-10/11 — Session 1, continued: feedback round 2 + professor review
+- Requests: animate the spherical derivation too; check every φ ψ ρ θ is the same glyph and legible; make the red arctan part much simpler and shorter; persist "visualisation first" in CLAUDE.md; professor-level review of the whole first part.
+- Done: sphScene (5 steps, 23 tests), shared scene module and colour system; ArctanDemo (auto-running, (−x,−y) idea, +180°/+360° chips) with a 3-sentence box; θ/ψ box two sentences; glyph lint; CLAUDE.md "Visualisation first" section.
+- Reviews: a fix-verification workflow (for the 44 fixes) and a professor review workflow ran partly (session limit stopped several agents). All collected findings were checked and fixed by hand, among them: KaTeX's root sign squashed by `.anim-fig svg` (formula showed (x²+y²)/z!) — now `> svg` + regression test; caption with the main spherical result cut off; arctan demo's ✓ for 315° vs −45° (+360° chip, rule text); reduced-motion first frame; y-axis tip on the drop line; label collisions; sprite halo grey ring; sticky figure height; punctuation now typeset inside formulas; caption 3 argued via the unit circle; tan φ ambiguity linked to R-001; full spherical inverse; θ>90° note; explorer: lecture colours, undefined angles at O, task answers, motion demo; locked section figures.
+- Not done (minor, noted): e2e test for "Next during the hold after step 4"; lecture elevation ~30° vs our 27° (cosmetic).

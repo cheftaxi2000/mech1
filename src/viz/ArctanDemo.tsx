@@ -72,10 +72,11 @@ export function ArctanDemo() {
 
   const [x, y] = p;
   const phi = (Math.atan2(y, x) + 2 * Math.PI) % (2 * Math.PI);
-  const onAxis = Math.abs(x) < 0.02;
+  const d = (a: number) => Math.round(a / DEG);
+  const onAxis = d(phi) % 180 === 90; // exactly on the y-axis (as displayed): y/x undefined
   const calc = onAxis ? NaN : Math.atan(y / x); // what arctan(y/x) returns, in (−90°, 90°)
   const left = x < 0 && !onAxis;
-  const d = (a: number) => Math.round(a / DEG);
+  const q4 = x > 0 && y < 0 && !onAxis && d(phi) % 360 !== 0; // arctan gives a negative angle: +360° brings it into [0°, 360°)
   const px = x * R, py = -y * R;
   const pos = (sx: number, sy: number) => ({ left: `${((sx + 150) / 300) * 100}%`, top: `${((sy + 150) / 300) * 100}%` });
 
@@ -104,7 +105,7 @@ export function ArctanDemo() {
         {onAxis
           ? <div className="row"><T de={<><M p=":">{'x = 0'}</M> <M>{'y/x'}</M> ist nicht definiert</>} en={<><M p=":">{'x = 0'}</M> <M>{'y/x'}</M> is undefined</>} /></div>
           : <div className={`row ${left ? 'bad' : 'ok'}`}><span className="key" /><M>{String.raw`\arctan(y/x) = ${d(calc)}^\circ`}</M>
-              {left ? <b className="chip bad"><M>{String.raw`+180^\circ`}</M></b> : <b className="chip ok">✓</b>}</div>}
+              {left ? <b className="chip bad"><M>{String.raw`+180^\circ`}</M></b> : q4 ? <b className="chip q4"><M>{String.raw`+360^\circ`}</M></b> : <b className="chip ok">✓</b>}</div>}
         <button type="button" className="arctan-auto" onClick={() => setAuto((a) => !a)} disabled={reduced} aria-pressed={auto}>
           {auto ? tr('Anhalten', 'Stop') : tr('Automatisch', 'Run')}
         </button>

@@ -9,6 +9,7 @@ export function Scene({ children, height = 420 }: { children: ReactNode; height?
   return (
     <div className="scene" style={{ height }}>
       <Canvas
+        frameloop="demand"
         camera={{ position: [5.7, -5.7, 4.1], up: [0, 0, 1], fov: 38 }}
         gl={{ preserveDrawingBuffer: true, antialias: true }}
       >

@@ -28,7 +28,7 @@ describe('lesson source lint', () => {
     // `{ text: <M>…</M>,` in a quiz option is a JavaScript separator, not text
     const isJsSeparator = (line: string) => /\{ text: <M>.*<\/M>,/.test(line);
     const bad = src.split('\n').flatMap((line, i) =>
-      (/<\/M>[.,:;!?]/.test(line) && !isJsSeparator(line)) || / ✓/.test(line) ? [`${f}:${i + 1}`] : []);
+      (/<\/M>[.,:;!?)]/.test(line) && !isJsSeparator(line)) || /<\/M>&nbsp;✓| ✓/.test(line) ? [`${f}:${i + 1}`] : []);
     expect(bad).toEqual([]);
   });
 

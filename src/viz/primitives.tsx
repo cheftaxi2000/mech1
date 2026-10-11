@@ -8,14 +8,19 @@ import type { Vec3 } from '../physics/vec';
 /** Background of the 3D scenes (kept light in both themes, see styles.css --scene-bg). */
 export const SCENE_BG = '#f6f7f9';
 
+/** One colour system for every figure (same as the animations, styles.css --c-*). */
 export const C = {
   axis: '#64748b',
   point: '#e11d48',
   construct: '#94a3b8',
-  line1: '#2563eb',
-  line2: '#16a34a',
-  line3: '#d97706',
+  x: '#2563eb',
+  y: '#d97706',
+  z: '#16a34a',
+  rho: '#0d9488',
+  r: '#1c2230',
   angle: '#9333ea',
+  angle2: '#c026d3', // second angle in the same figure (ψ next to θ)
+  path: '#e11d48',
 };
 
 export function Arrow({ from = [0, 0, 0], to, color, width = 2 }: { from?: Vec3; to: Vec3; color: string; width?: number }) {
@@ -46,7 +51,7 @@ export function Arrow({ from = [0, 0, 0], to, color, width = 2 }: { from?: Vec3;
  */
 export function Label({ at, children, sub, color = '#0f172a', size = 0.068 }: { at: Vec3; children: string; sub?: string; color?: string; size?: number }) {
   const fontReady = useKatexFontReady();
-  const { texture, aspect } = useMemo(() => {
+  const { texture, aspect, hScale } = useMemo(() => {
     const px = 72, font = KATEX_MATH_FONT(px), subFont = KATEX_MATH_FONT(Math.round(px * 0.7));
     const halo = Math.round(px / 7); // light outline so axis and curve lines do not cut through the glyphs
     const canvas = document.createElement('canvas');
@@ -61,12 +66,12 @@ export function Label({ at, children, sub, color = '#0f172a', size = 0.068 }: { 
     const texture = new THREE.CanvasTexture(canvas);
     texture.colorSpace = THREE.SRGBColorSpace;
     texture.anisotropy = 4;
-    return { texture, aspect: canvas.width / canvas.height };
+    return { texture, aspect: canvas.width / canvas.height, hScale: canvas.height / (px * 1.45) }; // keep glyph size independent of the halo margin
   }, [children, sub, color, fontReady]);
   useEffect(() => () => texture.dispose(), [texture]);
   return (
-    <sprite position={at as [number, number, number]} scale={[size * aspect, size, 1]} renderOrder={10}>
-      <spriteMaterial map={texture} transparent depthTest={false} sizeAttenuation={false} />
+    <sprite position={at as [number, number, number]} scale={[size * aspect * hScale, size * hScale, 1]} renderOrder={10}>
+      <spriteMaterial map={texture} transparent depthTest={false} sizeAttenuation={false} toneMapped={false} />
     </sprite>
   );
 }

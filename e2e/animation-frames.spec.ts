@@ -66,7 +66,7 @@ test('[review] explorer, phone layout, dark mode', async ({ page }) => {
   // 3D explorer in all three modes (lecture-oriented camera, KaTeX-font labels with halo)
   await page.setViewportSize({ width: 1180, height: 820 });
   await page.goto('/#koordinaten');
-  const ex = page.locator('.explorer').first();
+  const ex = page.locator('.explorer:has([role=tablist])');
   await ex.scrollIntoViewIfNeeded();
   for (const [tab, name] of [['Kartesisch', 'cart'], ['Zylindrisch', 'cyl'], ['Sphärisch', 'sph']] as const) {
     await ex.getByRole('tab', { name: tab }).click();
@@ -103,4 +103,18 @@ test('[review] R-001 boxes (arctan demo) on iPad and phone', async ({ page }) =>
     await boxes.first().screenshot({ path: `test-results/frames/review-r001-${name}.png` });
     await boxes.nth(1).screenshot({ path: `test-results/frames/review-r001b-${name}.png` });
   }
+});
+
+test('[review] explorer motion (trajectory) and section figures', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('mech1.lang', 'de'));
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.setViewportSize({ width: 1180, height: 820 });
+  await page.goto('/#koordinaten');
+  const ex = page.locator('.explorer:has([role=tablist])');
+  await ex.scrollIntoViewIfNeeded();
+  await ex.getByRole('button', { name: 'Bewegung abspielen' }).click();
+  await page.waitForTimeout(500);
+  await ex.screenshot({ path: 'test-results/frames/review-motion.png' });
+  const inl = page.locator('.fig-inline');
+  for (let i = 0; i < 3; i++) { await inl.nth(i).scrollIntoViewIfNeeded(); await page.waitForTimeout(300); await inl.nth(i).screenshot({ path: `test-results/frames/review-inline-${i + 1}.png` }); }
 });

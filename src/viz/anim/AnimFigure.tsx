@@ -29,7 +29,7 @@ export function AnimFigure({ build, step, t }: { build: (step: number, t: number
         })}
       </svg>
       {scene.labels.map((l) => (
-        <div key={l.key} className={`anim-label ink-${l.ink}${l.box ? ' box' : ''}`} data-anchor={l.anchor} data-key={l.key}
+        <div key={l.key} className={`anim-label ink-${l.ink}${l.box ? ' abox' : ''}`} data-anchor={l.anchor} data-key={l.key}
           style={{ left: `${(l.at[0] / W) * 100}%`, top: `${(l.at[1] / H) * 100}%`, opacity: l.o }}>
           {l.rows ? l.rows.map((r, k) => <div key={k} className={`row ink-${r.ink}`}><M>{r.tex}</M></div>) : <M>{l.tex}</M>}
         </div>

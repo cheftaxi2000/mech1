@@ -46,7 +46,7 @@ Equation numbers in parentheses are the lecture's own.
 - Fig 1.4 kartesische Koordinaten (points M_x, M_y, M_z, M_xy); Fig 1.7 Koordinatenlinien (x̄, ȳ, z̄ through M).
 - x'Ox, y'Oy, z'Oz: gerichtete orthogonale Achsen (im Bezugskörper). x, y, z beschreiben Lage von M.
 - Bewegung: x = F_x(t), y = F_y(t), z = F_z(t).
-- Zylindrische Koordinaten ρ, φ, z (Fig 1.8; Fig 1.10 Koordinatenlinien incl. circle). Bahnkurve ρ = F_ρ(t), φ = F_φ(t), z = F_z(t).
+- Zylindrische Koordinaten ρ, φ, z (Fig 1.8; Fig 1.10 Koordinatenlinien incl. circle, labelled z̄, φ̄, ρ through M). Bahnkurve ρ = F_ρ(t), φ = F_φ(t), z = F_z(t).
 
 ### p. 4
 - x = ρ cos φ, y = ρ sin φ, z = z. Umgekehrt ρ = √(x²+y²), φ = arctan(y/x), z = z. → **R-001**

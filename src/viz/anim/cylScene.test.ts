@@ -112,3 +112,12 @@ describe('labels do not cover each other in the frames a student rests on', () =
     });
   }
 });
+
+describe('3D start view composition', () => {
+  it('the y-axis arrow does not end on the vertical drop M → M_xy (as in Fig. 1.8 it runs past it)', () => {
+    const sc = cylScene(0, 1, 'de');
+    const yAxis = sc.shapes.find((s) => s.key === 'ax-y')!, drop = sc.shapes.find((s) => s.key === 'drop')!;
+    const tip = yAxis.pts[1], dropX = drop.pts[0][0];
+    expect(Math.abs(tip[0] - dropX)).toBeGreaterThan(15);
+  });
+});

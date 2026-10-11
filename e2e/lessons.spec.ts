@@ -134,7 +134,7 @@ test('language toggle switches the whole page and is remembered', async ({ page 
 
 test('coordinate explorer: switching systems keeps the point fixed (German number format)', async ({ page }) => {
   await open(page, 'de', '#koordinaten');
-  const explorer = page.locator('.explorer').first();
+  const explorer = page.locator('.explorer:has([role=tablist])');
   await expect(explorer.locator('canvas')).toBeVisible();
   const cart = explorer.locator('.readout tr').first();
   const before = (await cart.textContent()) ?? '';
@@ -220,6 +220,9 @@ test.describe('derivation animation (x = ρ cos φ, y = ρ sin φ)', () => {
       await player.locator('.stepper-fig').scrollIntoViewIfNeeded();
       await page.waitForTimeout(500);
       await expect(player).toHaveAttribute('data-playing', '0');
+      // the very first frame is already step 1's final frame (it illustrates caption 1)
+      await expect(player).toHaveAttribute('data-t', '1.000');
+      await expect(player.locator('.anim-label[data-key="lab-Mxy0"]')).toBeVisible();
       const n = await player.locator('.step-num').count();
       expect(n).toBe(5);
       const mustShow: Record<number, string[]> = {
@@ -251,6 +254,9 @@ test.describe('derivation animation (x = ρ cos φ, y = ρ sin φ)', () => {
         for (const key of mustShowSph[i]) await expect(sph.locator(`.anim-label[data-key="${key}"]`), `sph step ${i + 1}: ${key}`).toBeVisible();
         await sph.locator('.stepper-fig').screenshot({ path: `test-results/screens/anim-sph-${lang}-step${i + 1}.png` });
       }
+      // the square root in tan θ = √(x²+y²)/z must be drawn (a too-broad CSS rule once squashed KaTeX's root SVG)
+      const rootSvg = sph.locator('.anim-label[data-key="box-tan"] .katex svg').first();
+      expect((await rootSvg.boundingBox())!.height).toBeGreaterThan(8);
     });
   }
 });

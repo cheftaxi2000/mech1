@@ -90,7 +90,7 @@ h3 { font-size: 1.08rem; margin-top: 1.6em; }
 .r001 p { margin: 0 0 8px; }
 .arctan-demo { margin: 0; }
 .arctan-fig { position: relative; container-type: inline-size; max-width: 300px; margin-inline: auto; }
-.arctan-fig svg { display: block; width: 100%; height: auto; background: var(--panel); border-radius: 10px; border: 1px solid var(--line); touch-action: none; cursor: grab; }
+.arctan-fig > svg { display: block; width: 100%; height: auto; background: var(--panel); border-radius: 10px; border: 1px solid var(--line); touch-action: none; cursor: grab; }
 .arctan-fig .half-left { fill: var(--c-y); fill-opacity: 0.07; }
 .arctan-fig .ax { stroke: var(--muted); stroke-width: 1; } .arctan-fig .circ { fill: none; stroke: var(--line); stroke-width: 1.5; }
 .arctan-fig .ray { stroke: var(--fg); stroke-width: 1.6; } .arctan-fig .handle { fill: var(--c-point); stroke: var(--panel); stroke-width: 2; }
@@ -107,6 +107,7 @@ h3 { font-size: 1.08rem; margin-top: 1.6em; }
 .arctan-readout .row.bad .key { background: var(--c-y); } .arctan-readout .row.ok .key { background: var(--ok); }
 .arctan-readout .chip { font-weight: 600; padding: 1px 8px; border-radius: 999px; }
 .arctan-readout .chip.bad { color: var(--c-y-text); background: color-mix(in srgb, var(--c-y) 15%, transparent); }
+.arctan-readout .chip.q4 { color: var(--c-angle); background: color-mix(in srgb, var(--c-angle) 12%, transparent); }
 .arctan-readout .chip.ok { color: var(--ok); background: color-mix(in srgb, var(--ok) 12%, transparent); }
 .arctan-auto { font: inherit; min-height: 44px; padding: 4px 14px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); cursor: pointer; }
 .arctan-auto:disabled { opacity: 0.4; }
@@ -135,14 +136,18 @@ b.bad { color: var(--bad); } b.ok { color: var(--ok); }
 .stepper-fig { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); z-index: 2; }
 @media (max-width: 860px) {
   .stepper { grid-template-columns: minmax(0, 1fr); }
-  /* portrait phones/tablets: the figure stays on screen while the captions scroll underneath */
-  .stepper-fig { top: env(safe-area-inset-top, 0px); background: var(--panel); padding-bottom: 6px; }
+  .stepper-fig { position: static; }
 }
-@media (max-width: 860px) and (max-height: 599px) { .stepper-fig { position: static; } }
+/* single column on a tall screen (phone / iPad portrait): the figure stays on screen while the captions
+   scroll underneath — but it may take at most about half the screen height */
+@media (max-width: 860px) and (max-aspect-ratio: 4/5) {
+  .stepper-fig { position: sticky; top: env(safe-area-inset-top, 0px); background: var(--panel); padding-bottom: 6px; }
+  .stepper-fig .anim-fig { max-width: calc((52svh - 70px) * 4 / 3); margin-inline: auto; }
+}
 /* short (landscape phone) viewports: shrink the figure so it and its controls fit together */
 @media (max-height: 599px) { .anim-fig { max-width: calc((100svh - 84px) * 4 / 3); margin-inline: auto; } }
 .anim-fig { position: relative; container-type: inline-size; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
-.anim-fig svg { display: block; width: 100%; height: auto; }
+.anim-fig > svg { display: block; width: 100%; height: auto; }
 .anim-label { position: absolute; transform: translate(-50%, -50%); white-space: nowrap; pointer-events: none; font-size: clamp(12px, 3.9cqw, 17px); line-height: 1; color: var(--fg);
   text-shadow: 0 0 2px var(--panel), 0 0 2px var(--panel), 0 0 4px var(--panel), 0 0 6px var(--panel); }
 .anim-label[data-anchor="l"] { transform: translate(0, -50%); }
@@ -152,7 +157,7 @@ b.bad { color: var(--bad); } b.ok { color: var(--ok); }
 .anim-label .katex { font-size: 1em; }
 .ink-muted { color: var(--muted); } .ink-point { color: var(--c-point); } .ink-angle { color: var(--c-angle); }
 .ink-x { color: var(--c-x); } .ink-y { color: var(--c-y-text); } .ink-z { color: var(--c-z-text); } .ink-rho { color: var(--c-rho-text); } .ink-r, .ink-fg { color: var(--fg); }
-.anim-label.box { background: color-mix(in srgb, var(--panel) 90%, transparent); border: 1px solid var(--line); border-radius: 6px; padding: 0.35em 0.55em; text-shadow: none; }
+.anim-label.abox { background: color-mix(in srgb, var(--panel) 90%, transparent); border: 1px solid var(--line); border-radius: 6px; padding: 0.35em 0.55em; text-shadow: none; }
 .anim-label .row { padding: 0.12em 0; }
 .an-axis { stroke: var(--muted); stroke-width: 1.3; } .an-axis-head { fill: var(--muted); }
 .an-guide { stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 4 4; fill: none; }
@@ -195,3 +200,9 @@ b.bad { color: var(--bad); } b.ok { color: var(--ok); }
 .step-text > :first-child { margin-top: 0; } .step-text > :last-child { margin-bottom: 0; }
 @media (prefers-reduced-motion: reduce) { .stepper-steps li { transition: none; } }
 .nowrap { white-space: nowrap; }
+.motion-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.motion-btn { font: inherit; min-height: 44px; padding: 4px 14px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); cursor: pointer; }
+.motion-note { color: var(--muted); font-size: 0.92rem; }
+.tasks details { margin-top: 4px; } .tasks summary { cursor: pointer; color: var(--muted); font-size: 0.92rem; }
+.fig-inline { margin: 14px 0; } .fig-inline .explorer { margin: 0; }
+.fig-cap { color: var(--muted); font-size: 0.92rem; margin: 6px 2px 0; }

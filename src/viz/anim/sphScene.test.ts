@@ -124,3 +124,11 @@ describe('labels do not cover each other in the frames a student rests on', () =
     });
   }
 });
+
+describe('3D start view composition', () => {
+  it('the y-axis tip stays clear of M and of the r segment', () => {
+    const sc = sphScene(0, 1, 'de');
+    const tip = sc.shapes.find((s) => s.key === 'ax-y')!.pts[1], M = sc.shapes.find((s) => s.key === 'M')!.pts[0];
+    expect(Math.hypot(tip[0] - M[0], tip[1] - M[1])).toBeGreaterThan(20);
+  });
+});

@@ -21,18 +21,25 @@ function render(tex: string, displayMode: boolean): { html: string; error?: stri
 }
 
 /** Inline formulas up to this length never break across lines (KaTeX would otherwise break after = or <). */
-const NOBREAK_MAX = 48;
+const NOBREAK_MAX = 28;
+
+/** Trailing punctuation as TeX, so it is part of the formula's last box and never wraps onto a line of its own. */
+function punctTex(p: string): string {
+  const check = p.includes('✓') ? String.raw`\;\checkmark` : '';
+  const rest = p.replace(/[✓\s]/g, '');
+  return check + (rest ? String.raw`\text{${rest}}` : '');
+}
 
 /**
- * Inline math. `p` = punctuation that directly follows the formula ("." "," ":" ")" …): it is kept on
- * the same line as the formula (a KaTeX box allows a line break before the next character otherwise).
+ * Inline math. `p` = punctuation directly after the formula ("." "," ":" ")" "✓." …). It is typeset
+ * inside the formula (text font) so a line can never start with it.
  */
 export function M({ children, p }: { children: string; p?: string }) {
-  const tex = children.length <= NOBREAK_MAX ? `{${children}}` : children;
+  const body = children.length <= NOBREAK_MAX ? `{${children}}` : children;
+  const tex = p ? body + punctTex(p) : body;
   const { html, error } = useMemo(() => render(tex, false), [tex]);
   if (error) return <code className="tex-error" title={error}>{children}</code>;
-  const math = <span dangerouslySetInnerHTML={{ __html: html }} />;
-  return p ? <span className="nowrap">{math}{p}</span> : math;
+  return <span dangerouslySetInnerHTML={{ __html: html }} />;
 }
 
 export function MD({ children, tag }: { children: string; tag?: string }) {

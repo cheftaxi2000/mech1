@@ -63,7 +63,8 @@ export function cylScene(step: number, t: number, lang: Lang): Scene {
   const M3: Vec3 = [Mxy[0], Mxy[1], Z0];
 
   // ---- axes ----
-  const ext = { xp: 2.3 + 0.35 * camK, xn: 0.5 + 1.9 * camK, yp: 2.3 - 0.2 * camK, yn: 0.5 + 1.5 * camK };
+  // in the 3D view the y-axis runs past M's vertical (as in Fig. 1.8) instead of ending on it
+  const ext = { xp: 2.3 + 0.35 * camK, xn: 0.5 + 1.9 * camK, yp: 2.9 - 0.8 * camK, yn: 0.5 + 1.5 * camK };
   const axes: { a: Vec3; b: Vec3; name: string; o: number }[] = [
     { a: [-ext.xn, 0, 0], b: [ext.xp, 0, 0], name: 'x', o: 1 },
     { a: [0, -ext.yn, 0], b: [0, ext.yp, 0], name: 'y', o: 1 },
@@ -80,8 +81,11 @@ export function cylScene(step: number, t: number, lang: Lang): Scene {
   // O sits in the quadrant diagonally opposite M_xy, away from the arc and the legs
   {
     const o = P(O);
-    const sx = camK < 0.5 ? -1 : -(Math.sign(x) || 1), sy = camK < 0.5 ? 1 : (Math.sign(y) || 1);
-    L('lab-O', [o[0] + sx * 13, o[1] + sy * 13], 'O', 'muted');
+    let at: P2;
+    if (camK < 0.5) at = [o[0] - 10, o[1] - 14]; // 3D view: above-left, clear of the negative x- and y-axes
+    else if (step === 2) at = [o[0] + 14 * Math.cos(155 * DEG), o[1] - 14 * Math.sin(155 * DEG)]; // sweep: between the QII ghost and the axis
+    else at = [o[0] - (Math.sign(x) || 1) * 13, o[1] + (Math.sign(y) || 1) * 13]; // opposite M_xy
+    L('lab-O', at, 'O', 'muted');
   }
 
   // ---- 3D part: M, the vertical drop, M_xy (step 0; fades during the camera move in step 1) ----
@@ -140,13 +144,14 @@ export function cylScene(step: number, t: number, lang: Lang): Scene {
       GHOSTS.forEach((g, k) => {
         if (phi < g - 1e-9) return;
         const gt = triangle(RHO, g);
-        const o = 0.55;
+        const o = 0.45;
         shapes.push({ key: `g-tri-${k}`, kind: 'polygon', cls: 'an-tri', pts: [P(gt.O), P(gt.F), P(gt.Mxy)], o: o * 0.8 });
         shapes.push({ key: `g-x-${k}`, kind: 'line', cls: 'an-leg-x thin', pts: [P(gt.O), P(gt.F)], o });
         shapes.push({ key: `g-y-${k}`, kind: 'line', cls: 'an-leg-y thin', pts: [P(gt.F), P(gt.Mxy)], o });
         shapes.push({ key: `g-h-${k}`, kind: 'line', cls: 'an-rho thin', pts: [P(gt.O), P(gt.Mxy)], o });
         shapes.push({ key: `g-p-${k}`, kind: 'circle', cls: 'an-point', pts: [P(gt.Mxy)], r: 3, o });
-        L(`lab-sign-${k}`, P(scale((RHO + 0.42) / RHO, gt.Mxy)), SIGNS[k], 'fg', 0.9);
+        // fades in once M_xy has moved on, so it never sits on the live M_xy label
+        L(`lab-sign-${k}`, P(scale((RHO + 0.42) / RHO, gt.Mxy)), SIGNS[k], 'fg', 0.9 * seg(phi - g, 0.35, 0.6));
       });
     }
 
@@ -194,11 +199,12 @@ export function cylScene(step: number, t: number, lang: Lang): Scene {
       const mid = scale(0.5, Mxy);
       let nrm: Vec3 = [-Math.sin(phi), Math.cos(phi), 0];
       if ((F[0] - mid[0]) * nrm[0] + (F[1] - mid[1]) * nrm[1] > 0) nrm = scale(-1, nrm);
-      L('lab-rho', P(add(mid, scale(0.24, nrm))), step === 2 ? String.raw`\rho = ${fmtNum(RHO, 1, lang, true)}` : String.raw`\rho`, 'rho');
+      L('lab-rho', P(add(mid, scale(step === 2 ? 0.42 : 0.24, nrm))), step === 2 ? String.raw`\rho = ${fmtNum(RHO, 1, lang, true)}` : String.raw`\rho`, 'rho');
     }
     if (legK > 0) {
-      const xo = (step === 3 ? 1 - seg(t, 0, 0.1) : legK) * seg(Math.abs(x), 0.2, 0.35);
-      const yo = (step === 3 ? 1 - seg(t, 0.1, 0.2) : legK) * seg(Math.abs(y), 0.2, 0.35);
+      const [lo, hi] = sweeping ? [0.45, 0.6] : [0.2, 0.35]; // short legs: label hidden (it would sit on the arc / O)
+      const xo = (step === 3 ? 1 - seg(t, 0, 0.1) : legK) * seg(Math.abs(x), lo, hi);
+      const yo = (step === 3 ? 1 - seg(t, 0.1, 0.2) : legK) * seg(Math.abs(y), lo, hi);
       L('lab-legx', P([x / 2, -(Math.sign(y) || 1) * 0.36, 0]), sweeping ? 'x' : String.raw`x = \rho\cos\varphi`, 'x', xo);
       // right of the leg (left if x < 0); a leg lying on the y-axis gets its label on the side away from the φ arc
       const side = Math.abs(x) < 0.3 ? -(Math.sign(Math.cos(phiN / 2)) || 1) : x >= 0 ? 1 : -1;

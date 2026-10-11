@@ -10,9 +10,12 @@ import { useTr } from '../../i18n';
  */
 export interface AnimStep { caption: ReactNode; ms: number; holdMs?: number }
 
+const REDUCED_Q = '(prefers-reduced-motion: reduce)';
+const reducedNow = () => typeof matchMedia !== 'undefined' && matchMedia(REDUCED_Q).matches;
+
 function usePrefersReducedMotion() {
-  const q = '(prefers-reduced-motion: reduce)';
-  const [reduced, setReduced] = useState(() => typeof matchMedia !== 'undefined' && matchMedia(q).matches);
+  const q = REDUCED_Q;
+  const [reduced, setReduced] = useState(reducedNow);
   useEffect(() => {
     if (typeof matchMedia === 'undefined') return;
     const m = matchMedia(q);
@@ -41,10 +44,11 @@ export function StepPlayer({ steps, children, label }: {
   const tr = useTr();
   const reduced = usePrefersReducedMotion();
   const [step, setStep] = useState(0);
-  const [t, setT] = useState(0);
+  // Under reduced motion the first thing shown is step 1's final frame (it illustrates caption 1).
+  const [t, setT] = useState(() => (reducedNow() ? 1 : 0));
   const [playing, setPlaying] = useState(false);
   const [run, setRun] = useState(0); // bumping this restarts the clock (and clears any pending hold)
-  const stepRef = useRef(0), tRef = useRef(0), autoRef = useRef(true);
+  const stepRef = useRef(0), tRef = useRef(t), autoRef = useRef(true);
   const startedRef = useRef(false), playingRef = useRef(false), resumeOnVisibleRef = useRef(false);
   const figRef = useRef<HTMLDivElement>(null);
   playingRef.current = playing;
@@ -62,8 +66,13 @@ export function StepPlayer({ steps, children, label }: {
     setPlaying(true);
   }, []);
 
-  /** Go to step i: animate it (or, under reduced motion, show its final frame). */
+  /** Go to step i: animate it (or, under reduced motion, show its final frame). Brings the figure into view. */
   const goTo = useCallback((i: number) => {
+    const el = figRef.current;
+    if (el && typeof el.getBoundingClientRect === 'function') {
+      const b = el.getBoundingClientRect();
+      if (b.top < 0 || b.bottom > window.innerHeight) el.scrollIntoView({ block: 'nearest', behavior: reduced ? 'auto' : 'smooth' });
+    }
     if (reduced) { startedRef.current = true; setPlaying(false); show(i, 1); return; }
     show(i, 0);
     start(false);
@@ -88,7 +97,7 @@ export function StepPlayer({ steps, children, label }: {
   }, [reduced, show, start]);
 
   // Turning on "reduce motion" while something plays stops it where it is.
-  useEffect(() => { if (reduced) setPlaying(false); }, [reduced]);
+  useEffect(() => { if (reduced) { setPlaying(false); show(stepRef.current, 1); } }, [reduced, show]);
 
   // Animation clock. Restarts on every `run`, so a click during a hold never inherits the old hold.
   useEffect(() => {

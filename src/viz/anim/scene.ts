@@ -60,7 +60,7 @@ const tall = (tex: string) => /\\(dfrac|tfrac|frac|sqrt)/.test(tex);
 export function labelBox(l: SceneLabel): { x0: number; y0: number; x1: number; y1: number } {
   const rows = l.rows ?? [{ tex: l.tex, ink: l.ink }];
   const w = Math.max(...rows.map((r) => texWidth(r.tex))) + (l.box ? 16 : 0);
-  const h = rows.reduce((acc, r) => acc + (tall(r.tex) ? 2.3 : 1.35) * FONT, 0) + (l.box ? 12 : 0);
+  const h = rows.reduce((acc, r) => acc + (tall(r.tex) ? 2.3 : l.box ? 1.65 : 1.35) * FONT, 0) + (l.box ? 16 : 0); // boxes: padding + KaTeX strut
   const [x, y] = l.at;
   switch (l.anchor) {
     case 'l': return { x0: x, y0: y - h / 2, x1: x + w, y1: y + h / 2 };
