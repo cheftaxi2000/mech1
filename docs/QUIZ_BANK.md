@@ -165,3 +165,10 @@ Short ideas for the quiz part at the end of the course (D-015). Every answer mus
 - A Ferris-wheel gondola: are all its points on circles? Is it a rotation or a translation? Why?
 - Circles of the same size with different centres vs. circles with one centre and different radii: which motion is which?
 - Slider crank: at which crank angles is the rod in momentary translation? Are the rod's points' accelerations then also equal? (No — momentary only.)
+
+### L09 rotation (pp. 15–19)
+- Door: the hinges at rest — which points of the door move on the biggest circle? Which turn by the biggest angle? (Handle; all the same angle.)
+- Why does one point at rest not make a rotation? (Axis could wander: Kreiselung.)
+- |ω| = 2 s⁻¹, M at distance 0,3 m from the axis and 0,5 m from O on the axis: |v_M| = ? (0,6 m/s — distance from the axis, not |OM|.)
+- In v = ω × r, r from a point off the axis: what goes wrong? (Points on the axis would move.)
+- Cube p. 19: from v_A = (v,0,−v), E at rest, find ω; does the axis pass through C?

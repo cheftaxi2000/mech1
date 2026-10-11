@@ -1,0 +1,35 @@
+/** Shared checks for the pure animation scenes (used by the *.test.ts files only). */
+import { expect } from 'vitest';
+import type { Lang } from '../../i18n';
+import { H, W, labelBox, labelOverlap, type Scene } from './scene';
+
+const LANGS: Lang[] = ['de', 'en'];
+const TS = Array.from({ length: 41 }, (_, i) => i / 40);
+
+/** Every shape point and every label box of every frame lies inside the figure. */
+export function expectInside(build: (s: number, t: number, l: Lang) => Scene, steps: number) {
+  for (const lang of LANGS) for (let s = 0; s < steps; s++) for (const t of TS) {
+    const sc = build(s, t, lang);
+    for (const sh of sc.shapes) for (const p of sh.pts) {
+      expect(p[0], `${sh.key} step ${s} t ${t}`).toBeGreaterThanOrEqual(0); expect(p[0]).toBeLessThanOrEqual(W);
+      expect(p[1], `${sh.key} step ${s} t ${t}`).toBeGreaterThanOrEqual(0); expect(p[1]).toBeLessThanOrEqual(H);
+    }
+    for (const l of sc.labels) {
+      const b = labelBox(l);
+      expect(b.x0, l.key).toBeGreaterThanOrEqual(0); expect(b.x1, l.key).toBeLessThanOrEqual(W);
+      expect(b.y0, l.key).toBeGreaterThanOrEqual(0); expect(b.y1, l.key).toBeLessThanOrEqual(H);
+    }
+  }
+}
+
+/** In every step's final frame no two visible labels overlap. */
+export function expectNoOverlap(build: (s: number, t: number, l: Lang) => Scene, steps: number, max = 0.2) {
+  for (const lang of LANGS) for (let s = 0; s < steps; s++) {
+    const ls = build(s, 1, lang).labels.filter((l) => l.o > 0.5);
+    for (let i = 0; i < ls.length; i++) for (let j = i + 1; j < ls.length; j++)
+      expect(labelOverlap(ls[i], ls[j]), `step ${s}: ${ls[i].key} / ${ls[j].key}`).toBeLessThan(max);
+  }
+}
+
+export const lab = (s: Scene, k: string) => s.labels.find((l) => l.key === k);
+export const shape = (s: Scene, k: string) => s.shapes.find((x) => x.key === k);

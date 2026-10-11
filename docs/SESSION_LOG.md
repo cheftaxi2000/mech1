@@ -74,3 +74,9 @@
 - Student: "weiter nächstes kapitel" → sdpg complete. `L08Translation.tsx`, `transScene.ts` (+test), `TranslationFigures.tsx` (TranslationDemo with pure `demoFrame` + `freeSpot` label placement, `translationDemo.test.ts`; SliderCrank), `physics/translation.ts` (+test). R-016 (bowl figure) logged and handled in a `<details>`.
 - Frame review (REVIEW_FRAMES entry added): point labels were covered by the velocity arrows in the circular mode, the rotation comparison had tiny arrows and a back-and-forth swing → labels now dodge arrows (tested for all modes and 50 phases), rotation is a full turn about the black dot (concentric circles, clearly different speeds), short arrows get short heads.
 - Next: student reviews lesson 8; then Rotation (pp. 15–19).
+
+## 2026-10-11 — lesson 9 (rotation, pp. 15–19)
+- Student: "Weiter" → translation complete. `L09Rotation.tsx` with three step animations (`restScene`, `circProofScene`, `omegaScene`), the 3D `CubeAnim` (`cubeFrame`), `RotationExplorer` and `FootDemo` (`RotationFigures.tsx`, pure geometry in `rotGeom.ts`), physics in `rotation.ts`. R-003, R-009, R-010 handled; R-004/R-005 stay open (need the official solution) and are explained briefly in the lesson.
+- Shared: `sceneTestKit.ts` (inside / overlap checks for scene tests), anchors `bl`/`br` for scene labels, `texWidth` now handles control words before spaces (`\\times r`, `\\v r`) and more macros.
+- Frame review fixes: door turned to face the camera, camera pulled back so the axis and ω fit, slider labels on one line, FootDemo readouts wrap between formulas on the phone, cube camera and labels, proof-2 view from higher up (right angles readable).
+- Next: student reviews lesson 9; then Rollen (p. 20).

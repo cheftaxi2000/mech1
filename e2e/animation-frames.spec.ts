@@ -292,3 +292,43 @@ test('[review] translation: Fig. 3.4 animation and figures', async ({ page }) =>
     }
   }
 });
+
+test('[review] rotation: proofs, explorer, foot demo, cube', async ({ page }) => {
+  test.setTimeout(240_000);
+  await page.addInitScript(() => localStorage.setItem('mech1.lang', 'de'));
+  for (const [w, h, name, scheme] of [[1180, 820, 'ipad', 'light'], [390, 844, 'phone', 'light'], [820, 1180, 'ipad-dark', 'dark']] as const) {
+    await page.emulateMedia({ colorScheme: scheme, reducedMotion: 'reduce' });
+    await page.setViewportSize({ width: w, height: h });
+    await page.goto('/#rotation');
+    await page.locator('article.lesson h2').first().waitFor();
+    const steppers = page.locator('.stepper');
+    for (let k = 0; k < (await steppers.count()); k++) {
+      const st = steppers.nth(k);
+      await st.scrollIntoViewIfNeeded();
+      const n = await st.locator('.step-num').count();
+      for (let i = 0; i < n; i++) {
+        if (name === 'phone' && i < n - 1 && k !== 3) continue; // phone: last frames only (cube: all)
+        await st.locator('.step-num').nth(i).click();
+        await page.waitForTimeout(k === 3 ? 700 : 300);
+        await st.locator('.stepper-fig').screenshot({ path: `test-results/frames/rot-${name}-anim${k + 1}-step${i + 1}.png` });
+      }
+    }
+    const ex = page.locator('figure.explorer').first();
+    await ex.scrollIntoViewIfNeeded(); await page.waitForTimeout(600);
+    await ex.screenshot({ path: `test-results/frames/rot-${name}-explorer.png` });
+    if (name === 'ipad') {
+      await ex.getByLabel('Geschwindigkeiten (Fig. 3.8)').check();
+      await ex.getByRole('slider', { name: 'tilt' }).fill('35');
+      await page.waitForTimeout(600);
+      await ex.screenshot({ path: 'test-results/frames/rot-ipad-explorer-vel-tilt.png' });
+    }
+    const foot = page.locator('article.lesson figure.vdemo').first();
+    await foot.scrollIntoViewIfNeeded(); await page.waitForTimeout(300);
+    await foot.screenshot({ path: `test-results/frames/rot-${name}-foot.png` });
+    if (name === 'ipad') {
+      await foot.getByRole('slider', { name: 'O' }).fill('-1.4');
+      await page.waitForTimeout(200);
+      await foot.screenshot({ path: 'test-results/frames/rot-ipad-foot-low.png' });
+    }
+  }
+});

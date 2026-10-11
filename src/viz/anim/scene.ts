@@ -11,7 +11,7 @@ export const TAU = 2 * Math.PI;
 export const DEG = Math.PI / 180;
 
 export type Ink = 'muted' | 'point' | 'angle' | 'x' | 'y' | 'z' | 'rho' | 'r' | 'fg';
-export type Anchor = 'c' | 'l' | 'r' | 'tl' | 'tr';
+export type Anchor = 'c' | 'l' | 'r' | 'tl' | 'tr' | 'bl' | 'br';
 export interface Shape {
   key: string;
   kind: 'line' | 'polyline' | 'polygon' | 'circle';
@@ -40,13 +40,16 @@ const FONT = 15.6; // label font size in viewBox units (matches the CSS clamp at
 /** Rough rendered width of a TeX label in viewBox units; good enough for keeping labels inside the frame. */
 export function texWidth(tex: string): number {
   const s = tex
+    .replace(/(\\[a-zA-Z]+)\s+/g, '$1{}') // "\\times r": keep the control word apart from the next letter
+    .replace(/\\v(?![a-z])\s*/g, '') // the underline macro (after the step above: "\\v r" → "r")
     .replace(/\\ /g, '\u0000') // explicit TeX space
     .replace(/ /g, '') // source spaces are ignored by KaTeX
     .replace(/\u0000/g, ' ')
     .replace(/\\(dfrac|tfrac|frac)\{([^}]*)\}\{([^}]*)\}/g, (_, _c, a, b) => (a.length > b.length ? a : b))
     .replace(/\\(sqrt)\{([^}]*)\}/g, (_, _c, a) => `v${a}`)
-    .replace(/\\(varphi|rho|theta|psi|pi|Delta|tau)/g, 'a')
+    .replace(/\\(varphi|rho|theta|psi|pi|Delta|tau|parallel|perp|mu|omega|gamma|alpha|beta|lambda|times|ne|to|le|ge)(?![a-z])/g, 'a')
     .replace(/\\v(?![a-z])/g, '')
+    .replace(/\\(big|Big|Rightarrow)(?![a-z])/g, (m) => (m === '\\Rightarrow' ? 'aa' : ''))
     .replace(/\\(dot|tfrac|cdot)/g, (m) => (m === '\\cdot' ? '.' : ''))
     .replace(/\\(cos|sin|tan|arccos)/g, (m) => 'a'.repeat(m.length - 1))
     .replace(/\\circ/g, '.')
@@ -69,6 +72,8 @@ export function labelBox(l: SceneLabel): { x0: number; y0: number; x1: number; y
     case 'r': return { x0: x - w, y0: y - h / 2, x1: x, y1: y + h / 2 };
     case 'tl': return { x0: x, y0: y, x1: x + w, y1: y + h };
     case 'tr': return { x0: x - w, y0: y, x1: x, y1: y + h };
+    case 'bl': return { x0: x, y0: y - h, x1: x + w, y1: y };
+    case 'br': return { x0: x - w, y0: y - h, x1: x, y1: y };
     default: return { x0: x - w / 2, y0: y - h / 2, x1: x + w / 2, y1: y + h / 2 };
   }
 }
