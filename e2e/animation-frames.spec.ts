@@ -238,3 +238,28 @@ test('[review] kreisbewegung: animation steps and rotation field', async ({ page
     if (name === 'ipad') { await ex.getByRole('checkbox').check(); await page.waitForTimeout(300); await ex.screenshot({ path: 'test-results/frames/circ-ipad-field-wrongO.png' }); }
   }
 });
+
+test('[review] sdpg: proof animation and figures', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('mech1.lang', 'de'));
+  for (const [w, h, name, scheme] of [[1180, 820, 'ipad', 'light'], [390, 844, 'phone', 'light'], [820, 1180, 'ipad-dark', 'dark']] as const) {
+    await page.emulateMedia({ colorScheme: scheme, reducedMotion: 'reduce' });
+    await page.setViewportSize({ width: w, height: h });
+    await page.goto('/#sdpg');
+    await page.locator('article.lesson h2').first().waitFor();
+    const st = page.locator('.stepper').first();
+    for (let i = 0; i < 5; i++) {
+      await st.locator('.step-num').nth(i).click();
+      await page.waitForTimeout(300);
+      await st.locator('.stepper-fig').screenshot({ path: `test-results/frames/sdpg-${name}-step${i + 1}.png` });
+    }
+    const figs = page.locator('article.lesson figure.vdemo');
+    for (let i = 0; i < (await figs.count()); i++) {
+      await figs.nth(i).scrollIntoViewIfNeeded(); await page.waitForTimeout(300);
+      await figs.nth(i).screenshot({ path: `test-results/frames/sdpg-${name}-fig${i + 1}.png` });
+    }
+    if (name === 'ipad') {
+      await figs.first().getByRole('checkbox').check(); await page.waitForTimeout(200);
+      await figs.first().screenshot({ path: 'test-results/frames/sdpg-ipad-fig1-stretch.png' });
+    }
+  }
+});

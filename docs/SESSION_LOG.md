@@ -66,3 +66,6 @@
 ## 2026-10-11 — lesson 6 (kreisbewegung, p. 11 + slides L5)
 - `L06Circle.tsx`, `circFrame.ts` + `CircleAnim.tsx`, `CircleFigures.tsx` (RotationField), `circle.test.ts`. v-krummlinig → complete.
 - Open: the 19 unverified figure-audit findings (explorer, lesson-1 animations) from the interrupted workflow; re-run the audit for the remaining groups when subagents are available.
+
+## 2026-10-11 — lesson 7 (sdpg, pp. 12–13)
+- Student away for an hour, asked to continue. `L07Rigid.tsx`, `sdpgScene.ts` (+test), `RigidFigures.tsx` (SdpgDemo, LadderDemo), `sdpg.test.ts`. kreisbewegung → complete.

@@ -25,8 +25,8 @@
 | basen | 6–7 | **complete** | Signed off by the student 2026-10-11. |
 | geschwindigkeit | 8–9 | **complete** | Signed off by the student 2026-10-11 (after the plain-language rewrite). |
 | v-krummlinig | 10 | **complete** | Student continued («weiter») after review; CurvilinearVelocity fixed after the student's report (path drawn, v tangent to it). |
-| kreisbewegung | 11 | **review** | Clock-hand intuition; position (R e_ρ + z0 e_z, the notes' «Falsch!» explained), v = Rφ̇ e_φ, ṡ, rad/s; ω = φ̇ e_z with right-hand rule; 6-step 3D animation of the Umformung to v = ω × r (`circFrame.ts`, 4 frame tests); `RotationField` (rigid frame, v = ω × r per point, O′ off the axis shows the wrong result); Cartesian computation + slide L5 read out; 3 misconceptions; `circle.test.ts` (8 tests). Frames inspected iPad, phone, dark. **Awaiting sign-off.** |
-| sdpg | 12–13 | planned | SdpG + ladder verified |
+| kreisbewegung | 11 | **complete** | Student continued («mach weiter mit dem nächsten Kapitel»). |
+| sdpg | 12–13 | **review** | Broomstick intuition; rigidity (Fig. 3.1, a·b const); SdpG with `SdpgDemo` (choose v_M and ω, projections equal; «Körper dehnt sich» breaks it); proof as 5-step animation (`sdpgScene.ts`, 4 frame tests) + read-out; ladder example with `LadderDemo` (slide, v_V = v_H cot α), R-006 one sentence; 3 misconceptions; `sdpg.test.ts`. Frames inspected iPad, phone, dark. **Awaiting sign-off.** |
 | translation | 13–14 | planned | |
 | rotation | 15–19 | planned | R-003 verified; R-004/R-005 open |
 | rollen | 20 | planned | |

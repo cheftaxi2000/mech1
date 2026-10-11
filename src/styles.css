@@ -375,3 +375,17 @@ b.bad { color: var(--bad); } b.ok { color: var(--ok); }
 .swatch.dashed { background: repeating-linear-gradient(90deg, currentColor 0 4px, transparent 4px 7px); }
 /* an empty title stays hidden until the note is being edited */
 .sticky:not(:focus-within):not(:hover) .sticky-title:placeholder-shown { height: 0; padding: 0; margin: 0; border-color: transparent; opacity: 0; } /* still focusable */
+.an-body { fill: color-mix(in srgb, var(--muted) 10%, transparent); stroke: var(--muted); stroke-width: 1.6; }
+.an-body.ghost { fill: none; stroke-dasharray: 6 5; }
+.an-proj { stroke: var(--c-rho); stroke-width: 6; stroke-linecap: round; opacity: 0.75; }
+.an-drop-g { stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 4 4; }
+.an-copy { stroke: var(--muted); stroke-width: 2; stroke-dasharray: 5 4; } .an-copy-head { fill: var(--muted); }
+.an-diff { stroke: var(--c-angle); stroke-width: 3; } .an-diff-head { fill: var(--c-angle); }
+.rb-body { fill: color-mix(in srgb, var(--muted) 10%, transparent); stroke: var(--muted); stroke-width: 1.6; }
+.rb-body.soft { stroke-dasharray: 6 4; fill: color-mix(in srgb, var(--bad) 6%, transparent); }
+.rb-a line { stroke: var(--fg); stroke-width: 2.4; } .rb-a polygon { fill: var(--fg); }
+.rb-v line { stroke: var(--c-point); stroke-width: 3; } .rb-v polygon { fill: var(--c-point); }
+.rb-proj { stroke: var(--c-rho); stroke-width: 7; stroke-linecap: round; opacity: 0.7; } .rb-proj.bad { stroke: var(--bad); }
+.ld-ground { stroke: var(--fg); stroke-width: 2; } .ld-hatch { stroke: var(--muted); stroke-width: 1; }
+.ld-ladder { stroke: #a16207; stroke-width: 7; stroke-linecap: round; }
+.slider.wide-slider { grid-template-columns: auto 1fr 4.5em; }
