@@ -198,3 +198,23 @@ test('[review] v-krummlinig: e_rho animation steps and figures', async ({ page }
     await ex.screenshot({ path: `test-results/frames/curv-${name}-fig1-sph.png` });
   }
 });
+
+test('[review] v-krummlinig: v tangent to the drawn path (student report: rho-dot = -0.4)', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('mech1.lang', 'de'));
+  await page.setViewportSize({ width: 1180, height: 820 });
+  await page.goto('/#v-krummlinig');
+  await page.locator('article.lesson h2').first().waitFor();
+  const ex = page.locator('figure.explorer').first();
+  await ex.scrollIntoViewIfNeeded();
+  await ex.locator('input[aria-label="rate-0"]').fill('-0.4');
+  await page.waitForTimeout(400);
+  await ex.screenshot({ path: 'test-results/frames/curv-report-1.png' });
+  await ex.getByRole('button', { name: 'Bewegung abspielen' }).click();
+  await page.waitForTimeout(1800);
+  await ex.locator('input[aria-label="rate-1"]').fill('-0.5');
+  await page.waitForTimeout(1500);
+  await ex.screenshot({ path: 'test-results/frames/curv-report-2.png' });
+  await ex.getByRole('checkbox').check();
+  await page.waitForTimeout(400);
+  await ex.screenshot({ path: 'test-results/frames/curv-report-3.png' });
+});

@@ -357,3 +357,4 @@ b.bad { color: var(--bad); } b.ok { color: var(--ok); }
 .notes-empty, .notes-where { font-size: 0.85rem; color: var(--muted); margin: 6px 8px; }
 
 .notes-hint > span { flex: 1; }
+.swatch.dashed { background: repeating-linear-gradient(90deg, currentColor 0 4px, transparent 4px 7px); }

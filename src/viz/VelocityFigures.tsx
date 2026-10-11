@@ -1,10 +1,10 @@
-import { useEffect, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Line } from '@react-three/drei';
 import { M } from '../components/Tex';
 import { fmtNum, useLang, useTr } from '../i18n';
 import { HELIX, helix, helixVelocity, lineX, lineXdot } from '../physics/velocity';
 import { add, norm, scale, sub, type Vec3 } from '../physics/vec';
-import { cylToCart, eR, ePhi, ePsi, eRho, eTheta, sphToCart } from '../physics/coords';
+import { inside, posOf, qAt, timeToEdge, velocityOf, velocityTerms, type CMode, type Q } from '../physics/curvMotion';
 import { Scene } from './Scene';
 import { Arrow, Axes, C, Curve, Dashed, Dot, Label } from './primitives';
 import { FullscreenButton, useFullscreen } from './useFullscreen';
@@ -164,64 +164,82 @@ export function HelixVelocity() {
 }
 
 /* ------------------------------------------------------------------------------------------------ */
-type CMode = 'cyl' | 'sph';
-const START = { cyl: [1.2, -20 * Math.PI / 180, 0.3], sph: [1.5, 65 * Math.PI / 180, -20 * Math.PI / 180] } as const;
+const START: Record<CMode, Q> = { cyl: [1.2, -20 * Math.PI / 180, 0.3], sph: [1.5, 65 * Math.PI / 180, -20 * Math.PI / 180] };
 const RATES = {
   cyl: [{ tex: String.raw`\dot\rho`, min: -0.4, max: 0.4, v: 0 }, { tex: String.raw`\dot\varphi`, min: -1, max: 1, v: 0.6 }, { tex: String.raw`\dot z`, min: -0.4, max: 0.4, v: 0.15 }],
   sph: [{ tex: String.raw`\dot r`, min: -0.4, max: 0.4, v: 0 }, { tex: String.raw`\dot\theta`, min: -0.6, max: 0.6, v: 0.25 }, { tex: String.raw`\dot\psi`, min: -1, max: 1, v: 0.6 }],
 };
+const defaultRates = (m: CMode): Q => [RATES[m][0].v, RATES[m][1].v, RATES[m][2].v];
 const VA = 1.3; // arrow length per unit of speed
-
-/** Position after time τ with constant coordinate rates (clamped to the drawable range). */
-function stateAt(mode: CMode, q0: readonly number[], rates: number[], tt: number): number[] {
-  const q = q0.map((v, i) => v + rates[i] * tt);
-  if (mode === 'cyl') return [Math.min(2.3, Math.max(0.15, q[0])), q[1], Math.min(1.9, Math.max(-1.2, q[2]))];
-  return [Math.min(2.3, Math.max(0.2, q[0])), Math.min(Math.PI - 0.15, Math.max(0.15, q[1])), q[2]];
-}
+const AHEAD = 6, BEHIND = 2.5; // seconds of the trajectory drawn ahead of / behind M
 
 /**
  * Lecture p. 10: velocity in the cylindrical / spherical basis. Choose the rates of the three coordinates; at M the
- * three terms are drawn head to tail (each in the colour of its basis vector) and their sum v. "Play" moves M with
- * these rates and draws the trajectory.
+ * three terms are drawn head to tail (each in the colour of its basis vector) and their sum v. The dashed red line is
+ * the trajectory M follows with these rates — v is always tangent to it (curvMotion.test.ts). Changing a rate keeps M
+ * where it is and bends the trajectory from there on; "Play" moves M and leaves a solid trail.
  */
 export function CurvilinearVelocity() {
   const tr = useTr(), lang = useLang();
   const reduced = useReducedMotion();
   const [ref, full, toggleFull] = useFullscreen();
   const [mode, setMode] = useState<CMode>('cyl');
-  const [rates, setRates] = useState<number[]>(RATES.cyl.map((r) => r.v));
-  const [time, setTime] = useState(0);
+  const [rates, setRates] = useState<Q>(defaultRates('cyl'));
+  const [q0, setQ0] = useState<Q>(START.cyl); // state when the current rates were set
+  const [time, setTime] = useState(0); // time since then
   const [play, setPlay] = useState(false);
+  const [atEdge, setAtEdge] = useState(false);
+  const [trail, setTrail] = useState<Vec3[]>([]);
+  const [lines, setLines] = useState(false);
+  const live = useRef({ mode, rates, q0 }); live.current = { mode, rates, q0 };
+
   useEffect(() => {
     if (!play) return;
     let raf = 0, last = performance.now();
     const tick = (now: number) => {
       const dt = Math.min(now - last, 100) / 1000; last = now;
-      setTime((x) => { if (x + dt > 10) { setPlay(false); return x; } return x + dt; });
+      const { mode: m, rates: r, q0: a } = live.current;
+      setTime((x) => {
+        const nx = x + dt;
+        if (!inside(m, qAt(a, r, nx))) { setPlay(false); setAtEdge(true); return x; }
+        setTrail((tl) => (tl.length > 900 ? tl.slice(-900) : tl).concat([posOf(m, qAt(a, r, nx))]));
+        return nx;
+      });
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, [play]);
-  const switchMode = (m: CMode) => { setMode(m); setRates(RATES[m].map((r) => r.v)); setTime(0); setPlay(false); };
-  const q = stateAt(mode, START[mode], rates, time);
-  const pos = (qq: number[]): Vec3 => mode === 'cyl' ? cylToCart({ rho: qq[0], phi: qq[1], z: qq[2] }) : sphToCart({ r: qq[0], theta: qq[1], psi: qq[2] });
-  const p = pos(q);
-  // the three terms of v, as vectors
-  const terms: [Vec3, string, string][] = mode === 'cyl'
-    ? [[scale(rates[0], eRho(q[1])), C.rho, String.raw`\dot\rho\,\v e_\rho`], [scale(q[0] * rates[1], ePhi(q[1])), C.angle, String.raw`\rho\dot\varphi\,\v e_\varphi`], [[0, 0, rates[2]], C.z, String.raw`\dot z\,\v e_z`]]
-    : [[scale(rates[0], eR(q[1], q[2])), C.r, String.raw`\dot r\,\v e_r`], [scale(q[0] * rates[1], eTheta(q[1], q[2])), C.angle, String.raw`r\dot\theta\,\v e_\theta`], [scale(q[0] * Math.sin(q[1]) * rates[2], ePsi(q[2])), C.angle2, String.raw`r\sin\theta\,\dot\psi\,\v e_\psi`]];
-  const v = terms.reduce((a, [w]) => add(a, w), [0, 0, 0] as Vec3);
+
+  const q = qAt(q0, rates, time);
+  const reset = (m: CMode, keepRates = false) => {
+    setMode(m); if (!keepRates) setRates(defaultRates(m)); setQ0(START[m]); setTime(0); setPlay(false); setAtEdge(false); setTrail([]);
+  };
+  const setRate = (i: number, val: number) => {
+    const nr = [...rates] as unknown as [number, number, number]; nr[i] = val;
+    setQ0(q); setTime(0); setRates(nr); // M stays where it is; the path bends from here
+    setAtEdge(false);
+  };
+  const p = posOf(mode, q);
+  const terms = velocityTerms(mode, q, rates);
+  const v = velocityOf(mode, q, rates);
+  const names = mode === 'cyl'
+    ? [[C.rho, String.raw`\dot\rho\,\v e_\rho`], [C.angle, String.raw`\rho\dot\varphi\,\v e_\varphi`], [C.z, String.raw`\dot z\,\v e_z`]]
+    : [[C.r, String.raw`\dot r\,\v e_r`], [C.angle, String.raw`r\dot\theta\,\v e_\theta`], [C.angle2, String.raw`r\sin\theta\,\dot\psi\,\v e_\psi`]];
   let cur = p;
-  const chain = terms.map(([w, c]) => { const a = cur; cur = add(cur, scale(VA, w)); return { a, b: cur, c }; });
-  const n = Math.max(2, Math.round(time * 20));
+  const chain = terms.map((w, i) => { const a = cur; cur = add(cur, scale(VA, w)); return { a, b: cur, c: names[i][0] }; });
+  // the trajectory through M with the current rates (ahead and behind, as far as it stays drawable)
+  const tf = timeToEdge(mode, q, rates, 1, AHEAD), tb = timeToEdge(mode, q, rates, -1, BEHIND);
+  const pathPts = Array.from({ length: 121 }, (_, i) => posOf(mode, qAt(q, rates, -tb + ((tf + tb) * i) / 120)));
   const f = (x: number) => fmtNum(x, 2, lang, true);
   const sdot = norm(v);
+  const coeffs = mode === 'cyl' ? [rates[0], q[0] * rates[1], rates[2]] : [rates[0], q[0] * rates[1], q[0] * Math.sin(q[1]) * rates[2]];
+  const basisTex = mode === 'cyl' ? [t`\v e_\rho`, t`\v e_\varphi`, t`\v e_z`] : [t`\v e_r`, t`\v e_\theta`, t`\v e_\psi`];
   return (
     <figure className={`explorer${full ? ' is-full' : ''}`} ref={ref}>
       <div className="tabs" role="tablist">
         {(['cyl', 'sph'] as CMode[]).map((m) => (
-          <button key={m} role="tab" aria-selected={mode === m} className={mode === m ? 'active' : ''} onClick={() => switchMode(m)}>
+          <button key={m} role="tab" aria-selected={mode === m} className={mode === m ? 'active' : ''} onClick={() => reset(m)}>
             {m === 'cyl' ? tr('Zylindrisch', 'Cylindrical') : tr('Sphärisch', 'Spherical')}
           </button>
         ))}
@@ -230,14 +248,19 @@ export function CurvilinearVelocity() {
         <Scene height={full ? '100%' : 400} camera={[3.6, -3.6, 2.8]} target={[0.4, -0.1, 0.4]}>
           <Axes size={1.8} />
           <Dashed pts={[p, [p[0], p[1], 0]]} />
-          {mode === 'cyl'
-            ? <Curve f={(a) => cylToCart({ rho: q[0], phi: a, z: q[2] })} t0={0} t1={2 * Math.PI} color={C.construct} width={1} />
+          {lines && (mode === 'cyl'
+            ? (<>
+              <Curve f={(a) => posOf('cyl', [q[0], a, q[2]])} t0={0} t1={2 * Math.PI} color={C.angle} width={1.2} />
+              <Curve f={(a) => posOf('cyl', [a, q[1], q[2]])} t0={0} t1={2.4} n={2} color={C.rho} width={1.2} />
+              <Curve f={(a) => posOf('cyl', [q[0], q[1], a])} t0={-1.4} t1={2} n={2} color={C.z} width={1.2} />
+            </>)
             : (<>
-              <Curve f={(a) => sphToCart({ r: q[0], theta: q[1], psi: a })} t0={0} t1={2 * Math.PI} color={C.construct} width={1} />
-              <Curve f={(a) => sphToCart({ r: q[0], theta: a, psi: q[2] })} t0={0} t1={Math.PI} color={C.construct} width={1} />
-            </>)}
-          {time > 0.05 && <Curve f={(s) => pos(stateAt(mode, START[mode], rates, s))} t0={0} t1={time} n={n} color={C.path} width={2.5} />}
-          <Dashed pts={[[0, 0, 0], p]} />
+              <Curve f={(a) => posOf('sph', [q[0], q[1], a])} t0={0} t1={2 * Math.PI} color={C.angle2} width={1.2} />
+              <Curve f={(a) => posOf('sph', [q[0], a, q[2]])} t0={0} t1={Math.PI} color={C.angle} width={1.2} />
+              <Curve f={(a) => posOf('sph', [a, q[1], q[2]])} t0={0} t1={2.4} n={2} color={C.r} width={1.2} />
+            </>))}
+          {tf + tb > 0.05 && <Line points={pathPts as [number, number, number][]} color={C.path} lineWidth={1.8} dashed dashSize={0.07} gapSize={0.05} />}
+          {trail.length > 1 && <Line points={trail as [number, number, number][]} color={C.path} lineWidth={3} />}
           {chain.map(({ a, b, c }, i) => norm(sub(b, a)) > 0.02 && <Arrow key={i} from={a} to={b} color={c} width={3} />)}
           {sdot > 0.02 && <Arrow from={p} to={add(p, scale(VA, v))} color={C.point} width={4} />}
           {sdot > 0.02 && <Label at={add(add(p, scale(VA, v)), scale(0.2 / sdot, v))} color={C.point} vec>v</Label>}
@@ -251,25 +274,30 @@ export function CurvilinearVelocity() {
           {RATES[mode].map((r, i) => (
             <label key={mode + i} className="slider">
               <M>{r.tex}</M>
-              <input type="range" min={r.min} max={r.max} step={0.05} value={rates[i]} aria-label={`rate-${i}`}
-                onChange={(e) => { const nr = [...rates]; nr[i] = Number(e.target.value); setRates(nr); setTime(0); setPlay(false); }} />
+              <input type="range" min={r.min} max={r.max} step={0.01} value={rates[i]} aria-label={`rate-${i}`}
+                onChange={(e) => setRate(i, Number(e.target.value))} />
               <span className="val">{fmtNum(rates[i], 2, lang)}</span>
             </label>
           ))}
           <div className="motion-row">
-            <button type="button" className="motion-btn" disabled={reduced && !play} onClick={() => { if (play) setPlay(false); else { setTime(0); setPlay(true); } }}>
+            <button type="button" className="motion-btn" disabled={(reduced && !play) || atEdge} onClick={() => setPlay((x) => !x)}>
               {play ? tr('Anhalten', 'Stop') : tr('Bewegung abspielen', 'Play the motion')}
             </button>
+            <button type="button" className="motion-btn" onClick={() => reset(mode, true)}>{tr('Zurück zum Start', 'Back to start')}</button>
           </div>
+          {atEdge && <p className="warn">{tr(<><M>M</M> hat den Rand des Bildes (oder die Achse) erreicht. Ändere eine Rate oder gehe zurück zum Start.</>, <><M>M</M> has reached the edge of the picture (or the axis). Change a rate or go back to the start.</>)}</p>}
           <ul className="legend">
-            {terms.map(([, c, tex], i) => <li key={i}><span className="swatch" style={{ background: c }} /><M>{tex}</M></li>)}
+            {names.map(([c, tex], i) => <li key={i}><span className="swatch" style={{ background: c }} /><M>{tex}</M></li>)}
             <li><span className="swatch" style={{ background: C.point }} /><M>{t`\v v`}</M>&nbsp;{tr('(Summe)', '(sum)')}</li>
+            <li><span className="swatch dashed" style={{ color: C.path }} />{tr(<>Bahn von <M>M</M> mit diesen Raten</>, <>path of <M>M</M> with these rates</>)}</li>
           </ul>
+          <label className="toggle"><input type="checkbox" checked={lines} onChange={(e) => setLines(e.target.checked)} />{' '}
+            {tr(<>Koordinatenlinien durch <M>M</M> zeigen (zum Vergleich – das ist nicht die Bahn)</>, <>show the coordinate lines through <M>M</M> (for comparison – they are not the path)</>)}</label>
         </div>
         <figcaption>
-          <div className="v-result pos"><M>{t`\v v = ` + (mode === 'cyl'
-            ? combo(f, [[rates[0], t`\v e_\rho`], [q[0] * rates[1], t`\v e_\varphi`], [rates[2], t`\v e_z`]])
-            : combo(f, [[rates[0], t`\v e_r`], [q[0] * rates[1], t`\v e_\theta`], [q[0] * Math.sin(q[1]) * rates[2], t`\v e_\psi`]]))}</M></div>
+          <div className="v-result pos"><M>{t`\v v = ` + combo(f, coeffs.map((k, i) => [k, basisTex[i]] as [number, string]))}</M></div>
+          <p className="vdemo-note">{tr(<><M>{t`\v v`}</M> liegt immer tangential an der <b>Bahn</b> (rot gestrichelt). Am Kreis der <span className="nowrap"><M>\varphi</M>-Linie</span> liegt <M>{t`\v v`}</M> nur, wenn sich allein <M>\varphi</M> ändert.</>,
+            <><M>{t`\v v`}</M> is always tangent to the <b>path</b> (red dashed). It is tangent to the circle of the <span className="nowrap"><M>\varphi</M>-line</span> only when <M>\varphi</M> alone changes.</>)}</p>
         </figcaption>
       </div>
     </figure>

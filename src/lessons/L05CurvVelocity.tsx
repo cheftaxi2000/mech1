@@ -141,12 +141,14 @@ export default function L05CurvVelocity() {
         <CurvilinearVelocity />
         <T
           de={<ul className="observe">
+            <li>Die rot gestrichelte Linie ist die <b>Bahn</b>, die <M>M</M> mit den eingestellten Raten fährt. <M>{t`\v v`}</M> liegt immer tangential an ihr. Ändert man eine Rate, bleibt <M>M</M> stehen und die Bahn biegt ab diesem Punkt anders weiter.</li>
             <li>Zylindrisch, nur <M>{t`\dot\varphi \ne 0`}</M> (die anderen auf 0): <M>M</M> fährt auf einem Kreis – das ist die Kreisbewegung der nächsten Lektion.</li>
             <li>Zylindrisch, nur <M p=":">{t`\dot\rho \ne 0`}</M> <M>M</M> fährt geradeaus von der Achse weg.</li>
             <li>Mit <M>{t`\dot\varphi`}</M> und <M>{t`\dot z`}</M> zusammen entsteht eine Schraubenlinie (Lektion 4).</li>
             <li>Sphärisch: Je näher <M>M</M> am Pol ist (kleines <M p=").">\theta</M> desto kürzer wird der <span className="nowrap"><M>{t`\v e_\psi`}</M>-Anteil</span> bei gleichem <M p=".">{t`\dot\psi`}</M></li>
           </ul>}
           en={<ul className="observe">
+            <li>The red dashed line is the <b>path</b> that <M>M</M> follows with the chosen rates. <M>{t`\v v`}</M> is always tangent to it. Changing a rate keeps <M>M</M> in place and the path bends differently from that point on.</li>
             <li>Cylindrical, only <M>{t`\dot\varphi \ne 0`}</M> (the others at 0): <M>M</M> travels on a circle – the circular motion of the next lesson.</li>
             <li>Cylindrical, only <M p=":">{t`\dot\rho \ne 0`}</M> <M>M</M> moves straight away from the axis.</li>
             <li>With <M>{t`\dot\varphi`}</M> and <M>{t`\dot z`}</M> together you get a helix (lesson 4).</li>
@@ -186,6 +188,10 @@ export default function L05CurvVelocity() {
       <Section id="missverstaendnisse" title={<T de="6. Häufige Missverständnisse" en="6. Common misconceptions" />}>
         <Box kind="misconception" title={<T de={<>«<M p=".">{t`\v v = \dot\rho\,\v e_\rho + \dot\varphi\,\v e_\varphi + \dot z\,\v e_z`}</M>»</>} en={<>“<M p=".">{t`\v v = \dot\rho\,\v e_\rho + \dot\varphi\,\v e_\varphi + \dot z\,\v e_z`}</M>”</>} />}>
           <T de={<>Da fehlt das <M p=".">\rho</M> Prüfe die Einheiten: <M>{t`\dot\varphi`}</M> hat die Einheit 1/s (Winkel pro Zeit), eine Geschwindigkeit braucht m/s. Erst <M>{t`\rho\dot\varphi`}</M> ist ein Tempo: Weg auf dem Kreis ist Radius mal Winkel.</>} en={<>The <M>\rho</M> is missing. Check the units: <M>{t`\dot\varphi`}</M> has the unit 1/s (angle per time), a velocity needs m/s. Only <M>{t`\rho\dot\varphi`}</M> is a speed: distance on the circle is radius times angle.</>} />
+        </Box>
+        <Box kind="misconception" title={<T de={<>«<M>{t`\v v`}</M> liegt immer tangential am Kreis um die <span className="nowrap"><M>z</M>-Achse</span>.»</>} en={<>“<M>{t`\v v`}</M> is always tangent to the circle around the <span className="nowrap"><M>z</M>-axis</span>.”</>} />}>
+          <T de={<>Nein. Dieser Kreis ist nur die <span className="nowrap"><M>\varphi</M>-Koordinatenlinie</span> durch <M p=",">M</M> nicht die Bahn. <M>{t`\v v`}</M> liegt tangential an der <b>Bahn</b>. Ist <M p=",">{t`\dot\rho \ne 0`}</M> wird die Bahn eine Spirale, und <M>{t`\v v`}</M> zeigt schräg nach aussen oder innen. Nur wenn sich allein <M>\varphi</M> ändert, ist die Bahn der Kreis selbst.</>}
+            en={<>No. That circle is only the <span className="nowrap"><M>\varphi</M>-coordinate line</span> through <M p=",">M</M> not the path. <M>{t`\v v`}</M> is tangent to the <b>path</b>. With <M p=",">{t`\dot\rho \ne 0`}</M> the path becomes a spiral and <M>{t`\v v`}</M> points obliquely outwards or inwards. Only when <M>\varphi</M> alone changes is the path the circle itself.</>} />
         </Box>
         <Box kind="misconception" title={<T de={<>«Ändern sich <M>\rho</M> und <M>z</M> nicht, steht der Punkt still.»</>} en={<>“If <M>\rho</M> and <M>z</M> do not change, the point is at rest.”</>} />}>
           <T de={<>Nein – das Karussell. Mit <M>{t`\dot\rho = \dot z = 0`}</M> bleibt <M p=",">{t`\v v = \rho\dot\varphi\,\v e_\varphi`}</M> eine Kreisbewegung.</>} en={<>No – the merry-go-round. With <M>{t`\dot\rho = \dot z = 0`}</M> what remains is <M p=",">{t`\v v = \rho\dot\varphi\,\v e_\varphi`}</M> a circular motion.</>} />
