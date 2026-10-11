@@ -13,7 +13,8 @@ Visualising is the most important part of learning mechanics. Every lesson is ju
 - Figures follow the lecture's own drawings (orientation of axes, point names like `M_x`, `M_xy`, `M_z`) and one colour system everywhere: x blue, y amber, z green, ρ teal, r dark, angles purple, points red.
 - Keep explanations simple: short sentences, one idea per step, the picture does the heavy lifting.
 - **No duplicate figures.** One good interactive figure per idea beats several small ones (the student removed the per-section 3D figures in favour of the one explorer at the end). Large 3D figures get a fullscreen button (`useFullscreen` in `viz/CoordinateExplorer.tsx`).
-- Short topics stay short (e.g. p. 5 vectors): lecture box, one figure per concept, a few checks.
+- Short topics stay short (e.g. p. 5 vectors): lecture box, one figure per concept.
+- **No questions in the chapters** (D-015): no quizzes, predictions or tasks — chapters are pure explanation. Orange misconception boxes stay (the student likes them). Question ideas go into `docs/QUIZ_BANK.md` for the quiz part at the end of the course.
 - Before calling a lesson done, **look at the rendered frames yourself** (`test-results/screens/`, `REVIEW_FRAMES=1 …` → `test-results/frames/`) in light and dark mode, on iPad and phone width. Passing tests do not prove a figure is right.
 - When unsure whether something needs a visual: it does.
 
@@ -61,7 +62,7 @@ e2e/              playwright specs
 
 ## Writing a lesson (template)
 
-Follow `docs/PLAN.md` § "Lesson anatomy". In short: orientation → lecture box(es) with page refs → intuition → precise meaning → derivation (every step justified) → interactive figure → worked example → misconceptions → active checks (predict / choice / numeric, each wrong answer explained) → connections. Adapt; don't pad trivial topics.
+Follow `docs/PLAN.md` § "Lesson anatomy". In short: orientation → lecture box(es) with page refs → intuition → precise meaning → derivation (every step justified, animated) → interactive figure → worked example → misconceptions (orange boxes) → connections. No questions (D-015). Adapt; don't pad trivial topics.
 
 Authoring gotchas:
 - Inside JSX, a line break between text and an inline element swallows the space. Add `{' '}` (the lint test enforces this).

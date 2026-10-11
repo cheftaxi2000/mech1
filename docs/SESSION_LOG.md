@@ -41,3 +41,9 @@
 - Done: boxes + ArctanDemo removed, the arctan caveat kept in captions/misconception/quiz (D-012); locked explorers removed (D-013); fullscreen via Fullscreen API with a CSS-overlay fallback; top bar + drawer navigation (D-014); new e2e `ui-shell.spec.ts` (drawer, Esc, fullscreen on iPad and phone).
 - Lesson 2 `L02Vectors.tsx` (p. 5): PositionVectorFigure (r̲(t) moving, basis vectors, components head to tail), DotDemo (drag b̲, projection |b̲| cos φ, sign colours, presets), CrossDemo (3D parallelogram, c̲ = a̲ × b̲ with length = area, swap order), CycleDiagram (Rechtssystem); supplement with component formulas + derivation and a worked example; misconception, predict, 2 choices, 2 numeric. `vec.test.ts` verifies every formula and every quiz value. R-015 logged.
 - Next: student reviews both lessons; then lesson 3 (basen, pp. 5–7).
+
+## 2026-10-11 — Session 1, continued: lessons 1–2 signed off; no questions; lesson 3 (basen)
+- Student signed off koordinaten and vektoren (→ complete). Request: keep the orange misconception boxes, remove all questions from the chapters (a quiz part comes at the end) → D-015; removed checks archived in `docs/QUIZ_BANK.md`; explorer tasks rewritten as observations; the cone/name prediction became a short supplement.
+- Lesson 3 `L03Bases.tsx` (pp. 6–7): scalar/vector components, the "tangent to the coordinate lines" rule as a recipe, cylindrical basis animated in 3D (`CylBasisAnim` + pure `cylBasisFrame`), p. 10 preview of e_ρ, e_φ, misconception r = ρe_ρ + φe_φ + ze_z (the notes' "Falsch!"), spherical basis + Cartesian components (supplement, scale factors 1, r, r sin θ), explorer with local basis, key points and outlook.
+- Shared: `useFullscreen.tsx` (extracted), Scene `camera`/`target` props and a portrait field-of-view fit, explorer `basis` prop.
+- Next: student reviews lesson 3; then Kapitel 2 Geschwindigkeit (pp. 8–9).

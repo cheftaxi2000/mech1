@@ -122,3 +122,26 @@ test('[review] vektoren figures on iPad and phone, light and dark', async ({ pag
     }
   }
 });
+
+test('[review] basen: cylindrical-basis animation (final frames) and explorer with basis', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('mech1.lang', 'de'));
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  for (const [w, h, name] of [[1180, 820, 'ipad'], [390, 844, 'phone']] as const) {
+    await page.setViewportSize({ width: w, height: h });
+    await page.goto('/#basen');
+    await page.locator('article.lesson h2').first().waitFor();
+    const st = page.locator('.stepper').first();
+    for (let i = 0; i < 4; i++) {
+      await st.locator('.step-num').nth(i).click();
+      await page.waitForTimeout(400);
+      await st.locator('.stepper-fig').screenshot({ path: `test-results/frames/basen-${name}-step${i + 1}.png` });
+    }
+    const ex = page.locator('.explorer:has([role=tablist])');
+    for (const mode of ['Kartesisch', 'Zylindrisch', 'Sphärisch']) {
+      await ex.scrollIntoViewIfNeeded();
+      await ex.getByRole('tab', { name: mode }).click();
+      await page.waitForTimeout(400);
+      await ex.screenshot({ path: `test-results/frames/basen-${name}-explorer-${mode}.png` });
+    }
+  }
+});

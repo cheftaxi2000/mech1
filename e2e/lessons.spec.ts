@@ -152,12 +152,6 @@ test('coordinate explorer: switching systems keeps the point fixed (German numbe
   await explorer.screenshot({ path: 'test-results/screens/explorer-cyl.png' });
 });
 
-test('quiz gives feedback on a choice', async ({ page }) => {
-  await open(page, 'de', '#koordinaten');
-  const quiz = page.locator('.quiz').first();
-  await quiz.getByRole('button').nth(1).click();
-  await expect(quiz.locator('.quiz-feedback')).toContainText('Richtig');
-});
 
 for (const topic of written) {
   test(`phone width: no horizontal page scroll ("${topic.id}")`, async ({ page }) => {

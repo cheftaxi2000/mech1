@@ -1,6 +1,5 @@
 import { Box, Derivation, Section, Src } from '../components/Blocks';
 import { M, MD } from '../components/Tex';
-import { Choice, NumericAnswer, Predict } from '../components/Quiz';
 import { T } from '../i18n';
 import { CrossDemo, CycleDiagram, DotDemo, PositionVectorFigure } from '../viz/VectorFigures';
 
@@ -169,45 +168,11 @@ export default function L02Vectors() {
       </Section>
 
       {/* ------------------------------------------------------------------ 5 */}
-      <Section id="check" title={<T de="5. Überprüfe dein Verständnis" en="5. Check your understanding" />}>
+      <Section id="misconceptions" title={<T de="5. Häufiges Missverständnis und Ausblick" en="5. Common misconception and outlook" />}>
         <Box kind="misconception" title={<T de={<>«<M>{t`\v a\times\v b = \v b\times\v a`}</M>»</>} en={<>“<M>{t`\v a\times\v b = \v b\times\v a`}</M>”</>} />}>
           <T de={<>Falsch: Vertauschen dreht die Richtung um, <M p=".">{t`\v b\times\v a = -\,\v a\times\v b`}</M> Beim Skalarprodukt dagegen ist die Reihenfolge egal.</>}
             en={<>Wrong: swapping reverses the direction, <M p=".">{t`\v b\times\v a = -\,\v a\times\v b`}</M> For the dot product, by contrast, the order does not matter.</>} />
         </Box>
-        <Predict
-          prompt={<T de={<>Was ist <M p="?">{t`\v a\times\v a`}</M></>} en={<>What is <M p="?">{t`\v a\times\v a`}</M></>} />}
-          answer={<T de={<>Der Nullvektor <M p=":">{t`\v 0`}</M> <M p=",">{t`\varphi = 0`}</M> das «Parallelogramm» ist zu einer Strecke zusammengefallen, Fläche <M p=".">{t`|\v a|^2\sin 0 = 0`}</M> Im Bild: Schieberegler auf <M p=".">{t`0^\circ`}</M></>}
-            en={<>The zero vector <M p=":">{t`\v 0`}</M> <M p=",">{t`\varphi = 0`}</M> the “parallelogram” has collapsed to a segment, area <M p=".">{t`|\v a|^2\sin 0 = 0`}</M> In the figure: slider to <M p=".">{t`0^\circ`}</M></>} />}
-        />
-        <Choice
-          question={<T de={<>Für zwei Vektoren gilt <M p=".">{t`\v a\cdot\v b < 0`}</M> Was folgt?</>} en={<>Two vectors have <M p=".">{t`\v a\cdot\v b < 0`}</M> What follows?</>} />}
-          choices={[
-            { text: <T de={<>Der Winkel zwischen ihnen ist grösser als <M p=".">{t`90^\circ`}</M></>} en={<>The angle between them is larger than <M p=".">{t`90^\circ`}</M></>} />, correct: true,
-              why: <T de={<>Längen sind positiv, also muss <M>{t`\cos\varphi < 0`}</M> sein: <M p=".">{t`90^\circ < \varphi \le 180^\circ`}</M> Der Schatten zeigt nach hinten.</>} en={<>Lengths are positive, so <M p=":">{t`\cos\varphi < 0`}</M> <M p=".">{t`90^\circ < \varphi \le 180^\circ`}</M> The shadow points backwards.</>} /> },
-            { text: <T de="Einer der Vektoren ist kürzer als null." en="One of the vectors is shorter than zero." />,
-              why: <T de={<>Längen <M>{t`|\v a|`}</M> sind nie negativ. Das Vorzeichen kommt allein vom <M p=".">\cos</M></>} en={<>Lengths <M>{t`|\v a|`}</M> are never negative. The sign comes from the <M>\cos</M> alone.</>} /> },
-            { text: <T de="Die Vektoren stehen senkrecht aufeinander." en="The vectors are perpendicular." />,
-              why: <T de={<>Senkrecht hiesse <M p=".">{t`\v a\cdot\v b = 0`}</M></>} en={<>Perpendicular would mean <M p=".">{t`\v a\cdot\v b = 0`}</M></>} /> },
-          ]}
-        />
-        <Choice
-          question={<T de={<>Was ist <M p="?">{t`\v e_z\times\v e_y`}</M></>} en={<>What is <M p="?">{t`\v e_z\times\v e_y`}</M></>} />}
-          choices={[
-            { text: <M>{t`\v e_x`}</M>, why: <T de={<>Das wäre <M>{t`\v e_y\times\v e_z`}</M> (im Kreis). Hier ist die Reihenfolge umgekehrt.</>} en={<>That would be <M>{t`\v e_y\times\v e_z`}</M> (along the cycle). Here the order is reversed.</>} /> },
-            { text: <M>{t`-\v e_x`}</M>, correct: true, why: <T de={<><M>{t`z\to y`}</M> läuft gegen den Kreis <M p=",">{t`x\to y\to z\to x`}</M> also Minus: <M p=".">{t`\v e_z\times\v e_y = -\,\v e_y\times\v e_z = -\v e_x`}</M></>} en={<><M>{t`z\to y`}</M> runs against the cycle <M p=",">{t`x\to y\to z\to x`}</M> so minus: <M p=".">{t`\v e_z\times\v e_y = -\,\v e_y\times\v e_z = -\v e_x`}</M></>} /> },
-            { text: <M>{t`\v 0`}</M>, why: <T de={<>Nur parallele Vektoren geben <M p=".">{t`\v 0`}</M> <M>{t`\v e_z`}</M> und <M>{t`\v e_y`}</M> stehen senkrecht, die Fläche ist 1.</>} en={<>Only parallel vectors give <M p=".">{t`\v 0`}</M> <M>{t`\v e_z`}</M> and <M>{t`\v e_y`}</M> are perpendicular; the area is 1.</>} /> },
-          ]}
-        />
-        <NumericAnswer
-          question={<T de={<><M p=",">{t`|\v a| = 2`}</M> <M p=",">{t`|\v b| = 3`}</M> Winkel <M p=".">{t`30^\circ`}</M> Wie lang ist <M p="?">{t`\v a\times\v b`}</M></>} en={<><M p=",">{t`|\v a| = 2`}</M> <M p=",">{t`|\v b| = 3`}</M> angle <M p=".">{t`30^\circ`}</M> How long is <M p="?">{t`\v a\times\v b`}</M></>} />}
-          value={3}
-          explain={<T de={<><M p=".">{t`|\v a\times\v b| = 2\cdot3\cdot\sin30^\circ = 6\cdot\tfrac12 = 3`}</M></>} en={<><M p=".">{t`|\v a\times\v b| = 2\cdot3\cdot\sin30^\circ = 6\cdot\tfrac12 = 3`}</M></>} />}
-        />
-        <NumericAnswer
-          question={<T de={<>Berechne <M p=".">{t`(1,2,0)\cdot(3,-1,4)`}</M></>} en={<>Compute <M p=".">{t`(1,2,0)\cdot(3,-1,4)`}</M></>} />}
-          value={1}
-          explain={<T de={<><M p=".">{t`1\cdot3 + 2\cdot(-1) + 0\cdot4 = 1`}</M> Positiv, also ist der Winkel kleiner als <M p=".">{t`90^\circ`}</M></>} en={<><M p=".">{t`1\cdot3 + 2\cdot(-1) + 0\cdot4 = 1`}</M> Positive, so the angle is less than <M p=".">{t`90^\circ`}</M></>} />}
-        />
         <T
           de={<p className="connections"><b>Wozu?</b> Das Skalarprodukt steckt im Satz der projizierten Geschwindigkeiten (<Src p={12} />: <M p=").">{t`\v v_A\cdot\v{AB} = \v v_B\cdot\v{AB}`}</M> Das Kreuzprodukt in der Kreisbewegung und Rotation (<Src p={11} />: <M p=").">{t`\v v = \v\omega\times\v r`}</M></p>}
           en={<p className="connections"><b>What for?</b> The dot product appears in the theorem of projected velocities (<Src p={12} />: <M p=").">{t`\v v_A\cdot\v{AB} = \v v_B\cdot\v{AB}`}</M> The cross product in circular motion and rotation (<Src p={11} />: <M p=").">{t`\v v = \v\omega\times\v r`}</M></p>}

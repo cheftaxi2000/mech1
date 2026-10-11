@@ -37,7 +37,7 @@ Adapt to the topic; never pad. **Visualisation first** (CLAUDE.md): every concep
 6. **Interactive figure** — must show the *same* situation as the equations.
 7. **Worked example** — lecture's own first; supplements labelled.
 8. **Misconceptions.**
-9. **Active checks** — predict-then-reveal, multiple choice with per-option explanations, numeric answers.
+9. **No questions in the chapter** (D-015) — question ideas go to `docs/QUIZ_BANK.md` for the final quiz part.
 10. **Connections** — backward and forward, with page refs.
 
 ## Architecture

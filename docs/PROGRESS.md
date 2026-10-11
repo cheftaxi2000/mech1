@@ -7,7 +7,7 @@
 4. Explanation coherent: intuition → meaning → derivation → example → misconceptions → checks → connections.
 5. Essential visualisation works and was visually inspected (screenshot), showing the same situation as the equations.
 6. All math renders (e2e: no `.tex-error`, no console errors).
-7. Active checks are meaningful (every wrong option explained).
+7. Question ideas for the final quiz part recorded in `docs/QUIZ_BANK.md` (no questions in the chapter itself, D-015).
 8. Implementation tested (`npm run check` green).
 9. Documented here and in `SESSION_LOG.md`.
 10. Complete in **both languages** (German and English), passing the e2e language-leak test.
@@ -20,9 +20,9 @@
 
 | Topic | Pages | Status | Notes |
 |---|---|---|---|
-| koordinaten | 3–4 | **review** | Checklist 1–12 ✅ (DE + EN). Feedback rounds 1–3 applied: both derivations animated, motion demo, professor review fixes; round 3: R-001 boxes and section figures removed (D-012, D-013), explorer fullscreen. **Awaiting the student's sign-off to mark complete.** |
-| vektoren | 5 | **review** | Short lesson (student's wish): Ortsvektor figure with motion and Cartesian components, scalar product as projection (drag demo), cross product 3D (parallelogram area, swap order), Rechtssystem cycle, component formulas as supplement; 15 tests in `vec.test.ts`; DE + EN; frames inspected (iPad, phone, dark). **Awaiting sign-off.** |
-| basen | 5–7 | planned | |
+| koordinaten | 3–4 | **complete** | Signed off by the student 2026-10-11. Quizzes moved to the quiz bank (D-015). |
+| vektoren | 5 | **complete** | Signed off by the student 2026-10-11. Quizzes moved to the quiz bank (D-015). |
+| basen | 6–7 | **review** | Pure explanation (D-015): components (1), the tangent rule, cylindrical basis with a 4-step 3D animation (`cylBasisFrame.ts`, 6 frame tests), e_ρ/e_φ preview (p. 10), spherical basis + components (supplement), explorer with the local basis (`basis` prop), 2 misconception boxes; `bases.test.ts` (8 tests). Frames inspected iPad + phone. **Awaiting sign-off.** |
 | geschwindigkeit | 8–9 | planned | p. 9 now available and transcribed; its claims verified (R-013, R-014) |
 | v-krummlinig | 10 | planned | formulas already verified in tests |
 | kreisbewegung | 11 | planned | ω × r verified |

@@ -1,7 +1,9 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Scene } from './Scene';
+import { FullscreenButton, useFullscreen } from './useFullscreen';
 import { Arrow, Axes, C, Curve, Dashed, Dot, Label } from './primitives';
-import { cartToCyl, cartToSph, cylToCart, sphToCart } from '../physics/coords';
+import { cartToCyl, cartToSph, cylToCart, eR, ePhi, ePsi, eRho, eTheta, sphToCart } from '../physics/coords';
+import { add } from '../physics/vec';
 import type { Vec3 } from '../physics/vec';
 import { M } from '../components/Tex';
 import { fmtNum, tupleSep, useLang, useTr } from '../i18n';
@@ -45,57 +47,15 @@ function toCart(mode: Mode, s: Record<string, number>): Vec3 {
  * Interactive version of lecture Figs. 1.4/1.7 (Cartesian), 1.8/1.10 (cylindrical), 1.12 (spherical):
  * the point M, its construction lines, and the three coordinate lines through M.
  */
-type FsEl = HTMLElement & { webkitRequestFullscreen?: () => Promise<void> | void };
-type FsDoc = Document & { webkitFullscreenElement?: Element | null; webkitExitFullscreen?: () => Promise<void> | void };
-
-/**
- * Fullscreen for a figure ("wie bei Netflix"): the browser's Fullscreen API where it is allowed, otherwise
- * (iPhone Safari, an iframe without allowfullscreen) a fixed overlay that covers the whole viewport.
- * Esc leaves both.
- */
-function useFullscreen() {
-  const ref = useRef<HTMLElement>(null);
-  const [full, setFull] = useState(false);
-  const native = useRef(false);
-  useEffect(() => {
-    const d = document as FsDoc;
-    const on = () => {
-      const isNative = (d.fullscreenElement ?? d.webkitFullscreenElement) === ref.current && !!ref.current;
-      if (native.current && !isNative) { native.current = false; setFull(false); }
-    };
-    document.addEventListener('fullscreenchange', on);
-    document.addEventListener('webkitfullscreenchange', on);
-    return () => { document.removeEventListener('fullscreenchange', on); document.removeEventListener('webkitfullscreenchange', on); };
-  }, []);
-  useEffect(() => {
-    if (!full || native.current) return;
-    const key = (e: KeyboardEvent) => { if (e.key === 'Escape') setFull(false); };
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    window.addEventListener('keydown', key);
-    return () => { document.body.style.overflow = prev; window.removeEventListener('keydown', key); };
-  }, [full]);
-  const toggle = useCallback(async () => {
-    const d = document as FsDoc, el = ref.current as FsEl | null;
-    if (full) {
-      setFull(false);
-      if (native.current) { native.current = false; try { await (d.exitFullscreen?.() ?? d.webkitExitFullscreen?.()); } catch { /* already left */ } }
-      return;
-    }
-    setFull(true);
-    const req = el?.requestFullscreen?.bind(el) ?? el?.webkitRequestFullscreen?.bind(el);
-    if (req && (document.fullscreenEnabled ?? true)) {
-      try { await req(); native.current = true; } catch { /* not allowed here: the CSS overlay stays */ }
-    }
-  }, [full]);
-  return [ref, full, toggle] as const;
-}
-
 /** Demo motion M(t) for "Bewegung abspielen": a helix, ρ = 1.4, φ = 0.8 t, z = −1.2 + 0.3 t, for 0 ≤ t ≤ 8 s. */
 export const MOTION_T = 8;
 export const motionAt = (t: number): Vec3 => cylToCart({ rho: 1.4, phi: 0.8 * t, z: -1.2 + 0.3 * t });
 
-export function CoordinateExplorer({ initialMode = 'cyl', height = 420 }: { initialMode?: Mode; height?: number }) {
+/**
+ * `basis`: also draw the local basis at M (lecture pp. 6–7): unit vectors tangent to the coordinate lines through M,
+ * each in the colour of its coordinate line; in Cartesian mode the same basis is drawn at O as well.
+ */
+export function CoordinateExplorer({ initialMode = 'cyl', height = 420, basis = false }: { initialMode?: Mode; height?: number; basis?: boolean }) {
   const lang = useLang(), tr = useTr();
   const [figRef, full, toggleFull] = useFullscreen();
   const f2 = (x: number) => fmtNum(x, 2, lang, true); // inside TeX
@@ -161,6 +121,11 @@ export function CoordinateExplorer({ initialMode = 'cyl', height = 420 }: { init
   }, [mode, lang, p[0], p[1], p[2]]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const azimuth = mode === 'sph' ? sph.psi : cyl.phi;
+  // Local basis at M: [vector, colour, label, subscript]
+  const E: [Vec3, string, string][] = !basis ? [] : mode === 'cart'
+    ? [[[1, 0, 0], C.x, 'x'], [[0, 1, 0], C.y, 'y'], [[0, 0, 1], C.z, 'z']]
+    : mode === 'cyl' ? (noPhi ? [] : [[eRho(cyl.phi), C.rho, 'ρ'], [ePhi(cyl.phi), C.angle, 'φ'], [[0, 0, 1], C.z, 'z']])
+      : (noPhi ? [] : [[eR(sph.theta, sph.psi), C.r, 'r'], [eTheta(sph.theta, sph.psi), C.angle, 'θ'], [ePsi(sph.psi), C.angle2, 'ψ']]);
   const arcR = 0.45;
 
   return (
@@ -177,7 +142,7 @@ export function CoordinateExplorer({ initialMode = 'cyl', height = 420 }: { init
         {trail.length > 1 && <Curve f={(u) => trail[Math.min(trail.length - 1, Math.round(u))]} t0={0} t1={trail.length - 1} n={trail.length - 1} color={C.path} width={2} />}
         <Axes />
         <Dot at={p} />
-        <Label at={[p[0], p[1], p[2] + 0.18]} color={C.point}>M</Label>
+        <Label at={basis ? [p[0] - 0.12, p[1] - 0.12, p[2] - 0.24] : [p[0], p[1], p[2] + 0.18]} color={C.point}>M</Label>
         {/* Construction: projection M_xy and its links */}
         <Dashed pts={[p, Mxy]} />
         <Dashed pts={[[0, 0, 0], Mxy]} />
@@ -186,7 +151,14 @@ export function CoordinateExplorer({ initialMode = 'cyl', height = 420 }: { init
         {mode === 'cart' && (<>
           <Dashed pts={[Mxy, [p[0], 0, 0]]} /><Dashed pts={[Mxy, [0, p[1], 0]]} />
         </>)}
-        {mode === 'sph' && <Arrow to={p} color={C.r} width={1.5} />}
+        {(mode === 'sph' || basis) && <Arrow to={p} color={C.r} width={1.5} />}
+        {E.map(([e, c, sub]) => (
+          <group key={sub}>
+            <Arrow from={p} to={add(p, e)} color={c} width={4} />
+            <Label at={add(p, [e[0] * 1.22, e[1] * 1.22, e[2] * 1.22 + 0.04])} color={c} vec sub={sub}>e</Label>
+            {mode === 'cart' && <><Arrow to={e} color={c} width={4} /><Label at={[e[0] * 1.2 - 0.1 * e[2], e[1] * 1.2 - 0.1 * e[2], e[2] * 1.15]} color={c} vec sub={sub}>e</Label></>}
+          </group>
+        ))}
         {mode !== 'cart' && cyl.rho > 0.05 && (
           <>
             <Curve f={(t) => [arcR * Math.cos(t), arcR * Math.sin(t), 0]} t0={0} t1={azimuth} color={mode === 'sph' ? C.angle2 : C.angle} width={2} />
@@ -201,11 +173,7 @@ export function CoordinateExplorer({ initialMode = 'cyl', height = 420 }: { init
         )}
         {showLines && lines.map((l, i) => <Curve key={i} f={l.f} t0={l.t0} t1={l.t1} color={l.c} />)}
       </Scene>
-      <button type="button" className="fs-btn" onClick={toggleFull} aria-label={full ? tr('Vollbild beenden', 'Exit fullscreen') : tr('Vollbild', 'Fullscreen')} title={full ? tr('Vollbild beenden (Esc)', 'Exit fullscreen (Esc)') : tr('Vollbild', 'Fullscreen')}>
-        <svg viewBox="0 0 24 24" aria-hidden="true">{full
-          ? <path d="M9 3v6H3M15 3v6h6M9 21v-6H3M15 21v-6h6" />
-          : <path d="M3 9V3h6M21 9V3h-6M3 15v6h6M21 15v6h-6" />}</svg>
-      </button>
+      <FullscreenButton full={full} onClick={toggleFull} />
       </div>
       <div className="side">
       <div className="controls">
@@ -224,6 +192,11 @@ export function CoordinateExplorer({ initialMode = 'cyl', height = 420 }: { init
           {(motionT !== null || trail.length > 1) && <span className="motion-note">{tr(<>Bahnkurve von <M p=":">M</M> die drei Koordinaten ändern sich mit der Zeit <M p=".">t</M></>, <>Trajectory of <M p=":">M</M> all three coordinates change with time <M p=".">t</M></>)}</span>}
         </div>
         <label className="toggle"><input type="checkbox" checked={showLines} onChange={(e) => setShowLines(e.target.checked)} /> {tr(<>Koordinatenlinien durch <M>M</M></>, <>coordinate lines through <M>M</M></>)}</label>
+        {basis && E.length > 0 && (
+          <ul className="legend">
+            {E.map(([, c, sub]) => <li key={sub}><span className="swatch" style={{ background: c }} /><M>{`\\underline{e}_{${{ 'ρ': '\\rho', 'φ': '\\varphi', 'θ': '\\theta', 'ψ': '\\psi' }[sub] ?? sub}}`}</M>&nbsp;{tr('tangential an die', 'tangent to the')} <M>{{ 'ρ': '\\rho', 'φ': '\\varphi', 'θ': '\\theta', 'ψ': '\\psi' }[sub] ?? sub}</M>-{tr('Linie', 'line')}</li>)}
+          </ul>
+        )}
         {showLines && (
           <ul className="legend">
             {lines.map((l, i) => <li key={i}><span className="swatch" style={{ background: l.c }} />{l.name}</li>)}

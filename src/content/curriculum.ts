@@ -27,9 +27,9 @@ export const CHAPTERS: Record<string, [string, string]> = {
 };
 
 export const TOPICS: Topic[] = [
-  { id: 'koordinaten', chapter: '1', title: ['Lage & Koordinaten', 'Position & coordinates'], pages: '3–4', status: 'review', component: lazy(() => import('../lessons/L01Coordinates')) },
-  { id: 'vektoren', chapter: '1', title: ['Vektoren, Skalar- & Kreuzprodukt', 'Vectors, dot and cross product'], pages: '5', status: 'review', component: lazy(() => import('../lessons/L02Vectors')) },
-  { id: 'basen', chapter: '1', title: ['Kartesische, zylindrische, sphärische Basis', 'Cartesian, cylindrical, spherical basis'], pages: '5–7', status: 'planned' },
+  { id: 'koordinaten', chapter: '1', title: ['Lage & Koordinaten', 'Position & coordinates'], pages: '3–4', status: 'complete', component: lazy(() => import('../lessons/L01Coordinates')) },
+  { id: 'vektoren', chapter: '1', title: ['Vektoren, Skalar- & Kreuzprodukt', 'Vectors, dot and cross product'], pages: '5', status: 'complete', component: lazy(() => import('../lessons/L02Vectors')) },
+  { id: 'basen', chapter: '1', title: ['Kartesische, zylindrische, sphärische Basis', 'Cartesian, cylindrical, spherical basis'], pages: '6–7', status: 'review', component: lazy(() => import('../lessons/L03Bases')) },
   { id: 'geschwindigkeit', chapter: '2', title: ['Geschwindigkeitsvektor & Schnelligkeit', 'Velocity vector and speed'], pages: '8–9', status: 'planned' },
   { id: 'v-krummlinig', chapter: '2', title: ['Geschwindigkeit in Zylinder-/Kugelkoordinaten', 'Velocity in cylindrical/spherical coordinates'], pages: '10', status: 'planned' },
   { id: 'kreisbewegung', chapter: '2', title: ['Kreisbewegung & Winkelgeschwindigkeit', 'Circular motion & angular velocity'], pages: '11', status: 'planned' },
