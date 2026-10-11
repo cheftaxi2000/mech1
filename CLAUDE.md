@@ -9,9 +9,11 @@ Correctness > clarity > visuals > speed.
 Visualising is the most important part of learning mechanics. Every lesson is judged first by its pictures.
 - **Every concept with a geometric or physical meaning gets a figure**: interactive (sliders, dragging) where the student can explore, animated where something moves or is constructed.
 - **Every derivation gets a step-synchronised animation** (`StepPlayer` + a pure scene in `src/viz/anim/`), one animation step per derivation step, each step's final frame showing exactly what its caption says.
-- **Source problems (review boxes) are explained with a picture first**, text second, and kept short; long details go into a collapsible `<details className="more">`.
+- **No red review boxes** (student's decision, D-012). A source problem is logged in `docs/REVIEW_LOG.md` and handled *inside* the lesson in one or two sentences where it matters (a caption, a misconception box, a quiz explanation). Long details go into a collapsible `<details className="more">`.
 - Figures follow the lecture's own drawings (orientation of axes, point names like `M_x`, `M_xy`, `M_z`) and one colour system everywhere: x blue, y amber, z green, ρ teal, r dark, angles purple, points red.
 - Keep explanations simple: short sentences, one idea per step, the picture does the heavy lifting.
+- **No duplicate figures.** One good interactive figure per idea beats several small ones (the student removed the per-section 3D figures in favour of the one explorer at the end). Large 3D figures get a fullscreen button (`useFullscreen` in `viz/CoordinateExplorer.tsx`).
+- Short topics stay short (e.g. p. 5 vectors): lecture box, one figure per concept, a few checks.
 - Before calling a lesson done, **look at the rendered frames yourself** (`test-results/screens/`, `REVIEW_FRAMES=1 …` → `test-results/frames/`) in light and dark mode, on iPad and phone width. Passing tests do not prove a figure is right.
 - When unsure whether something needs a visual: it does.
 
@@ -25,7 +27,7 @@ Visualising is the most important part of learning mechanics. Every lesson is ju
 
 - **Never invent what the lecturer said.** Everything labelled "From the lecture" must be traceable to a printed page (`<Src p={…} />`). Anything else goes in a `supplement` box.
 - **Keep the lecturer's notation.** Vectors underlined (`\v{r}` macro), cylindrical `(ρ, φ, z)`, spherical `(r, θ, ψ)` with **ψ = azimuth**, θ from +z. Full list: `docs/NOTATION.md`.
-- **Source problems get a review ID** (`R-xxx` in `docs/REVIEW_LOG.md`) and a `review` box in the lesson. Do not silently "fix" the source.
+- **Source problems get a review ID** (`R-xxx` in `docs/REVIEW_LOG.md`) and are mentioned briefly where they matter in the lesson — no separate `review` box (D-012). Do not silently "fix" the source.
 - **Every formula shown must be verified**: a test in `src/physics/*.test.ts` (numeric check of a closed form, or of a worked example), or a derivation shown step by step in the lesson. Numerical agreement is a check, not a proof — say so where it matters.
 - **A topic is "review" status only when the full checklist in `docs/PROGRESS.md` is satisfied.** It becomes "complete" only after the student signs off.
 - **Every mathematical symbol is typeset by KaTeX** — in headings, box titles, legends, quiz options, everywhere. Never type ρ, φ, θ, ψ, √, ², ⊥ … as plain text (a heading's φ would come out as a different glyph than the formula's \varphi). 3D sprite labels and SVG text use the KaTeX_Math font. The e2e test `plainTextMath` enforces this. (D-010)
@@ -50,7 +52,7 @@ E2E writes screenshots to `test-results/screens/` — **look at them** after cha
 ```
 src/physics/      vec, coords, kinematics, rigid  (+ *.test.ts — the numeric source of truth)
 src/components/   Tex (KaTeX + lecture macros), Blocks (Box/Src/Derivation/De/Section), Quiz
-src/viz/          Scene (z-up r3f canvas), primitives (Arrow/Label/Curve/...), interactive figures
+src/viz/          Scene (z-up r3f canvas), primitives (Arrow/Label/Curve/...), interactive figures (CoordinateExplorer, VectorFigures)
 src/lessons/      one file per topic, registered in src/content/curriculum.ts
 src/content/      curriculum registry, lint tests for lesson sources
 docs/             PLAN, PROGRESS, SOURCE_MAP, NOTATION, REVIEW_LOG, DECISIONS, SESSION_LOG

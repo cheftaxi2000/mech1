@@ -92,20 +92,7 @@ test('[review] explorer, phone layout, dark mode', async ({ page }) => {
   await page.screenshot({ path: 'test-results/frames/review-dark-ipad-step3.png' });
 });
 
-test('[review] R-001 boxes (arctan demo) on iPad and phone', async ({ page }) => {
-  await page.addInitScript(() => localStorage.setItem('mech1.lang', 'de'));
-  for (const [w, h, name] of [[1180, 820, 'ipad'], [390, 844, 'phone']] as const) {
-    await page.setViewportSize({ width: w, height: h });
-    await page.goto('/#koordinaten');
-    const boxes = page.locator('.box-review');
-    await boxes.first().scrollIntoViewIfNeeded();
-    await page.waitForTimeout(2500); // let the demo run a little
-    await boxes.first().screenshot({ path: `test-results/frames/review-r001-${name}.png` });
-    await boxes.nth(1).screenshot({ path: `test-results/frames/review-r001b-${name}.png` });
-  }
-});
-
-test('[review] explorer motion (trajectory) and section figures', async ({ page }) => {
+test('[review] explorer motion (trajectory) and fullscreen', async ({ page }) => {
   await page.addInitScript(() => localStorage.setItem('mech1.lang', 'de'));
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.setViewportSize({ width: 1180, height: 820 });
@@ -115,6 +102,23 @@ test('[review] explorer motion (trajectory) and section figures', async ({ page 
   await ex.getByRole('button', { name: 'Bewegung abspielen' }).click();
   await page.waitForTimeout(500);
   await ex.screenshot({ path: 'test-results/frames/review-motion.png' });
-  const inl = page.locator('.fig-inline');
-  for (let i = 0; i < 3; i++) { await inl.nth(i).scrollIntoViewIfNeeded(); await page.waitForTimeout(300); await inl.nth(i).screenshot({ path: `test-results/frames/review-inline-${i + 1}.png` }); }
+  await ex.getByRole('button', { name: 'Vollbild' }).click();
+  await page.waitForTimeout(500);
+  await page.screenshot({ path: 'test-results/frames/review-fullscreen.png' });
+});
+
+test('[review] vektoren figures on iPad and phone, light and dark', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('mech1.lang', 'de'));
+  for (const [w, h, name, scheme] of [[1180, 820, 'ipad', 'light'], [390, 844, 'phone', 'light'], [820, 1180, 'ipad-dark', 'dark']] as const) {
+    await page.emulateMedia({ colorScheme: scheme });
+    await page.setViewportSize({ width: w, height: h });
+    await page.goto('/#vektoren');
+    await page.locator('article.lesson h2').first().waitFor();
+    const figs = page.locator('article.lesson figure');
+    for (let i = 0; i < (await figs.count()); i++) {
+      await figs.nth(i).scrollIntoViewIfNeeded();
+      await page.waitForTimeout(400);
+      await figs.nth(i).screenshot({ path: `test-results/frames/vektoren-${name}-${i + 1}.png` });
+    }
+  }
 });

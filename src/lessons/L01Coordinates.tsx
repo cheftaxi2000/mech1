@@ -2,7 +2,6 @@ import { Box, De, Derivation, Section, Src } from '../components/Blocks';
 import { M, MD } from '../components/Tex';
 import { Choice, NumericAnswer, Predict } from '../components/Quiz';
 import { CoordinateExplorer } from '../viz/CoordinateExplorer';
-import { ArctanDemo } from '../viz/ArctanDemo';
 import { T, useTr } from '../i18n';
 import { StepPlayer } from '../viz/anim/StepPlayer';
 import { AnimFigure } from '../viz/anim/AnimFigure';
@@ -135,10 +134,6 @@ export default function L01Coordinates() {
             </p>
           </>}
         />
-        <div className="fig-inline">
-          <CoordinateExplorer initialMode="cart" lockMode height={320} />
-          <T de={<p className="fig-cap">Zum Drehen: Fig. 1.4 und 1.7 in 3D – Projektionen von <M>M</M> und die drei Koordinatenlinien (Geraden) durch <M p=".">M</M></p>} en={<p className="fig-cap">To rotate: Fig. 1.4 and 1.7 in 3D – projections of <M>M</M> and the three coordinate lines (straight) through <M p=".">M</M></p>} />
-        </div>
       </Section>
 
       {/* ------------------------------------------------------------------ 3 */}
@@ -183,8 +178,8 @@ export default function L01Coordinates() {
                 de={<>Im ersten Quadranten gilt: Ankathete <M p=",">{t`= \rho\cos\varphi = x`}</M> Gegenkathete <M p=".">{t`= \rho\sin\varphi = y`}</M> Allgemein ist <M>{t`(\cos\varphi, \sin\varphi)`}</M> der Punkt des Einheitskreises beim Winkel <M>\varphi</M> – mit Vorzeichen. <M>{t`M_{xy}`}</M> ist dieser Punkt, um den Faktor <M>\rho</M> gestreckt: <M p=".">{t`(x,y) = \rho\,(\cos\varphi, \sin\varphi)`}</M> Also gilt <M p=",">{t`x = \rho\cos\varphi`}</M> <M>{t`y = \rho\sin\varphi`}</M> in allen vier Quadranten – Vorzeichen und Längen. Die Animation lässt <M>\varphi</M> einmal herumlaufen.</>}
                 en={<>In the first quadrant: adjacent side <M p=",">{t`= \rho\cos\varphi = x`}</M> opposite side <M p=".">{t`= \rho\sin\varphi = y`}</M> In general, <M>{t`(\cos\varphi, \sin\varphi)`}</M> is the point of the unit circle at angle <M>\varphi</M> – with signs. <M>{t`M_{xy}`}</M> is that point stretched by the factor <M p=":">\rho</M> <M p=".">{t`(x,y) = \rho\,(\cos\varphi, \sin\varphi)`}</M> So <M p=",">{t`x = \rho\cos\varphi`}</M> <M>{t`y = \rho\sin\varphi`}</M> holds in all four quadrants – signs and lengths. The animation sweeps <M>\varphi</M> once around.</>} /> },
               { ms: 5500, holdMs: 2500, caption: <T
-                de={<>Umkehrung: Pythagoras liefert <M p=";">{t`\rho^2 = x^2+y^2`}</M> die Division der beiden Gleichungen (für <M p=")">{t`x \ne 0`}</M> liefert <M p=".">{t`\tan\varphi = y/x`}</M> Aber Achtung: <M>\varphi</M> und <M>{t`\varphi + 180^\circ`}</M> haben denselben Tangens – siehe R-001 gleich unten.</>}
-                en={<>Inverse: Pythagoras gives <M p=";">{t`\rho^2 = x^2+y^2`}</M> dividing the two equations (for <M p=")">{t`x \ne 0`}</M> gives <M p=".">{t`\tan\varphi = y/x`}</M> But careful: <M>\varphi</M> and <M>{t`\varphi + 180^\circ`}</M> have the same tangent – see R-001 right below.</>} /> },
+                de={<>Umkehrung: Pythagoras liefert <M p=";">{t`\rho^2 = x^2+y^2`}</M> die Division der beiden Gleichungen (für <M p=")">{t`x \ne 0`}</M> liefert <M p=".">{t`\tan\varphi = y/x`}</M> Aber Achtung: <M>\varphi</M> und <M>{t`\varphi + 180^\circ`}</M> haben denselben Tangens. Für <M>{t`x < 0`}</M> muss man deshalb <M>{t`180^\circ`}</M> addieren.</>}
+                en={<>Inverse: Pythagoras gives <M p=";">{t`\rho^2 = x^2+y^2`}</M> dividing the two equations (for <M p=")">{t`x \ne 0`}</M> gives <M p=".">{t`\tan\varphi = y/x`}</M> But careful: <M>\varphi</M> and <M>{t`\varphi + 180^\circ`}</M> have the same tangent, so for <M>{t`x < 0`}</M> one has to add <M p=".">{t`180^\circ`}</M></>} /> },
               { ms: 8000, caption: <T
                 de={<><b>Plausibilitätskontrolle (Grenzfälle).</b> <M p=":">{t`\varphi = 0`}</M> <M p=",">{t`(x,y) = (\rho, 0)`}</M> auf der positiven <span className="nowrap"><M>x</M>-Achse</span>&nbsp;✓. <M p=":">{t`\varphi = \pi/2`}</M> <M p=",">{t`(x,y) = (0, \rho)`}</M> auf der positiven <span className="nowrap"><M>y</M>-Achse</span>&nbsp;✓.</>}
                 en={<><b>Sanity check (limiting cases).</b> <M p=":">{t`\varphi = 0`}</M> <M p=",">{t`(x,y) = (\rho, 0)`}</M> on the positive <span className="nowrap"><M>x</M>-axis</span>&nbsp;✓. <M p=":">{t`\varphi = \pi/2`}</M> <M p=",">{t`(x,y) = (0, \rho)`}</M> on the positive <span className="nowrap"><M>y</M>-axis</span>&nbsp;✓.</>} /> },
@@ -193,36 +188,6 @@ export default function L01Coordinates() {
             {(step, tt) => <AnimFigure build={cylScene} step={step} t={tt} />}
           </StepPlayer>
         </Derivation>
-        <Box kind="review" title={<T de={<>R-001 · <M>{t`\varphi = \arctan(y/x)`}</M> stimmt nur für <M>{t`x > 0`}</M></>} en={<>R-001 · <M>{t`\varphi = \arctan(y/x)`}</M> is only correct for <M>{t`x > 0`}</M></>} />}>
-          <div className="r001">
-            <ArctanDemo />
-            <div>
-              <T
-                de={<>
-                  <p>Der <M>\arctan</M> des Taschenrechners liefert nur Winkel zwischen <M>{t`-90^\circ`}</M> und <M p=":">{t`+90^\circ`}</M> Er «kennt» nur die rechte Halbebene.</p>
-                  <p>Ein Punkt <M>M</M> links der <span className="nowrap"><M>y</M>-Achse</span> und der gegenüberliegende Punkt <M>{t`(-x,-y)`}</M> haben dasselbe Verhältnis <M p=",">{t`y/x`}</M> der <M>\arctan</M> verwechselt sie.</p>
-                  <p><b>Regel:</b> Für <M>{t`x < 0`}</M> addiert man <M p=".">{t`180^\circ`}</M> Liegt <M>M</M> rechts unten <M p=",">{t`(x > 0,\ y < 0)`}</M> ist der <M>\arctan</M> negativ; dann addiert man <M p=",">{t`360^\circ`}</M> damit <M>{t`0^\circ \le \varphi < 360^\circ`}</M> gilt.</p>
-                </>}
-                en={<>
-                  <p>The calculator's <M>\arctan</M> only returns angles between <M>{t`-90^\circ`}</M> and <M p=":">{t`+90^\circ`}</M> it only “knows” the right half-plane.</p>
-                  <p>A point <M>M</M> left of the <span className="nowrap"><M>y</M>-axis</span> and the opposite point <M>{t`(-x,-y)`}</M> have the same ratio <M p=",">{t`y/x`}</M> so <M>\arctan</M> mixes them up.</p>
-                  <p><b>Rule:</b> for <M>{t`x < 0`}</M> add <M p=".">{t`180^\circ`}</M> If <M>M</M> is in the lower right <M p=",">{t`(x > 0,\ y < 0)`}</M> <M>\arctan</M> is negative; then add <M p=",">{t`360^\circ`}</M> so that <M>{t`0^\circ \le \varphi < 360^\circ`}</M> holds.</p>
-                </>}
-              />
-            </div>
-          </div>
-          <details className="more">
-            <summary><T de="Ganz genau: Fallunterscheidung (atan2)" en="In full: all cases (atan2)" /></summary>
-            <T
-              de={<MD>{t`\varphi = \begin{cases} \arctan(y/x) & x>0 \\ \arctan(y/x) + 180^\circ & x<0 \\ 90^\circ & x = 0,\ y>0 \\ 270^\circ & x=0,\ y<0 \end{cases}\qquad(\text{danach auf } [0^\circ,360^\circ) \text{ reduzieren})`}</MD>}
-              en={<MD>{t`\varphi = \begin{cases} \arctan(y/x) & x>0 \\ \arctan(y/x) + 180^\circ & x<0 \\ 90^\circ & x = 0,\ y>0 \\ 270^\circ & x=0,\ y<0 \end{cases}\qquad(\text{then reduce to } [0^\circ,360^\circ))`}</MD>}
-            />
-            <T
-              de={<p>Die Formel im Skript ist die übliche Kurzschreibweise, bei der «den richtigen Quadranten wählen» stillschweigend vorausgesetzt wird. Programmiersprachen haben dafür <code>atan2(y, x)</code>.</p>}
-              en={<p>The formula in the notes is the usual shorthand, with “choose the correct quadrant” left implicit. Programming languages provide <code>atan2(y, x)</code> for this.</p>}
-            />
-          </details>
-        </Box>
         <Box kind="supplement" title={<T de={<>Wertebereiche und der Sonderfall auf der <span className="nowrap"><M>z</M>-Achse</span></>} en={<>Ranges and the special case on the <span className="nowrap"><M>z</M>-axis</span></>} />}>
           <T
             de={<>
@@ -256,10 +221,6 @@ export default function L01Coordinates() {
             <p>Name check: the <em>surface</em> <M>{t`\rho = \text{const}`}</M> is a cylinder around the <span className="nowrap"><M>z</M>-axis</span>. That is where the name comes from.</p>
           </>}
         />
-        <div className="fig-inline">
-          <CoordinateExplorer initialMode="cyl" lockMode height={320} />
-          <T de={<p className="fig-cap">Zum Drehen: Fig. 1.8 und 1.10 in 3D – <M p=",">\rho</M> <M p=",">\varphi</M> <M>z</M> und ihre Koordinatenlinien: Strahl, Kreis, Senkrechte.</p>} en={<p className="fig-cap">To rotate: Fig. 1.8 and 1.10 in 3D – <M p=",">\rho</M> <M p=",">\varphi</M> <M>z</M> and their coordinate lines: ray, circle, vertical.</p>} />
-        </div>
       </Section>
 
       {/* ------------------------------------------------------------------ 4 */}
@@ -315,19 +276,13 @@ export default function L01Coordinates() {
                 de={<>Konsistenzkontrolle: <M p="✓.">{t`x^2+y^2+z^2 = r^2\sin^2\theta(\cos^2\psi+\sin^2\psi) + r^2\cos^2\theta = r^2`}</M> Geometrisch ist das zweimal Pythagoras: im Boden <M p=",">{t`\rho^2 = x^2+y^2`}</M> im senkrechten Dreieck <M p=".">{t`r^2 = \rho^2 + z^2`}</M></>}
                 en={<>Consistency check: <M p="✓.">{t`x^2+y^2+z^2 = r^2\sin^2\theta(\cos^2\psi+\sin^2\psi) + r^2\cos^2\theta = r^2`}</M> Geometrically this is Pythagoras twice: in the floor <M p=",">{t`\rho^2 = x^2+y^2`}</M> in the vertical triangle <M p=".">{t`r^2 = \rho^2 + z^2`}</M></>} /> },
               { ms: 4500, caption: <T
-                de={<>Umkehrung: <M>{t`r = \sqrt{x^2+y^2+z^2}`}</M> (Schritt 4), <M>\psi</M> wie <M>\varphi</M> aus <M>x</M> und <M p=",">y</M> und aus Schritt 2 <M p=".">{t`\tan\theta = \rho/z = \sqrt{x^2+y^2}/z`}</M> Vorsicht bei <M>{t`z < 0`}</M> – siehe R-001 unten.</>}
-                en={<>Inverse: <M>{t`r = \sqrt{x^2+y^2+z^2}`}</M> (step 4), <M>\psi</M> like <M>\varphi</M> from <M>x</M> and <M p=",">y</M> and from step 2 <M p=".">{t`\tan\theta = \rho/z = \sqrt{x^2+y^2}/z`}</M> Careful for <M>{t`z < 0`}</M> – see R-001 below.</>} /> },
+                de={<>Umkehrung: <M>{t`r = \sqrt{x^2+y^2+z^2}`}</M> (Schritt 4), <M>\psi</M> wie <M>\varphi</M> aus <M>x</M> und <M p=",">y</M> und aus Schritt 2 <M p=".">{t`\tan\theta = \rho/z = \sqrt{x^2+y^2}/z`}</M> Für <M>{t`z < 0`}</M> ist der <M>\arctan</M> falsch; sicher ist <M p=".">{t`\theta = \arccos(z/r)`}</M></>}
+                en={<>Inverse: <M>{t`r = \sqrt{x^2+y^2+z^2}`}</M> (step 4), <M>\psi</M> like <M>\varphi</M> from <M>x</M> and <M p=",">y</M> and from step 2 <M p=".">{t`\tan\theta = \rho/z = \sqrt{x^2+y^2}/z`}</M> For <M>{t`z < 0`}</M> the <M>\arctan</M> is wrong; always safe is <M p=".">{t`\theta = \arccos(z/r)`}</M></>} /> },
             ]}
           >
             {(step, tt) => <AnimFigure build={sphScene} step={step} t={tt} />}
           </StepPlayer>
         </Derivation>
-        <Box kind="review" title={<T de={<>R-001 · dasselbe bei <M>\theta</M> und <M>\psi</M></>} en={<>R-001 · the same for <M>\theta</M> and <M>\psi</M></>} />}>
-          <T
-            de={<p><M>{t`\theta = \arctan\big(\sqrt{x^2+y^2}/z\big)`}</M> stimmt nur oberhalb der <span className="nowrap"><M>xy</M>-Ebene</span> <M p=".">{t`(z > 0)`}</M> Immer richtig ist <M p=",">{t`\theta = \arccos(z/r)`}</M> denn <M>\arccos</M> liefert genau die Winkel von <M>{t`0^\circ`}</M> bis <M p=".">{t`180^\circ`}</M> (In der Animation oben: für <M>{t`\theta > 90^\circ`}</M> wird <M>z</M> negativ.) Für <M>{t`\psi = \arctan(y/x)`}</M> gilt die Regel der Box oben, genau wie für <M p=".">\varphi</M></p>}
-            en={<p><M>{t`\theta = \arctan\big(\sqrt{x^2+y^2}/z\big)`}</M> is only correct above the <span className="nowrap"><M>xy</M>-plane</span> <M p=".">{t`(z > 0)`}</M> Always correct is <M p=",">{t`\theta = \arccos(z/r)`}</M> because <M>\arccos</M> returns exactly the angles from <M>{t`0^\circ`}</M> to <M p=".">{t`180^\circ`}</M> (In the animation above: for <M p=",">{t`\theta > 90^\circ`}</M> <M>z</M> becomes negative.) For <M>{t`\psi = \arctan(y/x)`}</M> the rule of the box above applies, exactly as for <M p=".">\varphi</M></p>}
-          />
-        </Box>
         <T
           de={<>
             <h3>Koordinatenlinien</h3>
@@ -346,10 +301,6 @@ export default function L01Coordinates() {
             </ul>
           </>}
         />
-        <div className="fig-inline">
-          <CoordinateExplorer initialMode="sph" lockMode height={320} />
-          <T de={<p className="fig-cap">Zum Drehen: Fig. 1.12 in 3D – <M p=",">r</M> <M p=",">\theta</M> <M>\psi</M> und ihre Koordinatenlinien: Strahl, Meridian, Breitenkreis.</p>} en={<p className="fig-cap">To rotate: Fig. 1.12 in 3D – <M p=",">r</M> <M p=",">\theta</M> <M>\psi</M> and their coordinate lines: ray, meridian, circle of latitude.</p>} />
-        </div>
         <Box kind="supplement" title={<T de="Analogie zur Geografie" en="Geography analogy" />}>
           <T
             de={<>
@@ -464,7 +415,7 @@ export default function L01Coordinates() {
           />
         </Box>
         <Box kind="misconception" title={<T de={<>«<M>{t`\arctan(y/x)`}</M> liefert immer <M p=".">\varphi</M>»</>} en={<>“<M>{t`\arctan(y/x)`}</M> always gives <M p=".">\varphi</M>”</>} />}>
-          <T de={<>Nur für <M>{t`x>0`}</M> (R-001). Prüfe immer den Quadranten.</>} en={<>Only for <M>{t`x>0`}</M> (R-001). Always check the quadrant.</>} />
+          <T de={<>Nur für <M p=".">{t`x>0`}</M> Für <M>{t`x<0`}</M> addiert man <M p=".">{t`180^\circ`}</M> Prüfe immer den Quadranten.</>} en={<>Only for <M p=".">{t`x>0`}</M> For <M>{t`x<0`}</M> add <M p=".">{t`180^\circ`}</M> Always check the quadrant.</>} />
         </Box>
       </Section>
 
@@ -516,8 +467,8 @@ export default function L01Coordinates() {
           question={<T de={<>Berechne <M>\theta</M> (in Grad) für <M p=".">{t`(x,y,z) = (1,1,-\sqrt2)`}</M></>} en={<>Compute <M>\theta</M> (in degrees) for <M p=".">{t`(x,y,z) = (1,1,-\sqrt2)`}</M></>} />}
           value={135} unit="°" tol={0.005}
           explain={<T
-            de={<><M p=",">{t`r = 2`}</M> <M p=",">{t`\cos\theta = z/r = -\sqrt2/2`}</M> also <M p=".">{t`\theta = 135^\circ`}</M> Das naive <M>{t`\arctan(\sqrt2/(-\sqrt2)) = -45^\circ`}</M> ist falsch (R-001).</>}
-            en={<><M p=",">{t`r = 2`}</M> <M p=",">{t`\cos\theta = z/r = -\sqrt2/2`}</M> so <M p=".">{t`\theta = 135^\circ`}</M> The naive <M>{t`\arctan(\sqrt2/(-\sqrt2)) = -45^\circ`}</M> is wrong (R-001).</>} />}
+            de={<><M p=",">{t`r = 2`}</M> <M p=",">{t`\cos\theta = z/r = -\sqrt2/2`}</M> also <M p=".">{t`\theta = 135^\circ`}</M> Das naive <M>{t`\arctan(\sqrt2/(-\sqrt2)) = -45^\circ`}</M> ist falsch.</>}
+            en={<><M p=",">{t`r = 2`}</M> <M p=",">{t`\cos\theta = z/r = -\sqrt2/2`}</M> so <M p=".">{t`\theta = 135^\circ`}</M> The naive <M>{t`\arctan(\sqrt2/(-\sqrt2)) = -45^\circ`}</M> is wrong.</>} />}
         />
         <Predict
           prompt={<T

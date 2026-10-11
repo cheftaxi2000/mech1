@@ -28,7 +28,7 @@ The user prompt mentions ~150 pages; this PDF is the first 23. More material wil
 Recommended pace: one topic per study session, with the student working through the checks before moving on.
 
 ## Lesson anatomy
-Adapt to the topic; never pad. **Visualisation first** (CLAUDE.md): every concept gets a figure, every derivation an animation, every review box a picture.
+Adapt to the topic; never pad. **Visualisation first** (CLAUDE.md): every concept gets a figure, every derivation an animation; no red review boxes (D-012), source problems are mentioned briefly where they matter.
 1. **Orientation** — what the lecturer is doing here and why.
 2. **From the lecture** boxes, each with `<Src p=…/>`, in the lecture's notation.
 3. **Intuition / mental model.**

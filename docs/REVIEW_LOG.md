@@ -1,11 +1,11 @@
 # Review log — issues found in the source material
 
-Every issue has an ID. Lessons reference it in a `review` box. Status: **open** (needs the student / official solution), **handled** (lesson explains it; no input needed), **closed**.
+Every issue has an ID. Lessons mention it briefly where it matters (no separate review box, D-012). Status: **open** (needs the student / official solution), **handled** (lesson explains it; no input needed), **closed**.
 "Verified" means a test in `src/physics/*.test.ts` checks the claim.
 
 | ID | Page | Issue | Status |
 |---|---|---|---|
-| R-001 | 4 | Inverse formulas φ = arctan(y/x), ψ = arctan(y/x), θ = arctan(√(x²+y²)/z) are only valid for x > 0 (resp. z > 0); undefined for x = 0 (z = 0). Correct: atan2 / quadrant correction; θ = arccos(z/r). | handled in L01, verified (`coords.test.ts`) |
+| R-001 | 4 | Inverse formulas φ = arctan(y/x), ψ = arctan(y/x), θ = arctan(√(x²+y²)/z) are only valid for x > 0 (resp. z > 0); undefined for x = 0 (z = 0). Correct: atan2 / quadrant correction; θ = arccos(z/r). | handled in L01 (derivation captions, misconception box, quiz; the separate box was removed at the student's request, D-012), verified (`coords.test.ts`) |
 | R-002 | 1–2, 9 | Printed pages 1–2 and 9 were missing from the PDF. **p. 9 supplied 2026-10-10** (screenshot, transcribed in SOURCE_MAP). The student's GoodNotes file numbers printed p. 9 as page 11, so pages 1–2 exist there too — probably title page / contents. | p. 9 closed; pp. 1–2 **open** (low priority — ask whether they have content) |
 | R-003 | 17 | (a) Typo: in "φ̇_P(e̲_z×r̲_P)·r̲_Q = −φ̇_P(e̲_z×r̲_Q)·r̲_P", the middle term should carry **φ̇_Q**. (b) Gap: the final step divides by (e̲_z×r̲_P)·r̲_Q, which is 0 when P, Q and μ are coplanar; then compare both with a third point R off that plane. | handled when writing the Rotation lesson; (b) verified |
 | R-004 | 19 | Typed data says v̲_A = (v, 0, v); the handwritten solution uses v̲_A = (v, 0, −v). Both are valid rotation fields about E: handwritten → ω̲ = (v/a)(1,0,1), axis E→C (matches the red μ in the figure); typed → ω̲ = (v/a)(−1,2,1), axis does not pass through C. Most likely the typed "+v" is a typo. | **open** — confirm with official solution; both verified |
@@ -19,3 +19,4 @@ Every issue has an ID. Lessons reference it in a `review` box. Status: **open** 
 | R-012 | 21 | Kreiselung proof: concluding v̲_A = 0 from v̲_A ⊥ AM, AN, AO needs those three vectors to span space (O, A, M, N not coplanar), and v̲_M ∦ v̲_N so that E_M ∩ E_N is a line. Also: O ∈ E_M because |r̲_M| = const ⇒ v̲_M ⊥ r̲_M (written by hand, worth stating). | note for Kreiselung lesson |
 | R-013 | 9 | "Darstellung von r̲ = ṙ̲, d.h. v̲" — literally false (r̲ ≠ ṙ̲); the intended meaning is "Darstellung von v̲ = ṙ̲". | handled (typo; mention in lesson) |
 | R-014 | 9 | Derivation of v̲ = τ̲ṡ leaves three facts implicit: (a) "ṙ̲ ∥ Δr̲" and "Δr̲ ∥ τ̲" hold only in the limit (the chord's direction tends to the tangent) — for finite Δt, Δr̲ is a chord, not tangent; (b) dr̲/ds is a **unit** vector because |Δr̲|/Δs → 1 (chord/arc → 1 for a smooth curve) — this is what makes ṡ = \|v̲\|; (c) writing r̲(s(t)) needs s(t) invertible, i.e. ṡ > 0 (the point does not stop or reverse). | handled in lesson "geschwindigkeit"; (a), (b) verified (`kinematics.test.ts`) |
+| R-015 | 5 | "e̲₁ ⊥ e̲₂ ⊥ e̲₃" is a chain; orthonormal means *pairwise* perpendicular (also e̲₁ ⊥ e̲₃). The lecture states only \|c̲\| = \|a̲\|\|b̲\| sin φ and c̲ ⊥ a̲, b̲; which of the two perpendicular directions is fixed by the right-hand rule, consistent with e̲₁ × e̲₂ = e̲₃. | handled in L02 (one sentence each), verified (`vec.test.ts`) |

@@ -71,7 +71,7 @@ export function StepPlayer({ steps, children, label }: {
     const el = figRef.current;
     if (el && typeof el.getBoundingClientRect === 'function') {
       const b = el.getBoundingClientRect();
-      if (b.top < 0 || b.bottom > window.innerHeight) el.scrollIntoView({ block: 'nearest', behavior: reduced ? 'auto' : 'smooth' });
+      if (b.top < 52 || b.bottom > window.innerHeight) el.scrollIntoView({ block: 'nearest', behavior: reduced ? 'auto' : 'smooth' });
     }
     if (reduced) { startedRef.current = true; setPlaying(false); show(i, 1); return; }
     show(i, 0);

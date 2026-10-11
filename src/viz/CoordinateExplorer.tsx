@@ -45,12 +45,59 @@ function toCart(mode: Mode, s: Record<string, number>): Vec3 {
  * Interactive version of lecture Figs. 1.4/1.7 (Cartesian), 1.8/1.10 (cylindrical), 1.12 (spherical):
  * the point M, its construction lines, and the three coordinate lines through M.
  */
+type FsEl = HTMLElement & { webkitRequestFullscreen?: () => Promise<void> | void };
+type FsDoc = Document & { webkitFullscreenElement?: Element | null; webkitExitFullscreen?: () => Promise<void> | void };
+
+/**
+ * Fullscreen for a figure ("wie bei Netflix"): the browser's Fullscreen API where it is allowed, otherwise
+ * (iPhone Safari, an iframe without allowfullscreen) a fixed overlay that covers the whole viewport.
+ * Esc leaves both.
+ */
+function useFullscreen() {
+  const ref = useRef<HTMLElement>(null);
+  const [full, setFull] = useState(false);
+  const native = useRef(false);
+  useEffect(() => {
+    const d = document as FsDoc;
+    const on = () => {
+      const isNative = (d.fullscreenElement ?? d.webkitFullscreenElement) === ref.current && !!ref.current;
+      if (native.current && !isNative) { native.current = false; setFull(false); }
+    };
+    document.addEventListener('fullscreenchange', on);
+    document.addEventListener('webkitfullscreenchange', on);
+    return () => { document.removeEventListener('fullscreenchange', on); document.removeEventListener('webkitfullscreenchange', on); };
+  }, []);
+  useEffect(() => {
+    if (!full || native.current) return;
+    const key = (e: KeyboardEvent) => { if (e.key === 'Escape') setFull(false); };
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', key);
+    return () => { document.body.style.overflow = prev; window.removeEventListener('keydown', key); };
+  }, [full]);
+  const toggle = useCallback(async () => {
+    const d = document as FsDoc, el = ref.current as FsEl | null;
+    if (full) {
+      setFull(false);
+      if (native.current) { native.current = false; try { await (d.exitFullscreen?.() ?? d.webkitExitFullscreen?.()); } catch { /* already left */ } }
+      return;
+    }
+    setFull(true);
+    const req = el?.requestFullscreen?.bind(el) ?? el?.webkitRequestFullscreen?.bind(el);
+    if (req && (document.fullscreenEnabled ?? true)) {
+      try { await req(); native.current = true; } catch { /* not allowed here: the CSS overlay stays */ }
+    }
+  }, [full]);
+  return [ref, full, toggle] as const;
+}
+
 /** Demo motion M(t) for "Bewegung abspielen": a helix, ρ = 1.4, φ = 0.8 t, z = −1.2 + 0.3 t, for 0 ≤ t ≤ 8 s. */
 export const MOTION_T = 8;
 export const motionAt = (t: number): Vec3 => cylToCart({ rho: 1.4, phi: 0.8 * t, z: -1.2 + 0.3 * t });
 
-export function CoordinateExplorer({ initialMode = 'cyl', lockMode = false, height = 420 }: { initialMode?: Mode; lockMode?: boolean; height?: number }) {
+export function CoordinateExplorer({ initialMode = 'cyl', height = 420 }: { initialMode?: Mode; height?: number }) {
   const lang = useLang(), tr = useTr();
+  const [figRef, full, toggleFull] = useFullscreen();
   const f2 = (x: number) => fmtNum(x, 2, lang, true); // inside TeX
   const f2h = (x: number) => fmtNum(x, 2, lang); // plain HTML
   const sep = tupleSep(lang);
@@ -117,17 +164,16 @@ export function CoordinateExplorer({ initialMode = 'cyl', lockMode = false, heig
   const arcR = 0.45;
 
   return (
-    <figure className="explorer">
-      {!lockMode && (
-        <div className="tabs" role="tablist">
+    <figure className={`explorer${full ? ' is-full' : ''}`} ref={figRef}>
+      <div className="tabs" role="tablist">
           {(['cart', 'cyl', 'sph'] as Mode[]).map((m) => (
             <button key={m} role="tab" aria-selected={mode === m} className={mode === m ? 'active' : ''} onClick={() => switchMode(m)}>
               {{ cart: tr('Kartesisch', 'Cartesian'), cyl: tr('Zylindrisch', 'Cylindrical'), sph: tr('Sphärisch', 'Spherical') }[m]}
             </button>
           ))}
-        </div>
-      )}
-      <Scene height={height}>
+      </div>
+      <div className="stage">
+      <Scene height={full ? '100%' : height}>
         {trail.length > 1 && <Curve f={(u) => trail[Math.min(trail.length - 1, Math.round(u))]} t0={0} t1={trail.length - 1} n={trail.length - 1} color={C.path} width={2} />}
         <Axes />
         <Dot at={p} />
@@ -155,6 +201,13 @@ export function CoordinateExplorer({ initialMode = 'cyl', lockMode = false, heig
         )}
         {showLines && lines.map((l, i) => <Curve key={i} f={l.f} t0={l.t0} t1={l.t1} color={l.c} />)}
       </Scene>
+      <button type="button" className="fs-btn" onClick={toggleFull} aria-label={full ? tr('Vollbild beenden', 'Exit fullscreen') : tr('Vollbild', 'Fullscreen')} title={full ? tr('Vollbild beenden (Esc)', 'Exit fullscreen (Esc)') : tr('Vollbild', 'Fullscreen')}>
+        <svg viewBox="0 0 24 24" aria-hidden="true">{full
+          ? <path d="M9 3v6H3M15 3v6h6M9 21v-6H3M15 21v-6h6" />
+          : <path d="M3 9V3h6M21 9V3h-6M3 15v6h6M21 15v6h-6" />}</svg>
+      </button>
+      </div>
+      <div className="side">
       <div className="controls">
         {SLIDERS[mode].map((s) => (
           <label key={s.key} className="slider">
@@ -188,6 +241,7 @@ export function CoordinateExplorer({ initialMode = 'cyl', lockMode = false, heig
         {noTheta ? <p className="warn">{tr(<><M p=":">{'M = O'}</M> auch <M>\theta</M> ist hier nicht definiert (wie <M>\varphi</M> und <M p=").">\psi</M></>, <><M p=":">{'M = O'}</M> here <M>\theta</M> is undefined too (like <M>\varphi</M> and <M p=").">\psi</M></>)}</p> : null}
         {!noTheta && cyl.rho < 0.03 && <p className="warn">{tr(<><M>M</M> liegt auf der <M>z</M>-Achse: <M>\varphi</M> und <M>\psi</M> sind hier nicht definiert (jeder Winkel beschreibt denselben Punkt).</>, <><M>M</M> is on the <M>z</M>-axis: <M>\varphi</M> and <M>\psi</M> are undefined here (every angle describes the same point).</>)}</p>}
       </figcaption>
+      </div>
     </figure>
   );
 }

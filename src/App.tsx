@@ -31,16 +31,17 @@ function Home() {
             Ein interaktiver Begleiter zum Skript der ETH-Vorlesung Mechanik I. Jede Lektion folgt dem Skript Seite für Seite,
             kennzeichnet klar, was <span className="src">aus der Vorlesung</span> stammt und was Ergänzung ist, und markiert alles im Skript, was geprüft werden muss.
           </p>
-          <p>Beginne mit <a href="#koordinaten">Lage &amp; Koordinaten</a>. Lektionen mit dem Status «geplant» sind noch nicht geschrieben.</p>
+          <p>Beginne mit <a href="#koordinaten">Lage &amp; Koordinaten</a>. Lektionen mit dem Status «geplant» sind noch nicht geschrieben. Alle Kapitel findest du auch jederzeit im Menü oben links.</p>
         </>}
         en={<>
           <p className="lede">
             An interactive companion to the ETH Mechanics 1 lecture notes. Each lesson follows the notes page by page,
             marks clearly what comes <span className="src">from the lecture</span> and what is a supplement, and flags anything in the source that needs checking.
           </p>
-          <p>Start with <a href="#koordinaten">Position &amp; coordinates</a>. Lessons marked “planned” have not been written yet.</p>
+          <p>Start with <a href="#koordinaten">Position &amp; coordinates</a>. Lessons marked “planned” have not been written yet. All chapters are also in the menu at the top left.</p>
         </>}
       />
+      <nav className="home-chapters"><ChapterList route="" /></nav>
     </article>
   );
 }
@@ -64,31 +65,56 @@ function TopicPage({ topic }: { topic: Topic }) {
   );
 }
 
+/** All chapters and lessons; used in the drawer and on the home page. */
+function ChapterList({ route, onPick }: { route: string; onPick?: () => void }) {
+  const tr = useTr();
+  return (
+    <>
+      {Object.entries(CHAPTERS).map(([ch, name]) => (
+        <div key={ch} className="chapter">
+          <div className="chapter-name">{tr(...name)}</div>
+          <ul>
+            {TOPICS.filter((t) => t.chapter === ch).map((t) => (
+              <li key={t.id}>
+                <a href={`#${t.id}`} onClick={onPick} aria-current={t.id === route ? 'page' : undefined}
+                  className={`${t.id === route ? 'active' : ''} ${t.status === 'planned' ? 'muted' : ''}`}>
+                  <span className={`dot dot-${t.status}`} />{tr(...t.title)}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </>
+  );
+}
+
 export function App() {
   const route = useHashRoute();
   const tr = useTr();
   const topic = TOPICS.find((t) => t.id === route);
+  const [menu, setMenu] = useState(false);
+  useEffect(() => {
+    if (!menu) return;
+    const key = (e: KeyboardEvent) => { if (e.key === 'Escape') setMenu(false); };
+    window.addEventListener('keydown', key);
+    return () => window.removeEventListener('keydown', key);
+  }, [menu]);
+  useEffect(() => setMenu(false), [route]);
   return (
     <div className="layout">
-      <nav className="sidebar" aria-label={tr('Lektionen', 'Lessons')}>
-        <div className="sidebar-top">
-          <a href="#" className="brand">Mechanik I Lab</a>
-          <LangToggle />
-        </div>
-        {Object.entries(CHAPTERS).map(([ch, name]) => (
-          <div key={ch} className="chapter">
-            <div className="chapter-name">{tr(...name)}</div>
-            <ul>
-              {TOPICS.filter((t) => t.chapter === ch).map((t) => (
-                <li key={t.id}>
-                  <a href={`#${t.id}`} className={`${t.id === route ? 'active' : ''} ${t.status === 'planned' ? 'muted' : ''}`}>
-                    <span className={`dot dot-${t.status}`} />{tr(...t.title)}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+      <header className="topbar">
+        <button type="button" className="burger" onClick={() => setMenu((m) => !m)} aria-expanded={menu} aria-controls="chapters"
+          aria-label={menu ? tr('Kapitel schliessen', 'Close chapters') : tr('Kapitel', 'Chapters')}>
+          <svg viewBox="0 0 24 24" aria-hidden="true">{menu ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}</svg>
+        </button>
+        <a href="#" className="brand">Mechanik I Lab</a>
+        {topic && <span className="topbar-topic">{tr(...topic.title)}</span>}
+        <LangToggle />
+      </header>
+      <div className={`drawer-backdrop${menu ? ' open' : ''}`} onClick={() => setMenu(false)} aria-hidden="true" />
+      <nav id="chapters" className={`drawer${menu ? ' open' : ''}`} aria-label={tr('Kapitel', 'Chapters')} inert={!menu}>
+        <ChapterList route={route} onPick={() => setMenu(false)} />
       </nav>
       <main className="content">{topic ? <TopicPage topic={topic} /> : <Home />}</main>
     </div>

@@ -47,9 +47,10 @@ export function Arrow({ from = [0, 0, 0], to, color, width = 2 }: { from?: Vec3;
  * Text label drawn into a sprite (constant on-screen size), in KaTeX's math italic so it matches the
  * formulas in the text (same φ, ρ, x glyphs). Used instead of drei <Html>, whose first instance per
  * scene failed to render with React 19 (docs/DECISIONS.md, D-004).
- * `sub` is drawn as a subscript, e.g. <Label sub="xy">M</Label>.
+ * `sub` is drawn as a subscript, e.g. <Label sub="xy">M</Label>. `vec` underlines the main text, the lecture's
+ * vector notation: <Label vec sub="x">e</Label> is e̲ₓ.
  */
-export function Label({ at, children, sub, color = '#0f172a', size = 0.068 }: { at: Vec3; children: string; sub?: string; color?: string; size?: number }) {
+export function Label({ at, children, sub, vec, color = '#0f172a', size = 0.068 }: { at: Vec3; children: string; sub?: string; vec?: boolean; color?: string; size?: number }) {
   const fontReady = useKatexFontReady();
   const { texture, aspect, hScale } = useMemo(() => {
     const px = 72, font = KATEX_MATH_FONT(px), subFont = KATEX_MATH_FONT(Math.round(px * 0.7));
@@ -62,12 +63,19 @@ export function Label({ at, children, sub, color = '#0f172a', size = 0.068 }: { 
     ctx.textBaseline = 'alphabetic'; ctx.lineJoin = 'round'; ctx.lineWidth = halo; ctx.strokeStyle = SCENE_BG; ctx.fillStyle = color;
     const draw = (txt: string, f: string, x: number, y: number) => { ctx.font = f; ctx.strokeText(txt, x, y); ctx.fillText(txt, x, y); };
     draw(children, font, 10 + halo, px + halo);
+    if (vec) { // underline (with halo) under the main text only, like \underline{e}_x
+      const y = px + halo + px * 0.16, lw = px * 0.065;
+      ctx.lineCap = 'round';
+      ctx.strokeStyle = SCENE_BG; ctx.lineWidth = lw + halo; ctx.beginPath(); ctx.moveTo(10 + halo, y); ctx.lineTo(10 + halo + w1, y); ctx.stroke();
+      ctx.strokeStyle = color; ctx.lineWidth = lw; ctx.beginPath(); ctx.moveTo(10 + halo, y); ctx.lineTo(10 + halo + w1, y); ctx.stroke();
+      ctx.strokeStyle = SCENE_BG; ctx.lineWidth = halo;
+    }
     if (sub) draw(sub, subFont, 10 + halo + w1 + 2, px * 1.25 + halo);
     const texture = new THREE.CanvasTexture(canvas);
     texture.colorSpace = THREE.SRGBColorSpace;
     texture.anisotropy = 4;
     return { texture, aspect: canvas.width / canvas.height, hScale: canvas.height / (px * 1.45) }; // keep glyph size independent of the halo margin
-  }, [children, sub, color, fontReady]);
+  }, [children, sub, vec, color, fontReady]);
   useEffect(() => () => texture.dispose(), [texture]);
   return (
     <sprite position={at as [number, number, number]} scale={[size * aspect * hScale, size * hScale, 1]} renderOrder={10}>

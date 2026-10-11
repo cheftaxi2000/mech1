@@ -159,13 +159,15 @@ test('quiz gives feedback on a choice', async ({ page }) => {
   await expect(quiz.locator('.quiz-feedback')).toContainText('Richtig');
 });
 
-test('phone width: no horizontal page scroll', async ({ page }) => {
-  await page.setViewportSize({ width: 390, height: 844 });
-  await open(page, 'de', '#koordinaten');
-  await expect(page.locator('article.lesson h2').first()).toBeVisible();
-  const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
-  expect(overflow).toBeLessThanOrEqual(0);
-});
+for (const topic of written) {
+  test(`phone width: no horizontal page scroll ("${topic.id}")`, async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await open(page, 'de', `#${topic.id}`);
+    await expect(page.locator('article.lesson h2').first()).toBeVisible();
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    expect(overflow).toBeLessThanOrEqual(0);
+  });
+}
 
 test.describe('derivation animation (x = ρ cos φ, y = ρ sin φ)', () => {
   test('autoplays when the figure scrolls into view, pauses, and the sweep reaches quadrant II', async ({ page }) => {
