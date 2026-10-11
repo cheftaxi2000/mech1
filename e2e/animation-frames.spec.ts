@@ -218,3 +218,23 @@ test('[review] v-krummlinig: v tangent to the drawn path (student report: rho-do
   await page.waitForTimeout(400);
   await ex.screenshot({ path: 'test-results/frames/curv-report-3.png' });
 });
+
+test('[review] kreisbewegung: animation steps and rotation field', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('mech1.lang', 'de'));
+  for (const [w, h, name, scheme] of [[1180, 820, 'ipad', 'light'], [390, 844, 'phone', 'light'], [820, 1180, 'ipad-dark', 'dark']] as const) {
+    await page.emulateMedia({ colorScheme: scheme, reducedMotion: 'reduce' });
+    await page.setViewportSize({ width: w, height: h });
+    await page.goto('/#kreisbewegung');
+    await page.locator('article.lesson h2').first().waitFor();
+    const st = page.locator('.stepper').first();
+    for (let i = 0; i < 6; i++) {
+      await st.locator('.step-num').nth(i).click();
+      await page.waitForTimeout(300);
+      await st.locator('.stepper-fig').screenshot({ path: `test-results/frames/circ-${name}-step${i + 1}.png` });
+    }
+    const ex = page.locator('figure.explorer').first();
+    await ex.scrollIntoViewIfNeeded(); await page.waitForTimeout(400);
+    await ex.screenshot({ path: `test-results/frames/circ-${name}-field.png` });
+    if (name === 'ipad') { await ex.getByRole('checkbox').check(); await page.waitForTimeout(300); await ex.screenshot({ path: 'test-results/frames/circ-ipad-field-wrongO.png' }); }
+  }
+});

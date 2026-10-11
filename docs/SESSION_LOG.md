@@ -62,3 +62,7 @@
 - Student asked for pinnable, realistic, beautiful post-it notes before continuing. Built `src/notes/` (model + tests, store with db/localStorage backends and a per-note write queue, `NotesLayer`/`StickyNote` UI) and a «Meine Notizen» list in the drawer (D-016). e2e `notes.spec.ts` (pin, type, recolour, drag, persist across reload, fold, list, delete + undo, empty note discarded; iPad + phone).
 - Lesson 5 (v-krummlinig) still awaiting sign-off; next lesson: Kreisbewegung (p. 11).
 - Student feedback on notes → D-017 redesign (normal font, title, premium look). Figure audit workflow ran only partly (subagent session limit): 19 unverified findings for the explorer and lesson-1 animations recorded for a later pass; the CurvilinearVelocity fix (path drawn, M stays put on rate change, stop at edge) is in.
+
+## 2026-10-11 — lesson 6 (kreisbewegung, p. 11 + slides L5)
+- `L06Circle.tsx`, `circFrame.ts` + `CircleAnim.tsx`, `CircleFigures.tsx` (RotationField), `circle.test.ts`. v-krummlinig → complete.
+- Open: the 19 unverified figure-audit findings (explorer, lesson-1 animations) from the interrupted workflow; re-run the audit for the remaining groups when subagents are available.

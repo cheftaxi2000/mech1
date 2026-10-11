@@ -24,8 +24,8 @@
 | vektoren | 5 | **complete** | Signed off by the student 2026-10-11. Quizzes moved to the quiz bank (D-015). |
 | basen | 6–7 | **complete** | Signed off by the student 2026-10-11. |
 | geschwindigkeit | 8–9 | **complete** | Signed off by the student 2026-10-11 (after the plain-language rewrite). |
-| v-krummlinig | 10 | **review** | Plain-language lesson: merry-go-round intuition, e_ρ/e_φ in Cartesian components, 5-step animation of ė_ρ = φ̇ e_φ (`erhoScene.ts`, 6 frame tests), the lecture's chain-rule line read out, cylindrical and spherical velocity term by term ("distance = radius × angle"), `CurvilinearVelocity` 3D figure (rates → arrows head to tail, trajectory), worked solution of the p. 10 example (supplement, unit check R-008) with `PathVelocity`, 2 misconceptions. Frames inspected iPad, phone, dark. **Awaiting sign-off.** |
-| kreisbewegung | 11 | planned | ω × r verified |
+| v-krummlinig | 10 | **complete** | Student continued («weiter») after review; CurvilinearVelocity fixed after the student's report (path drawn, v tangent to it). |
+| kreisbewegung | 11 | **review** | Clock-hand intuition; position (R e_ρ + z0 e_z, the notes' «Falsch!» explained), v = Rφ̇ e_φ, ṡ, rad/s; ω = φ̇ e_z with right-hand rule; 6-step 3D animation of the Umformung to v = ω × r (`circFrame.ts`, 4 frame tests); `RotationField` (rigid frame, v = ω × r per point, O′ off the axis shows the wrong result); Cartesian computation + slide L5 read out; 3 misconceptions; `circle.test.ts` (8 tests). Frames inspected iPad, phone, dark. **Awaiting sign-off.** |
 | sdpg | 12–13 | planned | SdpG + ladder verified |
 | translation | 13–14 | planned | |
 | rotation | 15–19 | planned | R-003 verified; R-004/R-005 open |
