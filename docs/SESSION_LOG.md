@@ -52,3 +52,8 @@
 - basen → complete. Lesson 4 `L04Velocity.tsx` (pp. 8–9), pure explanation: rectilinear motion + `SecantDemo` (Δt slider, secant vs tangent), what is wanted in 3D, §2.1 with a 4-step animation (`velScene.ts`: trajectory/arc length, chord Δr and arc Δs, Δt → 0 with |Δr|/Δs readout, v = ṡτ), chain-rule calculation, R-014 in `<details>`, §2.2 Cartesian basis with \cancel'd ė-terms, `HelixVelocity` 3D figure (components head to tail, τ, ṡ constant), cylindrical preview (ė_ρ ≠ 0), 3 misconceptions.
 - Next: student reviews lesson 4; then v-krummlinig (p. 10).
 - Feedback: "Erklärung ist manchmal schwieriger zu verstehen". Lesson 4 rewritten in plain language: car/speedometer/odometer intuition box first, every symbol explained on first use, the compact lecture line read out step by step, shorter animation captions (what you see → what it means), chain rule explained in words. New explanation-style rules in CLAUDE.md.
+
+## 2026-10-11 — Session 1, continued: lesson 4 signed off; lesson 5 (v-krummlinig, p. 10)
+- `L05CurvVelocity.tsx`: written to the new explanation-style rules. `erhoScene.ts` (ė_ρ = φ̇ e_φ in 5 steps: components of e_ρ, e_φ as e_ρ turned by 90°, Δe_ρ for a turn Δφ, Δφ → 0 with |Δe_ρ|/Δφ → 1, ė_ρ = φ̇ e_φ), `CurvilinearVelocity` (cyl/sph tabs, rate sliders, terms head to tail, trajectory), `PathVelocity` (generic; helix now uses it), p. 10 example solved as a supplement.
+- Fixes: phone overflow from a long unbreakable h1 (title changed to «Zylinder- und Kugelkoordinaten», h1 overflow-wrap); `.katex-display` position: relative; scene label-width estimate knows \Delta, \v, \tau.
+- Next: student reviews lesson 5; then Kreisbewegung (p. 11).

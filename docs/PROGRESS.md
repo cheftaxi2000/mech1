@@ -23,8 +23,8 @@
 | koordinaten | 3–4 | **complete** | Signed off by the student 2026-10-11. Quizzes moved to the quiz bank (D-015). |
 | vektoren | 5 | **complete** | Signed off by the student 2026-10-11. Quizzes moved to the quiz bank (D-015). |
 | basen | 6–7 | **complete** | Signed off by the student 2026-10-11. |
-| geschwindigkeit | 8–9 | **review** | Rectilinear motion with a secant→tangent figure (`SecantDemo`), the derivation v = ṙ = ṡτ as a 4-step animation (`velScene.ts`, 7 frame tests: Δt → 0, chord → tangent, \|Δr\|/Δs → 1), chain-rule calculation with R-014 in a collapsible note, Cartesian velocity with the struck-out ė terms (R-013 one sentence), 3D helix with v, τ and components (`HelixVelocity`), 3 misconception boxes; `velocity.test.ts`. Frames inspected iPad, phone, dark. **Awaiting sign-off.** |
-| v-krummlinig | 10 | planned | formulas already verified in tests |
+| geschwindigkeit | 8–9 | **complete** | Signed off by the student 2026-10-11 (after the plain-language rewrite). |
+| v-krummlinig | 10 | **review** | Plain-language lesson: merry-go-round intuition, e_ρ/e_φ in Cartesian components, 5-step animation of ė_ρ = φ̇ e_φ (`erhoScene.ts`, 6 frame tests), the lecture's chain-rule line read out, cylindrical and spherical velocity term by term ("distance = radius × angle"), `CurvilinearVelocity` 3D figure (rates → arrows head to tail, trajectory), worked solution of the p. 10 example (supplement, unit check R-008) with `PathVelocity`, 2 misconceptions. Frames inspected iPad, phone, dark. **Awaiting sign-off.** |
 | kreisbewegung | 11 | planned | ω × r verified |
 | sdpg | 12–13 | planned | SdpG + ladder verified |
 | translation | 13–14 | planned | |

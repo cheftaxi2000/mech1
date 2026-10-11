@@ -174,3 +174,27 @@ test('[review] geschwindigkeit: animation steps, running frames, figures', async
   await st.locator('.step-num').nth(2).click();
   for (let k = 0; k < 4; k++) { await page.waitForTimeout(1500); await st.locator('.stepper-fig').screenshot({ path: `test-results/frames/vel-running-${k}.png` }); }
 });
+
+test('[review] v-krummlinig: e_rho animation steps and figures', async ({ page }) => {
+  await page.addInitScript(() => localStorage.setItem('mech1.lang', 'de'));
+  for (const [w, h, name, scheme] of [[1180, 820, 'ipad', 'light'], [390, 844, 'phone', 'light'], [820, 1180, 'ipad-dark', 'dark']] as const) {
+    await page.emulateMedia({ colorScheme: scheme, reducedMotion: 'reduce' });
+    await page.setViewportSize({ width: w, height: h });
+    await page.goto('/#v-krummlinig');
+    await page.locator('article.lesson h2').first().waitFor();
+    const st = page.locator('.stepper').first();
+    for (let i = 0; i < 5; i++) {
+      await st.locator('.step-num').nth(i).click();
+      await page.waitForTimeout(300);
+      await st.locator('.stepper-fig').screenshot({ path: `test-results/frames/curv-${name}-step${i + 1}.png` });
+    }
+    const figs = page.locator('article.lesson figure.explorer');
+    for (let i = 0; i < (await figs.count()); i++) {
+      await figs.nth(i).scrollIntoViewIfNeeded(); await page.waitForTimeout(400);
+      await figs.nth(i).screenshot({ path: `test-results/frames/curv-${name}-fig${i + 1}.png` });
+    }
+    const ex = figs.first();
+    await ex.getByRole('tab', { name: 'Sphärisch' }).click(); await page.waitForTimeout(400);
+    await ex.screenshot({ path: `test-results/frames/curv-${name}-fig1-sph.png` });
+  }
+});
