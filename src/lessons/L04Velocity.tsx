@@ -13,25 +13,55 @@ export default function L04Velocity() {
   return (
     <article className="lesson">
       <T
-        de={<p className="lede">Kapitel 2 der Vorlesung fragt: Wie schnell und in welche Richtung bewegt sich ein Punkt? Für eine Gerade ist das die Ableitung <M p=".">{t`\dot x`}</M> Im Raum wird daraus der Geschwindigkeitsvektor <M p=":">{t`\v v = \dot{\v r}`}</M> tangential an die Bahn, mit der Schnelligkeit <M>{t`\dot s`}</M> als Länge.</p>}
-        en={<p className="lede">Chapter 2 of the lecture asks: how fast and in which direction does a point move? On a straight line this is the derivative <M p=".">{t`\dot x`}</M> In space it becomes the velocity vector <M p=":">{t`\v v = \dot{\v r}`}</M> tangent to the path, with the speed <M>{t`\dot s`}</M> as its length.</p>}
+        de={<p className="lede">Bisher wussten wir, <em>wo</em> ein Punkt ist. Jetzt geht es darum, <em>wie schnell</em> und <em>wohin</em> er sich bewegt.</p>}
+        en={<p className="lede">So far we knew <em>where</em> a point is. Now the question is <em>how fast</em> and <em>where to</em> it moves.</p>}
       />
+      <Box kind="intuition">
+        <T
+          de={<>
+            <p>Stell dir ein Auto auf einer kurvigen Strasse vor. Zwei Dinge beschreiben seine Bewegung in jedem Moment:</p>
+            <ul>
+              <li><b>Wie schnell?</b> Das zeigt der Tacho – eine Zahl. In der Vorlesung heisst sie <b>Schnelligkeit</b> <M p=".">{t`\dot s`}</M></li>
+              <li><b>Wohin?</b> Die Richtung, in die das Auto gerade fährt – immer entlang der Strasse. Das ist ein Pfeil der Länge 1, <M p=".">{t`\v\tau`}</M></li>
+            </ul>
+            <p>Beides zusammen ist der <b>Geschwindigkeitsvektor</b> <M p=":">{t`\v v = \dot s\,\v\tau`}</M> ein Pfeil in Fahrtrichtung, so lang wie das Tempo. Diese Lektion zeigt, woher diese Formel kommt.</p>
+          </>}
+          en={<>
+            <p>Picture a car on a winding road. Two things describe its motion at every moment:</p>
+            <ul>
+              <li><b>How fast?</b> The speedometer shows it – a number. The lecture calls it the <b>speed</b> <M p=".">{t`\dot s`}</M></li>
+              <li><b>Where to?</b> The direction the car is heading – always along the road. That is an arrow of length 1, <M p=".">{t`\v\tau`}</M></li>
+            </ul>
+            <p>Together they make the <b>velocity vector</b> <M p=":">{t`\v v = \dot s\,\v\tau`}</M> an arrow pointing along the road, as long as the speed. This lesson shows where this formula comes from.</p>
+          </>}
+        />
+      </Box>
 
       {/* ------------------------------------------------------------------ 1 */}
-      <Section id="geradlinig" title={<T de="1. Geradlinige Bewegung" en="1. Rectilinear motion (geradlinige Bewegung)" />}>
+      <Section id="geradlinig" title={<T de="1. Zuerst auf einer Geraden" en="1. First on a straight line" />}>
         <Box kind="lecture" src={<Src p={8} />}>
-          <T de={<><M p=":">{t`x(t)`}</M> skalare Funktion (Abstand von <M>M</M> zum festen Punkt <M>A</M> auf der Geraden).</>} en={<><M p=":">{t`x(t)`}</M> a scalar function (distance of <M>M</M> from the fixed point <M>A</M> on the line).</>} />
+          <T de={<>Geradlinige Bewegung: <M p=":">{t`x(t)`}</M> skalare Funktion.</>} en={<>Rectilinear motion: <M p=":">{t`x(t)`}</M> a scalar function.</>} />
           <MD>{t`v = \frac{\dd x(t)}{\dd t} = \dot x = \lim_{\Delta t\to 0}\frac{x(t+\Delta t) - x(t)}{\Delta t}`}</MD>
         </Box>
         <T
-          de={<p>Der Bruch ist die <b>mittlere</b> Geschwindigkeit im Zeitintervall <M p=":">{t`\Delta t`}</M> zurückgelegter Weg durch Zeit. Im Graphen von <M>{t`x(t)`}</M> ist das die Steigung der Sekante. Macht man <M>{t`\Delta t`}</M> immer kleiner, wird aus der Sekante die Tangente – und aus der mittleren die <b>momentane</b> Geschwindigkeit <M p=".">{t`\dot x`}</M> Der Punkt über einer Grösse, <M p=",">{t`\dot x`}</M> heisst immer «Ableitung nach der Zeit».</p>}
-          en={<p>The fraction is the <b>mean</b> velocity over the time interval <M p=":">{t`\Delta t`}</M> distance travelled divided by time. In the graph of <M>{t`x(t)`}</M> it is the slope of the secant. Making <M>{t`\Delta t`}</M> smaller and smaller turns the secant into the tangent – and the mean velocity into the <b>instantaneous</b> velocity <M p=".">{t`\dot x`}</M> A dot over a quantity, <M p=",">{t`\dot x`}</M> always means “derivative with respect to time”.</p>}
+          de={<>
+            <p><M>{t`x(t)`}</M> sagt, wie weit <M>M</M> zur Zeit <M>t</M> vom Startpunkt <M>A</M> entfernt ist.</p>
+            <p><b>Mittlere Geschwindigkeit.</b> In der kurzen Zeit <M>{t`\Delta t`}</M> kommt der Punkt um <M>{t`\Delta x = x(t+\Delta t) - x(t)`}</M> weiter. Weg durch Zeit, <M p=",">{t`\Delta x/\Delta t`}</M> ist das Tempo im Durchschnitt. Beispiel: 100 m in 10 s ergibt 10 m/s.</p>
+            <p><b>Momentane Geschwindigkeit.</b> Ein Durchschnitt verwischt, was <em>genau jetzt</em> passiert. Deshalb macht man die Zeitspanne <M>{t`\Delta t`}</M> immer kürzer. Der Wert, dem sich <M>{t`\Delta x/\Delta t`}</M> dabei nähert, ist die Geschwindigkeit <M>{t`\dot x`}</M> im Moment <M p=".">t</M> Das bedeutet «<M>{t`\lim_{\Delta t\to0}`}</M>».</p>
+            <p>Im Bild unten: <M>{t`\Delta x/\Delta t`}</M> ist die Steigung der blauen Linie (Sekante). Ziehst du <M>{t`\Delta t`}</M> nach rechts gegen null, wird sie zur roten Linie (Tangente). Deren Steigung ist <M p=".">{t`\dot x`}</M> Der Punkt über einem Buchstaben heisst immer: Ableitung nach der Zeit.</p>
+          </>}
+          en={<>
+            <p><M>{t`x(t)`}</M> says how far <M>M</M> is from the starting point <M>A</M> at time <M p=".">t</M></p>
+            <p><b>Mean velocity.</b> In the short time <M>{t`\Delta t`}</M> the point moves on by <M p=".">{t`\Delta x = x(t+\Delta t) - x(t)`}</M> Distance divided by time, <M p=",">{t`\Delta x/\Delta t`}</M> is the average pace. Example: 100 m in 10 s gives 10 m/s.</p>
+            <p><b>Instantaneous velocity.</b> An average blurs what happens <em>right now</em>. So the time span <M>{t`\Delta t`}</M> is made shorter and shorter. The value that <M>{t`\Delta x/\Delta t`}</M> approaches is the velocity <M>{t`\dot x`}</M> at the moment <M p=".">t</M> That is what “<M>{t`\lim_{\Delta t\to0}`}</M>” means.</p>
+            <p>In the figure below: <M>{t`\Delta x/\Delta t`}</M> is the slope of the blue line (secant). Drag <M>{t`\Delta t`}</M> to the right towards zero and it becomes the red line (tangent). Its slope is <M p=".">{t`\dot x`}</M> A dot over a letter always means: derivative with respect to time.</p>
+          </>}
         />
         <SecantDemo />
       </Section>
 
       {/* ------------------------------------------------------------------ 2 */}
-      <Section id="raum" title={<T de="2. Im Raum: was gesucht ist" en="2. In space: what we are after" />}>
+      <Section id="raum" title={<T de="2. Im Raum: was wir suchen" en="2. In space: what we are looking for" />}>
         <Box kind="lecture" src={<Src p={8} />}>
           <T
             de={<ul>
@@ -47,59 +77,69 @@ export default function L04Velocity() {
           />
         </Box>
         <T
-          de={<p>Die Idee ist dieselbe wie auf der Geraden, nur mit Vektoren: Differenz der Ortsvektoren durch <M p=",">{t`\Delta t`}</M> dann <M p=".">{t`\Delta t \to 0`}</M> Dazu kommt eine zweite Zerlegung, die es auf der Geraden nicht braucht: <b>wie schnell</b> (eine Zahl) und <b>wohin</b> (eine Richtung).</p>}
-          en={<p>The idea is the same as on the line, only with vectors: difference of position vectors divided by <M p=",">{t`\Delta t`}</M> then <M p=".">{t`\Delta t \to 0`}</M> On top comes a second split that the line does not need: <b>how fast</b> (a number) and <b>where to</b> (a direction).</p>}
+          de={<p>In Worten: Wir kennen die Bahn, also <M>{t`\v r(t)`}</M> für jede Zeit. Daraus wollen wir <M>{t`\v v`}</M> bekommen. Die Vorlesung behauptet zweierlei: <M>{t`\v v`}</M> zeigt immer entlang der Bahn («tangential»), und rechnen kann man es ganz einfach – jede Koordinate nach der Zeit ableiten. Beides zeigen wir jetzt.</p>}
+          en={<p>In words: we know the path, i.e. <M>{t`\v r(t)`}</M> for every time. From it we want <M p=".">{t`\v v`}</M> The lecture claims two things: <M>{t`\v v`}</M> always points along the path (“tangent”), and computing it is easy – differentiate each coordinate with respect to time. We show both now.</p>}
         />
       </Section>
 
       {/* ------------------------------------------------------------------ 3 */}
-      <Section id="vektor" title={<T de={<>3. Der Geschwindigkeitsvektor <M>{t`\v v`}</M></>} en={<>3. The velocity vector <M>{t`\v v`}</M></>} />}>
+      <Section id="vektor" title={<T de={<>3. Warum <M>{t`\v v`}</M> entlang der Bahn zeigt</>} en={<>3. Why <M>{t`\v v`}</M> points along the path</>} />}>
         <Box kind="lecture" src={<Src p={8} fig="§2.1" />}>
           <T de={<><b>Schnelligkeit</b> <M p=":">{t`\dot s`}</M></>} en={<><b>Speed</b> (<em lang="de">Schnelligkeit</em>) <M p=":">{t`\dot s`}</M></>} />
           <MD>{t`\dot s = \lim_{\Delta t\to0}\frac{s(t+\Delta t) - s(t)}{\Delta t} = \lim_{\Delta t\to 0}\frac{\Delta s}{\Delta t}, \qquad \v v = \dot s\cdot\v\tau`}</MD>
           <T de={<><M p=":">{t`\dot s`}</M> Wie schnell? <M p=":">{t`\v\tau`}</M> In welche Richtung? (<M>{t`\v\tau`}</M> tangentialer Einheitsvektor, <M>s</M> Bogenlänge.)</>} en={<><M p=":">{t`\dot s`}</M> how fast? <M p=":">{t`\v\tau`}</M> in which direction? (<M>{t`\v\tau`}</M> tangent unit vector, <M>s</M> arc length, <em lang="de">Bogenlänge</em>.)</>} />
         </Box>
-        <Derivation title={<T de={<><M>{t`\dot{\v r}`}</M> ist tangential (S. 8–9)</>} en={<><M>{t`\dot{\v r}`}</M> is tangent (pp. 8–9)</>} />}>
+        <T
+          de={<p>Die <b>Bogenlänge</b> <M>{t`s(t)`}</M> ist der Kilometerzähler: wie viel Weg der Punkt <em>entlang der Kurve</em> schon zurückgelegt hat. Dann ist <M>{t`\dot s`}</M> genau wie auf der Geraden «Weg pro Zeit» – das Tempo. Die Animation zeigt Schritt für Schritt, warum der Geschwindigkeitspfeil an der Kurve anliegt.</p>}
+          en={<p>The <b>arc length</b> <M>{t`s(t)`}</M> is the odometer: how much distance the point has already covered <em>along the curve</em>. Then <M>{t`\dot s`}</M> is, just like on the straight line, “distance per time” – the speed. The animation shows step by step why the velocity arrow lies along the curve.</p>}
+        />
+        <Derivation title={<T de={<><M>{t`\v v = \dot s\,\v\tau`}</M> Schritt für Schritt (S. 8–9)</>} en={<><M>{t`\v v = \dot s\,\v\tau`}</M> step by step (pp. 8–9)</>} />}>
           <StepPlayer
             label={tr('Animation: vom Differenzenquotienten zum Geschwindigkeitsvektor', 'Animation: from the difference quotient to the velocity vector')}
             steps={[
               { ms: 4500, caption: <T
-                de={<>Die Bahnkurve beginnt in <M p=".">O</M> Zur Zeit <M>t</M> ist der Punkt in <M p=",">M</M> sein Ortsvektor ist <M p=".">{t`\v r(t)`}</M> Die <b>Bogenlänge</b> <M>{t`s(t)`}</M> ist der Weg, der entlang der Kurve bis <M>M</M> zurückgelegt wurde (türkis).</>}
-                en={<>The trajectory starts at <M p=".">O</M> At time <M>t</M> the point is at <M p=",">M</M> its position vector is <M p=".">{t`\v r(t)`}</M> The <b>arc length</b> <M>{t`s(t)`}</M> is the distance travelled along the curve up to <M>M</M> (teal).</>} /> },
-              { ms: 3000, holdMs: 2500, caption: <T
-                de={<>Etwas später, zur Zeit <M p=",">{t`t+\Delta t`}</M> ist der Punkt weiter. Die Sehne <M>{t`\Delta\v r = \v r(t+\Delta t) - \v r(t)`}</M> verbindet die beiden Lagen, also <M p=".">{t`\v r(t) + \Delta\v r = \v r(t+\Delta t)`}</M> Entlang der Kurve ist das Stück <M>{t`\Delta s`}</M> dazugekommen.</>}
-                en={<>A little later, at time <M p=",">{t`t+\Delta t`}</M> the point has moved on. The chord <M>{t`\Delta\v r = \v r(t+\Delta t) - \v r(t)`}</M> connects the two positions, so <M p=".">{t`\v r(t) + \Delta\v r = \v r(t+\Delta t)`}</M> Along the curve, the piece <M>{t`\Delta s`}</M> has been added.</>} /> },
-              { ms: 7000, holdMs: 2500, caption: <T
-                de={<>Jetzt <M p=":">{t`\Delta t \to 0`}</M> Der spätere Punkt rutscht in <M p=".">M</M> Der rote Pfeil <M>{t`\Delta\v r/\Delta t`}</M> hat dieselbe Richtung wie die Sehne und wird zu <M p=".">{t`\dot{\v r} = \lim_{\Delta t\to0}\Delta\v r/\Delta t`}</M> Die Sehne dreht sich in die Tangente: <M p=",">{t`\dot{\v r}\parallel\Delta\v r`}</M> <M p=",">{t`\Delta\v r \parallel \v\tau`}</M> also <M p=".">{t`\dot{\v r} \parallel \v\tau`}</M> Und Sehne und Bogen werden gleich lang: <M p=".">{t`|\Delta\v r|/\Delta s \to 1`}</M></>}
-                en={<>Now <M p=":">{t`\Delta t \to 0`}</M> the later point slides into <M p=".">M</M> The red arrow <M>{t`\Delta\v r/\Delta t`}</M> has the direction of the chord and becomes <M p=".">{t`\dot{\v r} = \lim_{\Delta t\to0}\Delta\v r/\Delta t`}</M> The chord turns into the tangent: <M p=",">{t`\dot{\v r}\parallel\Delta\v r`}</M> <M p=",">{t`\Delta\v r \parallel \v\tau`}</M> so <M p=".">{t`\dot{\v r} \parallel \v\tau`}</M> And chord and arc become equally long: <M p=".">{t`|\Delta\v r|/\Delta s \to 1`}</M></>} /> },
+                de={<>Der Punkt fährt auf der grauen <b>Bahnkurve</b>. Zur Zeit <M>t</M> ist er in <M p=".">M</M> Der schwarze Pfeil <M>{t`\v r(t)`}</M> zeigt von <M>O</M> nach <M p=".">M</M> Türkis: das Stück Kurve, das er schon gefahren ist – seine Länge ist <M p=".">{t`s(t)`}</M></>}
+                en={<>The point travels on the grey <b>trajectory</b>. At time <M>t</M> it is at <M p=".">M</M> The black arrow <M>{t`\v r(t)`}</M> points from <M>O</M> to <M p=".">M</M> Teal: the piece of curve it has already covered – its length is <M p=".">{t`s(t)`}</M></>} /> },
+              { ms: 3000, holdMs: 3000, caption: <T
+                de={<>Ein kleines bisschen später (Zeit <M p=")">{t`t+\Delta t`}</M> ist der Punkt weiter (Kreis). Der blaue Pfeil <M>{t`\Delta\v r`}</M> zeigt von der alten zur neuen Lage: <M p=".">{t`\Delta\v r = \v r(t+\Delta t) - \v r(t)`}</M> Gefahren ist er dabei das gebogene Stück <M p=".">{t`\Delta s`}</M></>}
+                en={<>A tiny bit later (time <M p=")">{t`t+\Delta t`}</M> the point has moved on (circle). The blue arrow <M>{t`\Delta\v r`}</M> points from the old to the new position: <M p=".">{t`\Delta\v r = \v r(t+\Delta t) - \v r(t)`}</M> Along the way it covered the curved piece <M p=".">{t`\Delta s`}</M></>} /> },
+              { ms: 7000, holdMs: 3000, caption: <T
+                de={<>Jetzt wird <M>{t`\Delta t`}</M> immer kleiner, die neue Lage rückt an <M>M</M> heran. Zwei Dinge passieren: <b>(1)</b> Der blaue Pfeil legt sich an die Kurve an – er zeigt in Fahrtrichtung. <b>(2)</b> Gerader Pfeil und gebogenes Stück werden gleich lang: <M>{t`|\Delta\v r|/\Delta s`}</M> geht gegen 1 (Kasten). Der rote Pfeil ist <M p=";">{t`\Delta\v r/\Delta t`}</M> am Ende ist er die Geschwindigkeit <M p=".">{t`\dot{\v r}`}</M></>}
+                en={<>Now <M>{t`\Delta t`}</M> gets smaller and smaller, the new position moves up to <M p=".">M</M> Two things happen: <b>(1)</b> the blue arrow snuggles up to the curve – it points in the direction of travel. <b>(2)</b> Straight arrow and curved piece become equally long: <M>{t`|\Delta\v r|/\Delta s`}</M> tends to 1 (box). The red arrow is <M p=";">{t`\Delta\v r/\Delta t`}</M> in the end it is the velocity <M p=".">{t`\dot{\v r}`}</M></>} /> },
               { ms: 3500, caption: <T
-                de={<>Ergebnis: <M p=".">{t`\v v = \dot{\v r} = \dot s\,\v\tau`}</M> Die Richtung ist die Tangente <M>{t`\v\tau`}</M> (Länge 1), die Länge ist die Schnelligkeit <M p=".">{t`\dot s = |\v v|`}</M> Die Rechnung dazu steht direkt unter der Animation.</>}
-                en={<>Result: <M p=".">{t`\v v = \dot{\v r} = \dot s\,\v\tau`}</M> The direction is the tangent <M>{t`\v\tau`}</M> (length 1), the length is the speed <M p=".">{t`\dot s = |\v v|`}</M> The calculation is right below the animation.</>} /> },
+                de={<>Ergebnis: <M p=".">{t`\v v = \dot{\v r} = \dot s\,\v\tau`}</M> Der kurze schwarze Pfeil <M>{t`\v\tau`}</M> hat Länge 1 und zeigt in Fahrtrichtung (<b>wohin?</b>). Die Zahl <M>{t`\dot s`}</M> ist das Tempo (<b>wie schnell?</b>). Zusammen: der rote Pfeil <M p=".">{t`\v v`}</M></>}
+                en={<>Result: <M p=".">{t`\v v = \dot{\v r} = \dot s\,\v\tau`}</M> The short black arrow <M>{t`\v\tau`}</M> has length 1 and points in the direction of travel (<b>where to?</b>). The number <M>{t`\dot s`}</M> is the speed (<b>how fast?</b>). Together: the red arrow <M p=".">{t`\v v`}</M></>} /> },
             ]}
           >
             {(step, tt) => <AnimFigure build={velScene} step={step} t={tt} />}
           </StepPlayer>
           <T
-            de={<p>Die Vorlesung rechnet das mit der <b>Kettenregel</b> nach <Src p={9} />. Man beschreibt die Lage über die Bogenlänge, <M p=",">{t`\v r(t) = \v r(s(t))`}</M> und leitet ab:</p>}
-            en={<p>The lecture checks this with the <b>chain rule</b> <Src p={9} />. Describe the position through the arc length, <M p=",">{t`\v r(t) = \v r(s(t))`}</M> and differentiate:</p>}
+            de={<p><b>Dasselbe als Rechnung</b> <Src p={9} />. Man zerlegt «Lage ändert sich mit der Zeit» in zwei Schritte: Die Zeit bestimmt, wie weit der Punkt gefahren ist <M p=",">{t`(s)`}</M> und der gefahrene Weg bestimmt, wo er ist <M p=".">{t`(\v r)`}</M> Also <M p=",">{t`\v r(t) = \v r(s(t))`}</M> und die Kettenregel gibt:</p>}
+            en={<p><b>The same as a calculation</b> <Src p={9} />. Split “position changes with time” into two steps: time decides how far the point has travelled <M p=",">{t`(s)`}</M> and the distance travelled decides where it is <M p=".">{t`(\v r)`}</M> So <M p=",">{t`\v r(t) = \v r(s(t))`}</M> and the chain rule gives:</p>}
           />
           <MD>{t`\dot{\v r} = \frac{\dd\v r}{\dd t} = \frac{\dd\v r}{\dd s}\,\underbrace{\frac{\dd s}{\dd t}}_{\dot s}, \qquad \frac{\dd\v r}{\dd s} = \lim_{\Delta s\to0}\frac{\Delta\v r}{\Delta s} = \v\tau \qquad\Rightarrow\qquad \dot{\v r} = \v\tau\,\dot s = \v v`}</MD>
           <T
-            de={<p><M>{t`\dd\v r/\dd s`}</M> ist ein <b>Einheitsvektor</b>, weil <M>{t`|\Delta\v r|/\Delta s \to 1`}</M> (Schritt 3 der Animation), und er ist tangential. Genau das ist <M p=".">{t`\v\tau`}</M></p>}
-            en={<p><M>{t`\dd\v r/\dd s`}</M> is a <b>unit vector</b> because <M>{t`|\Delta\v r|/\Delta s \to 1`}</M> (step 3 of the animation), and it is tangent. That is exactly <M p=".">{t`\v\tau`}</M></p>}
+            de={<ul>
+              <li><M p=":">{t`\dd s/\dd t = \dot s`}</M> Weg pro Zeit, das Tempo.</li>
+              <li><M p=":">{t`\dd\v r/\dd s`}</M> wie sich die Lage ändert pro Stück gefahrenem Weg. Fährt man ein winziges Stück der Länge <M>{t`\Delta s`}</M> entlang der Kurve, verschiebt sich der Punkt um <M p=",">{t`\Delta\v r`}</M> und das ist (Schritt 3) gleich lang und in Fahrtrichtung. Der Quotient ist darum ein Pfeil der Länge 1 in Fahrtrichtung: <M p=".">{t`\v\tau`}</M></li>
+            </ul>}
+            en={<ul>
+              <li><M p=":">{t`\dd s/\dd t = \dot s`}</M> distance per time, the speed.</li>
+              <li><M p=":">{t`\dd\v r/\dd s`}</M> how the position changes per bit of distance travelled. Travel a tiny piece of length <M>{t`\Delta s`}</M> along the curve and the point shifts by <M p=",">{t`\Delta\v r`}</M> which (step 3) is equally long and points in the direction of travel. So the quotient is an arrow of length 1 in the direction of travel: <M p=".">{t`\v\tau`}</M></li>
+            </ul>}
           />
           <details className="more">
             <summary><T de="Genauer hingeschaut: drei stille Voraussetzungen" en="A closer look: three silent assumptions" /></summary>
             <T
               de={<ul>
-                <li><M>{t`\Delta\v r \parallel \v\tau`}</M> gilt erst im Grenzwert: Für endliches <M>{t`\Delta t`}</M> ist <M>{t`\Delta\v r`}</M> eine Sehne, nicht tangential.</li>
-                <li>Dass <M>{t`|\Delta\v r|/\Delta s \to 1`}</M> geht, braucht eine glatte Kurve (keine Ecke in <M p=").">M</M></li>
-                <li><M>{t`\v r(s(t))`}</M> setzt voraus, dass man von <M>t</M> eindeutig auf <M>s</M> umrechnen kann, also <M p=":">{t`\dot s > 0`}</M> Der Punkt bleibt nicht stehen und kehrt nicht um.</li>
+                <li><M>{t`\Delta\v r`}</M> zeigt erst im Grenzwert in Fahrtrichtung; für endliches <M>{t`\Delta t`}</M> ist es eine Abkürzung quer durch die Kurve (eine Sehne).</li>
+                <li>Dass <M>{t`|\Delta\v r|/\Delta s \to 1`}</M> geht, braucht eine Kurve ohne Knick in <M p=".">M</M></li>
+                <li><M>{t`\v r(s(t))`}</M> setzt voraus, dass der Punkt nicht stehen bleibt und nicht umkehrt <M p=".">{t`(\dot s > 0)`}</M></li>
               </ul>}
               en={<ul>
-                <li><M>{t`\Delta\v r \parallel \v\tau`}</M> holds only in the limit: for finite <M>{t`\Delta t`}</M> the vector <M>{t`\Delta\v r`}</M> is a chord, not tangent.</li>
-                <li><M>{t`|\Delta\v r|/\Delta s \to 1`}</M> needs a smooth curve (no corner at <M p=").">M</M></li>
-                <li><M>{t`\v r(s(t))`}</M> requires converting uniquely from <M>t</M> to <M p=",">s</M> i.e. <M p=":">{t`\dot s > 0`}</M> the point neither stops nor turns back.</li>
+                <li><M>{t`\Delta\v r`}</M> points in the direction of travel only in the limit; for finite <M>{t`\Delta t`}</M> it is a shortcut across the curve (a chord).</li>
+                <li><M>{t`|\Delta\v r|/\Delta s \to 1`}</M> needs a curve without a kink at <M p=".">M</M></li>
+                <li><M>{t`\v r(s(t))`}</M> assumes the point neither stops nor turns back <M p=".">{t`(\dot s > 0)`}</M></li>
               </ul>}
             />
           </details>
@@ -107,26 +147,42 @@ export default function L04Velocity() {
       </Section>
 
       {/* ------------------------------------------------------------------ 4 */}
-      <Section id="kartesisch" title={<T de="4. Explizit: kartesische Basis" en="4. Explicitly: Cartesian basis" />}>
+      <Section id="kartesisch" title={<T de="4. So rechnet man: kartesische Basis" en="4. How to compute it: Cartesian basis" />}>
         <Box kind="lecture" src={<Src p={9} fig="§2.2" />}>
-          <T de={<>Darstellung von <M p=",">{t`\v v = \dot{\v r}`}</M> kartesische Basis, mit <M p=":">{t`\v r(t) = x(t)\,\v e_x + y(t)\,\v e_y + z(t)\,\v e_z`}</M></>} en={<>Representation of <M p=",">{t`\v v = \dot{\v r}`}</M> Cartesian basis, with <M p=":">{t`\v r(t) = x(t)\,\v e_x + y(t)\,\v e_y + z(t)\,\v e_z`}</M></>} />
+          <T de={<>Kartesische Basis, mit <M p=":">{t`\v r(t) = x(t)\,\v e_x + y(t)\,\v e_y + z(t)\,\v e_z`}</M></>} en={<>Cartesian basis, with <M p=":">{t`\v r(t) = x(t)\,\v e_x + y(t)\,\v e_y + z(t)\,\v e_z`}</M></>} />
           <MD>{t`\dot{\v r} = \dot x\,\v e_x + x\,\cancel{\dot{\v e}_x} + \dot y\,\v e_y + y\,\cancel{\dot{\v e}_y} + \dot z\,\v e_z + z\,\cancel{\dot{\v e}_z}`}</MD>
           <MD>{t`\boxed{\dot{\v r} = \dot x\,\v e_x + \dot y\,\v e_y + \dot z\,\v e_z}`}</MD>
         </Box>
         <T
-          de={<p>Jeder Summand <M>{t`x\,\v e_x`}</M> ist ein Produkt, also gibt die Produktregel zwei Terme: <M p=".">{t`\dot x\,\v e_x + x\,\dot{\v e}_x`}</M> Die kartesischen Basisvektoren sind überall und jederzeit dieselben (Lektion 3), ihre Ableitung ist null – deshalb sind die drei Terme im Skript durchgestrichen. Übrig bleibt, was auf S. 8 «zu zeigen» war: Man leitet einfach die drei Koordinaten ab. (Das Skript schreibt in der Überschrift «Darstellung von <M p=",">{t`\v r = \dot{\v r}`}</M>» gemeint ist <M p=".)">{t`\v v = \dot{\v r}`}</M></p>}
-          en={<p>Each term <M>{t`x\,\v e_x`}</M> is a product, so the product rule gives two terms: <M p=".">{t`\dot x\,\v e_x + x\,\dot{\v e}_x`}</M> The Cartesian basis vectors are the same everywhere and at all times (lesson 3); their derivative is zero – that is why the three terms are struck out in the notes. What remains is what p. 8 set out to show: just differentiate the three coordinates. (The notes' heading reads “Darstellung von <M p=",">{t`\v r = \dot{\v r}`}</M>” meaning <M p=".)">{t`\v v = \dot{\v r}`}</M></p>}
+          de={<>
+            <p>So liest man die Zeile im Skript:</p>
+            <ol>
+              <li><M>{t`\v r`}</M> besteht aus drei Teilen wie <M p=":">{t`x\,\v e_x`}</M> eine Zahl mal ein Basisvektor.</li>
+              <li>Beim Ableiten eines Produkts gilt die Produktregel: <M p=".">{t`\tfrac{\dd}{\dd t}(x\,\v e_x) = \dot x\,\v e_x + x\,\dot{\v e}_x`}</M></li>
+              <li><M>{t`\v e_x`}</M> ändert sich nie – überall und immer derselbe Pfeil (Lektion 3). Also <M>{t`\dot{\v e}_x = \v 0`}</M> und der zweite Teil fällt weg. Das sind die drei durchgestrichenen Terme.</li>
+            </ol>
+            <p><b>Ergebnis:</b> Man leitet einfach jede Koordinate nach der Zeit ab. Genau das wollte S. 8 «zeigen». (Die Überschrift im Skript lautet «Darstellung von <M p=",">{t`\v r = \dot{\v r}`}</M>» gemeint ist <M p=".)">{t`\v v = \dot{\v r}`}</M></p>
+          </>}
+          en={<>
+            <p>How to read the line in the notes:</p>
+            <ol>
+              <li><M>{t`\v r`}</M> consists of three parts like <M p=":">{t`x\,\v e_x`}</M> a number times a basis vector.</li>
+              <li>Differentiating a product uses the product rule: <M p=".">{t`\tfrac{\dd}{\dd t}(x\,\v e_x) = \dot x\,\v e_x + x\,\dot{\v e}_x`}</M></li>
+              <li><M>{t`\v e_x`}</M> never changes – the same arrow everywhere and always (lesson 3). So <M>{t`\dot{\v e}_x = \v 0`}</M> and the second part drops out. These are the three struck-out terms.</li>
+            </ol>
+            <p><b>Result:</b> just differentiate each coordinate with respect to time. That is exactly what p. 8 set out to “show”. (The notes' heading reads “Darstellung von <M p=",">{t`\v r = \dot{\v r}`}</M>” meaning <M p=".)">{t`\v v = \dot{\v r}`}</M></p>
+          </>}
         />
         <HelixVelocity />
         <T
-          de={<p>Im Bild bewegt sich <M>M</M> auf einer Schraubenlinie <M p=".">{t`\v r(t) = (R\cos\omega t,\ R\sin\omega t,\ z_0 + ct)`}</M> Ableiten Komponente für Komponente gibt <M p=",">{t`\v v = (-R\omega\sin\omega t,\ R\omega\cos\omega t,\ c)`}</M> also <M p=":">{t`\dot s = |\v v| = \sqrt{R^2\omega^2 + c^2}`}</M> konstant, obwohl sich <M>{t`\v v`}</M> dauernd dreht.</p>}
-          en={<p>In the figure <M>M</M> moves on a helix <M p=".">{t`\v r(t) = (R\cos\omega t,\ R\sin\omega t,\ z_0 + ct)`}</M> Differentiating component by component gives <M p=",">{t`\v v = (-R\omega\sin\omega t,\ R\omega\cos\omega t,\ c)`}</M> so <M p=":">{t`\dot s = |\v v| = \sqrt{R^2\omega^2 + c^2}`}</M> constant, although <M>{t`\v v`}</M> keeps turning.</p>}
+          de={<p><b>Beispiel im Bild:</b> <M>M</M> fährt auf einer Schraubenlinie, <M p=".">{t`\v r(t) = (R\cos\omega t,\ R\sin\omega t,\ z_0 + ct)`}</M> Jede Koordinate ableiten gibt <M p=".">{t`\v v = (-R\omega\sin\omega t,\ R\omega\cos\omega t,\ c)`}</M> Das Tempo ist <M p=",">{t`\dot s = |\v v| = \sqrt{R^2\omega^2 + c^2}`}</M> also immer gleich – aber die Richtung von <M>{t`\v v`}</M> dreht sich ständig mit der Kurve. Drück auf «Bewegung abspielen» und schau dem roten Pfeil zu.</p>}
+          en={<p><b>Example in the figure:</b> <M>M</M> travels on a helix, <M p=".">{t`\v r(t) = (R\cos\omega t,\ R\sin\omega t,\ z_0 + ct)`}</M> Differentiating each coordinate gives <M p=".">{t`\v v = (-R\omega\sin\omega t,\ R\omega\cos\omega t,\ c)`}</M> The speed is <M p=",">{t`\dot s = |\v v| = \sqrt{R^2\omega^2 + c^2}`}</M> always the same – but the direction of <M>{t`\v v`}</M> keeps turning with the curve. Press “Play the motion” and watch the red arrow.</p>}
         />
         <Box kind="lecture" src={<Src p={9} />} title={<T de="Und in der zylindrischen Basis?" en="And in the cylindrical basis?" />}>
           <MD>{t`\v r = \rho(t)\,\v e_\rho(\varphi(t)) + z(t)\,\v e_z, \qquad \dot{\v r} = \dot\rho\,\v e_\rho + \rho\,\dot{\v e}_\rho + \dot z\,\v e_z + z\,\cancel{\dot{\v e}_z}, \qquad \dot{\v e}_\rho \ne 0`}</MD>
           <T
-            de={<p>Hier fällt <M>{t`\rho\,\dot{\v e}_\rho`}</M> <em>nicht</em> weg: <M>{t`\v e_\rho`}</M> dreht sich mit <M>\varphi</M> (Lektion 3). Was dieser Term ist, zeigt die nächste Lektion (S. 10).</p>}
-            en={<p>Here <M>{t`\rho\,\dot{\v e}_\rho`}</M> does <em>not</em> vanish: <M>{t`\v e_\rho`}</M> turns with <M>\varphi</M> (lesson 3). What this term is, the next lesson shows (p. 10).</p>}
+            de={<p>Hier fällt <M>{t`\rho\,\dot{\v e}_\rho`}</M> <em>nicht</em> weg, denn <M>{t`\v e_\rho`}</M> dreht sich, wenn sich <M>\varphi</M> ändert (Lektion 3, Schritt 3 der Animation). Was dieser zusätzliche Term bedeutet, zeigt die nächste Lektion (S. 10).</p>}
+            en={<p>Here <M>{t`\rho\,\dot{\v e}_\rho`}</M> does <em>not</em> drop out, because <M>{t`\v e_\rho`}</M> turns when <M>\varphi</M> changes (lesson 3, step 3 of the animation). What this extra term means is shown in the next lesson (p. 10).</p>}
           />
         </Box>
       </Section>
@@ -134,24 +190,35 @@ export default function L04Velocity() {
       {/* ------------------------------------------------------------------ 5 */}
       <Section id="missverstaendnisse" title={<T de="5. Häufige Missverständnisse" en="5. Common misconceptions" />}>
         <Box kind="misconception" title={<T de="«Geschwindigkeit und Schnelligkeit sind dasselbe.»" en="“Velocity and speed are the same thing.”" />}>
-          <T de={<><M>{t`\v v`}</M> ist ein Vektor (Betrag <em>und</em> Richtung), <M>{t`\dot s = |\v v|`}</M> eine Zahl <M p=".">{t`\ge 0`}</M> Der Tacho zeigt <M p=",">{t`\dot s`}</M> nicht <M p=".">{t`\v v`}</M></>} en={<><M>{t`\v v`}</M> is a vector (magnitude <em>and</em> direction), <M>{t`\dot s = |\v v|`}</M> a number <M p=".">{t`\ge 0`}</M> A speedometer shows <M p=",">{t`\dot s`}</M> not <M p=".">{t`\v v`}</M></>} />
+          <T de={<>Nein. Die Schnelligkeit <M>{t`\dot s`}</M> ist eine Zahl – der Tacho. Die Geschwindigkeit <M>{t`\v v`}</M> ist ein Pfeil – Tacho <em>und</em> Fahrtrichtung.</>} en={<>No. The speed <M>{t`\dot s`}</M> is a number – the speedometer. The velocity <M>{t`\v v`}</M> is an arrow – speedometer <em>and</em> direction of travel.</>} />
         </Box>
-        <Box kind="misconception" title={<T de={<>«Konstantes <M>{t`\dot s`}</M> heisst konstantes <M p=".">{t`\v v`}</M>»</>} en={<>“Constant <M>{t`\dot s`}</M> means constant <M p=".">{t`\v v`}</M>”</>} />}>
-          <T de={<>Nein: Auf der Schraubenlinie oben ist <M>{t`\dot s`}</M> konstant, aber <M>{t`\v v`}</M> ändert ständig die Richtung. Konstant ist <M>{t`\v v`}</M> nur auf einer Geraden mit konstantem Tempo.</>} en={<>No: on the helix above <M>{t`\dot s`}</M> is constant, but <M>{t`\v v`}</M> keeps changing direction. <M>{t`\v v`}</M> is constant only on a straight line at constant pace.</>} />
+        <Box kind="misconception" title={<T de="«Gleiches Tempo heisst gleiche Geschwindigkeit.»" en="“Same speed means same velocity.”" />}>
+          <T de={<>Nein. Ein Auto, das mit konstant 50 km/h durch eine Kurve fährt, hat ein konstantes <M p=",">{t`\dot s`}</M> aber <M>{t`\v v`}</M> ändert die Richtung – wie bei der Schraubenlinie oben.</>} en={<>No. A car taking a bend at a constant 50 km/h has a constant <M p=",">{t`\dot s`}</M> but <M>{t`\v v`}</M> changes direction – like on the helix above.</>} />
         </Box>
-        <Box kind="misconception" title={<T de={<>«<M>{t`\Delta\v r`}</M> ist tangential und so lang wie <M p=".">{t`\Delta s`}</M>»</>} en={<>“<M>{t`\Delta\v r`}</M> is tangent and as long as <M p=".">{t`\Delta s`}</M>”</>} />}>
-          <T de={<>Nur im Grenzwert. Für endliches <M>{t`\Delta t`}</M> ist <M>{t`\Delta\v r`}</M> eine Sehne: schräg zur Tangente und kürzer als der Bogen (Schritt 2 und 3 der Animation).</>} en={<>Only in the limit. For finite <M>{t`\Delta t`}</M> the vector <M>{t`\Delta\v r`}</M> is a chord: oblique to the tangent and shorter than the arc (steps 2 and 3 of the animation).</>} />
+        <Box kind="misconception" title={<T de={<>«<M>{t`\Delta\v r`}</M> zeigt genau in Fahrtrichtung.»</>} en={<>“<M>{t`\Delta\v r`}</M> points exactly in the direction of travel.”</>} />}>
+          <T de={<>Nur für winzig kleines <M p=".">{t`\Delta t`}</M> Sonst ist <M>{t`\Delta\v r`}</M> eine Abkürzung quer durch die Kurve: schräg und kürzer als der gefahrene Weg (Animation, Schritt 2).</>} en={<>Only for a tiny <M p=".">{t`\Delta t`}</M> Otherwise <M>{t`\Delta\v r`}</M> is a shortcut across the curve: oblique and shorter than the distance travelled (animation, step 2).</>} />
         </Box>
       </Section>
 
       {/* ------------------------------------------------------------------ 6 */}
-      <Section id="ausblick" title={<T de="6. Merke und Ausblick" en="6. Key points and outlook" />}>
+      <Section id="ausblick" title={<T de="6. Das Wichtigste in drei Zeilen" en="6. The essentials in three lines" />}>
         <Box kind="key">
-          <MD>{t`\v v = \dot{\v r} = \lim_{\Delta t\to0}\frac{\Delta\v r}{\Delta t} = \dot s\,\v\tau, \qquad \dot s = |\v v|, \qquad \v v = \dot x\,\v e_x + \dot y\,\v e_y + \dot z\,\v e_z`}</MD>
+          <T
+            de={<ul>
+              <li><M p=":">{t`\v v = \dot{\v r}`}</M> Die Geschwindigkeit ist die Zeitableitung des Ortsvektors.</li>
+              <li><M p=":">{t`\v v = \dot s\,\v\tau`}</M> Tempo mal Fahrtrichtung; <M>{t`\v v`}</M> zeigt immer entlang der Bahn.</li>
+              <li><M p=":">{t`\v v = \dot x\,\v e_x + \dot y\,\v e_y + \dot z\,\v e_z`}</M> In der kartesischen Basis einfach jede Koordinate ableiten.</li>
+            </ul>}
+            en={<ul>
+              <li><M p=":">{t`\v v = \dot{\v r}`}</M> velocity is the time derivative of the position vector.</li>
+              <li><M p=":">{t`\v v = \dot s\,\v\tau`}</M> speed times direction of travel; <M>{t`\v v`}</M> always points along the path.</li>
+              <li><M p=":">{t`\v v = \dot x\,\v e_x + \dot y\,\v e_y + \dot z\,\v e_z`}</M> in the Cartesian basis, just differentiate each coordinate.</li>
+            </ul>}
+          />
         </Box>
         <T
-          de={<p className="connections"><b>Weiter:</b> In zylindrischen und sphärischen Koordinaten drehen sich die Basisvektoren mit. Daraus entstehen Zusatzterme wie <M>{t`\rho\dot\varphi\,\v e_\varphi`}</M> <Src p={10} />; bei der Kreisbewegung bleibt nur dieser Term übrig <Src p={11} />.</p>}
-          en={<p className="connections"><b>Next:</b> in cylindrical and spherical coordinates the basis vectors turn along. This produces extra terms like <M>{t`\rho\dot\varphi\,\v e_\varphi`}</M> <Src p={10} />; in circular motion only this term remains <Src p={11} />.</p>}
+          de={<p className="connections"><b>Weiter:</b> In Zylinder- und Kugelkoordinaten drehen sich die Basisvektoren mit. Daraus entsteht zum Beispiel der Zusatzterm <M>{t`\rho\dot\varphi\,\v e_\varphi`}</M> <Src p={10} />; bei der Kreisbewegung bleibt nur dieser Term übrig <Src p={11} />.</p>}
+          en={<p className="connections"><b>Next:</b> in cylindrical and spherical coordinates the basis vectors turn along. This produces, for example, the extra term <M>{t`\rho\dot\varphi\,\v e_\varphi`}</M> <Src p={10} />; in circular motion only this term remains <Src p={11} />.</p>}
         />
       </Section>
     </article>

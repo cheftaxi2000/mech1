@@ -12,6 +12,13 @@ Visualising is the most important part of learning mechanics. Every lesson is ju
 - **No red review boxes** (student's decision, D-012). A source problem is logged in `docs/REVIEW_LOG.md` and handled *inside* the lesson in one or two sentences where it matters (a caption, a misconception box, a quiz explanation). Long details go into a collapsible `<details className="more">`.
 - Figures follow the lecture's own drawings (orientation of axes, point names like `M_x`, `M_xy`, `M_z`) and one colour system everywhere: x blue, y amber, z green, ρ teal, r dark, angles purple, points red.
 - Keep explanations simple: short sentences, one idea per step, the picture does the heavy lifting.
+- **Explain so a first-semester student understands it on first reading** (student's feedback: "manchmal schwieriger zu verstehen"):
+  - start each idea in plain words or with an everyday picture (car, speedometer, odometer), *then* the formula;
+  - say what every new symbol means the first time it appears ("s(t) = Weg entlang der Kurve, wie ein Kilometerzähler");
+  - one formula per sentence at most; never chain three relations in one sentence;
+  - explain *why* each step of the lecture is allowed (e.g. "ė_x = 0, weil sich e_x nie ändert"), and read compact lecture lines aloud ("So liest man die Zeile im Skript: 1. … 2. … 3. …");
+  - animation captions: what you see first, then what it means; ≤ 3 short sentences;
+  - avoid jargon without a translation ("Grenzwert" → "der Wert, dem man immer näher kommt").
 - **No duplicate figures.** One good interactive figure per idea beats several small ones (the student removed the per-section 3D figures in favour of the one explorer at the end). Large 3D figures get a fullscreen button (`useFullscreen` in `viz/CoordinateExplorer.tsx`).
 - Short topics stay short (e.g. p. 5 vectors): lecture box, one figure per concept.
 - **No questions in the chapters** (D-015): no quizzes, predictions or tasks — chapters are pure explanation. Orange misconception boxes stay (the student likes them). Question ideas go into `docs/QUIZ_BANK.md` for the quiz part at the end of the course.
