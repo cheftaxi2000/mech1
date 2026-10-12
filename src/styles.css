@@ -424,3 +424,12 @@ b.bad { color: var(--bad); } b.ok { color: var(--ok); }
 .kr-omega { stroke: var(--c-angle); stroke-width: 4; stroke-linecap: round; } .kr-omega-head { fill: var(--c-angle); }
 .kr-pin { fill: color-mix(in srgb, var(--muted) 35%, var(--panel)); stroke: var(--fg); stroke-width: 1.2; }
 .kr-pin-base { stroke: var(--fg); stroke-width: 1.6; }
+/* lesson 12 (general motion) */
+.kr-dot-ring { fill: none; stroke: var(--c-angle); stroke-width: 2; } .kr-dot { fill: var(--c-angle); }
+.gm-trace { fill: none; stroke: var(--c-point); stroke-width: 1.4; stroke-dasharray: 4 4; opacity: 0.7; } .gm-trace.c { opacity: 0.45; } .gm-trace.b { opacity: 0.45; }
+.gm-ray { stroke: var(--c-rho); stroke-width: 2.4; } .gm-ray0 { stroke: var(--c-rho); stroke-width: 1.4; stroke-dasharray: 4 4; opacity: 0.7; }
+.gm-pin { fill: none; stroke: var(--fg); stroke-width: 1.6; }
+.gm-field line { stroke-width: 1.3; stroke-dasharray: none; opacity: 0.4; } .gm-field polygon { opacity: 0.4; }
+.gm-copy line { stroke: var(--muted); stroke-width: 2.2; stroke-dasharray: 5 4; } .gm-copy polygon { fill: var(--muted); }
+.gm-rot line { stroke: var(--c-angle); stroke-width: 3; } .gm-rot polygon { fill: var(--c-angle); }
+.gm-ref { stroke: var(--fg); stroke-width: 1.5; }

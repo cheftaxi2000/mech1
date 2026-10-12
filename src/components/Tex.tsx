@@ -36,11 +36,15 @@ function punctTex(p: string): string {
  */
 export function M({ children, p }: { children: string; p?: string }) {
   const body = children.length <= NOBREAK_MAX ? `{${children}}` : children;
-  const tex = p ? body + punctTex(p) : body;
+  // quotation marks (« » “ ” „) have no KaTeX glyph: keep them as text, glued to the formula by a no-wrap span
+  const quoted = !!p && QUOTES.test(p);
+  const tex = p && !quoted ? body + punctTex(p) : body;
   const { html, error } = useMemo(() => render(tex, false), [tex]);
   if (error) return <code className="tex-error" title={error}>{children}</code>;
+  if (quoted) return <span className="nowrap"><span dangerouslySetInnerHTML={{ __html: html }} />{p}</span>;
   return <span dangerouslySetInnerHTML={{ __html: html }} />;
 }
+const QUOTES = /[«»“”„]/;
 
 export function MD({ children, tag }: { children: string; tag?: string }) {
   const { html, error } = useMemo(() => render(children, true), [children]);

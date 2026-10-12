@@ -184,3 +184,10 @@ Short ideas for the quiz part at the end of the course (D-015). Every answer mus
 - Warum liegt O in der Ebene E_M durch M senkrecht zu v_M? (|r_M| = konst. ⇒ v_M ⊥ r_M.)
 - Warum braucht der Beweis zwei Punkte M, N mit nicht parallelen Geschwindigkeiten? (Sonst E_M = E_N, keine Schnittgerade.)
 - Rollender Kegel, γ = 30°, L = 0,2 m, φ̇ = 2 1/s: v_C, |ω|, v oben? (v_C = φ̇ L cos²γ = 0,3 m/s; |ω| = φ̇ cot γ ≈ 3,46 1/s; oben 0,6 m/s — check with `kreiselGeom.test.ts` formulas.)
+
+## L12 allgemein — ideas
+- Ein Rad (Radius R) rollt mit v_C. Grundgleichung mit B = C: Geschwindigkeit des obersten Punkts? (v_C + ωR = 2v_C.)
+- Warum ist ω für alle Bezugspunkte gleich? (Die Platte dreht sich um denselben Winkel, egal mit welchem Punkt man mitfährt; Rechnung S. 22.)
+- Würfel S. 23 mit anderen Daten: v₁ = v₃ ⇒ ω ∥ P₁P₃ — warum? (ω × P₁P₃ = 0.)
+- Gibt es beim Würfel einen ruhenden Punkt? (Nein: ω·v = −v²/L ≠ 0 für alle Punkte.)
+- Leite die SdpG aus der Grundgleichung her (· BM).

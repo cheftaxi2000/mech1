@@ -38,5 +38,5 @@ export const TOPICS: Topic[] = [
   { id: 'rotation', chapter: '3', title: ['Rotation', 'Rotation'], pages: '15–19', status: 'complete', component: lazy(() => import('../lessons/L09Rotation')) },
   { id: 'rollen', chapter: '3', title: ['Rollen & Gleiten', 'Rolling and sliding'], pages: '20', status: 'complete', component: lazy(() => import('../lessons/L10Rolling')) },
   { id: 'kreiselung', chapter: '3', title: ['Kreiselung', 'Spinning motion (Kreiselung)'], pages: '20–21', status: 'review', component: lazy(() => import('../lessons/L11Kreiselung')) },
-  { id: 'allgemein', chapter: '3', title: ['Allgemeine Bewegung', 'General rigid-body motion'], pages: '22–23', status: 'planned' },
+  { id: 'allgemein', chapter: '3', title: ['Allgemeine Bewegung', 'General rigid-body motion'], pages: '22–23', status: 'review', component: lazy(() => import('../lessons/L12General')) },
 ];

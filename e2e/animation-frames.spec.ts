@@ -381,3 +381,46 @@ test('[review] kreiselung: rolling cone explorer and proof animation', async ({ 
     }
   }
 });
+
+test('[review] allgemein: decomposition, riding camera, field, cube', async ({ page }) => {
+  test.setTimeout(240_000);
+  await page.addInitScript(() => localStorage.setItem('mech1.lang', 'de'));
+  for (const [w, h, name, scheme] of [[1180, 820, 'ipad', 'light'], [390, 844, 'phone', 'light'], [820, 1180, 'ipad-dark', 'dark']] as const) {
+    await page.emulateMedia({ colorScheme: scheme, reducedMotion: 'reduce' });
+    await page.setViewportSize({ width: w, height: h });
+    await page.goto('/#home'); await page.goto('/#allgemein');
+    await page.locator('article.lesson h2').first().waitFor();
+    const steppers = page.locator('.stepper');
+    for (let k = 0; k < (await steppers.count()); k++) {
+      const st = steppers.nth(k);
+      await st.scrollIntoViewIfNeeded();
+      const n = await st.locator('.step-num').count();
+      for (let i = 0; i < n; i++) {
+        if (name === 'phone' && i < n - 1) continue;
+        await st.locator('.step-num').nth(i).click();
+        await page.waitForTimeout(k === 1 ? 700 : 300);
+        await st.locator('.stepper-fig').screenshot({ path: `test-results/frames/gen-${name}-anim${k + 1}-step${i + 1}.png` });
+      }
+    }
+    const figs = page.locator('article.lesson figure.vdemo');
+    for (let i = 0; i < (await figs.count()); i++) {
+      await figs.nth(i).scrollIntoViewIfNeeded(); await page.waitForTimeout(300);
+      await figs.nth(i).screenshot({ path: `test-results/frames/gen-${name}-fig${i + 1}.png` });
+    }
+    if (name === 'ipad') {
+      const ride = figs.nth(0);
+      for (const label of ['Kamera ruht', 'Mitfahren mit C']) {
+        await ride.getByRole('button', { name: label }).click(); await page.waitForTimeout(200);
+        await ride.screenshot({ path: `test-results/frames/gen-ipad-ride-${label.replace(/ /g, '_')}.png` });
+      }
+      const field = figs.nth(1);
+      for (const label of ['Translation', 'Drehung um B']) {
+        await field.getByRole('button', { name: label }).click(); await page.waitForTimeout(200);
+        await field.screenshot({ path: `test-results/frames/gen-ipad-field-${label.replace(/ /g, '_')}.png` });
+      }
+      await field.getByRole('button', { name: 'Allgemein' }).click();
+      await field.getByRole('button', { name: /Bezugspunkt/ }).nth(1).click(); await page.waitForTimeout(200);
+      await field.screenshot({ path: 'test-results/frames/gen-ipad-field-refC.png' });
+    }
+  }
+});

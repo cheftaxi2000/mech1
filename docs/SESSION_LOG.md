@@ -89,3 +89,8 @@
 ## 2026-10-12 — lesson 11 (kreiselung, pp. 20–21)
 - Student: "mache weiter … bis zum Schluss" → rollen complete; the student will review every page personally at the end. `L11Kreiselung.tsx`, `kreiselProofScene.ts` (+test), `KreiselFigures.tsx` (`KreiselExplorer`, pure `kreiselGeom.ts` + test), `physics/kreisel.ts` (+test). R-012 handled. `hull()` moved to `geometry.ts` (shared by rollScene and kreiselProofScene).
 - Frame review: first proof view showed v_M almost collinear with r_M (right angle unreadable) → searched views/point placements numerically for screen angles near 90° and arrows that do not cross μ; explorer default position changed so the rolling velocities lie across the screen instead of into it; sphere drawn front faces only.
+
+## 2026-10-12 — lesson 12 (allgemein, pp. 22–23)
+- `L12General.tsx`, `genScene.ts` (+test), `GeneralFigures.tsx` (`RideDemo`, `FieldDemo`; pure frames in `genGeom.ts` + test), `cubeGenFrame.ts` (+test) + `CubeGenAnim.tsx`, `physics/general.ts` (+test). R-007, R-011 handled; R-008 tetrahedron mentioned.
+- `<M p="…">` now keeps quotation marks (« » “ ” „) outside KaTeX in a no-wrap span — KaTeX strict mode has no glyph for them.
+- Frame review: the decomposition triangle was cramped (plate turned so v_M is a clear sum; scene zoomed); the cube camera at 45° put B, P₁, P₃ on one screen line (camera moved to 15° azimuth, ω drawn on the upper diagonal, v₂ − v₃ drawn at P₂); field figure enlarged, slider ranges ±40 so every arrow stays inside (tested); long handwritten solution split into short lines.
