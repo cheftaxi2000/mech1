@@ -125,7 +125,7 @@ Equation numbers in parentheses are the lecture's own.
 - Translation: a̲ = r̲_N − r̲_M; |a̲| konstant ∀t, Richtung veränderlich. Falls a̲ konstant in Betrag *und* Richtung → Translation. a̲ = konst → ȧ̲ = 0 = v̲_N − v̲_M → v̲_N = v̲_M, alle Punkte gleiche Geschwindigkeit. Fig 3.4 kongruente Bahnkurven.
 
 ### p. 14
-- Alle Bahnkurven kongruent: geradlinige oder krummlinige Translation. Figures: kreisförmige Translation; momentane Translation (block on track, block in bowl).
+- Alle Bahnkurven kongruent: geradlinige oder krummlinige Translation. Figures: kreisförmige Translation; «Momentane Translation»: a block on two inclined straight rails (labels T under the straight parts, two black bars marking off the corner zone) and a block in a bowl whose lowest part is a short flat piece between two bars, labelled T (block drawn there with a horizontal velocity arrow).
 - Beispiel Würfel (cube A, B, C sketch) — *empty*.
 
 ### p. 15 — Rotation
@@ -165,7 +165,7 @@ Equation numbers in parentheses are the lecture's own.
 - Kreiselung: liegt vor, falls nur 1 Punkt in Ruhe → wähle O. Bahnkurven auf Kugel mit Radius |r̲|. Behauptung: momentan ist nicht nur O in Ruhe, sondern eine ganze Achse durch O.
 
 ### p. 21 — Beweis (Fig 3.11)
-- Two planes E_M, E_N through M and N (handwritten: v_M ⊥ r_M, E_M ⊥ v_M, r_M ∈ E_M, r_N ∈ E_N, μ = E_M ∩ E_N (Gerade)).
+- Two planes E_M, E_N through M and N (handwritten: v_M ⊥ r_M, **E_M ⊥ r_M** [sic — slip for E_M ⊥ v_M, see the typed line below; R-017], r_M ∈ E_M, r_N ∈ E_N, μ = E_M ∩ E_N (Gerade)).
 - Wähle E_M ⊥ v̲_M, E_N ⊥ v̲_N → A ∈ E_M, A ∈ E_N.
 - SdpG: v̲_A·AM = v̲_M·AM (= 0) → v̲_A = 0 oder v̲_A ⊥ AM. Same for N: v̲_A = 0 oder v̲_A ⊥ AN.
 - Ansicht ⊥ AO: v̲_A ∥ AO? Nein, da v̲_A·AO = v̲_O·AO = 0 → v̲_A ⊥ AO → v̲_A = 0. → R-012
