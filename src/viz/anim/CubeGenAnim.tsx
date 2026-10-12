@@ -2,7 +2,7 @@ import { Line } from '@react-three/drei';
 import { Scene } from '../Scene';
 import { Arrow, C, Dot, Label } from '../primitives';
 import { type Vec3, add, normalize, scale, sub } from '../../physics/vec';
-import { CG, G1, G2, G3, GB, G_OMEGA, G_OTHERS, G_VERTS, cubeGenFrame } from './cubeGenFrame';
+import { CG, G1, G2, G3, GB, G_M_INDEX, G_OMEGA, G_OTHERS, G_VERTS, cubeGenFrame } from './cubeGenFrame';
 
 const AX = 2.2;
 type P3 = [number, number, number];
@@ -39,7 +39,9 @@ export function CubeGenAnim({ step, t }: { step: number; t: number }) {
       {f.diag > 0.01 && <Line points={[G1 as P3, add(G1, scale(f.diag, sub(G3, G1))) as P3]} color={C.angle} lineWidth={2} dashed dashSize={0.08} gapSize={0.06} />}
       {/* step 2: the edge P₃P₂ and v₂ − v₃ */}
       {f.edge32 > 0.01 && <Arrow from={G3} to={add(G3, scale(f.edge32, sub(G2, G3)))} color={C.r} width={3} />}
-      {f.diff > 0.01 && <Arrow from={G2} to={tip(G2, f.diffVec, f.diff)} color={C.angle} width={3.5} />}
+      {/* v₂ = v₃ + ω × P₃P₂: at P₂ the copy of v₃ (grey), then ω × P₃P₂ = (v, 0, v) from its tip to the tip of v₂ */}
+      {f.copy32 > 0.01 && <Arrow from={G2} to={tip(G2, f.v3, f.copy32)} color={C.axis} width={2.2} />}
+      {f.diff > 0.01 && <Arrow from={tip(G2, f.v3)} to={tip(tip(G2, f.v3), f.diffVec, f.diff)} color={C.angle} width={3.5} />}
       {/* ω (a free vector, drawn on the upper part of the diagonal P₃P₁, pointing toward P₁) */}
       {f.omega > 0.01 && <Arrow from={OM0} to={add(OM0, scale(f.omega * OMLEN, WDIR))} color={C.angle} width={6} />}
       {f.omega > 0.9 && <Label at={add(add(OM0, scale(0.5 * OMLEN, WDIR)), [0, 0.22, 0.1])} color={C.angle} vec>ω</Label>}
@@ -56,6 +58,12 @@ export function CubeGenAnim({ step, t }: { step: number; t: number }) {
       <Label at={add(tip(G3, f.v3), [0, 0.18, 0.12])} color={C.point} vec sub="3">v</Label>
       {/* step 4: the other corners */}
       {f.others > 0.01 && G_OTHERS.map((P, i) => <Arrow key={i} from={P} to={tip(P, f.othersV[i], f.others)} color={C.point} width={2} />)}
+      {/* one corner named as an example: v_M = v_B + ω × BM = (−v, v, v) */}
+      {f.others > 0.9 && <>
+        <Dot at={G_OTHERS[G_M_INDEX]} r={0.05} />
+        <Label at={add(G_OTHERS[G_M_INDEX], [0, -0.24, 0.2])} color={C.point}>M</Label>
+        <Label at={add(tip(G_OTHERS[G_M_INDEX], f.othersV[G_M_INDEX]), [0, 0.1, 0.16])} color={C.point} vec sub="M">v</Label>
+      </>}
       {/* points */}
       {([GB, G1, G2, G3] as Vec3[]).map((p, i) => <Dot key={i} at={p} r={0.06} />)}
       <Label at={[0.05, -0.26, -0.08]} color={C.point}>B</Label>

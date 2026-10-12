@@ -48,4 +48,14 @@ describe('Grundgleichung figure: the velocity field of the plate', () => {
     expect(g.rest![0]).toBeCloseTo(g.B[0], 9); expect(g.rest![1]).toBeCloseTo(g.B[1], 9);
   });
   it('point-in-polygon test', () => { expect(inside([0, 0], PLATE)).toBe(true); expect(inside([200, 0], PLATE)).toBe(false); });
+  it('rays from the point at rest: every velocity is perpendicular to its ray and proportional to its length (supplement)', () => {
+    for (const [vb, w] of cases) if (w !== 0) for (const ref of ['B', 'C'] as const) {
+      const f = fieldFrame(vb, w, ref), Q = f.rest!;
+      for (const [a, b] of [f.vB, f.vM, ...f.grid]) {
+        const rx = a[0] - Q[0], ry = a[1] - Q[1], vx = b[0] - a[0], vy = b[1] - a[1];
+        expect(rx * vx + ry * vy).toBeCloseTo(0, 6);
+        expect(Math.hypot(vx, vy)).toBeCloseTo(0.9 * Math.abs(w) * Math.hypot(rx, ry), 6); // drawn: KV · |ω| · distance
+      }
+    }
+  });
 });

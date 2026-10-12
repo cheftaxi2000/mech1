@@ -27,13 +27,17 @@ export default function L10Rolling() {
       <Section id="rollen" title={<T de="1. Rollen ist eine momentane Rotation" en="1. Rolling is a momentary rotation" />}>
         <Box kind="lecture" src={<Src p={20} />}>
           <T
-            de={<p><b>Rollen:</b> momentane Rotation. Figur: ein Zylinder auf einer Ebene, unten die Punkte <M p=",">A</M> <M p=",">B</M> auf seiner Achse <M>C</M> und <M p=";">D</M> <M p=".">{t`\mu \leftrightarrow AB`}</M></p>}
-            en={<p><b>Rolling</b> (<span lang="de">Rollen</span>): momentary rotation. Figure: a cylinder on a plane, at the bottom the points <M p=",">A</M> <M p=",">B</M> on its axis <M>C</M> and <M p=";">D</M> <M p=".">{t`\mu \leftrightarrow AB`}</M></p>}
+            de={<p><b>Rollen:</b> momentane Rotation. Figur: ein Zylinder auf einer Ebene; unten die Punkte <M>A</M> und <M p=";">B</M> auf seiner Achse <M>C</M> und <M p=".">D</M> Darunter: <M p=",">{t`\mu \leftrightarrow AB`}</M> daneben durchgestrichen <M p=".">{t`\cancel{\mu \leftrightarrow CD}`}</M></p>}
+            en={<p><b>Rolling</b> (<span lang="de">Rollen</span>): momentary rotation. Figure: a cylinder on a plane; at the bottom the points <M>A</M> and <M p=";">B</M> on its axis <M>C</M> and <M p=".">D</M> Below: <M p=",">{t`\mu \leftrightarrow AB`}</M> next to it, crossed out, <M p=".">{t`\cancel{\mu \leftrightarrow CD}`}</M></p>}
           />
         </Box>
         <T
           de={<p><b>So liest man das:</b> «Momentan» heisst wieder: nur in diesem Augenblick (wie bei der momentanen Translation). Der Zylinder berührt den Boden entlang der Linie <M p=".">{t`AB`}</M> Rollt er, ohne zu rutschen, ruhen die Punkte auf <M>{t`AB`}</M> in diesem Augenblick. Zwei ruhende Punkte – das ist nach S. 15 eine Rotation, mit der Achse <M p=".">{t`\mu = AB`}</M> Also nicht die eigene Achse <M p=":">{t`CD`}</M> Die bewegt sich ja mit dem Zylinder mit.</p>}
           en={<p><b>How to read this:</b> “momentary” again means: only at this instant (as with momentary translation). The cylinder touches the ground along the line <M p=".">{t`AB`}</M> If it rolls without sliding, the points on <M>{t`AB`}</M> are at rest at this instant. Two points at rest – by p. 15 that is a rotation, with the axis <M p=".">{t`\mu = AB`}</M> So not its own axis <M p=":">{t`CD`}</M> that one moves along with the cylinder.</p>}
+        />
+        <T
+          de={<p><b>Warum darf man das, wenn <M>A</M> und <M>B</M> nur einen Augenblick ruhen?</b> (Erklärung, nicht aus dem Skript) Die Beweise der Rotation auf S. 15–17 benutzen nur die Geschwindigkeiten in <em>einem</em> Augenblick: die SdpG und <M>{t`\v v = \v 0`}</M> auf der Achse. Ruhen <M>A</M> und <M>B</M> in diesem Augenblick, sind alle Geschwindigkeiten in diesem Augenblick genau die einer Rotation um <M p=".">{t`AB`}</M> Erst im nächsten Augenblick ist es eine andere Achse.</p>}
+          en={<p><b>Why is this allowed when <M>A</M> and <M>B</M> are at rest only for an instant?</b> (Explanation, not from the notes) The proofs of the rotation on pp. 15–17 use only the velocities at <em>one</em> instant: the SdpG and <M>{t`\v v = \v 0`}</M> on the axis. If <M>A</M> and <M>B</M> are at rest at this instant, all velocities at this instant are exactly those of a rotation about <M p=".">{t`AB`}</M> Only at the next instant is it a different axis.</p>}
         />
         <Derivation title={<T de="Rollen Schritt für Schritt" en="Rolling step by step" />}>
           <StepPlayer
@@ -58,8 +62,16 @@ export default function L10Rolling() {
         </Derivation>
         <Box kind="supplement" title={<T de={<>Folgerung: <M>{t`v_C = \omega R`}</M></>} en={<>Consequence: <M>{t`v_C = \omega R`}</M></>} />}>
           <T
-            de={<p>Dreht sich der Zylinder (Radius <M p=")">R</M> mit der Winkelschnelligkeit <M>\omega</M> um <M p=",">{t`AB`}</M> ist ein Punkt in der Höhe <M>h</M> über dem Boden <M>{t`\omega h`}</M> schnell. Für <M>C</M> ist <M p=",">{t`h = R`}</M> also <M p=".">{t`v_C = \omega R`}</M> Für den obersten Punkt ist <M p=",">{t`h = 2R`}</M> also <M p=".">{t`2\,v_C`}</M> Das ist die Formel <M>{t`|\v v| = |\v\omega|\cdot|\v{AM}|`}</M> aus der Lektion Rotation, mit der Berührlinie als Achse.</p>}
-            en={<p>If the cylinder (radius <M p=")">R</M> turns with angular speed <M>\omega</M> about <M p=",">{t`AB`}</M> a point at height <M>h</M> above the ground has speed <M p=".">{t`\omega h`}</M> For <M p=",">C</M> <M p=",">{t`h = R`}</M> so <M p=".">{t`v_C = \omega R`}</M> For the top point <M p=",">{t`h = 2R`}</M> so <M p=".">{t`2\,v_C`}</M> This is the formula <M>{t`|\v v| = |\v\omega|\cdot|\v{AM}|`}</M> from the rotation lesson, with the contact line as the axis.</p>}
+            de={<>
+              <p>In dieser Lektion ist <M>\omega</M> eine Zahl: die Winkelschnelligkeit des Zylinders, positiv, wenn er vorwärts rollt (in den Bildern nach rechts, also im Uhrzeigersinn). Als Vektor ist das <M p=",">{t`\v\omega = -\omega\,\v e_z`}</M> mit <M>z</M> aus dem Bild heraus: Im Uhrzeigersinn zeigt <M>{t`\v\omega`}</M> ins Bild hinein.</p>
+              <p>Bei einer Rotation ist ein Punkt so schnell wie <M>\omega</M> mal sein Abstand <M>d</M> von der Achse (Lektion <a href="#rotation">Rotation</a>). Hier ist die Achse die Berührlinie <M p=",">{t`AB`}</M> also ist ein Punkt im Abstand <M>d</M> von <M>{t`AB`}</M> genau <M>{t`\omega d`}</M> schnell. Für Punkte senkrecht über <M>{t`AB`}</M> ist <M>d</M> einfach die Höhe <M p=":">h</M> <M>C</M> hat <M p=",">{t`h = R`}</M> also <M p=";">{t`v_C = \omega R`}</M> der oberste Punkt hat <M p=",">{t`h = 2R`}</M> also <M p=".">{t`2\,v_C`}</M></p>
+              <p>Für andere Punkte zählt nicht die Höhe, sondern der Abstand von <M p=".">{t`AB`}</M> Der vorderste Punkt des Randes liegt auf der Höhe von <M p=",">C</M> ist aber <M>{t`\sqrt2\,R`}</M> von <M>{t`AB`}</M> entfernt. Er ist also <M>{t`\sqrt2\,v_C`}</M> schnell, nicht <M p=".">{t`v_C`}</M></p>
+            </>}
+            en={<>
+              <p>In this lesson <M>\omega</M> is a number: the angular speed of the cylinder, positive when it rolls forward (to the right in the pictures, i.e. clockwise). As a vector this is <M p=",">{t`\v\omega = -\omega\,\v e_z`}</M> with <M>z</M> out of the picture: clockwise, <M>{t`\v\omega`}</M> points into the picture.</p>
+              <p>In a rotation a point is as fast as <M>\omega</M> times its distance <M>d</M> from the axis (lesson <a href="#rotation">Rotation</a>). Here the axis is the contact line <M p=",">{t`AB`}</M> so a point at distance <M>d</M> from <M>{t`AB`}</M> has speed exactly <M p=".">{t`\omega d`}</M> For points vertically above <M>{t`AB`}</M> the distance <M>d</M> is simply the height <M p=".">h</M> <M>C</M> has <M p=",">{t`h = R`}</M> so <M p=";">{t`v_C = \omega R`}</M> the top point has <M p=",">{t`h = 2R`}</M> so <M p=".">{t`2\,v_C`}</M></p>
+              <p>For other points what counts is not the height but the distance from <M p=".">{t`AB`}</M> The foremost point of the rim is at the height of <M p=",">C</M> but <M>{t`\sqrt2\,R`}</M> away from <M p=".">{t`AB`}</M> So its speed is <M p=",">{t`\sqrt2\,v_C`}</M> not <M p=".">{t`v_C`}</M></p>
+            </>}
           />
         </Box>
       </Section>
@@ -108,23 +120,27 @@ export default function L10Rolling() {
             </ol>
           </>}
         />
+        <T
+          de={<p>Im Bild unten ist <M>{t`Z_1`}</M> das Rad und <M>{t`Z_2`}</M> das Band darunter. <M>A</M> ist der Punkt des Rades, der gerade das Band berührt – wie <M>A</M> in der Figur des Skripts. Die Schieber stellen <M p=",">{t`v_C`}</M> <M>\omega</M> (vorwärts positiv, wie oben) und die Bandgeschwindigkeit <M>u</M> ein.</p>}
+          en={<p>In the picture below <M>{t`Z_1`}</M> is the wheel and <M>{t`Z_2`}</M> the belt under it. <M>A</M> is the point of the wheel that is touching the belt right now – like <M>A</M> in the figure of the notes. The sliders set <M p=",">{t`v_C`}</M> <M>\omega</M> (forward positive, as above) and the belt speed <M p=".">u</M></p>}
+        />
         <RollingWheel />
         <T
           de={<>
             <p>Die vier Knöpfe zeigen typische Fälle:</p>
             <ul>
-              <li><b>Rollen:</b> Der rote Pfeil bei <M>K</M> verschwindet, der violette Drehpunkt liegt genau bei <M p=".">K</M> Die Bahn des roten Randpunkts (Zykloide) hat unten eine Spitze – dort steht der Punkt still.</li>
-              <li><b>Rad blockiert:</b> Das Rad dreht sich nicht, alle Pfeile sind gleich (Translation). Bei <M>K</M> rutscht es mit <M>{t`v_C`}</M> über den Boden: Gleiten.</li>
-              <li><b>Durchdrehen:</b> Das Rad dreht sich schneller, als es vorankommt. <M>K</M> rutscht nach hinten: auch Gleiten.</li>
+              <li><b>Rollen:</b> Der rote Pfeil bei <M>A</M> verschwindet, der violette Ring (der Punkt, um den sich das Rad gerade dreht) liegt genau um <M p=".">A</M> Die Bahn des roten Randpunkts (Zykloide) hat unten eine Spitze – dort steht der Punkt still.</li>
+              <li><b>Rad blockiert:</b> Das Rad dreht sich nicht, alle Pfeile sind gleich (Translation). Bei <M>A</M> rutscht es mit <M>{t`v_C`}</M> über den Boden: Gleiten.</li>
+              <li><b>Durchdrehen:</b> Das Rad dreht sich schneller, als es vorankommt. <M>A</M> rutscht nach hinten: auch Gleiten. Der violette Ring liegt jetzt im Rad, über dem Boden.</li>
               <li><b>Band läuft:</b> Das Band läuft rückwärts. Der Kontaktpunkt des Rades bewegt sich – aber genau so schnell wie das Band: Rollen.</li>
             </ul>
           </>}
           en={<>
             <p>The four buttons show typical cases:</p>
             <ul>
-              <li><b>Rolling:</b> the red arrow at <M>K</M> vanishes, the purple centre of rotation lies exactly at <M p=".">K</M> The path of the red rim point (a cycloid) has a sharp tip at the bottom – there the point stands still.</li>
-              <li><b>Wheel locked:</b> the wheel does not turn, all arrows are equal (translation). At <M>K</M> it slips over the ground with <M p=":">{t`v_C`}</M> sliding.</li>
-              <li><b>Wheel spin:</b> the wheel turns faster than it moves forward. <M>K</M> slips backwards: sliding too.</li>
+              <li><b>Rolling:</b> the red arrow at <M>A</M> vanishes, the purple ring (the point about which the wheel is turning right now) lies exactly around <M p=".">A</M> The path of the red rim point (a cycloid) has a sharp tip at the bottom – there the point stands still.</li>
+              <li><b>Wheel locked:</b> the wheel does not turn, all arrows are equal (translation). At <M>A</M> it slips over the ground with <M p=":">{t`v_C`}</M> sliding.</li>
+              <li><b>Wheel spin:</b> the wheel turns faster than it moves forward. <M>A</M> slips backwards: sliding too. The purple ring now lies inside the wheel, above the ground.</li>
               <li><b>Belt running:</b> the belt runs backwards. The wheel’s contact point moves – but exactly as fast as the belt: rolling.</li>
             </ul>
           </>}
@@ -143,14 +159,14 @@ export default function L10Rolling() {
           <T de={<>Nur wenn der Untergrund ruht. Auf einem laufenden Band rollt das Rad, wenn sein Kontaktpunkt genau so schnell ist wie das Band (Knopf «Band läuft»). Allgemein zählt: gleiche Tangentialteile.</>} en={<>Only if the ground is at rest. On a running belt the wheel rolls when its contact point is exactly as fast as the belt (button “belt running”). In general what counts is: equal tangential parts.</>} />
         </Box>
         <Box kind="misconception" title={<T de="«Oben ist ein rollendes Rad so schnell wie das Fahrzeug.»" en="“At the top a rolling wheel is as fast as the vehicle.”" />}>
-          <T de={<>Doppelt so schnell: <M p=".">{t`2\,v_C`}</M> Unten <M p=",">0</M> in der Mitte <M p=",">{t`v_C`}</M> dazwischen gleichmässig mit der Höhe.</>} en={<>Twice as fast: <M p=".">{t`2\,v_C`}</M> At the bottom <M p=",">0</M> in the middle <M p=",">{t`v_C`}</M> evenly with the height in between.</>} />
+          <T de={<>Doppelt so schnell: <M p=".">{t`2\,v_C`}</M> Auf der senkrechten Linie durch den Kontaktpunkt: unten <M p=",">0</M> in der Mitte <M p=",">{t`v_C`}</M> dazwischen gleichmässig mit der Höhe. Allgemein zählt der Abstand von der Berührlinie, nicht die Höhe.</>} en={<>Twice as fast: <M p=".">{t`2\,v_C`}</M> On the vertical line through the contact point: at the bottom <M p=",">0</M> in the middle <M p=",">{t`v_C`}</M> evenly with the height in between. In general what counts is the distance from the contact line, not the height.</>} />
         </Box>
       </Section>
 
       {/* ------------------------------------------------------------------ 4 */}
       <Section id="ausblick" title={<T de="4. Das Wichtigste" en="4. The essentials" />}>
         <Box kind="key">
-          <T de={<>Rollen auf ruhendem Boden: Die Berührlinie ruht, also ist das eine momentane Rotation um die Berührlinie. Die Geschwindigkeit wächst mit der Höhe: unten <M p=",">0</M> Mitte <M p=",">{t`v_C = \omega R`}</M> oben <M p=".">{t`2\,v_C`}</M></>} en={<>Rolling on ground at rest: the contact line is at rest, so this is a momentary rotation about the contact line. The velocity grows with the height: bottom <M p=",">0</M> middle <M p=",">{t`v_C = \omega R`}</M> top <M p=".">{t`2\,v_C`}</M></>} />
+          <T de={<>Rollen auf ruhendem Boden: Die Berührlinie ruht, also ist das eine momentane Rotation um die Berührlinie. Die Schnelligkeit ist <M>\omega</M> mal der Abstand von der Berührlinie: unten <M p=",">0</M> Mitte <M p=",">{t`v_C = \omega R`}</M> oben <M p=".">{t`2\,v_C`}</M></>} en={<>Rolling on ground at rest: the contact line is at rest, so this is a momentary rotation about the contact line. The speed is <M>\omega</M> times the distance from the contact line: bottom <M p=",">0</M> middle <M p=",">{t`v_C = \omega R`}</M> top <M p=".">{t`2\,v_C`}</M></>} />
           <MD>{t`\text{${tr('Kontakt', 'contact')}: } \v v_n(Z_1) = \v v_n(Z_2), \qquad \text{${tr('Rollen', 'rolling')}: } \v v_t(Z_1) = \v v_t(Z_2), \qquad \text{${tr('Gleiten', 'sliding')}: } \v v_t(Z_1) \ne \v v_t(Z_2)`}</MD>
         </Box>
         <T

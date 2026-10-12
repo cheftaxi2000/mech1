@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { M } from '../components/Tex';
 import { fmtNum, useLang, useTr } from '../i18n';
 import { GEN, fieldFrame, mitfahrFrame, type Ride } from './genGeom';
-import { at, useReducedMotion } from './VectorFigures';
+import { at } from './VectorFigures';
 
 const t = String.raw;
 type V = readonly [number, number];
@@ -26,8 +26,7 @@ const RIDES: Record<Ride, [string, string]> = { rest: ['Kamera ruht', 'camera at
  * (or with C), without turning, sees only a turning about that point — by the same angle φ in both cases.
  */
 export function RideDemo() {
-  const tr = useTr();
-  const reduced = useReducedMotion();
+  const tr = useTr(), lang = useLang();
   const [ride, setRide] = useState<Ride>('B');
   const [time, setTime] = useState(2.4);
   const [play, setPlay] = useState(false);
@@ -49,7 +48,7 @@ export function RideDemo() {
     const r = 30, a0 = Math.atan2(-(f.M0[1] - f.ref[1]), f.M0[0] - f.ref[0]);
     const ps = Array.from({ length: 31 }, (_, i) => { const a = a0 + (f.phi * i) / 30; return [f.ref![0] + r * Math.cos(a), f.ref![1] - r * Math.sin(a)] as V; });
     const am = a0 + f.phi / 2;
-    return { ps, lab: [f.ref[0] + 46 * Math.cos(am), f.ref[1] - 46 * Math.sin(am)] as V };
+    return { ps, lab: [f.ref[0] + 41 * Math.cos(am), f.ref[1] - 41 * Math.sin(am)] as V };
   })();
   const start = () => { if (time >= GEN.T_END - 0.01) setTime(0); setPlay((x) => !x); };
   return (
@@ -80,9 +79,9 @@ export function RideDemo() {
       </div>
       <figcaption className="vdemo-readout">
         <label className="slider wide-slider"><span>{tr('Zeit', 'time')} <M>t</M></span>
-          <input type="range" min={0} max={GEN.T_END} step={0.02} value={time} onChange={(e) => { setPlay(false); setTime(Number(e.target.value)); }} aria-label="t" /><span className="val" /></label>
+          <input type="range" min={0} max={GEN.T_END} step={0.02} value={time} onChange={(e) => { setPlay(false); setTime(Number(e.target.value)); }} aria-label="t" /><span className="val">{fmtNum(time, 1, lang)}</span></label>
         <div className="motion-row">
-          <button type="button" className="motion-btn" disabled={reduced && !play} onClick={start}>{play ? tr('Anhalten', 'Stop') : tr('Bewegung abspielen', 'Play the motion')}</button>
+          <button type="button" className="motion-btn" onClick={start}>{play ? tr('Anhalten', 'Stop') : tr('Bewegung abspielen', 'Play the motion')}</button>
         </div>
         <div className={`v-result rt-readout ${ride === 'rest' ? '' : 'pos'}`}>
           {ride === 'rest'
@@ -95,6 +94,13 @@ export function RideDemo() {
       </figcaption>
     </figure>
   );
+}
+
+/** Right-angle mark (8 px) at a between the direction toward q and the direction toward b. */
+function rightAngle(a: V, q: V, b: V): V[] {
+  const u = (p: V): V => { const dx = p[0] - a[0], dy = p[1] - a[1], l = Math.hypot(dx, dy) || 1; return [dx / l, dy / l]; };
+  const e = u(q), w = u(b), k = 8;
+  return [[a[0] + k * e[0], a[1] + k * e[1]], [a[0] + k * (e[0] + w[0]), a[1] + k * (e[1] + w[1])], [a[0] + k * w[0], a[1] + k * w[1]]];
 }
 
 /* ------------------------------------------------------------------------------------------------ */
@@ -122,6 +128,7 @@ export function FieldDemo() {
   const R = ref;
   const mid = (s: readonly [V, V]): V => [(s[0][0] + s[1][0]) / 2, (s[0][1] + s[1][1]) / 2];
   const rotMid = mid(f.rot), copyMid = mid(f.copy);
+  const restShown = !!f.rest && f.rest[0] > 4 && f.rest[0] < 396 && f.rest[1] > 4 && f.rest[1] < 276;
   return (
     <figure className="vdemo">
       <div className="v-presets">
@@ -137,12 +144,20 @@ export function FieldDemo() {
           <Arrow a={f.copy[0]} b={f.copy[1]} cls="gm-copy" />
           <Arrow a={f.rot[0]} b={f.rot[1]} cls="gm-rot" />
           <Arrow a={f.vM[0]} b={f.vM[1]} cls="rb-v" />
-          {f.rest && f.rest[0] > 4 && f.rest[0] < 396 && f.rest[1] > 4 && f.rest[1] < 276 && <circle cx={f.rest[0]} cy={f.rest[1]} r={5.5} className="rl-mc" />}
+          {restShown && f.rest && (<>
+            {/* supplement: every velocity is perpendicular to the ray from the point at rest, and its length grows with the ray */}
+            {([f.vB, f.vM] as const).filter(([a, b]) => Math.hypot(a[0] - f.rest![0], a[1] - f.rest![1]) > 14 && Math.hypot(b[0] - a[0], b[1] - a[1]) > 10).map(([a, b], i) => <g key={i}>
+              <line x1={f.rest![0]} y1={f.rest![1]} x2={a[0]} y2={a[1]} className="gm-pole-ray" />
+              <polyline points={pts(rightAngle(a, f.rest!, b))} className="gm-ra" />
+            </g>)}
+            <circle cx={f.rest[0]} cy={f.rest[1]} r={5.5} className="rl-mc" />
+          </>)}
           {(['B', 'C', 'M'] as const).map((k) => <circle key={k} cx={f[k][0]} cy={f[k][1]} r={k === R ? 5.5 : 4.5} className={k === R ? 'v-m gm-ref' : 'v-m'} />)}
         </svg>
         <div className="vdemo-label point small" style={at(VB2, f.B[0] - 14, f.B[1] + 10)}><M>B</M></div>
         <div className="vdemo-label point small" style={at(VB2, f.C[0] - 14, f.C[1] - 8)}><M>C</M></div>
-        <div className="vdemo-label point small" style={at(VB2, f.M[0] + 2, f.M[1] + 16)}><M>M</M></div>
+        <div className="vdemo-label point small halo" style={at(VB2, f.M[0] - 14, f.M[1] + 12)}><M>M</M></div>
+        {restShown && f.rest && <div className="vdemo-label angle small halo" style={at(VB2, Math.min(360, Math.max(40, f.rest[0])), f.rest[1] < 30 ? f.rest[1] + 18 : f.rest[1] - 16)}><M>{t`\v v = \v 0`}</M></div>}
         {Math.hypot(f.vM[1][0] - f.vM[0][0], f.vM[1][1] - f.vM[0][1]) > 12 && <div className="vdemo-label point small" style={at(VB2, f.vM[1][0] + 16, f.vM[1][1] - 6)}><M>{t`\v v_M`}</M></div>}
         {Math.hypot(f.copy[1][0] - f.copy[0][0], f.copy[1][1] - f.copy[0][1]) > 12 && <div className="vdemo-label muted small" style={at(VB2, copyMid[0], copyMid[1] + 14)}><M>{t`\v v_${R}`}</M></div>}
         {Math.hypot(f.rot[1][0] - f.rot[0][0], f.rot[1][1] - f.rot[0][1]) > 12 && <div className="vdemo-label angle small" style={at(VB2, rotMid[0] + 34, rotMid[1])}><M>{t`\v\omega\times\v{${R}M}`}</M></div>}
@@ -152,15 +167,15 @@ export function FieldDemo() {
           {(['B', 'C'] as const).map((k) => <button key={k} type="button" aria-pressed={ref === k} onClick={() => setRef(k)}>{tr('Bezugspunkt', 'reference point')} <M>{k}</M></button>)}
         </div>
         <label className="slider wide-slider"><span><M>{t`v_{Bx}`}</M></span>
-          <input type="range" min={-40} max={40} step={1} value={vbx} onChange={(e) => setVbx(Number(e.target.value))} aria-label="vBx" /><span className="val">{vbx}</span></label>
+          <input type="range" min={-40} max={40} step={1} value={vbx} onChange={(e) => setVbx(Number(e.target.value))} aria-label="vBx" /><span className="val">{fmtNum(vbx / 100, 2, lang)}</span></label>
         <label className="slider wide-slider"><span><M>{t`v_{By}`}</M></span>
-          <input type="range" min={-40} max={40} step={1} value={vby} onChange={(e) => setVby(Number(e.target.value))} aria-label="vBy" /><span className="val">{vby}</span></label>
+          <input type="range" min={-40} max={40} step={1} value={vby} onChange={(e) => setVby(Number(e.target.value))} aria-label="vBy" /><span className="val">{fmtNum(vby / 100, 2, lang)}</span></label>
         <label className="slider wide-slider"><span><M>\omega</M></span>
           <input type="range" min={-0.5} max={0.5} step={0.01} value={w} onChange={(e) => setW(Number(e.target.value))} aria-label="omega" /><span className="val">{fmtNum(w, 2, lang)}</span></label>
         <div className="v-result pos rt-readout"><M>{t`\v v_M = \v v_${R} + \v\omega\times\v{${R}M}`}</M></div>
         <p className="vdemo-note">{tr(
-          <>Die dünnen Pfeile zeigen die Geschwindigkeit in vielen Punkten der Platte, alle aus derselben Formel. Bei <M>M</M> ist sie zerlegt: grau der Translationsteil <M p=",">{t`\v v_${R}`}</M> violett der Drehteil. Wechsle den Bezugspunkt: Die Zerlegung ändert sich, <M>{t`\v v_M`}</M> und <M>\omega</M> nicht. Violetter Punkt (Ergänzung): Bei einer Bewegung in der Ebene mit <M>{t`\omega \ne 0`}</M> ruht in jedem Augenblick genau ein Punkt.</>,
-          <>The thin arrows show the velocity at many points of the plate, all from the same formula. At <M>M</M> it is split: grey the translation part <M p=",">{t`\v v_${R}`}</M> purple the turning part. Switch the reference point: the split changes, <M>{t`\v v_M`}</M> and <M>\omega</M> do not. Purple dot (supplement): for a motion in the plane with <M p=",">{t`\omega \ne 0`}</M> exactly one point is at rest at each instant.</>)}</p>
+          <>Die dünnen Pfeile zeigen die Geschwindigkeit in vielen Punkten der Platte, alle aus derselben Formel. Bei <M>M</M> ist sie zerlegt: grau der Translationsteil <M p=",">{t`\v v_${R}`}</M> violett der Drehteil. Wechsle den Bezugspunkt: Die Zerlegung ändert sich, <M>{t`\v v_M`}</M> und <M>\omega</M> nicht. Violetter Punkt (Ergänzung): Bei einer Bewegung in der Ebene mit <M>{t`\omega \ne 0`}</M> ruht in jedem Augenblick genau ein Punkt. Von ihm aus gesehen ist alles eine Drehung: Jede Geschwindigkeit steht senkrecht auf dem Strahl zu ihm (Winkelzeichen) und ist umso grösser, je länger der Strahl ist.</>,
+          <>The thin arrows show the velocity at many points of the plate, all from the same formula. At <M>M</M> it is split: grey the translation part <M p=",">{t`\v v_${R}`}</M> purple the turning part. Switch the reference point: the split changes, <M>{t`\v v_M`}</M> and <M>\omega</M> do not. Purple dot (supplement): for a motion in the plane with <M p=",">{t`\omega \ne 0`}</M> exactly one point is at rest at each instant. Seen from it everything is a turning: every velocity is perpendicular to the ray from it (right-angle marks) and the longer the ray, the larger the velocity.</>)}</p>
       </figcaption>
     </figure>
   );

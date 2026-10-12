@@ -6,6 +6,7 @@ import { cartToCyl, cartToSph, ePhi } from '../physics/coords';
 import { coneAxis, coneOmega, conePoint, kreiselVelocity, rollingSpin } from '../physics/kreisel';
 import { velocityCylindrical } from '../physics/kinematics';
 import { contactVelocity, wheelVelocity } from '../physics/rolling';
+import { rigidVelocity } from '../physics/rigid';
 import { rotationVelocity } from '../physics/rotation';
 import { type Vec3, add, cross, dot, norm, scale } from '../physics/vec';
 
@@ -49,4 +50,7 @@ export const Q3 = {
   beltOmega: (2 - -1) / 0.5, // v_C − ωR = u with u = −1 m/s
   beltSlip: contactVelocity(2, (2 - -1) / 0.5, 0.5) - -1,
   coneVC: cone.vC, coneW: cone.w, coneTop: cone.vTop,
+  /** Grundgleichung v_M = v_B + ω × BM with v_B = (1,0,0), ω = (0,0,2), BM = (0, 0.25, 0) */
+  fieldVM: norm(rigidVelocity([1, 0, 0], [0, 0, 2], [0, 0, 0], [0, 0.25, 0])),
+  fieldTurn: cross([0, 0, 2], [0, 0.25, 0]),
 };

@@ -71,8 +71,8 @@ export function rollScene(step: number, t: number, lang: Lang): Scene {
   const hs = [0.5, 1, 1.5, 2].map((k) => k * R);
   for (const [i, z] of hs.entries()) arrow(`v${i}`, i === 1 ? 'an-v' : 'an-v thin', [xc, 0, z], [xc + drawnV(z) * vo, 0, z], vo > 0.01 ? 1 : 0);
   if (vo > 0.01) S('env', 'line', 'an-guide', [pr([xc, 0, 0]), pr([xc + drawnV(2 * R) * vo, 0, 2 * R])], vo);
-  sb.label('lab-vC', addP(pr([xc + drawnV(R), 0, R]), [8, 2]), String.raw`\v v_C`, 'point', vo > 0.9 ? 1 : 0, 'l');
-  sb.label('lab-v2', addP(pr([xc + drawnV(2 * R), 0, 2 * R]), [8, -2]), String.raw`2\,\v v_C`, 'point', vo > 0.9 ? 1 : 0, 'l');
+  sb.label('lab-vC', addP(pr([xc + drawnV(R), 0, R]), [8, 6]), String.raw`\v v_C`, 'point', vo > 0.9 ? 1 : 0, 'l');
+  sb.label('lab-v2', addP(pr([xc + drawnV(2 * R), 0, 2 * R]), [4, -14]), String.raw`2\,\v v_C`, 'point', vo > 0.9 ? 1 : 0, 'l');
 
   // step 1: the contact points are at rest
   const rest = step === 1 ? ease(seg(t, 0.8, 1)) : 0;
@@ -87,7 +87,7 @@ export function rollScene(step: number, t: number, lang: Lang): Scene {
   for (const [k, p] of [['A', [xc, 0, 0]], ['B', [xc, L, 0]], ['C', [xc, 0, R]], ['D', [xc, L, R]]] as const) S(k, 'circle', 'an-point', [pr(p as Vec3)], 1, 4.5);
   sb.label('lab-A', addP(pr([xc, 0, 0]), [6, 15]), 'A', 'point', 1, 'c');
   sb.label('lab-B', addP(pr([xc, L, 0]), [-15, 6]), 'B', 'point', 1, 'c');
-  sb.label('lab-C', addP(pr([xc, 0, R]), [-14, 2]), 'C', 'point', 1, 'c');
+  sb.label('lab-C', addP(pr([xc, 0, R]), [-13, 13]), 'C', 'point', 1, 'c');
   sb.label('lab-D', addP(pr([xc, L, R]), [-14, -4]), 'D', 'point', 1, 'c');
   return sb.finish({ step, xc, turn, vC: drawnV(R), vTop: drawnV(2 * R) });
 }
