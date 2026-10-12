@@ -520,3 +520,10 @@ input[type="range"] { accent-color: var(--accent); min-height: 32px; margin: 0; 
 .stepper-fig .scene { height: auto !important; aspect-ratio: 4 / 3; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
 @media (min-width: 1024px) { .stepper-fig .scene { max-width: calc((100svh - var(--topbar) - 104px) * 4 / 3); margin-inline: auto; } }
 @media (max-width: 860px) and (max-aspect-ratio: 4/5) { .stepper-fig .scene { max-width: calc((52svh - 70px) * 4 / 3); margin-inline: auto; } }
+/* print: the lesson text, formulas and current figure frames; no app chrome */
+@media print {
+  .topbar, .drawer, .drawer-backdrop, .note-fab, .notes-hint, .lesson-pager, .stepper-controls, .fs-btn, .view-reset, .scene-hint, .sticky { display: none !important; }
+  body { background: #fff; font-size: 11pt; } .content { padding: 0; }
+  .stepper { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important; } .stepper-fig { position: static !important; }
+  .box, figure, .stepper, .derivation { break-inside: avoid; }
+}

@@ -11,13 +11,24 @@ export const TEX_MACROS: Record<string, string> = {
   '\\dd': '\\mathrm{d}',
 };
 
+/** Typeset formulas are cached: lessons re-mount when you navigate, and animated read-outs repeat their values. */
+const CACHE = new Map<string, { html: string; error?: string }>();
+const CACHE_MAX = 4000;
+
 /** Renders TeX; on a syntax error shows a visible `.tex-error` box (caught by the e2e tests). */
 function render(tex: string, displayMode: boolean): { html: string; error?: string } {
+  const key = (displayMode ? 'D' : 'I') + tex;
+  const hit = CACHE.get(key);
+  if (hit) return hit;
+  let out: { html: string; error?: string };
   try {
-    return { html: katex.renderToString(tex, { displayMode, throwOnError: true, macros: { ...TEX_MACROS }, strict: 'error' }) };
+    out = { html: katex.renderToString(tex, { displayMode, throwOnError: true, macros: { ...TEX_MACROS }, strict: 'error' }) };
   } catch (e) {
-    return { html: '', error: (e as Error).message };
+    out = { html: '', error: (e as Error).message };
   }
+  if (CACHE.size >= CACHE_MAX) CACHE.delete(CACHE.keys().next().value!);
+  CACHE.set(key, out);
+  return out;
 }
 
 /** Inline formulas up to this length never break across lines (KaTeX would otherwise break after = or <). */
