@@ -10,7 +10,11 @@
 import { cylToCart, ePhi, eRho } from '../../physics/coords';
 import type { Vec3 } from '../../physics/vec';
 
-export const CB = { RHO: 1.5, Z: 1.1, PHI0: (15 * Math.PI) / 180, PHI1: (85 * Math.PI) / 180 };
+/** φ runs from 10° to 75°: from the start camera both e_ρ and e_φ are then seen at ≥ 60 % of their length (views12.test.ts). */
+export const CB = { RHO: 1.5, Z: 1.1, PHI0: (10 * Math.PI) / 180, PHI1: (75 * Math.PI) / 180 };
+/** Start view of CylBasisAnim (lecture orientation: x down-right, y up-right), seen a little more from above than Fig. 1.8. */
+export const CB_CAMERA: [number, number, number] = [4.3, -3.6, 4.6];
+export const CB_TARGET: [number, number, number] = [0.5, 0.5, 0.7];
 export const CB_STEPS = 4;
 
 const clamp01 = (x: number) => Math.max(0, Math.min(1, x));

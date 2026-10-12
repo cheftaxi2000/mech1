@@ -12,8 +12,8 @@ export default function L03Bases() {
   return (
     <article className="lesson">
       <T
-        de={<p className="lede">Eine Basis sind drei Einheitsvektoren, mit denen man jeden Vektor zusammensetzt. Die Vorlesung verbindet jetzt jedes Koordinatensystem aus der ersten Lektion mit seiner eigenen Basis. Die wichtigste Einsicht: Die zylindrische und die sphärische Basis sehen an jedem Punkt anders aus – und genau das erzeugt später die Zusatzterme in der Geschwindigkeit.</p>}
-        en={<p className="lede">A basis is three unit vectors from which every vector is built. The lecture now pairs each coordinate system of the first lesson with its own basis. The key insight: the cylindrical and spherical bases look different at every point – and exactly this produces the extra terms in the velocity later.</p>}
+        de={<p className="lede">Eine Basis sind drei Einheitsvektoren, mit denen man jeden Vektor zusammensetzt. Die Vorlesung verbindet jetzt jedes Koordinatensystem aus der Lektion <a href="#koordinaten">Lage &amp; Koordinaten</a> mit seiner eigenen Basis. Die wichtigste Einsicht: Die zylindrische und die sphärische Basis sehen an jedem Punkt anders aus – und genau das erzeugt später die Zusatzterme in der Geschwindigkeit.</p>}
+        en={<p className="lede">A basis is three unit vectors from which every vector is built. The lecture now pairs each coordinate system of the lesson <a href="#koordinaten">Position &amp; coordinates</a> with its own basis. The key insight: the cylindrical and spherical bases look different at every point – and exactly this produces the extra terms in the velocity later.</p>}
       />
 
       {/* ------------------------------------------------------------------ 1 */}
@@ -25,8 +25,8 @@ export default function L03Bases() {
           <MD tag="1">{t`\v r(t) = x(t)\,\v e_x + y(t)\,\v e_y + z(t)\,\v e_z`}</MD>
         </Box>
         <T
-          de={<p>Die <b>skalare</b> Komponente <M>{t`r_x`}</M> ist eine Zahl: die Projektion von <M>{t`\v r`}</M> auf die <span className="nowrap"><M>x</M>-Richtung</span>, also das Skalarprodukt mit dem Einheitsvektor (letzte Lektion). Die <b>vektorielle</b> Komponente <M>{t`r_x\,\v e_x`}</M> ist der Pfeil dazu. In der kartesischen Basis sind die skalaren Komponenten genau die Koordinaten <M p=".">{t`x, y, z`}</M> Bei einer Bewegung ändern sich in (1) nur die drei Zahlen; die Basisvektoren bleiben fest.</p>}
-          en={<p>The <b>scalar</b> component <M>{t`r_x`}</M> is a number: the projection of <M>{t`\v r`}</M> onto the <span className="nowrap"><M>x</M>-direction</span>, i.e. the dot product with the unit vector (previous lesson). The <b>vector</b> component <M>{t`r_x\,\v e_x`}</M> is the corresponding arrow. In the Cartesian basis the scalar components are exactly the coordinates <M p=".">{t`x, y, z`}</M> In a motion only the three numbers in (1) change; the basis vectors stay fixed.</p>}
+          de={<p>Die <b>skalare</b> Komponente <M>{t`r_x`}</M> ist eine Zahl: die Projektion von <M>{t`\v r`}</M> auf die <span className="nowrap"><M>x</M>-Richtung</span>, also das Skalarprodukt mit dem Einheitsvektor (<a href="#vektoren">Vektoren</a>). Die <b>vektorielle</b> Komponente <M>{t`r_x\,\v e_x`}</M> ist der Pfeil dazu. In der kartesischen Basis sind die skalaren Komponenten genau die Koordinaten <M p=".">{t`x, y, z`}</M> Bei einer Bewegung ändern sich in (1) nur die drei Zahlen; die Basisvektoren bleiben fest.</p>}
+          en={<p>The <b>scalar</b> component <M>{t`r_x`}</M> is a number: the projection of <M>{t`\v r`}</M> onto the <span className="nowrap"><M>x</M>-direction</span>, i.e. the dot product with the unit vector (<a href="#vektoren">Vectors</a>). The <b>vector</b> component <M>{t`r_x\,\v e_x`}</M> is the corresponding arrow. In the Cartesian basis the scalar components are exactly the coordinates <M p=".">{t`x, y, z`}</M> In a motion only the three numbers in (1) change; the basis vectors stay fixed.</p>}
         />
       </Section>
 
@@ -42,7 +42,7 @@ export default function L03Bases() {
           de={<>
             <p>Das ist ein Rezept in drei Schritten, für jedes Koordinatensystem gleich:</p>
             <ol>
-              <li>Zeichne durch den Punkt <M>M</M> die drei Koordinatenlinien (eine Koordinate läuft, die anderen zwei sind fest – Lektion 1).</li>
+              <li>Zeichne durch den Punkt <M>M</M> die drei Koordinatenlinien (eine Koordinate läuft, die anderen zwei sind fest – <a href="#koordinaten">Lage &amp; Koordinaten</a>).</li>
               <li>Nimm an jeder Linie in <M>M</M> die Tangente, in die Richtung, in der die Koordinate <em>wächst</em>.</li>
               <li>Mache daraus Einheitsvektoren (Länge 1).</li>
             </ol>
@@ -51,7 +51,7 @@ export default function L03Bases() {
           en={<>
             <p>This is a three-step recipe, the same for every coordinate system:</p>
             <ol>
-              <li>Draw the three coordinate lines through the point <M>M</M> (one coordinate runs, the other two are fixed – lesson 1).</li>
+              <li>Draw the three coordinate lines through the point <M>M</M> (one coordinate runs, the other two are fixed – <a href="#koordinaten">Position &amp; coordinates</a>).</li>
               <li>At <M p=",">M</M> take the tangent to each line, pointing in the direction in which that coordinate <em>increases</em>.</li>
               <li>Make them unit vectors (length 1).</li>
             </ol>
@@ -78,11 +78,11 @@ export default function L03Bases() {
                 de={<>In <M>M</M> die Tangenten, Länge 1, in Richtung wachsender Koordinate: <M>{t`\v e_\rho`}</M> zeigt von der Achse weg, <M>{t`\v e_\varphi`}</M> entlang des Kreises (von oben gesehen gegen den Uhrzeigersinn), <M>{t`\v e_z`}</M> nach oben. Sie stehen paarweise senkrecht.</>}
                 en={<>At <M p=",">M</M> the tangents, length 1, towards increasing coordinate: <M>{t`\v e_\rho`}</M> points away from the axis, <M>{t`\v e_\varphi`}</M> along the circle (counter-clockwise seen from above), <M>{t`\v e_z`}</M> up. They are pairwise perpendicular.</>} /> },
               { ms: 4500, holdMs: 2500, caption: <T
-                de={<>Jetzt wandert <M>M</M> auf dem Kreis, <M>\varphi</M> wächst. <M>{t`\v e_\rho`}</M> und <M>{t`\v e_\varphi`}</M> drehen sich mit (grau: ihre alte Lage), <M>{t`\v e_z`}</M> und das kartesische <M>{t`\v e_x`}</M> bleiben gleich. Deshalb schreibt die Vorlesung <M p=":">{t`\v e_\rho(\varphi)`}</M> Die Richtung hängt vom Punkt ab.</>}
+                de={<>Jetzt wandert <M>M</M> auf dem Kreis, <M>\varphi</M> wächst. <M>{t`\v e_\rho`}</M> und <M>{t`\v e_\varphi`}</M> drehen sich mit (grau: ihre alte Lage), <M>{t`\v e_z`}</M> und das kartesische <M>{t`\v e_x`}</M> bleiben gleich. Deshalb schreibt die Vorlesung <M>{t`\v e_\rho(\varphi)`}</M> – die Richtung hängt vom Punkt ab.</>}
                 en={<>Now <M>M</M> moves along the circle, <M>\varphi</M> increases. <M>{t`\v e_\rho`}</M> and <M>{t`\v e_\varphi`}</M> turn with it (grey: their old position), <M>{t`\v e_z`}</M> and the Cartesian <M>{t`\v e_x`}</M> stay the same. That is why the lecture writes <M p=":">{t`\v e_\rho(\varphi)`}</M> the direction depends on the point.</>} /> },
               { ms: 4000, caption: <T
-                de={<>Der Ortsvektor: <M>\rho</M> Schritte entlang <M p=",">{t`\v e_\rho`}</M> dann <M>z</M> nach oben – man ist bei <M p=".">M</M> Also <M p=".">{t`\v r = \rho\,\v e_\rho + z\,\v e_z`}</M> Es gibt <em>keinen</em> <span className="nowrap"><M>\varphi</M>-Term</span>: Der Winkel steckt in der Richtung von <M p=".">{t`\v e_\rho(\varphi)`}</M> Zusammen sind es wieder drei Informationen <M p=".">{t`\rho, \varphi, z`}</M></>}
-                en={<>The position vector: <M>\rho</M> steps along <M p=",">{t`\v e_\rho`}</M> then <M>z</M> up – and you are at <M p=".">M</M> So <M p=".">{t`\v r = \rho\,\v e_\rho + z\,\v e_z`}</M> There is <em>no</em> <span className="nowrap"><M>\varphi</M>-term</span>: the angle is hidden in the direction of <M p=".">{t`\v e_\rho(\varphi)`}</M> Together these are again three pieces of information <M p=".">{t`\rho, \varphi, z`}</M></>} /> },
+                de={<>Der Ortsvektor: <M>\rho</M> Schritte entlang <M p=",">{t`\v e_\rho`}</M> dann <M>z</M> nach oben – man ist bei <M p=".">M</M> Also <M p=".">{t`\v r = \rho\,\v e_\rho + z\,\v e_z`}</M> Es gibt <em>keinen</em> <span className="nowrap"><M>\varphi</M>-Term</span>: Der Winkel steckt in der Richtung von <M p=".">{t`\v e_\rho(\varphi)`}</M></>}
+                en={<>The position vector: <M>\rho</M> steps along <M p=",">{t`\v e_\rho`}</M> then <M>z</M> up – and you are at <M p=".">M</M> So <M p=".">{t`\v r = \rho\,\v e_\rho + z\,\v e_z`}</M> There is <em>no</em> <span className="nowrap"><M>\varphi</M>-term</span>: the angle is hidden in the direction of <M p=".">{t`\v e_\rho(\varphi)`}</M></>} /> },
             ]}
           >
             {(step, tt) => <CylBasisAnim step={step} t={tt} />}
@@ -111,22 +111,22 @@ export default function L03Bases() {
         </Box>
         <T
           de={<>
-            <p>Dasselbe Rezept mit den Koordinatenlinien aus Lektion 1:</p>
+            <p>Dasselbe Rezept mit den Koordinatenlinien aus <a href="#koordinaten">Lage &amp; Koordinaten</a>:</p>
             <ul>
               <li><M>{t`\v e_r`}</M> entlang der <span className="nowrap"><M>r</M>-Linie</span>: radial nach aussen, weg von <M p=".">O</M></li>
               <li><M>{t`\v e_\theta`}</M> tangential an den Meridian, in Richtung wachsendes <M p=":">\theta</M> «nach Süden».</li>
               <li><M>{t`\v e_\psi`}</M> tangential an den Breitenkreis, in Richtung wachsendes <M p=":">\psi</M> waagrecht «nach Osten».</li>
             </ul>
-            <p>Der Ortsvektor hat nur <em>einen</em> Term, <M p=".">{t`\v r = r\,\v e_r`}</M> Beide Winkel stecken in der Richtung von <M p=",">{t`\v e_r(\theta, \psi)`}</M> und wieder sind es drei Informationen. Jetzt hängen alle drei Basisvektoren vom Punkt ab. Am Ende dieser Lektion kannst du sie im Explorer an jedem Punkt ansehen (Modus «Sphärisch»).</p>
+            <p>Der Ortsvektor hat nur <em>einen</em> Term, <M p=".">{t`\v r = r\,\v e_r`}</M> Beide Winkel stecken in der Richtung von <M p=",">{t`\v e_r(\theta, \psi)`}</M> und wieder sind es drei Informationen. Jetzt hängen alle drei Basisvektoren vom Punkt ab (<M>{t`\v e_\psi`}</M> allerdings nur von <M p=").">\psi</M> Am Ende dieser Lektion kannst du sie im Explorer an jedem Punkt ansehen (Modus «Sphärisch»).</p>
           </>}
           en={<>
-            <p>The same recipe with the coordinate lines from lesson 1:</p>
+            <p>The same recipe with the coordinate lines from <a href="#koordinaten">Position &amp; coordinates</a>:</p>
             <ul>
               <li><M>{t`\v e_r`}</M> along the <span className="nowrap"><M>r</M>-line</span>: radially outwards, away from <M p=".">O</M></li>
               <li><M>{t`\v e_\theta`}</M> tangent to the meridian, towards increasing <M p=":">\theta</M> “south”.</li>
               <li><M>{t`\v e_\psi`}</M> tangent to the circle of latitude, towards increasing <M p=":">\psi</M> horizontally “east”.</li>
             </ul>
-            <p>The position vector has only <em>one</em> term, <M p=".">{t`\v r = r\,\v e_r`}</M> Both angles are hidden in the direction of <M p=",">{t`\v e_r(\theta, \psi)`}</M> and again there are three pieces of information. Now all three basis vectors depend on the point. At the end of this lesson you can look at them at any point in the explorer (mode “Spherical”).</p>
+            <p>The position vector has only <em>one</em> term, <M p=".">{t`\v r = r\,\v e_r`}</M> Both angles are hidden in the direction of <M p=",">{t`\v e_r(\theta, \psi)`}</M> and again there are three pieces of information. Now all three basis vectors depend on the point (<M>{t`\v e_\psi`}</M> only on <M p=").">\psi</M> At the end of this lesson you can look at them at any point in the explorer (mode “Spherical”).</p>
           </>}
         />
         <Box kind="supplement" title={<T de="In kartesischen Komponenten" en="In Cartesian components" />}>
@@ -141,23 +141,23 @@ export default function L03Bases() {
       {/* ------------------------------------------------------------------ 5 */}
       <Section id="explorer" title={<T de="5. Alle drei Basen im Vergleich" en="5. All three bases compared" />}>
         <T
-          de={<p>Der Explorer aus Lektion 1, jetzt mit der Basis in <M p=".">M</M> Jeder Basisvektor hat die Farbe der Koordinatenlinie, an der er anliegt. Mit ⛶ oben rechts wird er bildschirmfüllend.</p>}
-          en={<p>The explorer from lesson 1, now with the basis at <M p=".">M</M> Each basis vector has the colour of the coordinate line it is tangent to. ⛶ in the top right makes it fill the screen.</p>}
+          de={<p>Der Explorer aus <a href="#koordinaten">Lage &amp; Koordinaten</a>, jetzt mit der Basis in <M p=".">M</M> Jeder Basisvektor hat die Farbe der Koordinatenlinie, an der er anliegt; die Linien sind blass gezeichnet, damit die Pfeile hervortreten. Mit ⛶ oben rechts wird er bildschirmfüllend.</p>}
+          en={<p>The explorer from <a href="#koordinaten">Position &amp; coordinates</a>, now with the basis at <M p=".">M</M> Each basis vector has the colour of the coordinate line it is tangent to; the lines are drawn faint so that the arrows stand out. ⛶ in the top right makes it fill the screen.</p>}
         />
-        <CoordinateExplorer initialMode="cyl" basis />
+        <CoordinateExplorer initialMode="cyl" basis phiDeg={70} z0={1.5} />
         <T
           de={<ul className="observe">
             <li><b>Kartesisch:</b> Die Basis in <M>M</M> ist eine Kopie der Basis in <M p=".">O</M> Verschieben ändert nichts.</li>
             <li><b>Zylindrisch:</b> Ändert man <M p=",">\varphi</M> drehen sich <M>{t`\v e_\rho`}</M> und <M p=";">{t`\v e_\varphi`}</M> <M>\rho</M> und <M>z</M> ändern an der Basis nichts.</li>
             <li><b>Sphärisch:</b> <M>\theta</M> und <M>\psi</M> drehen die Basis; <M>{t`\v e_\psi`}</M> bleibt immer waagrecht.</li>
-            <li>Auf der <span className="nowrap"><M>z</M>-Achse</span> verschwindet die Basis: Dort ist <M>\varphi</M> (bzw. <M p=")">\psi</M> nicht definiert, also auch die Richtung von <M p=".">{t`\v e_\rho`}</M></li>
+            <li>Auf der <span className="nowrap"><M>z</M>-Achse</span> ist <M>\varphi</M> (bzw. <M p=")">\psi</M> nicht definiert. Dann haben auch <M>{t`\v e_\rho`}</M> und <M>{t`\v e_\varphi`}</M> (bzw. <M>{t`\v e_\theta`}</M> und <M p=")">{t`\v e_\psi`}</M> keine Richtung und verschwinden. Übrig bleibt zylindrisch <M p=",">{t`\v e_z`}</M> sphärisch <M p=":">{t`\v e_r`}</M> Es zeigt dort nach oben oder unten, je nachdem, ob <M>M</M> über oder unter <M>O</M> liegt.</li>
             <li>«Bewegung abspielen»: Die zylindrische Basis dreht sich unterwegs mit – die kartesische nicht.</li>
           </ul>}
           en={<ul className="observe">
             <li><b>Cartesian:</b> the basis at <M>M</M> is a copy of the basis at <M p=".">O</M> Moving changes nothing.</li>
             <li><b>Cylindrical:</b> changing <M>\varphi</M> turns <M>{t`\v e_\rho`}</M> and <M p=";">{t`\v e_\varphi`}</M> <M>\rho</M> and <M>z</M> do not change the basis.</li>
             <li><b>Spherical:</b> <M>\theta</M> and <M>\psi</M> turn the basis; <M>{t`\v e_\psi`}</M> always stays horizontal.</li>
-            <li>On the <span className="nowrap"><M>z</M>-axis</span> the basis disappears: there <M>\varphi</M> (or <M p=")">\psi</M> is undefined, and so is the direction of <M p=".">{t`\v e_\rho`}</M></li>
+            <li>On the <span className="nowrap"><M>z</M>-axis</span> <M>\varphi</M> (or <M p=")">\psi</M> is undefined. Then <M>{t`\v e_\rho`}</M> and <M>{t`\v e_\varphi`}</M> (or <M>{t`\v e_\theta`}</M> and <M p=")">{t`\v e_\psi`}</M> have no direction either and disappear. What remains is <M>{t`\v e_z`}</M> (cylindrical) or <M>{t`\v e_r`}</M> (spherical): it points up or down, depending on whether <M>M</M> lies above or below <M p=".">O</M></li>
             <li>“Play a motion”: the cylindrical basis turns along the way – the Cartesian one does not.</li>
           </ul>}
         />
@@ -175,12 +175,12 @@ export default function L03Bases() {
           <T
             de={<ul>
               <li>Basisvektoren sind Einheitsvektoren tangential zu den Koordinatenlinien im betrachteten Punkt.</li>
-              <li>Kartesisch: überall dieselbe Basis. Zylindrisch: <M>{t`\v e_\rho, \v e_\varphi`}</M> hängen von <M>\varphi</M> ab. Sphärisch: alle drei hängen von <M>{t`\theta, \psi`}</M> ab.</li>
+              <li>Kartesisch: überall dieselbe Basis. Zylindrisch: <M>{t`\v e_\rho, \v e_\varphi`}</M> hängen von <M>\varphi</M> ab. Sphärisch: <M>{t`\v e_r, \v e_\theta`}</M> hängen von <M>\theta</M> und <M>\psi</M> ab, <M>{t`\v e_\psi`}</M> nur von <M p=".">\psi</M></li>
               <li><M p=",">{t`\v r = x\,\v e_x + y\,\v e_y + z\,\v e_z = \rho\,\v e_\rho + z\,\v e_z = r\,\v e_r`}</M> immer drei Informationen.</li>
             </ul>}
             en={<ul>
               <li>Basis vectors are unit vectors tangent to the coordinate lines at the point considered.</li>
-              <li>Cartesian: the same basis everywhere. Cylindrical: <M>{t`\v e_\rho, \v e_\varphi`}</M> depend on <M p=".">\varphi</M> Spherical: all three depend on <M p=".">{t`\theta, \psi`}</M></li>
+              <li>Cartesian: the same basis everywhere. Cylindrical: <M>{t`\v e_\rho, \v e_\varphi`}</M> depend on <M p=".">\varphi</M> Spherical: <M>{t`\v e_r, \v e_\theta`}</M> depend on <M>\theta</M> and <M p=",">\psi</M> <M>{t`\v e_\psi`}</M> only on <M p=".">\psi</M></li>
               <li><M p=",">{t`\v r = x\,\v e_x + y\,\v e_y + z\,\v e_z = \rho\,\v e_\rho + z\,\v e_z = r\,\v e_r`}</M> always three pieces of information.</li>
             </ul>}
           />
