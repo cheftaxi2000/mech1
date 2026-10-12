@@ -72,3 +72,8 @@ export function NumericAnswer({ question, value, tol = 0.01, unit, explain }: {
     </div>
   );
 }
+
+/** A link back to the lesson that explains a question («→ Lektion …»). */
+export function See({ id, children }: { id: string; children: ReactNode }) {
+  return <a className="quiz-see" href={`#${id}`}>→ {children}</a>;
+}

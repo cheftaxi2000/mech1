@@ -20,7 +20,11 @@ async function open(page: Page, lang: Lang, hash = '') {
 /** Reveal every hidden explanation (choice feedback, predictions, numeric solutions) and return all lesson text. */
 async function allLessonText(page: Page, mathHits: string[] = []): Promise<string> {
   const chunks: string[] = [];
-  const scanFeedback = async () => mathHits.push(...(await plainTextMath(page, 'article.lesson .quiz-feedback')));
+  const scanFeedback = async () => {
+    mathHits.push(...(await plainTextMath(page, 'article.lesson .quiz-feedback')));
+    const bad = page.locator('article.lesson .quiz-feedback .tex-error');
+    if (await bad.count()) mathHits.push(`KaTeX error in an explanation: ${await bad.first().textContent()}`);
+  };
   const quizzes = page.locator('article.lesson .quiz');
   for (let q = 0; q < (await quizzes.count()); q++) {
     const quiz = quizzes.nth(q);

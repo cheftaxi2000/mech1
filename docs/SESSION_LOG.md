@@ -94,3 +94,7 @@
 - `L12General.tsx`, `genScene.ts` (+test), `GeneralFigures.tsx` (`RideDemo`, `FieldDemo`; pure frames in `genGeom.ts` + test), `cubeGenFrame.ts` (+test) + `CubeGenAnim.tsx`, `physics/general.ts` (+test). R-007, R-011 handled; R-008 tetrahedron mentioned.
 - `<M p="…">` now keeps quotation marks (« » “ ” „) outside KaTeX in a no-wrap span — KaTeX strict mode has no glyph for them.
 - Frame review: the decomposition triangle was cramped (plate turned so v_M is a clear sum; scene zoomed); the cube camera at 45° put B, P₁, P₃ on one screen line (camera moved to 15° azimuth, ω drawn on the upper diagonal, v₂ − v₃ drawn at P₂); field figure enlarged, slider ranges ±40 so every arrow stays inside (tested); long handwritten solution split into short lines.
+
+## 2026-10-12 — quiz part (D-018)
+- `Q1Quiz.tsx`, `Q2Quiz.tsx`, `Q3Quiz.tsx` (chapter «Quiz» in `curriculum.ts`), `content/quizValues.ts` (+test), `See` link helper in `Quiz.tsx`. Home page text updated (no planned lessons left). e2e: hidden explanations are now also checked for KaTeX errors.
+- The course is complete up to p. 23. Next: the student reviews every page and sends change requests.

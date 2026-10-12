@@ -433,3 +433,6 @@ b.bad { color: var(--bad); } b.ok { color: var(--ok); }
 .gm-copy line { stroke: var(--muted); stroke-width: 2.2; stroke-dasharray: 5 4; } .gm-copy polygon { fill: var(--muted); }
 .gm-rot line { stroke: var(--c-angle); stroke-width: 3; } .gm-rot polygon { fill: var(--c-angle); }
 .gm-ref { stroke: var(--fg); stroke-width: 1.5; }
+/* quiz part */
+.quiz-see { display: inline-block; margin-left: 6px; font-size: 0.9em; white-space: nowrap; }
+.quiz-part h2 { margin-top: 1.6em; }

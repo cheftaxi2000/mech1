@@ -274,8 +274,8 @@ export default function L12General() {
           <MD>{t`\v v_M = \v v_B + \v\omega\times\v{BM} \qquad \forall\ M, B \in K`}</MD>
         </Box>
         <T
-          de={<p className="connections"><b>Geschafft:</b> Das war der letzte Abschnitt der Mitschrift. Zum Üben gibt es den Quiz-Teil am Ende des Menüs.</p>}
-          en={<p className="connections"><b>Done:</b> this was the last section of the notes. For practice there is the quiz part at the end of the menu.</p>}
+          de={<p className="connections"><b>Geschafft:</b> Das war der letzte Abschnitt der Mitschrift. Zum Üben gibt es den <a href="#quiz-1">Quiz-Teil</a> am Ende des Menüs.</p>}
+          en={<p className="connections"><b>Done:</b> this was the last section of the notes. For practice there is the <a href="#quiz-1">quiz part</a> at the end of the menu.</p>}
         />
       </Section>
     </article>

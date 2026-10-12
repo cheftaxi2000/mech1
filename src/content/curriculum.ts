@@ -24,6 +24,7 @@ export const CHAPTERS: Record<string, [string, string]> = {
   '1': ['1 · Bewegung eines materiellen Punktes', '1 · Motion of a material point'],
   '2': ['2 · Geschwindigkeit', '2 · Velocity'],
   '3': ['3 · Starrer Körper', '3 · Rigid body'],
+  Q: ['Quiz', 'Quiz'],
 };
 
 export const TOPICS: Topic[] = [
@@ -39,4 +40,7 @@ export const TOPICS: Topic[] = [
   { id: 'rollen', chapter: '3', title: ['Rollen & Gleiten', 'Rolling and sliding'], pages: '20', status: 'complete', component: lazy(() => import('../lessons/L10Rolling')) },
   { id: 'kreiselung', chapter: '3', title: ['Kreiselung', 'Spinning motion (Kreiselung)'], pages: '20–21', status: 'review', component: lazy(() => import('../lessons/L11Kreiselung')) },
   { id: 'allgemein', chapter: '3', title: ['Allgemeine Bewegung', 'General rigid-body motion'], pages: '22–23', status: 'review', component: lazy(() => import('../lessons/L12General')) },
+  { id: 'quiz-1', chapter: 'Q', title: ['Quiz 1 · Lage & Vektoren', 'Quiz 1 · Position & vectors'], pages: '3–7', status: 'review', component: lazy(() => import('../lessons/Q1Quiz')) },
+  { id: 'quiz-2', chapter: 'Q', title: ['Quiz 2 · Geschwindigkeit', 'Quiz 2 · Velocity'], pages: '8–11', status: 'review', component: lazy(() => import('../lessons/Q2Quiz')) },
+  { id: 'quiz-3', chapter: 'Q', title: ['Quiz 3 · Starrer Körper', 'Quiz 3 · Rigid body'], pages: '12–23', status: 'review', component: lazy(() => import('../lessons/Q3Quiz')) },
 ];

@@ -33,14 +33,14 @@ function Home() {
             Ein interaktiver Begleiter zum Skript der ETH-Vorlesung Mechanik I. Jede Lektion folgt dem Skript Seite für Seite,
             kennzeichnet klar, was <span className="src">aus der Vorlesung</span> stammt und was Ergänzung ist, und markiert alles im Skript, was geprüft werden muss.
           </p>
-          <p>Beginne mit <a href="#koordinaten">Lage &amp; Koordinaten</a>. Lektionen mit dem Status «geplant» sind noch nicht geschrieben. Alle Kapitel findest du auch jederzeit im Menü oben links.</p>
+          <p>Beginne mit <a href="#koordinaten">Lage &amp; Koordinaten</a>. Alle zwölf Lektionen folgen dem Skript bis S. 23; am Schluss gibt es drei <a href="#quiz-1">Quiz-Seiten</a> zum Üben. Alle Kapitel findest du auch jederzeit im Menü oben links.</p>
         </>}
         en={<>
           <p className="lede">
             An interactive companion to the ETH Mechanics 1 lecture notes. Each lesson follows the notes page by page,
             marks clearly what comes <span className="src">from the lecture</span> and what is a supplement, and flags anything in the source that needs checking.
           </p>
-          <p>Start with <a href="#koordinaten">Position &amp; coordinates</a>. Lessons marked “planned” have not been written yet. All chapters are also in the menu at the top left.</p>
+          <p>Start with <a href="#koordinaten">Position &amp; coordinates</a>. All twelve lessons follow the notes up to p. 23; at the end there are three <a href="#quiz-1">quiz pages</a> for practice. All chapters are also in the menu at the top left.</p>
         </>}
       />
       <nav className="home-chapters"><ChapterList route="" /></nav>
