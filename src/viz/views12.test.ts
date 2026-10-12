@@ -103,9 +103,17 @@ describe('rotation field (lesson kreisbewegung)', () => {
 
 describe('circle animation (lesson kreisbewegung)', () => {
   it('e_φ, e_ρ, e_z at M are seen clearly in the steps that talk about them', async () => {
-    const { CIRCLE_CAMERA } = await import('./anim/CircleAnim');
+    const { CIRCLE_CAMERA, CIRCLE_TARGET } = await import('./anim/CircleAnim');
     const f = circFrame(3, 1);
     for (const [n, e] of [['e_ρ', f.vec.eRho], ['e_φ', f.vec.ePhi], ['e_z', [0, 0, 1] as Vec3]] as const)
-      expect(visibleFraction(f.M, e, CIRCLE_CAMERA, [0.4, 0.1, 0.85]), n).toBeGreaterThan(MIN);
+      expect(visibleFraction(f.M, e, CIRCLE_CAMERA, CIRCLE_TARGET), n).toBeGreaterThan(MIN);
+    // last step: v is clearly apart from the axis direction and from the radius on the screen (oblique view: not exactly 90°)
+    const g = circFrame(5, 1);
+    for (const w of [[0, 0, 1], scale(-1, g.vec.eRho)] as Vec3[]) {
+      const a = screenAngle(g.M, g.vec.v, g.M, w, CIRCLE_CAMERA, CIRCLE_TARGET);
+      expect(a).toBeGreaterThan(45); expect(a).toBeLessThan(135);
+    }
+    // M is drawn beside the axis, not in front of it
+    expect(Math.abs(projectPoint(g.M, CIRCLE_CAMERA, CIRCLE_TARGET)[0] - projectPoint(g.C, CIRCLE_CAMERA, CIRCLE_TARGET)[0])).toBeGreaterThan(0.12);
   });
 });

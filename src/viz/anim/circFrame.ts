@@ -7,7 +7,7 @@
  *  step 2  ω = φ̇ e_z on the axis, with the sense of rotation (right hand)
  *  step 3  e_φ = e_z × e_ρ
  *  step 4  r = z0 e_z + R e_ρ, i.e. R e_ρ = r − z0 e_z
- *  step 5  v = ω × r (the z0 e_z part contributes e_z × e_z = 0); right angles show v ⟂ ω and v ⟂ r
+ *  step 5  v = ω × r (the z0 e_z part contributes e_z × e_z = 0); right angles show v ⟂ axis (ω) and v ⟂ radius R e_ρ
  *
  * So that v never hides e_φ (both point along the circle): e_φ is drawn on top of v, and in steps 2–4, where the
  * captions are about ω, e_φ and r, v is drawn faint. The basis leaves in step 4, so that R e_ρ does not run into e_ρ.
@@ -15,7 +15,7 @@
 import { cylToCart, ePhi, eRho } from '../../physics/coords';
 import { cross, scale, type Vec3 } from '../../physics/vec';
 
-export const CF = { R: 1.4, Z0: 1.0, PHIDOT: 0.55, PHI0: (-55 * Math.PI) / 180, PHI1: (-18 * Math.PI) / 180, OMEGA_LEN: 1.2 };
+export const CF = { R: 1.4, Z0: 1.0, PHIDOT: 0.55, PHI0: (-80 * Math.PI) / 180, PHI1: (-30 * Math.PI) / 180, OMEGA_LEN: 1.2 };
 export const CF_STEPS = 6;
 const clamp01 = (x: number) => Math.max(0, Math.min(1, x));
 const ease = (x: number) => { const u = clamp01(x); return u * u * (3 - 2 * u); };
