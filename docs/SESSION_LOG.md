@@ -98,3 +98,6 @@
 ## 2026-10-12 — quiz part (D-018)
 - `Q1Quiz.tsx`, `Q2Quiz.tsx`, `Q3Quiz.tsx` (chapter «Quiz» in `curriculum.ts`), `content/quizValues.ts` (+test), `See` link helper in `Quiz.tsx`. Home page text updated (no planned lessons left). e2e: hidden explanations are now also checked for KaTeX errors.
 - The course is complete up to p. 23. Next: the student reviews every page and sends change requests.
+
+## 2026-10-12 — website on GitHub Pages (D-019)
+- Student: «Make it main on GitHub so it can be a website». Created `main` from the lesson branch, added `.github/workflows/pages.yml` (npm ci, npm test, build, deploy `dist/`). The student switched the default branch to `main` and Pages → Source to «GitHub Actions». Site: https://cheftaxi2000.github.io/mech1/. Work continues on `main` from now on.
