@@ -524,3 +524,7 @@ input[type="range"] { accent-color: var(--accent); min-height: 32px; margin: 0; 
 /* L07 ladder: a neutral body colour (not the y-amber); witness ticks from A, B to the projections drawn beside the ladder */
 .ld-body { stroke: color-mix(in srgb, var(--muted) 72%, var(--fg)); stroke-width: 6; stroke-linecap: round; }
 .ld-witness { stroke: var(--c-rho); stroke-width: 1.2; opacity: 0.75; }
+/* L08: paths in the translation demo (M strong, N and P faint copies); crank rod in a neutral body colour */
+.tr-path3a { fill: none; stroke: var(--muted); stroke-width: 1.1; stroke-dasharray: 4 4; opacity: 0.5; }
+.tr-path3a.main { stroke: var(--c-point); stroke-width: 1.8; stroke-dasharray: 7 4; opacity: 0.8; }
+.tr-rod3a { stroke: color-mix(in srgb, var(--muted) 72%, var(--fg)); stroke-width: 8; stroke-linecap: round; } .tr-rod3a.on { stroke: var(--c-rho); }

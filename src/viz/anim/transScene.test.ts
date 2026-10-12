@@ -23,6 +23,9 @@ describe('translation animation (Fig. 3.4)', () => {
     expect(lab(f1, 'lab-RM')?.o).toBe(1); expect(shape(f1, 'RN')?.o).toBe(1);
     const f2 = transScene(2, 1, 'de');
     expect(shape(f2, 'pathM')).toBeDefined(); expect(shape(f2, 'pathN')).toBeDefined(); expect(lab(f2, 'lab-t2')?.o).toBe(1);
+    // M and N are named on the solid body (at t₂), the ghosts carry only their times t₁, t
+    expect(Math.hypot(lab(f2, 'lab-M')!.at[0] - pathM(1)[0], lab(f2, 'lab-M')!.at[1] - pathM(1)[1])).toBeLessThan(25);
+    expect(lab(f2, 'lab-t')?.o).toBe(1); expect(lab(f2, 'lab-t1')?.o).toBe(1);
     const f3 = transScene(3, 1, 'de');
     const vM = shape(f3, 'vM')!, vN = shape(f3, 'vN')!;
     expect(vN.pts[1][0] - vN.pts[0][0]).toBeCloseTo(vM.pts[1][0] - vM.pts[0][0], 9); // equal arrows

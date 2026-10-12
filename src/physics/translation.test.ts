@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { crankA, crankB, rodOmega, rodPoint, rodVelocity } from './translation';
+import { rotationVelocity } from './rotation';
+import { norm, type Vec3 } from './vec';
 
 const D = (f: (t: number) => [number, number], t: number): [number, number] => {
   const h = 1e-6, p = f(t + h), q = f(t - h);
@@ -55,9 +57,17 @@ describe('momentane Translation (lecture p. 14) — slider-crank supplement', ()
     const th = 0.8, h = 1e-6;
     expect(((beta(th + h) - beta(th - h)) / (2 * h)) * w).toBeCloseTo(rodOmega(th, r, l, w), 5);
   });
-  it('bowl figure (R-016): a block following a bowl of radius R turns about the centre; at the bottom inner points are slower by (R − h)/R', () => {
-    const R = 3, h = 0.5, W = 0.7;
-    expect((W * (R - h)) / (W * R)).toBeCloseTo((R - h) / R, 12);
-    expect((R - h) / R).toBeLessThan(1);
+  it('bowl figure (R-016): on the flat piece T all points of the block are equally fast; on a curved part (radius R) it turns about the centre and the upper points are slower', () => {
+    // flat piece: the block slides straight, r(t) = r0 + v t for every point ⇒ the same velocity everywhere
+    const v: Vec3 = [0.8, 0, 0];
+    for (const r0 of [[0, 0, 0], [0.3, 0.5, 0]] as Vec3[]) {
+      const r = (tt: number): Vec3 => [r0[0] + v[0] * tt, r0[1] + v[1] * tt, 0];
+      expect((r(1e-3)[0] - r(-1e-3)[0]) / 2e-3).toBeCloseTo(v[0], 9);
+    }
+    // curved part: the block turns with ω about the bowl centre C (z out of the page); bottom point at distance R, top at R − h
+    const R = 3, h = 0.5, w: Vec3 = [0, 0, 0.7], Cc: Vec3 = [0, R, 0];
+    const vBottom = norm(rotationVelocity(w, Cc, [0, 0, 0])), vTop = norm(rotationVelocity(w, Cc, [0, h, 0]));
+    expect(vTop / vBottom).toBeCloseTo((R - h) / R, 12);
+    expect(vTop).toBeLessThan(vBottom);
   });
 });

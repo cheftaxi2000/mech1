@@ -1,4 +1,4 @@
-import { Box, Derivation, Section, Src } from '../components/Blocks';
+import { Box, De, Derivation, Section, Src } from '../components/Blocks';
 import { M, MD } from '../components/Tex';
 import { T, useTr } from '../i18n';
 import { StepPlayer } from '../viz/anim/StepPlayer';
@@ -43,9 +43,15 @@ export default function L08Translation() {
           <T de="Alle Punkte haben die gleiche Geschwindigkeit." en={<>All points have the same velocity (<span lang="de">alle Punkte haben die gleiche Geschwindigkeit</span>).</>} />
         </Box>
         <T
-          de={<p><b>So liest man das:</b> Beim starren Körper ist <M>{t`\v a`}</M> immer gleich lang (Lektion 7) – er darf sich nur drehen. Die Translation ist der Sonderfall, in dem er sich auch <em>nicht</em> dreht. Dann ändert sich <M>{t`\v a`}</M> gar nicht, seine Ableitung ist null, und die Ableitung von <M>{t`\v a = \v r_N - \v r_M`}</M> ist genau die Differenz der Geschwindigkeiten. Also sind <M>{t`\v v_N`}</M> und <M>{t`\v v_M`}</M> gleich – für jedes Paar von Punkten.</p>}
-          en={<p><b>How to read this:</b> for a rigid body <M>{t`\v a`}</M> is always equally long (lesson 7) – it may only turn. Translation is the special case in which it does <em>not</em> turn either. Then <M>{t`\v a`}</M> does not change at all, its derivative is zero, and the derivative of <M>{t`\v a = \v r_N - \v r_M`}</M> is exactly the difference of the velocities. So <M>{t`\v v_N`}</M> and <M>{t`\v v_M`}</M> are equal – for every pair of points.</p>}
+          de={<p><b>So liest man das:</b> Beim starren Körper ist <M>{t`\v a`}</M> immer gleich lang (siehe <a href="#sdpg">Starrer Körper &amp; SdpG</a>) – er darf sich nur drehen. Die Translation ist der Sonderfall, in dem er sich auch <em>nicht</em> dreht. Dann ändert sich <M>{t`\v a`}</M> gar nicht, seine Ableitung ist null, und die Ableitung von <M>{t`\v a = \v r_N - \v r_M`}</M> ist genau die Differenz der Geschwindigkeiten. Also sind <M>{t`\v v_N`}</M> und <M>{t`\v v_M`}</M> gleich – für jedes Paar von Punkten.</p>}
+          en={<p><b>How to read this:</b> for a rigid body <M>{t`\v a`}</M> is always equally long (see <a href="#sdpg">Rigid body &amp; projected velocities</a>) – it may only turn. Translation is the special case in which it does <em>not</em> turn either. Then <M>{t`\v a`}</M> does not change at all, its derivative is zero, and the derivative of <M>{t`\v a = \v r_N - \v r_M`}</M> is exactly the difference of the velocities. So <M>{t`\v v_N`}</M> and <M>{t`\v v_M`}</M> are equal – for every pair of points.</p>}
         />
+        <Box kind="supplement" title={<T de="Das Wort «Bewegungszustand»" en={<>The word <De en="state of motion">Bewegungszustand</De></>} />}>
+          <T
+            de={<>Das Skript sagt «Bewegungszustand ist Translation», erklärt das Wort aber nicht. Gemeint sind die Geschwindigkeiten aller Punkte des Körpers in einem Augenblick – eine Momentaufnahme aller Geschwindigkeitspfeile. Bei der Translation sind sie alle gleich.</>}
+            en={<>The notes say “Bewegungszustand ist Translation” (the state of motion is translation) but do not explain the word. It means the velocities of all points of the body at one instant – a snapshot of all velocity arrows. In a translation they are all equal.</>}
+          />
+        </Box>
         <Derivation title={<T de="Fig. 3.4 Schritt für Schritt" en="Fig. 3.4 step by step" />}>
           <StepPlayer
             label={tr('Animation: Translation, kongruente Bahnkurven', 'Animation: translation, congruent trajectories')}
@@ -54,8 +60,8 @@ export default function L08Translation() {
                 de={<>Ein starrer Körper zur Zeit <M p=".">{t`t_1`}</M> Zwei Punkte <M>M</M> und <M>N</M> und der Pfeil <M>{t`\v a`}</M> von <M>M</M> nach <M p=".">N</M></>}
                 en={<>A rigid body at time <M p=".">{t`t_1`}</M> Two points <M>M</M> and <M>N</M> and the arrow <M>{t`\v a`}</M> from <M>M</M> to <M p=".">N</M></>} /> },
               { ms: 4500, holdMs: 3000, caption: <T
-                de={<>Der Körper bewegt sich bis zur Zeit <M p=",">t</M> ohne sich zu drehen: <M>{t`\v a`}</M> ist derselbe Pfeil. Beide Punkte haben sich um denselben Vektor verschoben, <M>{t`\v R_M(t) = \v R_N(t)`}</M> (blau).</>}
-                en={<>The body moves to time <M>t</M> without turning: <M>{t`\v a`}</M> is the same arrow. Both points have shifted by the same vector, <M>{t`\v R_M(t) = \v R_N(t)`}</M> (blue).</>} /> },
+                de={<>Der Körper bewegt sich bis zur Zeit <M p=",">t</M> ohne sich zu drehen: <M>{t`\v a`}</M> ist derselbe Pfeil. <M>{t`\v R_M(t)`}</M> ist die Verschiebung von <M>M</M> seit <M p=",">{t`t_1`}</M> <M>{t`\v R_N(t)`}</M> die von <M p=".">N</M> Die beiden blauen Pfeile sind gleich: <M p=".">{t`\v R_M(t) = \v R_N(t)`}</M></>}
+                en={<>The body moves to time <M>t</M> without turning: <M>{t`\v a`}</M> is the same arrow. <M>{t`\v R_M(t)`}</M> is the displacement of <M>M</M> since <M p=",">{t`t_1`}</M> <M>{t`\v R_N(t)`}</M> that of <M p=".">N</M> The two blue arrows are equal: <M p=".">{t`\v R_M(t) = \v R_N(t)`}</M></>} /> },
               { ms: 4500, holdMs: 3000, caption: <T
                 de={<>Weiter bis <M p=".">{t`t_2`}</M> Die Bahn von <M>N</M> ist dieselbe Kurve wie die Bahn von <M p=",">M</M> nur um <M>{t`\v a`}</M> verschoben. Solche Bahnen heissen <b>kongruent</b>.</>}
                 en={<>On to <M p=".">{t`t_2`}</M> The path of <M>N</M> is the same curve as the path of <M p=",">M</M> only shifted by <M p=".">{t`\v a`}</M> Such paths are called <b>congruent</b>.</>} /> },
@@ -84,18 +90,18 @@ export default function L08Translation() {
       {/* ------------------------------------------------------------------ 3 */}
       <Section id="momentan" title={<T de="3. Momentane Translation" en="3. Momentary translation" />}>
         <Box kind="lecture" src={<Src p={14} />}>
-          <T de={<>Figur «Momentane Translation»: ein Klotz auf zwei schrägen Schienen und ein Klotz in einer Schale; an der Stelle <M>T</M> befindet er sich momentan in Translation.</>} en={<>Figure “Momentane Translation” (momentary translation): a block on two inclined rails and a block in a bowl; at the position <M>T</M> it is momentarily in translation.</>} />
+          <T de={<>Figur «Momentane Translation» (nur Zeichnung, kein Text): Links gleitet ein Klotz auf zwei schrägen, geraden Schienen, die unten eine Ecke bilden; unter den geraden Stücken steht <M p=",">T</M> zwei schwarze Balken grenzen die Ecke ab. Rechts gleitet ein Klotz in einer Schale; ihr tiefster Teil ist ein kurzes flaches Stück zwischen zwei Balken, beschriftet mit <M p=".">T</M> Dort ist der Klotz mit einem waagrechten Geschwindigkeitspfeil gezeichnet.</>} en={<>Figure “Momentane Translation” (momentary translation; drawing only, no text): on the left a block slides on two inclined straight rails that form a corner at the bottom; <M>T</M> is written under the straight parts, and two black bars mark off the corner. On the right a block slides in a bowl; its lowest part is a short flat piece between two bars, labelled <M p=".">T</M> There the block is drawn with a horizontal velocity arrow.</>} />
         </Box>
         <T
-          de={<p><b>Momentan</b> heisst: nur in einem einzigen Augenblick. In diesem Augenblick dreht sich der Körper nicht, und alle Punkte haben dieselbe Geschwindigkeit. Einen Augenblick vorher und nachher ist das nicht so. Ein klares Beispiel ist die Stange eines Kurbeltriebs (wie im Motor): Meistens verschiebt <em>und</em> dreht sie sich. Nur wenn die Kurbel genau senkrecht steht, dreht sie sich für einen Augenblick nicht.</p>}
-          en={<p><b>Momentary</b> means: only at a single instant. At that instant the body does not turn, and all points have the same velocity. An instant before and after this is not the case. A clear example is the rod of a slider crank (as in an engine): mostly it shifts <em>and</em> turns. Only when the crank stands exactly vertical does it not turn for an instant.</p>}
+          de={<p><b>Momentan</b> heisst: in diesem Augenblick – über die ganze Bewegung gesehen ist es keine Translation. In der Figur ist der Klotz auf den mit <M>T</M> markierten Stücken in Translation: Dort gleitet er geradeaus, ohne zu kippen. In der Ecke und auf den gekrümmten Teilen der Schale kippt er und dreht sich. Im Extremfall dauert die Translation nur einen einzigen Augenblick. Das zeigt die Stange eines Kurbeltriebs (wie im Motor): Meistens verschiebt <em>und</em> dreht sie sich. Nur wenn die Kurbel genau senkrecht steht, dreht sie sich für einen Augenblick nicht.</p>}
+          en={<p><b>Momentary</b> means: at this moment – seen over the whole motion it is not a translation. In the figure the block is in translation on the pieces marked <M p=":">T</M> there it slides straight on without tilting. In the corner and on the curved parts of the bowl it tilts and turns. In the extreme case the translation lasts only a single instant. The rod of a slider crank (as in an engine) shows this: mostly it shifts <em>and</em> turns. Only when the crank stands exactly vertical does it not turn for an instant.</p>}
         />
         <SliderCrank />
         <details className="more">
           <summary><T de="Genauer hingeschaut: der Klotz in der Schale" en="A closer look: the block in the bowl" /></summary>
           <T
-            de={<p>Folgt der Klotz der runden Schale und kippt dabei mit (wie in der Figur), dreht er sich um den Mittelpunkt der Schale. Streng genommen sind dann auch am tiefsten Punkt <M>T</M> seine Punkte verschieden schnell: die oberen, näher am Mittelpunkt, langsamer – im Verhältnis <M>{t`(R-h)/R`}</M> (Radius <M p=",">R</M> Höhe des Klotzes <M p=").">h</M> Gleich sind dort die <em>Richtungen</em> (alle waagrecht). Als momentane Translation kann man das nur lesen, wenn der Klotz klein gegenüber der Schale ist. Das Beispiel mit der Kurbel oben ist exakt.</p>}
-            en={<p>If the block follows the round bowl and tilts with it (as in the figure), it turns about the centre of the bowl. Strictly speaking its points then have different speeds even at the lowest point <M p=":">T</M> the upper ones, nearer the centre, are slower – in the ratio <M>{t`(R-h)/R`}</M> (radius <M p=",">R</M> block height <M p=").">h</M> What is equal there are the <em>directions</em> (all horizontal). It can be read as a momentary translation only if the block is small compared with the bowl. The crank example above is exact.</p>}
+            de={<p>Auf dem flachen Stück <M>T</M> gleitet der Klotz geradeaus und kippt nicht. Jeder seiner Pfeile <M>{t`\v a`}</M> behält Länge und Richtung, alle Punkte sind gleich schnell: Translation. Auf den gekrümmten Teilen kippt der Klotz mit der Schale und dreht sich um ihren Mittelpunkt. Dort sind seine Punkte verschieden schnell: Die oberen, näher am Mittelpunkt, sind langsamer – keine Translation. Bei den Schienen links ist es genauso: Translation auf den geraden Stücken <M p=",">T</M> Drehung in der Ecke zwischen den Balken.</p>}
+            en={<p>On the flat piece <M>T</M> the block slides straight on and does not tilt. Each of its arrows <M>{t`\v a`}</M> keeps its length and direction, all points are equally fast: translation. On the curved parts the block tilts with the bowl and turns about its centre. There its points have different speeds: the upper ones, nearer the centre, are slower – not a translation. The rails on the left work the same way: translation on the straight pieces <M p=",">T</M> turning in the corner between the bars.</p>}
           />
         </details>
       </Section>
@@ -109,14 +115,14 @@ export default function L08Translation() {
           <T de={<>Nicht unbedingt. Bei der kreisförmigen Translation fährt jeder Punkt einen Kreis – aber alle Kreise sind gleich gross und haben <em>verschiedene</em> Mittelpunkte. Bei einer Drehung haben alle Kreise <em>denselben</em> Mittelpunkt auf der Achse und verschiedene Radien. Vergleiche im Bild in Abschnitt 2 «kreisförmig» mit «Vergleich: Drehung».</>} en={<>Not necessarily. In circular translation every point travels on a circle – but all circles are the same size and have <em>different</em> centres. In a rotation all circles share the <em>same</em> centre on the axis and have different radii. Compare “circular” with “compare: rotation” in the figure of section 2.</>} />
         </Box>
         <Box kind="misconception" title={<T de="«Momentane Translation ist dasselbe wie Translation.»" en="“Momentary translation is the same as translation.”" />}>
-          <T de={<>Nein, nur für einen Augenblick sind alle Geschwindigkeiten gleich. Kurz danach dreht sich der Körper wieder (im Bild: drehe die Kurbel ein paar Grad weiter).</>} en={<>No, all velocities are equal only for an instant. Shortly afterwards the body turns again (in the figure: turn the crank a few degrees further).</>} />
+          <T de={<>Nein. Alle Geschwindigkeiten sind nur <em>jetzt</em> gleich – beim Klotz für das Stück <M p=",">T</M> bei der Kurbel sogar nur einen Augenblick lang. Danach dreht sich der Körper wieder (im Bild: drehe die Kurbel ein paar Grad weiter).</>} en={<>No. All velocities are equal only <em>now</em> – for the block along the piece <M p=",">T</M> for the crank only for a single instant. Afterwards the body turns again (in the figure: turn the crank a few degrees further).</>} />
         </Box>
       </Section>
 
       {/* ------------------------------------------------------------------ 5 */}
       <Section id="ausblick" title={<T de="5. Das Wichtigste" en="5. The essentials" />}>
         <Box kind="key">
-          <MD>{t`\text{Translation: } \v a = \v r_N - \v r_M = \text{konst. (Betrag und Richtung)} \ \Rightarrow\ \v v_N = \v v_M \ \text{für alle Punkte}`}</MD>
+          <MD>{t`\text{Translation: } \v a = \v r_N - \v r_M = \text{${tr('konst. (Betrag und Richtung)', 'const. (magnitude and direction)')}} \ \Rightarrow\ \v v_N = \v v_M \ \text{${tr('für alle Punkte', 'for all points')}}`}</MD>
           <T de="Alle Bahnen sind kongruent (verschobene Kopien) – gerade, gekrümmt oder kreisförmig." en="All paths are congruent (shifted copies) – straight, curved or circular." />
         </Box>
         <T
