@@ -27,17 +27,17 @@ export default function L06Circle() {
         <Box kind="lecture" src={<Src p={11} />}>
           <MD>{t`\rho = R, \qquad \varphi = \varphi(t), \qquad z = z_0`}</MD>
           <T de="In zylindrischer Basis:" en="In the cylindrical basis:" />
-          <MD>{t`\v r(t) = R\,\v e_\rho + z_0\,\v e_z, \quad \v e_\rho(\varphi(t)); \qquad \v r : \begin{pmatrix} R \\ \cancel{\varphi(t)} \\ z_0 \end{pmatrix}\ \text{Falsch!} \ \to\ \v r : \begin{pmatrix} R \\ 0 \\ z_0 \end{pmatrix}`}</MD>
-          <MD>{t`\v v = \dot\rho\,\v e_\rho + \rho\dot\varphi\,\v e_\varphi + \dot z\,\v e_z = R\dot\varphi\,\v e_\varphi \ \text{: tangential zum Kreis}, \qquad \dot s = R\dot\varphi, \quad \v\tau = \v e_\varphi`}</MD>
+          <MD>{t`\v r(t) = R\,\v e_\rho + z_0\,\v e_z, \quad \v e_\rho(\varphi(t)); \qquad \v r : \cancel{\begin{pmatrix} R \\ \varphi(t) \\ z_0 \end{pmatrix}}\ \text{Falsch!} \ \to\ \v r : \begin{pmatrix} R \\ 0 \\ z_0 \end{pmatrix}`}</MD>
+          <MD>{t`\v v = \dot\rho\,\v e_\rho + \rho\dot\varphi\,\v e_\varphi + \dot z\,\v e_z = R\dot\varphi\,\v e_\varphi \ ` + tr(t`\text{: tangential zum Kreis}`, t`\text{: tangent to the circle}`) + t`, \qquad \dot s = R\dot\varphi, \quad \v\tau = \v e_\varphi`}</MD>
         </Box>
         <T
           de={<>
-            <p><b>Warum steht im Skript «Falsch!»?</b> Die Spalte rechts sind die <em>Komponenten</em> von <M>{t`\v r`}</M> in der Basis <M p=",">{t`\v e_\rho, \v e_\varphi, \v e_z`}</M> also «wie viel von jedem Basisvektor». <M>{t`\v r`}</M> enthält <M>R</M> mal <M>{t`\v e_\rho`}</M> und <M>{t`z_0`}</M> mal <M p=",">{t`\v e_z`}</M> aber <em>nichts</em> von <M p=".">{t`\v e_\varphi`}</M> Der Winkel steckt nicht in einer Komponente, sondern in der Richtung von <M>{t`\v e_\rho`}</M> (Lektion 3).</p>
-            <p><b>Die Geschwindigkeit</b> folgt direkt aus S. 10: <M>R</M> ist fest, also <M p=";">{t`\dot\rho = 0`}</M> <M>{t`z_0`}</M> ist fest, also <M p=".">{t`\dot z = 0`}</M> Übrig bleibt nur der Dreh-Term: <M p=".">{t`\v v = R\dot\varphi\,\v e_\varphi`}</M> Der Pfeil zeigt entlang des Kreises, das Tempo ist <M p=".">{t`\dot s = R\dot\varphi`}</M></p>
+            <p><b>Warum steht im Skript «Falsch!»?</b> Die Spalte rechts sind die <em>Komponenten</em> von <M>{t`\v r`}</M> in der Basis <M p=",">{t`\v e_\rho, \v e_\varphi, \v e_z`}</M> also «wie viel von jedem Basisvektor». <M>{t`\v r`}</M> enthält <M>R</M> mal <M>{t`\v e_\rho`}</M> und <M>{t`z_0`}</M> mal <M p=",">{t`\v e_z`}</M> aber <em>nichts</em> von <M p=".">{t`\v e_\varphi`}</M> Der Winkel steckt nicht in einer Komponente, sondern in der Richtung von <M>{t`\v e_\rho`}</M> (<a href="#basen">Basen</a>).</p>
+            <p><b>Die Geschwindigkeit</b> folgt direkt aus S. 10: <M>R</M> ist fest, also <M p=";">{t`\dot\rho = 0`}</M> <M>{t`z_0`}</M> ist fest, also <M p=".">{t`\dot z = 0`}</M> Übrig bleibt nur der Dreh-Term: <M p=".">{t`\v v = R\dot\varphi\,\v e_\varphi`}</M> Der Pfeil zeigt entlang des Kreises, die Schnelligkeit ist <M p=".">{t`\dot s = R\dot\varphi`}</M></p>
             <p><b><M>{t`\dot\varphi`}</M> heisst Winkelschnelligkeit</b> und wird in rad/s gemessen (Bogenmass pro Sekunde). Eine Umdrehung ist <M p=",">{t`2\pi`}</M> also ist eine Umdrehung pro Sekunde <M p=".">{t`\dot\varphi = 2\pi\ \text{rad/s} \approx 6{,}28\ \text{rad/s}`}</M></p>
           </>}
           en={<>
-            <p><b>Why do the notes say “Falsch!”?</b> The column on the right holds the <em>components</em> of <M>{t`\v r`}</M> in the basis <M p=",">{t`\v e_\rho, \v e_\varphi, \v e_z`}</M> i.e. “how much of each basis vector”. <M>{t`\v r`}</M> contains <M>R</M> times <M>{t`\v e_\rho`}</M> and <M>{t`z_0`}</M> times <M p=",">{t`\v e_z`}</M> but <em>nothing</em> of <M p=".">{t`\v e_\varphi`}</M> The angle is not in a component but in the direction of <M>{t`\v e_\rho`}</M> (lesson 3).</p>
+            <p><b>Why do the notes say “Falsch!”?</b> The column on the right holds the <em>components</em> of <M>{t`\v r`}</M> in the basis <M p=",">{t`\v e_\rho, \v e_\varphi, \v e_z`}</M> i.e. “how much of each basis vector”. <M>{t`\v r`}</M> contains <M>R</M> times <M>{t`\v e_\rho`}</M> and <M>{t`z_0`}</M> times <M p=",">{t`\v e_z`}</M> but <em>nothing</em> of <M p=".">{t`\v e_\varphi`}</M> The angle is not in a component but in the direction of <M>{t`\v e_\rho`}</M> (<a href="#basen">Bases</a>).</p>
             <p><b>The velocity</b> follows directly from p. 10: <M>R</M> is fixed, so <M p=";">{t`\dot\rho = 0`}</M> <M>{t`z_0`}</M> is fixed, so <M p=".">{t`\dot z = 0`}</M> Only the turning term remains: <M p=".">{t`\v v = R\dot\varphi\,\v e_\varphi`}</M> The arrow points along the circle; the speed is <M p=".">{t`\dot s = R\dot\varphi`}</M></p>
             <p><b><M>{t`\dot\varphi`}</M> is called angular speed</b> (<em lang="de">Winkelschnelligkeit</em>) and is measured in rad/s (radians per second). One turn is <M p=",">{t`2\pi`}</M> so one turn per second is <M p=".">{t`\dot\varphi = 2\pi\ \text{rad/s} \approx 6.28\ \text{rad/s}`}</M></p>
           </>}
@@ -53,11 +53,11 @@ export default function L06Circle() {
           <MD>{t`\v e_\varphi = \v e_z\times\v e_\rho \ \to\ \v v = R\dot\varphi\,(\v e_z\times\v e_\rho) = \dot\varphi\,\v e_z\times R\,\v e_\rho`}</MD>
           <MD>{t`\v r = R\,\v e_\rho + z_0\,\v e_z \ \to\ R\,\v e_\rho = \v r - z_0\,\v e_z`}</MD>
           <MD>{t`\v v = \dot\varphi\,\v e_z\times(\v r - z_0\,\v e_z) = \dot\varphi\,\v e_z\times\v r - z_0\dot\varphi\,\cancel{\v e_z\times\v e_z}`}</MD>
-          <MD>{t`\v v = \dot\varphi\,\v e_z\times\v r = \v\omega\times\v r \ \text{: Kreisbewegung}`}</MD>
+          <MD>{t`\v v = \dot\varphi\,\v e_z\times\v r = \v\omega\times\v r \ ` + tr(t`\text{: Kreisbewegung}`, t`\text{: circular motion}`)}</MD>
         </Box>
         <T
-          de={<p><b>Warum ein Vektor?</b> Eine Drehung hat eine <em>Achse</em> und einen <em>Drehsinn</em>. Beides packt man in einen Pfeil: <M>{t`\v\omega`}</M> liegt auf der Drehachse, seine Länge ist die Winkelschnelligkeit, und er zeigt so, dass die Finger der rechten Hand in Drehrichtung zeigen, wenn der Daumen entlang <M>{t`\v\omega`}</M> zeigt. Dreht sich der Punkt gegen den Uhrzeigersinn (von oben gesehen), zeigt <M>{t`\v\omega`}</M> nach oben.</p>}
-          en={<p><b>Why a vector?</b> A rotation has an <em>axis</em> and a <em>sense</em>. Both are packed into one arrow: <M>{t`\v\omega`}</M> lies on the axis of rotation, its length is the angular speed, and it points so that the fingers of the right hand point in the direction of turning when the thumb points along <M p=".">{t`\v\omega`}</M> If the point turns counter-clockwise (seen from above), <M>{t`\v\omega`}</M> points up.</p>}
+          de={<p><b>Warum ein Vektor?</b> Eine Drehung hat eine <em>Achse</em> und einen <em>Drehsinn</em>. Beides packt man in einen Pfeil: <M>{t`\v\omega`}</M> liegt auf der Drehachse, seine Länge ist der Betrag der Winkelschnelligkeit, und er zeigt so, dass die Finger der rechten Hand in Drehrichtung zeigen, wenn der Daumen entlang <M>{t`\v\omega`}</M> zeigt. Dreht sich der Punkt gegen den Uhrzeigersinn (von oben gesehen), zeigt <M>{t`\v\omega`}</M> nach oben. Ist <M p=",">{t`\dot\varphi < 0`}</M> dreht der Punkt im Uhrzeigersinn, und <M>{t`\v\omega = \dot\varphi\,\v e_z`}</M> zeigt nach unten.</p>}
+          en={<p><b>Why a vector?</b> A rotation has an <em>axis</em> and a <em>sense</em>. Both are packed into one arrow: <M>{t`\v\omega`}</M> lies on the axis of rotation, its length is the magnitude of the angular speed, and it points so that the fingers of the right hand point in the direction of turning when the thumb points along <M p=".">{t`\v\omega`}</M> If the point turns counter-clockwise (seen from above), <M>{t`\v\omega`}</M> points up. If <M p=",">{t`\dot\varphi < 0`}</M> the point turns clockwise and <M>{t`\v\omega = \dot\varphi\,\v e_z`}</M> points down.</p>}
         />
         <Derivation title={<T de={<><M>{t`\v v = \v\omega\times\v r`}</M> Schritt für Schritt</>} en={<><M>{t`\v v = \v\omega\times\v r`}</M> step by step</>} />}>
           <StepPlayer
@@ -73,8 +73,8 @@ export default function L06Circle() {
                 de={<>Auf der Achse der Pfeil <M p=".">{t`\v\omega = \dot\varphi\,\v e_z`}</M> Der kleine Bogen zeigt den Drehsinn: Daumen nach oben, Finger drehen gegen den Uhrzeigersinn – wie <M p=".">M</M></>}
                 en={<>On the axis, the arrow <M p=".">{t`\v\omega = \dot\varphi\,\v e_z`}</M> The small arc shows the sense of rotation: thumb up, fingers curl counter-clockwise – like <M p=".">M</M></>} /> },
               { ms: 3500, holdMs: 2500, caption: <T
-                de={<>Erster Trick: <M p=".">{t`\v e_\varphi = \v e_z\times\v e_\rho`}</M> Dreht man <M>{t`\v e_\rho`}</M> um <M>{t`\v e_z`}</M> eine Vierteldrehung weiter, erhält man <M>{t`\v e_\varphi`}</M> – wie <M>{t`\v e_z\times\v e_x = \v e_y`}</M> (Rechtssystem, Lektion 2).</>}
-                en={<>First trick: <M p=".">{t`\v e_\varphi = \v e_z\times\v e_\rho`}</M> Turning <M>{t`\v e_\rho`}</M> a quarter turn further about <M>{t`\v e_z`}</M> gives <M>{t`\v e_\varphi`}</M> – like <M>{t`\v e_z\times\v e_x = \v e_y`}</M> (right-handed system, lesson 2).</>} /> },
+                de={<>Erster Trick: <M p=".">{t`\v e_\varphi = \v e_z\times\v e_\rho`}</M> Dreht man <M>{t`\v e_\rho`}</M> um <M>{t`\v e_z`}</M> eine Vierteldrehung weiter, erhält man <M>{t`\v e_\varphi`}</M> – wie <M>{t`\v e_z\times\v e_x = \v e_y`}</M> (Rechtssystem, <a href="#vektoren">Vektoren</a>).</>}
+                en={<>First trick: <M p=".">{t`\v e_\varphi = \v e_z\times\v e_\rho`}</M> Turning <M>{t`\v e_\rho`}</M> a quarter turn further about <M>{t`\v e_z`}</M> gives <M>{t`\v e_\varphi`}</M> – like <M>{t`\v e_z\times\v e_x = \v e_y`}</M> (right-handed system, <a href="#vektoren">Vectors</a>).</>} /> },
               { ms: 4000, holdMs: 2500, caption: <T
                 de={<>Zweiter Trick: Der Ortsvektor (schwarz) besteht aus dem Stück entlang der Achse (grün, <M p=")">{t`z_0\,\v e_z`}</M> und dem Radius (türkis, <M p=").">{t`R\,\v e_\rho`}</M> Also <M p=".">{t`R\,\v e_\rho = \v r - z_0\,\v e_z`}</M></>}
                 en={<>Second trick: the position vector (black) consists of the piece along the axis (green, <M p=")">{t`z_0\,\v e_z`}</M> and the radius (teal, <M p=").">{t`R\,\v e_\rho`}</M> So <M p=".">{t`R\,\v e_\rho = \v r - z_0\,\v e_z`}</M></>} /> },
@@ -85,6 +85,10 @@ export default function L06Circle() {
           >
             {(step, tt) => <CircleAnim step={step} t={tt} />}
           </StepPlayer>
+          <T
+            de={<p><b>Was <M>{t`\v\omega\times\v r`}</M> im Bild bedeutet</b> (letzter Schritt): Die zwei Winkelmarken zeigen, dass <M>{t`\v v`}</M> senkrecht auf der Achse (also auf <M p=")">{t`\v\omega`}</M> und senkrecht auf <M>{t`\v r`}</M> steht – so verlangt es das Kreuzprodukt. Seine Länge ist <M>{t`|\v\omega|\,|\v r|\sin\alpha`}</M> mit dem Winkel <M>\alpha</M> zwischen Achse und <M p=",">{t`\v r`}</M> und <M>{t`|\v r|\sin\alpha`}</M> ist genau der Abstand <M>R</M> von der Achse. Also <M p=",">{t`|\v v| = |\dot\varphi|\,R`}</M> wie oben.</p>}
+            en={<p><b>What <M>{t`\v\omega\times\v r`}</M> means in the picture</b> (last step): the two right-angle marks show that <M>{t`\v v`}</M> is perpendicular to the axis (i.e. to <M p=")">{t`\v\omega`}</M> and perpendicular to <M>{t`\v r`}</M> – as the cross product demands. Its length is <M>{t`|\v\omega|\,|\v r|\sin\alpha`}</M> with the angle <M>\alpha</M> between the axis and <M p=",">{t`\v r`}</M> and <M>{t`|\v r|\sin\alpha`}</M> is exactly the distance <M>R</M> from the axis. So <M p=",">{t`|\v v| = |\dot\varphi|\,R`}</M> as above.</p>}
+          />
         </Derivation>
       </Section>
 
@@ -122,18 +126,18 @@ export default function L06Circle() {
           de={<>
             <p><b>So liest man die Rechnung:</b></p>
             <ol>
-              <li>Kreuzprodukt mit der Komponentenformel aus Lektion 2: erste Komponente <M p=",">{t`0\cdot z_0 - \dot\varphi\cdot R\sin\varphi`}</M> zweite <M p=",">{t`\dot\varphi\cdot R\cos\varphi - 0\cdot z_0`}</M> dritte <M p=".">{t`0\cdot R\sin\varphi - 0\cdot R\cos\varphi = 0`}</M></li>
+              <li>Kreuzprodukt mit der Komponentenformel aus <a href="#vektoren">Vektoren</a>: erste Komponente <M p=",">{t`0\cdot z_0 - \dot\varphi\cdot R\sin\varphi`}</M> zweite <M p=",">{t`\dot\varphi\cdot R\cos\varphi - 0\cdot z_0`}</M> dritte <M p=".">{t`0\cdot R\sin\varphi - 0\cdot R\cos\varphi = 0`}</M></li>
               <li>Die Höhe <M>{t`z_0`}</M> fällt dabei heraus – genau wie in der Umformung oben.</li>
-              <li>Das Ergebnis ist <M>{t`\dot\varphi R`}</M> mal <M p=",">{t`(-\sin\varphi, \cos\varphi, 0)`}</M> und das ist <M>{t`\v e_\varphi`}</M> (Lektion 5). Beide Wege geben also dasselbe.</li>
+              <li>Das Ergebnis ist <M>{t`\dot\varphi R`}</M> mal <M p=",">{t`(-\sin\varphi, \cos\varphi, 0)`}</M> und das ist <M>{t`\v e_\varphi`}</M> (S. 10, <a href="#v-krummlinig">Zylinder- und Kugelkoordinaten</a>). Beide Wege geben also dasselbe.</li>
             </ol>
             <p>Auf der Folie der Vorlesung (L5) steht dieselbe Rechnung in der zylindrischen Basis: <M p=".">{t`(0, 0, \dot\varphi)\times(R, 0, z_0) = (0, \dot\varphi R, 0) = \dot\varphi R\,\v e_\varphi`}</M> Das darf man, weil <M>{t`\v e_\rho, \v e_\varphi, \v e_z`}</M> ebenfalls ein Rechtssystem aus Einheitsvektoren ist.</p>
           </>}
           en={<>
             <p><b>How to read the calculation:</b></p>
             <ol>
-              <li>Cross product with the component formula of lesson 2: first component <M p=",">{t`0\cdot z_0 - \dot\varphi\cdot R\sin\varphi`}</M> second <M p=",">{t`\dot\varphi\cdot R\cos\varphi - 0\cdot z_0`}</M> third <M p=".">{t`0\cdot R\sin\varphi - 0\cdot R\cos\varphi = 0`}</M></li>
+              <li>Cross product with the component formula from <a href="#vektoren">Vectors</a>: first component <M p=",">{t`0\cdot z_0 - \dot\varphi\cdot R\sin\varphi`}</M> second <M p=",">{t`\dot\varphi\cdot R\cos\varphi - 0\cdot z_0`}</M> third <M p=".">{t`0\cdot R\sin\varphi - 0\cdot R\cos\varphi = 0`}</M></li>
               <li>The height <M>{t`z_0`}</M> drops out – just as in the rearrangement above.</li>
-              <li>The result is <M>{t`\dot\varphi R`}</M> times <M p=",">{t`(-\sin\varphi, \cos\varphi, 0)`}</M> which is <M>{t`\v e_\varphi`}</M> (lesson 5). Both ways give the same.</li>
+              <li>The result is <M>{t`\dot\varphi R`}</M> times <M p=",">{t`(-\sin\varphi, \cos\varphi, 0)`}</M> which is <M>{t`\v e_\varphi`}</M> (p. 10, <a href="#v-krummlinig">cylindrical and spherical coordinates</a>). Both ways give the same.</li>
             </ol>
             <p>The lecture slide (L5) does the same calculation in the cylindrical basis: <M p=".">{t`(0, 0, \dot\varphi)\times(R, 0, z_0) = (0, \dot\varphi R, 0) = \dot\varphi R\,\v e_\varphi`}</M> That is allowed because <M>{t`\v e_\rho, \v e_\varphi, \v e_z`}</M> is also a right-handed system of unit vectors.</p>
           </>}
@@ -146,7 +150,7 @@ export default function L06Circle() {
           <T de={<>Nein. In Bewegungsrichtung zeigt <M p=".">{t`\v v`}</M> <M>{t`\v\omega`}</M> liegt auf der <em>Drehachse</em> und steht senkrecht auf der Kreisebene.</>} en={<>No. <M>{t`\v v`}</M> points in the direction of motion. <M>{t`\v\omega`}</M> lies on the <em>axis of rotation</em>, perpendicular to the plane of the circle.</>} />
         </Box>
         <Box kind="misconception" title={<T de={<>«Winkelschnelligkeit und Schnelligkeit sind dasselbe.»</>} en={<>“Angular speed and speed are the same.”</>} />}>
-          <T de={<><M>{t`\dot\varphi`}</M> (rad/s) sagt, wie schnell sich der <em>Winkel</em> ändert – für alle Punkte des drehenden Körpers gleich. <M>{t`\dot s = R\dot\varphi`}</M> (m/s) ist das Tempo eines Punktes – aussen grösser als innen.</>} en={<><M>{t`\dot\varphi`}</M> (rad/s) says how fast the <em>angle</em> changes – the same for all points of the turning body. <M>{t`\dot s = R\dot\varphi`}</M> (m/s) is the speed of one point – larger further out.</>} />
+          <T de={<><M>{t`\dot\varphi`}</M> (rad/s) sagt, wie schnell sich der <em>Winkel</em> ändert – für alle Punkte des drehenden Körpers gleich (Beweis auf S. 17). <M>{t`\dot s = R\dot\varphi`}</M> (m/s) ist die Schnelligkeit eines Punktes – aussen grösser als innen.</>} en={<><M>{t`\dot\varphi`}</M> (rad/s) says how fast the <em>angle</em> changes – the same for all points of the turning body (proof on p. 17). <M>{t`\dot s = R\dot\varphi`}</M> (m/s) is the speed of one point – larger further out.</>} />
         </Box>
         <Box kind="misconception" title={<T de={<>«<M>{t`\v v = \v\omega\times\v r`}</M> gilt mit jedem Ursprung.»</>} en={<>“<M>{t`\v v = \v\omega\times\v r`}</M> holds for any origin.”</>} />}>
           <T de={<>Nur wenn <M>O</M> auf der Drehachse liegt. Sonst kommt ein falscher Anteil dazu (im Bild oben: «<M>{t`O'`}</M> neben der Achse»). Die Umformung hat das benutzt: <M>{t`\v r = R\,\v e_\rho + z_0\,\v e_z`}</M> setzt <M>O</M> auf die Achse.</>} en={<>Only if <M>O</M> lies on the axis of rotation. Otherwise a wrong part is added (in the figure above: “<M>{t`O'`}</M> off the axis”). The rearrangement used this: <M>{t`\v r = R\,\v e_\rho + z_0\,\v e_z`}</M> puts <M>O</M> on the axis.</>} />
@@ -156,7 +160,7 @@ export default function L06Circle() {
       {/* ------------------------------------------------------------------ 6 */}
       <Section id="ausblick" title={<T de="6. Das Wichtigste" en="6. The essentials" />}>
         <Box kind="key">
-          <MD>{t`\v v = R\dot\varphi\,\v e_\varphi, \qquad \dot s = R\dot\varphi, \qquad \v\omega = \dot\varphi\,\v e_z, \qquad \v v = \v\omega\times\v r\ \ (O \text{ auf der Achse})`}</MD>
+          <MD>{t`\v v = R\dot\varphi\,\v e_\varphi, \qquad \dot s = R\dot\varphi, \qquad \v\omega = \dot\varphi\,\v e_z, \qquad \v v = \v\omega\times\v r\ \ ` + tr(t`(O \text{ auf der Achse})`, t`(O \text{ on the axis})`)}</MD>
         </Box>
         <T
           de={<p className="connections"><b>Weiter:</b> Ein starrer Körper, der sich um eine feste Achse dreht, besteht aus lauter solchen Kreisbewegungen mit <em>demselben</em> <M>{t`\v\omega`}</M> <Src p={15} />. Darum wird <M>{t`\v v = \v\omega\times\v r`}</M> zur Grundformel der Rotation <Src p={17} />.</p>}

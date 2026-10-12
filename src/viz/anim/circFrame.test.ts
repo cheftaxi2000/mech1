@@ -24,12 +24,25 @@ describe('circular-motion animation frames (lecture p. 11)', () => {
     expect(circFrame(3, 0.6).cross).toBe(1);
     expect(circFrame(4, 1).decomp).toBe(1);
     expect(circFrame(5, 1).vCross).toBe(1);
+    expect(circFrame(5, 1).rightAngles).toBe(1);
     expect(norm(circFrame(5, 1).vec.omega)).toBeCloseTo(CF.PHIDOT, 12);
   });
   it('steps join continuously', () => {
     for (let s = 0; s < CF_STEPS - 1; s++) {
       const a = circFrame(s, 1), b = circFrame(s + 1, 0);
-      expect(a.phi).toBeCloseTo(b.phi, 12); expect(a.basis).toBe(b.basis); expect(a.v).toBe(b.v);
+      expect(a.phi).toBeCloseTo(b.phi, 12); expect(a.basis).toBe(b.basis); expect(a.v).toBe(b.v); expect(a.vOpacity).toBeCloseTo(b.vOpacity, 12);
     }
+  });
+  it('v never hides e_φ: v is faint in steps 3–5 (ω, e_φ = e_z × e_ρ, r), full in steps 2 and 6; the basis is gone in step 6', () => {
+    for (const st of [2, 3, 4]) expect(circFrame(st, 1).vOpacity, `step ${st + 1}`).toBeLessThan(0.31);
+    expect(circFrame(1, 1).vOpacity).toBe(1); expect(circFrame(5, 1).vOpacity).toBe(1);
+    expect(circFrame(3, 1).basis).toBe(1); // e_φ = e_z × e_ρ needs the basis
+    expect(circFrame(4, 1).basis).toBe(0); expect(circFrame(5, 1).basis).toBe(0); // R e_ρ is not merged with e_ρ
+  });
+  it('the right angles of the last step are real: v ⟂ ω and v ⟂ r', () => {
+    const f = circFrame(5, 1);
+    expect(dot(f.vec.v, f.vec.omega)).toBeCloseTo(0, 12);
+    expect(dot(f.vec.v, f.M)).toBeCloseTo(0, 12);
+    expect(norm(f.vec.v)).toBeCloseTo(CF.PHIDOT * CF.R, 12); // |ω| |r| sin α = φ̇ R
   });
 });

@@ -215,8 +215,16 @@ export function CycleDiagram() {
 
 /* ------------------------------------------------------------------------------------------------ */
 
+/** "c1 e_1 + c2 e_2 − c3 e_3" with proper signs (coefficients formatted by `f`), e.g. for vector readouts. */
+export const combo = (f: (x: number) => string, cs: [number, string][]) =>
+  cs.map(([c, b], i) => `${i === 0 ? (c < 0 ? '-' : '') : c < 0 ? ' - ' : ' + '}${f(Math.abs(c))}\\,${b}`).join('');
+
 /** Demo motion for the position vector: r(t) on a tilted ellipse, 0 ≤ t ≤ 2π (seconds ≙ radians). */
-const motion = (s: number): Vec3 => [1.3 + 0.5 * Math.cos(s), 0.2 + 0.6 * Math.sin(s), 1.15 + 0.4 * Math.sin(s + 0.8)];
+export const pvMotion = (s: number): Vec3 => [1.2 + 0.5 * Math.cos(s), 0.5 + 0.5 * Math.sin(s), 1.5 + 0.35 * Math.sin(s + 0.8)];
+/** Start time and view of the position-vector figure: r is drawn well clear of e_y (views12.test.ts). */
+export const PV_T0 = 2.8;
+export const PV_CAMERA: [number, number, number] = [3.8, -4.1, 3.2];
+export const PV_TARGET: [number, number, number] = [0.8, 0.45, 0.85];
 
 /**
  * Lecture p. 5: the position vector r from O to M, the motion t → r(t), and its decomposition in the Cartesian
@@ -224,8 +232,7 @@ const motion = (s: number): Vec3 => [1.3 + 0.5 * Math.cos(s), 0.2 + 0.6 * Math.s
  */
 export function PositionVectorFigure() {
   const tr = useTr(), lang = useLang();
-  const reduced = useReducedMotion();
-  const [s, setS] = useState(0.6);
+  const [s, setS] = useState(PV_T0);
   const [play, setPlay] = useState(false);
   const [parts, setParts] = useState(true);
   useEffect(() => {
@@ -239,26 +246,29 @@ export function PositionVectorFigure() {
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
   }, [play]);
-  const r = motion(s);
+  const r = pvMotion(s);
   const X: Vec3 = [r[0], 0, 0], XY: Vec3 = [r[0], r[1], 0];
   const f = (x: number) => fmtNum(x, 2, lang, true);
   return (
     <figure className="explorer">
-      <Scene height={400} camera={[4.3, -4.6, 3.3]} target={[0.9, 0.35, 0.75]}>
+      <Scene height={400} camera={PV_CAMERA} target={PV_TARGET}>
         <Line points={[[0, 0, 0], [2.3, 0, 0]]} color={C.axis} lineWidth={1} />
         <Line points={[[0, 0, 0], [0, 1.9, 0]]} color={C.axis} lineWidth={1} />
-        <Line points={[[0, 0, 0], [0, 0, 1.9]]} color={C.axis} lineWidth={1} />
-        <Curve f={motion} t0={0} t1={2 * Math.PI} color={C.path} width={1.5} />
-        <Arrow to={[1, 0, 0]} color={C.x} width={4} /><Label at={[0.9, -0.2, -0.1]} color={C.x} vec sub="x">e</Label>
-        <Arrow to={[0, 1, 0]} color={C.y} width={4} /><Label at={[0.12, 1.05, -0.2]} color={C.y} vec sub="y">e</Label>
-        <Arrow to={[0, 0, 1]} color={C.z} width={4} /><Label at={[-0.18, -0.18, 0.92]} color={C.z} vec sub="z">e</Label>
+        <Line points={[[0, 0, 0], [0, 0, 2.3]]} color={C.axis} lineWidth={1} />
+        <Label at={[2.45, 0, 0]} color={C.axis}>x</Label>
+        <Label at={[0, 2.05, 0]} color={C.axis}>y</Label>
+        <Label at={[0, 0, 2.45]} color={C.axis}>z</Label>
+        <Curve f={pvMotion} t0={0} t1={2 * Math.PI} color={C.path} width={1.5} />
+        <Arrow to={[1, 0, 0]} color={C.x} width={4} /><Label at={[0.85, -0.22, -0.1]} color={C.x} vec sub="x">e</Label>
+        <Arrow to={[0, 1, 0]} color={C.y} width={4} /><Label at={[-0.12, 1.05, -0.18]} color={C.y} vec sub="y">e</Label>
+        <Arrow to={[0, 0, 1]} color={C.z} width={4} /><Label at={[-0.2, -0.2, 0.9]} color={C.z} vec sub="z">e</Label>
         {parts && (<>
           <Line points={[[0, 0, 0], X as [number, number, number]]} color={C.x} lineWidth={2} dashed dashSize={0.07} gapSize={0.04} />
           <Line points={[X as [number, number, number], XY as [number, number, number]]} color={C.y} lineWidth={2} dashed dashSize={0.07} gapSize={0.04} />
           <Line points={[XY as [number, number, number], r as [number, number, number]]} color={C.z} lineWidth={2} dashed dashSize={0.07} gapSize={0.04} />
         </>)}
         <Arrow to={r} color={C.r} width={3} />
-        <Label at={[r[0] * 0.5 - 0.1, r[1] * 0.5 - 0.1, r[2] * 0.5 + 0.22]} color={C.r} vec>r</Label>
+        <Label at={[r[0] * 0.55 - 0.12, r[1] * 0.55 - 0.12, r[2] * 0.55 + 0.16]} color={C.r} vec>r</Label>
         <Dot at={r} />
         <Label at={[r[0], r[1], r[2] + 0.2]} color={C.point}>M</Label>
         <Dot at={[0, 0, 0]} color={C.axis} r={0.03} />
@@ -266,19 +276,20 @@ export function PositionVectorFigure() {
       </Scene>
       <div className="controls">
         <div className="motion-row">
-          <button type="button" className="motion-btn" onClick={() => setPlay((v) => !v)} disabled={reduced && !play}>
+          <button type="button" className="motion-btn" onClick={() => setPlay((v) => !v)}>
             {play ? tr('Anhalten', 'Stop') : tr('Bewegung abspielen', 'Play the motion')}
           </button>
-          <label className="slider grow">
+          <label className="slider grow has-val">
             <M>t</M>
             <input type="range" min={0} max={6.28} step={0.01} value={s} onChange={(e) => { setPlay(false); setS(Number(e.target.value)); }} aria-label="t" />
+            <span className="val">{fmtNum(s, 2, lang)}&nbsp;s</span>
           </label>
         </div>
         <label className="toggle"><input type="checkbox" checked={parts} onChange={(e) => setParts(e.target.checked)} />{' '}
           {tr(<>Komponenten <M>{t`r_x\v e_x + r_y\v e_y + r_z\v e_z`}</M> zeigen</>, <>show the components <M>{t`r_x\v e_x + r_y\v e_y + r_z\v e_z`}</M></>)}</label>
       </div>
       <figcaption>
-        <div className="v-result"><M>{t`\v r = ${f(r[0])}\,\v e_x + ${f(r[1])}\,\v e_y + ${f(r[2])}\,\v e_z`}</M></div>
+        <div className="v-result"><M>{t`\v r = ` + combo(f, [[r[0], t`\v e_x`], [r[1], t`\v e_y`], [r[2], t`\v e_z`]])}</M></div>
       </figcaption>
     </figure>
   );

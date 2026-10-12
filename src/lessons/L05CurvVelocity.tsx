@@ -19,7 +19,7 @@ export default function L05CurvVelocity() {
       />
       <Box kind="intuition">
         <T
-          de={<p>Du sitzt auf einem Karussell, immer im gleichen Abstand <M>\rho</M> von der Mitte und auf gleicher Höhe <M p=".">z</M> <M>\rho</M> und <M>z</M> ändern sich also nicht – trotzdem bewegst du dich! Die Bewegung steckt ganz im Drehen, also im Winkel <M p=".">\varphi</M> Dein Tempo ist umso grösser, je schneller das Karussell dreht <M>{t`(\dot\varphi)`}</M> und je weiter aussen du sitzt <M p=".">{t`(\rho)`}</M> Genau das ist der neue Term <M p=".">{t`\rho\dot\varphi\,\v e_\varphi`}</M></p>}
+          de={<p>Du sitzt auf einem Karussell, immer im gleichen Abstand <M>\rho</M> von der Mitte und auf gleicher Höhe <M p=".">z</M> <M>\rho</M> und <M>z</M> ändern sich also nicht – trotzdem bewegst du dich! Die Bewegung steckt ganz im Drehen, also im Winkel <M p=".">\varphi</M> Du bist umso schneller, je schneller das Karussell dreht <M>{t`(\dot\varphi)`}</M> und je weiter aussen du sitzt <M p=".">{t`(\rho)`}</M> Genau das ist der neue Term <M p=".">{t`\rho\dot\varphi\,\v e_\varphi`}</M></p>}
           en={<p>You sit on a merry-go-round, always at the same distance <M>\rho</M> from the centre and at the same height <M p=".">z</M> So <M>\rho</M> and <M>z</M> do not change – and yet you move! The motion is all in the turning, i.e. in the angle <M p=".">\varphi</M> Your speed is the larger, the faster the merry-go-round turns <M>{t`(\dot\varphi)`}</M> and the further out you sit <M p=".">{t`(\rho)`}</M> That is exactly the new term <M p=".">{t`\rho\dot\varphi\,\v e_\varphi`}</M></p>}
         />
       </Box>
@@ -30,8 +30,8 @@ export default function L05CurvVelocity() {
           <MD>{t`\v e_\rho = \cos\varphi\cdot\v e_x + \sin\varphi\cdot\v e_y, \qquad \v e_\varphi = -\sin\varphi\cdot\v e_x + \cos\varphi\cdot\v e_y`}</MD>
         </Box>
         <T
-          de={<p>Am Ende von Lektion 4 blieb ein Term offen: <M p=".">{t`\rho\,\dot{\v e}_\rho`}</M> Um <M>{t`\v e_\rho`}</M> abzuleiten, schreibt die Vorlesung es in der <em>festen</em> kartesischen Basis – deren Vektoren ändern sich nie, also muss man dann nur noch Zahlen ableiten. Schritt 1 und 2 der Animation unten zeigen, woher die beiden Formeln kommen.</p>}
-          en={<p>At the end of lesson 4 one term was left open: <M p=".">{t`\rho\,\dot{\v e}_\rho`}</M> To differentiate <M p=",">{t`\v e_\rho`}</M> the lecture writes it in the <em>fixed</em> Cartesian basis – whose vectors never change, so afterwards only numbers have to be differentiated. Steps 1 and 2 of the animation below show where the two formulas come from.</p>}
+          de={<p>Am Ende der Lektion <a href="#geschwindigkeit">Geschwindigkeitsvektor &amp; Schnelligkeit</a> blieb ein Term offen: <M p=".">{t`\rho\,\dot{\v e}_\rho`}</M> Um <M>{t`\v e_\rho`}</M> abzuleiten, schreibt die Vorlesung es in der <em>festen</em> kartesischen Basis – deren Vektoren ändern sich nie, also muss man dann nur noch Zahlen ableiten. Schritt 1 und 2 der Animation unten zeigen, woher die beiden Formeln kommen.</p>}
+          en={<p>At the end of the lesson <a href="#geschwindigkeit">Velocity vector and speed</a> one term was left open: <M p=".">{t`\rho\,\dot{\v e}_\rho`}</M> To differentiate <M p=",">{t`\v e_\rho`}</M> the lecture writes it in the <em>fixed</em> Cartesian basis – whose vectors never change, so afterwards only numbers have to be differentiated. Steps 1 and 2 of the animation below show where the two formulas come from.</p>}
         />
       </Section>
 
@@ -58,7 +58,7 @@ export default function L05CurvVelocity() {
                 de={<>Jetzt wird <M>{t`\Delta\varphi`}</M> immer kleiner. Die Spitze von <M>{t`\v e_\rho`}</M> läuft auf einem Kreis mit Radius 1; die Änderung zeigt deshalb immer mehr entlang dieses Kreises – also in Richtung <M p=".">{t`\v e_\varphi`}</M> Und pro Winkel ist sie gleich lang wie der Radius, also 1 (Kasten). Kurz: <M p=".">{t`\dd\v e_\rho/\dd\varphi = \v e_\varphi`}</M></>}
                 en={<>Now <M>{t`\Delta\varphi`}</M> gets smaller and smaller. The tip of <M>{t`\v e_\rho`}</M> runs on a circle of radius 1, so the change points more and more along that circle – i.e. in the direction of <M p=".">{t`\v e_\varphi`}</M> And per angle it is as long as the radius, i.e. 1 (box). In short: <M p=".">{t`\dd\v e_\rho/\dd\varphi = \v e_\varphi`}</M></>} /> },
               { ms: 4000, caption: <T
-                de={<>Mit der Zeit: <M>\varphi</M> ändert sich mit der Rate <M p=".">{t`\dot\varphi`}</M> Also dreht sich <M>{t`\v e_\rho`}</M> mit Tempo <M>{t`\dot\varphi`}</M> in Richtung <M p=":">{t`\v e_\varphi`}</M> <M p=".">{t`\dot{\v e}_\rho = \dot\varphi\,\v e_\varphi`}</M> Der rote Pfeil an der Spitze zeigt das.</>}
+                de={<>Mit der Zeit: <M>\varphi</M> ändert sich mit der Rate <M p=".">{t`\dot\varphi`}</M> Also dreht sich <M>{t`\v e_\rho`}</M> mit der Rate <M>{t`\dot\varphi`}</M> in Richtung <M p=":">{t`\v e_\varphi`}</M> <M p=".">{t`\dot{\v e}_\rho = \dot\varphi\,\v e_\varphi`}</M> Der rote Pfeil an der Spitze zeigt das.</>}
                 en={<>With time: <M>\varphi</M> changes at the rate <M p=".">{t`\dot\varphi`}</M> So <M>{t`\v e_\rho`}</M> turns at the rate <M>{t`\dot\varphi`}</M> towards <M p=":">{t`\v e_\varphi`}</M> <M p=".">{t`\dot{\v e}_\rho = \dot\varphi\,\v e_\varphi`}</M> The red arrow at the tip shows it.</>} /> },
             ]}
           >
@@ -92,18 +92,18 @@ export default function L05CurvVelocity() {
         </Box>
         <T
           de={<>
-            <p>Aus Lektion 4 (S. 9) hatten wir <M p=".">{t`\dot{\v r} = \dot\rho\,\v e_\rho + \rho\,\dot{\v e}_\rho + \dot z\,\v e_z`}</M> Jetzt setzt man <M>{t`\dot{\v e}_\rho = \dot\varphi\,\v e_\varphi`}</M> ein – fertig. Die drei Terme sind drei Arten, sich zu bewegen:</p>
+            <p>Aus <a href="#geschwindigkeit">Geschwindigkeitsvektor &amp; Schnelligkeit</a> (S. 9) hatten wir <M p=".">{t`\dot{\v r} = \dot\rho\,\v e_\rho + \rho\,\dot{\v e}_\rho + \dot z\,\v e_z`}</M> Jetzt setzt man <M>{t`\dot{\v e}_\rho = \dot\varphi\,\v e_\varphi`}</M> ein – fertig. Die drei Terme sind drei Arten, sich zu bewegen:</p>
             <ul>
-              <li><M p=":">{t`\dot\rho\,\v e_\rho`}</M> <b>weg von der Achse</b> (oder hin). Tempo: wie schnell der Abstand <M>\rho</M> wächst.</li>
+              <li><M p=":">{t`\dot\rho\,\v e_\rho`}</M> <b>weg von der Achse</b> (oder hin), so schnell, wie der Abstand <M>\rho</M> wächst.</li>
               <li><M p=":">{t`\rho\dot\varphi\,\v e_\varphi`}</M> <b>rundherum</b>, entlang des Kreises. Auf einem Kreis gilt: Weg ist Radius mal Winkel (Winkel im Bogenmass). Pro Zeit also <M p=".">{t`\rho\cdot\dot\varphi`}</M> Darum steht hier <M p=",">{t`\rho\dot\varphi`}</M> nicht nur <M p=".">{t`\dot\varphi`}</M></li>
               <li><M p=":">{t`\dot z\,\v e_z`}</M> <b>hoch oder runter</b>.</li>
             </ul>
-            <p>Im Skript sind die drei Terme von Hand unterstrichen: Jeder ist «Tempo mal Richtung».</p>
+            <p>Im Skript sind die drei Terme von Hand unterstrichen: Jeder ist «Schnelligkeit mal Richtung».</p>
           </>}
           en={<>
-            <p>From lesson 4 (p. 9) we had <M p=".">{t`\dot{\v r} = \dot\rho\,\v e_\rho + \rho\,\dot{\v e}_\rho + \dot z\,\v e_z`}</M> Now substitute <M>{t`\dot{\v e}_\rho = \dot\varphi\,\v e_\varphi`}</M> – done. The three terms are three ways of moving:</p>
+            <p>From <a href="#geschwindigkeit">Velocity vector and speed</a> (p. 9) we had <M p=".">{t`\dot{\v r} = \dot\rho\,\v e_\rho + \rho\,\dot{\v e}_\rho + \dot z\,\v e_z`}</M> Now substitute <M>{t`\dot{\v e}_\rho = \dot\varphi\,\v e_\varphi`}</M> – done. The three terms are three ways of moving:</p>
             <ul>
-              <li><M p=":">{t`\dot\rho\,\v e_\rho`}</M> <b>away from the axis</b> (or towards it). Speed: how fast the distance <M>\rho</M> grows.</li>
+              <li><M p=":">{t`\dot\rho\,\v e_\rho`}</M> <b>away from the axis</b> (or towards it), as fast as the distance <M>\rho</M> grows.</li>
               <li><M p=":">{t`\rho\dot\varphi\,\v e_\varphi`}</M> <b>around</b>, along the circle. On a circle, distance is radius times angle (angle in radians). Per time, therefore, <M p=".">{t`\rho\cdot\dot\varphi`}</M> That is why it says <M p=",">{t`\rho\dot\varphi`}</M> not just <M p=".">{t`\dot\varphi`}</M></li>
               <li><M p=":">{t`\dot z\,\v e_z`}</M> <b>up or down</b>.</li>
             </ul>
@@ -122,11 +122,11 @@ export default function L05CurvVelocity() {
           de={<>
             <p>Den Beweis macht ihr in der Hausübung. Verstehen kann man die Formel schon jetzt mit derselben Regel «Weg ist Radius mal Winkel»:</p>
             <ul>
-              <li><M p=":">{t`\dot r\,\v e_r`}</M> <b>nach aussen</b> (oder innen), Tempo <M p=".">{t`\dot r`}</M></li>
-              <li><M p=":">{t`r\dot\theta\,\v e_\theta`}</M> entlang des <b>Meridians</b>. Das ist ein Kreis mit Radius <M p=",">r</M> also Tempo <M p=".">{t`r\cdot\dot\theta`}</M></li>
-              <li><M p=":">{t`r\sin\theta\,\dot\psi\,\v e_\psi`}</M> entlang des <b>Breitenkreises</b>. Sein Radius ist nur <M>{t`r\sin\theta`}</M> (am Pol 0, am Äquator <M p=").">r</M> also Tempo <M p=".">{t`r\sin\theta\cdot\dot\psi`}</M></li>
+              <li><M p=":">{t`\dot r\,\v e_r`}</M> <b>nach aussen</b> (oder innen), Betrag <M p=".">{t`\dot r`}</M></li>
+              <li><M p=":">{t`r\dot\theta\,\v e_\theta`}</M> entlang des <b>Meridians</b>. Das ist ein Kreis mit Radius <M p=",">r</M> also Betrag <M p=".">{t`r\cdot\dot\theta`}</M></li>
+              <li><M p=":">{t`r\sin\theta\,\dot\psi\,\v e_\psi`}</M> entlang des <b>Breitenkreises</b>. Sein Radius ist nur <M>{t`r\sin\theta`}</M> (am Pol 0, am Äquator <M p=").">r</M> also Betrag <M p=".">{t`r\sin\theta\cdot\dot\psi`}</M></li>
             </ul>
-            <p>Das sind genau die Längenfaktoren <M p=",">1</M> <M>r</M> und <M>{t`r\sin\theta`}</M> aus Lektion 3. Im Bild kannst du jede der drei Raten einzeln einstellen und zusehen, wohin sich <M>M</M> bewegt.</p>
+            <p>Das sind genau die Längenfaktoren <M p=",">1</M> <M>r</M> und <M>{t`r\sin\theta`}</M> aus der Lektion <a href="#basen">Basen</a>. Im Bild kannst du jede der drei Raten einzeln einstellen und zusehen, wohin sich <M>M</M> bewegt.</p>
           </>}
           en={<>
             <p>The proof is done in the homework. The formula can already be understood with the same rule “distance is radius times angle”:</p>
@@ -135,24 +135,24 @@ export default function L05CurvVelocity() {
               <li><M p=":">{t`r\dot\theta\,\v e_\theta`}</M> along the <b>meridian</b>. That is a circle of radius <M p=",">r</M> so speed <M p=".">{t`r\cdot\dot\theta`}</M></li>
               <li><M p=":">{t`r\sin\theta\,\dot\psi\,\v e_\psi`}</M> along the <b>circle of latitude</b>. Its radius is only <M>{t`r\sin\theta`}</M> (0 at the pole, <M>r</M> at the equator), so speed <M p=".">{t`r\sin\theta\cdot\dot\psi`}</M></li>
             </ul>
-            <p>These are exactly the length factors <M p=",">1</M> <M>r</M> and <M>{t`r\sin\theta`}</M> from lesson 3. In the figure you can set each of the three rates separately and watch where <M>M</M> moves.</p>
+            <p>These are exactly the length factors <M p=",">1</M> <M>r</M> and <M>{t`r\sin\theta`}</M> from the lesson <a href="#basen">Bases</a>. In the figure you can set each of the three rates separately and watch where <M>M</M> moves.</p>
           </>}
         />
         <CurvilinearVelocity />
         <T
           de={<ul className="observe">
             <li>Die rot gestrichelte Linie ist die <b>Bahn</b>, die <M>M</M> mit den eingestellten Raten fährt. <M>{t`\v v`}</M> liegt immer tangential an ihr. Ändert man eine Rate, bleibt <M>M</M> stehen und die Bahn biegt ab diesem Punkt anders weiter.</li>
-            <li>Zylindrisch, nur <M>{t`\dot\varphi \ne 0`}</M> (die anderen auf 0): <M>M</M> fährt auf einem Kreis – das ist die Kreisbewegung der nächsten Lektion.</li>
+            <li>Zylindrisch, nur <M>{t`\dot\varphi \ne 0`}</M> (die anderen auf 0): <M>M</M> fährt auf einem Kreis – das ist die <a href="#kreisbewegung">Kreisbewegung</a> (S. 11).</li>
             <li>Zylindrisch, nur <M p=":">{t`\dot\rho \ne 0`}</M> <M>M</M> fährt geradeaus von der Achse weg.</li>
-            <li>Mit <M>{t`\dot\varphi`}</M> und <M>{t`\dot z`}</M> zusammen entsteht eine Schraubenlinie (Lektion 4).</li>
-            <li>Sphärisch: Je näher <M>M</M> am Pol ist (kleines <M p=").">\theta</M> desto kürzer wird der <span className="nowrap"><M>{t`\v e_\psi`}</M>-Anteil</span> bei gleichem <M p=".">{t`\dot\psi`}</M></li>
+            <li>Mit <M>{t`\dot\varphi`}</M> und <M>{t`\dot z`}</M> zusammen entsteht eine Schraubenlinie (wie in <a href="#geschwindigkeit">Geschwindigkeitsvektor &amp; Schnelligkeit</a>).</li>
+            <li>Sphärisch: Je näher <M>M</M> an einem Pol ist (<M>\theta</M> nahe bei <M>0</M> oder bei <M p="),">{t`180^\circ`}</M> desto kürzer wird der <span className="nowrap"><M>{t`\v e_\psi`}</M>-Anteil</span> bei gleichem <M p=".">{t`\dot\psi`}</M></li>
           </ul>}
           en={<ul className="observe">
             <li>The red dashed line is the <b>path</b> that <M>M</M> follows with the chosen rates. <M>{t`\v v`}</M> is always tangent to it. Changing a rate keeps <M>M</M> in place and the path bends differently from that point on.</li>
-            <li>Cylindrical, only <M>{t`\dot\varphi \ne 0`}</M> (the others at 0): <M>M</M> travels on a circle – the circular motion of the next lesson.</li>
+            <li>Cylindrical, only <M>{t`\dot\varphi \ne 0`}</M> (the others at 0): <M>M</M> travels on a circle – the <a href="#kreisbewegung">circular motion</a> of p. 11.</li>
             <li>Cylindrical, only <M p=":">{t`\dot\rho \ne 0`}</M> <M>M</M> moves straight away from the axis.</li>
-            <li>With <M>{t`\dot\varphi`}</M> and <M>{t`\dot z`}</M> together you get a helix (lesson 4).</li>
-            <li>Spherical: the closer <M>M</M> is to the pole (small <M p=").">\theta</M> the shorter the <span className="nowrap"><M>{t`\v e_\psi`}</M>-part</span> for the same <M p=".">{t`\dot\psi`}</M></li>
+            <li>With <M>{t`\dot\varphi`}</M> and <M>{t`\dot z`}</M> together you get a helix (as in <a href="#geschwindigkeit">Velocity vector and speed</a>).</li>
+            <li>Spherical: the closer <M>M</M> is to a pole (<M>\theta</M> near <M>0</M> or near <M p="),">{t`180^\circ`}</M> the shorter the <span className="nowrap"><M>{t`\v e_\psi`}</M>-part</span> for the same <M p=".">{t`\dot\psi`}</M></li>
           </ul>}
         />
       </Section>
@@ -160,17 +160,17 @@ export default function L05CurvVelocity() {
       {/* ------------------------------------------------------------------ 5 */}
       <Section id="beispiel" title={<T de="5. Beispiel aus der Vorlesung" en="5. Example from the lecture" />}>
         <Box kind="lecture" src={<Src p={10} />}>
-          <MD>{t`\text{Gegeben: } \v r = \begin{pmatrix} at \\ at \\ b a^2 t^2 \end{pmatrix} \ \text{(Bahnkurve von } M\text{ in kartesischer Basis)}, \qquad \text{Gesucht: } \v v(t),\ \dot s(t),\ \v\tau(t)`}</MD>
+          <MD>{tr(t`\text{Gegeben: } \v r = \begin{pmatrix} at \\ at \\ b a^2 t^2 \end{pmatrix} \ \text{(Bahnkurve von } M\text{ in kartesischer Basis)}, \qquad \text{Gesucht: } \v v(t),\ \dot s(t),\ \v\tau(t)`, t`\text{Given: } \v r = \begin{pmatrix} at \\ at \\ b a^2 t^2 \end{pmatrix} \ \text{(trajectory of } M\text{ in the Cartesian basis)}, \qquad \text{Wanted: } \v v(t),\ \dot s(t),\ \v\tau(t)`)}</MD>
         </Box>
         <Box kind="supplement" title={<T de="Lösung (im Skript nicht ausgeführt)" en="Solution (not worked out in the notes)" />}>
           <T
             de={<ol>
-              <li><b>Geschwindigkeit:</b> jede Komponente nach <M>t</M> ableiten (kartesische Basis, Lektion 4): <M p=".">{t`\v v(t) = (a,\ a,\ 2ba^2t)`}</M></li>
+              <li><b>Geschwindigkeit:</b> jede Komponente nach <M>t</M> ableiten (kartesische Basis, <a href="#geschwindigkeit">Geschwindigkeitsvektor &amp; Schnelligkeit</a>): <M p=".">{t`\v v(t) = (a,\ a,\ 2ba^2t)`}</M></li>
               <li><b>Schnelligkeit:</b> die Länge von <M p=".">{t`\v v`}</M> Sie wächst mit der Zeit:<MD>{t`\dot s = \sqrt{a^2 + a^2 + 4b^2a^4t^2} = |a|\sqrt{2 + 4b^2a^2t^2}`}</MD></li>
               <li><b>Richtung:</b> <M>{t`\v v`}</M> durch seine Länge teilen: <M p=".">{t`\v\tau = \v v/\dot s`}</M> Bei <M>{t`t = 0`}</M> ist <M p=":">{t`\v\tau = (1, 1, 0)/\sqrt2`}</M> waagrecht, entlang der Diagonalen <M p=".">{t`x = y`}</M> Später zeigt <M>{t`\v\tau`}</M> immer steiler nach oben.</li>
             </ol>}
             en={<ol>
-              <li><b>Velocity:</b> differentiate each component with respect to <M>t</M> (Cartesian basis, lesson 4): <M p=".">{t`\v v(t) = (a,\ a,\ 2ba^2t)`}</M></li>
+              <li><b>Velocity:</b> differentiate each component with respect to <M>t</M> (Cartesian basis, <a href="#geschwindigkeit">Velocity vector and speed</a>): <M p=".">{t`\v v(t) = (a,\ a,\ 2ba^2t)`}</M></li>
               <li><b>Speed:</b> the length of <M p=".">{t`\v v`}</M> It grows with time:<MD>{t`\dot s = \sqrt{a^2 + a^2 + 4b^2a^4t^2} = |a|\sqrt{2 + 4b^2a^2t^2}`}</MD></li>
               <li><b>Direction:</b> divide <M>{t`\v v`}</M> by its length: <M p=".">{t`\v\tau = \v v/\dot s`}</M> At <M>{t`t = 0`}</M> <M p=":">{t`\v\tau = (1, 1, 0)/\sqrt2`}</M> horizontal, along the diagonal <M p=".">{t`x = y`}</M> Later <M>{t`\v\tau`}</M> points more and more steeply upwards.</li>
             </ol>}
@@ -187,7 +187,7 @@ export default function L05CurvVelocity() {
       {/* ------------------------------------------------------------------ 6 */}
       <Section id="missverstaendnisse" title={<T de="6. Häufige Missverständnisse" en="6. Common misconceptions" />}>
         <Box kind="misconception" title={<T de={<>«<M p=".">{t`\v v = \dot\rho\,\v e_\rho + \dot\varphi\,\v e_\varphi + \dot z\,\v e_z`}</M>»</>} en={<>“<M p=".">{t`\v v = \dot\rho\,\v e_\rho + \dot\varphi\,\v e_\varphi + \dot z\,\v e_z`}</M>”</>} />}>
-          <T de={<>Da fehlt das <M p=".">\rho</M> Prüfe die Einheiten: <M>{t`\dot\varphi`}</M> hat die Einheit 1/s (Winkel pro Zeit), eine Geschwindigkeit braucht m/s. Erst <M>{t`\rho\dot\varphi`}</M> ist ein Tempo: Weg auf dem Kreis ist Radius mal Winkel.</>} en={<>The <M>\rho</M> is missing. Check the units: <M>{t`\dot\varphi`}</M> has the unit 1/s (angle per time), a velocity needs m/s. Only <M>{t`\rho\dot\varphi`}</M> is a speed: distance on the circle is radius times angle.</>} />
+          <T de={<>Da fehlt das <M p=".">\rho</M> Prüfe die Einheiten: <M>{t`\dot\varphi`}</M> hat die Einheit 1/s (Winkel pro Zeit), eine Geschwindigkeit braucht m/s. Erst <M>{t`\rho\dot\varphi`}</M> ist eine Geschwindigkeit in m/s: Weg auf dem Kreis ist Radius mal Winkel.</>} en={<>The <M>\rho</M> is missing. Check the units: <M>{t`\dot\varphi`}</M> has the unit 1/s (angle per time), a velocity needs m/s. Only <M>{t`\rho\dot\varphi`}</M> is a speed: distance on the circle is radius times angle.</>} />
         </Box>
         <Box kind="misconception" title={<T de={<>«<M>{t`\v v`}</M> liegt immer tangential am Kreis um die <span className="nowrap"><M>z</M>-Achse</span>.»</>} en={<>“<M>{t`\v v`}</M> is always tangent to the circle around the <span className="nowrap"><M>z</M>-axis</span>.”</>} />}>
           <T de={<>Nein. Dieser Kreis ist nur die <span className="nowrap"><M>\varphi</M>-Koordinatenlinie</span> durch <M p=",">M</M> nicht die Bahn. <M>{t`\v v`}</M> liegt tangential an der <b>Bahn</b>. Ist <M p=",">{t`\dot\rho \ne 0`}</M> wird die Bahn eine Spirale, und <M>{t`\v v`}</M> zeigt schräg nach aussen oder innen. Nur wenn sich allein <M>\varphi</M> ändert, ist die Bahn der Kreis selbst.</>}
@@ -202,7 +202,7 @@ export default function L05CurvVelocity() {
       <Section id="ausblick" title={<T de="7. Das Wichtigste" en="7. The essentials" />}>
         <Box kind="key">
           <MD>{t`\dot{\v e}_\rho = \dot\varphi\,\v e_\varphi, \qquad \v v = \dot\rho\,\v e_\rho + \rho\dot\varphi\,\v e_\varphi + \dot z\,\v e_z, \qquad \v v = \dot r\,\v e_r + r\dot\theta\,\v e_\theta + r\sin\theta\,\dot\psi\,\v e_\psi`}</MD>
-          <T de="Jeder Term ist «Tempo mal Richtung»; bei Winkeln ist das Tempo Radius mal Winkelrate." en="Each term is “speed times direction”; for angles the speed is radius times angular rate." />
+          <T de="Jeder Term ist «Schnelligkeit mal Richtung»; bei Winkeln ist die Schnelligkeit Radius mal Winkelrate." en="Each term is “speed times direction”; for angles the speed is radius times angular rate." />
         </Box>
         <T
           de={<p className="connections"><b>Weiter:</b> Bei der Kreisbewegung ist <M>{t`\rho = R`}</M> fest und <M>z</M> fest – es bleibt nur <M>{t`\v v = R\dot\varphi\,\v e_\varphi`}</M> <Src p={11} />.</p>}
