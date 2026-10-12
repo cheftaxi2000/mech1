@@ -85,3 +85,7 @@
 - Student: "Passt" → rotation complete. `L10Rolling.tsx`, `rollScene.ts` (+test), `RollingFigures.tsx` (`RollingWheel`), `physics/rolling.ts` (+test). No new source issues on p. 20.
 - KaTeX in strict mode rejects « » inside \\text — the lecture's contact conditions are written as a list with inline formulas instead.
 - Next: student reviews lesson 10; then Kreiselung (pp. 20–21, R-012).
+
+## 2026-10-12 — lesson 11 (kreiselung, pp. 20–21)
+- Student: "mache weiter … bis zum Schluss" → rollen complete; the student will review every page personally at the end. `L11Kreiselung.tsx`, `kreiselProofScene.ts` (+test), `KreiselFigures.tsx` (`KreiselExplorer`, pure `kreiselGeom.ts` + test), `physics/kreisel.ts` (+test). R-012 handled. `hull()` moved to `geometry.ts` (shared by rollScene and kreiselProofScene).
+- Frame review: first proof view showed v_M almost collinear with r_M (right angle unreadable) → searched views/point placements numerically for screen angles near 90° and arrows that do not cross μ; explorer default position changed so the rolling velocities lie across the screen instead of into it; sphere drawn front faces only.

@@ -36,7 +36,7 @@ export const TOPICS: Topic[] = [
   { id: 'sdpg', chapter: '3', title: ['Starrer Körper & SdpG', 'Rigid body & projected velocities'], pages: '12–13', status: 'complete', component: lazy(() => import('../lessons/L07Rigid')) },
   { id: 'translation', chapter: '3', title: ['Translation', 'Translation'], pages: '13–14', status: 'complete', component: lazy(() => import('../lessons/L08Translation')) },
   { id: 'rotation', chapter: '3', title: ['Rotation', 'Rotation'], pages: '15–19', status: 'complete', component: lazy(() => import('../lessons/L09Rotation')) },
-  { id: 'rollen', chapter: '3', title: ['Rollen & Gleiten', 'Rolling and sliding'], pages: '20', status: 'review', component: lazy(() => import('../lessons/L10Rolling')) },
-  { id: 'kreiselung', chapter: '3', title: ['Kreiselung', 'Kreiselung (motion about a fixed point)'], pages: '20–21', status: 'planned' },
+  { id: 'rollen', chapter: '3', title: ['Rollen & Gleiten', 'Rolling and sliding'], pages: '20', status: 'complete', component: lazy(() => import('../lessons/L10Rolling')) },
+  { id: 'kreiselung', chapter: '3', title: ['Kreiselung', 'Spinning motion (Kreiselung)'], pages: '20–21', status: 'review', component: lazy(() => import('../lessons/L11Kreiselung')) },
   { id: 'allgemein', chapter: '3', title: ['Allgemeine Bewegung', 'General rigid-body motion'], pages: '22–23', status: 'planned' },
 ];

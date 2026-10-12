@@ -417,3 +417,10 @@ b.bad { color: var(--bad); } b.ok { color: var(--ok); }
 .rl-mc { fill: var(--c-angle); stroke: var(--panel); stroke-width: 1.5; }
 .rl-ground { fill: color-mix(in srgb, var(--muted) 9%, transparent); stroke: var(--muted); stroke-opacity: 0.6; stroke-width: 1; stroke-dasharray: 5 4; }
 .v-result.neg .tr-chip { color: var(--bad); background: color-mix(in srgb, var(--bad) 14%, transparent); }
+/* lesson 11 (Kreiselung) */
+.an-body.kr-body { fill: color-mix(in srgb, var(--muted) 6%, transparent); stroke-opacity: 0.55; stroke-width: 1.3; }
+.kr-plane { fill: color-mix(in srgb, var(--c-x) 9%, transparent); stroke: var(--c-x); stroke-opacity: 0.45; stroke-width: 1; stroke-dasharray: 5 4; }
+.kr-leg { stroke: var(--fg); stroke-width: 1.6; stroke-dasharray: 5 4; } .kr-leg.strong { stroke-width: 2.2; }
+.kr-omega { stroke: var(--c-angle); stroke-width: 4; stroke-linecap: round; } .kr-omega-head { fill: var(--c-angle); }
+.kr-pin { fill: color-mix(in srgb, var(--muted) 35%, var(--panel)); stroke: var(--fg); stroke-width: 1.2; }
+.kr-pin-base { stroke: var(--fg); stroke-width: 1.6; }

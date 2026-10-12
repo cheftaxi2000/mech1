@@ -69,3 +69,13 @@ export function outerSquares(tri: Triangle, rho: number, phi: number): { sx: Vec
 export const centroid = (pts: Vec3[]): Vec3 => scale(1 / pts.length, pts.reduce((a, b) => add(a, b), [0, 0, 0] as Vec3));
 export const polygonArea2D = (pts: Vec3[]) =>
   Math.abs(pts.reduce((acc, p, i) => { const q = pts[(i + 1) % pts.length]; return acc + p[0] * q[1] - q[0] * p[1]; }, 0)) / 2;
+
+/** Convex hull (monotone chain) of points in the plane — the silhouette of a sampled solid. */
+export function hull(ps: P2[]): P2[] {
+  const p = [...ps].sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+  const cr = (o: P2, a: P2, b: P2) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+  const lo: P2[] = [], up: P2[] = [];
+  for (const q of p) { while (lo.length >= 2 && cr(lo[lo.length - 2], lo[lo.length - 1], q) <= 0) lo.pop(); lo.push(q); }
+  for (const q of [...p].reverse()) { while (up.length >= 2 && cr(up[up.length - 2], up[up.length - 1], q) <= 0) up.pop(); up.push(q); }
+  return [...lo.slice(0, -1), ...up.slice(0, -1)];
+}

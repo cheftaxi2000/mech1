@@ -9,7 +9,7 @@
  */
 import type { Lang } from '../../i18n';
 import { type Vec3 } from '../../physics/vec';
-import { ease, project, seg, type P2, type View } from './geometry';
+import { ease, hull, project, seg, type P2, type View } from './geometry';
 import { arrowHead, sceneBuilder, type Scene } from './scene';
 
 export const RS = { R: 0.72, L: 1.6, X0: 0.45, X1: 1.6, X2: 2.3, BETA_M: -0.9, KV: 0.62 };
@@ -17,15 +17,6 @@ export const VIEW_R: View = { alpha: -2.02, beta: (20 * Math.PI) / 180, cx: 109,
 const pr = (p: Vec3): P2 => project(p, VIEW_R);
 const N = 48;
 
-/** Convex hull (monotone chain) of points in the plane. */
-function hull(ps: P2[]): P2[] {
-  const p = [...ps].sort((a, b) => a[0] - b[0] || a[1] - b[1]);
-  const cr = (o: P2, a: P2, b: P2) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
-  const lo: P2[] = [], up: P2[] = [];
-  for (const q of p) { while (lo.length >= 2 && cr(lo[lo.length - 2], lo[lo.length - 1], q) <= 0) lo.pop(); lo.push(q); }
-  for (const q of [...p].reverse()) { while (up.length >= 2 && cr(up[up.length - 2], up[up.length - 1], q) <= 0) up.pop(); up.push(q); }
-  return [...lo.slice(0, -1), ...up.slice(0, -1)];
-}
 
 /** Centre x of the cylinder in each step's frame (rolling without sliding: turned angle = distance / R). */
 export function rollX(step: number, t: number): number {

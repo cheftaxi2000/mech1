@@ -356,3 +356,28 @@ test('[review] rollen: rolling cylinder and wheel on a belt', async ({ page }) =
     }
   }
 });
+
+test('[review] kreiselung: rolling cone explorer and proof animation', async ({ page }) => {
+  test.setTimeout(180_000);
+  await page.addInitScript(() => localStorage.setItem('mech1.lang', 'de'));
+  for (const [w, h, name, scheme] of [[1180, 820, 'ipad', 'light'], [390, 844, 'phone', 'light'], [820, 1180, 'ipad-dark', 'dark']] as const) {
+    await page.emulateMedia({ colorScheme: scheme, reducedMotion: 'reduce' });
+    await page.setViewportSize({ width: w, height: h });
+    await page.goto('/#home'); await page.goto('/#kreiselung');
+    await page.locator('article.lesson h2').first().waitFor();
+    const ex = page.locator('figure.explorer').first();
+    await ex.scrollIntoViewIfNeeded(); await page.waitForTimeout(700);
+    for (const [k, label] of [['roll', 'Rollen'], ['still', 'Ohne Eigendrehung'], ['fast', 'Schnelle Eigendrehung']] as const) {
+      if (name !== 'ipad' && k !== 'roll') continue;
+      await ex.getByRole('button', { name: label, exact: true }).click(); await page.waitForTimeout(500);
+      await ex.screenshot({ path: `test-results/frames/kr-${name}-explorer-${k}.png` });
+    }
+    const st = page.locator('.stepper').first();
+    await st.scrollIntoViewIfNeeded();
+    for (let i = 0; i < 6; i++) {
+      if (name === 'phone' && i < 5 && i !== 2) continue;
+      await st.locator('.step-num').nth(i).click(); await page.waitForTimeout(300);
+      await st.locator('.stepper-fig').screenshot({ path: `test-results/frames/kr-${name}-step${i + 1}.png` });
+    }
+  }
+});

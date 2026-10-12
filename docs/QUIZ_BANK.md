@@ -178,3 +178,9 @@ Short ideas for the quiz part at the end of the course (D-015). Every answer mus
 - Wheel R = 0,3 m rolls with v_C = 3 m/s on the ground: ω = ? (10 s⁻¹.)
 - Wheel on a belt running backwards at 1 m/s, v_C = 2 m/s, R = 0,5 m: which ω makes it roll? (v_C − ωR = u ⇒ ω = 6 s⁻¹.)
 - Locked wheel sliding: where is the momentary centre? (None — translation.)
+
+## L11 kreiselung — ideas
+- Ein Kegel rollt auf dem Tisch um seine Spitze. Welche Punkte ruhen in diesem Augenblick? (Die Berührlinie; nur die Spitze ruht dauernd.)
+- Warum liegt O in der Ebene E_M durch M senkrecht zu v_M? (|r_M| = konst. ⇒ v_M ⊥ r_M.)
+- Warum braucht der Beweis zwei Punkte M, N mit nicht parallelen Geschwindigkeiten? (Sonst E_M = E_N, keine Schnittgerade.)
+- Rollender Kegel, γ = 30°, L = 0,2 m, φ̇ = 2 1/s: v_C, |ω|, v oben? (v_C = φ̇ L cos²γ = 0,3 m/s; |ω| = φ̇ cot γ ≈ 3,46 1/s; oben 0,6 m/s — check with `kreiselGeom.test.ts` formulas.)
