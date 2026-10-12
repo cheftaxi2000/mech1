@@ -27,8 +27,8 @@ export default function L10Rolling() {
       <Section id="rollen" title={<T de="1. Rollen ist eine momentane Rotation" en="1. Rolling is a momentary rotation" />}>
         <Box kind="lecture" src={<Src p={20} />}>
           <T
-            de={<p><b>Rollen:</b> momentane Rotation. Figur: ein Zylinder auf einer Ebene, unten die Punkte <M p=",">A</M> <M p=",">B</M> auf seiner Achse <M>C</M> und <M p=";">D</M> <M p=".">{t`\mu \leftrightarrow AB`}</M></p>}
-            en={<p><b>Rolling</b> (<span lang="de">Rollen</span>): momentary rotation. Figure: a cylinder on a plane, at the bottom the points <M p=",">A</M> <M p=",">B</M> on its axis <M>C</M> and <M p=";">D</M> <M p=".">{t`\mu \leftrightarrow AB`}</M></p>}
+            de={<p><b>Rollen:</b> momentane Rotation. Figur: ein Zylinder auf einer Ebene; unten die Punkte <M>A</M> und <M p=";">B</M> auf seiner Achse <M>C</M> und <M p=".">D</M> Darunter: <M p=",">{t`\mu \leftrightarrow AB`}</M> daneben durchgestrichen <M p=".">{t`\cancel{\mu \leftrightarrow CD}`}</M></p>}
+            en={<p><b>Rolling</b> (<span lang="de">Rollen</span>): momentary rotation. Figure: a cylinder on a plane; at the bottom the points <M>A</M> and <M p=";">B</M> on its axis <M>C</M> and <M p=".">D</M> Below: <M p=",">{t`\mu \leftrightarrow AB`}</M> next to it, crossed out, <M p=".">{t`\cancel{\mu \leftrightarrow CD}`}</M></p>}
           />
         </Box>
         <T
@@ -120,10 +120,14 @@ export default function L10Rolling() {
             </ol>
           </>}
         />
+        <T
+          de={<p>Im Bild unten ist <M>{t`Z_1`}</M> das Rad und <M>{t`Z_2`}</M> das Band darunter. <M>A</M> ist der Punkt des Rades, der gerade das Band berührt – wie <M>A</M> in der Figur des Skripts. Die Schieber stellen <M p=",">{t`v_C`}</M> <M>\omega</M> (vorwärts positiv, wie oben) und die Bandgeschwindigkeit <M>u</M> ein.</p>}
+          en={<p>In the picture below <M>{t`Z_1`}</M> is the wheel and <M>{t`Z_2`}</M> the belt under it. <M>A</M> is the point of the wheel that is touching the belt right now – like <M>A</M> in the figure of the notes. The sliders set <M p=",">{t`v_C`}</M> <M>\omega</M> (forward positive, as above) and the belt speed <M p=".">u</M></p>}
+        />
         <RollingWheel />
         <T
           de={<>
-            <p>Im Bild ist <M>{t`Z_1`}</M> das Rad und <M>{t`Z_2`}</M> das Band darunter. <M>A</M> ist der Punkt des Rades, der gerade das Band berührt – wie <M>A</M> in der Figur des Skripts. Die Schieber stellen <M p=",">{t`v_C`}</M> <M>\omega</M> (vorwärts positiv, wie oben) und die Bandgeschwindigkeit <M>u</M> ein. Die vier Knöpfe zeigen typische Fälle:</p>
+            <p>Die vier Knöpfe zeigen typische Fälle:</p>
             <ul>
               <li><b>Rollen:</b> Der rote Pfeil bei <M>A</M> verschwindet, der violette Ring (der Punkt, um den sich das Rad gerade dreht) liegt genau um <M p=".">A</M> Die Bahn des roten Randpunkts (Zykloide) hat unten eine Spitze – dort steht der Punkt still.</li>
               <li><b>Rad blockiert:</b> Das Rad dreht sich nicht, alle Pfeile sind gleich (Translation). Bei <M>A</M> rutscht es mit <M>{t`v_C`}</M> über den Boden: Gleiten.</li>
@@ -132,7 +136,7 @@ export default function L10Rolling() {
             </ul>
           </>}
           en={<>
-            <p>In the picture <M>{t`Z_1`}</M> is the wheel and <M>{t`Z_2`}</M> the belt below it. <M>A</M> is the point of the wheel that is touching the belt right now – like <M>A</M> in the figure of the notes. The sliders set <M p=",">{t`v_C`}</M> <M>\omega</M> (forward positive, as above) and the belt speed <M p=".">u</M> The four buttons show typical cases:</p>
+            <p>The four buttons show typical cases:</p>
             <ul>
               <li><b>Rolling:</b> the red arrow at <M>A</M> vanishes, the purple ring (the point about which the wheel is turning right now) lies exactly around <M p=".">A</M> The path of the red rim point (a cycloid) has a sharp tip at the bottom – there the point stands still.</li>
               <li><b>Wheel locked:</b> the wheel does not turn, all arrows are equal (translation). At <M>A</M> it slips over the ground with <M p=":">{t`v_C`}</M> sliding.</li>
