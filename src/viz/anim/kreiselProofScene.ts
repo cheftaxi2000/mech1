@@ -31,6 +31,8 @@ export const KP = {
 };
 export const OMEGA_K = scale(KP.W, KD);
 const SQ = 0.26;
+/** ω drawn along μ beyond its upper end (μ is drawn up to 2.75 along KD). */
+export const W_FROM = 2.85, W_LEN = 0.95;
 
 export function kreiselProofScene(step: number, t: number, lang: Lang): Scene {
   void lang;
@@ -64,10 +66,10 @@ export function kreiselProofScene(step: number, t: number, lang: Lang): Scene {
   const patch = (p: Vec3): P2[] => [[-0.12, -0.35], [2.45, -0.35], [2.45, 1.65], [-0.12, 1.65]].map(([a, b]) => pr(add(scale(a, KD), scale(b, p))));
   const eM = fadeIn(1, 0.45, 0.85), eN = fadeIn(2, 0.3, 0.65);
   const dim = step === 5 ? 1 - 0.6 * ease(seg(t, 0, 0.4)) : 1;
-  if (eM > 0.01) S('EM', 'polygon', 'kr-plane', patch(PM), eM * dim);
-  if (eN > 0.01) S('EN', 'polygon', 'kr-plane', patch(PN), eN * dim);
-  sb.label('lab-EM', add2(pr(add(scale(2.3, KD), scale(1.55, PM))), [-4, 12]), 'E_M', 'muted', eM > 0.9 ? dim : 0, 'r');
-  sb.label('lab-EN', add2(pr(add(scale(2.3, KD), scale(1.55, PN))), [4, 12]), 'E_N', 'muted', eN > 0.9 ? dim : 0, 'l');
+  if (eM > 0.01) S('EM', 'polygon', 'kr-plane em', patch(PM), eM * dim);
+  if (eN > 0.01) S('EN', 'polygon', 'kr-plane en', patch(PN), eN * dim);
+  sb.label('lab-EM', add2(pr(add(scale(2.3, KD), scale(1.55, PM))), [-4, 12]), 'E_M', 'x', eM > 0.9 ? dim : 0, 'r');
+  sb.label('lab-EN', add2(pr(add(scale(2.3, KD), scale(1.55, PN))), [4, 12]), 'E_N', 'z', eN > 0.9 ? dim : 0, 'l');
 
   // μ = E_M ∩ E_N (step 2, after E_N)
   const mu = fadeIn(2, 0.6, 0.95);
@@ -95,11 +97,12 @@ export function kreiselProofScene(step: number, t: number, lang: Lang): Scene {
   // step 5: ω along μ, more points of μ at rest, the momentary circles of M and N about μ
   const rot = step === 5 ? ease(seg(t, 0.2, 0.6)) : 0;
   if (rot > 0.01) {
-    arrow('omega', 'kr-omega', scale(0.15, KD), scale(0.15 + 1.25 * rot, KD));
+    // ω is a free vector ∥ μ: drawn as the continuation of μ above its end (as in Fig. 3.11), not on top of μ
+    arrow('omega', 'kr-omega', scale(W_FROM, KD), scale(W_FROM + W_LEN * rot, KD));
     for (const [k, P] of [['cM', M], ['cN', N]] as const) S(k, 'polyline', 'an-path', Array.from({ length: 61 }, (_, i) => pr(rotateAbout(P, O, KD, (2 * Math.PI * i) / 60))), rot);
     for (const [i, a] of [0.75, 1.5, 2.6].entries()) S(`rest${i}`, 'circle', 'an-point ghost', [pr(scale(a, KD))], rot, 4);
   }
-  sb.label('lab-omega', add2(pr(scale(0.95, KD)), [-10, 0]), String.raw`\v\omega`, 'angle', rot > 0.9 ? 1 : 0, 'r');
+  sb.label('lab-omega', add2(pr(scale(W_FROM + 0.6 * W_LEN, KD)), [-10, 0]), String.raw`\v\omega`, 'angle', rot > 0.9 ? 1 : 0, 'r');
 
   // velocities of M and N
   const VS = 1.6;

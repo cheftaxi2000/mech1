@@ -42,4 +42,14 @@ describe('rolling and sliding (p. 20)', () => {
     expect(momentaryCentre(1, 0)).toBeNull();
     expect(momentaryCentre(0.2, 2 / R)![1]).toBeCloseTo(-0.1 * R, 12); // spinning: inside the wheel
   });
+  it('rolling: speed = ω · distance from the contact line A (not ω · height); = ω h only on the vertical through A', () => {
+    const Om = 1.7, vc = Om * R;
+    const speed = (p: [number, number]) => Math.hypot(...wheelVelocity(vc, Om, p));
+    // foremost rim point: height R above the ground, but √2·R from the contact line
+    expect(speed([R, 0])).toBeCloseTo(Math.SQRT2 * Om * R, 12);
+    expect(speed([R, 0])).not.toBeCloseTo(Om * R, 3);
+    for (const p of [[0.3, 0.4], [-0.7, -0.2], [0.1, -0.75]] as [number, number][]) expect(speed(p)).toBeCloseTo(Om * Math.hypot(p[0], p[1] + R), 12);
+    // points vertically above A: distance = height h = y + R
+    for (const h of [0, 0.4, R, 1.5 * R, 2 * R]) expect(speed([0, h - R])).toBeCloseTo(Om * h, 12);
+  });
 });

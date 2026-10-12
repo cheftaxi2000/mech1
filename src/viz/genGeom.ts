@@ -72,7 +72,7 @@ export function fieldFrame(vB: P2, w: number, ref: 'B' | 'C') {
   return {
     plate: poly.map(toSvg), grid,
     B: toSvg(FIELD.B), C: toSvg(fieldPlace(PTS.C)), M, ref: toSvg(R),
-    vRef: arrow(R, vR), copy: [M, Mc] as [P2, P2], rot: [Mc, toSvg([Mq[0] + FIELD.KV * vM[0], Mq[1] + FIELD.KV * vM[1]])] as [P2, P2], vM: arrow(Mq, vM),
+    vRef: arrow(R, vR), vB: arrow(FIELD.B, vel(FIELD.B)), copy: [M, Mc] as [P2, P2], rot: [Mc, toSvg([Mq[0] + FIELD.KV * vM[0], Mq[1] + FIELD.KV * vM[1]])] as [P2, P2], vM: arrow(Mq, vM),
     rest: rest ? toSvg(rest) : null, rotPart: rot, vMval: vM,
   };
 }

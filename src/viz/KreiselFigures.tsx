@@ -9,7 +9,6 @@ import { CONE, H, MODES, R, U0, coneBodyPoint, kreiselFrame, M0, type Mode } fro
 import { Scene } from './Scene';
 import { Arrow, C, Dot, Label } from './primitives';
 import { FullscreenButton, useFullscreen } from './useFullscreen';
-import { useReducedMotion } from './VectorFigures';
 
 const t = String.raw;
 type P3 = [number, number, number];
@@ -18,6 +17,8 @@ const DEG = Math.PI / 180;
 const RIM = Array.from({ length: 8 }, (_, i) => (i * Math.PI) / 4);
 const SPOKES = Array.from({ length: 6 }, (_, i) => (i * Math.PI) / 3 + Math.PI / 6);
 const VS = 0.28;
+/** Label position next to a point, on the side opposite to its velocity arrow (above it when the point is at rest). */
+const awayFrom = (p: Vec3, v: Vec3): Vec3 => (norm(v) * VS > 0.04 ? add(p, add(scale(-0.24, normalize(v)), [0, 0, 0.06])) : add(p, [0, 0, 0.22]));
 
 function ConeBody({ phi, psi }: { phi: number; psi: number }) {
   const matrix = useMemo(() => {
@@ -49,7 +50,6 @@ function ConeBody({ phi, psi }: { phi: number; psi: number }) {
  */
 export function KreiselExplorer() {
   const tr = useTr();
-  const reduced = useReducedMotion();
   const [ref, full, toggleFull] = useFullscreen();
   const [phi, setPhi] = useState(100 * DEG);
   const [mode, setMode] = useState<Mode>('roll');
@@ -91,9 +91,9 @@ export function KreiselExplorer() {
           {sphere && (<>
             <mesh rotation={[Math.PI / 2, 0, 0]}>
               <sphereGeometry args={[L, 48, 24, 0, 2 * Math.PI, 0, Math.PI / 2]} />
-              <meshBasicMaterial color={C.point} transparent opacity={0.05} depthWrite={false} side={THREE.FrontSide} />
+              <meshBasicMaterial color="#94a3b8" transparent opacity={0.07} depthWrite={false} side={THREE.FrontSide} />
             </mesh>
-            <Line points={trail} color={C.point} lineWidth={1.6} dashed dashSize={0.07} gapSize={0.05} />
+            <Line points={trail} color={C.point} lineWidth={1.3} dashed dashSize={0.07} gapSize={0.06} transparent opacity={0.5} />
           </>)}
           {/* the line of contact (on the floor) */}
           <Line points={[[0, 0, 0.003], [f.contact[0], f.contact[1], 0.003]]} color={C.r} lineWidth={2.2} />
@@ -109,10 +109,11 @@ export function KreiselExplorer() {
             return norm(v) * VS > 0.04 ? <Arrow key={i} from={p} to={add(p, scale(VS, v))} color={C.point} width={2.5} /> : null;
           })}
           <Dot at={Cb} r={0.05} />
-          <Label at={add(Cb, [0, 0, -0.2])} color={C.point}>C</Label>
-          <Line points={[[0, 0, 0], Mp as P3]} color={C.point} lineWidth={2.4} />
+          <Label at={awayFrom(Cb, kreiselVelocity(f.omega, Cb))} color={C.point}>C</Label>
+          {/* r = OM (dark, the colour of position vectors): its length stays the same */}
+          <Line points={[[0, 0, 0], Mp as P3]} color={C.r} lineWidth={1.8} />
           <Dot at={Mp} r={0.07} />
-          <Label at={add(Mp, [0, 0, 0.22])} color={C.point}>M</Label>
+          <Label at={awayFrom(Mp, kreiselVelocity(f.omega, Mp))} color={C.point}>M</Label>
           <Dot at={[0, 0, 0]} color={C.r} r={0.07} />
           <Label at={[-0.2, -0.22, 0.05]} color={C.r}>O</Label>
         </Scene>
@@ -129,7 +130,7 @@ export function KreiselExplorer() {
             <input type="range" min={0} max={359} step={1} value={deg} onChange={(ev) => { setPlay(false); setPhi(Number(ev.target.value) * DEG); }} aria-label="phi" />
             <span className="val">{deg}°</span></label>
           <div className="motion-row">
-            <button type="button" className="motion-btn" disabled={reduced && !play} onClick={() => setPlay((x) => !x)}>
+            <button type="button" className="motion-btn" onClick={() => setPlay((x) => !x)}>
               {play ? tr('Anhalten', 'Stop') : tr('Abrollen lassen', 'Let it roll')}
             </button>
           </div>

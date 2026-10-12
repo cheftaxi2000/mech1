@@ -520,3 +520,18 @@ input[type="range"] { accent-color: var(--accent); min-height: 32px; margin: 0; 
 .stepper-fig .scene { height: auto !important; aspect-ratio: 4 / 3; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
 @media (min-width: 1024px) { .stepper-fig .scene { max-width: calc((100svh - var(--topbar) - 104px) * 4 / 3); margin-inline: auto; } }
 @media (max-width: 860px) and (max-aspect-ratio: 4/5) { .stepper-fig .scene { max-width: calc((52svh - 70px) * 4 / 3); margin-inline: auto; } }
+/* ==== chapter 3b ==== (L10 Rollen, L11 Kreiselung, L12 allgemeine Bewegung) */
+.vdemo-label.halo { text-shadow: 0 0 2px var(--panel), 0 0 3px var(--panel), 0 0 4px var(--panel), 0 0 5px var(--panel); }
+.rl-mc-ring { fill: color-mix(in srgb, var(--c-angle) 12%, transparent); stroke: var(--c-angle); stroke-width: 2.4; }
+/* the two planes of the Kreiselung proof: E_M blue, E_N green (μ = E_M ∩ E_N is teal); stronger in dark mode */
+.kr-plane.em { fill: color-mix(in srgb, var(--c-x) 11%, transparent); stroke: var(--c-x); stroke-opacity: 0.6; }
+.kr-plane.en { fill: color-mix(in srgb, var(--c-z) 11%, transparent); stroke: var(--c-z); stroke-opacity: 0.6; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .kr-plane.em { fill: color-mix(in srgb, var(--c-x) 22%, transparent); stroke-opacity: 0.85; }
+  :root:not([data-theme="light"]) .kr-plane.en { fill: color-mix(in srgb, var(--c-z) 18%, transparent); stroke-opacity: 0.85; }
+}
+:root[data-theme="dark"] .kr-plane.em { fill: color-mix(in srgb, var(--c-x) 22%, transparent); stroke-opacity: 0.85; }
+:root[data-theme="dark"] .kr-plane.en { fill: color-mix(in srgb, var(--c-z) 18%, transparent); stroke-opacity: 0.85; }
+/* L12 field figure: rays from the point at rest, right-angle marks */
+.gm-pole-ray { stroke: var(--c-angle); stroke-width: 1.2; stroke-dasharray: 3 4; opacity: 0.75; }
+.gm-ra { fill: none; stroke: var(--c-angle); stroke-width: 1.2; opacity: 0.9; }

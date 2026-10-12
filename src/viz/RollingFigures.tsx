@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { M } from '../components/Tex';
 import { fmtNum, useLang, useTr } from '../i18n';
 import { contactVelocity, momentaryCentre, slip, wheelVelocity, type P2 } from '../physics/rolling';
-import { at, useReducedMotion } from './VectorFigures';
+import { at } from './VectorFigures';
 
 const t = String.raw;
 type V = [number, number];
@@ -36,8 +36,7 @@ const PRESETS: Record<Preset, { vc: number; w: number; u: number; de: string; en
  */
 export function RollingWheel() {
   const tr = useTr(), lang = useLang();
-  const reduced = useReducedMotion();
-  const [vc, setVc] = useState(1);
+    const [vc, setVc] = useState(1);
   const [w, setW] = useState(1);
   const [u, setU] = useState(0);
   const [play, setPlay] = useState(false);
@@ -67,7 +66,7 @@ export function RollingWheel() {
   const C: V = [st.x, CY];
   const toS = (p: P2): V => [C[0] + PX * p[0], C[1] - PX * p[1]]; // wheel coordinates (y up, units) → SVG
   const arrowAt = (p: P2): [V, V] => { const v = wheelVelocity(vc, w, p); return [toS(p), [toS(p)[0] + AS * v[0], toS(p)[1] - AS * v[1]]]; };
-  const K: V = [st.x, GROUND];
+  const A: V = [st.x, GROUND]; // the wheel's contact point (A, as in the lecture's figure on p. 20)
   const vK = contactVelocity(vc, w, 1), s = slip(vc, w, 1, u), rolling = Math.abs(s) < 0.02;
   const mc = momentaryCentre(vc, w), mcS = mc ? toS(mc) : null;
   const mark: V = [C[0] + PX * Math.sin(st.th), C[1] - PX * Math.cos(st.th)];
@@ -93,17 +92,18 @@ export function RollingWheel() {
           {vel && RIM.map((a, i) => { const [p, q] = arrowAt([Math.sin(a), Math.cos(a)]); return a === Math.PI ? null : <Arrow key={i} a={p} b={q} cls="rb-v thin" />; })}
           {vel && (() => { const [p, q] = arrowAt([0, 0]); return <Arrow a={p} b={q} cls="rb-v" />; })()}
           {/* contact point: velocity of the wheel point (red) and of the belt (blue) */}
-          <Arrow a={[K[0], K[1] - 3]} b={[K[0] + AS * vK, K[1] - 3]} cls="rb-v" />
-          <Arrow a={[K[0], K[1] + 6]} b={[K[0] + AS * u, K[1] + 6]} cls="rl-vbelt" />
-          {mcS && mcS[1] > 6 && mcS[1] < 244 && <circle cx={mcS[0]} cy={mcS[1]} r={5} className="rl-mc" />}
+          <Arrow a={[A[0], A[1] - 3]} b={[A[0] + AS * vK, A[1] - 3]} cls="rb-v" />
+          <Arrow a={[A[0], A[1] + 6]} b={[A[0] + AS * u, A[1] + 6]} cls="rl-vbelt" />
           <circle cx={mark[0]} cy={mark[1]} r={5} className="v-m" />
           <circle cx={C[0]} cy={C[1]} r={3.5} className="v-o" />
-          <circle cx={K[0]} cy={K[1]} r={4} className="v-m" />
+          <circle cx={A[0]} cy={A[1]} r={4} className="v-m" />
+          {/* the momentary centre: a ring drawn last, so it stays visible when it sits on A */}
+          {mcS && mcS[1] > 6 && mcS[1] < 244 && <circle cx={mcS[0]} cy={mcS[1]} r={8} className="rl-mc-ring" />}
         </svg>
-        <div className="vdemo-label small" style={at(VB, C[0] - 12, C[1] + 13)}><M>C</M></div>
-        <div className="vdemo-label point small" style={at(VB, K[0] - 12, K[1] + 26)}><M>K</M></div>
+        <div className="vdemo-label small halo" style={at(VB, C[0] - 13, C[1] + 14)}><M>C</M></div>
+        <div className="vdemo-label point small" style={at(VB, A[0] - 14, A[1] + 26)}><M>A</M></div>
         <div className="vdemo-label muted small" style={at(VB, 24, GROUND + 28)}><M>{t`Z_2`}</M></div>
-        <div className="vdemo-label muted small" style={at(VB, C[0] - PX - 14, C[1] - PX + 6)}><M>{t`Z_1`}</M></div>
+        <div className="vdemo-label muted small halo" style={at(VB, C[0] - 0.42 * PX, C[1] + 0.52 * PX)}><M>{t`Z_1`}</M></div>
       </div>
       <figcaption className="vdemo-readout">
         <label className="slider wide-slider"><span>{tr('Mittelpunkt', 'centre')} <M>{t`v_C`}</M></span>
@@ -113,7 +113,7 @@ export function RollingWheel() {
         <label className="slider wide-slider"><span>{tr('Band', 'belt')} <M>u</M></span>
           <input type="range" min={-1} max={1} step={0.05} value={u} onChange={(e) => setU(Number(e.target.value))} aria-label="u" /><span className="val">{fmtNum(u, 2, lang)}</span></label>
         <div className="motion-row">
-          <button type="button" className="motion-btn" disabled={reduced && !play} onClick={() => setPlay((x) => !x)}>{play ? tr('Anhalten', 'Stop') : tr('Bewegung abspielen', 'Play the motion')}</button>
+          <button type="button" className="motion-btn" onClick={() => setPlay((x) => !x)}>{play ? tr('Anhalten', 'Stop') : tr('Bewegung abspielen', 'Play the motion')}</button>
         </div>
         <label className="toggle"><input type="checkbox" checked={vel} onChange={(e) => setVel(e.target.checked)} />{' '}{tr('Geschwindigkeiten am Rand', 'velocities on the rim')}</label>
         <label className="toggle"><input type="checkbox" checked={trail} onChange={(e) => setTrail(e.target.checked)} />{' '}{tr('Bahn des roten Randpunkts', 'path of the red rim point')}</label>
@@ -122,8 +122,8 @@ export function RollingWheel() {
           <b className="tr-chip">{rolling ? tr('Rollen', 'rolling') : tr('Gleiten', 'sliding')}</b>
         </div>
         <p className="vdemo-note">{tr(
-          <>Am Kontaktpunkt <M p=":">K</M> rot die Geschwindigkeit des Radpunkts, blau die des Bandes. Beide haben keinen Anteil senkrecht zum Band (Kontakt). Sind die waagrechten Anteile gleich, rollt das Rad, sonst gleitet es. Violett: der Punkt, um den sich das Rad gerade dreht. Beim Rollen auf ruhendem Boden ist das genau <M p=".">K</M></>,
-          <>At the contact point <M p=":">K</M> red is the velocity of the wheel point, blue that of the belt. Neither has a part perpendicular to the belt (contact). If the horizontal parts are equal the wheel rolls, otherwise it slides. Purple: the point about which the wheel is turning at this instant. When rolling on ground at rest this is exactly <M p=".">K</M></>)}</p>
+          <>Am Kontaktpunkt <M p=":">A</M> rot die Geschwindigkeit des Radpunkts, blau die des Bandes. Beide haben keinen Anteil senkrecht zum Band (Kontakt). Sind die waagrechten Anteile gleich, rollt das Rad, sonst gleitet es. Violetter Ring: der Punkt, um den sich das Rad gerade dreht. Beim Rollen auf ruhendem Boden ist das genau <M p=".">A</M></>,
+          <>At the contact point <M p=":">A</M> red is the velocity of the wheel point, blue that of the belt. Neither has a part perpendicular to the belt (contact). If the horizontal parts are equal the wheel rolls, otherwise it slides. Purple ring: the point about which the wheel is turning at this instant. When rolling on ground at rest this is exactly <M p=".">A</M></>)}</p>
       </figcaption>
     </figure>
   );

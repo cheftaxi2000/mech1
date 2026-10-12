@@ -47,6 +47,9 @@ export function genScene(step: number, t: number, lang: Lang): Scene {
     const n = 40;
     for (const [k, p] of [['pathB', PTS.B], ['pathM', PTS.M]] as const)
       if (tau > 0.02) S(k, 'polyline', 'an-path', Array.from({ length: n + 1 }, (_, i) => sv(placeAt(MOTION, p, (tau * i) / n))));
+    // where B and M started (the paths begin there)
+    S('B0', 'circle', 'an-point ghost', [sv(placeAt(MOTION, PTS.B, 0))], 1, 4);
+    S('M0', 'circle', 'an-point ghost', [sv(placeAt(MOTION, PTS.M, 0))], 1, 4);
   }
   // step 3: the circle of M about B
   const circ = step === 3 ? ease(seg(t, 0.45, 0.75)) : 0;

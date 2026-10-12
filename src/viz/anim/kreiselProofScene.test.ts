@@ -27,4 +27,12 @@ describe('Kreiselung proof (p. 21, Fig. 3.11)', () => {
     expect(shape(f5, 'omega')).toBeDefined(); expect(shape(f5, 'cM')?.o).toBe(1); expect(lab(f5, 'lab-omega')?.o).toBe(1); expect(lab(f5, 'box5')?.o).toBe(1);
     expect(shape(f5, 'AM')).toBeUndefined();
   });
+  it('the two planes have different tints; ω is drawn beyond μ, not on top of it', () => {
+    const f5 = kreiselProofScene(5, 1, 'de');
+    expect(shape(f5, 'EM')?.cls).not.toBe(shape(f5, 'EN')?.cls);
+    const mu = shape(f5, 'mu')!.pts, w = shape(f5, 'omega')!.pts;
+    // screen y grows downward: ω starts above the upper end of μ
+    expect(w[0][1]).toBeLessThan(Math.min(mu[0][1], mu[1][1]));
+    expect(lab(f5, 'lab-omega')!.at[1]).toBeLessThan(Math.min(mu[0][1], mu[1][1]));
+  });
 });

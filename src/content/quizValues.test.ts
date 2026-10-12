@@ -25,5 +25,6 @@ describe('quiz part: every answer agrees with the physics code', () => {
     expect(Q3.wheelOmega).toBeCloseTo(10, 12); expect(Q3.wheelOmegaCheck).toBeCloseTo(0, 12);
     expect(Q3.beltOmega).toBeCloseTo(6, 12); expect(Q3.beltSlip).toBeCloseTo(0, 12);
     expect(Q3.coneVC).toBeCloseTo(0.3, 12); expect(Q3.coneW).toBeCloseTo(3.46, 2); expect(Q3.coneTop).toBeCloseTo(0.6, 12);
+    expect(Q3.fieldVM).toBeCloseTo(0.5, 12); expect(Q3.fieldTurn).toEqual([expect.closeTo(-0.5, 12), expect.closeTo(0, 12), expect.closeTo(0, 12)]);
   });
 });

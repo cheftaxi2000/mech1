@@ -52,19 +52,19 @@ export default function L11Kreiselung() {
         <KreiselExplorer />
         <T
           de={<>
-            <p>Die drei Knöpfe zeigen drei verschiedene Kreiselungen desselben Kegels:</p>
+            <p>Die drei Knöpfe zeigen drei Bewegungen desselben Kegels um seine Spitze <M p=".">O</M> <M>M</M> ist der rote Punkt am Rand.</p>
             <ul>
               <li><b>Rollen:</b> Der Kegel rollt ohne zu rutschen. Die momentane Achse <M>\mu</M> ist die Berührlinie mit dem Boden – genau wie <M>{t`AB`}</M> beim rollenden Zylinder. Die Bahn von <M>M</M> berührt den Boden mit einer Spitze.</li>
-              <li><b>Ohne Eigendrehung:</b> Der Kegel wird nur um die senkrechte Achse durch <M>O</M> herumgeschoben und rutscht über den Boden. <M>\mu</M> steht senkrecht; das ist sogar eine Rotation um eine feste Achse.</li>
+              <li><b>Ohne Eigendrehung:</b> Der Kegel wird nur um die senkrechte Achse durch <M>O</M> herumgeschoben und rutscht über den Boden. <M>\mu</M> steht senkrecht und bleibt fest – hier ruht dauernd eine ganze Achse. Streng genommen ist das schon eine Rotation, der Grenzfall der Kreiselung.</li>
               <li><b>Schnelle Eigendrehung:</b> Der Kegel dreht sich schneller um sich selbst, als es zum Rollen passt. <M>\mu</M> kippt weg vom Boden.</li>
             </ul>
             <p>In allen drei Fällen geht <M>\mu</M> durch <M p=".">O</M> Das ist die Behauptung des Skripts.</p>
           </>}
           en={<>
-            <p>The three buttons show three different spinning motions of the same cone:</p>
+            <p>The three buttons show three motions of the same cone about its tip <M p=".">O</M> <M>M</M> is the red point on the rim.</p>
             <ul>
               <li><b>Rolling:</b> the cone rolls without slipping. The momentary axis <M>\mu</M> is the line of contact with the floor – just like <M>{t`AB`}</M> for the rolling cylinder. The path of <M>M</M> touches the floor with a sharp tip.</li>
-              <li><b>No spin:</b> the cone is only pushed round the vertical axis through <M>O</M> and slides over the floor. <M>\mu</M> is vertical; this is even a rotation about a fixed axis.</li>
+              <li><b>No spin:</b> the cone is only pushed round the vertical axis through <M>O</M> and slides over the floor. <M>\mu</M> is vertical and stays fixed – here a whole axis is at rest all the time. Strictly speaking this is already a rotation, the limiting case of spinning motion.</li>
               <li><b>Fast spin:</b> the cone turns about itself faster than rolling requires. <M>\mu</M> tilts away from the floor.</li>
             </ul>
             <p>In all three cases <M>\mu</M> passes through <M p=".">O</M> That is the claim of the notes.</p>
@@ -77,13 +77,13 @@ export default function L11Kreiselung() {
         <Box kind="lecture" src={<Src p={21} fig="Fig. 3.11" />} title={<T de="Beweis" en={<>Proof (<span lang="de">Beweis</span>)</>} />}>
           <T
             de={<>
-              <p>Handschriftlich neben der Figur: <M p=",">{t`\v v_M \perp \v r_M`}</M> <M p=",">{t`E_M \perp \v v_M`}</M> <M p=",">{t`\v r_M \in E_M`}</M> <M p=",">{t`\v r_N \in E_N`}</M> <M>{t`\mu = E_M \cap E_N`}</M> (Gerade).</p>
+              <p>Handschriftlich neben der Figur: <M p=",">{t`\v v_M \perp \v r_M`}</M> <M p=",">{t`E_M \perp \v r_M`}</M> <M p=",">{t`\v r_M \in E_M`}</M> <M p=",">{t`\v r_N \in E_N`}</M> <M>{t`\mu = E_M \cap E_N`}</M> (Gerade).</p>
               <p>Wähle <M p=",">{t`E_M \perp \v v_M`}</M> <M>{t`E_N \perp \v v_N \ \to\ A \in E_M,\ A \in E_N`}</M></p>
               <p>SdpG: <M>{t`\v v_A\cdot\v{AM} = \v v_M\cdot\v{AM}\ (= 0) \ \to\ \v v_A = \v 0`}</M> oder <M p=".">{t`\v v_A \perp \v{AM}`}</M> Ebenso mit <M p=":">N</M> <M>{t`\v v_A = \v 0`}</M> oder <M p=".">{t`\v v_A \perp \v{AN}`}</M></p>
               <p>Ansicht <M p=":">{t`\perp AO`}</M> <M p="?">{t`\v v_A \parallel \v{AO}`}</M> Nein, da <M p=".">{t`\v v_A\cdot\v{AO} = \v v_O\cdot\v{AO} = 0 \ \to\ \v v_A \perp \v{AO} \ \to\ \v v_A = \v 0`}</M></p>
             </>}
             en={<>
-              <p>Handwritten next to the figure: <M p=",">{t`\v v_M \perp \v r_M`}</M> <M p=",">{t`E_M \perp \v v_M`}</M> <M p=",">{t`\v r_M \in E_M`}</M> <M p=",">{t`\v r_N \in E_N`}</M> <M>{t`\mu = E_M \cap E_N`}</M> (a line).</p>
+              <p>Handwritten next to the figure: <M p=",">{t`\v v_M \perp \v r_M`}</M> <M p=",">{t`E_M \perp \v r_M`}</M> <M p=",">{t`\v r_M \in E_M`}</M> <M p=",">{t`\v r_N \in E_N`}</M> <M>{t`\mu = E_M \cap E_N`}</M> (a line).</p>
               <p>Choose <M p=",">{t`E_M \perp \v v_M`}</M> <M>{t`E_N \perp \v v_N \ \to\ A \in E_M,\ A \in E_N`}</M></p>
               <p>SdpG: <M>{t`\v v_A\cdot\v{AM} = \v v_M\cdot\v{AM}\ (= 0) \ \to\ \v v_A = \v 0`}</M> or <M p=".">{t`\v v_A \perp \v{AM}`}</M> Likewise with <M p=":">N</M> <M>{t`\v v_A = \v 0`}</M> or <M p=".">{t`\v v_A \perp \v{AN}`}</M></p>
               <p>View <M p=":">{t`\perp AO`}</M> <M p="?">{t`\v v_A \parallel \v{AO}`}</M> No, since <M p=".">{t`\v v_A\cdot\v{AO} = \v v_O\cdot\v{AO} = 0 \ \to\ \v v_A \perp \v{AO} \ \to\ \v v_A = \v 0`}</M></p>
@@ -92,23 +92,25 @@ export default function L11Kreiselung() {
         </Box>
         <T
           de={<>
+            <p>Ein Verschreiber in der Handschrift: Dort steht <M p=";">{t`E_M \perp \v r_M`}</M> gemeint ist <M p=",">{t`E_M \perp \v v_M`}</M> wie in der gedruckten Zeile darunter. <M>{t`\v r_M`}</M> liegt ja <em>in</em> <M p=".">{t`E_M`}</M></p>
             <p><b>So liest man den Beweis:</b></p>
             <ol>
               <li>Nimm zwei Punkte <M>M</M> und <M p=",">N</M> die sich bewegen. <M>M</M> bleibt gleich weit von <M>O</M> entfernt. Darum steht <M>{t`\v v_M`}</M> senkrecht auf <M>{t`\v r_M`}</M> – die Geschwindigkeit zeigt entlang der Kugel, nie nach aussen.</li>
               <li><M>{t`E_M`}</M> ist die Ebene durch <M>M</M> senkrecht zu <M p=".">{t`\v v_M`}</M> Weil <M>{t`\v r_M`}</M> senkrecht auf <M>{t`\v v_M`}</M> steht, liegt <M>{t`\v r_M`}</M> in dieser Ebene – und mit ihm <M p=".">O</M> Ebenso liegt <M>O</M> in <M p=".">{t`E_N`}</M></li>
               <li>Zwei Ebenen durch <M>O</M> schneiden sich in einer Geraden durch <M p=".">O</M> Das ist <M p=".">\mu</M> <M>A</M> ist irgendein Punkt auf <M p=".">\mu</M></li>
-              <li>SdpG für <M>A</M> und <M p=":">M</M> <M p=".">{t`\v v_A\cdot\v{AM} = \v v_M\cdot\v{AM}`}</M> Rechts steht <M p=",">0</M> denn <M>{t`\v{AM}`}</M> liegt in <M p=",">{t`E_M`}</M> und <M>{t`\v v_M`}</M> steht senkrecht auf <M p=".">{t`E_M`}</M> Also ist <M>{t`\v v_A`}</M> null oder senkrecht zu <M p=".">{t`\v{AM}`}</M> Mit <M>N</M> genauso.</li>
-              <li>Senkrecht zu <M>{t`\v{AM}`}</M> und <M>{t`\v{AN}`}</M> bleibt nur noch eine Richtung. Ist das <M p="?">{t`\v{AO}`}</M> Nein: <M>O</M> ruht, also gibt die SdpG auch <M p=".">{t`\v v_A\cdot\v{AO} = 0`}</M> Senkrecht auf allen drei Richtungen steht nur der Nullvektor: <M p=".">{t`\v v_A = \v 0`}</M></li>
+              <li>SdpG für <M>A</M> und <M p=":">M</M> <M p=".">{t`\v v_A\cdot\v{AM} = \v v_M\cdot\v{AM}`}</M> Rechts steht <M p=":">0</M> <M>A</M> liegt auf <M>\mu</M> und damit in <M p=",">{t`E_M`}</M> <M>M</M> sowieso. Also liegt <M>{t`\v{AM}`}</M> in <M p=",">{t`E_M`}</M> und <M>{t`\v v_M`}</M> steht senkrecht darauf. Also ist <M>{t`\v v_A`}</M> null oder senkrecht zu <M p=".">{t`\v{AM}`}</M> Mit <M>N</M> genauso.</li>
+              <li>Damit bleibt für <M>{t`\v v_A`}</M> höchstens eine Richtung. Die dritte Bedingung kommt von <M p=":">O</M> <M>O</M> ruht, also gibt die SdpG <M p=".">{t`\v v_A\cdot\v{AO} = 0`}</M> (Im Skript: «<M p="?">{t`\v v_A \parallel \v{AO}`}</M> Nein».) <M p=",">{t`\v{AM}`}</M> <M>{t`\v{AN}`}</M> und <M>{t`\v{AO}`}</M> liegen nicht in einer Ebene. Senkrecht auf allen dreien steht nur der Nullvektor: <M p=".">{t`\v v_A = \v 0`}</M></li>
             </ol>
           </>}
           en={<>
+            <p>A slip in the handwriting: it says <M p=";">{t`E_M \perp \v r_M`}</M> what is meant is <M p=",">{t`E_M \perp \v v_M`}</M> as in the printed line below. After all, <M>{t`\v r_M`}</M> lies <em>in</em> <M p=".">{t`E_M`}</M></p>
             <p><b>How to read the proof:</b></p>
             <ol>
               <li>Take two points <M>M</M> and <M>N</M> that move. <M>M</M> stays at the same distance from <M p=".">O</M> Hence <M>{t`\v v_M`}</M> is perpendicular to <M>{t`\v r_M`}</M> – the velocity points along the sphere, never outward.</li>
               <li><M>{t`E_M`}</M> is the plane through <M>M</M> perpendicular to <M p=".">{t`\v v_M`}</M> Because <M>{t`\v r_M`}</M> is perpendicular to <M p=",">{t`\v v_M`}</M> <M>{t`\v r_M`}</M> lies in this plane – and with it <M p=".">O</M> Likewise <M>O</M> lies in <M p=".">{t`E_N`}</M></li>
               <li>Two planes through <M>O</M> intersect in a line through <M p=".">O</M> That is <M p=".">\mu</M> <M>A</M> is any point on <M p=".">\mu</M></li>
-              <li>SdpG for <M>A</M> and <M p=":">M</M> <M p=".">{t`\v v_A\cdot\v{AM} = \v v_M\cdot\v{AM}`}</M> The right-hand side is <M p=",">0</M> because <M>{t`\v{AM}`}</M> lies in <M>{t`E_M`}</M> and <M>{t`\v v_M`}</M> is perpendicular to <M p=".">{t`E_M`}</M> So <M>{t`\v v_A`}</M> is zero or perpendicular to <M p=".">{t`\v{AM}`}</M> The same with <M p=".">N</M></li>
-              <li>Perpendicular to <M>{t`\v{AM}`}</M> and <M>{t`\v{AN}`}</M> only one direction is left. Is it <M p="?">{t`\v{AO}`}</M> No: <M>O</M> is at rest, so the SdpG also gives <M p=".">{t`\v v_A\cdot\v{AO} = 0`}</M> Only the zero vector is perpendicular to all three directions: <M p=".">{t`\v v_A = \v 0`}</M></li>
+              <li>SdpG for <M>A</M> and <M p=":">M</M> <M p=".">{t`\v v_A\cdot\v{AM} = \v v_M\cdot\v{AM}`}</M> The right-hand side is <M p=":">0</M> <M>A</M> lies on <M>\mu</M> and hence in <M p=",">{t`E_M`}</M> and so does <M p=".">M</M> So <M>{t`\v{AM}`}</M> lies in <M p=",">{t`E_M`}</M> and <M>{t`\v v_M`}</M> is perpendicular to it. So <M>{t`\v v_A`}</M> is zero or perpendicular to <M p=".">{t`\v{AM}`}</M> The same with <M p=".">N</M></li>
+              <li>So at most one direction is left for <M p=".">{t`\v v_A`}</M> The third condition comes from <M p=":">O</M> <M>O</M> is at rest, so the SdpG gives <M p=".">{t`\v v_A\cdot\v{AO} = 0`}</M> (In the notes: “<M p="?">{t`\v v_A \parallel \v{AO}`}</M> No”.) <M p=",">{t`\v{AM}`}</M> <M p=",">{t`\v{AN}`}</M> and <M>{t`\v{AO}`}</M> do not lie in one plane. Only the zero vector is perpendicular to all three: <M p=".">{t`\v v_A = \v 0`}</M></li>
             </ol>
           </>}
         />
@@ -132,8 +134,8 @@ export default function L11Kreiselung() {
                 de={<>Auch <M>O</M> ruht: <M p=".">{t`\v v_A\cdot\v{AO} = 0`}</M> <M p=",">{t`\v{AM}`}</M> <M>{t`\v{AN}`}</M> und <M>{t`\v{AO}`}</M> liegen nicht in einer Ebene. Senkrecht auf allen dreien steht nur der Nullvektor: <M p=".">{t`\v v_A = \v 0`}</M></>}
                 en={<><M>O</M> is at rest too: <M p=".">{t`\v v_A\cdot\v{AO} = 0`}</M> <M p=",">{t`\v{AM}`}</M> <M p=",">{t`\v{AN}`}</M> and <M>{t`\v{AO}`}</M> do not lie in one plane. Only the zero vector is perpendicular to all three: <M p=".">{t`\v v_A = \v 0`}</M></>} /> },
               { ms: 3500, caption: <T
-                de={<>Das gilt für jeden Punkt von <M p=":">\mu</M> Eine ganze Achse durch <M>O</M> ruht. In diesem Augenblick drehen sich alle Punkte um <M>\mu</M> (gestrichelt: die Kreise von <M>M</M> und <M p=")">N</M> mit <M p=".">{t`\v v = \v\omega\times\v r`}</M></>}
-                en={<>This holds for every point of <M p=":">\mu</M> a whole axis through <M>O</M> is at rest. At this instant all points turn about <M>\mu</M> (dashed: the circles of <M>M</M> and <M p=")">N</M> with <M p=".">{t`\v v = \v\omega\times\v r`}</M></>} /> },
+                de={<>Das gilt für jeden Punkt von <M>\mu</M> (Ringe): Eine ganze Achse durch <M>O</M> ruht. In diesem Augenblick drehen sich alle Punkte um <M>\mu</M> (gestrichelt: die Kreise von <M>M</M> und <M p=")">N</M> mit <M p=".">{t`\v v = \v\omega\times\v r`}</M></>}
+                en={<>This holds for every point of <M>\mu</M> (rings): a whole axis through <M>O</M> is at rest. At this instant all points turn about <M>\mu</M> (dashed: the circles of <M>M</M> and <M p=")">N</M> with <M p=".">{t`\v v = \v\omega\times\v r`}</M></>} /> },
             ]}
           >
             {(step, tt) => <AnimFigure build={kreiselProofScene} step={step} t={tt} />}
@@ -172,12 +174,14 @@ export default function L11Kreiselung() {
           de={<>
             <p>Weil in jedem Augenblick eine Achse <M>\mu</M> durch <M>O</M> ruht, ist die Kreiselung in jedem Augenblick eine Rotation um <M p=".">\mu</M> Darum gilt die Formel der Rotation, mit <M>O</M> auf der Achse:</p>
             <MD>{t`\v v = \v\omega\times\v r, \qquad \v r \text{ von } O \text{ aus gemessen.}`}</MD>
+            <p><b>Warum gilt die Formel der Rotation, obwohl die Achse nur einen Augenblick ruht?</b> (Erklärung, nicht aus dem Skript) Die Beweise auf S. 15–17 benutzen nur Geschwindigkeiten in <em>einem</em> Augenblick: die SdpG und <M>{t`\v v = \v 0`}</M> auf der Achse. Ruht in diesem Augenblick eine Achse, sind die Geschwindigkeiten in diesem Augenblick genau die einer Rotation. Weil <M>O</M> immer auf <M>\mu</M> liegt, darf man <M>{t`\v r`}</M> von <M>O</M> aus messen (S. 18).</p>
             <p>Neu gegenüber der Rotation ist nur eines: <M>{t`\v\omega`}</M> darf mit der Zeit seine Richtung ändern. Bei der Rotation bleibt die Achse fest; bei der Kreiselung wandert sie – aber immer durch <M p=".">O</M> Im Explorer siehst du das beim Abrollen: Die türkise Achse dreht sich mit der Berührlinie um <M p=".">O</M></p>
             <p>Der letzte Satz im Kasten ist der Ausblick auf das nächste Kapitel: Lässt man auch <M>O</M> sich bewegen, kommt eine Translation dazu. Das ergibt die allgemeinste Bewegung eines starren Körpers.</p>
           </>}
           en={<>
             <p>Because at each instant an axis <M>\mu</M> through <M>O</M> is at rest, spinning motion is at each instant a rotation about <M p=".">\mu</M> So the formula of the rotation holds, with <M>O</M> on the axis:</p>
             <MD>{t`\v v = \v\omega\times\v r, \qquad \v r \text{ measured from } O.`}</MD>
+            <p><b>Why does the rotation formula hold although the axis is at rest only for an instant?</b> (Explanation, not from the notes) The proofs on pp. 15–17 use only velocities at <em>one</em> instant: the SdpG and <M>{t`\v v = \v 0`}</M> on the axis. If an axis is at rest at this instant, the velocities at this instant are exactly those of a rotation. Because <M>O</M> always lies on <M p=",">\mu</M> <M>{t`\v r`}</M> may be measured from <M>O</M> (p. 18).</p>
             <p>Only one thing is new compared with rotation: <M>{t`\v\omega`}</M> may change its direction over time. In a rotation the axis stays fixed; in spinning motion it wanders – but always through <M p=".">O</M> You can see this in the explorer while the cone rolls: the teal axis turns about <M>O</M> together with the line of contact.</p>
             <p>The last sentence in the box is a preview of the next chapter: if <M>O</M> may move too, a translation is added. This gives the most general motion of a rigid body.</p>
           </>}
@@ -185,19 +189,27 @@ export default function L11Kreiselung() {
         <Box kind="supplement" title={<T de="Beispiel: der rollende Kegel" en="Example: the rolling cone" />}>
           <T
             de={<>
-              <p>Der Kegel im Explorer hat den halben Öffnungswinkel <M>{t`\gamma = 25^\circ`}</M> und Mantellinien der Länge <M>L</M> (von der Spitze <M>O</M> zum Rand). <M>{t`\dot\varphi`}</M> sagt, wie schnell die Berührlinie um <M>O</M> herumläuft. Wie schnell sind die Punkte beim Rollen?</p>
+              <p>Der Kegel im Explorer hat den halben Öffnungswinkel <M>{t`\gamma = 25^\circ`}</M> und Mantellinien der Länge <M>L</M> (von der Spitze <M>O</M> zum Rand). <M>{t`\dot\varphi`}</M> sagt, wie schnell die Berührlinie um <M>O</M> herumläuft (Winkel pro Sekunde). Achtung: Anders als bei der Kreisbewegung ist <M>{t`\dot\varphi`}</M> hier <em>nicht</em> <M p=",">{t`|\v\omega|`}</M> denn der Kegel dreht sich zusätzlich um seine eigene Achse. Wie schnell sind die Punkte beim Rollen?</p>
               <ol>
-                <li>Der Mittelpunkt <M>C</M> der Grundfläche fährt einen waagrechten Kreis um die senkrechte Achse durch <M p=".">O</M> <M>C</M> liegt auf der Kegelachse im Abstand <M>{t`L\cos\gamma`}</M> von <M p=",">O</M> und die Achse ist um <M>\gamma</M> geneigt. Der Kreis hat darum den Radius <M p=",">{t`L\cos\gamma\cdot\cos\gamma = L\cos^2\gamma`}</M> also <M p=".">{t`v_C = \dot\varphi\, L\cos^2\gamma`}</M></li>
-                <li>Die Kegelachse bildet mit der Berührlinie <M>\mu</M> den Winkel <M p=".">\gamma</M> Darum hat <M>C</M> von <M>\mu</M> den Abstand <M p=".">{t`L\cos\gamma\sin\gamma`}</M> Mit <M>{t`|\v v| = |\v\omega|\cdot\text{Abstand}`}</M> folgt <M p=".">{t`|\v\omega| = \dot\varphi\,\cos\gamma/\sin\gamma`}</M> Für <M>{t`\gamma = 25^\circ`}</M> ist das gut doppelt so viel wie <M p=":">{t`\dot\varphi`}</M> Die Eigendrehung zählt mit.</li>
-                <li>Der oberste Punkt des Randes ist doppelt so weit von <M>\mu</M> entfernt wie <M p=".">C</M> Er ist darum doppelt so schnell: <M p=".">{t`2\,v_C`}</M> Wie beim rollenden Zylinder.</li>
+                <li>Der Mittelpunkt <M>C</M> der Grundfläche fährt einen waagrechten Kreis um die senkrechte Achse durch <M p=".">O</M> <M>C</M> liegt auf der Kegelachse im Abstand <M>{t`L\cos\gamma`}</M> von <M p=",">O</M> und die Achse ist um <M>\gamma</M> gegen den Boden geneigt. Der Kreis hat darum den Radius <M p=",">{t`L\cos\gamma\cdot\cos\gamma = L\cos^2\gamma`}</M> also <M p=".">{t`v_C = \dot\varphi\, L\cos^2\gamma`}</M></li>
+                <li>Die Kegelachse bildet mit der Berührlinie <M>\mu</M> den Winkel <M p=".">\gamma</M> Darum hat <M>C</M> von <M>\mu</M> den Abstand <M p=".">{t`L\cos\gamma\sin\gamma`}</M> Bei einer Rotation ist <M>{t`|\v v| = |\v\omega|\cdot\text{Abstand}`}</M> (S. 18). Nach <M>{t`|\v\omega|`}</M> aufgelöst:</li>
+              </ol>
+              <MD>{t`|\v\omega| = \frac{v_C}{L\cos\gamma\sin\gamma} = \frac{\dot\varphi\,L\cos^2\gamma}{L\cos\gamma\sin\gamma} = \dot\varphi\,\frac{\cos\gamma}{\sin\gamma}.`}</MD>
+              <ol start={3}>
+                <li>Für <M>{t`\gamma = 25^\circ`}</M> ist das gut doppelt so viel wie <M p=":">{t`\dot\varphi`}</M> Die Eigendrehung zählt mit.</li>
+                <li>Der oberste Randpunkt liegt dem Berührpunkt gegenüber, und <M>C</M> ist die Mitte dieses Durchmessers. Der oberste Punkt ist darum doppelt so weit von <M>\mu</M> entfernt wie <M p=",">C</M> also doppelt so schnell: <M p=".">{t`2\,v_C`}</M> Wie beim rollenden Zylinder.</li>
               </ol>
             </>}
             en={<>
-              <p>The cone in the explorer has the half opening angle <M>{t`\gamma = 25^\circ`}</M> and slant lines of length <M>L</M> (from the tip <M>O</M> to the rim). <M>{t`\dot\varphi`}</M> says how fast the line of contact goes round <M p=".">O</M> How fast are the points when it rolls?</p>
+              <p>The cone in the explorer has the half opening angle <M>{t`\gamma = 25^\circ`}</M> and slant lines of length <M>L</M> (from the tip <M>O</M> to the rim). <M>{t`\dot\varphi`}</M> says how fast the line of contact goes round <M>O</M> (angle per second). Careful: unlike in circular motion, <M>{t`\dot\varphi`}</M> is <em>not</em> <M>{t`|\v\omega|`}</M> here, because the cone also turns about its own axis. How fast are the points when it rolls?</p>
               <ol>
-                <li>The centre <M>C</M> of the base travels on a horizontal circle about the vertical axis through <M p=".">O</M> <M>C</M> lies on the cone's axis at distance <M>{t`L\cos\gamma`}</M> from <M p=",">O</M> and the axis is tilted by <M p=".">\gamma</M> So the circle has the radius <M p=",">{t`L\cos\gamma\cdot\cos\gamma = L\cos^2\gamma`}</M> and <M p=".">{t`v_C = \dot\varphi\, L\cos^2\gamma`}</M></li>
-                <li>The cone's axis makes the angle <M>\gamma</M> with the line of contact <M p=".">\mu</M> So <M>C</M> is at distance <M>{t`L\cos\gamma\sin\gamma`}</M> from <M p=".">\mu</M> With <M>{t`|\v v| = |\v\omega|\cdot\text{distance}`}</M> we get <M p=".">{t`|\v\omega| = \dot\varphi\,\cos\gamma/\sin\gamma`}</M> For <M>{t`\gamma = 25^\circ`}</M> this is a little more than twice <M p=":">{t`\dot\varphi`}</M> the spin counts too.</li>
-                <li>The top point of the rim is twice as far from <M>\mu</M> as <M p=".">C</M> So it is twice as fast: <M p=".">{t`2\,v_C`}</M> Just as for the rolling cylinder.</li>
+                <li>The centre <M>C</M> of the base travels on a horizontal circle about the vertical axis through <M p=".">O</M> <M>C</M> lies on the cone's axis at distance <M>{t`L\cos\gamma`}</M> from <M p=",">O</M> and the axis is tilted by <M>\gamma</M> against the floor. So the circle has the radius <M p=",">{t`L\cos\gamma\cdot\cos\gamma = L\cos^2\gamma`}</M> and <M p=".">{t`v_C = \dot\varphi\, L\cos^2\gamma`}</M></li>
+                <li>The cone's axis makes the angle <M>\gamma</M> with the line of contact <M p=".">\mu</M> So <M>C</M> is at distance <M>{t`L\cos\gamma\sin\gamma`}</M> from <M p=".">\mu</M> In a rotation <M>{t`|\v v| = |\v\omega|\cdot\text{distance}`}</M> (p. 18). Solved for <M p=":">{t`|\v\omega|`}</M></li>
+              </ol>
+              <MD>{t`|\v\omega| = \frac{v_C}{L\cos\gamma\sin\gamma} = \frac{\dot\varphi\,L\cos^2\gamma}{L\cos\gamma\sin\gamma} = \dot\varphi\,\frac{\cos\gamma}{\sin\gamma}.`}</MD>
+              <ol start={3}>
+                <li>For <M>{t`\gamma = 25^\circ`}</M> this is a little more than twice <M p=":">{t`\dot\varphi`}</M> the spin counts too.</li>
+                <li>The top rim point lies opposite the contact point, and <M>C</M> is the midpoint of this diameter. So the top point is twice as far from <M>\mu</M> as <M p=",">C</M> hence twice as fast: <M p=".">{t`2\,v_C`}</M> Just as for the rolling cylinder.</li>
               </ol>
             </>}
           />
