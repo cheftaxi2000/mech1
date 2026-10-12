@@ -23,20 +23,28 @@ export const C = {
   path: '#e11d48',
 };
 
+/**
+ * 3D arrow: a line plus a cone head. The head grows with the line width (a thick ω arrow needs a head wider
+ * than its shaft, or its direction cannot be read), and the line stops at the base of the head.
+ * Short arrows get a proportionally shorter head (at most 45 % of the arrow).
+ */
 export function Arrow({ from = [0, 0, 0], to, color, width = 2 }: { from?: Vec3; to: Vec3; color: string; width?: number }) {
-  const { headPos, quat, len } = useMemo(() => {
+  const { headPos, quat, len, base, r, h } = useMemo(() => {
     const a = new THREE.Vector3(...from), b = new THREE.Vector3(...to);
     const d = b.clone().sub(a);
-    const len = d.length();
-    const q = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), d.clone().normalize());
-    return { headPos: b.clone().sub(d.clone().normalize().multiplyScalar(0.06)), quat: q, len };
-  }, [from, to]);
+    const len = d.length(), u = d.clone().normalize();
+    const q = new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), u);
+    let r = 0.026 + 0.0125 * width, h = 3.1 * r;
+    if (h > 0.45 * len) { const k = (0.45 * len) / h; r *= k; h *= k; }
+    const base = b.clone().sub(u.clone().multiplyScalar(h * 0.92));
+    return { headPos: b.clone().sub(u.clone().multiplyScalar(h / 2)), quat: q, len, base: base.toArray() as [number, number, number], r, h };
+  }, [from, to, width]);
   if (len < 1e-6) return null;
   return (
     <group>
-      <Line points={[from as [number, number, number], to as [number, number, number]]} color={color} lineWidth={width} />
+      <Line points={[from as [number, number, number], base]} color={color} lineWidth={width} />
       <mesh position={headPos} quaternion={quat}>
-        <coneGeometry args={[0.035, 0.12, 16]} />
+        <coneGeometry args={[r, h, 20]} />
         <meshBasicMaterial color={color} />
       </mesh>
     </group>
