@@ -69,20 +69,21 @@ export function circProofScene(step: number, t: number, lang: Lang): Scene {
   arrow('vP', 'an-v', P, add(P, scale(VLEN * vo, uT)), vo > 0.01 ? 1 : 0);
   sb.label('lab-vP', add2(pr(add(P, scale(VLEN * vo, uT))), [6, -12]), String.raw`\v v_P`, 'point', vo > 0.9 ? 1 : 0, 'l');
   const fade4 = step === 4 ? 1 - ease(seg(t, 0, 0.2)) : 1;
-  square('ra-PD', P, scale(-1, uR), uT, step < 2 ? 0 : step === 2 ? ease(seg(t, 0.55, 0.8)) : fade4);
+  // in step 3 the mark v_P ⊥ DP steps back (faint) so the new mark v_P ⊥ μ can be read; both share the leg along v_P
+  square('ra-PD', P, scale(-1, uR), uT, step < 2 ? 0 : step === 2 ? ease(seg(t, 0.55, 0.8)) : step === 3 ? 1 - 0.7 * ease(seg(t, 0, 0.3)) : fade4);
   const s3 = step < 3 ? 0 : step === 3 ? ease(seg(t, 0.3, 0.7)) : fade4;
   if (s3 > 0.01) S('vert', 'line', 'an-guide', [pr(add(P, scale(-0.45, EZ))), pr(add(P, scale(0.75, EZ)))], s3);
   square('ra-Pz', P, EZ, uT, s3);
 
-  const box = (key: string, o: number, rows: { tex: string; ink: 'fg' | 'rho' | 'point' | 'z' }[]) => sb.label(key, [392, 8], '', 'fg', o, 'tr', { box: true, rows });
+  const box = (key: string, o: number, rows: { tex: string; ink: 'fg' | 'rho' | 'point' }[]) => sb.label(key, [392, 8], '', 'fg', o, 'tr', { box: true, rows });
   box('box2', step === 2 ? ease(seg(t, 0.6, 1)) : 0, [
     { tex: String.raw`\v v_P\cdot\v{DP} = \v v_D\cdot\v{DP} = 0`, ink: 'fg' },
-    { tex: String.raw`\v v_P \perp \v{DP}`, ink: 'rho' },
+    { tex: String.raw`\v v_P \perp \v{DP}`, ink: 'point' },
   ]);
   box('box3', step === 3 ? ease(seg(t, 0.6, 1)) : 0, [
     { tex: String.raw`\v{DP}\cdot\v{DA} = \text{${lang === 'de' ? 'konst.' : 'const.'}}`, ink: 'fg' },
     { tex: String.raw`\Rightarrow\ \v v_P\cdot\v{DA} = 0`, ink: 'fg' },
-    { tex: String.raw`\v v_P \perp \mu`, ink: 'z' },
+    { tex: String.raw`\v v_P \perp \mu`, ink: 'point' },
   ]);
   box('box4', step === 4 ? ease(seg(t, 0.8, 1)) : 0, [
     { tex: String.raw`\dot\rho = 0,\ \ \dot z = 0`, ink: 'fg' },

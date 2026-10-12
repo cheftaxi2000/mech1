@@ -9,6 +9,16 @@ describe('proof 2: circular motion (p. 16)', () => {
   it('v_P drawn ⊥ DP and ⊥ μ in every frame', () => {
     for (let s = 0; s < 5; s++) for (const t of [0, 0.5, 1]) { const d = circProofScene(s, t, 'de').data; expect(d.vDP).toBeCloseTo(0, 12); expect(d.vDA).toBeCloseTo(0, 12); }
   });
+  it('the statements about v_P are written in the colour of v (red), not in an axis colour', () => {
+    for (const [st, k] of [[2, 'box2'], [3, 'box3']] as const) {
+      const rows = lab(circProofScene(st, 1, 'de'), k)!.rows!;
+      expect(rows[rows.length - 1].ink).toBe('point');
+    }
+  });
+  it('step 4: the mark v_P ⊥ DP steps back (faint) so the new mark v_P ⊥ μ can be read', () => {
+    const f = circProofScene(3, 1, 'de');
+    expect(shape(f, 'ra-PD')!.o!).toBeLessThan(0.5); expect(shape(f, 'ra-Pz')!.o!).toBeCloseTo(1, 9);
+  });
   it('every frame inside the figure', () => expectInside(circProofScene, 5));
   it('final frames: labels do not overlap', () => expectNoOverlap(circProofScene, 5));
   it('final frames show what the captions say', () => {

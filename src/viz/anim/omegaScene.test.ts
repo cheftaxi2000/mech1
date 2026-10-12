@@ -15,6 +15,11 @@ describe('proof 3: equal angular speed (p. 17)', () => {
   it('step 1: unequal angular speeds change the distance PQ', () => {
     expect(Math.abs(omegaScene(1, 1, 'de').data.L - 1)).toBeGreaterThan(0.04);
   });
+  it('the label of r_Q sits on the outer side of its arrow, away from the line PQ', () => {
+    const f = omegaScene(0, 1, 'de'), Q = shape(f, 'Q')!.pts[0], P = shape(f, 'P')!.pts[0], O = shape(f, 'O')!.pts[0], at = lab(f, 'lab-rQ')!.at;
+    const side = (a: readonly number[], b: readonly number[], c: readonly number[]) => Math.sign((b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0]));
+    expect(side(O, Q, at)).toBe(-side(O, Q, P)); // P (and the line PQ) on one side of OQ, the label on the other
+  });
   it('every frame inside the figure', () => expectInside(omegaScene, 5));
   it('final frames: labels do not overlap', () => expectNoOverlap(omegaScene, 5));
   it('final frames show what the captions say', () => {

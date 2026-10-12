@@ -56,12 +56,14 @@ export function omegaScene(step: number, t: number, lang: Lang): Scene {
   const par = step < 3 ? 0 : step === 3 ? ease(seg(t, 0, 0.5)) : 1;
   if (par > 0.01) {
     S('par', 'polygon', 'an-tri', [toS([0, 0]), toS(g.rP), toS(plus(g.rP, g.rQ)), toS(g.rQ)], par);
-    sb.label('lab-X', toS(sc(plus(g.rP, g.rQ), 0.7)), 'X', 'angle', par > 0.9 ? 1 : 0, 'c');
+    // X sits deep in the parallelogram, towards its far corner: its centre lies on the diagonal PQ, where the line and the shadows are
+    sb.label('lab-X', toS(sc(plus(g.rP, g.rQ), 0.8)), 'X', 'angle', par > 0.9 ? 1 : 0, 'c');
   }
   arrow('rP', 'an-r', [0, 0], g.rP);
   arrow('rQ', 'an-r', [0, 0], g.rQ);
   sb.label('lab-rP', toS(plus(sc(g.rP, 0.5), perp(g.rP), -0.16)), String.raw`\v r_P`, 'r', run < 0.05 ? 1 : 0, 'c');
-  sb.label('lab-rQ', toS(plus(sc(g.rQ, 0.55), perp(g.rQ), 0.13)), String.raw`\v r_Q`, 'r', run < 0.05 ? 1 : 0, 'c');
+  // r_Q's label on the outer side of its arrow (the line PQ runs close by on the inner side)
+  sb.label('lab-rQ', toS(plus(sc(g.rQ, 0.5), perp(g.rQ), -0.15)), String.raw`\v r_Q`, 'r', run < 0.05 ? 1 : 0, 'c');
 
   // step 1: ghosts at the start and the stretched / shortened distance
   if (run > 0.01) {
@@ -87,13 +89,14 @@ export function omegaScene(step: number, t: number, lang: Lang): Scene {
   if (pj > 0.01) {
     S('line', 'line', 'an-guide', [toS(plus(g.rP, g.u, -60)), toS(plus(g.rQ, g.u, 6))], pj);
     const fP = plus(g.rP, g.u, g.projP), fQ = plus(g.rQ, g.u, g.projQ);
-    S('dropP', 'line', 'an-drop-g', [toS(plus(g.rP, g.vP)), toS(fP)], pj);
-    S('dropQ', 'line', 'an-drop-g', [toS(plus(g.rQ, g.vQ)), toS(fQ)], pj);
+    const dimDrop = step === 3 ? 1 - 0.7 * ease(seg(t, 0, 0.4)) : step === 4 ? 0.3 : 1; // step 3 is about X: drops step back
+    S('dropP', 'line', 'an-drop-g', [toS(plus(g.rP, g.vP)), toS(fP)], pj * dimDrop);
+    S('dropQ', 'line', 'an-drop-g', [toS(plus(g.rQ, g.vQ)), toS(fQ)], pj * dimDrop);
     S('projP', 'line', 'an-proj', [toS(g.rP), toS(plus(g.rP, g.u, g.projP * pj))]);
     S('projQ', 'line', 'an-proj', [toS(g.rQ), toS(plus(g.rQ, g.u, g.projQ * pj))]);
     const side = (k: number): V => [g.u[1] * k, -g.u[0] * k];
     sb.label('lab-pP', toS(plus(plus(g.rP, g.u, g.projP * 0.8), side(-16))), String.raw`\v v'_P`, 'rho', pj > 0.8 ? 1 : 0, 'c');
-    sb.label('lab-pQ', toS(plus(plus(g.rQ, g.u, g.projQ / 2), side(16))), String.raw`\v v'_Q`, 'rho', pj > 0.8 ? 1 : 0, 'c');
+    sb.label('lab-pQ', toS(plus(plus(g.rQ, g.u, g.projQ / 2), side(-17))), String.raw`\v v'_Q`, 'rho', pj > 0.8 ? 1 : 0, 'c');
   }
   const box = (key: string, o: number, rows: { tex: string; ink: 'fg' | 'rho' | 'point' | 'angle' }[]) => sb.label(key, [6, 294], '', 'fg', o, 'bl', { box: true, rows });
   box('box2', step === 2 ? ease(seg(t, 0.7, 1)) : 0, [
