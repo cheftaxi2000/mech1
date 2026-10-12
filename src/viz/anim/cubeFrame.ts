@@ -5,9 +5,10 @@
  *
  *  step 0  the data: v_A, the known part of v_B (dashed), E at rest
  *  step 1  SdpG along AB: the projections onto AB (x-direction) are equal ⇒ v_Bx = v
- *  step 2  v_A = ω × EA ⇒ ω_x = ω_z = v/a
- *  step 3  v_B = ω × EB ⇒ ω_y = 0
- *  step 4  ω = (v/a)(1,0,1); μ: the line through E in the direction of ω — it passes through C
+ *  step 2  v_A = ω × EA ⇒ ω_x = ω_z = v/a: the components ω_x e_x (blue) and ω_z e_z (green) appear at E
+ *  step 3  v_B = ω × EB ⇒ ω_y = 0: a trial y-component at E (amber, dashed) shrinks to nothing
+ *  step 4  ω = (v/a)(1,0,1), the diagonal of its components; μ: the line through E in the direction of ω —
+ *          it passes through C
  *  step 5  check: turning the cube about μ, E and C stay where they are
  */
 import { rotateAbout } from '../../physics/rotation';
@@ -37,6 +38,8 @@ export interface CubeFrame {
   EA: number; EB: number;
   /** ω arrow at E and the axis μ, drawn progress 0…1 */
   omega: number; mu: number;
+  /** components ω_x e_x, ω_z e_z at E (drawn progress 0…1); trial ω_y (length factor) and the «ω_y = 0» label */
+  comps: number; wy: number; wyZero: number;
 }
 
 export function cubeFrame(step: number, t: number): CubeFrame {
@@ -60,6 +63,9 @@ export function cubeFrame(step: number, t: number): CubeFrame {
     EB: s === 3 ? ease(seg(t, 0, 0.5)) : 0,
     omega: s < 4 ? 0 : s === 4 ? ease(seg(t, 0, 0.5)) : 1,
     mu: s < 4 ? 0 : s === 4 ? ease(seg(t, 0.4, 0.9)) : 1,
+    comps: s < 2 ? 0 : s === 2 ? ease(seg(t, 0.45, 0.9)) : s === 5 ? 1 - ease(seg(t, 0, 0.15)) : 1,
+    wy: s === 3 ? 1 - ease(seg(t, 0.35, 0.8)) : 0,
+    wyZero: s === 3 ? ease(seg(t, 0.8, 1)) : 0,
   };
 }
 

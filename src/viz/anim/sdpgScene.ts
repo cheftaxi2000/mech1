@@ -8,12 +8,14 @@
  *  step 3  why: v_N − v_M (drawn at N) is perpendicular to a, since |a| does not change
  *  step 4  hence a·v_N = a·v_M
  */
-import { fmtNum, type Lang } from '../../i18n';
+import type { Lang } from '../../i18n';
 import { ease, seg, type P2 } from './geometry';
 import { H, arrowHead, sceneBuilder, type Scene } from './scene';
 
 type V = [number, number];
-export const SM: V = [105, 140], SA: V = [165, 40], SVM: V = [62, -58], OMEGA = 0.55;
+// v_M points steeply down and v_N steeply up, so the shadows on MN, the copy of v_M at N and v_N − v_M
+// each get their own room (labels never sit on an arrow).
+export const SM: V = [105, 140], SA: V = [165, 40], SVM: V = [55, -70], OMEGA = 0.75;
 export const SN: V = [SM[0] + SA[0], SM[1] + SA[1]];
 export const SVN: V = [SVM[0] - OMEGA * SA[1], SVM[1] + OMEGA * SA[0]]; // v_N = v_M + ω × a (2D)
 const toS = (p: V): P2 => [p[0], H - p[1]];
@@ -37,7 +39,7 @@ export function sdpgScene(step: number, t: number, lang: Lang): Scene {
     if (o <= 0.01 || Math.hypot(b[0] - a[0], b[1] - a[1]) < 1) return;
     S(key, 'line', cls, [toS(a), toS(b)], o); S(key + '-h', 'polygon', cls.split(' ')[0] + '-head', arrowHead(toS(a), toS(b), 8), o);
   };
-  const num = (v: number) => fmtNum(v, 0, lang, true);
+  void lang;
   const mid: V = plus(SM, SA, 0.5), rotB = Math.atan2(SA[1], SA[0]);
 
   // body and a = MN
@@ -48,6 +50,8 @@ export function sdpgScene(step: number, t: number, lang: Lang): Scene {
     const rot = (p: V): V => { const q = plus(p, mid, -1); return plus(plus(mid, dx), [q[0] * Math.cos(ang) - q[1] * Math.sin(ang), q[0] * Math.sin(ang) + q[1] * Math.cos(ang)]); };
     S('ghost', 'polygon', 'an-body ghost', blob(mid, 135, 62, rotB).map(rot).map(toS), g0);
     arrow('a2', 'an-r thin', rot(SM), rot(SN), g0 * 0.8);
+    S('M2', 'circle', 'an-point ghost', [toS(rot(SM))], g0, 4.5);
+    S('N2', 'circle', 'an-point ghost', [toS(rot(SN))], g0, 4.5);
     sb.label('lab-a2', toS(plus(rot(mid), [-U[1], U[0]], -20)), String.raw`\v a(t_2)`, 'muted', g0);
   }
   S('line', 'line', 'an-guide', [toS(plus(SM, U, -60)), toS(plus(SN, U, 95))], step >= 2 ? 1 : 0.35);
@@ -70,7 +74,9 @@ export function sdpgScene(step: number, t: number, lang: Lang): Scene {
     S('projM', 'line', 'an-proj', [toS(SM), toS(plus(SM, U, projM * p2))]);
     S('projN', 'line', 'an-proj', [toS(SN), toS(plus(SN, U, projN * p2))]);
     sb.label('lab-pM', toS(plus(plus(SM, U, projM / 2), [-U[1], U[0]], 14)), String.raw`\v v'_M`, 'rho', p2 > 0.8 ? 1 : 0);
-    sb.label('lab-pN', toS(plus(plus(SN, U, projN / 2), [-U[1], U[0]], 14)), String.raw`\v v'_N`, 'rho', p2 > 0.8 ? 1 : 0);
+    // v_N above and the copy of v_M below crowd the middle of N's shadow; its label sits just past the shadow's end
+    // (v_N − v_M and the drop line pass exactly through that end, so keep clear of it on the far side)
+    sb.label('lab-pN', toS(plus(plus(SN, U, projN + 24), [-U[1], U[0]], 13)), String.raw`\v v'_N`, 'rho', p2 > 0.8 ? 1 : 0);
   }
   // why: v_N − v_M ⟂ a
   const w3 = step < 3 ? 0 : step === 3 ? ease(seg(t, 0, 0.6)) : 1;
@@ -91,11 +97,11 @@ export function sdpgScene(step: number, t: number, lang: Lang): Scene {
   ] });
   const p2box = step === 2 ? ease(seg(t, 0.6, 1)) : step === 3 ? 1 - ease(seg(t, 0, 0.3)) : 0;
   sb.label('box-proj', [392, 292], '', 'fg', p2box, 'tr', { box: true, rows: [
-    { tex: String.raw`|\v v'_M| = ${num(projM)} = |\v v'_N|`, ink: 'rho' },
+    { tex: String.raw`|\v v'_M| = |\v v'_N|`, ink: 'rho' },
   ] });
 
   S('M', 'circle', 'an-point', [toS(SM)], 1, 5); S('N', 'circle', 'an-point', [toS(SN)], 1, 5);
   sb.label('lab-M', toS(plus(SM, [-12, 10])), 'M', 'point', 1, 'r');
-  sb.label('lab-N', toS(plus(SN, [6, -16])), 'N', 'point', 1, 'l');
+  sb.label('lab-N', toS(plus(SN, [-7, 17])), 'N', 'point', 1, 'r');
   return sb.finish({ step, projM, projN });
 }

@@ -3,7 +3,7 @@
  * SVG coordinates (y down).
  *
  *  step 0  A and B are at rest, C lies on μ between them; a supposed velocity v_C, split into a part
- *          along μ and a part across μ
+ *          along μ and a part across μ (dashed parallelogram: the two parts add up to v_C)
  *  step 1  the part along μ vanishes: SdpG with A gives v_C·AC = v_A·AC = 0
  *  step 2  the part across μ vanishes: C would leave the line AB, the angle at C would no longer be 180°
  *          (dashed: where C would get to); in a rigid body angles do not change ⇒ v_C = 0
@@ -62,6 +62,12 @@ export function restScene(step: number, t: number, lang: Lang): Scene {
   arrow('along', 'an-erho', RC, plus(RC, U, ALONG * along), parts * (along > 0.02 ? 1 : 0));
   sb.label('lab-along', plus(plus(RC, U, ALONG * 0.6), N, -16), String.raw`\v v_{C\parallel}`, 'rho', parts > 0.9 && along > 0.5 ? 1 : 0, 'c');
   arrow('across', 'an-ephi', RC, plus(RC, N, ACROSS * across), parts * (across > 0.02 ? 1 : 0));
+  // parallelogram completion: the two parts add up to v_C (dashed sides from each tip to the tip of v_C)
+  const pc = parts * (along > 0.02 && across > 0.02 ? 1 : 0) * v0;
+  if (pc > 0.01) {
+    S('par-a', 'line', 'an-guide', [plus(RC, U, ALONG * along), vC], pc);
+    S('par-b', 'line', 'an-guide', [plus(RC, N, ACROSS * across), vC], pc);
+  }
   sb.label('lab-across', plus(plus(RC, N, ACROSS * 0.62), U, -12), String.raw`\v v_{C\perp}`, 'angle', parts > 0.9 && across > 0.5 ? 1 : 0, 'r');
 
   // step 1: SdpG with A along AC

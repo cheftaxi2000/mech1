@@ -176,22 +176,36 @@ export default function L09Rotation() {
           de={<>
             <p><b>So liest man die Rechnung:</b></p>
             <ol>
-              <li>Nach Beweis 2 fahren <M>P</M> und <M>Q</M> Kreise um <M p=".">\mu</M> Ihre Geschwindigkeiten haben die Form von der Kreisbewegung, jede mit ihrer eigenen Winkelschnelligkeit. Ob die beiden gleich sind, ist noch offen.</li>
+              <li>Nach Beweis 2 fahren <M>P</M> und <M>Q</M> Kreise um <M p=".">\mu</M> Legt man die <M>z</M>-Achse auf <M p=",">\mu</M> haben ihre Geschwindigkeiten die Form aus der Kreisbewegung (<a href="#kreisbewegung">S. 11</a>): <M p=".">{t`\v v = \dot\varphi\,\v e_z\times\v r`}</M> Jeder Punkt hat dabei zunächst seine eigene Winkelschnelligkeit, <M>{t`\dot\varphi_P`}</M> bzw. <M p=".">{t`\dot\varphi_Q`}</M> Ob die beiden gleich sind, ist noch offen.</li>
               <li>Der SdpG für <M>P</M> und <M>Q</M> mit <M p=".">{t`\v{PQ} = \v r_Q - \v r_P`}</M></li>
-              <li><M>{t`\v e_z\times\v r_P`}</M> steht senkrecht auf <M p=",">{t`\v r_P`}</M> also ist <M p=".">{t`(\v e_z\times\v r_P)\cdot\v r_P = 0`}</M> Links bleibt nur der Term mit <M p=",">{t`\v r_Q`}</M> rechts aus demselben Grund nur der mit <M p=".">{t`\v r_P`}</M> Dann zwei Regeln fürs Kreuzprodukt: Vertauschen ändert das Vorzeichen, und im Spatprodukt darf man zyklisch vertauschen.</li>
+              <li><M>{t`\v e_z\times\v r_P`}</M> steht senkrecht auf <M p=",">{t`\v r_P`}</M> also ist <M p=".">{t`(\v e_z\times\v r_P)\cdot\v r_P = 0`}</M> Links bleibt nur der Term mit <M p=",">{t`\v r_Q`}</M> rechts aus demselben Grund nur der mit <M p=".">{t`\v r_P`}</M> Das Minus verschwindet mit <M p=".">{t`-(\v e_z\times\v r_Q) = \v r_Q\times\v e_z`}</M> Zuletzt das <b>Spatprodukt</b> <M p=":">{t`(\v a\times\v b)\cdot\v c`}</M> erst Kreuz-, dann Skalarprodukt. Es ist das Volumen des schiefen Quaders («Spat») aus den drei Pfeilen, mit Vorzeichen. Schiebt man die Pfeile im Kreis weiter <M p=",">{t`(\v a\to\v b\to\v c\to\v a)`}</M> bleibt das Volumen gleich; so wird <M>{t`(\v r_Q\times\v e_z)\cdot\v r_P`}</M> zu <M p=".">{t`(\v e_z\times\v r_P)\cdot\v r_Q`}</M></li>
               <li>Am Ende steht auf beiden Seiten dieselbe Zahl <M p=",">{t`X = (\v e_z\times\v r_P)\cdot\v r_Q`}</M> einmal mal <M>{t`\dot\varphi_P`}</M> und einmal mal <M p=".">{t`\dot\varphi_Q`}</M> Ist <M p=",">{t`X \ne 0`}</M> darf man durch <M>X</M> teilen: <M p=".">{t`\dot\varphi_P = \dot\varphi_Q`}</M></li>
             </ol>
             <p><M>X</M> hat ein Bild: Von oben gesehen ist es die Fläche des Parallelogramms aus <M>{t`\v r_P`}</M> und <M>{t`\v r_Q`}</M> (mit Vorzeichen).</p>
+            <p><b>So liest man die Schlusszeilen im Skript:</b></p>
+            <ol>
+              <li>Alle Punkte fahren Kreise um <M p=",">\mu</M> alle mit demselben <M p=".">{t`\dot\varphi`}</M></li>
+              <li>Daraus macht das Skript einen Vektor, die <b>Winkelgeschwindigkeit</b> <M p=".">{t`\v\omega = \dot\varphi\,\v e_\mu`}</M> Dabei ist <M>{t`\v e_\mu`}</M> der Einheitsvektor (Länge 1) längs der Achse <M p=".">\mu</M></li>
+              <li><M>{t`\mu = z'Oz`}</M> heisst: Die Achse ist die <M>z</M>-Achse (von <M>{t`z'`}</M> unten über <M>O</M> nach <M>z</M> oben). Dann ist <M>{t`\v e_\mu = \v e_z`}</M> und <M p=".">{t`\v\omega = \dot\varphi\,\v e_z`}</M></li>
+              <li>Gleichung (3) fasst alles zusammen: <M>{t`\v v = \v\omega\times\v r`}</M> für jeden Punkt, mit <M>O</M> auf der Achse.</li>
+            </ol>
           </>}
           en={<>
             <p><b>How to read the calculation:</b></p>
             <ol>
-              <li>By proof 2, <M>P</M> and <M>Q</M> travel on circles about <M p=".">\mu</M> Their velocities have the form from circular motion, each with its own angular speed. Whether the two are equal is still open.</li>
+              <li>By proof 2, <M>P</M> and <M>Q</M> travel on circles about <M p=".">\mu</M> With the <M>z</M>-axis along <M p=",">\mu</M> their velocities have the form from circular motion (<a href="#kreisbewegung">p. 11</a>): <M p=".">{t`\v v = \dot\varphi\,\v e_z\times\v r`}</M> At first each point has its own angular speed, <M>{t`\dot\varphi_P`}</M> and <M p=".">{t`\dot\varphi_Q`}</M> Whether the two are equal is still open.</li>
               <li>The SdpG for <M>P</M> and <M>Q</M> with <M p=".">{t`\v{PQ} = \v r_Q - \v r_P`}</M></li>
-              <li><M>{t`\v e_z\times\v r_P`}</M> is perpendicular to <M p=",">{t`\v r_P`}</M> so <M p=".">{t`(\v e_z\times\v r_P)\cdot\v r_P = 0`}</M> On the left only the term with <M>{t`\v r_Q`}</M> is left; on the right, for the same reason, only the one with <M p=".">{t`\v r_P`}</M> Then two rules for the cross product: swapping changes the sign, and in the scalar triple product (<span lang="de">Spatprodukt</span>) one may permute cyclically.</li>
+              <li><M>{t`\v e_z\times\v r_P`}</M> is perpendicular to <M p=",">{t`\v r_P`}</M> so <M p=".">{t`(\v e_z\times\v r_P)\cdot\v r_P = 0`}</M> On the left only the term with <M>{t`\v r_Q`}</M> is left; on the right, for the same reason, only the one with <M p=".">{t`\v r_P`}</M> The minus disappears with <M p=".">{t`-(\v e_z\times\v r_Q) = \v r_Q\times\v e_z`}</M> Last comes the <b>scalar triple product</b> (<span lang="de">Spatprodukt</span>) <M p=":">{t`(\v a\times\v b)\cdot\v c`}</M> first the cross product, then the dot product. It is the volume of the slanted box (“Spat”, a parallelepiped) spanned by the three arrows, with a sign. Moving the arrows round in a circle <M p=",">{t`(\v a\to\v b\to\v c\to\v a)`}</M> keeps the volume; that is how <M>{t`(\v r_Q\times\v e_z)\cdot\v r_P`}</M> becomes <M p=".">{t`(\v e_z\times\v r_P)\cdot\v r_Q`}</M></li>
               <li>In the end both sides contain the same number <M p=",">{t`X = (\v e_z\times\v r_P)\cdot\v r_Q`}</M> once times <M>{t`\dot\varphi_P`}</M> and once times <M p=".">{t`\dot\varphi_Q`}</M> If <M p=",">{t`X \ne 0`}</M> we may divide by <M p=":">X</M> <M p=".">{t`\dot\varphi_P = \dot\varphi_Q`}</M></li>
             </ol>
             <p><M>X</M> has a picture: seen from above it is the area of the parallelogram of <M>{t`\v r_P`}</M> and <M>{t`\v r_Q`}</M> (with a sign).</p>
+            <p><b>How to read the closing lines in the notes:</b></p>
+            <ol>
+              <li>All points travel on circles about <M p=",">\mu</M> all with the same <M p=".">{t`\dot\varphi`}</M></li>
+              <li>The notes turn this into a vector, the <b>angular velocity</b> <M p=".">{t`\v\omega = \dot\varphi\,\v e_\mu`}</M> Here <M>{t`\v e_\mu`}</M> is the unit vector (length 1) along the axis <M p=".">\mu</M></li>
+              <li><M>{t`\mu = z'Oz`}</M> means: the axis is the <M>z</M>-axis (from <M>{t`z'`}</M> below through <M>O</M> to <M>z</M> above). Then <M>{t`\v e_\mu = \v e_z`}</M> and <M p=".">{t`\v\omega = \dot\varphi\,\v e_z`}</M></li>
+              <li>Equation (3) sums it all up: <M>{t`\v v = \v\omega\times\v r`}</M> for every point, with <M>O</M> on the axis.</li>
+            </ol>
           </>}
         />
         <Derivation title={<T de="Beweis 3 Schritt für Schritt" en="Proof 3 step by step" />}>
@@ -237,8 +251,8 @@ export default function L09Rotation() {
           />
         </Box>
         <T
-          de={<p><b>So liest man das:</b> <M>A</M> ist hier der Fusspunkt von <M>M</M> auf der Achse (nicht das <M>A</M> von S. 15). <M>{t`|\v{AM}|`}</M> ist also der Abstand von <M>M</M> zur Achse. Warum gilt die Formel? Der Betrag eines Kreuzprodukts ist Länge mal Länge mal Sinus des Winkels: <M p=".">{t`|\v\omega\times\v{OM}| = |\v\omega|\,|\v{OM}|\sin\alpha`}</M> Im rechtwinkligen Dreieck <M p=",">O</M> <M p=",">A</M> <M>M</M> ist <M>{t`|\v{OM}|\sin\alpha`}</M> genau die Seite <M p=".">{t`|\v{AM}|`}</M> Wo <M>O</M> auf der Achse liegt, spielt also keine Rolle.</p>}
-          en={<p><b>How to read this:</b> here <M>A</M> is the foot of <M>M</M> on the axis (not the <M>A</M> of p. 15). So <M>{t`|\v{AM}|`}</M> is the distance of <M>M</M> from the axis. Why does the formula hold? The magnitude of a cross product is length times length times the sine of the angle: <M p=".">{t`|\v\omega\times\v{OM}| = |\v\omega|\,|\v{OM}|\sin\alpha`}</M> In the right triangle <M p=",">O</M> <M p=",">A</M> <M>M</M> the quantity <M>{t`|\v{OM}|\sin\alpha`}</M> is exactly the side <M p=".">{t`|\v{AM}|`}</M> So where <M>O</M> lies on the axis does not matter.</p>}
+          de={<p><b>So liest man das:</b> <M>A</M> ist hier der Fusspunkt von <M>M</M> auf der Achse (nicht das <M>A</M> von S. 15). <M>{t`|\v{AM}|`}</M> ist also der Abstand von <M>M</M> zur Achse. Warum gilt die Formel? Der Betrag eines Kreuzprodukts ist Länge mal Länge mal Sinus des Winkels <M>\alpha</M> zwischen <M>{t`\v\omega`}</M> und <M p=":">{t`\v{OM}`}</M> <M p=".">{t`|\v\omega\times\v{OM}| = |\v\omega|\,|\v{OM}|\sin\alpha`}</M> Im rechtwinkligen Dreieck <M p=",">O</M> <M p=",">A</M> <M>M</M> ist <M>{t`|\v{OM}|\sin\alpha`}</M> genau die Seite <M p=".">{t`|\v{AM}|`}</M> Wo <M>O</M> auf der Achse liegt, spielt also keine Rolle.</p>}
+          en={<p><b>How to read this:</b> here <M>A</M> is the foot of <M>M</M> on the axis (not the <M>A</M> of p. 15). So <M>{t`|\v{AM}|`}</M> is the distance of <M>M</M> from the axis. Why does the formula hold? The magnitude of a cross product is length times length times the sine of the angle <M>\alpha</M> between <M>{t`\v\omega`}</M> and <M p=":">{t`\v{OM}`}</M> <M p=".">{t`|\v\omega\times\v{OM}| = |\v\omega|\,|\v{OM}|\sin\alpha`}</M> In the right triangle <M p=",">O</M> <M p=",">A</M> <M>M</M> the quantity <M>{t`|\v{OM}|\sin\alpha`}</M> is exactly the side <M p=".">{t`|\v{AM}|`}</M> So where <M>O</M> lies on the axis does not matter.</p>}
         />
         <FootDemo />
         <T
@@ -295,14 +309,14 @@ export default function L09Rotation() {
                 de={<>SdpG für <M>A</M> und <M p=":">B</M> Die <M>x</M>-Anteile (türkis) müssen gleich sein, also <M p=".">{t`v_{Bx} = v`}</M></>}
                 en={<>SdpG for <M>A</M> and <M p=":">B</M> the <M>x</M>-parts (teal) must be equal, so <M p=".">{t`v_{Bx} = v`}</M></>} /> },
               { ms: 2500, holdMs: 3000, caption: <T
-                de={<><M p=":">{t`\v v_A = \v\omega\times\v{EA}`}</M> Daraus <M p=".">{t`\omega_x = \omega_z = v/a`}</M></>}
-                en={<><M p=":">{t`\v v_A = \v\omega\times\v{EA}`}</M> this gives <M p=".">{t`\omega_x = \omega_z = v/a`}</M></>} /> },
+                de={<><M p=":">{t`\v v_A = \v\omega\times\v{EA}`}</M> Daraus <M p=".">{t`\omega_x = \omega_z = v/a`}</M> Bei <M>E</M> erscheinen die beiden Anteile <M>{t`\omega_x\,\v e_x`}</M> (blau) und <M>{t`\omega_z\,\v e_z`}</M> (grün).</>}
+                en={<><M p=":">{t`\v v_A = \v\omega\times\v{EA}`}</M> this gives <M p=".">{t`\omega_x = \omega_z = v/a`}</M> At <M>E</M> the two parts <M>{t`\omega_x\,\v e_x`}</M> (blue) and <M>{t`\omega_z\,\v e_z`}</M> (green) appear.</>} /> },
               { ms: 2500, holdMs: 3000, caption: <T
-                de={<><M p=":">{t`\v v_B = \v\omega\times\v{EB}`}</M> Daraus <M p=".">{t`\omega_y = 0`}</M></>}
-                en={<><M p=":">{t`\v v_B = \v\omega\times\v{EB}`}</M> this gives <M p=".">{t`\omega_y = 0`}</M></>} /> },
+                de={<><M p=":">{t`\v v_B = \v\omega\times\v{EB}`}</M> Daraus <M p=".">{t`\omega_y = 0`}</M> Ein Anteil in <M>y</M>-Richtung (orange) bleibt also nicht übrig.</>}
+                en={<><M p=":">{t`\v v_B = \v\omega\times\v{EB}`}</M> this gives <M p=".">{t`\omega_y = 0`}</M> So no part in the <M>y</M>-direction (amber) is left.</>} /> },
               { ms: 3500, holdMs: 3000, caption: <T
-                de={<><M>{t`\v\omega = \tfrac{v}{a}(1, 0, 1)`}</M> (violett). Die Achse <M>\mu</M> geht durch <M>E</M> in Richtung <M>{t`\v\omega`}</M> – und trifft genau die Ecke <M p=".">C</M></>}
-                en={<><M>{t`\v\omega = \tfrac{v}{a}(1, 0, 1)`}</M> (purple). The axis <M>\mu</M> passes through <M>E</M> in the direction of <M>{t`\v\omega`}</M> – and hits exactly the corner <M p=".">C</M></>} /> },
+                de={<><M>{t`\v\omega = \tfrac{v}{a}(1, 0, 1)`}</M> (violett) ist die Diagonale aus den beiden Anteilen. Die Achse <M>\mu</M> geht durch <M>E</M> in Richtung <M>{t`\v\omega`}</M> – und trifft genau die Ecke <M p=".">C</M></>}
+                en={<><M>{t`\v\omega = \tfrac{v}{a}(1, 0, 1)`}</M> (purple) is the diagonal of the two parts. The axis <M>\mu</M> passes through <M>E</M> in the direction of <M>{t`\v\omega`}</M> – and hits exactly the corner <M p=".">C</M></>} /> },
               { ms: 4500, caption: <T
                 de={<>Probe: Der Würfel dreht sich um <M p=".">\mu</M> <M>E</M> und <M>C</M> bleiben stehen; gestrichelt die Ausgangslage.</>}
                 en={<>Check: the cube turns about <M p=".">\mu</M> <M>E</M> and <M>C</M> stay where they are; dashed: the starting position.</>} /> },
@@ -323,7 +337,7 @@ export default function L09Rotation() {
       {/* ------------------------------------------------------------------ 7 */}
       <Section id="missverstaendnisse" title={<T de="7. Häufige Missverständnisse" en="7. Common misconceptions" />}>
         <Box kind="misconception" title={<T de="«Aussen dreht sich der Körper schneller.»" en="“Further out the body turns faster.”" />}>
-          <T de={<>Nein. Alle Punkte drehen sich gleich schnell – <M>{t`\dot\varphi`}</M> ist überall gleich (Eigenschaft 3). Aussen ist nur die Bahngeschwindigkeit grösser, weil der Kreis grösser ist: <M p=".">{t`|\v v| = |\v\omega|\cdot\text{Abstand zur Achse}`}</M></>} en={<>No. All points turn equally fast – <M>{t`\dot\varphi`}</M> is the same everywhere (property 3). Further out only the speed along the path is larger, because the circle is larger: <M p=".">{t`|\v v| = |\v\omega|\cdot\text{distance from the axis}`}</M></>} />
+          <T de={<>Nein. Alle Punkte drehen sich gleich schnell – <M>{t`\dot\varphi`}</M> ist überall gleich (Eigenschaft 3). Aussen ist nur die Schnelligkeit <M>{t`|\v v|`}</M> grösser, weil der Kreis grösser ist: <M p=".">{t`|\v v| = |\v\omega|\cdot\text{Abstand zur Achse}`}</M></>} en={<>No. All points turn equally fast – <M>{t`\dot\varphi`}</M> is the same everywhere (property 3). Further out only the speed <M>{t`|\v v|`}</M> is larger, because the circle is larger: <M p=".">{t`|\v v| = |\v\omega|\cdot\text{distance from the axis}`}</M></>} />
         </Box>
         <Box kind="misconception" title={<T de={<>«<M p=".">{t`|\v v| = |\v\omega|\cdot|\v r|`}</M>»</>} en={<>“<M p=".">{t`|\v v| = |\v\omega|\cdot|\v r|`}</M>”</>} />}>
           <T de={<>Nur wenn <M>{t`\v r`}</M> senkrecht auf der Achse steht. Allgemein zählt der Abstand zur Achse: <M p=".">{t`|\v v| = |\v\omega|\,|\v r|\sin\alpha = |\v\omega|\cdot|\v{AM}|`}</M></>} en={<>Only if <M>{t`\v r`}</M> is perpendicular to the axis. In general the distance from the axis counts: <M p=".">{t`|\v v| = |\v\omega|\,|\v r|\sin\alpha = |\v\omega|\cdot|\v{AM}|`}</M></>} />

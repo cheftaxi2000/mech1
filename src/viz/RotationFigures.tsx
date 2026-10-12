@@ -9,7 +9,7 @@ import { DOOR, FOOT, doorFrame, doorPoint, footNumbers } from './rotGeom';
 import { Scene } from './Scene';
 import { Arrow, C, Curve, Dashed, Dot, Label } from './primitives';
 import { FullscreenButton, useFullscreen } from './useFullscreen';
-import { at, useReducedMotion } from './VectorFigures';
+import { at } from './VectorFigures';
 
 const t = String.raw;
 type V = [number, number];
@@ -59,7 +59,6 @@ function DoorBody({ beta, phi }: { beta: number; phi: number }) {
  */
 export function RotationExplorer() {
   const tr = useTr(), lang = useLang();
-  const reduced = useReducedMotion();
   const [ref, full, toggleFull] = useFullscreen();
   const [w, setW] = useState(0.8);
   const [phi, setPhi] = useState(60 * DEG);
@@ -134,7 +133,7 @@ export function RotationExplorer() {
             <input type="range" min={0} max={50} step={1} value={tilt} onChange={(ev) => setTilt(Number(ev.target.value))} aria-label="tilt" />
             <span className="val">{tilt}°</span></label>
           <div className="motion-row">
-            <button type="button" className="motion-btn" disabled={reduced && !play} onClick={() => setPlay((x) => !x)}>
+            <button type="button" className="motion-btn" onClick={() => setPlay((x) => !x)}>
               {play ? tr('Anhalten', 'Stop') : tr('Drehen lassen', 'Let it turn')}
             </button>
           </div>
@@ -143,10 +142,10 @@ export function RotationExplorer() {
           <label className="toggle"><input type="checkbox" checked={vel} onChange={(ev) => setVel(ev.target.checked)} />{' '}{tr('Geschwindigkeiten (Fig. 3.8)', 'velocities (Fig. 3.8)')}</label>
         </div>
         <figcaption>
-          <div className="v-result pos"><M>{t`\varphi = ${Math.round(shown / DEG)}^\circ \ \text{${tr('für alle Punkte', 'for every point')}}, \qquad \v\omega = \dot\varphi\,\v e_\mu`}</M></div>
+          <div className="v-result pos rt-readout"><M p=",">{t`\varphi = ${Math.round(shown / DEG)}^\circ \ \text{${tr('für alle Punkte', 'for every point')}}`}</M> <M>{t`\v\omega = \dot\varphi\,\v e_\mu = ${fmtNum(w, 2, lang, true)}\,\v e_\mu`}</M></div>
           <p className="vdemo-note">{tr(
-            <><M>A</M> und <M>B</M> ruhen, also auch die ganze Achse <M p=".">\mu</M> Jeder andere Punkt fährt einen Kreis um <M>\mu</M> (grau); alle drei markierten Punkte haben sich um denselben Winkel <M>\varphi</M> gedreht (violett). Mit «Geschwindigkeiten»: <M p=",">{t`\v v = \v\omega\times\v r`}</M> doppelt so weit von der Achse heisst doppelt so schnell.</>,
-            <><M>A</M> and <M>B</M> are at rest, hence the whole axis <M p=".">\mu</M> Every other point travels on a circle about <M>\mu</M> (grey); all three marked points have turned by the same angle <M>\varphi</M> (purple). With “velocities”: <M p=";">{t`\v v = \v\omega\times\v r`}</M> twice as far from the axis means twice as fast.</>)}</p>
+            <><M>A</M> und <M>B</M> ruhen, also auch die ganze Achse <M p=".">\mu</M> Jeder andere Punkt fährt einen Kreis um <M>\mu</M> (grau); alle drei markierten Punkte haben sich um denselben Winkel <M>\varphi</M> gedreht (violett). Der violette Pfeil <M>{t`\v\omega`}</M> liegt auf der Achse und ist <M>{t`|\dot\varphi|`}</M> lang. Zeigt der Daumen der rechten Hand in seine Richtung, laufen die Finger im Drehsinn; mit <M>{t`\dot\varphi < 0`}</M> kehrt er um. Mit «Geschwindigkeiten»: <M p=",">{t`\v v = \v\omega\times\v r`}</M> doppelt so weit von der Achse heisst doppelt so schnell.</>,
+            <><M>A</M> and <M>B</M> are at rest, hence the whole axis <M p=".">\mu</M> Every other point travels on a circle about <M>\mu</M> (grey); all three marked points have turned by the same angle <M>\varphi</M> (purple). The purple arrow <M>{t`\v\omega`}</M> lies on the axis and is <M>{t`|\dot\varphi|`}</M> long. If the thumb of the right hand points along it, the fingers follow the turning; with <M>{t`\dot\varphi < 0`}</M> it reverses. With “velocities”: <M p=";">{t`\v v = \v\omega\times\v r`}</M> twice as far from the axis means twice as fast.</>)}</p>
         </figcaption>
       </div>
     </figure>
@@ -197,7 +196,7 @@ export function FootDemo() {
       </div>
       <figcaption className="vdemo-readout">
         <label className="slider wide-slider"><span>{tr(<><M>O</M> auf <M>\mu</M> verschieben</>, <>move <M>O</M> along <M>\mu</M></>)}</span>
-          <input type="range" min={-1.6} max={1.4} step={0.01} value={s} onChange={(e) => setS(Number(e.target.value))} aria-label="O" /><span className="val" /></label>
+          <input type="range" min={-1.6} max={1.4} step={0.01} value={s} onChange={(e) => setS(Number(e.target.value))} aria-label="O" /><span className="val">{fmtNum(s, 2, lang)}</span></label>
         <div className="v-result rt-readout"><M p=",">{t`|\v{OM}| = ${f(n.OM)}`}</M> <M p=",">{t`\sin\alpha = ${f(n.sinA)}`}</M> <M>{t`|\v{OM}|\sin\alpha = ${f(n.height)} = |\v{AM}|`}</M></div>
         <div className="v-result pos rt-readout"><M>{t`|\v v_M| = |\v\omega\times\v{OM}| = |\v\omega|\,|\v{AM}|`}</M> <M>{t`= ${fmtNum(FOOT.W, 0, lang, true)}\cdot ${f(FOOT.AM)} = ${f(n.v)}`}</M></div>
         <p className="vdemo-note">{tr(

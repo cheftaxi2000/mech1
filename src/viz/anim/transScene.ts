@@ -63,20 +63,21 @@ export function transScene(step: number, t: number, lang: Lang): Scene {
   arrow('vM', 'an-v', pathM(S_T), [pathM(S_T)[0] + vv[0], pathM(S_T)[1] + vv[1]], v3 > 0.01 ? 1 : 0);
   arrow('vN', 'an-v', pathN(S_T), [pathN(S_T)[0] + vv[0], pathN(S_T)[1] + vv[1]], v3 > 0.01 ? 1 : 0);
 
-  // labels
-  const cur = step <= 1 ? s : S_T;
+  // labels: M and N on the solid body; the times t₁, t, t₂ below the M end of each position (as in Fig. 3.4)
+  const cur = step <= 2 ? s : S_T;
   const m = pathM(cur), nn = pathN(cur);
-  sb.label('lab-M', [m[0] - 8, m[1] + 14], 'M', 'point', 1, 'r');
+  sb.label('lab-M', [m[0] + 8, m[1] + 14], 'M', 'point', 1, 'l');
   sb.label('lab-N', [nn[0] + 8, nn[1] - 8], 'N', 'point', 1, 'l');
   sb.label('lab-a', [(m[0] + nn[0]) / 2 + 12, (m[1] + nn[1]) / 2 + 6], String.raw`\v a`, 'r', 1, 'l');
-  if (step >= 1) {
-    sb.label('lab-t1', [pathM(0)[0] - 4, pathM(0)[1] + 22], 't_1', 'muted', 1, 'c');
-  }
+  const LA = Math.hypot(TA[0], TA[1]);
+  const timeAt = (ss: number): P2 => [pathM(ss)[0] - (36 * TA[0]) / LA, pathM(ss)[1] - (36 * TA[1]) / LA];
+  if (step >= 1) sb.label('lab-t1', timeAt(0), 't_1', 'muted', 1, 'c');
+  if (step >= 2) sb.label('lab-t', timeAt(S_T), 't', 'muted', step === 2 ? ease(seg(t, 0.3, 0.5)) : 1, 'c');
   const rmid = [(pathM(0)[0] + pathM(S_T)[0]) / 2, (pathM(0)[1] + pathM(S_T)[1]) / 2] as P2;
   const rnid = [(pathN(0)[0] + pathN(S_T)[0]) / 2, (pathN(0)[1] + pathN(S_T)[1]) / 2] as P2;
   sb.label('lab-RM', [rmid[0] + 6, rmid[1] + 14], String.raw`\v R_M(t)`, 'x', disp, 'l');
   sb.label('lab-RN', [rnid[0] - 12, rnid[1] - 14], String.raw`\v R_N(t)`, 'x', disp, 'r');
-  if (step === 2) sb.label('lab-t2', [pathN(s)[0] + 10, pathN(s)[1] - 4], 't_2', 'muted', ease(seg(t, 0.8, 1)), 'l');
+  if (step === 2) sb.label('lab-t2', timeAt(s), 't_2', 'muted', ease(seg(t, 0.8, 1)), 'c');
   sb.label('lab-vM', [pathM(S_T)[0] + vv[0] + 4, pathM(S_T)[1] + vv[1] + 12], String.raw`\v v_M`, 'point', v3 > 0.8 ? 1 : 0, 'l');
   sb.label('lab-vN', [pathN(S_T)[0] + vv[0] + 6, pathN(S_T)[1] + vv[1] - 6], String.raw`\v v_N`, 'point', v3 > 0.8 ? 1 : 0, 'l');
   sb.label('box', [392, 292], String.raw`\dot{\v a} = \v v_N - \v v_M = \v 0`, 'fg', v3, 'tr', { box: true });

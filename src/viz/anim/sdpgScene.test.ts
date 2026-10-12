@@ -30,6 +30,23 @@ describe('SdpG animation (lecture p. 12)', () => {
     expect(shape(f3, 'diff')?.o).toBe(1); expect(lab(f3, 'lab-diff')?.o).toBe(1);
     expect(lab(sdpgScene(4, 1, 'en'), 'box')?.o).toBe(1);
   });
+  it('final frames: no label sits on a velocity arrow, the copy of v_M or v_N − v_M', () => {
+    for (const lang of LANGS) for (let s = 0; s < 5; s++) {
+      const sc = sdpgScene(s, 1, lang);
+      for (const k of ['vM', 'vN', 'copy', 'diff', 'a', 'a2']) {
+        const sh = shape(sc, k); if (!sh) continue;
+        const [p, q] = sh.pts;
+        for (const l of sc.labels) {
+          if (l.box || (k === 'diff' && l.key === 'lab-diff')) continue;
+          const b = labelBox(l);
+          for (let i = 1; i < 20; i++) {
+            const x = p[0] + ((q[0] - p[0]) * i) / 20, y = p[1] + ((q[1] - p[1]) * i) / 20;
+            expect(x > b.x0 + 2 && x < b.x1 - 2 && y > b.y0 + 2 && y < b.y1 - 2, `step ${s}: ${l.key} on ${k}`).toBe(false);
+          }
+        }
+      }
+    }
+  });
   it('final frames: labels do not overlap', () => {
     for (const lang of LANGS) for (let s = 0; s < 5; s++) {
       const ls = sdpgScene(s, 1, lang).labels;
