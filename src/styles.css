@@ -490,3 +490,15 @@ b.bad { color: var(--bad); } b.ok { color: var(--ok); }
 .pager-dir { font-size: 0.8rem; color: var(--muted); }
 .pager-title { font-weight: 600; color: var(--accent); }
 @media (max-width: 520px) { .lesson-pager { grid-template-columns: 1fr; } }
+/* chapter list: page references; home page cards and «continue reading» */
+.li-title { flex: 1; min-width: 0; }
+.li-pages { flex: none; font-size: 0.78rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.home-chapters { border: 0; background: none; padding: 0; gap: 16px; }
+.home-chapters .chapter { border: 1px solid var(--line); border-radius: 12px; background: var(--panel); padding: 4px 12px 10px; margin-bottom: 16px; }
+@media (min-width: 900px) { .home-chapters .chapter { margin-bottom: 0; } }
+.resume { display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: 16px; margin: 22px auto 0; padding: 14px 18px; border-radius: 12px;
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent); background: color-mix(in srgb, var(--accent) var(--tint), var(--panel)); text-decoration: none; color: var(--fg); }
+.resume:hover { border-color: var(--accent); } .resume:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.resume-kind { grid-column: 1; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; color: var(--accent); }
+.resume-title { grid-column: 1; font-weight: 650; font-size: 1.1rem; }
+.resume-pages { grid-column: 2; grid-row: 1 / span 2; color: var(--muted); font-size: 0.9rem; }

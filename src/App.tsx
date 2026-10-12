@@ -23,7 +23,12 @@ const STATUS_LABEL: Record<Status, [string, string]> = {
   complete: ['abgeschlossen', 'complete'],
 };
 
+const LAST_KEY = 'mech1.lastTopic';
+const readLast = () => { try { return localStorage.getItem(LAST_KEY); } catch { return null; } };
+
 function Home() {
+  const tr = useTr();
+  const last = TOPICS.find((t) => t.id === readLast());
   return (
     <article className="lesson">
       <h1>Mechanik I – Learning Lab</h1>
@@ -43,7 +48,14 @@ function Home() {
           <p>Start with <a href="#koordinaten">Position &amp; coordinates</a>. All twelve lessons follow the notes up to p. 23; at the end there are three <a href="#quiz-1">quiz pages</a> for practice. All chapters are also in the menu at the top left.</p>
         </>}
       />
-      <nav className="home-chapters"><ChapterList route="" /></nav>
+      {last && (
+        <a className="resume" href={`#${last.id}`}>
+          <span className="resume-kind">{tr('Weiterlesen', 'Continue reading')}</span>
+          <span className="resume-title">{tr(...last.title)}</span>
+          <span className="resume-pages">{tr(`Vorlesung S. ${last.pages}`, `Lecture notes ${last.pages.includes('–') ? 'pp.' : 'p.'} ${last.pages}`)} ›</span>
+        </a>
+      )}
+      <nav className="home-chapters" aria-label={tr('Kapitel', 'Chapters')}><ChapterList route="" /></nav>
     </article>
   );
 }
@@ -98,7 +110,7 @@ function ChapterList({ route, onPick }: { route: string; onPick?: () => void }) 
               <li key={t.id}>
                 <a href={`#${t.id}`} onClick={onPick} aria-current={t.id === route ? 'page' : undefined}
                   className={`${t.id === route ? 'active' : ''} ${t.status === 'planned' ? 'muted' : ''}`}>
-                  <span className={`dot dot-${t.status}`} />{tr(...t.title)}
+                  <span className={`dot dot-${t.status}`} /><span className="li-title">{tr(...t.title)}</span><span className="li-pages">{tr(`S. ${t.pages}`, `p. ${t.pages}`)}</span>
                 </a>
               </li>
             ))}
@@ -146,6 +158,7 @@ export function App() {
     return () => window.removeEventListener('keydown', key);
   }, [menu]);
   useEffect(() => setMenu(false), [route]);
+  useEffect(() => { if (topic) { try { localStorage.setItem(LAST_KEY, topic.id); } catch { /* not remembered; fine */ } } }, [topic]);
   return (
     <NotesProvider>
     <div className="layout">
