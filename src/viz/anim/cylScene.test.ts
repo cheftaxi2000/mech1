@@ -93,6 +93,14 @@ describe('final frames show what the captions say (resting frame / reduced motio
     const sc = cylScene(3, 1, 'de');
     for (const k of ['lab-an-sq-x', 'lab-an-sq-y', 'lab-an-sq-rho', 'box-pyth', 'box-tan']) expect(label(sc.labels, k)?.o, k).toBeGreaterThan(0.9);
   });
+  it('step 4: the opposite point φ + 180° (same tan φ) is shown, diametrically opposite M_xy through O', () => {
+    const sc = cylScene(3, 1, 'de');
+    expect(label(sc.labels, 'lab-opp')?.o).toBe(1);
+    const p = sc.shapes.find((s) => s.key === 'opp-p')!.pts[0], m = sc.shapes.find((s) => s.key === 'Mxy')!.pts[0];
+    const o = sc.shapes.find((s) => s.key === 'opp-line')!.pts[1]; // O
+    expect(p[0] + m[0]).toBeCloseTo(2 * o[0], 6); expect(p[1] + m[1]).toBeCloseTo(2 * o[1], 6);
+    expect(Math.tan(PHI0 + Math.PI)).toBeCloseTo(Math.tan(PHI0), 12);
+  });
   it('step 5: ends at φ = π/2 with both limiting cases shown', () => {
     const sc = cylScene(4, 1, 'de');
     expect(sc.data.phi).toBeCloseTo(Math.PI / 2);

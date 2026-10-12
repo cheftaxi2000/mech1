@@ -132,6 +132,14 @@ export function cylScene(step: number, t: number, lang: Lang): Scene {
       }
       L('box-pyth', [8, 8], String.raw`\rho^2 = x^2 + y^2`, 'fg', seg(t, 0.7, 0.85), 'tl', { box: true });
       L('box-tan', [8, 46], String.raw`\tan\varphi = \dfrac{y}{x}`, 'fg', seg(t, 0.85, 1), 'tl', { box: true });
+      // the trap of the inverse: the opposite point (−x, −y) lies on the same line through O and has the same y/x
+      const oppK = seg(t, 0.88, 1);
+      const opp: Vec3 = [-Mxy[0], -Mxy[1], 0];
+      shapes.push({ key: 'opp-line', kind: 'line', cls: 'an-guide', pts: [P(opp), P(O)], o: oppK });
+      shapes.push({ key: 'opp-p', kind: 'circle', cls: 'an-point ghost', pts: [P(opp)], r: 4, o: oppK });
+      const po = P(opp);
+      L('lab-opp', [po[0] - 8, po[1] + 14], String.raw`\varphi + 180^\circ`, 'angle', oppK, 'r');
+      L('lab-opp-xy', [po[0] - 8, po[1] + 36], String.raw`(-x, -y)`, 'muted', oppK, 'r');
     }
 
     // step 2: path of M_xy (dashed circle traced so far) and the ghost triangles it leaves behind

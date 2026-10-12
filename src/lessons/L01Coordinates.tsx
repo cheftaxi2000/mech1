@@ -174,11 +174,11 @@ export default function L01Coordinates() {
                 de={<>Wir schauen von oben auf die <span className="nowrap"><M>xy</M>-Ebene</span>. Darin bilden <M p=",">O</M> <M>{t`M_{xy}`}</M> und der Fusspunkt <M>{t`M_x`}</M> des Lotes von <M>{t`M_{xy}`}</M> auf die <span className="nowrap"><M>x</M>-Achse</span> ein rechtwinkliges Dreieck mit Hypotenuse <M>\rho</M> und Winkel <M>\varphi</M> bei <M p=".">O</M></>}
                 en={<>We look down onto the <span className="nowrap"><M>xy</M>-plane</span>. In it, <M p=",">O</M> <M>{t`M_{xy}`}</M> and the foot <M>{t`M_x`}</M> of the perpendicular from <M>{t`M_{xy}`}</M> onto the <span className="nowrap"><M>x</M>-axis</span> form a right triangle with hypotenuse <M>\rho</M> and angle <M>\varphi</M> at <M p=".">O</M></>} /> },
               { ms: 10000, holdMs: 3500, caption: <T
-                de={<>Im ersten Quadranten gilt: Ankathete <M p=",">{t`= \rho\cos\varphi = x`}</M> Gegenkathete <M p=".">{t`= \rho\sin\varphi = y`}</M> Allgemein ist <M>{t`(\cos\varphi, \sin\varphi)`}</M> der Punkt des Einheitskreises beim Winkel <M>\varphi</M> – mit Vorzeichen. <M>{t`M_{xy}`}</M> ist dieser Punkt, um den Faktor <M>\rho</M> gestreckt: <M p=".">{t`(x,y) = \rho\,(\cos\varphi, \sin\varphi)`}</M> Also gilt <M p=",">{t`x = \rho\cos\varphi`}</M> <M>{t`y = \rho\sin\varphi`}</M> in allen vier Quadranten – Vorzeichen und Längen. Die Animation lässt <M>\varphi</M> einmal herumlaufen.</>}
-                en={<>In the first quadrant: adjacent side <M p=",">{t`= \rho\cos\varphi = x`}</M> opposite side <M p=".">{t`= \rho\sin\varphi = y`}</M> In general, <M>{t`(\cos\varphi, \sin\varphi)`}</M> is the point of the unit circle at angle <M>\varphi</M> – with signs. <M>{t`M_{xy}`}</M> is that point stretched by the factor <M p=":">\rho</M> <M p=".">{t`(x,y) = \rho\,(\cos\varphi, \sin\varphi)`}</M> So <M p=",">{t`x = \rho\cos\varphi`}</M> <M>{t`y = \rho\sin\varphi`}</M> holds in all four quadrants – signs and lengths. The animation sweeps <M>\varphi</M> once around.</>} /> },
+                de={<>Im ersten Quadranten: Ankathete <M p=",">{t`= \rho\cos\varphi = x`}</M> Gegenkathete <M p=".">{t`= \rho\sin\varphi = y`}</M> In allen Quadranten stimmen auch die Vorzeichen: <M>{t`M_{xy}`}</M> ist der Einheitskreis-Punkt <M>{t`(\cos\varphi, \sin\varphi)`}</M> mal <M p=".">\rho</M> Die Animation lässt <M>\varphi</M> einmal herumlaufen.</>}
+                en={<>In the first quadrant: adjacent side <M p=",">{t`= \rho\cos\varphi = x`}</M> opposite side <M p=".">{t`= \rho\sin\varphi = y`}</M> In all quadrants the signs are right too: <M>{t`M_{xy}`}</M> is the unit-circle point <M>{t`(\cos\varphi, \sin\varphi)`}</M> times <M p=".">\rho</M> The animation sweeps <M>\varphi</M> once around.</>} /> },
               { ms: 5500, holdMs: 2500, caption: <T
-                de={<>Umkehrung: Pythagoras liefert <M p=";">{t`\rho^2 = x^2+y^2`}</M> die Division der beiden Gleichungen (für <M p=")">{t`x \ne 0`}</M> liefert <M p=".">{t`\tan\varphi = y/x`}</M> Aber Achtung: <M>\varphi</M> und <M>{t`\varphi + 180^\circ`}</M> haben denselben Tangens. Für <M>{t`x < 0`}</M> muss man deshalb <M>{t`180^\circ`}</M> addieren.</>}
-                en={<>Inverse: Pythagoras gives <M p=";">{t`\rho^2 = x^2+y^2`}</M> dividing the two equations (for <M p=")">{t`x \ne 0`}</M> gives <M p=".">{t`\tan\varphi = y/x`}</M> But careful: <M>\varphi</M> and <M>{t`\varphi + 180^\circ`}</M> have the same tangent, so for <M>{t`x < 0`}</M> one has to add <M p=".">{t`180^\circ`}</M></>} /> },
+                de={<>Umkehrung: Pythagoras liefert <M p=";">{t`\rho^2 = x^2+y^2`}</M> die Division der beiden Gleichungen (für <M p=")">{t`x \ne 0`}</M> liefert <M p=".">{t`\tan\varphi = y/x`}</M> Aber <M>\varphi</M> und <M>{t`\varphi + 180^\circ`}</M> (blasser Punkt gegenüber) haben denselben Tangens, und der <M>\arctan</M> liefert nur Winkel zwischen <M>{t`-90^\circ`}</M> und <M p=".">{t`90^\circ`}</M> Deshalb: Für <M>{t`x < 0`}</M> addiert man <M p=",">{t`180^\circ`}</M> für <M>{t`x > 0,\ y < 0`}</M> addiert man <M p=".">{t`360^\circ`}</M></>}
+                en={<>Inverse: Pythagoras gives <M p=";">{t`\rho^2 = x^2+y^2`}</M> dividing the two equations (for <M p=")">{t`x \ne 0`}</M> gives <M p=".">{t`\tan\varphi = y/x`}</M> But <M>\varphi</M> and <M>{t`\varphi + 180^\circ`}</M> (faint point opposite) have the same tangent, and the <M>\arctan</M> only returns angles between <M>{t`-90^\circ`}</M> and <M p=".">{t`90^\circ`}</M> Hence: for <M>{t`x < 0`}</M> add <M p=",">{t`180^\circ`}</M> for <M>{t`x > 0,\ y < 0`}</M> add <M p=".">{t`360^\circ`}</M></>} /> },
               { ms: 8000, caption: <T
                 de={<><b>Plausibilitätskontrolle (Grenzfälle).</b> <M p=":">{t`\varphi = 0`}</M> <M p=",">{t`(x,y) = (\rho, 0)`}</M> auf der positiven <span className="nowrap"><M>x</M>-Achse</span>&nbsp;✓. <M p=":">{t`\varphi = \pi/2`}</M> <M p=",">{t`(x,y) = (0, \rho)`}</M> auf der positiven <span className="nowrap"><M>y</M>-Achse</span>&nbsp;✓.</>}
                 en={<><b>Sanity check (limiting cases).</b> <M p=":">{t`\varphi = 0`}</M> <M p=",">{t`(x,y) = (\rho, 0)`}</M> on the positive <span className="nowrap"><M>x</M>-axis</span>&nbsp;✓. <M p=":">{t`\varphi = \pi/2`}</M> <M p=",">{t`(x,y) = (0, \rho)`}</M> on the positive <span className="nowrap"><M>y</M>-axis</span>&nbsp;✓.</>} /> },
@@ -264,8 +264,8 @@ export default function L01Coordinates() {
                 de={<>Betrachte die senkrechte Ebene, die die <span className="nowrap"><M>z</M>-Achse</span> und <M>M</M> enthält. Darin bilden <M p=",">O</M> <M>M</M> und der Fusspunkt <M>{t`M_z`}</M> des Lotes von <M>M</M> auf die <span className="nowrap"><M>z</M>-Achse</span> ein rechtwinkliges Dreieck mit Hypotenuse <M>r</M> und Winkel <M>\theta</M> bei <M p=".">O</M></>}
                 en={<>Look at the vertical plane that contains the <span className="nowrap"><M>z</M>-axis</span> and <M p=".">M</M> In it, <M p=",">O</M> <M>M</M> and the foot <M>{t`M_z`}</M> of the perpendicular from <M>M</M> onto the <span className="nowrap"><M>z</M>-axis</span> form a right triangle with hypotenuse <M>r</M> and angle <M>\theta</M> at <M p=".">O</M></>} /> },
               { ms: 10000, holdMs: 4000, caption: <T
-                de={<>Wir schauen frontal auf diese Ebene. Kathete entlang der <span className="nowrap"><M>z</M>-Achse</span>: <M p=".">{t`z = r\cos\theta`}</M> Die Kathete senkrecht dazu ist genau der Abstand zur <span className="nowrap"><M>z</M>-Achse</span>: <M p=".">{t`\rho = r\sin\theta`}</M> Für <M>{t`\theta > 90^\circ`}</M> liegt <M>M</M> unterhalb der <span className="nowrap"><M>xy</M>-Ebene</span>: <M>z</M> wird negativ, während <M>{t`\rho = r\sin\theta \ge 0`}</M> bleibt, weil <M p=".">{t`0 \le \theta \le \pi`}</M> (Der Winkel <M>\theta</M> wird immer von <M>+z</M> aus gemessen; das Dreieck hat bei <M>O</M> dann den Winkel <M p=".)">{t`180^\circ - \theta`}</M></>}
-                en={<>We look straight at this plane. Side along the <span className="nowrap"><M>z</M>-axis</span>: <M p=".">{t`z = r\cos\theta`}</M> The side perpendicular to it is exactly the distance from the <span className="nowrap"><M>z</M>-axis</span>: <M p=".">{t`\rho = r\sin\theta`}</M> For <M>{t`\theta > 90^\circ`}</M> the point <M>M</M> lies below the <span className="nowrap"><M>xy</M>-plane</span>: <M>z</M> becomes negative, while <M>{t`\rho = r\sin\theta \ge 0`}</M> stays non-negative because <M p=".">{t`0 \le \theta \le \pi`}</M> (The angle <M>\theta</M> is always measured from <M p=";">+z</M> the triangle's angle at <M>O</M> is then <M p=".)">{t`180^\circ - \theta`}</M></>} /> },
+                de={<>Wir schauen frontal auf diese Ebene. Die Kathete entlang der <span className="nowrap"><M>z</M>-Achse</span> ist <M p=",">{t`z = r\cos\theta`}</M> die andere ist der Abstand zur <span className="nowrap"><M>z</M>-Achse</span>: <M p=".">{t`\rho = r\sin\theta`}</M> Für <M>{t`\theta > 90^\circ`}</M> wird <M>z</M> negativ, aber <M>\rho</M> bleibt <M>{t`\ge 0`}</M> (Kasten oben rechts).</>}
+                en={<>We look straight at this plane. The side along the <span className="nowrap"><M>z</M>-axis</span> is <M p=",">{t`z = r\cos\theta`}</M> the other one is the distance from the <span className="nowrap"><M>z</M>-axis</span>: <M p=".">{t`\rho = r\sin\theta`}</M> For <M>{t`\theta > 90^\circ`}</M> the height <M>z</M> becomes negative, but <M>\rho</M> stays <M>{t`\ge 0`}</M> (box at the top right).</>} /> },
               { ms: 9000, holdMs: 4000, caption: <T
                 de={<>Senkrecht nach unten projiziert, ist die Kathete <M>\rho</M> genau die Strecke <M p=".">{t`OM_{xy}`}</M> Von oben gesehen gilt deshalb wie bei den Zylinderkoordinaten <M p=",">{t`x = \rho\cos\varphi`}</M> <M>{t`y = \rho\sin\varphi`}</M> mit <M p=".">{t`\varphi = \psi`}</M> Einsetzen von <M>{t`\rho = r\sin\theta`}</M> ergibt
                   <MD>{t`\begin{gathered} x = r\sin\theta\cos\psi, \\ y = r\sin\theta\sin\psi. \end{gathered}`}</MD></>}
@@ -281,6 +281,13 @@ export default function L01Coordinates() {
           >
             {(step, tt) => <AnimFigure build={sphScene} step={step} t={tt} />}
           </StepPlayer>
+          <details className="more">
+            <summary><T de={<>Warum gilt <M>{t`z = r\cos\theta`}</M> auch für <M p="?">{t`\theta > 90^\circ`}</M></>} en={<>Why does <M>{t`z = r\cos\theta`}</M> also hold for <M p="?">{t`\theta > 90^\circ`}</M></>} /></summary>
+            <T
+              de={<p><M>\theta</M> wird immer von <M>+z</M> aus gemessen. Liegt <M>M</M> unter der <span className="nowrap"><M>xy</M>-Ebene</span>, hat das Dreieck bei <M>O</M> den Winkel <M p=".">{t`180^\circ - \theta`}</M> Seine Kathete entlang der Achse ist dann <M>{t`r\cos(180^\circ - \theta) = -r\cos\theta`}</M> lang. Weil <M>M</M> unten liegt, ist <M>z</M> minus diese Länge, also wieder <M p=".">{t`z = r\cos\theta`}</M> Für die andere Kathete gilt <M p=",">{t`\sin(180^\circ - \theta) = \sin\theta`}</M> also <M p=".">{t`\rho = r\sin\theta \ge 0`}</M></p>}
+              en={<p><M>\theta</M> is always measured from <M p=".">+z</M> If <M>M</M> lies below the <span className="nowrap"><M>xy</M>-plane</span>, the triangle has the angle <M>{t`180^\circ - \theta`}</M> at <M p=".">O</M> Its side along the axis then has length <M p=".">{t`r\cos(180^\circ - \theta) = -r\cos\theta`}</M> Because <M>M</M> lies below, <M>z</M> is minus this length, so again <M p=".">{t`z = r\cos\theta`}</M> For the other side, <M p=",">{t`\sin(180^\circ - \theta) = \sin\theta`}</M> so <M p=".">{t`\rho = r\sin\theta \ge 0`}</M></p>}
+            />
+          </details>
         </Derivation>
         <T
           de={<>
@@ -400,24 +407,57 @@ export default function L01Coordinates() {
                 {' '}<M>{t`(\rho,\varphi,z) = (1, 0, 0)`}</M> und <M>{t`(1, \pi, 0)`}</M> sind kartesisch <M>{t`(1,0,0)`}</M> und <M p=";">{t`(-1,0,0)`}</M> ihre Vektorsumme ist der Ursprung.
                 «Tripel addieren» ergäbe dagegen <M p=",">{t`(2, \pi, 0)`}</M> also <M p=".">{t`(-2,0,0)`}</M> Falsch.</p>
               <p>Die Vorlesung kommt auf S. 11 genau darauf zurück: In der zylindrischen Basis hat der Ortsvektor eines Punktes auf einem Kreis die Komponenten <M p=",">{t`(R, 0, z_0)`}</M>{' '}
-                und <M>{t`(R, \varphi(t), z_0)`}</M> ist im Skript ausdrücklich als «Falsch!» durchgestrichen. Der Grund folgt in der nächsten Lektion: Der Winkel steckt in der Richtung von <M p=".">{t`\underline{e}_\rho(\varphi)`}</M></p>
+                und <M>{t`(R, \varphi(t), z_0)`}</M> ist im Skript ausdrücklich als «Falsch!» durchgestrichen. Der Grund folgt in der Lektion <a href="#basen">Kartesische, zylindrische, sphärische Basis</a>: Der Winkel steckt in der Richtung von <M p=".">{t`\underline{e}_\rho(\varphi)`}</M></p>
             </>}
             en={<>
               <p>Coordinates are not vector components, and coordinate triples cannot be added like vectors. Counterexample: the points
                 {' '}<M>{t`(\rho,\varphi,z) = (1, 0, 0)`}</M> and <M>{t`(1, \pi, 0)`}</M> are <M>{t`(1,0,0)`}</M> and <M>{t`(-1,0,0)`}</M> in Cartesian coordinates; their vector sum is the origin.
                 “Adding the triples” would instead give <M p=",">{t`(2, \pi, 0)`}</M> i.e. <M p=".">{t`(-2,0,0)`}</M> Wrong.</p>
               <p>The lecture returns to exactly this point on p. 11: in the cylindrical basis the position vector of a point on a circle has components <M p=",">{t`(R, 0, z_0)`}</M>{' '}
-                and <M>{t`(R, \varphi(t), z_0)`}</M> is explicitly crossed out as “Falsch!” in the notes. The reason is in the next lesson: the angle is hidden in the direction of <M p=".">{t`\underline{e}_\rho(\varphi)`}</M></p>
+                and <M>{t`(R, \varphi(t), z_0)`}</M> is explicitly crossed out as “Falsch!” in the notes. The reason follows in the lesson <a href="#basen">Cartesian, cylindrical, spherical basis</a>: the angle is hidden in the direction of <M p=".">{t`\underline{e}_\rho(\varphi)`}</M></p>
             </>}
           />
         </Box>
         <Box kind="misconception" title={<T de={<>«<M>{t`\arctan(y/x)`}</M> liefert immer <M p=".">\varphi</M>»</>} en={<>“<M>{t`\arctan(y/x)`}</M> always gives <M p=".">\varphi</M>”</>} />}>
-          <T de={<>Nur für <M p=".">{t`x>0`}</M> Für <M>{t`x<0`}</M> addiert man <M p=".">{t`180^\circ`}</M> Prüfe immer den Quadranten.</>} en={<>Only for <M p=".">{t`x>0`}</M> For <M>{t`x<0`}</M> add <M p=".">{t`180^\circ`}</M> Always check the quadrant.</>} />
+          <T
+            de={<ul>
+              <li>Für <M>{t`x > 0,\ y \ge 0`}</M> stimmt er direkt.</li>
+              <li>Für <M>{t`x < 0`}</M> addiert man <M p=".">{t`180^\circ`}</M></li>
+              <li>Für <M>{t`x > 0,\ y < 0`}</M> ist der <M>\arctan</M> negativ: <M>{t`360^\circ`}</M> addieren.</li>
+              <li>Für <M>{t`x = 0`}</M> ist <M>{t`y/x`}</M> nicht definiert: <M>{t`\varphi = 90^\circ`}</M> für <M p=",">{t`y > 0`}</M> <M>{t`\varphi = 270^\circ`}</M> für <M p=".">{t`y < 0`}</M></li>
+            </ul>}
+            en={<ul>
+              <li>For <M>{t`x > 0,\ y \ge 0`}</M> it is right as it is.</li>
+              <li>For <M>{t`x < 0`}</M> add <M p=".">{t`180^\circ`}</M></li>
+              <li>For <M>{t`x > 0,\ y < 0`}</M> the <M>\arctan</M> is negative: add <M p=".">{t`360^\circ`}</M></li>
+              <li>For <M>{t`x = 0`}</M> the quotient <M>{t`y/x`}</M> is undefined: <M>{t`\varphi = 90^\circ`}</M> for <M p=",">{t`y > 0`}</M> <M>{t`\varphi = 270^\circ`}</M> for <M p=".">{t`y < 0`}</M></li>
+            </ul>}
+          />
+          <T de="Am sichersten: zuerst den Quadranten skizzieren." en="Safest: sketch the quadrant first." />
         </Box>
       </Section>
 
       {/* ------------------------------------------------------------------ 8 */}
-      <Section id="connections" title={<T de="8. Wie es weitergeht" en="8. Where this leads" />}>
+      <Section id="connections" title={<T de="8. Das Wichtigste und wie es weitergeht" en="8. The essentials and where this leads" />}>
+        <Box kind="key">
+          <T
+            de={<ul>
+              <li>Eine Lage gibt man immer <em>relativ</em> zu einem starren Bezugskörper an.</li>
+              <li>Ein Punkt, drei Zahlentripel: <M p=",">{t`(x, y, z)`}</M> <M p=",">{t`(\rho, \varphi, z)`}</M> <M p=".">{t`(r, \theta, \psi)`}</M></li>
+              <li><M>\rho</M> ist der Abstand zur <span className="nowrap"><M>z</M>-Achse</span>, <M>r</M> der Abstand zu <M p=".">O</M> <M>\theta</M> wird von <M>+z</M> aus gemessen; <M>\psi</M> ist derselbe Winkel wie <M p=".">\varphi</M></li>
+              <li>Umrechnen: <M p=",">{t`x = \rho\cos\varphi`}</M> <M p=",">{t`y = \rho\sin\varphi`}</M> <M p=",">{t`\rho = r\sin\theta`}</M> <M p=".">{t`z = r\cos\theta`}</M></li>
+              <li>Vor dem <M>\arctan</M> den Quadranten prüfen.</li>
+            </ul>}
+            en={<ul>
+              <li>A position is always given <em>relative</em> to a rigid reference body.</li>
+              <li>One point, three triples: <M p=",">{t`(x, y, z)`}</M> <M p=",">{t`(\rho, \varphi, z)`}</M> <M p=".">{t`(r, \theta, \psi)`}</M></li>
+              <li><M>\rho</M> is the distance from the <span className="nowrap"><M>z</M>-axis</span>, <M>r</M> the distance from <M p=".">O</M> <M>\theta</M> is measured from <M p=";">+z</M> <M>\psi</M> is the same angle as <M p=".">\varphi</M></li>
+              <li>Converting: <M p=",">{t`x = \rho\cos\varphi`}</M> <M p=",">{t`y = \rho\sin\varphi`}</M> <M p=",">{t`\rho = r\sin\theta`}</M> <M p=".">{t`z = r\cos\theta`}</M></li>
+              <li>Check the quadrant before using <M p=".">\arctan</M></li>
+            </ul>}
+          />
+        </Box>
+        <T de={<h3>Wie es weitergeht</h3>} en={<h3>Where this leads</h3>} />
         <T
           de={<ul>
             <li><b>Als Nächstes (S. 5):</b> Vektoren, Skalar- und Kreuzprodukt, orthonormierte Basen. Eine Lage wird zu einem Vektor <M p=".">{t`\underline r(t)`}</M></li>
