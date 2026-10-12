@@ -100,10 +100,10 @@ export function RollingWheel() {
           {/* the momentary centre: a ring drawn last, so it stays visible when it sits on A */}
           {mcS && mcS[1] > 6 && mcS[1] < 244 && <circle cx={mcS[0]} cy={mcS[1]} r={8} className="rl-mc-ring" />}
         </svg>
-        <div className="vdemo-label small halo" style={at(VB, C[0] - 13, C[1] + 14)}><M>C</M></div>
+        <div className="vdemo-label small halo" style={at(VB, C[0] + 11, C[1] - 13)}><M>C</M></div>
         <div className="vdemo-label point small" style={at(VB, A[0] - 14, A[1] + 26)}><M>A</M></div>
         <div className="vdemo-label muted small" style={at(VB, 24, GROUND + 28)}><M>{t`Z_2`}</M></div>
-        <div className="vdemo-label muted small halo" style={at(VB, C[0] - 0.42 * PX, C[1] + 0.52 * PX)}><M>{t`Z_1`}</M></div>
+        <div className="vdemo-label muted small halo" style={at(VB, C[0] - 0.45 * PX, C[1] - 0.42 * PX)}><M>{t`Z_1`}</M></div>
       </div>
       <figcaption className="vdemo-readout">
         <label className="slider wide-slider"><span>{tr('Mittelpunkt', 'centre')} <M>{t`v_C`}</M></span>

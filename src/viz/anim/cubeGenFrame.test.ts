@@ -39,10 +39,11 @@ describe('Beispiel Würfel, allgemeine Bewegung (p. 23)', () => {
       expect(vecApproxEqual(cross([wx, wx, -wx], [0, L, 0]), [wx * L, 0, wx * L])).toBe(true);
     }
   });
-  it('step 2 triangle: the copy of v₃ at P₂ plus ω × P₃P₂ ends at the tip of v₂; the example corner M has v_M = (0, −v, 0)', () => {
+  it('step 2 triangle: the copy of v₃ at P₂ plus ω × P₃P₂ ends at the tip of v₂; the example corner M = (0, L, 0) has v_M = (−v, v, v)', () => {
     const f = cubeGenFrame(2, 1);
     expect(vecApproxEqual([f.v3[0] + f.diffVec[0], f.v3[1] + f.diffVec[1], f.v3[2] + f.diffVec[2]], f.v2)).toBe(true);
     expect(f.copy32).toBe(1);
-    expect(vecApproxEqual(rigidVelocity(G_VB, G_OMEGA, GB, G_OTHERS[G_M_INDEX]), [0, -CG.v, 0])).toBe(true);
+    expect(vecApproxEqual(G_OTHERS[G_M_INDEX], [0, CG.L, 0])).toBe(true);
+    expect(vecApproxEqual(rigidVelocity(G_VB, G_OMEGA, GB, G_OTHERS[G_M_INDEX]), [-CG.v, CG.v, CG.v])).toBe(true);
   });
 });

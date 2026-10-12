@@ -238,8 +238,8 @@ export default function L12General() {
                 de={<><M p=".">{t`\v v_B = \v v_3 + \v\omega\times\v{P_3B} = (-2v, v, 0)`}</M></>}
                 en={<><M p=".">{t`\v v_B = \v v_3 + \v\omega\times\v{P_3B} = (-2v, v, 0)`}</M></>} /> },
               { ms: 3000, caption: <T
-                de={<>Mit <M>{t`\v v_B`}</M> und <M>{t`\v\omega`}</M> gibt die Grundgleichung die Geschwindigkeit jeder Ecke. Zum Beispiel für die Ecke <M p=":">M</M> <M p=".">{t`\v v_M = \v v_B + \v\omega\times\v{BM} = (0, -v, 0)`}</M></>}
-                en={<>With <M>{t`\v v_B`}</M> and <M>{t`\v\omega`}</M> the fundamental equation gives the velocity of every corner. For example, for the corner <M p=":">M</M> <M p=".">{t`\v v_M = \v v_B + \v\omega\times\v{BM} = (0, -v, 0)`}</M></>} /> },
+                de={<>Mit <M>{t`\v v_B`}</M> und <M>{t`\v\omega`}</M> gibt die Grundgleichung die Geschwindigkeit jeder Ecke. Zum Beispiel für die Ecke <M p=":">M</M> <M p=".">{t`\v v_M = \v v_B + \v\omega\times\v{BM} = (-v, v, v)`}</M></>}
+                en={<>With <M>{t`\v v_B`}</M> and <M>{t`\v\omega`}</M> the fundamental equation gives the velocity of every corner. For example, for the corner <M p=":">M</M> <M p=".">{t`\v v_M = \v v_B + \v\omega\times\v{BM} = (-v, v, v)`}</M></>} /> },
             ]}
           >
             {(step, tt) => <CubeGenAnim step={step} t={tt} />}

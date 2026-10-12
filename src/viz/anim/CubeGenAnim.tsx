@@ -22,7 +22,7 @@ export function CubeGenAnim({ step, t }: { step: number; t: number }) {
   const f = cubeGenFrame(step, t);
   const tip = (P: Vec3, v: Vec3, k = 1) => add(P, scale(k, v));
   return (
-    <Scene height={380} camera={[5.0, 2.8, 4.8]} target={[0.75, 0.75, 0.6]}>
+    <Scene height={380} camera={[6.0, 2.15, 3.7]} target={[0.75, 0.75, 0.6]}>
       {/* axes as in the lecture's figure: B at the origin, x toward the viewer, y to the right, z up */}
       {([[AX, 0, 0], [0, AX, 0], [0, 0, AX]] as Vec3[]).map((p, i) => (
         <group key={i}>
@@ -41,7 +41,6 @@ export function CubeGenAnim({ step, t }: { step: number; t: number }) {
       {f.edge32 > 0.01 && <Arrow from={G3} to={add(G3, scale(f.edge32, sub(G2, G3)))} color={C.r} width={3} />}
       {/* v₂ = v₃ + ω × P₃P₂: at P₂ the copy of v₃ (grey), then ω × P₃P₂ = (v, 0, v) from its tip to the tip of v₂ */}
       {f.copy32 > 0.01 && <Arrow from={G2} to={tip(G2, f.v3, f.copy32)} color={C.axis} width={2.2} />}
-      {f.copy32 > 0.9 && <Label at={add(tip(G2, f.v3), [0, -0.05, -0.2])} color={C.axis} vec sub="3">v</Label>}
       {f.diff > 0.01 && <Arrow from={tip(G2, f.v3)} to={tip(tip(G2, f.v3), f.diffVec, f.diff)} color={C.angle} width={3.5} />}
       {/* ω (a free vector, drawn on the upper part of the diagonal P₃P₁, pointing toward P₁) */}
       {f.omega > 0.01 && <Arrow from={OM0} to={add(OM0, scale(f.omega * OMLEN, WDIR))} color={C.angle} width={6} />}
@@ -59,11 +58,11 @@ export function CubeGenAnim({ step, t }: { step: number; t: number }) {
       <Label at={add(tip(G3, f.v3), [0, 0.18, 0.12])} color={C.point} vec sub="3">v</Label>
       {/* step 4: the other corners */}
       {f.others > 0.01 && G_OTHERS.map((P, i) => <Arrow key={i} from={P} to={tip(P, f.othersV[i], f.others)} color={C.point} width={2} />)}
-      {/* one corner named as an example: v_M = v_B + ω × BM = (0, −v, 0) */}
+      {/* one corner named as an example: v_M = v_B + ω × BM = (−v, v, v) */}
       {f.others > 0.9 && <>
         <Dot at={G_OTHERS[G_M_INDEX]} r={0.05} />
-        <Label at={add(G_OTHERS[G_M_INDEX], [0.1, 0.12, 0.2])} color={C.point}>M</Label>
-        <Label at={add(tip(G_OTHERS[G_M_INDEX], f.othersV[G_M_INDEX]), [0, -0.12, 0.17])} color={C.point} vec sub="M">v</Label>
+        <Label at={add(G_OTHERS[G_M_INDEX], [0, -0.24, 0.2])} color={C.point}>M</Label>
+        <Label at={add(tip(G_OTHERS[G_M_INDEX], f.othersV[G_M_INDEX]), [0, 0.1, 0.16])} color={C.point} vec sub="M">v</Label>
       </>}
       {/* points */}
       {([GB, G1, G2, G3] as Vec3[]).map((p, i) => <Dot key={i} at={p} r={0.06} />)}
