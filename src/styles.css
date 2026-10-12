@@ -20,7 +20,7 @@ h1 { font-size: 1.9rem; line-height: 1.2; margin: 0.2em 0; overflow-wrap: break-
 h2 { font-size: 1.35rem; margin-top: 2.2em; padding-top: 0.6em; border-top: 1px solid var(--line); }
 h3 { font-size: 1.08rem; margin-top: 1.6em; }
 
-:root { --topbar: 52px; }
+:root { --topbar: 52px; --gutter: clamp(16px, 3.4vw, 48px); --measure: 47rem; --wide: 80rem; }
 .layout { min-height: 100vh; }
 html { scroll-padding-top: calc(var(--topbar) + 8px); }
 /* top bar with the burger menu; the chapter list is a drawer, so the lesson gets the whole width */
@@ -51,7 +51,7 @@ html { scroll-padding-top: calc(var(--topbar) + 8px); }
 .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; background: var(--line); }
 .dot-draft { background: #f59e0b; } .dot-review { background: var(--accent); } .dot-complete { background: var(--ok); }
 
-.content { padding: 28px 40px 80px; max-width: 940px; width: 100%; margin-inline: auto; }
+.content { padding: 28px var(--gutter) 96px; width: 100%; }
 .lesson-head .crumbs { color: var(--muted); font-size: 0.88rem; }
 .lesson-head .sub { color: var(--muted); }
 .status { font-size: 0.75rem; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line); margin-left: 8px; }
@@ -436,3 +436,57 @@ b.bad { color: var(--bad); } b.ok { color: var(--ok); }
 /* quiz part */
 .quiz-see { display: inline-block; margin-left: 6px; font-size: 0.9em; white-space: nowrap; }
 .quiz-part h2 { margin-top: 1.6em; }
+
+/* ==== Page layout: a readable text column, visuals break out to the full width ==========================
+   Prose (paragraphs, lists, boxes, headings) keeps a reading measure; figures, animations and explorers
+   use the whole content width (up to --wide), so on an iPad in landscape the visualisations get the room. */
+.lesson-head, .lesson { max-width: var(--wide); margin-inline: auto; }
+.lesson-head > *, .lesson > *, .lesson > .section > * { max-width: var(--measure); margin-inline: auto; }
+.lesson > :is(.section, figure, .stepper, .pair, .home-chapters),
+.lesson > .section > :is(figure, .stepper, .pair),
+.lesson > .derivation:has(.stepper, figure),
+.lesson > .section > .derivation:has(.stepper, figure),
+.lesson > .box:has(.stepper, figure.explorer),
+.lesson > .section > .box:has(.stepper, figure.explorer) { max-width: none; }
+/* a box that holds a figure keeps its text at the reading measure */
+.box:has(.stepper, figure.explorer) > .box-body > :is(p, ul, ol) { max-width: var(--measure); }
+@media (min-width: 1024px) {
+  body { font-size: 17px; }
+  .lede { font-size: 1.12rem; }
+}
+/* step-synchronised animations: big figure left, captions right; figure + controls always fit the screen */
+@media (min-width: 1024px) {
+  .stepper { grid-template-columns: minmax(0, 1.55fr) minmax(19rem, 1fr); gap: 28px; }
+  .stepper-fig .anim-fig { max-width: calc((100svh - var(--topbar) - 104px) * 4 / 3); margin-inline: auto; }
+  .stepper-fig .stepper-controls { max-width: calc((100svh - var(--topbar) - 104px) * 4 / 3); margin-inline: auto; }
+  .anim-label { font-size: clamp(12px, 3.6cqw, 21px); }
+}
+/* explorers with a side panel: 3D view left, controls and read-outs right (like the fullscreen view) */
+@media (min-width: 1024px) {
+  .explorer:not(.is-full):has(> .side) { display: grid; grid-template: "tabs tabs" auto "stage side" auto / minmax(0, 1fr) minmax(300px, 0.5fr); }
+  .explorer:not(.is-full):has(> .side) > .tabs { grid-area: tabs; }
+  .explorer:not(.is-full):has(> .side) > .stage { grid-area: stage; align-self: start; }
+  .explorer:not(.is-full):has(> .side) > .side { grid-area: side; border-left: 1px solid var(--line); min-width: 0; }
+  .explorer:not(.is-full):has(> .side) .scene { height: clamp(420px, calc(100svh - var(--topbar) - 150px), 640px) !important; }
+}
+/* 2D interactive figures: drawing left, controls, read-out and note right */
+@media (min-width: 1024px) {
+  figure.vdemo:has(> figcaption) { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr); column-gap: 24px; align-items: start; padding: 14px 18px 16px; }
+  figure.vdemo:has(> figcaption) > * { grid-column: 1 / -1; }
+  figure.vdemo:has(> figcaption) > .vdemo-fig { grid-column: 1; max-width: calc((100svh - var(--topbar) - 90px) * 1.6); width: 100%; }
+  figure.vdemo:has(> figcaption) > figcaption { grid-column: 2; justify-items: stretch; text-align: left; align-self: center; margin-top: 0; }
+  figure.vdemo:has(> figcaption) > figcaption .v-presets { justify-content: flex-start; }
+}
+/* home page: chapters side by side */
+@media (min-width: 900px) {
+  .home-chapters { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); column-gap: 28px; }
+}
+/* previous / next lesson */
+.lesson-pager { max-width: var(--measure); margin: 56px auto 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.lesson-pager a { display: grid; gap: 2px; padding: 12px 16px; min-height: 64px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); text-decoration: none; color: var(--fg); }
+.lesson-pager a:hover { border-color: var(--accent); }
+.lesson-pager a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.lesson-pager .pager-next { text-align: right; }
+.pager-dir { font-size: 0.8rem; color: var(--muted); }
+.pager-title { font-weight: 600; color: var(--accent); }
+@media (max-width: 520px) { .lesson-pager { grid-template-columns: 1fr; } }

@@ -67,7 +67,21 @@ function TopicPage({ topic }: { topic: Topic }) {
           : <p className="placeholder">{tr('Diese Lektion ist noch nicht geschrieben.', 'This lesson has not been written yet.')}</p>}
         {C && <NotesLayer topic={topic.id} wrapRef={wrapRef} />}
       </div>
+      <LessonPager topic={topic} />
     </>
+  );
+}
+
+/** Previous / next lesson at the end of every page, so the course can be read straight through. */
+function LessonPager({ topic }: { topic: Topic }) {
+  const tr = useTr();
+  const i = TOPICS.indexOf(topic);
+  const prev = TOPICS[i - 1], next = TOPICS[i + 1];
+  return (
+    <nav className="lesson-pager" aria-label={tr('Weitere Lektionen', 'More lessons')}>
+      {prev ? <a className="pager-prev" href={`#${prev.id}`} rel="prev"><span className="pager-dir">‹ {tr('Zurück', 'Previous')}</span><span className="pager-title">{tr(...prev.title)}</span></a> : <span />}
+      {next ? <a className="pager-next" href={`#${next.id}`} rel="next"><span className="pager-dir">{tr('Weiter', 'Next')} ›</span><span className="pager-title">{tr(...next.title)}</span></a> : <span />}
+    </nav>
   );
 }
 
