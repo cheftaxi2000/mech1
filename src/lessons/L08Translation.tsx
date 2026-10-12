@@ -49,7 +49,7 @@ export default function L08Translation() {
         <Box kind="supplement" title={<T de="Das Wort «Bewegungszustand»" en={<>The word <De en="state of motion">Bewegungszustand</De></>} />}>
           <T
             de={<>Das Skript sagt «Bewegungszustand ist Translation», erklärt das Wort aber nicht. Gemeint sind die Geschwindigkeiten aller Punkte des Körpers in einem Augenblick – eine Momentaufnahme aller Geschwindigkeitspfeile. Bei der Translation sind sie alle gleich.</>}
-            en={<>The notes say “Bewegungszustand ist Translation” (the state of motion is translation) but do not explain the word. It means the velocities of all points of the body at one instant – a snapshot of all velocity arrows. In a translation they are all equal.</>}
+            en={<>The notes say “<span lang="de">Bewegungszustand ist Translation</span>” (the state of motion is translation) but do not explain the word. It means the velocities of all points of the body at one instant – a snapshot of all velocity arrows. In a translation they are all equal.</>}
           />
         </Box>
         <Derivation title={<T de="Fig. 3.4 Schritt für Schritt" en="Fig. 3.4 step by step" />}>
