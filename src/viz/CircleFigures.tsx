@@ -6,7 +6,7 @@ import { add, cross, norm, scale, sub, type Vec3 } from '../physics/vec';
 import { Scene } from './Scene';
 import { Arrow, Axes, C, Curve, Dot, Label } from './primitives';
 import { FullscreenButton, useFullscreen } from './useFullscreen';
-import { useReducedMotion } from './VectorFigures';
+import { useFigureHeight } from './useNarrow';
 
 const t = String.raw;
 const VS = 0.75; // arrow length per unit of speed
@@ -14,6 +14,11 @@ const VS = 0.75; // arrow length per unit of speed
 const BODY: Vec3[] = [[0, 0, 1.1], [0.4, 0, 1.1], [0.8, 0, 1.1], [1.2, 0, 1.1], [1.6, 0, 1.1], [1.2, 0, 0.3], [1.2, 0, 1.8]];
 const rot = (p: Vec3, a: number): Vec3 => [p[0] * Math.cos(a) - p[1] * Math.sin(a), p[0] * Math.sin(a) + p[1] * Math.cos(a), p[2]];
 const O_SHIFT: Vec3 = [0.9, -0.6, 0];
+/** Start angle and view: the bar points towards the viewer, so the velocities (⟂ bar) run across the screen (views12.test.ts). */
+export const RF_PHI0 = -Math.PI / 4;
+export const RF_CAMERA: [number, number, number] = [4.0, -4.0, 3.7];
+export const RF_TARGET: [number, number, number] = [0.2, 0.2, 0.9];
+export const rfPoints = (phi: number) => BODY.map((p) => rot(p, phi));
 
 /**
  * Lecture p. 11 "Allgemein!": a rigid frame turning about the z-axis. Every point gets v = ω × r (r from O on the axis):
@@ -22,10 +27,10 @@ const O_SHIFT: Vec3 = [0.9, -0.6, 0];
  */
 export function RotationField() {
   const tr = useTr(), lang = useLang();
-  const reduced = useReducedMotion();
   const [ref, full, toggleFull] = useFullscreen();
   const [w, setW] = useState(0.8);
-  const [phi, setPhi] = useState(0.5);
+  const [phi, setPhi] = useState(RF_PHI0);
+  const h = useFigureHeight(400, 330);
   const [play, setPlay] = useState(false);
   const [wrongO, setWrongO] = useState(false);
   useEffect(() => {
@@ -41,7 +46,7 @@ export function RotationField() {
   return (
     <figure className={`explorer${full ? ' is-full' : ''}`} ref={ref}>
       <div className="stage">
-        <Scene height={full ? '100%' : 400} camera={[4.3, -4.3, 3.3]} target={[0.2, 0.2, 0.9]}>
+        <Scene height={full ? '100%' : h} camera={RF_CAMERA} target={RF_TARGET}>
           <Axes size={2.0} />
           {Math.abs(w) > 0.01 && <Arrow to={[0, 0, 2.15 + 0 * wl]} from={[0, 0, 2.15 - wl]} color={C.angle} width={5} />}
           {Math.abs(w) > 0.01 && <Label at={[0.18, -0.18, 2.3]} color={C.angle} vec>ω</Label>}
@@ -74,7 +79,7 @@ export function RotationField() {
             <span className="val">{fmtNum(w, 2, lang)}</span>
           </label>
           <div className="motion-row">
-            <button type="button" className="motion-btn" disabled={reduced && !play} onClick={() => setPlay((x) => !x)}>
+            <button type="button" className="motion-btn" onClick={() => setPlay((x) => !x)}>
               {play ? tr('Anhalten', 'Stop') : tr('Drehen lassen', 'Let it turn')}
             </button>
           </div>

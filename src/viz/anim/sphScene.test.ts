@@ -108,9 +108,11 @@ describe('final frames show what the captions say', () => {
     const sc = sphScene(3, 1, 'de');
     for (const k of ['box-floor', 'box-vert', 'box-sum', 'lab-z3', 'lab-r3']) expect(label(sc.labels, k)?.o, k).toBeGreaterThan(0.9);
   });
-  it('step 5: the vertical triangle with tan θ = ρ/z', () => {
+  it('step 5: the vertical triangle with tan θ = ρ/z and the safe θ = arccos(z/r) the caption names', () => {
     const sc = sphScene(4, 1, 'de');
     expect(label(sc.labels, 'box-tan')?.o).toBe(1);
+    expect(label(sc.labels, 'box-tan')!.rows!.map((r) => r.tex).join(' ')).toMatch(/\\arccos\\dfrac\{z\}\{r\}/);
+    for (const th of [0.3, 1.2, 2.0, 2.9]) expect(Math.acos(Math.cos(th))).toBeCloseTo(th, 12); // arccos(z/r) returns θ on all of [0, π]
     for (const k of ['lab-legz', 'lab-legrho', 'lab-theta']) expect(label(sc.labels, k)?.o, k).toBeGreaterThan(0.9);
   });
 });

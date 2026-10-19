@@ -3,17 +3,16 @@ import { Line } from '@react-three/drei';
 import { M } from '../components/Tex';
 import { fmtNum, useLang, useTr } from '../i18n';
 import { HELIX, helix, helixVelocity, lineX, lineXdot } from '../physics/velocity';
-import { add, norm, scale, sub, type Vec3 } from '../physics/vec';
+import { add, cross, norm, scale, sub, type Vec3 } from '../physics/vec';
 import { inside, posOf, qAt, timeToEdge, velocityOf, velocityTerms, type CMode, type Q } from '../physics/curvMotion';
 import { Scene } from './Scene';
 import { Arrow, Axes, C, Curve, Dashed, Dot, Label } from './primitives';
 import { FullscreenButton, useFullscreen } from './useFullscreen';
-import { at, useReducedMotion } from './VectorFigures';
+import { at, combo } from './VectorFigures';
+import { PSI_COLOR } from './CoordinateExplorer';
+import { useFigureHeight } from './useNarrow';
 
 const t = String.raw;
-/** "c1 e_1 + c2 e_2 − c3 e_3" with proper signs (coefficients formatted by `f`). */
-const combo = (f: (x: number) => string, cs: [number, string][]) =>
-  cs.map(([c, b], i) => `${i === 0 ? (c < 0 ? '-' : '') : c < 0 ? ' - ' : ' + '}${f(Math.abs(c))}\\,${b}`).join('');
 
 /* ------------------------------------------------------------------------------------------------ */
 const VB: [number, number, number, number] = [0, 0, 400, 250];
@@ -64,9 +63,11 @@ export function SecantDemo() {
         {dt > 0.25 && <div className="vdemo-label rho small" style={at(VB, TX(T0 + dt) + 18, (XY(x0) + XY(x1)) / 2)}><M>{t`\Delta x`}</M></div>}
       </div>
       <figcaption className="vdemo-readout">
-        <label className="slider grow wide-slider">
+        <label className="slider grow wide-slider secant-slider">
           <M>{t`\Delta t`}</M>
+          <span className="slider-end"><M>{t`${fmtNum(1.6, 1, lang, true)}`}</M></span>
           <input type="range" min={0} max={1} step={0.005} value={k} onChange={(e) => setK(Number(e.target.value))} aria-label="dt" />
+          <span className="slider-end"><M>{t`\to 0`}</M></span>
         </label>
         <div><M>{t`\Delta t = ${f(dt)}\qquad \frac{\Delta x}{\Delta t} = ${f(slope)}\qquad \dot x(t) = ${f(v)}`}</M></div>
         <p className="vdemo-note">{tr(<>Blau: Sekante, ihre Steigung ist die mittlere Geschwindigkeit <M p=".">{t`\Delta x/\Delta t`}</M> Rot gestrichelt: Tangente mit Steigung <M p=".">{t`\dot x`}</M> Schiebe <M>{t`\Delta t`}</M> gegen null.</>,
@@ -88,8 +89,8 @@ export function PathVelocity({ r, v: vel, T, t0, camera, target, note, axes = 2.
   camera: [number, number, number]; target: [number, number, number]; note: ReactNode; axes?: number; arrow?: number;
 }) {
   const tr = useTr(), lang = useLang();
-  const reduced = useReducedMotion();
   const [ref, full, toggleFull] = useFullscreen();
+  const h = useFigureHeight(400, 330);
   const [time, setTime] = useState(t0);
   const [play, setPlay] = useState(false);
   const [parts, setParts] = useState(true);
@@ -107,11 +108,12 @@ export function PathVelocity({ r, v: vel, T, t0, camera, target, note, axes = 2.
   const p = r(time), v = vel(time), sdot = norm(v);
   const a1 = add(p, [arrow * v[0], 0, 0]), a2 = add(a1, [0, arrow * v[1], 0]), tip = add(p, scale(arrow, v));
   const tau = scale(1 / sdot, v);
+  const tauFrom = add(p, tauOffset(p, tau, camera)), tauTo = add(tauFrom, scale(arrow, tau));
   const f = (n: number) => fmtNum(n, 2, lang, true);
   return (
     <figure className={`explorer${full ? ' is-full' : ''}`} ref={ref}>
       <div className="stage">
-        <Scene height={full ? '100%' : 400} camera={camera} target={target}>
+        <Scene height={full ? '100%' : h} camera={camera} target={target}>
           <Axes size={axes} />
           <Curve f={r} t0={0} t1={T} n={240} color={C.construct} width={1.5} />
           {time > 0.02 && <Curve f={r} t0={0} t1={time} n={Math.max(2, Math.round((time / T) * 240))} color={C.path} width={2.5} />}
@@ -123,21 +125,23 @@ export function PathVelocity({ r, v: vel, T, t0, camera, target, note, axes = 2.
           <Dashed pts={[[0, 0, 0], p]} />
           <Arrow to={tip} from={p} color={C.point} width={3.5} />
           <Label at={add(tip, scale(0.18, tau))} color={C.point} vec>v</Label>
-          <Arrow from={p} to={add(p, scale(0.45, tau))} color={C.r} width={4} />
+          <Arrow from={tauFrom} to={tauTo} color={C.r} width={3} />
+          <Label at={add(add(tauFrom, scale(0.5 * arrow, tau)), scale(1.6, sub(tauFrom, p)))} color={C.r} vec>τ</Label>
           <Dot at={p} />
-          <Label at={[p[0], p[1], p[2] - 0.22]} color={C.point}>M</Label>
+          <Label at={add(p, scale(-1.4, tauOffset(p, tau, camera)))} color={C.point}>M</Label>
         </Scene>
         <FullscreenButton full={full} onClick={toggleFull} />
       </div>
       <div className="side">
         <div className="controls">
           <div className="motion-row">
-            <button type="button" className="motion-btn" onClick={() => setPlay((x) => !x)} disabled={reduced && !play}>
+            <button type="button" className="motion-btn" onClick={() => setPlay((x) => !x)}>
               {play ? tr('Anhalten', 'Stop') : tr('Bewegung abspielen', 'Play the motion')}
             </button>
-            <label className="slider grow">
+            <label className="slider grow has-val">
               <M>t</M>
               <input type="range" min={0} max={T} step={0.01} value={time} onChange={(e) => { setPlay(false); setTime(Number(e.target.value)); }} aria-label="t" />
+              <span className="val">{fmtNum(time, 2, lang)}&nbsp;s</span>
             </label>
           </div>
           <label className="toggle"><input type="checkbox" checked={parts} onChange={(e) => setParts(e.target.checked)} />{' '}
@@ -153,13 +157,23 @@ export function PathVelocity({ r, v: vel, T, t0, camera, target, note, axes = 2.
   );
 }
 
+/**
+ * Sideways offset (0.12 long) for the τ arrow: perpendicular to τ and to the line of sight from the start camera,
+ * so that τ, drawn next to v, is never hidden under it.
+ */
+export function tauOffset(p: Vec3, tau: Vec3, camera: Vec3): Vec3 {
+  const n = cross(tau, sub(camera, p));
+  const l = norm(n);
+  return l < 1e-9 ? [0, 0, 0.12] : scale(0.12 / l, n);
+}
+
 /** Lecture p. 9, 2.2: the helix. ṡ stays constant while the direction of v keeps changing. */
 export function HelixVelocity() {
   const tr = useTr();
   return (
     <PathVelocity r={helix} v={helixVelocity} T={HELIX.T} t0={6.25} camera={[3.7, -3.7, 2.9]} target={[0, 0, 0.45]}
-      note={tr(<>Rot: <M p=",">{t`\v v`}</M> tangential an die Bahn. Schwarz: <M p=",">{t`\v\tau`}</M> Länge 1. Die Schnelligkeit <M>{t`\dot s`}</M> bleibt konstant, die Richtung von <M>{t`\v v`}</M> nicht.</>,
-        <>Red: <M p=",">{t`\v v`}</M> tangent to the path. Black: <M p=",">{t`\v\tau`}</M> length 1. The speed <M>{t`\dot s`}</M> stays constant, the direction of <M>{t`\v v`}</M> does not.</>)} />
+      note={tr(<>Rot: <M p=",">{t`\v v`}</M> tangential an die Bahn. Schwarz, daneben: <M p=",">{t`\v\tau`}</M> Länge 1. Beide im gleichen Massstab gezeichnet: <M>{t`\v v = \dot s\,\v\tau`}</M> ist <M>{t`\dot s`}</M> Mal so lang wie <M p=".">{t`\v\tau`}</M> Die Schnelligkeit <M>{t`\dot s`}</M> bleibt konstant, die Richtung von <M>{t`\v v`}</M> nicht.</>,
+        <>Red: <M p=",">{t`\v v`}</M> tangent to the path. Black, beside it: <M p=",">{t`\v\tau`}</M> length 1. Both are drawn to the same scale: <M>{t`\v v = \dot s\,\v\tau`}</M> is <M>{t`\dot s`}</M> times as long as <M p=".">{t`\v\tau`}</M> The speed <M>{t`\dot s`}</M> stays constant, the direction of <M>{t`\v v`}</M> does not.</>)} />
   );
 }
 
@@ -181,8 +195,8 @@ const AHEAD = 6, BEHIND = 2.5; // seconds of the trajectory drawn ahead of / beh
  */
 export function CurvilinearVelocity() {
   const tr = useTr(), lang = useLang();
-  const reduced = useReducedMotion();
   const [ref, full, toggleFull] = useFullscreen();
+  const h = useFigureHeight(400, 330);
   const [mode, setMode] = useState<CMode>('cyl');
   const [rates, setRates] = useState<Q>(defaultRates('cyl'));
   const [q0, setQ0] = useState<Q>(START.cyl); // state when the current rates were set
@@ -225,7 +239,7 @@ export function CurvilinearVelocity() {
   const v = velocityOf(mode, q, rates);
   const names = mode === 'cyl'
     ? [[C.rho, String.raw`\dot\rho\,\v e_\rho`], [C.angle, String.raw`\rho\dot\varphi\,\v e_\varphi`], [C.z, String.raw`\dot z\,\v e_z`]]
-    : [[C.r, String.raw`\dot r\,\v e_r`], [C.angle, String.raw`r\dot\theta\,\v e_\theta`], [C.angle2, String.raw`r\sin\theta\,\dot\psi\,\v e_\psi`]];
+    : [[C.r, String.raw`\dot r\,\v e_r`], [C.angle, String.raw`r\dot\theta\,\v e_\theta`], [PSI_COLOR, String.raw`r\sin\theta\,\dot\psi\,\v e_\psi`]];
   let cur = p;
   const chain = terms.map((w, i) => { const a = cur; cur = add(cur, scale(VA, w)); return { a, b: cur, c: names[i][0] }; });
   // the trajectory through M with the current rates (ahead and behind, as far as it stays drawable)
@@ -245,7 +259,7 @@ export function CurvilinearVelocity() {
         ))}
       </div>
       <div className="stage">
-        <Scene height={full ? '100%' : 400} camera={[3.6, -3.6, 2.8]} target={[0.4, -0.1, 0.4]}>
+        <Scene height={full ? '100%' : h} camera={[3.1, -3.2, 2.5]} target={[0.45, -0.1, 0.45]}>
           <Axes size={1.8} />
           <Dashed pts={[p, [p[0], p[1], 0]]} />
           {lines && (mode === 'cyl'
@@ -255,7 +269,7 @@ export function CurvilinearVelocity() {
               <Curve f={(a) => posOf('cyl', [q[0], q[1], a])} t0={-1.4} t1={2} n={2} color={C.z} width={1.2} />
             </>)
             : (<>
-              <Curve f={(a) => posOf('sph', [q[0], q[1], a])} t0={0} t1={2 * Math.PI} color={C.angle2} width={1.2} />
+              <Curve f={(a) => posOf('sph', [q[0], q[1], a])} t0={0} t1={2 * Math.PI} color={PSI_COLOR} width={1.2} />
               <Curve f={(a) => posOf('sph', [q[0], a, q[2]])} t0={0} t1={Math.PI} color={C.angle} width={1.2} />
               <Curve f={(a) => posOf('sph', [a, q[1], q[2]])} t0={0} t1={2.4} n={2} color={C.r} width={1.2} />
             </>))}
@@ -280,7 +294,7 @@ export function CurvilinearVelocity() {
             </label>
           ))}
           <div className="motion-row">
-            <button type="button" className="motion-btn" disabled={(reduced && !play) || atEdge} onClick={() => setPlay((x) => !x)}>
+            <button type="button" className="motion-btn" disabled={atEdge} onClick={() => setPlay((x) => !x)}>
               {play ? tr('Anhalten', 'Stop') : tr('Bewegung abspielen', 'Play the motion')}
             </button>
             <button type="button" className="motion-btn" onClick={() => reset(mode, true)}>{tr('Zurück zum Start', 'Back to start')}</button>
@@ -296,8 +310,11 @@ export function CurvilinearVelocity() {
         </div>
         <figcaption>
           <div className="v-result pos"><M>{t`\v v = ` + combo(f, coeffs.map((k, i) => [k, basisTex[i]] as [number, string]))}</M></div>
-          <p className="vdemo-note">{tr(<><M>{t`\v v`}</M> liegt immer tangential an der <b>Bahn</b> (rot gestrichelt). Am Kreis der <span className="nowrap"><M>\varphi</M>-Linie</span> liegt <M>{t`\v v`}</M> nur, wenn sich allein <M>\varphi</M> ändert.</>,
-            <><M>{t`\v v`}</M> is always tangent to the <b>path</b> (red dashed). It is tangent to the circle of the <span className="nowrap"><M>\varphi</M>-line</span> only when <M>\varphi</M> alone changes.</>)}</p>
+          <p className="vdemo-note">{mode === 'cyl'
+            ? tr(<><M>{t`\v v`}</M> liegt immer tangential an der <b>Bahn</b> (rot gestrichelt). Am Kreis der <span className="nowrap"><M>\varphi</M>-Linie</span> liegt <M>{t`\v v`}</M> nur, wenn sich allein <M>\varphi</M> ändert.</>,
+              <><M>{t`\v v`}</M> is always tangent to the <b>path</b> (red dashed). It is tangent to the circle of the <span className="nowrap"><M>\varphi</M>-line</span> only when <M>\varphi</M> alone changes.</>)
+            : tr(<><M>{t`\v v`}</M> liegt immer tangential an der <b>Bahn</b> (rot gestrichelt). Am Breitenkreis (<span className="nowrap"><M>\psi</M>-Linie</span>) liegt <M>{t`\v v`}</M> nur, wenn sich allein <M>\psi</M> ändert.</>,
+              <><M>{t`\v v`}</M> is always tangent to the <b>path</b> (red dashed). It is tangent to the circle of latitude (<span className="nowrap"><M>\psi</M>-line</span>) only when <M>\psi</M> alone changes.</>)}</p>
         </figcaption>
       </div>
     </figure>

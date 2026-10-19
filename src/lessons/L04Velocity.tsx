@@ -46,13 +46,13 @@ export default function L04Velocity() {
         <T
           de={<>
             <p><M>{t`x(t)`}</M> sagt, wie weit <M>M</M> zur Zeit <M>t</M> vom Startpunkt <M>A</M> entfernt ist.</p>
-            <p><b>Mittlere Geschwindigkeit.</b> In der kurzen Zeit <M>{t`\Delta t`}</M> kommt der Punkt um <M>{t`\Delta x = x(t+\Delta t) - x(t)`}</M> weiter. Weg durch Zeit, <M p=",">{t`\Delta x/\Delta t`}</M> ist das Tempo im Durchschnitt. Beispiel: 100 m in 10 s ergibt 10 m/s.</p>
+            <p><b>Mittlere Geschwindigkeit.</b> In der kurzen Zeit <M>{t`\Delta t`}</M> kommt der Punkt um <M>{t`\Delta x = x(t+\Delta t) - x(t)`}</M> weiter. Weg durch Zeit, <M p=",">{t`\Delta x/\Delta t`}</M> ist die mittlere Geschwindigkeit. Beispiel: 100 m in 10 s ergibt 10 m/s.</p>
             <p><b>Momentane Geschwindigkeit.</b> Ein Durchschnitt verwischt, was <em>genau jetzt</em> passiert. Deshalb macht man die Zeitspanne <M>{t`\Delta t`}</M> immer kürzer. Der Wert, dem sich <M>{t`\Delta x/\Delta t`}</M> dabei nähert, ist die Geschwindigkeit <M>{t`\dot x`}</M> im Moment <M p=".">t</M> Das bedeutet «<M>{t`\lim_{\Delta t\to0}`}</M>».</p>
             <p>Im Bild unten: <M>{t`\Delta x/\Delta t`}</M> ist die Steigung der blauen Linie (Sekante). Ziehst du <M>{t`\Delta t`}</M> nach rechts gegen null, wird sie zur roten Linie (Tangente). Deren Steigung ist <M p=".">{t`\dot x`}</M> Der Punkt über einem Buchstaben heisst immer: Ableitung nach der Zeit.</p>
           </>}
           en={<>
             <p><M>{t`x(t)`}</M> says how far <M>M</M> is from the starting point <M>A</M> at time <M p=".">t</M></p>
-            <p><b>Mean velocity.</b> In the short time <M>{t`\Delta t`}</M> the point moves on by <M p=".">{t`\Delta x = x(t+\Delta t) - x(t)`}</M> Distance divided by time, <M p=",">{t`\Delta x/\Delta t`}</M> is the average pace. Example: 100 m in 10 s gives 10 m/s.</p>
+            <p><b>Mean velocity.</b> In the short time <M>{t`\Delta t`}</M> the point moves on by <M p=".">{t`\Delta x = x(t+\Delta t) - x(t)`}</M> Distance divided by time, <M p=",">{t`\Delta x/\Delta t`}</M> is the mean velocity. Example: 100 m in 10 s gives 10 m/s.</p>
             <p><b>Instantaneous velocity.</b> An average blurs what happens <em>right now</em>. So the time span <M>{t`\Delta t`}</M> is made shorter and shorter. The value that <M>{t`\Delta x/\Delta t`}</M> approaches is the velocity <M>{t`\dot x`}</M> at the moment <M p=".">t</M> That is what “<M>{t`\lim_{\Delta t\to0}`}</M>” means.</p>
             <p>In the figure below: <M>{t`\Delta x/\Delta t`}</M> is the slope of the blue line (secant). Drag <M>{t`\Delta t`}</M> to the right towards zero and it becomes the red line (tangent). Its slope is <M p=".">{t`\dot x`}</M> A dot over a letter always means: derivative with respect to time.</p>
           </>}
@@ -90,8 +90,8 @@ export default function L04Velocity() {
           <T de={<><M p=":">{t`\dot s`}</M> Wie schnell? <M p=":">{t`\v\tau`}</M> In welche Richtung? (<M>{t`\v\tau`}</M> tangentialer Einheitsvektor, <M>s</M> Bogenlänge.)</>} en={<><M p=":">{t`\dot s`}</M> how fast? <M p=":">{t`\v\tau`}</M> in which direction? (<M>{t`\v\tau`}</M> tangent unit vector, <M>s</M> arc length, <em lang="de">Bogenlänge</em>.)</>} />
         </Box>
         <T
-          de={<p>Die <b>Bogenlänge</b> <M>{t`s(t)`}</M> ist der Kilometerzähler: wie viel Weg der Punkt <em>entlang der Kurve</em> schon zurückgelegt hat. Dann ist <M>{t`\dot s`}</M> genau wie auf der Geraden «Weg pro Zeit» – das Tempo. Die Animation zeigt Schritt für Schritt, warum der Geschwindigkeitspfeil an der Kurve anliegt.</p>}
-          en={<p>The <b>arc length</b> <M>{t`s(t)`}</M> is the odometer: how much distance the point has already covered <em>along the curve</em>. Then <M>{t`\dot s`}</M> is, just like on the straight line, “distance per time” – the speed. The animation shows step by step why the velocity arrow lies along the curve.</p>}
+          de={<p>Die <b>Bogenlänge</b> <M>{t`s(t)`}</M> ist der Kilometerzähler: wie viel Weg der Punkt <em>entlang der Kurve</em> schon zurückgelegt hat. Dann ist <M>{t`\dot s`}</M> genau wie auf der Geraden «Weg pro Zeit» – die Schnelligkeit, die der Tacho zeigt. Die Animation zeigt Schritt für Schritt, warum der Geschwindigkeitspfeil an der Kurve anliegt.</p>}
+          en={<p>The <b>arc length</b> <M>{t`s(t)`}</M> is the odometer: how much distance the point has already covered <em>along the curve</em>. Then <M>{t`\dot s`}</M> is, just like on the straight line, “distance per time” – the speed the speedometer shows. The animation shows step by step why the velocity arrow lies along the curve.</p>}
         />
         <Derivation title={<T de={<><M>{t`\v v = \dot s\,\v\tau`}</M> Schritt für Schritt (S. 8–9)</>} en={<><M>{t`\v v = \dot s\,\v\tau`}</M> step by step (pp. 8–9)</>} />}>
           <StepPlayer
@@ -104,11 +104,11 @@ export default function L04Velocity() {
                 de={<>Ein kleines bisschen später (Zeit <M p=")">{t`t+\Delta t`}</M> ist der Punkt weiter (Kreis). Der blaue Pfeil <M>{t`\Delta\v r`}</M> zeigt von der alten zur neuen Lage: <M p=".">{t`\Delta\v r = \v r(t+\Delta t) - \v r(t)`}</M> Gefahren ist er dabei das gebogene Stück <M p=".">{t`\Delta s`}</M></>}
                 en={<>A tiny bit later (time <M p=")">{t`t+\Delta t`}</M> the point has moved on (circle). The blue arrow <M>{t`\Delta\v r`}</M> points from the old to the new position: <M p=".">{t`\Delta\v r = \v r(t+\Delta t) - \v r(t)`}</M> Along the way it covered the curved piece <M p=".">{t`\Delta s`}</M></>} /> },
               { ms: 7000, holdMs: 3000, caption: <T
-                de={<>Jetzt wird <M>{t`\Delta t`}</M> immer kleiner, die neue Lage rückt an <M>M</M> heran. Zwei Dinge passieren: <b>(1)</b> Der blaue Pfeil legt sich an die Kurve an – er zeigt in Fahrtrichtung. <b>(2)</b> Gerader Pfeil und gebogenes Stück werden gleich lang: <M>{t`|\Delta\v r|/\Delta s`}</M> geht gegen 1 (Kasten). Der rote Pfeil ist <M p=";">{t`\Delta\v r/\Delta t`}</M> am Ende ist er die Geschwindigkeit <M p=".">{t`\dot{\v r}`}</M></>}
-                en={<>Now <M>{t`\Delta t`}</M> gets smaller and smaller, the new position moves up to <M p=".">M</M> Two things happen: <b>(1)</b> the blue arrow snuggles up to the curve – it points in the direction of travel. <b>(2)</b> Straight arrow and curved piece become equally long: <M>{t`|\Delta\v r|/\Delta s`}</M> tends to 1 (box). The red arrow is <M p=";">{t`\Delta\v r/\Delta t`}</M> in the end it is the velocity <M p=".">{t`\dot{\v r}`}</M></>} /> },
+                de={<>Jetzt wird <M>{t`\Delta t`}</M> immer kleiner, die neue Lage rückt an <M>M</M> heran. Der blaue Pfeil <M>{t`\Delta\v r`}</M> legt sich an die Kurve an und wird so lang wie das gebogene Stück (Kasten: <M p=").">{t`|\Delta\v r|/\Delta s \to 1`}</M> Der rote Pfeil <M>{t`\Delta\v r/\Delta t`}</M> wird dabei zur Geschwindigkeit <M p=".">{t`\dot{\v r}`}</M></>}
+                en={<>Now <M>{t`\Delta t`}</M> gets smaller and smaller, the new position moves up to <M p=".">M</M> The blue arrow <M>{t`\Delta\v r`}</M> snuggles up to the curve and becomes as long as the curved piece (box: <M p=").">{t`|\Delta\v r|/\Delta s \to 1`}</M> The red arrow <M>{t`\Delta\v r/\Delta t`}</M> becomes the velocity <M p=".">{t`\dot{\v r}`}</M></>} /> },
               { ms: 3500, caption: <T
-                de={<>Ergebnis: <M p=".">{t`\v v = \dot{\v r} = \dot s\,\v\tau`}</M> Der kurze schwarze Pfeil <M>{t`\v\tau`}</M> hat Länge 1 und zeigt in Fahrtrichtung (<b>wohin?</b>). Die Zahl <M>{t`\dot s`}</M> ist das Tempo (<b>wie schnell?</b>). Zusammen: der rote Pfeil <M p=".">{t`\v v`}</M></>}
-                en={<>Result: <M p=".">{t`\v v = \dot{\v r} = \dot s\,\v\tau`}</M> The short black arrow <M>{t`\v\tau`}</M> has length 1 and points in the direction of travel (<b>where to?</b>). The number <M>{t`\dot s`}</M> is the speed (<b>how fast?</b>). Together: the red arrow <M p=".">{t`\v v`}</M></>} /> },
+                de={<>Ergebnis: <M p=".">{t`\v v = \dot{\v r} = \dot s\,\v\tau`}</M> Der kurze schwarze Pfeil <M>{t`\v\tau`}</M> hat Länge 1 und sagt, <b>wohin</b>; die Zahl <M>{t`\dot s`}</M> sagt, <b>wie schnell</b>. Der rote Pfeil <M>{t`\v v`}</M> zeigt in dieselbe Richtung und ist <M>{t`\dot s`}</M> lang.</>}
+                en={<>Result: <M p=".">{t`\v v = \dot{\v r} = \dot s\,\v\tau`}</M> The short black arrow <M>{t`\v\tau`}</M> has length 1 and says <b>where to</b>; the number <M>{t`\dot s`}</M> says <b>how fast</b>. The red arrow <M>{t`\v v`}</M> points the same way and has length <M p=".">{t`\dot s`}</M></>} /> },
             ]}
           >
             {(step, tt) => <AnimFigure build={velScene} step={step} t={tt} />}
@@ -120,7 +120,7 @@ export default function L04Velocity() {
           <MD>{t`\dot{\v r} = \frac{\dd\v r}{\dd t} = \frac{\dd\v r}{\dd s}\,\underbrace{\frac{\dd s}{\dd t}}_{\dot s}, \qquad \frac{\dd\v r}{\dd s} = \lim_{\Delta s\to0}\frac{\Delta\v r}{\Delta s} = \v\tau \qquad\Rightarrow\qquad \dot{\v r} = \v\tau\,\dot s = \v v`}</MD>
           <T
             de={<ul>
-              <li><M p=":">{t`\dd s/\dd t = \dot s`}</M> Weg pro Zeit, das Tempo.</li>
+              <li><M p=":">{t`\dd s/\dd t = \dot s`}</M> Weg pro Zeit, die Schnelligkeit.</li>
               <li><M p=":">{t`\dd\v r/\dd s`}</M> wie sich die Lage ändert pro Stück gefahrenem Weg. Fährt man ein winziges Stück der Länge <M>{t`\Delta s`}</M> entlang der Kurve, verschiebt sich der Punkt um <M p=",">{t`\Delta\v r`}</M> und das ist (Schritt 3) gleich lang und in Fahrtrichtung. Der Quotient ist darum ein Pfeil der Länge 1 in Fahrtrichtung: <M p=".">{t`\v\tau`}</M></li>
             </ul>}
             en={<ul>
@@ -135,11 +135,13 @@ export default function L04Velocity() {
                 <li><M>{t`\Delta\v r`}</M> zeigt erst im Grenzwert in Fahrtrichtung; für endliches <M>{t`\Delta t`}</M> ist es eine Abkürzung quer durch die Kurve (eine Sehne).</li>
                 <li>Dass <M>{t`|\Delta\v r|/\Delta s \to 1`}</M> geht, braucht eine Kurve ohne Knick in <M p=".">M</M></li>
                 <li><M>{t`\v r(s(t))`}</M> setzt voraus, dass der Punkt nicht stehen bleibt und nicht umkehrt <M p=".">{t`(\dot s > 0)`}</M></li>
+                <li>Wie in der Figur des Skripts beginnt die Bahn hier in <M p=".">O</M> Das muss nicht so sein: <M>s</M> zählt ab einem beliebigen Startpunkt der Bahn, <M>{t`\v r`}</M> dagegen immer ab dem Ursprung <M p=".">O</M></li>
               </ul>}
               en={<ul>
                 <li><M>{t`\Delta\v r`}</M> points in the direction of travel only in the limit; for finite <M>{t`\Delta t`}</M> it is a shortcut across the curve (a chord).</li>
                 <li><M>{t`|\Delta\v r|/\Delta s \to 1`}</M> needs a curve without a kink at <M p=".">M</M></li>
                 <li><M>{t`\v r(s(t))`}</M> assumes the point neither stops nor turns back <M p=".">{t`(\dot s > 0)`}</M></li>
+                <li>As in the figure of the notes, the path starts at <M>O</M> here. It need not: <M>s</M> counts from any starting point on the path, whereas <M>{t`\v r`}</M> always starts at the origin <M p=".">O</M></li>
               </ul>}
             />
           </details>
@@ -159,7 +161,7 @@ export default function L04Velocity() {
             <ol>
               <li><M>{t`\v r`}</M> besteht aus drei Teilen wie <M p=":">{t`x\,\v e_x`}</M> eine Zahl mal ein Basisvektor.</li>
               <li>Beim Ableiten eines Produkts gilt die Produktregel: <M p=".">{t`\tfrac{\dd}{\dd t}(x\,\v e_x) = \dot x\,\v e_x + x\,\dot{\v e}_x`}</M></li>
-              <li><M>{t`\v e_x`}</M> ändert sich nie – überall und immer derselbe Pfeil (Lektion 3). Also <M>{t`\dot{\v e}_x = \v 0`}</M> und der zweite Teil fällt weg. Das sind die drei durchgestrichenen Terme.</li>
+              <li><M>{t`\v e_x`}</M> ändert sich nie – überall und immer derselbe Pfeil (<a href="#basen">Basen</a>). Also <M>{t`\dot{\v e}_x = \v 0`}</M> und der zweite Teil fällt weg. Das sind die drei durchgestrichenen Terme.</li>
             </ol>
             <p><b>Ergebnis:</b> Man leitet einfach jede Koordinate nach der Zeit ab. Genau das wollte S. 8 «zeigen». (Die Überschrift im Skript lautet «Darstellung von <M p=",">{t`\v r = \dot{\v r}`}</M>» gemeint ist <M p=".)">{t`\v v = \dot{\v r}`}</M></p>
           </>}
@@ -168,21 +170,21 @@ export default function L04Velocity() {
             <ol>
               <li><M>{t`\v r`}</M> consists of three parts like <M p=":">{t`x\,\v e_x`}</M> a number times a basis vector.</li>
               <li>Differentiating a product uses the product rule: <M p=".">{t`\tfrac{\dd}{\dd t}(x\,\v e_x) = \dot x\,\v e_x + x\,\dot{\v e}_x`}</M></li>
-              <li><M>{t`\v e_x`}</M> never changes – the same arrow everywhere and always (lesson 3). So <M>{t`\dot{\v e}_x = \v 0`}</M> and the second part drops out. These are the three struck-out terms.</li>
+              <li><M>{t`\v e_x`}</M> never changes – the same arrow everywhere and always (<a href="#basen">Bases</a>). So <M>{t`\dot{\v e}_x = \v 0`}</M> and the second part drops out. These are the three struck-out terms.</li>
             </ol>
             <p><b>Result:</b> just differentiate each coordinate with respect to time. That is exactly what p. 8 set out to “show”. (The notes' heading reads “Darstellung von <M p=",">{t`\v r = \dot{\v r}`}</M>” meaning <M p=".)">{t`\v v = \dot{\v r}`}</M></p>
           </>}
         />
         <HelixVelocity />
         <T
-          de={<p><b>Beispiel im Bild:</b> <M>M</M> fährt auf einer Schraubenlinie, <M p=".">{t`\v r(t) = (R\cos\omega t,\ R\sin\omega t,\ z_0 + ct)`}</M> Jede Koordinate ableiten gibt <M p=".">{t`\v v = (-R\omega\sin\omega t,\ R\omega\cos\omega t,\ c)`}</M> Das Tempo ist <M p=",">{t`\dot s = |\v v| = \sqrt{R^2\omega^2 + c^2}`}</M> also immer gleich – aber die Richtung von <M>{t`\v v`}</M> dreht sich ständig mit der Kurve. Drück auf «Bewegung abspielen» und schau dem roten Pfeil zu.</p>}
-          en={<p><b>Example in the figure:</b> <M>M</M> travels on a helix, <M p=".">{t`\v r(t) = (R\cos\omega t,\ R\sin\omega t,\ z_0 + ct)`}</M> Differentiating each coordinate gives <M p=".">{t`\v v = (-R\omega\sin\omega t,\ R\omega\cos\omega t,\ c)`}</M> The speed is <M p=",">{t`\dot s = |\v v| = \sqrt{R^2\omega^2 + c^2}`}</M> always the same – but the direction of <M>{t`\v v`}</M> keeps turning with the curve. Press “Play the motion” and watch the red arrow.</p>}
+          de={<p><b>Beispiel im Bild:</b> <M>M</M> fährt auf einer Schraubenlinie, <M p=".">{t`\v r(t) = (R\cos\omega t,\ R\sin\omega t,\ z_0 + ct)`}</M> Dabei ist <M>R</M> der Radius, <M>\omega</M> eine feste Zahl (wie schnell der Winkel wächst, in rad/s) und <M>c</M> die Steiggeschwindigkeit in m/s. Jede Koordinate ableiten gibt <M p=".">{t`\v v = (-R\omega\sin\omega t,\ R\omega\cos\omega t,\ c)`}</M> Die Schnelligkeit ist <M p=",">{t`\dot s = |\v v| = \sqrt{R^2\omega^2 + c^2}`}</M> also immer gleich – aber die Richtung von <M>{t`\v v`}</M> dreht sich ständig mit der Kurve. Drück auf «Bewegung abspielen» und schau dem roten Pfeil zu.</p>}
+          en={<p><b>Example in the figure:</b> <M>M</M> travels on a helix, <M p=".">{t`\v r(t) = (R\cos\omega t,\ R\sin\omega t,\ z_0 + ct)`}</M> Here <M>R</M> is the radius, <M>\omega</M> a fixed number (how fast the angle grows, in rad/s) and <M>c</M> the climbing speed in m/s. Differentiating each coordinate gives <M p=".">{t`\v v = (-R\omega\sin\omega t,\ R\omega\cos\omega t,\ c)`}</M> The speed is <M p=",">{t`\dot s = |\v v| = \sqrt{R^2\omega^2 + c^2}`}</M> always the same – but the direction of <M>{t`\v v`}</M> keeps turning with the curve. Press “Play the motion” and watch the red arrow.</p>}
         />
         <Box kind="lecture" src={<Src p={9} />} title={<T de="Und in der zylindrischen Basis?" en="And in the cylindrical basis?" />}>
           <MD>{t`\v r = \rho(t)\,\v e_\rho(\varphi(t)) + z(t)\,\v e_z, \qquad \dot{\v r} = \dot\rho\,\v e_\rho + \rho\,\dot{\v e}_\rho + \dot z\,\v e_z + z\,\cancel{\dot{\v e}_z}, \qquad \dot{\v e}_\rho \ne 0`}</MD>
           <T
-            de={<p>Hier fällt <M>{t`\rho\,\dot{\v e}_\rho`}</M> <em>nicht</em> weg, denn <M>{t`\v e_\rho`}</M> dreht sich, wenn sich <M>\varphi</M> ändert (Lektion 3, Schritt 3 der Animation). Was dieser zusätzliche Term bedeutet, zeigt die nächste Lektion (S. 10).</p>}
-            en={<p>Here <M>{t`\rho\,\dot{\v e}_\rho`}</M> does <em>not</em> drop out, because <M>{t`\v e_\rho`}</M> turns when <M>\varphi</M> changes (lesson 3, step 3 of the animation). What this extra term means is shown in the next lesson (p. 10).</p>}
+            de={<p>Hier fällt <M>{t`\rho\,\dot{\v e}_\rho`}</M> <em>nicht</em> weg, denn <M>{t`\v e_\rho`}</M> dreht sich, wenn sich <M>\varphi</M> ändert (<a href="#basen">Basen</a>, Schritt 3 der Animation). Was dieser zusätzliche Term bedeutet, zeigt die Lektion <a href="#v-krummlinig">Geschwindigkeit in Zylinder- und Kugelkoordinaten</a> (S. 10).</p>}
+            en={<p>Here <M>{t`\rho\,\dot{\v e}_\rho`}</M> does <em>not</em> drop out, because <M>{t`\v e_\rho`}</M> turns when <M>\varphi</M> changes (<a href="#basen">Bases</a>, step 3 of the animation). What this extra term means is shown in the lesson <a href="#v-krummlinig">Velocity in cylindrical and spherical coordinates</a> (p. 10).</p>}
           />
         </Box>
       </Section>
@@ -192,11 +194,11 @@ export default function L04Velocity() {
         <Box kind="misconception" title={<T de="«Geschwindigkeit und Schnelligkeit sind dasselbe.»" en="“Velocity and speed are the same thing.”" />}>
           <T de={<>Nein. Die Schnelligkeit <M>{t`\dot s`}</M> ist eine Zahl – der Tacho. Die Geschwindigkeit <M>{t`\v v`}</M> ist ein Pfeil – Tacho <em>und</em> Fahrtrichtung.</>} en={<>No. The speed <M>{t`\dot s`}</M> is a number – the speedometer. The velocity <M>{t`\v v`}</M> is an arrow – speedometer <em>and</em> direction of travel.</>} />
         </Box>
-        <Box kind="misconception" title={<T de="«Gleiches Tempo heisst gleiche Geschwindigkeit.»" en="“Same speed means same velocity.”" />}>
+        <Box kind="misconception" title={<T de="«Gleiche Schnelligkeit heisst gleiche Geschwindigkeit.»" en="“Same speed means same velocity.”" />}>
           <T de={<>Nein. Ein Auto, das mit konstant 50 km/h durch eine Kurve fährt, hat ein konstantes <M p=",">{t`\dot s`}</M> aber <M>{t`\v v`}</M> ändert die Richtung – wie bei der Schraubenlinie oben.</>} en={<>No. A car taking a bend at a constant 50 km/h has a constant <M p=",">{t`\dot s`}</M> but <M>{t`\v v`}</M> changes direction – like on the helix above.</>} />
         </Box>
         <Box kind="misconception" title={<T de={<>«<M>{t`\Delta\v r`}</M> zeigt genau in Fahrtrichtung.»</>} en={<>“<M>{t`\Delta\v r`}</M> points exactly in the direction of travel.”</>} />}>
-          <T de={<>Nur für winzig kleines <M p=".">{t`\Delta t`}</M> Sonst ist <M>{t`\Delta\v r`}</M> eine Abkürzung quer durch die Kurve: schräg und kürzer als der gefahrene Weg (Animation, Schritt 2).</>} en={<>Only for a tiny <M p=".">{t`\Delta t`}</M> Otherwise <M>{t`\Delta\v r`}</M> is a shortcut across the curve: oblique and shorter than the distance travelled (animation, step 2).</>} />
+          <T de={<>Nur im Grenzwert <M p=".">{t`\Delta t \to 0`}</M> Für jedes endliche <M>{t`\Delta t`}</M> ist <M>{t`\Delta\v r`}</M> eine Abkürzung quer durch die Kurve: schräg und kürzer als der gefahrene Weg (Animation, Schritt 2).</>} en={<>Only in the limit <M p=".">{t`\Delta t \to 0`}</M> For every finite <M p=",">{t`\Delta t`}</M> <M>{t`\Delta\v r`}</M> is a shortcut across the curve: oblique and shorter than the distance travelled (animation, step 2).</>} />
         </Box>
       </Section>
 
@@ -206,7 +208,7 @@ export default function L04Velocity() {
           <T
             de={<ul>
               <li><M p=":">{t`\v v = \dot{\v r}`}</M> Die Geschwindigkeit ist die Zeitableitung des Ortsvektors.</li>
-              <li><M p=":">{t`\v v = \dot s\,\v\tau`}</M> Tempo mal Fahrtrichtung; <M>{t`\v v`}</M> zeigt immer entlang der Bahn.</li>
+              <li><M p=":">{t`\v v = \dot s\,\v\tau`}</M> Schnelligkeit mal Fahrtrichtung; <M>{t`\v v`}</M> zeigt immer entlang der Bahn.</li>
               <li><M p=":">{t`\v v = \dot x\,\v e_x + \dot y\,\v e_y + \dot z\,\v e_z`}</M> In der kartesischen Basis einfach jede Koordinate ableiten.</li>
             </ul>}
             en={<ul>

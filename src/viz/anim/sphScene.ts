@@ -27,7 +27,7 @@ export const TH_GHOST = 140 * DEG;
 /** Facing the vertical plane through the z-axis at azimuth ψ: e_ρ(ψ) points right, z up (10° from above). */
 export const FACE: View = { alpha: PS0 - Math.PI / 2, beta: 10 * DEG, cx: 150, cy: 158, s: 62 };
 /** Looking down the z-axis (x right, y up), shifted left to leave room for the leg labels. */
-export const TOP_S: View = { alpha: -Math.PI / 2, beta: Math.PI / 2, cx: 172, cy: 172, s: 62 };
+export const TOP_S: View = { alpha: -Math.PI / 2, beta: Math.PI / 2, cx: 150, cy: 196, s: 78 };
 
 /** θ as a function of (step, t): constant except for the swing past 90° in step index 1 (whole degrees). */
 export function thetaAt(step: number, t: number): number {
@@ -158,7 +158,10 @@ export function sphScene(step: number, t: number, lang: Lang): Scene {
       const pg = P(gM);
       L('lab-ghost', [pg[0] + 12, pg[1] + 4], String.raw`\theta > 90^\circ\colon\ z < 0`, 'fg', 0.95, 'l');
     }
-    if (step === 4) L('box-tan', [W - 6, H - 62], String.raw`\tan\theta = \dfrac{\rho}{z} = \dfrac{\sqrt{x^2+y^2}}{z}`, 'fg', seg(t, 0.35, 0.55), 'tr', { box: true });
+    if (step === 4) L('box-tan', [W - 6, H - 6], '', 'fg', seg(t, 0.35, 0.55), 'br', { box: true, rows: [
+      { tex: String.raw`\tan\theta = \dfrac{\rho}{z} = \dfrac{\sqrt{x^2+y^2}}{z}`, ink: 'fg' },
+      { tex: String.raw`\text{${lang === 'de' ? 'sicher' : 'safe'}: }\theta = \arccos\dfrac{z}{r}`, ink: 'angle' },
+    ] });
   }
   if (step !== 3 && (step !== 2 || t < 0.45)) {
     const mo = step === 2 ? 1 - seg(t, 0.3, 0.45) : 1;

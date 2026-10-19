@@ -2,7 +2,7 @@ import { Scene } from '../Scene';
 import { Arrow, Axes, C, Curve, Dashed, Dot, Label } from '../primitives';
 import { cylToCart } from '../../physics/coords';
 import { add, scale, type Vec3 } from '../../physics/vec';
-import { CB, cylBasisFrame } from './cylBasisFrame';
+import { CB, CB_CAMERA, CB_TARGET, cylBasisFrame } from './cylBasisFrame';
 
 const L_RHO = 2.5, Z0 = -0.5, Z1 = 2.3;
 
@@ -13,7 +13,7 @@ export function CylBasisAnim({ step, t }: { step: number; t: number }) {
   const tip = (e: Vec3, k = 1) => add(M, scale(f.basisLen * k, e));
   const Mxy: Vec3 = [M[0], M[1], 0];
   return (
-    <Scene height={360} camera={[3.9, -3.9, 4.2]} target={[0.55, 0.55, 0.7]}>
+    <Scene height={360} camera={CB_CAMERA} target={CB_TARGET}>
       <Axes size={2.2} />
       {/* coordinate lines through M */}
       {f.lines.rho > 0.01 && <Curve f={(s) => cylToCart({ rho: s, phi, z: CB.Z })} t0={0} t1={L_RHO * f.lines.rho} n={2} color={C.rho} width={2} />}
@@ -21,7 +21,7 @@ export function CylBasisAnim({ step, t }: { step: number; t: number }) {
       {f.lines.z > 0.01 && <Curve f={(s) => [M[0], M[1], s]} t0={Z0} t1={Z0 + (Z1 - Z0) * f.lines.z} n={2} color={C.z} width={2} />}
       <Dashed pts={[[0, 0, 0], Mxy]} />
       <Curve f={(s) => [0.42 * Math.cos(s), 0.42 * Math.sin(s), 0]} t0={0} t1={phi} color={C.angle} width={2} />
-      <Label at={[0.66 * Math.cos(phi / 2), 0.66 * Math.sin(phi / 2), 0]} color={C.angle}>φ</Label>
+      {phi > 0.25 && <Label at={[0.66 * Math.cos(phi / 2), 0.66 * Math.sin(phi / 2), 0]} color={C.angle}>φ</Label>}
       {/* faint basis at the start position */}
       {f.ghost && (<>
         <Arrow from={f.ghost.at} to={add(f.ghost.at, f.ghost.eRho)} color={C.construct} width={2} />
