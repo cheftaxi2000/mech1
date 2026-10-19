@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { M } from '../components/Tex';
 import { fmtNum, useLang, useTr } from '../i18n';
 import { GEN, fieldFrame, mitfahrFrame, type Ride } from './genGeom';
-import { at } from './VectorFigures';
+import { at } from './figUtils';
 
 const t = String.raw;
 type V = readonly [number, number];

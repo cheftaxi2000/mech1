@@ -9,7 +9,7 @@ import { DOOR, FOOT, doorFrame, doorPoint, footNumbers } from './rotGeom';
 import { Scene } from './Scene';
 import { Arrow, C, Curve, Dashed, Dot, Label } from './primitives';
 import { FullscreenButton, useFullscreen } from './useFullscreen';
-import { at } from './VectorFigures';
+import { at } from './figUtils';
 
 const t = String.raw;
 type V = [number, number];

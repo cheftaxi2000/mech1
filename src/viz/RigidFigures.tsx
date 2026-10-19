@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { M } from '../components/Tex';
 import { fmtNum, useLang, useTr } from '../i18n';
-import { at } from './VectorFigures';
+import { at } from './figUtils';
 
 const t = String.raw;
 type V = [number, number];

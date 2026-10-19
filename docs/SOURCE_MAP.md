@@ -33,6 +33,12 @@ Source file: `Mitschrift.pdf` (uploaded 2026-10-10, 22 PDF pages, A4; typeset no
 | 20 | 22 | Allgemeinste Bewegung, ω independent of reference point, Grundgleichung | typeset |
 | 21 | 23 | Beispiel Tetraeder (empty), Beispiel Würfel allgemeine Bewegung (handwritten) | mixed |
 | 22 | (none) | handwritten continuation of the p. 23 cube example | handwritten |
+| (screenshot) | 24 | Kinemate {v̲_B, ω̲}, 1. and 2. invariant, Fig. 3.16 Zentralachse und Schraube | typeset + figure + student's red notes; supplied 2026-10-19 as iPad screenshots (GoodNotes p. 28) |
+| (screenshot) | 25 | Allgemeine Bewegung als Schraubung, Kinemate der Punkte auf ζ, Problem Fig. 3.30, |v|_max/min, special cases | typeset + handwritten (GoodNotes p. 29) |
+| (screenshot) | (none, after 25) | handwritten solution of Problem Fig. 3.30 (central axis ζ) | handwritten |
+| (screenshot) | 26 | 3.1 Ebene Bewegung: ω̲ ⊥ plane; Satz vom Momentanzentrum, Fig. 3.19 | typeset + photo |
+| (screenshot) | 27 | Fig. 3.20 rollendes Rad (Z = Momentanzentrum); Beispiel Leiter, «Löse mit SMZ» (solution missing) | typeset + handwritten |
+| (screenshot) | 28 | Fig. 3.21 Planetengetriebe (Sonnenrad, Hohlrad, Planetenrad, Arm) with handwritten solution | typeset + handwritten |
 
 ## Page-by-page transcription (content, notation, equations)
 
@@ -186,3 +192,59 @@ Equation numbers in parentheses are the lecture's own.
   v̲₃ = v̲₁ + ω̲ × P₁P₃; 0 = ω̲ × (−L,−L,L) → ω_y = −ω_z, ω_x = −ω_z, ω_x = ω_y → ω̲ = (ω_x, ω_x, −ω_x).
   v̲₂ − v̲₃ = (v,0,v) = ω̲ × (0,L,0) → ω_x = v/L; ω̲ = (v/L)(1,1,−1).
   v̲_B = v̲₃ + ω̲ × P₃B = (−v,0,0) + (v/L)(1,1,−1) × (0,0,−L): v_Bx = −2v, v_By = v, v_Bz = (blank). → R-007
+
+> **Pages 24–28** were supplied on 2026-10-19 as iPad screenshots of the student's GoodNotes file (two screenshots each of pp. 24/25 and 27). Red handwriting is mostly the **student's own notes and requests** (e.g. «Animation die das einfach visualisieren lässt», «+ Erklärung», «(Warum?)», «Lösung fehlt») — they are requests, not lecture content. Black/green/blue handwriting is the student's transcript of the lecture.
+
+### p. 24 — Allgemeine Bewegung: Kinemate, Invarianten, Zentralachse
+- Allgemeine Bewegung: v̲_M = v̲_B + ω̲ × BM̲.
+- Spezialfälle: • ω̲ = 0̲ → v̲_M = v̲_B Translation • v̲_B = 0̲ → v̲_M = ω̲ × BM̲ Rotation, Rotationsachse durch B.
+- i.A.: {v̲_B, ω̲}: **Kinemate** in B → charakterisiert Bewegungszustand! Wie verändert sich Kinemate je nach Ort?
+- {v̲_P, ω̲'} ⟷ {v̲_B, ω̲} → ω̲' = ω̲ → 1. Invariante (invariant bez. Ort!) [student, red: «+ Erklärung»]; v̲_P = v̲_B + ω̲ × BP̲ ≠ v̲_B.
+- → 2. Invariante? v̲_P = v̲_B + ω̲ × BP̲; v̲_P · e̲_ω = v̲_B · e̲_ω + (ω̲ × BP̲) · e̲_ω [last term struck out].
+- Projektion von v̲ in Richtung von ω̲: v̲_ω in jedem Punkt gleich → v̲_ω: 2. Invariante. Physikalisch / anschauliche Interpretation:
+- **Fig. 3.16: Zentralachse und Schraube** — B with v̲_B, ω̲, v̲_ω (blue, ∥ ω̲) and (v̲_B)^⊥; a line g through B (green); a point P on g at distance x from B (dz marked); e̲^⊥; the central axis ζ (yellow band, ∥ ω̲) through Z with v̲_Z = v̲_ω; B* with v̲_B*, (v̲_B*)^⊥; Z'.
+  Equations beside the figure: v̲_P = v̲_B + ω̲ × BP̲; v̲_P = v̲_ω + v̲_B^⊥ + ω̲ × BP̲; v̲_P = v̲_ω + v_B^⊥ · e̲^⊥ − ω · x · e̲^⊥; v̲_P = v̲_ω + (v_B^⊥ − ω · x) · e̲^⊥.
+- Student, red: «Bewegung» (spiral sketch), «Schraubungsachse ↳ Rotationsachse die Translation macht», «→ Animation die das einfach visualisieren lässt».
+
+### p. 25 — Schraubung um die Zentralachse
+- Allgemeine Bewegung als "Schraubung" um Zentralachse ζ. ζ: Zentralachse / Schraubungsachse.
+- Kinemate der Punkte auf ζ: {v̲_ω, ω̲}, "Schraube" [handwritten: → v̲_ω ist invariabel]. → Bestimmung der Lage der Zentralachse bei allgemeinem Bewegungszustand.
+- **Problem Figur 3.30** (Fig. 3.30): cube, edge 1 m; data «1 m, 2 m/s, 2 s⁻¹»; axes x toward the viewer, y right, z up; B at a bottom corner; v̲_B on a diagonal, ω̲ along y; ζ drawn in green along the bottom front edge. Second figure: v̲_B^⊥ = (0,0,2), v̲_B = (0,2,2), ω̲ = (0,2,0), edge 1.
+- |v̲|_max: Maximaler Abstand von ζ; |v̲|_min: Minimaler Abstand von ζ. → R-020
+- Merke: ζ braucht nicht materieller Bestandteil von Körper zu sein. [handwritten: ζ i.A. nicht im Körper; „ zeitlich veränderbar]
+- • Schraube {v̲_ω, ω̲}: Kinemate der Punkte auf ζ. • 1. Invariante: ω̲, 2. Invariante: v̲_ω: → |v̲_ω| = v̲_B · ω̲/|ω̲|. → R-021
+- Spezialfälle: • ω̲ = 0̲ → Translation • ω̲ ≠ 0̲, v̲_B = 0̲ → Rotation, B ∈ μ [green: → kein v̲_ω] • ω̲ ≠ 0̲, v̲_B ⊥ ω̲ → Rotation, B ∉ μ [green: → kein Schraubung, ζ wird zur Rotationsachse].
+- → Wichtige Anwendung: Ebene Bewegung.
+- Handwritten: v̲_ω = (v̲ · e̲_ω) · e̲_ω — «Projektion».
+
+### (handwritten page after p. 25) — solution of Problem Fig. 3.30
+- Gegeben: Kinemate in B (v̲_B; ω̲). Gesucht: ζ. v̲_B = (0,2,2).
+- (v̲_B · e̲_ω) = (0,2,2)·(0,1,0) = 2; v̲_P = v̲_ω = 2 · e̲_ω.
+- P ∈ ζ ⇒ v̲_P = v̲_ω ⇔ v̲_P = v̲_B · ω̲ × BP̲ [sic: «·» for «+», R-019] ⇔ (0,2,0) = (0,2,2) · (0,2,0) × (x_P, y_P, z_P) [same slip] ⇔ (0,0,−2) = (2z_P, 0, −2x_P)
+  ⇒ z_P = 0, y_P → beliebig, x_P = 1 [student, red: «(Warum?)»].
+- ζ: (1,0,0) + λ(0,1,0) [student, red: «Ortsvektor ← Vektor: geht von dem Punkt, gefunden durch den Ortsvektor, aus.»]. (Implicitly B = origin, BP̲ = (x_P, y_P, z_P).) Verified: `screw.test.ts`.
+
+### p. 26 — 3.1 Ebene Bewegung; Satz vom Momentanzentrum
+- Bahnkurven aller Punkte bleiben in parallelen Ebenen!
+- Ebene E ∥ zu x,y-Ebene [handwritten under it, partly legible: «↳ z = 0»], Punkt P ∈ E → v̲_P = (v_Px, v_Py, 0), und Punkt A im gleichen Körper: v̲_A = v̲_P + ω̲ × PA̲.
+  (v_Ax, v_Ay, 0) = (v_Px, v_Py, 0) + (ω_x, ω_y, ω_z) × (PA_x, PA_y, PA_z) [red: the two zeros boxed, «immer bei einer ebenen Bewegung»].
+  v_Az = 0 = 0 + ω_x PA_y − ω_y PA_x, ∀ PA_x, PA_y → ω̲ = (0, 0, ω_z) «Rotation!» oder ω̲ = 0̲ «Translation». (A 3D plot image beside it.)
+- Falls Rotation: μ ⊥ Ebene E.
+- **Satz vom Momentanzentrum** (S. 56): Bei jeder ebenen Bewegung eines starren Körpers K mit ω̲ ≠ 0̲ beschreibt der ebene Schnitt K_E von K in der Bewegungsebene E eine momentane Rotation um einen Punkt Z ≡ μ ∩ E, der Momentanzentrum der ebenen Bewegung heisst. Das Momentanzentrum Z ist der einzige momentan ruhende Punkt des in Gedanken auf die ganze Ebene E ausgedehnten Körpers K_E. Die Geschwindigkeit v̲_M eines beliebigen Punktes M von K in E ist dann nach Fig. 3.19 senkrecht zur Verbindungsgeraden mit dem Momentanzentrum Z und besitzt den durch den Drehsinn von ω̲ = ω e̲_z = φ̇ e̲_z vorgeschriebenen Richtungssinn sowie den mit dem Abstand r von Z gebildeten Betrag v_M = ω r.
+- Photo of the lecture; **Figur 3.19**: K_E, a point M with v̲_M ⊥ r, Z, ω (curved arrow).
+
+### p. 27 — rollendes Rad; Leiter mit dem Momentanzentrum
+- **Figur 3.20: rollendes Rad** — P on the rim with v̲_P, centre O with v̲_O, radius R, contact point Z, ω (curved arrows). «Z: Momentanzentrum; v̲_P ⊥ ZP̲, v_P = ω · |ZP̲|; v̲_O ⊥ ZO̲, v_O = ω · R».
+- **Beispiel: Leiter, geführte Ebene Bewegung.** Aus SdpG: v_V = v_H · 1/tan φ.
+  Figure: ladder AB, length L, A on the floor (bottom left), B at the wall (top right), angle φ at A; axes y up, x right. Handwritten: v_H at A pointing left (green), v_V / v̲_B at B pointing down (red); Z (blue) at the intersection of the red dashed vertical through A and horizontal through B, with a curved ω arrow; «e̲_y ↑, e̲_x →, e̲_z ⊙»; «gesucht: v_V; v̲_B (0, −v_V, 0)»; «Löse mit SMZ:» «v̲_A (−v_H, 0, 0)», «v_H =».
+- Student, red: «Lösung fehlt». (The app's solution with the Momentanzentrum is a supplement; verified `plane.test.ts`.)
+
+### p. 28 — Planetengetriebe
+- **Figur 3.21: Planetengetriebe** (pink: «S. 57/58»): centre O; 1 Sonnenrad R₁, Z₁ ≡ O, ω₁; 2 Hohlrad R₂, Z₂ ≡ O, ω₂; 3 Planetenrad R₃, Z₃, ω₃; Arm, L, Z_A ≡ O, ω. Figure: P = contact sun–planet, Q = contact planet–ring (top), A (= O') planet centre on the arm; arrows R₂ω₂ at Q, R₁ω₁ at P, v at A (all pointing left); Z₃ on the line QPO below; ω₂ curved arrow.
+- Geometrie: R₃ = ½(R₂ − R₁); L = R₁ + R₃ = ½(R₂ + R₁).
+- Handwritten solution: P, Q ∈ [3]. P ∈ [1]: v_P = ω₁R₁. Q ∈ [2]: v_Q = ω₂R₂. (PQ = R₂ − R₁)
+  { Z₃P · ω₃ = v_P = ω₁R₁ ; (Z₃P + PQ) · ω₃ = v_Q = ω₂R₂ } → Z₃P ω₃ − Z₃P ω₃ − PQ ω₃ = ω₁R₁ − ω₂R₂ ⇔ ω₁R₁ + PQ ω₃ = ω₂R₂ ⇔ ω₃ = (ω₂R₂ − ω₁R₁)/(R₂ − R₁). [Side note: «ω₂R₂ = ω₁R₁ ?»]
+  v_A = ½(ω₂R₂ + ω₁R₁); A ∈ Arm; Z_Arm = O; ω_Arm · L = v_A; ω_Arm = v_A/L = ½(ω₂R₂ + ω₁R₁)/(½(R₂ + R₁)).
+  Boxed: **ω_Arm = ω₂ · R₂/(R₂+R₁) + ω₁ · R₁/(R₂+R₁)**.
+- Red (partly legible): «ω₂ = 0 → 1. (erstes) Übersetzungsverhältnis»; «ω₂ ≠ 0 … ω₂ < 0 ⇒ ω_Arm ↓».
+- Sign convention implied by the figure: all velocities drawn in the same sense (to the left), i.e. ω₁, ω₂, ω₃, ω_Arm counted in the same turning sense (counter-clockwise for the drawn arrows). Verified `planetary.test.ts`.

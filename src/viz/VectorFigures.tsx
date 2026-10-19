@@ -10,21 +10,8 @@ import { Arrow, C, Curve, Dashed, Dot, Label } from './primitives';
 const DEG = Math.PI / 180;
 const t = String.raw;
 
-export function useReducedMotion() {
-  const q = '(prefers-reduced-motion: reduce)';
-  const [r, setR] = useState(() => typeof matchMedia !== 'undefined' && matchMedia(q).matches);
-  useEffect(() => {
-    if (typeof matchMedia === 'undefined') return;
-    const m = matchMedia(q), on = () => setR(m.matches);
-    m.addEventListener('change', on);
-    return () => m.removeEventListener('change', on);
-  }, []);
-  return r;
-}
-
-/** Position of an HTML label over an SVG with the given viewBox (percent of the box). */
-export const at = (vb: [number, number, number, number], x: number, y: number) =>
-  ({ left: `${((x - vb[0]) / vb[2]) * 100}%`, top: `${((y - vb[1]) / vb[3]) * 100}%` });
+export { at, useReducedMotion } from './figUtils';
+import { at } from './figUtils';
 
 /** SVG arc around O from angle a0 to a1 (radians, counter-clockwise, y up), radius r. */
 function arcPath(a0: number, a1: number, r: number) {
