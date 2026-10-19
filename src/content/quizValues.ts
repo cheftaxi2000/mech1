@@ -9,6 +9,9 @@ import { contactVelocity, wheelVelocity } from '../physics/rolling';
 import { rigidVelocity } from '../physics/rigid';
 import { rotationVelocity } from '../physics/rotation';
 import { type Vec3, add, cross, dot, norm, scale } from '../physics/vec';
+import { FIG330, fig330Solution } from '../physics/screw';
+import { ladderMZ } from '../physics/plane';
+import { omega3, omegaArm, ratioRingFixed } from '../physics/planetary';
 
 const DEG = Math.PI / 180;
 
@@ -54,3 +57,19 @@ export const Q3 = {
   fieldVM: norm(rigidVelocity([1, 0, 0], [0, 0, 2], [0, 0, 0], [0, 0.25, 0])),
   fieldTurn: cross([0, 0, 2], [0, 0.25, 0]),
 };
+
+/** Kapitel 3, pp. 24–28: Kinemate, Zentralachse, ebene Bewegung, Planetengetriebe */
+const fig = fig330Solution();
+const cubeCorners: Vec3[] = [0, 1].flatMap((x) => [0, 1].flatMap((y) => [0, 1].map((z) => [x, y, z] as Vec3)));
+const cornerSpeeds = cubeCorners.map((c) => norm(add(FIG330.vB, cross(FIG330.omega, c))));
+const ladder = ladderMZ(2, 30 * DEG, 1);
+const gear = { R1: 0.8, R2: 2.8 };
+export const Q4 = {
+  vOmega: norm(fig.vw), // Problem Fig. 3.30: |v_ω| = 2 m/s
+  axisX: fig.xP, axisZ: fig.zP, // ζ: (1, 0, 0) + λ (0, 1, 0)
+  fastestCorner: Math.max(...cornerSpeeds), slowestCorner: Math.min(...cornerSpeeds),
+  ladderOmega: Math.abs(ladder.w), ladderVV: ladder.vV, // L = 2 m, φ = 30°, v_H = 1 m/s
+  armRingFixed: omegaArm(gear, 1, 0), planetRingFixed: omega3(gear, 1, 0), ratio: ratioRingFixed(gear),
+  armStill: -gear.R1 / gear.R2, armStillCheck: omegaArm(gear, 1, -gear.R1 / gear.R2),
+};
+
