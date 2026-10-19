@@ -3,7 +3,7 @@ import { useMemo } from 'react';
 import * as THREE from 'three';
 import { Scene } from '../Scene';
 import { Arrow, C, Label } from '../primitives';
-import { DrawFrame } from '../screwDraw';
+import { CameraRig, DrawFrame } from '../screwDraw';
 import { type Vec3, scale } from '../../physics/vec';
 import { CS_CAM, CS_VERTS, cubeScrewFrame } from './cubeScrewFrame';
 
@@ -38,7 +38,7 @@ export function CubeScrewAnim({ step, t }: { step: number; t: number }) {
   return (
     <Scene height={380} camera={CS_CAM.pos as P3} target={CS_CAM.target as P3}>
       {/* axes as in Fig. 3.30: B at the origin, x toward the viewer, y to the right, z up */}
-      {([[AX, 0, 0], [0, AX, 0], [0, 0, AX]] as Vec3[]).map((p, i) => (
+      {([[AX, 0, 0], [0, AX, 0], [0, 0, 1.32]] as Vec3[]).map((p, i) => (
         <group key={i}>
           <Arrow to={p} color={C.axis} width={1.2} />
           <Label at={scale(1.08, p)} color={C.axis}>{'xyz'[i]}</Label>
@@ -48,6 +48,7 @@ export function CubeScrewAnim({ step, t }: { step: number; t: number }) {
       <CubeFaces verts={f.verts} opacity={0.13} />
       <Line points={edgesOf(f.verts)} segments color={C.r} lineWidth={1.8} />
       <DrawFrame f={f} />
+      <CameraRig pos={f.cam.pos} target={f.cam.target} />
     </Scene>
   );
 }

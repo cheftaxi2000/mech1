@@ -17,7 +17,7 @@ import type { LabelPart } from '../RichLabel';
 import type { Cam, FArrow, FDot, FLabel, FLine } from './screwFrame';
 
 export const CUBE_SCREW_STEPS = 6;
-export const CS = { KV: 0.27, KW: 0.27 };
+export const CS = { KV: 0.3, KW: 0.27 };
 export const SOL = fig330Solution();
 const { B, vB, omega, edge: L } = FIG330;
 export const CS_VERTS: Vec3[] = [0, 1].flatMap((i) => [0, 1].flatMap((j) => [0, 1].map((k) => [i * L, j * L, k * L] as Vec3)));
@@ -27,7 +27,10 @@ export const CS_P: Vec3 = [SOL.xP, 0, SOL.zP];
 export const CS_W0: Vec3 = [0, 0.2, 1.22];
 /** the quarter turn of step 6: time t = (π/2)/|ω| */
 export const CS_T = Math.PI / 2 / norm(omega);
-export const CS_CAM: Cam = { target: [0.55, 0.95, 0.42], pos: [0.55 + 4.15, 0.95 + 1.0, 0.42 + 2.35] };
+/** steps 1–5: close around the cube; step 6 moves back so the turned and shifted cube fits (same direction of view) */
+export const CS_CAM: Cam = { target: [0.5, 0.62, 0.42], pos: [0.5 + 3.45, 0.62 + 0.83, 0.42 + 1.95] };
+export const CS_CAM_WIDE: Cam = { target: [0.85, 1.25, 0.45], pos: [0.85 + 5.3, 1.25 + 1.28, 0.45 + 3.0] };
+const lerp3 = (a: Vec3, b: Vec3, k: number): Vec3 => add(a, scale(k, sub(b, a)));
 
 export interface CubeScrewFrame {
   /** pose of the cube: corners as drawn */
@@ -37,6 +40,8 @@ export interface CubeScrewFrame {
   arrows: FArrow[]; lines: FLine[]; dots: FDot[]; labels: FLabel[];
   /** for tests: where P is */
   P: Vec3 | null;
+  /** where the camera is (it moves back in step 6) */
+  cam: Cam;
 }
 
 const clamp01 = (x: number) => Math.max(0, Math.min(1, x));
@@ -50,7 +55,7 @@ export function cubeScrewFrame(step: number, t: number): CubeScrewFrame {
   const arrows: FArrow[] = [], lines: FLine[] = [], dots: FDot[] = [], labels: FLabel[] = [];
   const { KV, KW } = CS;
   const vt = (P: Vec3, v: Vec3, k = 1) => add(P, scale(KV * k, v));
-  let verts = CS_VERTS, P: Vec3 | null = null;
+  let verts = CS_VERTS, P: Vec3 | null = null, cam = CS_CAM;
 
   if (s < 5) {
     // the data (always): v_B at B, ω as a free vector
@@ -70,7 +75,7 @@ export function cubeScrewFrame(step: number, t: number): CubeScrewFrame {
         lines.push({ key: 'par1', pts: [vt(B, SOL.vw), vt(B, vB)], col: 'muted', w: 1.2, dashed: true });
         lines.push({ key: 'par2', pts: [vt(B, SOL.vperp), vt(B, vB)], col: 'muted', w: 1.2, dashed: true });
       }
-      if (split > 0.9 && s <= 2) {
+      if (split > 0.9 && s === 1) {
         labels.push({ key: 'vwB', at: add(vt(B, SOL.vw), [0, -0.12, -0.12]), parts: [ul('v', 'ω')], col: 'vw' });
         labels.push({ key: 'vpB', at: add(vt(B, SOL.vperp), [0, -0.16, 0.02]), parts: [ul('v', 'B', '⊥')], col: 'perp' });
       }
@@ -95,7 +100,7 @@ export function cubeScrewFrame(step: number, t: number): CubeScrewFrame {
       if (s === 2 && tri > 0.95) {
         labels.push({ key: 'rot', at: add(add(vt(P, vB), scale(KV * 0.5, rot)), [0, 0.32, 0]), parts: [ul('ω'), up('×'), ul('BP')], col: 'rot' });
         labels.push({ key: 'vP', at: add(vt(P, SOL.vw), [0.1, 0.12, -0.12]), parts: [ul('v', 'P'), up('='), ul('v', 'ω')], col: 'vw' });
-        labels.push({ key: 'BP', at: add(scale(0.55, add(B, P)), [0, -0.14, 0.06]), parts: [ul('BP')], col: 'dark' });
+        labels.push({ key: 'BP', at: add(scale(0.7, add(B, P)), [0, 0.16, -0.1]), parts: [ul('BP')], col: 'dark' });
       }
       // step 4: the line ζ appears behind the sliding P
       if (s >= 3) {
@@ -110,7 +115,7 @@ export function cubeScrewFrame(step: number, t: number): CubeScrewFrame {
         arrows.push({ key: 'pos', from: B, to: add(B, scale(k, SOL.axis.point)), col: 'dark', w: 3 });
         const d = ease(seg(t, 0.45, 0.9));
         if (d > 0.01) arrows.push({ key: 'dir', from: SOL.axis.point, to: add(SOL.axis.point, scale(d, SOL.axis.dir)), col: 'zeta', w: 5 });
-        if (t > 0.6) labels.push({ key: 'pos', at: add(scale(0.5, SOL.axis.point), [0, -0.3, 0.02]), parts: [up('(1, 0, 0)')], col: 'dark' });
+        if (t > 0.6) labels.push({ key: 'pos', at: add(scale(0.8, SOL.axis.point), [0, -0.42, 0.04]), parts: [up('(1, 0, 0)')], col: 'dark' });
         if (d > 0.9) labels.push({ key: 'dir', at: add(SOL.axis.point, [0.06, 0.5, -0.2]), parts: [up('(0, 1, 0)')], col: 'zeta' });
       }
     }
@@ -118,9 +123,11 @@ export function cubeScrewFrame(step: number, t: number): CubeScrewFrame {
     labels.push({ key: 'B', at: [0.02, -0.15, -0.1], parts: [{ t: 'B' }], col: 'v' });
   } else {
     // step 6: the cube screws about ζ (a quarter turn), if the Kinemate stayed the same
-    const u = ease(seg(t, 0.08, 0.95)), time = u * CS_T;
+    const k = ease(seg(t, 0, 0.15));
+    cam = { pos: lerp3(CS_CAM.pos, CS_CAM_WIDE.pos, k), target: lerp3(CS_CAM.target, CS_CAM_WIDE.target, k) };
+    const u = ease(seg(t, 0.18, 0.95)), time = u * CS_T;
     verts = CS_VERTS.map((p) => screwPosition(B, vB, omega, p, time));
-    const z0: Vec3 = add(SOL.axis.point, scale(-0.55, SOL.axis.dir)), z1: Vec3 = add(SOL.axis.point, scale(2.75, SOL.axis.dir));
+    const z0: Vec3 = add(SOL.axis.point, scale(-0.55, SOL.axis.dir)), z1: Vec3 = add(SOL.axis.point, scale(1.55 + 1.2 * k, SOL.axis.dir));
     lines.push({ key: 'zeta', pts: [z0, z1], col: 'zeta', w: 5, o: 0.85 });
     labels.push({ key: 'zeta', at: add(z1, [0, 0.12, 0.08]), parts: [{ t: 'ζ' }], col: 'zeta' });
     const n = Math.max(2, Math.round(60 * u));
@@ -136,5 +143,5 @@ export function cubeScrewFrame(step: number, t: number): CubeScrewFrame {
     arrows.push({ key: 'omega', from: w0, to: add(w0, scale(KW, omega)), col: 'omega', w: 5 });
     labels.push({ key: 'omega', at: add(w0, [0, 0.27, 0.14]), parts: [ul('ω')], col: 'omega' });
   }
-  return { verts, ghost: s === 5 && t > 0.08, arrows, lines, dots, labels, P };
+  return { verts, ghost: s === 5 && t > 0.18, arrows, lines, dots, labels, P, cam };
 }

@@ -66,8 +66,8 @@ export function InvariantExplorer() {
   const tr = useTr(), lang = useLang();
   const [ref, full, toggleFull] = useFullscreen();
   const h = useFigureHeight(420, 340);
-  const [along, setAlong] = useState(-0.35);
-  const [across, setAcross] = useState(0.3);
+  const [along, setAlong] = useState(-0.5);
+  const [across, setAcross] = useState(0.45);
   const [height, setHeight] = useState(0);
   const [all, setAll] = useState(false);
   const P: Vec3 = [across, along, height];
@@ -142,7 +142,7 @@ export function screwExplorerScene(mode: ScrewMode, p: number, u: number) {
     d.labels.push({ key: 'zeta', at: add(zHi, [0, -0.12, 0.02]), parts: [{ t: 'ζ' }], col: 'zeta' });
     const w0: Vec3 = [Z[0], Z[1], -0.6];
     d.arrows.push({ key: 'omega', from: w0, to: add(w0, scale(0.5, w)), col: 'omega', w: 5 });
-    d.labels.push({ key: 'omega', at: add(w0, [0, 0.17, 0.3]), parts: [ul('ω')], col: 'omega' });
+    d.labels.push({ key: 'omega', at: add(w0, [0, 0.2, 0.12]), parts: [ul('ω')], col: 'omega' });
   }
   const now = pose(time);
   for (const [key, p0, col] of [['B', B, 'v'], ['Z', Z, 'zeta']] as const) {
@@ -151,9 +151,8 @@ export function screwExplorerScene(mode: ScrewMode, p: number, u: number) {
     if (u > 0.005) d.lines.push({ key: `trail${key}`, pts, col, w: 2.4, o: 0.9 });
     const at = pts[pts.length - 1];
     d.dots.push({ key, at, col, r: 0.045 });
-    const v = rigidVelocity(vBm, w, add(B, now.shift), at); // the field moved with the body (ω ∥ ζ does not change)
+    // v = v_ω + ω × ZP with Z where it is now (it moved along ζ); for the translation v = v_B everywhere
     const vv = mode === 'trans' ? vBm : add(vOmegaPart(vBm, w), cross(w, sub(at, add(Z, now.shift))));
-    void v;
     d.arrows.push({ key: `v${key}`, from: at, to: vt(at, vv), col: key === 'Z' && mode !== 'trans' ? 'vw' : 'v', w: 3 });
     d.labels.push({ key, at: add(at, key === 'B' ? [0, 0, -0.17] : [0.12, -0.12, -0.13]), parts: [{ t: key }], col });
   }
