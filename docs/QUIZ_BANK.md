@@ -191,3 +191,15 @@ Short ideas for the quiz part at the end of the course (D-015). Every answer mus
 - Würfel S. 23 mit anderen Daten: v₁ = v₃ ⇒ ω ∥ P₁P₃ — warum? (ω × P₁P₃ = 0.)
 - Gibt es beim Würfel einen ruhenden Punkt? (Nein: ω·v = −v²/L ≠ 0 für alle Punkte.)
 - Leite die SdpG aus der Grundgleichung her (· BM).
+
+## Lessons 13–15 (pp. 24–28) — ideas not yet used in Quiz 4
+- Pitch of the Problem 3.30 screw: p = v_ω/ω = 1 m/rad, i.e. 2π m per turn (`screw.ts` pitch).
+- ω̲ = (0,0,1), v̲_B = (−0.75, 0, 0.25) at B = (0, 0.75, 0): Z = (0,0,0), p = 0.25 (`centralAxis`).
+- |v̲_B| = 2√2 ≈ 2.83 m/s in Problem 3.30; check with √(v_ω² + ω²d²), d = 1.
+- True/false: «v̲_ω hängt vom Punkt ab», «ζ liegt im Körper», «mit v̲_B ⊥ ω̲ gibt es eine Schraube» — all false.
+- Ladder at φ = 45°: v_V = v_H; the distance from Z to the wall corner is always L.
+- Rolling wheel: speed of the top point 2ωR (Z = contact point).
+- ω₁ = 1, ω₂ = 0.5 (R₁ = 0.8, R₂ = 2.8): ω₃ = 0.3, Z₃P = 8/3, ω_Arm ≈ 0.61.
+- If v̲_A ∥ v̲_B and both ⊥ AB: find Z with the line through the arrow tips.
+- Ladder (p. 13 in SdpG): at which α are both ends equally fast? 45°.
+
