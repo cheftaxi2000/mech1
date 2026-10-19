@@ -555,3 +555,37 @@ input[type="range"] { accent-color: var(--accent); min-height: 32px; margin: 0; 
 .slider.grow.has-val { grid-template-columns: 2em 1fr 4.5em; }
 .slider.secant-slider { grid-template-columns: auto auto 1fr auto; }
 .slider .slider-end { color: var(--muted); font-size: 0.9em; }
+/* ==== ebene-bewegung, planetengetriebe ==== (L14 plane motion & instantaneous centre, L15 planetary gear) */
+.pl-plane { fill: color-mix(in srgb, var(--muted) 7%, transparent); stroke: var(--muted); stroke-opacity: 0.55; stroke-width: 1; stroke-dasharray: 5 4; }
+.pl-perp { stroke: var(--c-angle); stroke-width: 1.5; stroke-dasharray: 6 4; }
+.pl-tips { stroke: var(--c-point); stroke-width: 1.5; stroke-dasharray: 6 4; }
+.pl-guide { stroke: var(--c-rho); stroke-width: 1.3; stroke-dasharray: 3 4; opacity: 0.9; }
+.pl-handle { fill: color-mix(in srgb, var(--c-point) 10%, transparent); stroke: var(--c-point); stroke-width: 1.3; stroke-dasharray: 3 3; cursor: grab; }
+.pl-vm line { stroke-width: 2.4; } .pl-faint line, .pl-faint polygon { opacity: 0.45; }
+.pl-edge line { stroke: var(--c-angle); stroke-width: 2.4; } .pl-edge polygon { fill: var(--c-angle); }
+.pl-small { font-size: 0.9rem; color: var(--muted); }
+.pl-ray { stroke: var(--c-angle); stroke-width: 1.6; } .pl-ray-faint { stroke: var(--c-angle); stroke-width: 1; opacity: 0.3; }
+.pl-same { fill: none; stroke: var(--c-point); stroke-width: 1.2; stroke-dasharray: 3 5; opacity: 0.55; }
+.pl-w-arc { fill: none; stroke: var(--c-angle); stroke-width: 2.2; } .pl-w-head { fill: var(--c-angle); }
+.pl-trail { fill: none; stroke: var(--c-angle); stroke-width: 2.6; stroke-linecap: round; opacity: 0.8; }
+.pl-z-ghost { fill: none; stroke: var(--c-angle); stroke-width: 1.5; stroke-dasharray: 3 2; }
+.pl-cz { stroke: var(--c-angle); stroke-width: 1.4; }
+.pl-dist { stroke: var(--c-angle); stroke-width: 1.3; }
+.pl-dir { stroke: var(--c-point); stroke-width: 2.2; stroke-dasharray: 4 4; } .pl-dir-head { fill: none; stroke: var(--c-point); stroke-width: 1.6; }
+.pl-rect { fill: color-mix(in srgb, var(--c-angle) 6%, transparent); stroke: none; }
+/* L15 planetary gear: body tints follow Fig. 3.21 (sun pink, planet light blue, arm sand), velocities red as everywhere */
+.pg-ring { fill: color-mix(in srgb, var(--muted) 24%, var(--panel)); stroke: color-mix(in srgb, var(--fg) 55%, transparent); stroke-width: 1.2; }
+.pg-ring-hole { fill: var(--panel); stroke: color-mix(in srgb, var(--fg) 55%, transparent); stroke-width: 1.1; }
+.pg-sun { fill: color-mix(in srgb, #e46a93 30%, var(--panel)); stroke: color-mix(in srgb, var(--fg) 55%, transparent); stroke-width: 1.1; }
+.pg-planet { fill: color-mix(in srgb, #4fb0c6 26%, var(--panel)); stroke: color-mix(in srgb, var(--fg) 55%, transparent); stroke-width: 1.1; }
+.pg-hole { fill: var(--panel); stroke: color-mix(in srgb, var(--fg) 45%, transparent); stroke-width: 1; }
+.pg-mark { fill: color-mix(in srgb, var(--fg) 45%, transparent); }
+.pg-pmark { stroke: color-mix(in srgb, var(--fg) 55%, transparent); stroke-width: 1.6; stroke-linecap: round; }
+.pg-arm { stroke: color-mix(in srgb, #c8963e 55%, transparent); stroke-width: 9; stroke-linecap: round; } .pg-arm.hi { stroke: color-mix(in srgb, #c8963e 90%, transparent); }
+.pg-pin { fill: var(--panel); stroke: var(--fg); stroke-width: 1.4; }
+.pg-radius { stroke: var(--fg); stroke-width: 2.4; stroke-linecap: round; }
+.pg-tri { fill: color-mix(in srgb, var(--c-point) 13%, transparent); stroke: none; }
+.pg-dist2 { stroke: var(--fg); stroke-width: 1.2; }
+.pg-armline { stroke: #b7791f; stroke-width: 1.6; stroke-dasharray: 5 4; }
+.pg-ray-sun { stroke: #d6487a; stroke-width: 1.5; stroke-dasharray: 5 4; } .pg-ray-ring { stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 5 4; }
+.vdemo-fig.pg-fig { max-width: 560px; }
