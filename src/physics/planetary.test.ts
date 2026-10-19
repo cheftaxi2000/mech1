@@ -99,6 +99,22 @@ describe('special cases (the student’s notes, R-023)', () => {
   });
 });
 
+describe('seen from the arm (supplement in the lesson)', () => {
+  it('riding on the arm, the planet turns with ω₃ − ω_Arm about A and meshes with sun and ring like fixed-axis gears', () => {
+    for (const [w1, w2] of CASES) {
+      const wA = omegaArm(g, w1, w2), w3 = omega3(g, w1, w2);
+      expect((w1 - wA) * g.R1).toBeCloseTo(-(w3 - wA) * R3(g), 12); // external pair: opposite senses
+      expect((w2 - wA) * g.R2).toBeCloseTo((w3 - wA) * R3(g), 12); // internal pair: same sense
+    }
+  });
+  it('numbers in the lesson text: ring fixed ω_Arm ≈ 0.22, ω₃ = −0.4; teeth 1 + 56/16 = 4.5', () => {
+    expect(omegaArm(g, 1, 0)).toBeCloseTo(0.22, 2);
+    expect(omega3(g, 1, 0)).toBeCloseTo(-0.4, 12);
+    expect(1 + TEETH.N2 / TEETH.N1).toBeCloseTo(ratioRingFixed(g), 12);
+    expect(omegaArm(g, 1, 0.5)).toBeCloseTo(0.61, 2);
+  });
+});
+
 describe('the gear in motion (figure): rolling without slipping and meshing teeth', () => {
   it('at every time the planet and the sun have the same velocity at P, the planet and the ring at Q', () => {
     for (const [w1, w2] of CASES) for (const t of [0, 0.7, 3.1, 12.4, 40]) {

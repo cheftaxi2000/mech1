@@ -171,6 +171,9 @@ function note(w1: number, w2: number, shift: boolean, z3: number | null, tr: Ret
   if (shift) return tr(
     <><M p=":">{t`\omega_2R_2 = \omega_1R_1`}</M> <M>P</M> und <M>Q</M> sind gleich schnell, also <M p=".">{t`\omega_3 = 0`}</M> Der Planet dreht sich nicht, er verschiebt sich nur (eine Translation auf einer Kreisbahn, wie eine Gondel im Riesenrad). Die Pfeilspitzen liegen auf einer Parallelen zum Arm: <M>{t`Z_3`}</M> liegt «im Unendlichen».</>,
     <><M p=":">{t`\omega_2R_2 = \omega_1R_1`}</M> <M>P</M> and <M>Q</M> are equally fast, so <M p=".">{t`\omega_3 = 0`}</M> The planet does not turn, it only shifts (a translation along a circle, like a Ferris-wheel gondola). The arrow tips lie on a parallel to the arm: <M>{t`Z_3`}</M> is “at infinity”.</>);
+  if (z3 !== null && z3 > g.R1 && z3 < g.R2 && !(w2 < 0 && w1 > 0)) return tr(
+    <><M>{t`v_P`}</M> und <M>{t`v_Q`}</M> zeigen in verschiedene Richtungen: <M>{t`Z_3`}</M> liegt zwischen <M>P</M> und <M p=".">Q</M></>,
+    <><M>{t`v_P`}</M> and <M>{t`v_Q`}</M> point in different directions: <M>{t`Z_3`}</M> lies between <M>P</M> and <M p=".">Q</M></>);
   if (z3 !== null && z3 > g.R1 && z3 < g.R2) return tr(
     <><M>{t`v_P`}</M> und <M>{t`v_Q`}</M> zeigen in verschiedene Richtungen: <M>{t`Z_3`}</M> liegt zwischen <M>P</M> und <M p=".">Q</M> Mit <M>{t`\omega_2 < 0`}</M> dreht der Arm langsamer als bei festem Hohlrad (oder rückwärts); bei <M>{t`\omega_2 = -\omega_1R_1/R_2`}</M> steht er still.</>,
     <><M>{t`v_P`}</M> and <M>{t`v_Q`}</M> point in different directions: <M>{t`Z_3`}</M> lies between <M>P</M> and <M p=".">Q</M> With <M>{t`\omega_2 < 0`}</M> the arm turns more slowly than with the ring fixed (or backwards); at <M>{t`\omega_2 = -\omega_1R_1/R_2`}</M> it stands still.</>);
