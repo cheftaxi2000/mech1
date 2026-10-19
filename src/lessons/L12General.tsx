@@ -203,7 +203,7 @@ export default function L12General() {
         </Box>
         <T
           de={<>
-            <p>Die Lage der Punkte steht nur in der Figur; aus den Rechnungen folgt <M p=",">{t`P_1 = (L, L, 0)`}</M> <M p=",">{t`P_2 = (0, L, L)`}</M> <M p=".">{t`P_3 = (0, 0, L)`}</M> «Kinemat in <M p="»">B</M> meint das Paar <M>{t`\v v_B`}</M> und <M p=":">{t`\v\omega`}</M> genau die zwei Vektoren, die die Grundgleichung braucht. Das übliche Fachwort für dieses Paar ist «Kinemate» (Ergänzung).</p>
+            <p>Die Lage der Punkte steht nur in der Figur; aus den Rechnungen folgt <M p=",">{t`P_1 = (L, L, 0)`}</M> <M p=",">{t`P_2 = (0, L, L)`}</M> <M p=".">{t`P_3 = (0, 0, L)`}</M> «Kinemat in <M p="»">B</M> meint das Paar <M>{t`\v v_B`}</M> und <M p=":">{t`\v\omega`}</M> genau die zwei Vektoren, die die Grundgleichung braucht. Auf S. 24 nennt das Skript dieses Paar «Kinemate» – weiter geht es in der Lektion <a href="#zentralachse">Kinemate, Zentralachse &amp; Schraube</a>.</p>
             <p><b>So liest man die Lösung:</b></p>
             <ol>
               <li>Grundgleichung mit <M>{t`P_1`}</M> als Bezugspunkt und <M>{t`P_3`}</M> als <M p=".">M</M> Weil <M p=",">{t`\v v_1 = \v v_3`}</M> muss <M>{t`\v\omega\times\v{P_1P_3}`}</M> null sein. Ein Kreuzprodukt ist null, wenn die Vektoren parallel sind: <M>{t`\v\omega`}</M> zeigt entlang der Raumdiagonale <M p=".">{t`\v{P_1P_3} = (-L, -L, L)`}</M> Ausgeschrieben gibt das Kreuzprodukt drei Gleichungen (zweite Zeile im Kasten). Durch <M>L</M> geteilt: <M p=",">{t`\omega_y = -\omega_z`}</M> <M p=",">{t`\omega_x = -\omega_z`}</M> <M p=".">{t`\omega_x = \omega_y`}</M> Also <M p=".">{t`\v\omega = (\omega_x, \omega_x, -\omega_x)`}</M></li>
@@ -212,7 +212,7 @@ export default function L12General() {
             </ol>
           </>}
           en={<>
-            <p>The positions of the points are only in the figure; the calculations imply <M p=",">{t`P_1 = (L, L, 0)`}</M> <M p=",">{t`P_2 = (0, L, L)`}</M> <M p=".">{t`P_3 = (0, 0, L)`}</M> “<span lang="de">Kinemat in</span> <M p="”">B</M> means the pair <M>{t`\v v_B`}</M> and <M p=":">{t`\v\omega`}</M> exactly the two vectors the fundamental equation needs. The usual technical term for this pair is <De en="velocity and angular velocity as a pair">Kinemate</De> (supplement).</p>
+            <p>The positions of the points are only in the figure; the calculations imply <M p=",">{t`P_1 = (L, L, 0)`}</M> <M p=",">{t`P_2 = (0, L, L)`}</M> <M p=".">{t`P_3 = (0, 0, L)`}</M> “<span lang="de">Kinemat in</span> <M p="”">B</M> means the pair <M>{t`\v v_B`}</M> and <M p=":">{t`\v\omega`}</M> exactly the two vectors the fundamental equation needs. On p. 24 the notes call this pair <De en="velocity and angular velocity as a pair">Kinemate</De> – continued in the lesson <a href="#zentralachse">Kinemate, central axis and screw</a>.</p>
             <p><b>How to read the solution:</b></p>
             <ol>
               <li>Fundamental equation with <M>{t`P_1`}</M> as the reference point and <M>{t`P_3`}</M> as <M p=".">M</M> Since <M p=",">{t`\v v_1 = \v v_3`}</M> <M>{t`\v\omega\times\v{P_1P_3}`}</M> must be zero. A cross product is zero when the vectors are parallel: <M>{t`\v\omega`}</M> points along the space diagonal <M p=".">{t`\v{P_1P_3} = (-L, -L, L)`}</M> Written out, the cross product gives three equations (second line in the box). Divided by <M p=":">L</M> <M p=",">{t`\omega_y = -\omega_z`}</M> <M p=",">{t`\omega_x = -\omega_z`}</M> <M p=".">{t`\omega_x = \omega_y`}</M> So <M p=".">{t`\v\omega = (\omega_x, \omega_x, -\omega_x)`}</M></li>
