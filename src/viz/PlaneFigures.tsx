@@ -28,6 +28,12 @@ function svgPoint(svg: SVGSVGElement, vb: readonly number[], e: React.PointerEve
   return [vb[0] + ((e.clientX - r.left) / r.width) * vb[2], vb[1] + ((e.clientY - r.top) / r.height) * vb[3]];
 }
 
+/** Label position just beyond an arrow's tip (clear of the drag handle around the tip). */
+function beyond(a: V, b: V, k = 24): V {
+  const dx = b[0] - a[0], dy = b[1] - a[1], l = Math.hypot(dx, dy) || 1;
+  return [b[0] + (k * dx) / l, b[1] + (k * dy) / l];
+}
+
 /* ------------------------------------------------------------------------------------------------ */
 const toS = (p: P2): V => [100 * p[0], 300 - 100 * p[1]];
 const toP = (q: V): P2 => [q[0] / 100, (300 - q[1]) / 100];
@@ -132,10 +138,10 @@ export function CentreDemo() {
         <div className="vdemo-label point small halo" style={at(VBC, A[0] - 14, A[1] + 12)}><M>A</M></div>
         <div className="vdemo-label point small halo" style={at(VBC, B[0] + 12, B[1] + 14)}><M>B</M></div>
         <div className="vdemo-label point small halo" style={at(VBC, Mp[0] - 14, Mp[1] + 10)}><M>M</M></div>
-        <div className="vdemo-label muted small" style={at(VBC, 92, 210)}><M>{t`K_E`}</M></div>
-        {sp(f.vA) > 0.15 && <div className="vdemo-label point small halo" style={at(VBC, tA[0] + (tA[0] > A[0] ? 16 : -16), tA[1] - 10)}><M>{t`\v v_A`}</M></div>}
-        {sp(f.vB) > 0.15 && <div className="vdemo-label point small halo" style={at(VBC, tB[0] + (tB[0] > B[0] ? 16 : -16), tB[1] - 10)}><M>{t`\v v_B`}</M></div>}
-        {tM && f.vM && sp(f.vM) > 0.15 && <div className="vdemo-label point small halo" style={at(VBC, tM[0] + (tM[0] > Mp[0] ? 16 : -16), tM[1] + 10)}><M>{t`\v v_M`}</M></div>}
+        <div className="vdemo-label muted small" style={at(VBC, 306, 200)}><M>{t`K_E`}</M></div>
+        {sp(f.vA) > 0.15 && <div className="vdemo-label point small halo" style={at(VBC, ...beyond(A, tA))}><M>{t`\v v_A`}</M></div>}
+        {sp(f.vB) > 0.15 && <div className="vdemo-label point small halo" style={at(VBC, ...beyond(B, tB))}><M>{t`\v v_B`}</M></div>}
+        {tM && f.vM && sp(f.vM) > 0.15 && <div className="vdemo-label point small halo" style={at(VBC, ...beyond(Mp, tM))}><M>{t`\v v_M`}</M></div>}
         {zShown && Z && <div className="vdemo-label angle small halo" style={at(VBC, Z[0] + 13, Z[1] - 12)}><M>Z</M></div>}
         {edge && <div className="vdemo-label angle small halo" style={at(VBC, edge.q[0] - Math.sign(edge.p[0] - 200) * 14, edge.q[1] - Math.sign(edge.p[1] - 150) * 14)}><M>Z</M></div>}
       </div>
@@ -226,7 +232,7 @@ export function WheelRays() {
         <div className="vdemo-label angle small halo" style={at(VBW, Z[0] + 14, Z[1] + 14)}><M>Z</M></div>
         <div className="vdemo-label angle small halo" style={at(VBW, O[0] + 30, O[1] - 30)}><M>\omega</M></div>
         <div className="vdemo-label muted small halo" style={at(VBW, O[0] + 0.5 * PXW, O[1] + 0.52 * PXW)}><M>R</M></div>
-        {ZP > 0.2 && (() => { const l = Math.hypot(vP[0], vP[1]), n: V = vP[0] / l > 0 ? [vP[1] / l, -vP[0] / l] : [-vP[1] / l, vP[0] / l]; return <div className="vdemo-label point small halo" style={at(VBW, (Ps[0] + tP[0]) / 2 + 15 * n[0], (Ps[1] + tP[1]) / 2 + 15 * n[1])}><M>{t`\v v_P`}</M></div>; })()}
+        {ZP > 0.2 && (() => { const l = Math.hypot(vP[0], vP[1]), n: V = vP[0] / l > 0 ? [vP[1] / l, -vP[0] / l] : [-vP[1] / l, vP[0] / l]; return <div className="vdemo-label point small halo" style={at(VBW, Ps[0] + 0.75 * (tP[0] - Ps[0]) + 20 * n[0], Ps[1] + 0.75 * (tP[1] - Ps[1]) + 20 * n[1])}><M>{t`\v v_P`}</M></div>; })()}
         <div className="vdemo-label point small halo" style={at(VBW, tO[0] + 18, tO[1] + 2)}><M>{t`\v v_O`}</M></div>
       </div>
       <figcaption className="vdemo-readout">

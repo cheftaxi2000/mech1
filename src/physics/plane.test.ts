@@ -144,6 +144,12 @@ describe('p. 27: ladder solved with the Momentanzentrum (supplement, R-022)', ()
       expect(vB[0]).toBeCloseTo(0, 12); expect(vB[1]).toBeCloseTo(-m.vV, 12);
     }
     expect(ladderMZ(L, Math.PI / 4, vH).vV).toBeCloseTo(vH, 12); // φ = 45°: both ends equally fast
+    // the ladder's middle: distance L/2 from Z (the diagonals of the rectangle ZACB bisect each other), v = v_H/(2 sin φ)
+    for (const phi of [0.4, 0.9]) {
+      const m = ladderMZ(L, phi, vH), mid: P2 = [(m.A[0] + m.B[0]) / 2, (m.A[1] + m.B[1]) / 2];
+      expect(len(sub(mid, m.Z))).toBeCloseTo(L / 2, 12);
+      expect(len(planeVelocity(m.Z, [0, 0], m.w, mid))).toBeCloseTo(vH / (2 * Math.sin(phi)), 12);
+    }
   });
   it('as the ladder slides, Z stays at distance L from the corner (circle about the corner); ω = φ̇', () => {
     const phi0 = 1.2;
