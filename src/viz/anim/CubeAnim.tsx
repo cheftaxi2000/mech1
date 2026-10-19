@@ -36,7 +36,8 @@ export function CubeAnim({ step, t }: { step: number; t: number }) {
   return (
     <Scene height={380} camera={CUBE_CAMERA.position} target={CUBE_CAMERA.target}>
       {/* axes as in the lecture's figure (O ≡ A) */}
-      {([[AX, 0, 0], [0, AX, 0], [0, 0, AX]] as Vec3[]).map((p, i) => (
+      {/* y recedes into the picture and passes through E: it runs on beyond E so its label is clear of E and ω */}
+      {([[AX, 0, 0], [0, 1.6 * AX, 0], [0, 0, AX]] as Vec3[]).map((p, i) => (
         <group key={i}>
           <Arrow to={p} color={C.axis} width={1.2} />
           <Label at={scale(1.08, p)} color={C.axis}>{'xyz'[i]}</Label>
