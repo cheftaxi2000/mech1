@@ -56,7 +56,7 @@ test('[review] zentralachse: running frames of the screw animation and the cube'
   await page.goto('/#zentralachse');
   await page.locator('article.lesson h2').first().waitFor();
   const plans: { k: number; steps: { i: number; ms: number; at: number[] }[] }[] = [
-    { k: 0, steps: [{ i: 2, ms: 6000, at: [0.25, 0.5, 0.8] }, { i: 3, ms: 5000, at: [0.2, 0.45, 0.7] }, { i: 4, ms: 5500, at: [0.25, 0.5, 0.75] }, { i: 5, ms: 12000, at: [0.15, 0.35, 0.6, 0.85] }] },
+    { k: 0, steps: [{ i: 2, ms: 6000, at: [0.25, 0.5, 0.8] }, { i: 3, ms: 5000, at: [0.2, 0.45, 0.7] }, { i: 4, ms: 5000, at: [0.25, 0.5, 0.75] }, { i: 5, ms: 4500, at: [0.2, 0.5] }, { i: 6, ms: 11000, at: [0.08, 0.3, 0.55, 0.8] }] },
     { k: 1, steps: [{ i: 3, ms: 4500, at: [0.3, 0.6] }, { i: 5, ms: 7000, at: [0.3, 0.6, 0.9] }] },
   ];
   for (const { k, steps } of plans) {

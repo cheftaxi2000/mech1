@@ -247,7 +247,7 @@ export default function L13Screw() {
             </ol>
           </>}
         />
-        <Box kind="supplement" title={<T de="Wie schnell ist ein Punkt im Abstand d von ζ?" en="How fast is a point at distance d from ζ?" />}>
+        <Box kind="supplement" title={<T de={<>Wie schnell ist ein Punkt im Abstand <M>d</M> von <M p="?">\zeta</M></>} en={<>How fast is a point at distance <M>d</M> from <M p="?">\zeta</M></>} />}>
           <T
             de={<>
               <p>Sei <M>d</M> der Abstand des Punktes <M>P</M> von der Zentralachse. Mit <M>Z</M> auf <M>\zeta</M> gilt <M p=".">{t`\v v_P = \v v_\omega + \v\omega\times\v{ZP}`}</M> Die beiden Teile stehen senkrecht aufeinander (der erste zeigt entlang <M p=",">{t`\v\omega`}</M> der zweite senkrecht dazu). Darum gilt Pythagoras. Und <M>{t`|\v\omega\times\v{ZP}| = \omega\,d`}</M> – vom Vektor <M>{t`\v{ZP}`}</M> zählt nur der Teil senkrecht zu <M p=",">{t`\v\omega`}</M> und der ist <M>d</M> lang:</p>
@@ -261,7 +261,7 @@ export default function L13Screw() {
             </>}
           />
         </Box>
-        <Box kind="supplement" title={<T de="Die Lage von ζ direkt ausrechnen" en="Computing the position of ζ directly" />}>
+        <Box kind="supplement" title={<T de={<>Die Lage von <M>\zeta</M> direkt ausrechnen</>} en={<>Computing the position of <M>\zeta</M> directly</>} />}>
           <T
             de={<>
               <p>Aus der Konstruktion von Fig. 3.16 folgt eine Formel. <M>Z</M> liegt von <M>B</M> aus um <M>{t`x = v_B^\perp/\omega`}</M> entlang <M>g</M> entfernt, und <M>g</M> zeigt in Richtung <M p=".">{t`\v e_\omega\times\v e^\perp`}</M> Zusammen, mit <M>{t`\v\omega\times\v v_\omega = \v 0`}</M> (parallele Vektoren):</p>

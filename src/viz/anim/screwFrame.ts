@@ -157,7 +157,7 @@ export function screwFrame(step: number, t: number): ScrewFrame {
       if (s === 4 && t > 0.5) {
         const Bs = onG(X_BSTAR);
         labels.push({ key: 'Bs', at: add(Bs, [0.05, -0.3, -0.02]), parts: [{ t: 'B*' }], col: 'v' });
-        labels.push({ key: 'vBs', at: add(vtip(Bs, vAt(Bs)), [-0.12, -0.12, 0.14]), parts: [ul('v', 'B*')], col: 'v' });
+        labels.push({ key: 'vBs', at: add(vtip(Bs, vAt(Bs)), [0.05, 0.14, 0.1]), parts: [ul('v', 'B*')], col: 'v' });
       }
       if (s >= 3) {
         if (walk > 0.5 && !atZ) dots.push({ key: 'P', at: P, col: 'v', r: 0.04 });
@@ -214,7 +214,7 @@ export function screwFrame(step: number, t: number): ScrewFrame {
     // ω on ζ, below the body
     const w0: Vec3 = [Z[0], Z[1], ZETA_LO + 0.02];
     arrows.push({ key: 'omega', from: w0, to: add(w0, scale(0.5, omega)), col: 'omega', w: 5 });
-    labels.push({ key: 'omega', at: add(w0, [0, 0.17, 0.3]), parts: [ul('ω')], col: 'omega' });
+    labels.push({ key: 'omega', at: add(w0, [0, 0.2, 0.12]), parts: [ul('ω')], col: 'omega' });
     for (const tr of TRACKED) {
       const n = Math.max(2, Math.round(160 * u));
       const pts = Array.from({ length: n + 1 }, (_, i) => screwPosition(B, vB, omega, tr.p, (time * i) / n));
