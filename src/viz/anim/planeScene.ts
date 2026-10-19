@@ -117,7 +117,7 @@ export function planeScene(step: number, t: number, lang: Lang): Scene {
     S('mu', 'line', 'an-leg-rho', [pr(add(Z, [0, 0, -0.55])), pr(add(Z, [0, 0, -0.55 + 1.6 * mu]))], 1);
     S('Z', 'circle', 'rl-mc', [pr(Z)], mu, 5.5);
   }
-  sb.label('lab-mu', add2(pr(add(Z, [0, 0, 0.95])), [-10, 0]), String.raw`\mu`, 'rho', mu > 0.9 ? 1 : 0, 'r');
+  sb.label('lab-mu', add2(pr(add(Z, [0, 0, -0.42])), [-10, 0]), String.raw`\mu`, 'rho', mu > 0.9 ? 1 : 0, 'r');
   sb.label('lab-Z', add2(pr(Z), [-14, 10]), 'Z', 'angle', mu > 0.9 ? 1 : 0, 'c');
   const box4 = step === 4 ? ease(seg(t, 0.6, 0.95)) : 0;
   sb.label('box4', [392, 8], '', 'fg', box4, 'tr', { box: true, rows: [
