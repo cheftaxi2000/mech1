@@ -33,7 +33,7 @@ export default function L14Plane() {
           />
           <MD>{t`\v v_A = \v v_P + \v\omega\times\v{PA}`}</MD>
           <MD>{t`\begin{pmatrix} v_{Ax}\\ v_{Ay}\\ 0 \end{pmatrix} = \begin{pmatrix} v_{Px}\\ v_{Py}\\ 0 \end{pmatrix} + \begin{pmatrix} \omega_x\\ \omega_y\\ \omega_z \end{pmatrix}\times\begin{pmatrix} PA_x\\ PA_y\\ PA_z \end{pmatrix}`}</MD>
-          <MD>{t`v_{Az} = 0 = 0 + \omega_x PA_y - \omega_y PA_x, \qquad \forall\ PA_x,\, PA_y`}</MD>
+          <MD>{t`\begin{gathered} v_{Az} = 0 = 0 + \omega_x PA_y - \omega_y PA_x,\\ \forall\ PA_x,\, PA_y \end{gathered}`}</MD>
           <MD>{t`\to\ \v\omega = \underbrace{\begin{pmatrix} 0\\ 0\\ \omega_z \end{pmatrix}}_{\text{Rotation!}} \quad \text{${tr('oder', 'or')}} \quad \underbrace{\v\omega = \v 0}_{\text{Translation}}`}</MD>
           <T de={<p>Falls Rotation: <M>{t`\mu \perp`}</M> Ebene <M p=".">E</M></p>} en={<p>If rotation: <M>{t`\mu \perp`}</M> plane <M p=".">E</M></p>} />
         </Box>

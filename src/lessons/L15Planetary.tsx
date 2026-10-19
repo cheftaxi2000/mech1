@@ -66,10 +66,13 @@ export default function L15Planetary() {
           />
           <MD>{t`\begin{aligned}
 &P,\ Q \in \boxed{3}\\
-&P \in \boxed{1}\colon\ v_P = \omega_1\cdot R_1 \qquad Q \in \boxed{2}\colon\ v_Q = \omega_2\cdot R_2\\[4pt]
-&\left\{\begin{aligned} &Z_3P\cdot\omega_3 = v_P = \omega_1\cdot R_1\\ &(Z_3P + PQ)\cdot\omega_3 = v_Q = \omega_2\cdot R_2 \end{aligned}\right. \qquad (PQ = R_2 - R_1)\\[4pt]
+&P \in \boxed{1}\colon\ v_P = \omega_1\cdot R_1\\
+&Q \in \boxed{2}\colon\ v_Q = \omega_2\cdot R_2\\[4pt]
+&\left\{\begin{aligned} &Z_3P\cdot\omega_3 = v_P = \omega_1\cdot R_1\\ &(Z_3P + PQ)\cdot\omega_3 = v_Q = \omega_2\cdot R_2 \end{aligned}\right.\\
+&(PQ = R_2 - R_1)\\[4pt]
 &Z_3P\cdot\omega_3 - Z_3P\cdot\omega_3 - PQ\cdot\omega_3 = \omega_1\cdot R_1 - \omega_2\cdot R_2\\
-&\Leftrightarrow\ \omega_1\cdot R_1 + PQ\cdot\omega_3 = \omega_2\cdot R_2 \qquad\qquad \omega_2R_2 = \omega_1R_1\ ?\\
+&\Leftrightarrow\ \omega_1\cdot R_1 + PQ\cdot\omega_3 = \omega_2\cdot R_2\\
+&\qquad\qquad \text{${tr('(daneben:', '(beside it:')}}\ \omega_2R_2 = \omega_1R_1\ ?\text{)}\\
 &\Leftrightarrow\ \omega_3 = \frac{\omega_2R_2 - \omega_1R_1}{R_2 - R_1}\\[4pt]
 &v_A = \tfrac12\,(\omega_2\cdot R_2 + \omega_1\cdot R_1)\\
 &A \in \text{Arm};\quad Z_{\text{Arm}} = O\\
