@@ -82,12 +82,12 @@ export function ladderScene(step: number, t: number, lang: Lang): Scene {
   const wo = step === 4 ? ease(seg(t, 0.15, 0.5)) : step > 4 ? 1 : 0;
   if (wo > 0.01) {
     // clockwise turning arrow about Z (SVG y down: clockwise on screen = decreasing math angle)
-    const r = 17, a0 = 165 * DEG, a1 = a0 - 150 * DEG * wo;
+    const r = 25, a0 = 170 * DEG, a1 = a0 - 95 * DEG * wo; // ends above Z, clear of the L cos φ dimension line
     const ps = Array.from({ length: 25 }, (_, i) => { const a = a0 + ((a1 - a0) * i) / 24; return [Z[0] + r * Math.cos(a), Z[1] - r * Math.sin(a)] as P2; });
     S('w-arc', 'polyline', 'pl-w-arc', ps);
     S('w-arc-h', 'polygon', 'pl-w-head', arrowHead(ps[ps.length - 2], ps[ps.length - 1], 8));
   }
-  sb.label('lab-w', [Z[0] - 22, Z[1] - 24], String.raw`\omega`, 'angle', wo > 0.9 ? 1 : 0, 'c');
+  sb.label('lab-w', [Z[0] - 33, Z[1] - 27], String.raw`\omega`, 'angle', wo > 0.9 ? 1 : 0, 'c');
   if (zo > 0.01) S('Z', 'circle', 'rl-mc', [Z], zo, 6);
   sb.label('lab-Z', [Z[0] + 14, Z[1] + 14], 'Z', 'angle', zo > 0.9 ? 1 : 0, 'c');
 
