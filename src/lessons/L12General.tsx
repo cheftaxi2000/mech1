@@ -285,6 +285,8 @@ export default function L12General() {
               <li><b><a href="#rollen">Rollen</a></b> (S. 20): Die Berührlinie ruht in diesem Augenblick – eine momentane Rotation um sie.</li>
               <li><b><a href="#kreiselung">Kreiselung</a></b> (S. 20–21): Ein Punkt <M>O</M> ruht dauernd – eine momentane Rotation um eine wandernde Achse durch <M p=".">O</M></li>
               <li><b>Allgemein</b> (S. 22): Translation plus Kreiselung, <M p=".">{t`\v v_M = \v v_B + \v\omega\times\v{BM}`}</M> Alle Fälle oben sind Spezialfälle davon.</li>
+              <li><b><a href="#zentralachse">Schraube</a></b> (S. 24–25): In jedem Augenblick ist die Bewegung eine Schraubung um die Zentralachse <M p=".">\zeta</M></li>
+              <li><b><a href="#ebene-bewegung">Ebene Bewegung</a></b> (S. 26–27): <M>{t`\v\omega`}</M> steht senkrecht zur Ebene; alles dreht sich momentan um das Momentanzentrum <M p=".">Z</M> Anwendung: <a href="#planetengetriebe">Planetengetriebe</a> (S. 28).</li>
             </ul>}
             en={<ul>
               <li><b><a href="#sdpg">SdpG</a></b> (p. 12): two points of a rigid body have equal velocity projections onto the line joining them – the tool for everything else.</li>
@@ -293,12 +295,14 @@ export default function L12General() {
               <li><b><a href="#rollen">Rolling</a></b> (p. 20): the contact line is at rest at this instant – a momentary rotation about it.</li>
               <li><b><a href="#kreiselung">Spinning motion</a></b> (pp. 20–21): one point <M>O</M> permanently at rest – a momentary rotation about a wandering axis through <M p=".">O</M></li>
               <li><b>General</b> (p. 22): translation plus spinning motion, <M p=".">{t`\v v_M = \v v_B + \v\omega\times\v{BM}`}</M> All the cases above are special cases of it.</li>
+              <li><b><a href="#zentralachse">Screw</a></b> (pp. 24–25): at every instant the motion is a screw motion about the central axis <M p=".">\zeta</M></li>
+              <li><b><a href="#ebene-bewegung">Plane motion</a></b> (pp. 26–27): <M>{t`\v\omega`}</M> is perpendicular to the plane; everything turns momentarily about the instantaneous centre <M p=".">Z</M> Application: <a href="#planetengetriebe">planetary gear</a> (p. 28).</li>
             </ul>}
           />
         </Box>
         <T
-          de={<p className="connections"><b>Geschafft:</b> Das war der letzte Abschnitt der Mitschrift. Zum Üben gibt es den <a href="#quiz-1">Quiz-Teil</a> am Ende des Menüs.</p>}
-          en={<p className="connections"><b>Done:</b> this was the last section of the notes. For practice there is the <a href="#quiz-1">quiz part</a> at the end of the menu.</p>}
+          de={<p className="connections"><b>Weiter:</b> Auf S. 24 bekommt das Paar <M>{t`\{\v v_B, \v\omega\}`}</M> einen Namen, die Kinemate – und jede allgemeine Bewegung entpuppt sich als Schraubung: <a href="#zentralachse">Kinemate, Zentralachse &amp; Schraube</a>.</p>}
+          en={<p className="connections"><b>Next:</b> on p. 24 the pair <M>{t`\{\v v_B, \v\omega\}`}</M> gets a name, the <span lang="de">Kinemate</span> – and every general motion turns out to be a screw motion: <a href="#zentralachse">Kinemate, central axis and screw</a>.</p>}
         />
       </Section>
     </article>
