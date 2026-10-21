@@ -78,7 +78,7 @@ export default function L13Screw() {
             en={<p><M>{t`\to\ \v\omega' = \v\omega \to`}</M> 1st invariant (invariant with respect to place!); <M p=".">{t`\v v_P = \v v_B + \v\omega\times\v{BP} \ne \v v_B`}</M></p>}
           />
           <T de={<p><M>\to</M> 2. Invariante?</p>} en={<p><M>\to</M> 2nd invariant?</p>} />
-          <MD>{t`\v v_P = \v v_B + \v\omega\times\v{BP}, \qquad \v v_P\cdot\v e_\omega = \v v_B\cdot\v e_\omega + \cancel{(\v\omega\times\v{BP})\cdot\v e_\omega}`}</MD>
+          <MD>{t`\begin{gathered}\v v_P = \v v_B + \v\omega\times\v{BP}\\ \v v_P\cdot\v e_\omega = \v v_B\cdot\v e_\omega + \cancel{(\v\omega\times\v{BP})\cdot\v e_\omega}\end{gathered}`}</MD>
           <T
             de={<p>Projektion von <M>{t`\v v`}</M> in Richtung von <M p=":">{t`\v\omega`}</M> <M>{t`\v v_\omega`}</M> in jedem Punkt gleich <M p=":">{t`\to \v v_\omega`}</M> 2. Invariante. Handschriftlich auf S. 25: <M>{t`\v v_\omega = (\v v\cdot\v e_\omega)\cdot\v e_\omega`}</M> – «Projektion».</p>}
             en={<p>Projection of <M>{t`\v v`}</M> in the direction of <M p=":">{t`\v\omega`}</M> <M>{t`\v v_\omega`}</M> the same at every point <M p=":">{t`\to \v v_\omega`}</M> 2nd invariant. Handwritten on p. 25: <M>{t`\v v_\omega = (\v v\cdot\v e_\omega)\cdot\v e_\omega`}</M> – “projection”.</p>}
@@ -265,12 +265,12 @@ export default function L13Screw() {
           <T
             de={<>
               <p>Aus der Konstruktion von Fig. 3.16 folgt eine Formel. <M>Z</M> liegt von <M>B</M> aus um <M>{t`x = v_B^\perp/\omega`}</M> entlang <M>g</M> entfernt, und <M>g</M> zeigt in Richtung <M p=".">{t`\v e_\omega\times\v e^\perp`}</M> Zusammen, mit <M>{t`\v\omega\times\v v_\omega = \v 0`}</M> (parallele Vektoren):</p>
-              <MD>{t`\v r_Z = \v r_B + \frac{v_B^\perp}{\omega}\,\v e_\omega\times\v e^\perp = \v r_B + \frac{\v\omega\times\v v_B^\perp}{|\v\omega|^2} = \v r_B + \frac{\v\omega\times\v v_B}{|\v\omega|^2}.`}</MD>
+              <MD>{t`\begin{aligned}\v r_Z &= \v r_B + \frac{v_B^\perp}{\omega}\,\v e_\omega\times\v e^\perp\\ &= \v r_B + \frac{\v\omega\times\v v_B^\perp}{|\v\omega|^2} = \v r_B + \frac{\v\omega\times\v v_B}{|\v\omega|^2}.\end{aligned}`}</MD>
               <p>Das ist der Punkt von <M p=",">\zeta</M> der <M>B</M> am nächsten liegt. Die Tests rechnen nach, dass die Konstruktion und diese Formel denselben Punkt geben und dass dort <M>{t`\v v = \v v_\omega`}</M> gilt.</p>
             </>}
             en={<>
               <p>The construction of Fig. 3.16 gives a formula. <M>Z</M> lies at the distance <M>{t`x = v_B^\perp/\omega`}</M> from <M>B</M> along <M p=",">g</M> and <M>g</M> points in the direction <M p=".">{t`\v e_\omega\times\v e^\perp`}</M> Together, with <M>{t`\v\omega\times\v v_\omega = \v 0`}</M> (parallel vectors):</p>
-              <MD>{t`\v r_Z = \v r_B + \frac{v_B^\perp}{\omega}\,\v e_\omega\times\v e^\perp = \v r_B + \frac{\v\omega\times\v v_B^\perp}{|\v\omega|^2} = \v r_B + \frac{\v\omega\times\v v_B}{|\v\omega|^2}.`}</MD>
+              <MD>{t`\begin{aligned}\v r_Z &= \v r_B + \frac{v_B^\perp}{\omega}\,\v e_\omega\times\v e^\perp\\ &= \v r_B + \frac{\v\omega\times\v v_B^\perp}{|\v\omega|^2} = \v r_B + \frac{\v\omega\times\v v_B}{|\v\omega|^2}.\end{aligned}`}</MD>
               <p>This is the point of <M>\zeta</M> closest to <M p=".">B</M> The tests check that the construction and this formula give the same point and that <M>{t`\v v = \v v_\omega`}</M> holds there.</p>
             </>}
           />
@@ -339,9 +339,9 @@ export default function L13Screw() {
             </>}
           />
           <MD>{t`\begin{aligned}
-&\v v_B = (0, 2, 2);\qquad (\v v_B\cdot\v e_\omega) = (0, 2, 2)\cdot(0, 1, 0) = 2;\qquad \v v_P = \v v_\omega = 2\cdot\v e_\omega\\
-&P \in \zeta \Rightarrow \v v_P = \v v_\omega \iff \v v_P = \v v_B\cdot\v\omega\times\v{BP}\\
-&\iff (0, 2, 0) = (0, 2, 2)\cdot(0, 2, 0)\times(x_P, y_P, z_P) \iff (0, 0, -2) = (2z_P, 0, -2x_P)\\
+&\v v_B = (0, 2, 2)\\ &(\v v_B\cdot\v e_\omega) = (0, 2, 2)\cdot(0, 1, 0) = 2\\ &\v v_P = \v v_\omega = 2\cdot\v e_\omega\\
+&P \in \zeta \Rightarrow \v v_P = \v v_\omega\\ &\iff \v v_P = \v v_B\cdot\v\omega\times\v{BP}\\
+&\iff (0, 2, 0) = (0, 2, 2)\cdot{}\\ &\qquad (0, 2, 0)\times(x_P, y_P, z_P)\\ &\iff (0, 0, -2) = (2z_P, 0, -2x_P)\\
 &\Rightarrow\ z_P = 0,\quad y_P\ \text{${tr('beliebig', 'arbitrary')}},\quad x_P = 1\\
 &\zeta\colon\ (1, 0, 0) + \lambda\,(0, 1, 0)
 \end{aligned}`}</MD>

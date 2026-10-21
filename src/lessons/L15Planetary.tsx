@@ -13,13 +13,13 @@ export default function L15Planetary() {
   return (
     <article className="lesson">
       <T
-        de={<p className="lede">Ein Planetengetriebe besteht aus vier Teilen, die sich alle um dieselbe Mitte drehen können – und trotzdem verschieden schnell. Das Skript rechnet aus, wie schnell sich der Arm dreht, wenn man Sonnenrad und Hohlrad antreibt. Das einzige Werkzeug dafür ist das <a href="#ebene-bewegung">Momentanzentrum</a> des Planetenrads.</p>}
-        en={<p className="lede">A planetary gear consists of four parts that can all turn about the same centre – and still at different speeds. The notes work out how fast the arm turns when the sun gear and the ring gear are driven. The only tool needed is the <a href="#ebene-bewegung">instantaneous centre</a> of the planet gear.</p>}
+        de={<p className="lede">Ein Planetengetriebe besteht aus vier Teilen: Sonne, Hohlrad und Arm drehen sich um dieselbe Mitte <M p=";">O</M> der Planet sitzt drehbar auf dem Arm und läuft zwischen Sonne und Hohlrad mit. Das Skript rechnet aus, wie schnell sich der Arm dreht, wenn man Sonnenrad und Hohlrad antreibt. Das einzige Werkzeug dafür ist das <a href="#ebene-bewegung">Momentanzentrum</a> des Planetenrads.</p>}
+        en={<p className="lede">A planetary gear consists of four parts: sun, ring gear and arm turn about the same centre <M p=";">O</M> the planet sits on the arm, free to turn, and runs along between sun and ring. The notes work out how fast the arm turns when the sun gear and the ring gear are driven. The only tool needed is the <a href="#ebene-bewegung">instantaneous centre</a> of the planet gear.</p>}
       />
       <Box kind="intuition">
         <T
-          de={<p>Planetengetriebe stecken in der Nabenschaltung eines Velos, im Automatikgetriebe eines Autos und im Küchenmixer mit den kreisenden Rührbesen. Der Trick: Ein kleines Zahnrad, der «Planet», läuft zwischen einem inneren Rad (der «Sonne») und einem äusseren Zahnkranz (dem «Hohlrad») im Kreis herum – wie ein Planet um die Sonne. Ein Arm hält ihn dabei fest. Je nachdem, welches Teil man festhält und welches man antreibt, dreht sich der Rest schneller, langsamer oder rückwärts.</p>}
-          en={<p>Planetary gears sit in the hub gears of a bicycle, in the automatic gearbox of a car and in a kitchen mixer with circling beaters. The trick: a small gear, the “planet”, runs around in a circle between an inner wheel (the “sun”) and an outer toothed ring (the “ring gear”) – like a planet around the sun. An arm holds it on its way. Depending on which part you hold and which one you drive, the rest turns faster, slower or backwards.</p>}
+          de={<p>Planetengetriebe stecken in der Nabenschaltung eines Velos, im Automatikgetriebe eines Autos und im Küchenmixer mit den kreisenden Rührbesen. Der Trick: Ein kleines Zahnrad, der «Planet», läuft zwischen einem inneren Rad (der «Sonne») und einem äusseren Zahnkranz (dem «Hohlrad») im Kreis herum – wie ein Planet um die Sonne. Er sitzt drehbar auf einem Arm, der sich um die Mitte dreht. Der Planet selbst dreht sich also nicht um die Mitte, sondern in jedem Augenblick um seinen eigenen ruhenden Punkt <M p=".">{t`Z_3`}</M> Je nachdem, welches Teil man festhält und welches man antreibt, dreht sich der Rest schneller, langsamer oder rückwärts.</p>}
+          en={<p>Planetary gears sit in the hub gears of a bicycle, in the automatic gearbox of a car and in a kitchen mixer with circling beaters. The trick: a small gear, the “planet”, runs around in a circle between an inner wheel (the “sun”) and an outer toothed ring (the “ring gear”) – like a planet around the sun. It sits, free to spin, on an arm that turns about the centre. So the planet itself does not turn about the centre but, at each instant, about its own point at rest <M p=".">{t`Z_3`}</M> Depending on which part you hold and which one you drive, the rest turns faster, slower or backwards.</p>}
         />
       </Box>
 
@@ -70,7 +70,7 @@ export default function L15Planetary() {
 &Q \in \boxed{2}\colon\ v_Q = \omega_2\cdot R_2\\[4pt]
 &\left\{\begin{aligned} &Z_3P\cdot\omega_3 = v_P = \omega_1\cdot R_1\\ &(Z_3P + PQ)\cdot\omega_3 = v_Q = \omega_2\cdot R_2 \end{aligned}\right.\\
 &(PQ = R_2 - R_1)\\[4pt]
-&Z_3P\cdot\omega_3 - Z_3P\cdot\omega_3 - PQ\cdot\omega_3 = \omega_1\cdot R_1 - \omega_2\cdot R_2\\
+&Z_3P\cdot\omega_3 - Z_3P\cdot\omega_3 - PQ\cdot\omega_3\\ &\qquad = \omega_1\cdot R_1 - \omega_2\cdot R_2\\
 &\Leftrightarrow\ \omega_1\cdot R_1 + PQ\cdot\omega_3 = \omega_2\cdot R_2\\
 &\qquad\qquad \text{${tr('(daneben:', '(beside it:')}}\ \omega_2R_2 = \omega_1R_1\ ?\text{)}\\
 &\Leftrightarrow\ \omega_3 = \frac{\omega_2R_2 - \omega_1R_1}{R_2 - R_1}\\[4pt]
