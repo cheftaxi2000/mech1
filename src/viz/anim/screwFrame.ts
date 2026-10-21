@@ -54,7 +54,7 @@ export const onG = (x: number): Vec3 => add(B, scale(x, SG_G.dir));
 const vAt = (P: Vec3): Vec3 => add(vB, cross(omega, sub(P, B)));
 /** x at the end of step 3 (P between B and Z) and of step 5 (B*, beyond Z) */
 export const X_P = 0.6 * SG_XZ;
-export const X_BSTAR = SG_XZ + 0.3;
+export const X_BSTAR = SG_XZ + 0.3; // beyond Z; limited by the long ω × BB* arrow, which must stay in the frame
 /** the faint velocity arrows along g (the lecture's fan) */
 export const COMB = [0.6 * SG_XZ, SG_XZ + 0.45];
 /** points of the circle about ζ through B (step 6): their perpendicular parts are ω × ZP */
@@ -114,7 +114,7 @@ export function screwFrame(step: number, t: number): ScrewFrame {
     // ---- steps 3–6: the line g, P walking along it
     if (s >= 2) {
       const gIn = s === 2 ? ease(seg(t, 0, 0.2)) : 1;
-      const g0 = onG(-0.42), g1 = onG(X_BSTAR + 0.3);
+      const g0 = onG(-0.42), g1 = onG(X_BSTAR + 0.12);
       lines.push({ key: 'g', pts: [g0, add(g0, scale(gIn, sub(g1, g0)))], col: 'dark', w: 1.6 });
       if (gIn > 0.9) labels.push({ key: 'g', at: add(g0, [0.06, 0.06, 0.1]), parts: [{ t: 'g' }], col: 'dark' });
       x = s === 2 ? X_P * ease(seg(t, 0.2, 0.85))
@@ -130,34 +130,42 @@ export function screwFrame(step: number, t: number): ScrewFrame {
           const Q = onG(c);
           arrows.push({ key: `comb${c.toFixed(3)}`, from: Q, to: vtip(Q, vAt(Q)), col: 'v', w: 1.5, o: 0.5 * walk });
         }
-        if (x > 0.05) lines.push({ key: 'tips', pts: [vtip(B, vB), vtip(P, vAt(P))], col: 'v', w: 1, dashed: true, o: 0.6 * walk });
+        const atBs0 = s === 4 ? ease(seg(t, 0.45, 0.7)) : 0, td = sub(vtip(P, vAt(P)), vtip(B, vB));
+        const tipEnd = add(vtip(P, vAt(P)), scale((0.07 * atBs0) / Math.max(1e-9, norm(td)), td));
+        if (x > 0.05) lines.push({ key: 'tips', pts: [vtip(B, vB), tipEnd], col: 'v', w: 1, dashed: true, o: 0.6 * walk });
       }
       // at P: copy of v_B^⊥ (orange), ω × BP (purple, against e^⊥), v_ω (blue), and the sum v_P (red)
       const rot = cross(omega, sub(P, B));
       const atZ = Math.abs(x - SG_XZ) < 1e-6;
       // at Z the two perpendicular arrows cancel: they fade out (step 4) and come back when P moves on (step 5)
       const perpO = walk * (s === 3 ? 1 - ease(seg(t, 0.3, 0.5)) : s === 4 ? ease(seg(t, 0.05, 0.2)) : 1);
+      // at B* (step 5) the long purple arrow would hide the red v_B* on the same line: the parts fade back and v
+      // is drawn a little beside them, so the caption's red tips line can be seen
+      const atBs = s === 4 ? ease(seg(t, 0.45, 0.7)) : 0;
+      // shifted along the line of the arrow tips, so the shifted tip still lies on that line
+      const tipDir = sub(vtip(P, vAt(P)), vtip(B, vB));
+      const side = scale((0.07 * atBs) / Math.max(1e-9, norm(tipDir)), tipDir);
       if (perpO > 0.01 && x > 0.02) {
-        arrows.push({ key: 'copyP', from: P, to: vtip(P, SG_VPERP), col: 'perp', w: 2.6, o: perpO });
-        arrows.push({ key: 'rotP', from: P, to: vtip(P, rot), col: 'rot', w: 3.5, o: perpO });
+        arrows.push({ key: 'copyP', from: P, to: vtip(P, SG_VPERP), col: 'perp', w: 2.6, o: perpO * (1 - 0.55 * atBs) });
+        arrows.push({ key: 'rotP', from: P, to: vtip(P, rot), col: 'rot', w: 3.5, o: perpO * (1 - 0.55 * atBs) });
       }
       if (walk > 0.01 && x > 0.02) {
         if (!atZ) arrows.push({ key: 'vwP', from: P, to: vtip(P, SG_VW), col: 'vw', w: 3, o: walk });
-        if (!atZ) arrows.push({ key: 'vP', from: P, to: vtip(P, vAt(P)), col: 'v', w: 3.2, o: walk });
+        if (!atZ) arrows.push({ key: 'vP', from: add(P, side), to: add(vtip(P, vAt(P)), side), col: 'v', w: 3.4, o: walk });
       }
       if (s === 2 && x > 0.3) {
         labels.push({ key: 'rotP', at: add(vtip(P, rot), [0.1, 0.1, -0.07]), parts: [ul('ω'), { t: '×', up: true }, ul('BP')], col: 'rot' });
-        labels.push({ key: 'vP', at: add(vtip(P, vAt(P)), [0, -0.14, 0.12]), parts: [ul('v', 'P')], col: 'v' });
-        labels.push({ key: 'P', at: add(P, [0.13, 0.13, -0.14]), parts: [{ t: 'P' }], col: 'v' });
+        labels.push({ key: 'vP', at: add(vtip(P, vAt(P)), [0, 0.17, 0.05]), parts: [ul('v', 'P')], col: 'v' });
+        labels.push({ key: 'P', at: add(P, [0.1, -0.17, -0.1]), parts: [{ t: 'P' }], col: 'v' });
         // the distance x from B to P, marked just in front of g
-        const off: Vec3 = [0.12, 0, -0.03];
-        lines.push({ key: 'xbar', pts: [add(B, off), add(P, off)], col: 'dark', w: 1.2 });
-        labels.push({ key: 'x', at: add(scale(0.5, add(B, P)), [0.26, 0, -0.08]), parts: [{ t: 'x' }], col: 'dark' });
+        const off: Vec3 = [0.24, 0, -0.03];
+        lines.push({ key: 'xbar', pts: [add(B, off), add(P, off)], col: 'dark', w: 1.1, dashed: true });
+        labels.push({ key: 'x', at: add(scale(0.5, add(B, P)), [0.38, 0, -0.08]), parts: [{ t: 'x' }], col: 'dark' });
       }
       if (s === 4 && t > 0.5) {
         const Bs = onG(X_BSTAR);
         labels.push({ key: 'Bs', at: add(Bs, [0.05, -0.3, -0.02]), parts: [{ t: 'B*' }], col: 'v' });
-        labels.push({ key: 'vBs', at: add(vtip(Bs, vAt(Bs)), [0.05, 0.14, 0.1]), parts: [ul('v', 'B*')], col: 'v' });
+        labels.push({ key: 'vBs', at: add(add(vtip(Bs, vAt(Bs)), side), [0.06, -0.24, -0.1]), parts: [ul('v', 'B*')], col: 'v' });
       }
       if (s >= 3) {
         if (walk > 0.5 && !atZ) dots.push({ key: 'P', at: P, col: 'v', r: 0.04 });

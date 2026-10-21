@@ -56,11 +56,12 @@ describe('screw explorer (p. 25, Spezialfälle)', () => {
     for (const p of s.lines.find((l) => l.key === 'trailB')!.pts) expect(p[2]).toBeCloseTo(SG.B[2], 12);
     expect(norm(vec(arrow(s, 'vZ')))).toBeCloseTo(0, 12);
   });
-  it('translation (ω = 0): no ζ, B and Z move on parallel straight lines with v_B', () => {
+  it('translation (ω = 0): no ζ and no point Z; B moves on a straight line along v_B', () => {
     const s = screwExplorerScene('trans', 0.25, 0.7);
     expect(s.lines.find((l) => l.key === 'zeta')).toBeUndefined();
-    const tb = s.lines.find((l) => l.key === 'trailB')!.pts, tz = s.lines.find((l) => l.key === 'trailZ')!.pts;
-    expect(vecApproxEqual(sub(tb[tb.length - 1], tb[0]), sub(tz[tz.length - 1], tz[0]))).toBe(true);
+    expect(s.lines.find((l) => l.key === 'trailZ')).toBeUndefined();
+    expect(s.labels.find((l) => l.key === 'Z')).toBeUndefined();
+    const tb = s.lines.find((l) => l.key === 'trailB')!.pts;
     expect(norm(cross(sub(tb[tb.length - 1], tb[0]), SG.vB))).toBeCloseTo(0, 12);
   });
   it('the drawn velocity of the moving B is v_ω + ω × ZP (tangent to its helix)', () => {

@@ -145,7 +145,9 @@ export function screwExplorerScene(mode: ScrewMode, p: number, u: number) {
     d.labels.push({ key: 'omega', at: add(w0, [0, 0.2, 0.12]), parts: [ul('ω')], col: 'omega' });
   }
   const now = pose(time);
-  for (const [key, p0, col] of [['B', B, 'v'], ['Z', Z, 'zeta']] as const) {
+  // a translation has no central axis: then only B (no point Z, no teal ζ-coloured path)
+  const tracked = mode === 'trans' ? ([['B', B, 'v']] as const) : ([['B', B, 'v'], ['Z', Z, 'zeta']] as const);
+  for (const [key, p0, col] of tracked) {
     const n = Math.max(2, Math.round(160 * u));
     const pts = Array.from({ length: n + 1 }, (_, i) => screwPosition(B, vBm, w, p0, (time * i) / n));
     if (u > 0.005) d.lines.push({ key: `trail${key}`, pts, col, w: 2.4, o: 0.9 });
