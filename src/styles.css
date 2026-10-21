@@ -595,3 +595,23 @@ input[type="range"] { accent-color: var(--accent); min-height: 32px; margin: 0; 
 .v-presets.za-left { justify-content: flex-start; }
 .v-result.za-gap { margin-top: 6px; }
 .za-muted { color: var(--muted); font-size: 0.88rem; }
+/* the note button shrinks to its icon while reading (it otherwise covers captions and read-outs) */
+.note-fab { transition: transform 0.15s, background 0.15s, width 0.2s, padding 0.2s; }
+.note-fab.compact { width: 48px; height: 48px; padding: 0; justify-content: center; border-radius: 50%; opacity: 0.92; }
+.note-fab.compact .note-fab-label { display: none; }
+.note-fab.compact:hover, .note-fab.compact:focus-visible { opacity: 1; }
+/* display formulas: boxes may be a little wider than prose on tablets (long lecture lines fit), and a
+   formula that still overflows shows a soft shadow at the edge where it continues (scroll cue) */
+@media (min-width: 1024px) {
+  .lesson > .box, .lesson > .section > .box, .lesson > .section > .derivation:not(:has(.stepper, figure)) { max-width: calc(var(--measure) + 10rem); }
+}
+.katex-display, .eq-body {
+  background:
+    linear-gradient(to right, var(--sbg, var(--bg)) 30%, transparent) left / 24px 100% no-repeat local,
+    linear-gradient(to left, var(--sbg, var(--bg)) 30%, transparent) right / 24px 100% no-repeat local,
+    radial-gradient(farthest-side at 0 50%, rgb(0 0 0 / 0.16), transparent) left / 10px 100% no-repeat scroll,
+    radial-gradient(farthest-side at 100% 50%, rgb(0 0 0 / 0.16), transparent) right / 10px 100% no-repeat scroll;
+}
+.box { --sbg: color-mix(in srgb, var(--c) var(--tint), var(--panel)); }
+.eq-body .katex-display { background: none; }
+@media (max-width: 480px) { .katex-display { font-size: 0.93em; } }

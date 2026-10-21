@@ -23,6 +23,14 @@ export function NotesLayer({ topic, wrapRef }: { topic: string; wrapRef: RefObje
   const tr = useTr();
   const { notes, add, update, remove, focusId, setFocusId } = useNotes();
   const [placing, setPlacing] = useState(false);
+  // Once the lesson is scrolled, the button shrinks to its icon so it covers as little text as possible.
+  const [compact, setCompact] = useState(false);
+  useEffect(() => {
+    const on = () => setCompact(window.scrollY > 240);
+    on();
+    window.addEventListener('scroll', on, { passive: true });
+    return () => window.removeEventListener('scroll', on);
+  }, []);
   const [, setTick] = useState(0); // re-layout when the lesson reflows
   const [undo, setUndo] = useState<Note | null>(null);
   const [editing, setEditing] = useState<string | null>(null);
@@ -83,7 +91,7 @@ export function NotesLayer({ topic, wrapRef }: { topic: string; wrapRef: RefObje
       })}
       {placing && <div className="notes-hint" role="status"><span>{tr('Tippe dorthin, wo die Notiz hin soll', 'Tap where the note should go')}</span><button type="button" onClick={() => setPlacing(false)}>{tr('Abbrechen', 'Cancel')}</button></div>}
       {undo && <div className="notes-hint undo" role="status"><span>{tr('Notiz gelöscht', 'Note deleted')}</span><button type="button" onClick={() => { add(undo); setUndo(null); }}>{tr('Rückgängig', 'Undo')}</button></div>}
-      <button type="button" className={`note-fab${placing ? ' active' : ''}`} onClick={() => setPlacing((p) => !p)}
+      <button type="button" className={`note-fab${placing ? ' active' : ''}${compact && !placing ? ' compact' : ''}`} onClick={() => setPlacing((p) => !p)}
         aria-pressed={placing} aria-label={placing ? tr('Abbrechen', 'Cancel') : tr('Notiz anheften', 'Pin a note')} title={tr('Notiz anheften', 'Pin a note')}>
         <svg viewBox="0 0 32 32" aria-hidden="true">
           {placing
