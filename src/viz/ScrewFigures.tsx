@@ -31,6 +31,9 @@ export function invariantScene(P: Vec3, all: boolean): DrawList & { vP: Vec3; vw
   d.labels.push({ key: 'B', at: add(B, [0.12, 0.12, -0.13]), parts: [{ t: 'B' }], col: 'v' });
   d.labels.push({ key: 'vB', at: add(vt(B, vB), [0, 0.04, 0.13]), parts: [ul('v', 'B')], col: 'v' });
   d.labels.push({ key: 'wB', at: add(add(B, W_OFF), [0, 0.1, KW + 0.1]), parts: [ul('ω')], col: 'omega' });
+  // the split at B too (faint), so the blue v_ω at P can be compared with the one at B: same arrow
+  d.arrows.push({ key: 'vwB', from: B, to: vt(B, vOmegaPart(vB, omega)), col: 'vw', w: 3, o: 0.55 });
+  d.arrows.push({ key: 'vpB', from: B, to: vt(B, vPerpPart(vB, omega)), col: 'perp', w: 2.6, o: 0.45 });
   // every corner (toggle): the full velocity faint, its part along ω blue — all blue arrows are the same
   if (all) SG_VERTS.forEach((Q, i) => {
     const v = rigidVelocity(vB, omega, B, Q);
@@ -198,9 +201,12 @@ export function ScrewExplorer() {
     <figure className={`explorer${full ? ' is-full' : ''}`} ref={ref}>
       <div className="stage">
         <Scene height={full ? '100%' : h} camera={CAM_WIDE.pos as P3} target={CAM_WIDE.target as P3}>
+          {/* a negative pitch screws the body downwards: lift the whole picture by half its travel so it stays in view */}
+          <group position={[0, 0, -0.5 * Math.min(0, 2 * Math.PI * pitch)]}>
           {sc.ghosts.map((g, i) => <ScrewBody key={i} angle={g.angle} shift={g.shift} ghost />)}
           <ScrewBody angle={sc.pose.angle} shift={sc.pose.shift} />
           <DrawFrame f={sc} />
+          </group>
         </Scene>
         <FullscreenButton full={full} onClick={toggleFull} />
       </div>
