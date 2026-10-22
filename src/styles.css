@@ -656,3 +656,26 @@ input[type="range"] { accent-color: var(--accent); min-height: 32px; margin: 0; 
 .plot-label.halo { text-shadow: 0 0 2px var(--panel), 0 0 3px var(--panel), 0 0 4px var(--panel), 0 0 5px var(--panel); }
 .pl-ink-f { color: var(--a-f); } .pl-ink-g, .pl-ink-tan { color: var(--a-g); } .pl-ink-sec, .pl-ink-band { color: var(--c-rho-text); }
 .pl-ink-asym { color: var(--a-asym); } .pl-ink-ref, .pl-ink-muted, .pl-ink-aux { color: var(--muted); } .pl-ink-pt { color: var(--c-point); } .pl-ink-fg { color: var(--fg); }
+
+/* ==== ana week 4 ==== */
+.w4-secant { max-width: 560px; margin-inline: auto; }
+.w4-table { border-collapse: collapse; margin: 6px auto 0; font-size: 0.95rem; }
+.w4-table th, .w4-table td { border: 1px solid var(--line); padding: 3px 10px; text-align: center; min-width: 3.2em; }
+.w4-table tr:first-child th { background: color-mix(in srgb, var(--a-f) 14%, transparent); }
+.w4-table td { color: var(--muted); } .w4-table td.on { color: var(--c-rho-text); font-weight: 600; }
+/* left secant amber (right secant teal = role sec) */
+.w4-sides .pl-asym { stroke: var(--c-y); fill: var(--c-y); } .w4-sides .pl-ink-asym, .w4-left-ink { color: var(--c-y-text); }
+.w4-right-ink { color: var(--c-rho-text); }
+.w4-pair { display: flex; gap: 18px; flex-wrap: wrap; justify-content: center; }
+/* product area: corner in red */
+.w4-prod .pl-curve.filled.pl-pt { fill: var(--c-point); fill-opacity: 0.35; stroke: var(--c-point); }
+.w4-prod .pl-curve.filled { fill-opacity: 0.22; }
+/* normal green (Serie-4 figure) */
+.w4-normal-line { stroke: var(--c-z); }
+.w4-norm .pl-ink-asym, .w4-normal-ink { color: var(--c-z-text); }
+.w4-tan-ink { color: var(--a-g); }
+.w4-norm .pl-curve.pl-fg { fill: none; stroke-width: 1.3; }
+.w4-rules { border-collapse: collapse; margin: 10px auto; }
+.w4-rules th, .w4-rules td { border: 1px solid var(--line); padding: 6px 12px; text-align: center; }
+.w4-rules th { background: color-mix(in srgb, var(--a-f) 14%, transparent); }
+@media (max-width: 520px) { .w4-rules td, .w4-rules th { padding: 5px 6px; font-size: 0.92rem; } }
