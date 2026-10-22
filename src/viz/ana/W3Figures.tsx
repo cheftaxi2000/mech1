@@ -577,7 +577,7 @@ export function DivisionTable({ num: N, den, step, t: tt }: { num: Poly; den: Po
   const last = step > nq;
   const visible = (r: { kind: string; step: number }) => r.step < step || last || (r.step === step && (r.kind === 'sub' ? tt > 0.3 : r.kind === 'rest' ? tt > 0.65 : true));
   const qShown = L.quotient.filter((_, k) => k + 1 < step || last || (k + 1 === step && tt > 0.02));
-  const right = `:\\ (${polyTex(den, lang)}) = ${qShown.join(' ')}${last ? ` + \\frac{${polyTex(L.rest, lang)}}{${polyTex(den, lang)}}` : ''}`;
+  const right = `:\\ (${polyTex(den, lang)}) = ${qShown.join(' ')}${last ? ' + \\ldots' : ''}`;
   return (
     <div className="w3-div" role="img" aria-label="long division">
       <div className="w3-div-grid" style={{ gridTemplateColumns: `repeat(${L.cols}, auto) 1fr` }}>
@@ -595,7 +595,7 @@ export function DivisionTable({ num: N, den, step, t: tt }: { num: Poly; den: Po
           ];
         })}
       </div>
-      {last && <div className="w3-div-res"><M>{`\\Rightarrow\\ g(x) = ${divResultTex(L, lang).split(' + \\frac')[0]}`}</M></div>}
+      {last && <div className="w3-div-res"><M>{`f(x) = ${divResultTex(L, lang)}`}</M><br /><M>{`\\Rightarrow\\ g(x) = ${divResultTex(L, lang).split(' + \\frac')[0]}`}</M></div>}
     </div>
   );
 }

@@ -679,14 +679,15 @@ input[type="range"] { accent-color: var(--accent); min-height: 32px; margin: 0; 
 .w3-iv-end { fill: var(--a-sec); stroke: var(--a-sec); stroke-width: 2; } .w3-iv-end.open { fill: var(--panel); }
 .w3-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
 .w3-pair-cap { text-align: center; margin-top: 4px; font-size: 0.95rem; }
-.w3-div { display: grid; justify-items: center; gap: 8px; padding: 10px 0; min-height: 15em; align-content: start; overflow-x: auto; }
+.w3-div { container-type: inline-size; display: grid; justify-items: center; gap: 8px; padding: 10px 0; min-height: 15em; align-content: start; overflow-x: auto; }
+.w3-div > * { font-size: min(1.05rem, 3cqw); }
 .w3-div-grid { display: grid; column-gap: 0; row-gap: 2px; align-items: end; }
 .w3-cell { padding: 1px 6px; text-align: right; white-space: nowrap; }
 .w3-cell.line { border-bottom: 1.5px solid var(--fg); }
 .w3-cell.new { color: var(--a-g); }
 .w3-cell.rest { color: var(--a-g); font-weight: 600; }
 .w3-q { text-align: left; padding-left: 10px; }
-.w3-div-res { color: var(--a-g); }
+.w3-div-res { color: var(--a-g); text-align: center; line-height: 2; }
 @media (max-width: 480px) {
   .w3-pair { grid-template-columns: 1fr; }
   .w3-iv-row { grid-template-columns: 4em minmax(90px, 1fr) 6.5em; gap: 6px; }

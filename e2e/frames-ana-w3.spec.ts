@@ -28,7 +28,7 @@ for (const topic of TOPICS) {
           await st.locator('.stepper-fig').screenshot({ path: `test-results/frames/w3-${topic}-${name}-anim${k + 1}-step${i + 1}.png` });
         }
       }
-      if (name === 'ipad') {
+      if (name !== 'ipad-dark') {
         const players = page.locator('.w3-mirror');
         for (let k = 0; k < (await players.count()); k++) {
           const pl = players.nth(k), bs = pl.locator(':scope > .v-presets button');
@@ -37,7 +37,7 @@ for (const topic of TOPICS) {
             const nums = pl.locator('.step-num'), n = await nums.count();
             for (const i of [1, n - 1]) {
               await nums.nth(i).click(); await page.waitForTimeout(300);
-              await pl.locator('.stepper-fig').screenshot({ path: `test-results/frames/w3-${topic}-ipad-player${k + 1}-ex${p + 1}-step${i + 1}.png` });
+              await pl.locator('.stepper-fig').screenshot({ path: `test-results/frames/w3-${topic}-${name}-player${k + 1}-ex${p + 1}-step${i + 1}.png` });
             }
           }
         }
