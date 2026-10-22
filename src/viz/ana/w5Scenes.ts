@@ -26,7 +26,7 @@ export const TAN = { x0: 1, dx0: 0.8, dx1: 0.2, f: FUNS.sq.f, fp: FUNS.sq.fp };
 /** Window around P = (1, 1) scaled with Δx (s = Δx / 0,8): the zoom of step 5. */
 export function tanWindow(dx: number): Win {
   const s = dx / TAN.dx0;
-  return { x: [TAN.x0 - 1.3 * s, TAN.x0 + 1.3 * s], y: [TAN.f(TAN.x0) - 1.2 * s, TAN.f(TAN.x0) + 3.3 * s] };
+  return { x: [TAN.x0 - 1.2 * s, TAN.x0 + 1.75 * s], y: [TAN.f(TAN.x0) - 1.2 * s, TAN.f(TAN.x0) + 3.3 * s] };
 }
 export interface TanFrame {
   win: Win; dx: number; tick: number;

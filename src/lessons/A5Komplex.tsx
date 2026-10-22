@@ -23,14 +23,14 @@ export default function A5Komplex() {
               <li><M>{t`\mathbb N`}</M> = natürliche Zahlen = <M p=",">{t`\{(0), 1; 2; 3; \dots\}`}</M> <M>{t`\mathbb N^+ = \mathbb N\setminus\{0\} = \{1; 2; 3; \dots\}`}</M></li>
               <li><M>{t`\mathbb Z`}</M> = ganze Zahlen = <M>{t`\{0; \pm1; \pm2; \pm3; \dots\}`}</M></li>
               <li><M>{t`\mathbb Q`}</M> = rationale Zahlen = <M>{t`\{p/q:\ p, q`}</M> sind <M>{t`\mathbb Z`}</M> und <M>{t`q \neq 0\}`}</M></li>
-              <li><M>{t`\mathbb R`}</M> = reelle Zahlen = alle Zahlen, die auf der Zahlengerade liegen</li>
+              <li><M>{t`\mathbb R`}</M> = reelle Zahlen <M>=</M> alle Zahlen, die auf der Zahlengerade liegen</li>
               <li><M>{t`\mathbb C`}</M> = komplexe Zahlen = <M>{t`\{z = a - ib:\ a, b`}</M> sind <M>{t`\mathbb R`}</M> und <M>{t`i = \sqrt{-1}`}</M> oder <M>{t`i^2 = -1\}`}</M> (<M p=":">i</M> imaginäre Einheit)</li>
             </ul>}
             en={<ul>
               <li><M>{t`\mathbb N`}</M> = natural numbers = <M p=",">{t`\{(0), 1; 2; 3; \dots\}`}</M> <M>{t`\mathbb N^+ = \mathbb N\setminus\{0\} = \{1; 2; 3; \dots\}`}</M></li>
               <li><M>{t`\mathbb Z`}</M> = integers = <M>{t`\{0; \pm1; \pm2; \pm3; \dots\}`}</M></li>
               <li><M>{t`\mathbb Q`}</M> = rational numbers = <M>{t`\{p/q:\ p, q`}</M> are in <M>{t`\mathbb Z`}</M> and <M>{t`q \neq 0\}`}</M></li>
-              <li><M>{t`\mathbb R`}</M> = real numbers = all numbers on the number line</li>
+              <li><M>{t`\mathbb R`}</M> = real numbers <M>=</M> all numbers on the number line</li>
               <li><M>{t`\mathbb C`}</M> = complex numbers = <M>{t`\{z = a - ib:\ a, b`}</M> are in <M>{t`\mathbb R`}</M> and <M>{t`i = \sqrt{-1}`}</M> or <M>{t`i^2 = -1\}`}</M> (<M p=":">i</M> <De en="imaginary unit">imaginäre Einheit</De>)</li>
             </ul>}
           />

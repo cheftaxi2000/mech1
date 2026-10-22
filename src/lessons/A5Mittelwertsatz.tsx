@@ -73,8 +73,8 @@ export default function A5Mittelwertsatz() {
           <MD>{t`f(a) = f(b) \;\Rightarrow\; \exists\, c\in(a, b):\; f'(c) = 0`}</MD>
         </Box>
         <T
-          de={<p>Das ist der Mittelwertsatz mit <M p=":">{t`f(a) = f(b)`}</M> Dann ist der Zähler <M>{t`f(b) - f(a) = 0`}</M> und die Sekante waagerecht. Bild: Ein Ball wird hochgeworfen und auf derselben Höhe gefangen – im höchsten Punkt fliegt er kurz waagerecht. Im Bild oben: Knopf «Rolle». Beim Knopf «Knick» (<M p=")">{t`|x|`}</M> sind die Höhen gleich, aber es gibt keine waagerechte Tangente – weil <M>{t`|x|`}</M> bei <M>0</M> nicht differenzierbar ist.</p>}
-          en={<p>This is the mean value theorem with <M p=".">{t`f(a) = f(b)`}</M> Then the numerator is <M>{t`f(b) - f(a) = 0`}</M> and the secant is horizontal. Picture: a ball is thrown up and caught at the same height – at the top it flies horizontally for an instant. In the figure above: button “Rolle”. With the “kink” button (<M p=")">{t`|x|`}</M> the heights are equal, but there is no horizontal tangent – because <M>{t`|x|`}</M> is not differentiable at <M p=".">0</M></p>}
+          de={<p>Das ist der Mittelwertsatz mit <M p=":">{t`f(a) = f(b)`}</M> Dann ist der Zähler <M>{t`f(b) - f(a) = 0`}</M> und die Sekante waagerecht. Bild: Ein Ball wird hochgeworfen und auf derselben Höhe gefangen – im höchsten Punkt fliegt er kurz waagerecht. Im Bild oben: Knopf «Rolle». Beim Knopf «Knick» mit <M>{t`|x|`}</M> sind die Höhen gleich, aber es gibt keine waagerechte Tangente – weil <M>{t`|x|`}</M> bei <M>0</M> nicht differenzierbar ist.</p>}
+          en={<p>This is the mean value theorem with <M p=".">{t`f(a) = f(b)`}</M> Then the numerator is <M>{t`f(b) - f(a) = 0`}</M> and the secant is horizontal. Picture: a ball is thrown up and caught at the same height – at the top it flies horizontally for an instant. In the figure above: button “Rolle”. With the “kink” button, <M p=",">{t`|x|`}</M> the heights are equal, but there is no horizontal tangent – because <M>{t`|x|`}</M> is not differentiable at <M p=".">0</M></p>}
         />
       </Section>
 

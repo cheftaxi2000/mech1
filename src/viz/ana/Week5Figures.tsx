@@ -42,7 +42,7 @@ export function TanFigure({ step, t: tt }: { step: number; t: number }) {
         {s.showQ && <PLabel x={s.Q[0]} y={s.Q[1]} dx={-9} anchor="r" tex={t`f(x+\Delta x)`} role="f" small />}
         {s.DfGrow >= 1 && <PLabel x={xr + off} y={s.P[1] + 0.5 * s.exact} dx={7} anchor="l" tex={t`\Delta f`} role="f" />}
         {s.dfGrow >= 1 && <PLabel x={xr - off} y={s.P[1] + 0.45 * s.lin} dx={-7} anchor="r" tex={t`df`} role="tan" />}
-        {s.showGap && <PLabel x={xr + off} y={(s.T[1] + s.Q[1]) / 2} dx={30} anchor="l" tex={t`\Delta f - df`} role="pt" small />}
+        {s.showGap && <PLabel x={xr + off} y={(s.T[1] + s.Q[1]) / 2} dx={12} anchor="l" tex={t`\Delta f - df`} role="pt" small />}
       </Plot>
       <div className="w5-read">
         <M>{t`\Delta x = ${n(s.dx, 2, lang)}`}</M>
@@ -190,7 +190,7 @@ export function MvtFigure({ step, t: tt }: { step: number; t: number }) {
         <PLabel x={B[0]} y={B[1]} dx={-10} dy={-4} anchor="r" tex="(3, 9)" small />
         <PLabel x={1.55} y={4.6} anchor="r" tex={t`\text{${tr('Sekante', 'secant')}: } m = 4`} role="sec" small />
         {s.C && <PLabel x={s.C[0]} y={s.C[1]} dx={10} dy={12} anchor="l" tex="(2, 4)" role="tan" small />}
-        {s.C && <PLabel x={2.9} y={2.6} anchor="l" tex={t`\text{${tr('Tangente', 'tangent')}: } m = 4`} role="tan" small />}
+        {s.C && <PLabel x={2.25} y={2.1} anchor="l" tex={t`\text{${tr('Tangente', 'tangent')}: } m = 4`} role="tan" small />}
         {s.showC && <PLabel x={2} y={0} dx={12} dy={-10} anchor="l" tex="c = 2" role="pt" small />}
       </Plot>
       <div className="w5-read">
@@ -236,7 +236,6 @@ export function MvtExplorer() {
     setAb(which === 0 ? [Math.min(v, b - 0.25), b] : [a, Math.max(v, a + 0.25)]);
   };
   const list = cs === 'all' ? [] : cs;
-  const sx = P.win.x[1] - P.win.x[0];
   return (
     <figure className="vdemo">
       <div className="v-presets">
@@ -260,11 +259,11 @@ export function MvtExplorer() {
           <PLabel x={a} y={f(a)} dx={-10} dy={-12} anchor="r" tex="a" role="pt" />
           <PLabel x={b} y={f(b)} dx={10} dy={-12} anchor="l" tex="b" role="pt" />
           {list.map((c, i) => <PLabel key={i} x={c} y={f(c)} dx={c < (a + b) / 2 ? -10 : 10} dy={14} anchor={c < (a + b) / 2 ? 'r' : 'l'} tex={list.length > 1 ? `c_${i + 1}` : 'c'} role="tan" />)}
-          {key === 'abs' && kink && <PLabel x={0} y={0} dy={-16} tex={t`\text{${tr('Knick', 'kink')}}`} role="pt" small />}
-          <PLabel x={P.win.x[0] + 0.03 * sx} y={P.win.y[1]} dy={14} anchor="l" tex={`f(x) = ${P.tex}`} role="f" small />
+          {key === 'abs' && kink && <PLabel x={0} y={0} dx={8} dy={14} anchor="l" tex={t`\text{${tr('Knick', 'kink')}}`} role="pt" small />}
         </Plot>
       </div>
       <figcaption className="vdemo-readout">
+        <div className="v-result"><M>{`f(x) = ${P.tex}`}</M></div>
         <div className="v-result"><M>{t`m = \frac{f(b) - f(a)}{b - a} = ${n(m, 2, lang)}`}</M></div>
         <div className={`v-result${list.length || cs === 'all' ? ' pos' : ' neg'}`}>
           {cs === 'all' ? <span>{tr('Gerades Stück: jedes ', 'Straight piece: every ')}<M>c</M>{tr(' passt.', ' works.')}</span>
@@ -305,7 +304,7 @@ function SignBar({ g, x, label, x0 }: { g: (v: number) => number; x: Range; labe
         {iv.slice(1).map((s, i) => <line key={i} x1={fr.sx(s.from)} x2={fr.sx(s.from)} y1={1} y2={25} className="w5-cut" />)}
         <line x1={fr.sx(x0)} x2={fr.sx(x0)} y1={0} y2={26} className="w5-x0" />
       </svg>
-      {iv.map((s, i) => (fr.sx(s.to) - fr.sx(s.from) > 34) && <div key={i} className="vdemo-label small w5-sign" style={at(VB, (fr.sx(s.from) + fr.sx(s.to)) / 2, 13)}><M>{s.s > 0 ? '+' : s.s < 0 ? '-' : '0'}</M></div>)}
+      {iv.map((s, i) => (fr.sx(s.to) - fr.sx(s.from) > 34) && <div key={i} className="vdemo-label small w5-sign" style={at(VB, fr.sx(s.from) + 0.3 * (fr.sx(s.to) - fr.sx(s.from)), 13)}><M>{s.s > 0 ? '+' : s.s < 0 ? '-' : '0'}</M></div>)}
       <div className="w5-bar-name"><M>{label}</M></div>
     </div>
   );
@@ -357,11 +356,11 @@ export function CurvatureExplorer() {
 /* =============================================================== 8 · Extremalstellen auf [a, b] (step animations) */
 
 const roleOf = (r: CandFrame['cands'][number]['role']) => r;
-function CandPlot({ s, fun, dom, labels }: { s: CandFrame; fun: Fun; dom: Range; labels: (c: CandFrame['cands'][number]) => { tex: string; dx: number; dy: number; anchor: 'l' | 'r' | 'c' } | null }) {
+function CandPlot({ s, fun, dom, labels, band = true }: { s: CandFrame; fun: Fun; dom: Range; band?: boolean; labels: (c: CandFrame['cands'][number]) => { tex: string; dx: number; dy: number; anchor: 'l' | 'r' | 'c' } | null }) {
   const tr = useTr();
   return (
     <Plot x={s.win.x} y={s.win.y} grid={s.tick} tick={s.tick} label={tr('Graph auf dem Intervall mit den Kandidaten', 'Graph on the interval with the candidates')}>
-      <Band from={dom[0]} to={dom[1]} vertical />
+      {band && <Band from={dom[0]} to={dom[1]} vertical />}
       <Curve f={fun.f} role="ref" dashed />
       <Curve f={fun.f} dom={dom} />
       {s.showMaxMin && <HLine y={s.max} role="f" />}
@@ -376,8 +375,8 @@ export function Ex1Figure({ step }: { step: number; t: number }) {
   const tr = useTr();
   const s = ex1Scene(step);
   const lab = (c: CandFrame['cands'][number]) => {
-    if (!c.inside) return { tex: t`-\tfrac{1}{\sqrt3} \notin D_f`, dx: 0, dy: -16, anchor: 'c' as const };
-    if (c.x === -0.5) return { tex: (step >= 3 ? t`\max = ` : '') + t`\tfrac38`, dx: 10, dy: -12, anchor: 'l' as const };
+    if (!c.inside) return { tex: t`-\tfrac{1}{\sqrt3} \notin D_f`, dx: -2, dy: -20, anchor: 'r' as const };
+    if (c.x === -0.5) return { tex: (step >= 3 ? t`\max = ` : '') + t`\tfrac38`, dx: 6, dy: -20, anchor: 'l' as const };
     if (c.x === 1) return { tex: t`f(1) = 0`, dx: -8, dy: -14, anchor: 'r' as const };
     return { tex: (step >= 3 ? t`\min = ` : '') + t`-\tfrac{2}{3\sqrt3}`, dx: 0, dy: 20, anchor: 'c' as const };
   };
@@ -398,7 +397,7 @@ export function Ex2Figure({ step, t: tt }: { step: number; t: number }) {
   const s = ex2Scene(step, tt);
   const zoomed = step === 2 && tt > 0.5;
   const lab = (c: CandFrame['cands'][number]) => {
-    if (Math.abs(c.x) === 2) return zoomed ? null : { tex: '12', dx: c.x < 0 ? 10 : -10, dy: 2, anchor: c.x < 0 ? 'l' as const : 'r' as const };
+    if (Math.abs(c.x) === 2) return zoomed ? null : { tex: '12', dx: c.x < 0 ? 10 : -10, dy: 16, anchor: c.x < 0 ? 'l' as const : 'r' as const };
     if (c.x === 0) return step >= 2 && zoomed ? { tex: t`\text{${tr('lokales Maximum', 'local maximum')}}`, dx: 0, dy: -18, anchor: 'c' as const } : null;
     return zoomed ? { tex: t`-\tfrac14`, dx: 0, dy: 18, anchor: 'c' as const } : null;
   };
@@ -407,7 +406,7 @@ export function Ex2Figure({ step, t: tt }: { step: number; t: number }) {
   const row = (arr: string[]) => arr.map((v, i) => (i < k ? v : t`\phantom{-\tfrac14}`)).join(' & ');
   return (
     <div className="w5-anim">
-      <CandPlot s={s} fun={FUNS.x4x2} dom={[-2, 2]} labels={lab} />
+      <CandPlot s={s} fun={FUNS.x4x2} dom={[-2, 2]} labels={lab} band={false} />
       {!zoomed && s.showMaxMin && <div className="w5-read"><M>{t`\color{#3b82f6}\max(g) = 12 \text{ ${tr('bei', 'at')} } x = \pm 2`}</M></div>}
       <div className="w5-read"><M>{t`\begin{array}{c|ccccc} x & ${row(cols)} \\ \hline g(x) & ${row(vals)} \end{array}`}</M></div>
       {s.showMaxMin && <div className="w5-read"><M>{t`\color{#ec4899}\min(g) = -\tfrac14 \text{ ${tr('bei', 'at')} } x = \pm\tfrac{1}{\sqrt2}`}</M></div>}
@@ -498,7 +497,13 @@ export function ComplexExplorer() {
   const P = (z: C): P2 => [z.re, z.im];
   const res = mode === 'add' ? cadd(z1, z2) : csub(z1, z2);
   const zb = conj(z1), mz2 = cx(-z2.re, -z2.im);
-  const lab = (z: C, tex: string, role: 'f' | 'g' | 'sec') => { const q = tipLabel(P(z), CWIN); return <PLabel x={q[0]} y={q[1]} tex={tex} role={role} small />; };
+  const lab = (z: C, tex: string, role: 'f' | 'g' | 'sec' | 'muted') => {
+    const l = Math.hypot(z.re, z.im);
+    if (l < 1e-9) { const q = tipLabel(P(z), CWIN); return <PLabel x={q[0]} y={q[1]} tex={tex} role={role} small />; }
+    const ux = z.re / l, uy = z.im / l;
+    const anchor = ux > 0.35 ? 'l' : ux < -0.35 ? 'r' : uy > 0 ? 'b' : 't';
+    return <PLabel x={z.re} y={z.im} dx={12 * ux} dy={-12 * uy} anchor={anchor} tex={tex} role={role} small />;
+  };
   const mid = (z: C) => { const l = Math.hypot(z.re, z.im) || 1; return [z.re / 2 - (0.55 * z.im) / l, z.im / 2 + (0.55 * z.re) / l] as P2; };
   const slideVals = mode === 'conj' ? z1.re === 3 && z1.im === 4 : z1.re === 3 && z1.im === 1 && z2.re === 1 && z2.im === 2;
   return (
@@ -527,7 +532,7 @@ export function ComplexExplorer() {
             <Pt x={z1.re} y={z1.im} role="f" r={6} /><Pt x={z2.re} y={z2.im} role="sec" r={6} />
             {lab(z1, t`z_1`, 'f')}{lab(z2, t`z_2`, 'sec')}
             {lab(res, mode === 'add' ? t`z_1 + z_2` : t`z_1 - z_2`, 'g')}
-            {mode === 'sub' && (() => { const q = tipLabel(P(mz2), CWIN); return <PLabel x={q[0]} y={q[1]} tex={t`-z_2`} role="muted" small />; })()}
+            {mode === 'sub' && lab(mz2, t`-z_2`, 'muted')}
           </>}
         </Plot>
       </div>
@@ -586,14 +591,16 @@ const DIV_LINES = [
   t`\frac{3 + i}{1 + 2i} = \frac{(3 + i)\,{\color{#ec4899}(1 - 2i)}}{(1 + 2i)\,{\color{#ec4899}(1 - 2i)}}`,
   t`= \frac{3 - 6i + i - 2i^2}{1 - 4i^2}`,
   t`= \frac{3 - 5i + 2}{1 + 4} = \frac{5 - 5i}{5}`,
-  t`= 1 - i \qquad \text{Check: } (1 - i)(1 + 2i) = 1 + 2i - i - 2i^2 = 3 + i\ \checkmark`,
+  t`= 1 - i`,
 ];
+const DIV_CHECK = t`\begin{aligned} \text{Check: } &(1 - i)(1 + 2i) \\ &= 1 + 2i - i - 2i^2 = 3 + i\ \checkmark \end{aligned}`;
 export function DivSteps({ step, t: tt }: { step: number; t: number }) {
   return (
     <div className="w5-anim w5-div">
       {DIV_LINES.map((l, i) => (
         <div key={i} className={`w5-line${i === step ? ' now' : ''}`} style={{ opacity: i < step ? 0.75 : i === step ? Math.min(1, 0.2 + 1.2 * tt) : 0 }}>
           <MD>{l}</MD>
+          {i === DIV_LINES.length - 1 && <MD>{DIV_CHECK}</MD>}
         </div>
       ))}
     </div>

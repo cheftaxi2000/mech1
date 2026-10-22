@@ -211,7 +211,7 @@ export default function A5Fehler() {
         <Box kind="misconception" title={<T de="«1 % Messfehler gibt 1 % Fehler im Ergebnis.»" en="“A 1 % measurement error gives a 1 % error in the result.”" />}>
           <T de={<>Nur bei linearen Formeln wie <M p=".">{t`A = a b`}</M> Bei <M>{t`r^2`}</M> werden es <M p=",">{t`2\,\%`}</M> beim Quader nur <M p=".">{t`0{,}7\,\%`}</M> Entscheidend ist <M p=".">{t`f'(x)`}</M></>} en={<>Only for linear formulas like <M p=".">{t`A = a b`}</M> With <M>{t`r^2`}</M> it becomes <M p=";">{t`2\,\%`}</M> for the box only <M p=".">{t`0.7\,\%`}</M> What matters is <M p=".">{t`f'(x)`}</M></>} />
         </Box>
-        <Box kind="misconception" title={<T de="«Relativer Fehler = absoluter Fehler in Prozent.»" en="“Relative error = absolute error in per cent.”" />}>
+        <Box kind="misconception" title={<T de="«Relativer Fehler gleich absoluter Fehler in Prozent.»" en="“Relative error equals absolute error in per cent.”" />}>
           <T de={<>Nein: erst durch den Wert <M>{t`|f(x)|`}</M> teilen, dann mal 100. <M>{t`E_A = 0{,}3\ \mathrm m^2`}</M> ist nicht <M p=",">{t`0{,}3\,\%`}</M> sondern <M>{t`0{,}3/36 = 0{,}833\,\%`}</M> der Fläche.</>} en={<>No: first divide by the value <M p=",">{t`|f(x)|`}</M> then multiply by 100. <M>{t`E_A = 0.3\ \mathrm m^2`}</M> is not <M p=",">{t`0.3\,\%`}</M> but <M>{t`0.3/36 = 0.833\,\%`}</M> of the area.</>} />
         </Box>
         <Box kind="key">

@@ -685,7 +685,7 @@ input[type="range"] { accent-color: var(--accent); min-height: 32px; margin: 0; 
 span.w5-key { display: inline-block; width: 1.1em; height: 0.8em; border-radius: 3px; vertical-align: -0.05em; }
 span.w5-key.w5-plus { background: color-mix(in srgb, var(--a-f) 55%, transparent); }
 span.w5-key.w5-minus { background: color-mix(in srgb, var(--a-g) 55%, transparent); }
-.vdemo-fig.w5-sets { max-width: 460px; }
+.vdemo-fig.w5-sets { max-width: 600px; }
 .w5-set { stroke-width: 1.5; }
 .w5-set-C { fill: color-mix(in srgb, var(--a-asym) 7%, transparent); stroke: var(--a-asym); }
 .w5-set-R { fill: color-mix(in srgb, var(--a-f) 7%, transparent); stroke: var(--a-f); }
