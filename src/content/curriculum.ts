@@ -79,9 +79,9 @@ export const TOPICS: Topic[] = [
   { id: 'quiz-3', chapter: 'Q', title: ['Quiz 3 · Starrer Körper', 'Quiz 3 · Rigid body'], pages: '12–23', status: 'review', component: lazy(() => import('../lessons/Q3Quiz')) },
   { id: 'quiz-4', chapter: 'Q', title: ['Quiz 4 · Schraube, ebene Bewegung', 'Quiz 4 · Screw, plane motion'], pages: '24–28', status: 'review', component: lazy(() => import('../lessons/Q4Quiz')) },
   // Analysis 1 – one chapter per week (D-023). `pages`: «Ü<n>/<pdf pages>» = Übungs-Resümee n, pages of that PDF.
-  { id: 'ana-folgen', chapter: 'A1', title: ['Folgen: beschränkt, monoton, konvergent', 'Sequences: bounded, monotonic, convergent'], pages: 'Ü1/10', status: 'planned' },
-  { id: 'ana-grenzwerte-folgen', chapter: 'A1', title: ['Grenzwerte von Folgen', 'Limits of sequences'], pages: 'Ü1/11', status: 'planned' },
-  { id: 'ana-reihen', chapter: 'A1', title: ['Arithmetische, geometrische und harmonische Reihe', 'Arithmetic, geometric and harmonic series'], pages: 'Ü1/11–12', status: 'planned' },
+  { id: 'ana-folgen', chapter: 'A1', title: ['Folgen: beschränkt, monoton, konvergent', 'Sequences: bounded, monotonic, convergent'], pages: 'Ü1/10', status: 'review', component: lazy(() => import('../lessons/A1Folgen')) },
+  { id: 'ana-grenzwerte-folgen', chapter: 'A1', title: ['Grenzwerte von Folgen', 'Limits of sequences'], pages: 'Ü1/11', status: 'review', component: lazy(() => import('../lessons/A1Grenzwerte')) },
+  { id: 'ana-reihen', chapter: 'A1', title: ['Arithmetische, geometrische und harmonische Reihe', 'Arithmetic, geometric and harmonic series'], pages: 'Ü1/11–12', status: 'review', component: lazy(() => import('../lessons/A1Reihen')) },
   { id: 'ana-funktionen', chapter: 'A2', title: ['Funktionen, Definitions- und Wertebereich', 'Functions, domain and range'], pages: 'Ü2/2–4', status: 'planned' },
   { id: 'ana-grenzwerte-funktionen', chapter: 'A2', title: ['Stetigkeit und Grenzwerte von Funktionen', 'Continuity and limits of functions'], pages: 'Ü2/4–7', status: 'planned' },
   { id: 'ana-stetigkeit', chapter: 'A3', title: ['Lücken, Sprünge und Zwischenwertsatz', 'Gaps, jumps and the intermediate value theorem'], pages: 'Ü3/1–3', status: 'planned' },

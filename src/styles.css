@@ -656,3 +656,18 @@ input[type="range"] { accent-color: var(--accent); min-height: 32px; margin: 0; 
 .plot-label.halo { text-shadow: 0 0 2px var(--panel), 0 0 3px var(--panel), 0 0 4px var(--panel), 0 0 5px var(--panel); }
 .pl-ink-f { color: var(--a-f); } .pl-ink-g, .pl-ink-tan { color: var(--a-g); } .pl-ink-sec, .pl-ink-band { color: var(--c-rho-text); }
 .pl-ink-asym { color: var(--a-asym); } .pl-ink-ref, .pl-ink-muted, .pl-ink-aux { color: var(--muted); } .pl-ink-pt { color: var(--c-point); } .pl-ink-fg { color: var(--fg); }
+
+/* ==== ana week 1 ==== */
+.pl-grp0 { stroke: var(--a-f); fill: var(--a-f); } .pl-grp1 { stroke: var(--a-g); fill: var(--a-g); }
+.pl-grp2 { stroke: var(--c-z); fill: var(--c-z); } .pl-grp3 { stroke: var(--a-asym); fill: var(--a-asym); }
+.pl-curve.pl-grp0, .pl-curve.pl-grp1, .pl-curve.pl-grp2, .pl-curve.pl-grp3, .pl-curve.pl-muted, .pl-curve.pl-fg { fill: none; }
+.pl-curve.filled.pl-grp0 { fill: var(--a-f); } .pl-curve.filled.pl-grp1 { fill: var(--a-g); }
+.pl-curve.filled.pl-grp2 { fill: var(--c-z); } .pl-curve.filled.pl-grp3 { fill: var(--a-asym); }
+.pl-curve.filled.pl-ref { fill: var(--a-ref); } .pl-curve.filled.pl-aux { fill: var(--muted); }
+.w1-anim .pl-curve.filled { fill-opacity: 0.3; stroke-width: 1.4; }
+.pl-ink-grp0 { color: var(--a-f); } .pl-ink-grp1 { color: var(--a-g); } .pl-ink-grp2 { color: var(--c-z-text); } .pl-ink-grp3 { color: var(--a-asym); }
+.w1-square { fill: color-mix(in srgb, var(--a-f) 22%, transparent); stroke: var(--a-f); stroke-width: 1.6; }
+.w1-cross line { stroke: var(--c-z); stroke-width: 2.4; stroke-linecap: round; }
+.w1-legend { list-style: none; padding: 0; margin: 8px 0 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 18px; font-size: 0.95rem; }
+.w1-legend svg { width: 14px; height: 14px; vertical-align: -2px; margin-right: 6px; overflow: visible; }
+.plot-fig.w1-anim { max-width: 620px; } .plot-fig.w1-anim.square { max-width: 420px; }
