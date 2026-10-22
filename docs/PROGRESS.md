@@ -52,12 +52,23 @@ Lessons L01–L12 keep their status; they received targeted improvements from th
 
 ## Analysis 1 (D-023)
 
+Lessons built by one implementer per week (worktrees), reviewed by the lead against the PDFs and screenshots (iPad landscape, phone), merged.
+
 | Topic | Source | Status | Notes |
 |---|---|---|---|
-| ana-folgen | Übung 1 | planned | Waiting for the PDF (arazzakov.ch blocked by the container's network policy). |
-| ana-funktionen | Übung 2 | planned | idem |
-| ana-zws | Übung 3 | planned | idem |
-| ana-ableitung | Übung 4 | planned | idem |
-| ana-mws | Übung 5 | planned | idem |
-| ana-komplex | Online-Skript | planned | ETH pressbooks site blocked as well; chapter split follows the site's table of contents once readable. |
-
+| ana-folgen | Ü1/10, Ü2/1 | review | Three-kinds plot; StripExplorer (Parallelstreifen vs ε-strip, live N); implication list with crossed arrows; animations «konvergent ⇒ beschränkt», «beschränkt + monoton ⇒ konvergent»; `folgen.ts`. |
+| ana-grenzwerte-folgen | Ü1/11 | review | Degree rule + DegreeExplorer (incl. −∞ preset, A-004); root trick read aloud + area animation (3rd binomial formula); A-014. |
+| ana-reihen | Ü1/11–12, Ü2/1–2 | review | Gauss pairing, telescoping derivation, halving animation 3 + 3/2 + … = 6, GeoExplorer, harmonic grouping animation, e-series (A-001…A-003); `reihen.ts`. |
+| ana-funktionen | Ü2/2–4 | review | Anatomy figure; image explorer (drag domain ends, open/closed); horizontal-line probe; function types; even/odd mirror; A-005, A-006; `w2.ts`. |
+| ana-grenzwerte-funktionen | Ü2/4–7 | review | One-sided-limit probe; all slide methods with «warum erlaubt»; sin x/x unit-circle animation; L'Hôpital zoom + counterexample (A-007, A-008, A-015, A-016). Long (many methods on the slide). |
+| ana-stetigkeit | Ü3/1–3 | planned | Week-3 implementer still running. |
+| ana-transformationen | Ü3/4–5, Ü4/1 | planned | idem |
+| ana-umkehr | Ü3/5–8 | planned | idem |
+| ana-asymptoten | Ü3/9–12 | planned | idem |
+| ana-ableitung | Ü4/2–3 | review | Secant → tangent animation filling the slide's table; left/right secants (x² vs \|x\|); A-011; `deriv.ts`. |
+| ana-ableitungsregeln | Ü4/4–7 | review | Product-rule area figure, chain-rule stretched number lines, special-case table incl. tan′ both forms, inverse derivative by folding the slope triangle. |
+| ana-tangente | Ü4/8–9 | review | Zoom figure («lineare Ersatzfunktion»), normal with turned slope triangle (A-017). |
+| ana-fehler | Ü5/1–2 | review | Δf vs df animation, rectangle strip, ring unrolled (cylinder doubles), Quader; supplement xⁿ rule; `week5.ts`. |
+| ana-mws | Ü5/3–6 | review | MWS animation + MvtExplorer (several c, Rolle, \|x\|), CurvatureExplorer with f′/f″ sign bars (A-012), extremal-value animations, L'Hôpital example. |
+| ana-komplex-rechnen | Ü5/6–8 | review | Number sets, complex plane explorer (conjugate, sum, difference), multiplication grid animation, division animation (A-013). |
+| ana-komplex | Online-Skript | planned | Waiting for the student's PDF (site blocked by the network policy). |

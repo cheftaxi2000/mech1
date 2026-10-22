@@ -203,3 +203,13 @@ Short ideas for the quiz part at the end of the course (D-015). Every answer mus
 - If v̲_A ∥ v̲_B and both ⊥ AB: find Z with the line through the arrow tips.
 - Ladder (p. 13 in SdpG): at which α are both ends equally fast? 45°.
 
+
+## Analysis 1 — ideas from the week implementers (answers computed in `src/analysis/*`)
+
+**Week 1.** ε = 0,05: for 1 + (−1)ⁿ/n → N = 21, for n/(n+1) → N = 20 · (3n⁴ − 5n² + 2)/(7n⁴ − 4n³) → 3/7 · √(n+1) − √n → 0; √((n+1)n) − n → ½ · 1/n² + 2/n² + … + n/n² = (n+1)/(2n) → ½ · cos(πn/3): bounded, not monotonic, divergent · «converges because aₙ → 0?» (true for q = ½, false for Σ1/k) · a₁ = 1, S_∞ = 10 → q = 0,9 · S₁₆ of the harmonic series ≥ 3 (3,3807) · Σ_{k=1}^5 1/k! = 1,7167 → e − 1 · 4 + … + 24 = 84; 3 + 6 + 12 + 24 = 45; 1 + … + 100 = 5050.
+
+**Week 2.** Image of (x−4)² on (4, 6) → (0, 4); on [5, 6) → [1, 4) · 4x + 3 on (−1, 4] → (−1, 19] · is 8 a value of (x−15)/(√x−4)? no; is x = 0 allowed? yes, 3,75 · one-sided limits of (x−1)/(2|x−1|) at 1 → ±½ · even/odd: 0,3x² + 0,5x − 1 neither; x³ + 1 not odd · limits 4/5, 1/4, 5, 0 (slide methods) · L'Hôpital on (x+1)/(x+2) at 0 not allowed (limit ½) · (x + sin x)/x → 1 although f′/g′ has no limit · Serie 2/1: D = ℝ∖{−1, 0, 2}, only zero −3.
+
+**Week 4.** Difference quotient of x² at 1 with h = −0,5 → 1,5 · |x| differentiable at 0? no (−1 vs +1) · (x² sin x)′(0) = 0 · (5 ln(x²+2))′(1) = 10/3 · (f⁻¹)′(3) for x² + 2 → ½ and f⁻¹(3) = 1 ≠ 1/11 · arctan′(1) = ½ · tangent to 1/√(1+2x) at 4, value at 13 → 0 · normal to x² at 1: y = 3/2 − x/2 · tangents to x² at ±1 meet in (0, −1) · (uv)′ = u′v′? test with x·x.
+
+**Week 5.** r with 2 % error: area ≈ 4 %, x³ ≈ 6 % · Quader exact Δd = 0,428 vs 0,421 · x² on [0,3; 2,9]: c = 1,6 (midpoint) · x³ − 3x on [−2, 2]: c = ±2/√3 · |x| on [−1, 1]: no c (why) · x³ − x on [−½, 1]: max 3/8 at the end · inflection points of x⁴ − x²: ±1/√6 · (2 − 3i)(1 + i) = 5 − i · (2 − 3i)/(1 + i) = −½ − 5/2 i · |3 + 4i| = 5.
