@@ -714,3 +714,52 @@ input[type="range"] { accent-color: var(--accent); min-height: 32px; margin: 0; 
 .w2-sin .plot-fig { max-width: 400px; }
 .w2-sin-read { min-height: 2.6em; }
 .w2-gap .pl-band.pl-asym { fill: var(--a-asym); fill-opacity: 0.14; }
+/* ==== ana week 5 ==== */
+.w5-anim { width: 100%; }
+.w5-read { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 18px; margin: 6px 0 2px; font-size: 0.95rem; min-height: 1.6em; }
+.w5-muted { color: var(--muted); font-size: 0.9rem; }
+.w5-strip .pl-curve.filled { fill-opacity: 0.6; }
+.w5-static { display: block; width: 100%; height: auto; touch-action: auto !important; cursor: default !important; }
+.w5-body { fill: color-mix(in srgb, var(--a-g) 22%, transparent); stroke: var(--a-g); stroke-width: 1.5; }
+.w5-extra { fill: color-mix(in srgb, var(--a-f) 65%, transparent); stroke: none; }
+.w5-dim { stroke: var(--muted); stroke-width: 1.3; }
+.w5-dot { fill: var(--fg); }
+.vdemo-fig.w5-box { max-width: 300px; }
+.w5-edge { fill: none; stroke: var(--a-f); stroke-width: 1.8; stroke-linejoin: round; }
+.w5-hidden { fill: none; stroke: var(--a-f); stroke-width: 1.2; stroke-dasharray: 4 4; opacity: 0.7; }
+.w5-diag { stroke: var(--a-g); stroke-width: 2.4; }
+.w5-btn-sub { color: var(--muted); font-size: 0.85em; }
+.w5-bar { position: relative; container-type: inline-size; width: 100%; max-width: 560px; margin: 2px auto 0; }
+.w5-bar > svg { display: block; width: 100%; height: auto; touch-action: auto !important; cursor: default !important; }
+.w5-plus { fill: color-mix(in srgb, var(--a-f) 30%, transparent); }
+.w5-minus { fill: color-mix(in srgb, var(--a-g) 30%, transparent); }
+.w5-zero { fill: color-mix(in srgb, var(--muted) 15%, transparent); }
+.w5-cut { stroke: var(--fg); stroke-width: 1.4; }
+.w5-x0 { stroke: var(--c-point); stroke-width: 2; }
+.w5-bar .w5-sign { font-size: clamp(11px, 3.2cqw, 15px); color: var(--fg); }
+.w5-bar-name { position: absolute; left: 0; top: 50%; transform: translate(-115%, -50%); font-size: 0.85rem; color: var(--muted); }
+@media (max-width: 600px) { .w5-bar-name { transform: translate(2px, -50%); background: var(--panel); border-radius: 4px; padding: 0 3px; } }
+span.w5-key { display: inline-block; width: 1.1em; height: 0.8em; border-radius: 3px; vertical-align: -0.05em; }
+span.w5-key.w5-plus { background: color-mix(in srgb, var(--a-f) 55%, transparent); }
+span.w5-key.w5-minus { background: color-mix(in srgb, var(--a-g) 55%, transparent); }
+.vdemo-fig.w5-sets { max-width: 600px; }
+.w5-set { stroke-width: 1.5; }
+.w5-set-C { fill: color-mix(in srgb, var(--a-asym) 7%, transparent); stroke: var(--a-asym); }
+.w5-set-R { fill: color-mix(in srgb, var(--a-f) 7%, transparent); stroke: var(--a-f); }
+.w5-set-Q { fill: color-mix(in srgb, var(--a-sec) 8%, transparent); stroke: var(--a-sec); }
+.w5-set-Z { fill: color-mix(in srgb, var(--a-g) 7%, transparent); stroke: var(--a-g); }
+.w5-set-N { fill: color-mix(in srgb, var(--fg) 6%, transparent); stroke: var(--fg); }
+.w5-set-name { font-size: clamp(14px, 4.4cqw, 20px); }
+.vdemo-fig.w5-cplane { max-width: 460px; }
+.w5-grids { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 28px; margin: 6px 0; }
+.w5-grid { border-collapse: collapse; }
+.w5-grid th, .w5-grid td { border: 1px solid var(--line); padding: 6px 12px; text-align: center; min-width: 3.6em; }
+.w5-grid th { color: var(--muted); font-weight: normal; background: color-mix(in srgb, var(--fg) 4%, transparent); }
+.w5-grid td { transition: background-color 0.3s; }
+.w5-grid td.w5-re { background: color-mix(in srgb, var(--a-f) 16%, transparent); }
+.w5-grid td.w5-im { background: color-mix(in srgb, var(--a-g) 16%, transparent); }
+.w5-grid td.w5-flash { outline: 2px solid var(--c-point); outline-offset: -2px; }
+.w5-div { padding: 4px 0; }
+.w5-line { border-radius: 8px; padding: 0 8px; overflow-x: auto; }
+.w5-line.now { background: color-mix(in srgb, var(--accent) 9%, transparent); }
+.w5-table { overflow-x: auto; }

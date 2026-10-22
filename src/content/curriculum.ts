@@ -91,8 +91,8 @@ export const TOPICS: Topic[] = [
   { id: 'ana-ableitung', chapter: 'A4', title: ['Differenzenquotient und Ableitung', 'Difference quotient and derivative'], pages: 'Ü4/2–3', status: 'review', component: lazy(() => import('../lessons/A4Ableitung')) },
   { id: 'ana-ableitungsregeln', chapter: 'A4', title: ['Ableitungsregeln', 'Rules of differentiation'], pages: 'Ü4/4–7', status: 'review', component: lazy(() => import('../lessons/A4Regeln')) },
   { id: 'ana-tangente', chapter: 'A4', title: ['Tangente und Normale', 'Tangent and normal'], pages: 'Ü4/8–9', status: 'review', component: lazy(() => import('../lessons/A4Tangente')) },
-  { id: 'ana-fehler', chapter: 'A5', title: ['Fehlerrechnung', 'Error estimation'], pages: 'Ü5/1–2', status: 'planned' },
-  { id: 'ana-mws', chapter: 'A5', title: ['Mittelwertsatz, Extrema und Wendepunkte', 'Mean value theorem, extrema and inflection points'], pages: 'Ü5/3–6', status: 'planned' },
-  { id: 'ana-komplex-rechnen', chapter: 'A5', title: ['Komplexe Zahlen: Rechnen', 'Complex numbers: arithmetic'], pages: 'Ü5/6–8', status: 'planned' },
+  { id: 'ana-fehler', chapter: 'A5', title: ['Fehlerrechnung', 'Error estimation'], pages: 'Ü5/1–2', status: 'review', component: lazy(() => import('../lessons/A5Fehler')) },
+  { id: 'ana-mws', chapter: 'A5', title: ['Mittelwertsatz, Extrema und Wendepunkte', 'Mean value theorem, extrema and inflection points'], pages: 'Ü5/3–6', status: 'review', component: lazy(() => import('../lessons/A5Mittelwertsatz')) },
+  { id: 'ana-komplex-rechnen', chapter: 'A5', title: ['Komplexe Zahlen: Rechnen', 'Complex numbers: arithmetic'], pages: 'Ü5/6–8', status: 'review', component: lazy(() => import('../lessons/A5Komplex')) },
   { id: 'ana-komplex', chapter: 'A6', title: ['Die komplexe Ebene', 'The complex plane'], pages: 'web', status: 'planned' },
 ];
