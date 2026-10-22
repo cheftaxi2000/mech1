@@ -61,10 +61,10 @@ Lessons built by one implementer per week (worktrees), reviewed by the lead agai
 | ana-reihen | Ü1/11–12, Ü2/1–2 | review | Gauss pairing, telescoping derivation, halving animation 3 + 3/2 + … = 6, GeoExplorer, harmonic grouping animation, e-series (A-001…A-003); `reihen.ts`. |
 | ana-funktionen | Ü2/2–4 | review | Anatomy figure; image explorer (drag domain ends, open/closed); horizontal-line probe; function types; even/odd mirror; A-005, A-006; `w2.ts`. |
 | ana-grenzwerte-funktionen | Ü2/4–7 | review | One-sided-limit probe; all slide methods with «warum erlaubt»; sin x/x unit-circle animation; L'Hôpital zoom + counterexample (A-007, A-008, A-015, A-016). Long (many methods on the slide). |
-| ana-stetigkeit | Ü3/1–3 | planned | Week-3 implementer still running. |
-| ana-transformationen | Ü3/4–5, Ü4/1 | planned | idem |
-| ana-umkehr | Ü3/5–8 | planned | idem |
-| ana-asymptoten | Ü3/9–12 | planned | idem |
+| ana-stetigkeit | Ü3/1–3 | review | Title «Stetigkeit, Lücken und Zwischenwertsatz». IntervalStrip; LimitExplorer (stetig/Loch/Pol/Sprung); IvtFigure (Bsp. 1, Bsp. 2 with −π, several hits, jump); bisection animation (supplement) to c ≈ 1,3247; `week3.ts`. |
+| ana-transformationen | Ü3/4–5, Ü4/1 | review | TransformExplorer (a, b, c, d on p, six slide presets, tracked maximum); ReciprocalFigure 1/p vs p(1/x); Serie 3/2d animation max → min at x = −2. |
+| ana-umkehr | Ü3/5–8 | review | Arrow diagrams; draggable horizontal-line test with verdicts (A-009); Bsp. 1–5 with every step justified; mirror-at-y = x animation incl. D/W swapping (A-018). |
+| ana-asymptoten | Ü3/9–12 | review | GapFigure with f − g plotted (both directions, A-010); hole vs pole contrast; polynomial long division animation in the slide's layout. |
 | ana-ableitung | Ü4/2–3 | review | Secant → tangent animation filling the slide's table; left/right secants (x² vs \|x\|); A-011; `deriv.ts`. |
 | ana-ableitungsregeln | Ü4/4–7 | review | Product-rule area figure, chain-rule stretched number lines, special-case table incl. tan′ both forms, inverse derivative by folding the slope triangle. |
 | ana-tangente | Ü4/8–9 | review | Zoom figure («lineare Ersatzfunktion»), normal with turned slope triangle (A-017). |

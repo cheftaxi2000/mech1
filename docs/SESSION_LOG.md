@@ -122,3 +122,10 @@
 - Student asked for a second subject «Analysis 1»: weeks 1–5 from the Übungs-Resümee PDFs on arazzakov.ch, week 6 from the ETH online script on complex numbers; one chapter per week; short on high-school material.
 - Both sites are blocked by the container's network policy → asked the student to allow the hosts or upload the PDFs. No content written from memory.
 - Built the structure (D-023): `SUBJECTS`, chapters A1–A6 with planned topics (titles from the overview page), home page and drawer grouped by subject, pager per subject, source labels («Übung N» / «Online-Skript»).
+
+## 2026-10-22 — Analysis 1, weeks 1–5
+- Student uploaded the five Übungs-Resümee PDFs (arazzakov.ch still blocked); week 6 (ETH online script on complex numbers) follows as a PDF later.
+- Lead read all PDFs page by page, logged A-001…A-013, built the shared plot (`src/viz/plot`), `Src u/p`, `Box kind="uebung"`, the 15-lesson plan and `docs/analysis/NOTATION.md`.
+- Five implementers (one per week, worktrees) wrote the lessons, maths modules + tests, pure animation frames + tests, transcriptions `docs/analysis/SOURCE_U0n.md`; they found A-014…A-018. All hit the rate limit once and were resumed.
+- Lead reviewed every lesson on iPad screenshots, spot-checked the numbers in the figures, merged (CSS/curriculum conflicts kept both sides; curriculum order restored), removed a committed `node_modules` symlink and fixed `.gitignore` (`node_modules` without slash).
+- Known: `ana-grenzwerte-funktionen` is long; a few formula colours are fixed hex (KaTeX) and do not follow dark mode; some small labels close together on phones (see agent reports in PROGRESS notes).
