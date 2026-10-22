@@ -117,3 +117,8 @@
 - Lead review: numbers re-checked by hand (ζ = (1,0,0) + λ(0,1,0); ladder ω = v_H/(L sin φ); gear ω_Arm = 2/9 with ring fixed, arm at rest for ω₂ = −R₁/R₂); figures inspected.
 - Independent QA (read-only agent) → fixed: L13 first-invariant intuition was wrong in 3D («every line turns by the same angle» — a line along the axis does not turn); L12 no longer calls itself the last section; translation preset showed a Z; v_B* hidden at B*; Z₃ «on the arm» → on line QPO; L15 lede; long lecture lines split for phones; display formulas fit on tablets (boxes slightly wider than prose) with a scroll cue elsewhere; note button shrinks to its icon while reading; screw at negative pitch stays in view; label crowding.
 - Checks: 434 unit tests, 107 e2e tests green.
+
+## 2026-10-22 — Analysis 1 section (scaffold)
+- Student asked for a second subject «Analysis 1»: weeks 1–5 from the Übungs-Resümee PDFs on arazzakov.ch, week 6 from the ETH online script on complex numbers; one chapter per week; short on high-school material.
+- Both sites are blocked by the container's network policy → asked the student to allow the hosts or upload the PDFs. No content written from memory.
+- Built the structure (D-023): `SUBJECTS`, chapters A1–A6 with planned topics (titles from the overview page), home page and drawer grouped by subject, pager per subject, source labels («Übung N» / «Online-Skript»).

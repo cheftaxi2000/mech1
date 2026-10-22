@@ -615,3 +615,8 @@ input[type="range"] { accent-color: var(--accent); min-height: 32px; margin: 0; 
 .box { --sbg: color-mix(in srgb, var(--c) var(--tint), var(--panel)); }
 .eq-body .katex-display { background: none; }
 @media (max-width: 480px) { .katex-display { font-size: 0.93em; } }
+
+/* ==== subjects (Mechanik I / Analysis 1) ==== */
+.subject-head { margin-top: 2.2em; }
+.drawer-subject + .drawer-subject { margin-top: 18px; padding-top: 6px; border-top: 1px solid var(--line); }
+.subject-name { font-weight: 700; font-size: 1rem; margin: 10px 0 0; color: var(--fg); }

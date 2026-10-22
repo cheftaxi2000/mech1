@@ -92,7 +92,7 @@ for (const lang of LANGS) {
   test(`[${lang}] home page and navigation render`, async ({ page }) => {
     const errors = trackErrors(page);
     await open(page, lang);
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('Mechanik I');
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('Analysis 1');
     const i = lang === 'de' ? 0 : 1;
     for (const t of TOPICS) await expect(page.getByRole('navigation').getByText(t.title[i], { exact: true })).toBeVisible();
     for (const ch of Object.values(CHAPTERS)) await expect(page.getByRole('navigation').getByText(ch[i], { exact: true })).toBeVisible();

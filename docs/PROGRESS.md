@@ -49,3 +49,15 @@ Lessons L01–L12 keep their status; they received targeted improvements from th
 - koordinaten: optional "animate φ" button to preview Kreisbewegung.
 - vektoren: in the position-vector figure, e̲_y lies partly under r̲ near O for some t (3D overlap, readable).
 - Bundle size: done — three.js has its own chunk and loads only on lessons with a 3D figure.
+
+## Analysis 1 (D-023)
+
+| Topic | Source | Status | Notes |
+|---|---|---|---|
+| ana-folgen | Übung 1 | planned | Waiting for the PDF (arazzakov.ch blocked by the container's network policy). |
+| ana-funktionen | Übung 2 | planned | idem |
+| ana-zws | Übung 3 | planned | idem |
+| ana-ableitung | Übung 4 | planned | idem |
+| ana-mws | Übung 5 | planned | idem |
+| ana-komplex | Online-Skript | planned | ETH pressbooks site blocked as well; chapter split follows the site's table of contents once readable. |
+

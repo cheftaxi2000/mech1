@@ -10,11 +10,19 @@ import { lazy, type ComponentType, type LazyExoticComponent } from 'react';
  */
 export type Status = 'planned' | 'draft' | 'review' | 'complete';
 
+/** The two courses ("Rubriken"). Each chapter belongs to one; navigation and prev/next stay inside a subject. */
+export type Subject = 'mech' | 'ana';
+export const SUBJECTS: Record<Subject, [string, string]> = {
+  mech: ['Mechanik I', 'Mechanics 1'],
+  ana: ['Analysis 1', 'Analysis 1'],
+};
+
 export interface Topic {
   id: string;
   chapter: string;
   /** [German, English]. The German title follows the lecture's own headings. */
   title: [string, string];
+  /** Mechanik: printed pages of the Mitschrift. Analysis: the source document (see `sourceLabel`). */
   pages: string;
   status: Status;
   component?: LazyExoticComponent<ComponentType>;
@@ -25,7 +33,27 @@ export const CHAPTERS: Record<string, [string, string]> = {
   '2': ['2 · Geschwindigkeit', '2 · Velocity'],
   '3': ['3 · Starrer Körper', '3 · Rigid body'],
   Q: ['Quiz', 'Quiz'],
+  A1: ['Woche 1 · Folgen und Reihen', 'Week 1 · Sequences and series'],
+  A2: ['Woche 2 · Funktionen und Stetigkeit', 'Week 2 · Functions and continuity'],
+  A3: ['Woche 3 · Zwischenwertsatz, Umkehrfunktionen', 'Week 3 · Intermediate value theorem, inverses'],
+  A4: ['Woche 4 · Ableitungen', 'Week 4 · Derivatives'],
+  A5: ['Woche 5 · Mittelwertsatz', 'Week 5 · Mean value theorem'],
+  A6: ['Woche 6 · Komplexe Zahlen', 'Week 6 · Complex numbers'],
 };
+
+export const chapterSubject = (ch: string): Subject => (ch.startsWith('A') ? 'ana' : 'mech');
+export const topicSubject = (t: Topic): Subject => chapterSubject(t.chapter);
+
+/** Where a topic comes from, for the crumbs and lists: [long German, long English, short German, short English]. */
+export function sourceLabel(t: Topic): [string, string, string, string] {
+  if (topicSubject(t) === 'mech') {
+    return [`Vorlesung S. ${t.pages}`, `Lecture notes ${t.pages.includes('–') ? 'pp.' : 'p.'} ${t.pages}`, `S. ${t.pages}`, `p. ${t.pages}`];
+  }
+  // Analysis: weeks 1–5 are the Übungs-Resümees (PDF), week 6 the online script of the ETH (complex numbers).
+  return t.pages.startsWith('Ü')
+    ? [`Übung ${t.pages.slice(1)}`, `Exercise class ${t.pages.slice(1)}`, `Üb. ${t.pages.slice(1)}`, `Ex. ${t.pages.slice(1)}`]
+    : ['Online-Skript', 'Online notes', 'Skript', 'notes'];
+}
 
 export const TOPICS: Topic[] = [
   { id: 'koordinaten', chapter: '1', title: ['Lage & Koordinaten', 'Position & coordinates'], pages: '3–4', status: 'complete', component: lazy(() => import('../lessons/L01Coordinates')) },
@@ -47,4 +75,11 @@ export const TOPICS: Topic[] = [
   { id: 'quiz-2', chapter: 'Q', title: ['Quiz 2 · Geschwindigkeit', 'Quiz 2 · Velocity'], pages: '8–11', status: 'review', component: lazy(() => import('../lessons/Q2Quiz')) },
   { id: 'quiz-3', chapter: 'Q', title: ['Quiz 3 · Starrer Körper', 'Quiz 3 · Rigid body'], pages: '12–23', status: 'review', component: lazy(() => import('../lessons/Q3Quiz')) },
   { id: 'quiz-4', chapter: 'Q', title: ['Quiz 4 · Schraube, ebene Bewegung', 'Quiz 4 · Screw, plane motion'], pages: '24–28', status: 'review', component: lazy(() => import('../lessons/Q4Quiz')) },
+  // Analysis 1 – one chapter per week. Titles from the overview of the Übungs-Resümees (arazzakov.ch); contents pending the PDFs.
+  { id: 'ana-folgen', chapter: 'A1', title: ['Folgen und Reihen, Grenzwerte, Konvergenz und Monotonie', 'Sequences and series, limits, convergence and monotonicity'], pages: 'Ü1', status: 'planned' },
+  { id: 'ana-funktionen', chapter: 'A2', title: ['Funktionen, Definitions- und Wertebereich, Stetigkeit und Grenzwerte', 'Functions, domain and range, continuity and limits'], pages: 'Ü2', status: 'planned' },
+  { id: 'ana-zws', chapter: 'A3', title: ['Zwischenwertsatz, Graphentransformationen, Umkehrfunktionen und Asymptoten', 'Intermediate value theorem, graph transformations, inverse functions and asymptotes'], pages: 'Ü3', status: 'planned' },
+  { id: 'ana-ableitung', chapter: 'A4', title: ['Ableitungen & Tangenten', 'Derivatives and tangents'], pages: 'Ü4', status: 'planned' },
+  { id: 'ana-mws', chapter: 'A5', title: ['Mittelwertsatz & Fehlerrechnung', 'Mean value theorem and error estimation'], pages: 'Ü5', status: 'planned' },
+  { id: 'ana-komplex', chapter: 'A6', title: ['Die komplexe Ebene', 'The complex plane'], pages: 'web', status: 'planned' },
 ];
