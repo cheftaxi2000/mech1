@@ -94,7 +94,7 @@ export default function A2Funktionen() {
             en={<p>Wrong, as <M>{t`[2, 6) \to [0, 4]`}</M> shows. All that matters is whether the end value is hit by <em>some</em> allowed <M p=".">x</M> Try <M>{t`(4, 6)`}</M> in the figure: now both ends are missing, since <M>0</M> would only come from <M>4</M> and <M>4</M> only from <M p=".">6</M></p>}
           />
         </Box>
-        <Box kind="misconception" title={<T de="Zielbereich = Bild?" en="Target set = image?" />}>
+        <Box kind="misconception" title={<T de="Ist der Zielbereich das Bild?" en="Is the target set the image?" />}>
           <T
             de={<p>Nein. Der Zielbereich <M>{t`\mathbb{R}`}</M> sagt nur, <em>wo</em> die Werte liegen dürfen. Das Bild ist, was <em>tatsächlich</em> herauskommt – hier nur <M p=".">{t`[0, 4] \subset \mathbb{R}`}</M></p>}
             en={<p>No. The target set <M>{t`\mathbb{R}`}</M> only says <em>where</em> the values may lie. The image is what <em>actually</em> comes out – here only <M p=".">{t`[0, 4] \subset \mathbb{R}`}</M></p>}

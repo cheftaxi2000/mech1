@@ -69,7 +69,7 @@ export default function A2Grenzwerte() {
           de={<p>Bei <M>a</M> laufen die Werte auf zwei verschiedene Höhen zu: ein Sprung. Welcher Ast den Wert <M>{t`g(a)`}</M> besitzt (im Bild der rechte, voller Punkt), zeigt die Folie nicht – es ist auch egal: Kein Wert kann zwei verschiedene Höhen verbinden. Bei <M>b</M> kommen beide Seiten gleich an. Für «stetig in <M p="»">b</M> braucht es genau genommen noch etwas mehr: Der gemeinsame Grenzwert muss auch <em>gleich</em> <M>{t`g(b)`}</M> sein (sonst hätte der Graph dort ein Loch oder einen versetzten Punkt). Das kommt genau in <a href="#ana-stetigkeit">Lücken, Sprünge und Zwischenwertsatz</a>.</p>}
           en={<p>At <M>a</M> the values run towards two different heights: a jump. Which branch owns the value <M>{t`g(a)`}</M> (in the figure the right one, filled dot) the slide does not show – and it does not matter: no single value can join two different heights. At <M>b</M> both sides arrive at the same height. Strictly, “continuous at <M p="”">b</M> needs a little more: the common limit must also <em>equal</em> <M>{t`g(b)`}</M> (otherwise the graph would have a hole or a displaced point there). That comes precisely in <a href="#ana-stetigkeit">Gaps, jumps and the intermediate value theorem</a>.</p>}
         />
-        <Box kind="misconception" title={<T de="«Stetig = in einem Strich zeichenbar»" en="“Continuous = drawable in one stroke”" />}>
+        <Box kind="misconception" title={<T de="«Stetig heisst: in einem Strich zeichenbar»" en="“Continuous means: drawable in one stroke”" />}>
           <T
             de={<p>Das ist ein gutes erstes Bild für eine Funktion auf einem Intervall. Aber <M>{t`\frac1x`}</M> kann man nicht in einem Strich zeichnen, und trotzdem ist sie an <em>jeder</em> Stelle ihres Definitionsbereichs stetig – bei <M>{t`x = 0`}</M> ist sie gar nicht definiert. Stetigkeit ist eine Eigenschaft an <em>Stellen</em>, geprüft mit den Grenzwerten.</p>}
             en={<p>That is a good first picture for a function on an interval. But <M>{t`\frac1x`}</M> cannot be drawn in one stroke, and still it is continuous at <em>every</em> point of its domain – at <M>{t`x = 0`}</M> it is not defined at all. Continuity is a property at <em>points</em>, checked with limits.</p>}
@@ -339,13 +339,13 @@ export default function A2Grenzwerte() {
         <Box kind="key">
           <T
             de={<ul>
-              <li>Grenzwert = der Wert, dem <M>{t`f(x)`}</M> nahe bei <M>a</M> immer näher kommt; <M>{t`f(a)`}</M> selbst zählt nicht.</li>
+              <li>Grenzwert: der Wert, dem <M>{t`f(x)`}</M> nahe bei <M>a</M> immer näher kommt; <M>{t`f(a)`}</M> selbst zählt nicht.</li>
               <li>Links- und Rechtsgrenzwert verschieden → Sprung, nicht stetig.</li>
               <li>Zuerst einsetzen. Bei <M p=":">{t`\frac00`}</M> faktorisieren und kürzen (erlaubt, weil <M p="),">{t`x \neq a`}</M> durch die grösste Potenz teilen, mit der Wurzel erweitern, auf <M>{t`\frac{\sin x}{x} \to 1`}</M> zurückführen.</li>
               <li>L'Hôpital nur bei <M>{t`\frac00`}</M> oder <M p=",">{t`\frac\infty\infty`}</M> und nur, wenn <M>{t`\lim\frac{f'}{g'}`}</M> existiert.</li>
             </ul>}
             en={<ul>
-              <li>Limit = the value that <M>{t`f(x)`}</M> gets closer and closer to near <M p=";">a</M> <M>{t`f(a)`}</M> itself does not count.</li>
+              <li>Limit: the value that <M>{t`f(x)`}</M> gets closer and closer to near <M p=";">a</M> <M>{t`f(a)`}</M> itself does not count.</li>
               <li>Left and right limits differ → jump, not continuous.</li>
               <li>Substitute first. For <M p=":">{t`\frac00`}</M> factorise and cancel (allowed because <M p="),">{t`x \neq a`}</M> divide by the largest power, expand with the root, reduce to <M p=".">{t`\frac{\sin x}{x} \to 1`}</M></li>
               <li>L'Hôpital only for <M>{t`\frac00`}</M> or <M p=",">{t`\frac\infty\infty`}</M> and only if <M>{t`\lim\frac{f'}{g'}`}</M> exists.</li>

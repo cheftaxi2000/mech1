@@ -89,6 +89,16 @@ describe('Stetigkeit und einseitige Grenzwerte (Ü2 S. 4–5)', () => {
   });
 });
 
+describe('0/0 can be anything; (cos x − 1)/x rewritten', () => {
+  it('x/x → 1, x²/x → 0, 2x/x → 2', () => {
+    const h = 1e-8;
+    expect(h / h).toBe(1); expect((h * h) / h).toBeCloseTo(0, 7); expect((2 * h) / h).toBe(2);
+  });
+  it('(cos x − 1)/x = −(sin x/x)·sin x/(cos x + 1)', () => {
+    for (const x of [-0.7, 0.01, 0.4]) expect((Math.cos(x) - 1) / x).toBeCloseTo(-(Math.sin(x) / x) * (Math.sin(x) / (Math.cos(x) + 1)), 12);
+  });
+});
+
 describe('Grenzwert-Methoden (Ü2 S. 5–7)', () => {
   for (const ex of LIMITS) {
     it(`${ex.id}: limit ${ex.value}`, () => {

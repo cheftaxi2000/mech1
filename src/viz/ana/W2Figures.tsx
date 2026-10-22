@@ -111,7 +111,7 @@ export function ImageExplorer() {
           {[...atHi.map((x) => [x, im.hi]), ...atLo.map((x) => [x, im.lo])].map(([x, v], i) => <Pt key={`r${i}`} x={x} y={v} />)}
           <PLabel x={(d.lo + d.hi) / 2} y={0} dy={32} tex={t`\mathbb{D}`} role="sec" />
           <PLabel x={0} y={(im.lo + im.hi) / 2} dx={10} anchor="l" tex={t`\mathbb{W}(f)`} role="sec" />
-          <PLabel x={7.6} y={parab(7.6)} dx={-8} anchor="r" tex={t`(x-4)^2`} role="f" small />
+          <PLabel x={6.9} y={parab(6.9)} dx={-10} anchor="r" tex={t`(x-4)^2`} role="f" small />
         </Plot>
       </div>
       <figcaption className="vdemo-readout">
@@ -134,8 +134,8 @@ export function ImageExplorer() {
 /* ================================================================== which values are reached? horizontal-line probe */
 
 const REACH = {
-  f: { fn: recip3, x: [-5, 10] as [number, number], y: [-5, 10] as [number, number], grid: [1, 1] as [number, number], tick: [5, 5] as [number, number], pole: 3, bar: -4.55, c0: 2, solve: solveRecip3, name: 'f(x)', W: t`\mathbb{W} = \mathbb{R}\setminus\{0\}` },
-  g: { fn: g15, x: [-2, 27] as [number, number], y: [-6, 21] as [number, number], grid: [5, 5] as [number, number], tick: [5, 5] as [number, number], pole: 16, bar: -1.2, c0: 8, solve: solveG15, name: 'g(x)', W: t`\mathbb{W} = \mathbb{R}\setminus(6, 10)` },
+  f: { fn: recip3, x: [-5, 10] as [number, number], y: [-5, 10] as [number, number], grid: [1, 1] as [number, number], tick: [5, 5] as [number, number], pole: 3, bar: -4.55, wy: 7.5, c0: 2, solve: solveRecip3, name: 'f(x)', W: t`\mathbb{W} = \mathbb{R}\setminus\{0\}` },
+  g: { fn: g15, x: [-4.5, 27] as [number, number], y: [-6, 21] as [number, number], grid: [5, 5] as [number, number], tick: [5, 5] as [number, number], pole: 16, bar: -3.9, wy: 2.5, c0: 8, solve: solveG15, name: 'g(x)', W: t`\mathbb{W} = \mathbb{R}\setminus(6, 10)` },
 };
 
 /** Drag a horizontal line y = c: it meets the graph exactly when c is a value of the function. */
@@ -155,7 +155,7 @@ export function ReachProbe() {
         <button type="button" aria-pressed={which === 'f'} onClick={() => choose('f')}><M>{t`f(x) = \frac{1}{x-3}`}</M></button>
         <button type="button" aria-pressed={which === 'g'} onClick={() => choose('g')}><M>{t`g(x) = \frac{x-15}{\sqrt{x}-4}`}</M></button>
       </div>
-      <div className="vdemo-fig">
+      <div className="vdemo-fig w2-gap">
         <Plot key={which} x={cfg.x} y={cfg.y} grid={cfg.grid} tick={cfg.tick} onDrag={(_x, y) => setC(clampC(y))}
           label={tr('Graph mit waagrechter Linie y = c; Schnittpunkte zeigen, ob c erreicht wird', 'Graph with a horizontal line y = c; intersections show whether c is reached')}>
           {which === 'g' && <Band from={G15_MAX.y} to={G15_MIN.y} role="asym" />}
@@ -170,7 +170,7 @@ export function ReachProbe() {
           <HLine y={c} role="pt" dashed={false} />
           {xs.map((x, i) => <Pt key={i} x={x} y={c} />)}
           <Pt x={cfg.bar} y={c} open={!hit} r={4} />
-          <PLabel x={cfg.bar} y={cfg.y[1]} dx={10} dy={14} anchor="l" tex={t`\mathbb{W}`} role="sec" />
+          <PLabel x={cfg.bar} y={cfg.wy} dx={9} anchor="l" tex={t`\mathbb{W}`} role="sec" />
           {which === 'f'
             ? <PLabel x={3.6} y={8.5} anchor="l" tex="f(x)" role="f" />
             : <>
@@ -185,7 +185,7 @@ export function ReachProbe() {
           <input type="range" min={cfg.y[0] + 1} max={cfg.y[1] - 1} step={0.1} value={c} onChange={(e) => setC(Number(e.target.value))} aria-label="c" /><span className="val">{fmtNum(c, 1, lang)}</span></label>
         <div className={`w2-big ${hit ? 'w2-ok' : 'w2-no'}`}>
           {hit
-            ? <>{tr('getroffen bei', 'met at')} <M p=":">{xs.length > 1 ? t`x \approx ${n(xs[0])}\ \text{${tr('und', 'and')}}\ x \approx ${n(xs[1])}` : t`x \approx ${n(xs[0] ?? cfg.solve(c)[0])}`}</M> <M>{t`${n(c)} \in \mathbb{W}`}</M></>
+            ? <>{tr('getroffen bei', 'met at')} <M p=",">{xs.length > 1 ? t`x \approx ${n(xs[0])}\ \text{${tr('und', 'and')}}\ x \approx ${n(xs[1])}` : t`x \approx ${n(xs[0] ?? cfg.solve(c)[0])}`}</M> {tr('also', 'so')} <M>{t`${n(c)} \in \mathbb{W}`}</M></>
             : <>{tr('kein Schnittpunkt:', 'no intersection:')} <M>{t`${n(c)} \notin \mathbb{W}`}</M></>}
         </div>
         <div><M>{cfg.W}</M></div>
@@ -441,7 +441,7 @@ export function SinCircle({ fr }: { fr: SinFrame }) {
         <PLabel x={1} y={0} dx={8} dy={10} anchor="l" tex="A" role="pt" small />
         <PLabel x={s.P[0]} y={s.P[1]} dx={-8} dy={-10} anchor="r" tex="P" role="pt" small />
         {fr.big && <PLabel x={1} y={s.T[1]} dx={8} anchor="l" tex="T" role="pt" small />}
-        <PLabel x={1.07 * Math.cos(mid)} y={1.07 * Math.sin(mid)} dx={6} anchor="l" tex="x" role="asym" />
+        {fr.x > 0.6 && <PLabel x={0.9 * Math.cos(mid)} y={0.9 * Math.sin(mid)} dx={-2} anchor="r" tex="x" role="asym" />}
         {fr.small && <PLabel x={s.P[0]} y={s.P[1] / 2} dx={-6} anchor="r" tex={t`\sin x`} role="f" small />}
         {fr.big && <PLabel x={1} y={s.T[1] / 2} dx={8} anchor="l" tex={t`\tan x`} role="g" small />}
       </Plot>
@@ -487,7 +487,7 @@ export function LhZoom() {
   const approach = useApproach(setS);
   const w = zoomW(s), win = zoomWindow(w), x0 = 0.6 * w;
   const fx = lhF(x0), gx = lhG(x0);
-  const lbl = -0.75 * w;
+  const lbl = 0.8 * w;
   return (
     <figure className="vdemo">
       <div className="vdemo-fig">
@@ -498,8 +498,8 @@ export function LhZoom() {
           <Seg a={[x0, 0]} b={[x0, fx]} role="f" width={4.5} />
           <Seg a={[x0 + 0.05 * w, 0]} b={[x0 + 0.05 * w, gx]} role="g" width={4.5} />
           <Pt x={x0} y={fx} r={3.5} /><Pt x={x0 + 0.05 * w} y={gx} r={3.5} />
-          <PLabel x={lbl} y={lhF(lbl)} dx={10} anchor="l" tex="f" role="f" />
-          <PLabel x={lbl} y={lhG(lbl)} dy={-14} tex="g" role="g" />
+          <PLabel x={lbl} y={lhF(lbl)} dy={16} tex="f" role="f" />
+          <PLabel x={lbl} y={lhG(lbl)} dx={-6} dy={-14} anchor="r" tex="g" role="g" />
           <PLabel x={x0} y={0} dy={14} tex="x" role="fg" small />
         </Plot>
       </div>
@@ -523,12 +523,12 @@ export function CexFig() {
   return (
     <figure className="vdemo">
       <div className="vdemo-fig">
-        <Plot x={[-1.5, 42]} y={[-0.3, 2.5]} h={220} grid={[5, 0.5]} tick={[10, 1]} label={tr('Quotient strebt gegen 1, Quotient der Ableitungen schwingt', 'Quotient tends to 1, quotient of derivatives oscillates')}>
+        <Plot x={[-1.5, 42]} y={[-0.3, 2.7]} h={220} grid={[5, 0.5]} tick={[10, 1]} label={tr('Quotient strebt gegen 1, Quotient der Ableitungen schwingt', 'Quotient tends to 1, quotient of derivatives oscillates')}>
           <HLine y={1} role="ref" />
           <Curve f={cexDeriv} dom={[0.5, 42]} role="g" n={1200} width={2} />
           <Curve f={cexRatio} dom={[0.5, 42]} n={1200} />
-          <PLabel x={33} y={1.12} dy={-10} tex={t`\frac{x+\sin x}{x}`} role="f" small />
-          <PLabel x={18.2} y={2.2} anchor="l" dx={6} tex={t`\frac{f'}{g'} = 1+\cos x`} role="g" small />
+          <PLabel x={23} y={2.4} anchor="r" tex={t`\frac{x+\sin x}{x}`} role="f" small />
+          <PLabel x={26} y={2.4} anchor="l" tex={t`\frac{f'}{g'} = 1+\cos x`} role="g" small />
         </Plot>
       </div>
       <p className="vdemo-note">{tr(<>Blau der Quotient: Er strebt gegen <M p=".">1</M> Magenta der Quotient der Ableitungen: Er schwingt ewig zwischen <M>0</M> und <M>2</M> und hat keinen Grenzwert.</>,

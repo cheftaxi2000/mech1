@@ -61,7 +61,7 @@ export interface SinFrame {
   /** show the squeeze read-out 1 ≤ x/sin x ≤ 1/cos x. */
   squeeze: boolean;
 }
-export const SIN_X0 = 0.9, SIN_X1 = 0.25;
+export const SIN_X0 = 0.9, SIN_X1 = 0.4;
 export function sinFrame(step: number, t: number): SinFrame {
   const base = { x: SIN_X0, arc: true, small: step >= 1, sector: step >= 2, big: step >= 3, squeeze: step >= 4 };
   if (step === 0) return { ...base, x: lerp(0.05, SIN_X0, ease(t)) };

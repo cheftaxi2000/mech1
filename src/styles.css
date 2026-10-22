@@ -677,3 +677,4 @@ input[type="range"] { accent-color: var(--accent); min-height: 32px; margin: 0; 
 .w2-sin { display: grid; gap: 6px; }
 .w2-sin .plot-fig { max-width: 400px; }
 .w2-sin-read { min-height: 2.6em; }
+.w2-gap .pl-band.pl-asym { fill: var(--a-asym); fill-opacity: 0.14; }
