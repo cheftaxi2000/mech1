@@ -620,3 +620,39 @@ input[type="range"] { accent-color: var(--accent); min-height: 32px; margin: 0; 
 .subject-head { margin-top: 2.2em; }
 .drawer-subject + .drawer-subject { margin-top: 18px; padding-top: 6px; border-top: 1px solid var(--line); }
 .subject-name { font-weight: 700; font-size: 1rem; margin: 10px 0 0; color: var(--fg); }
+
+/* ==== plot (Analysis 1, shared 2D graphs; D-023) ==== */
+:root { --a-f: #2563eb; --a-g: #db2777; --a-sec: #0d9488; --a-asym: #9333ea; --a-ref: #94a3b8; --a-grid: #e5e7eb; --a-axis: #475569; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --a-f: #60a5fa; --a-g: #f472b6; --a-sec: #2dd4bf; --a-asym: #c084fc; --a-ref: #64748b; --a-grid: #262c37; --a-axis: #94a3b8; } }
+:root[data-theme="dark"] { --a-f: #60a5fa; --a-g: #f472b6; --a-sec: #2dd4bf; --a-asym: #c084fc; --a-ref: #64748b; --a-grid: #262c37; --a-axis: #94a3b8; }
+.plot-fig { position: relative; container-type: inline-size; width: 100%; max-width: 560px; margin-inline: auto; }
+.plot-fig.wide { max-width: 760px; }
+.plot-fig > svg { position: absolute; inset: 0; display: block; width: 100%; height: 100%; overflow: visible; }
+.plot-fig > svg.draggable { touch-action: none; cursor: grab; }
+.plot-layer { position: absolute; inset: 0; pointer-events: none; }
+.pl-grid line { stroke: var(--a-grid); stroke-width: 1; }
+.pl-axis line { stroke: var(--a-axis); stroke-width: 1.3; } .pl-axis polygon { fill: var(--a-axis); }
+.pl-ticks line { stroke: var(--a-axis); stroke-width: 1; }
+.pl-ticks text { font-family: KaTeX_Main, "Times New Roman", serif; font-size: 12px; fill: var(--muted); }
+.pl-curve { fill: none; stroke-width: 2.6; stroke-linejoin: round; stroke-linecap: round; }
+.pl-curve.filled { fill-opacity: 0.14; stroke-width: 1.2; }
+.pl-line { stroke-width: 2; stroke-linecap: round; }
+.pl-curve.dashed, .pl-line.dashed { stroke-dasharray: 6 5; }
+.pl-f { stroke: var(--a-f); fill: var(--a-f); } .pl-g { stroke: var(--a-g); fill: var(--a-g); }
+.pl-tan { stroke: var(--a-g); fill: var(--a-g); } .pl-sec { stroke: var(--a-sec); fill: var(--a-sec); }
+.pl-asym { stroke: var(--a-asym); fill: var(--a-asym); } .pl-ref { stroke: var(--a-ref); fill: var(--a-ref); }
+.pl-aux, .pl-muted { stroke: var(--muted); fill: var(--muted); } .pl-fg { stroke: var(--fg); fill: var(--fg); }
+.pl-pt { stroke: var(--c-point); fill: var(--c-point); }
+.pl-curve.pl-f, .pl-curve.pl-g, .pl-curve.pl-ref, .pl-curve.pl-tan, .pl-curve.pl-sec, .pl-curve.pl-asym, .pl-curve.pl-aux { fill: none; }
+.pl-curve.filled.pl-f { fill: var(--a-f); } .pl-curve.filled.pl-g { fill: var(--a-g); } .pl-curve.filled.pl-sec { fill: var(--a-sec); }
+.pl-dot { stroke-width: 2; }
+.pl-dot.open { fill: var(--panel); stroke-width: 2.2; }
+.pl-band { stroke: none; fill-opacity: 0.13; } .pl-band.pl-band { fill: var(--a-sec); }
+.pl-arrow line { stroke-width: 1.8; }
+.plot-label { position: absolute; pointer-events: none; white-space: nowrap; font-size: clamp(13px, 3.9cqw, 19px); line-height: 1; }
+.plot-label.small { font-size: clamp(11px, 3.1cqw, 15px); }
+.plot-label.a-c { transform: translate(-50%, -50%); } .plot-label.a-l { transform: translate(0, -50%); } .plot-label.a-r { transform: translate(-100%, -50%); }
+.plot-label.a-t { transform: translate(-50%, 0); } .plot-label.a-b { transform: translate(-50%, -100%); }
+.plot-label.halo { text-shadow: 0 0 2px var(--panel), 0 0 3px var(--panel), 0 0 4px var(--panel), 0 0 5px var(--panel); }
+.pl-ink-f { color: var(--a-f); } .pl-ink-g, .pl-ink-tan { color: var(--a-g); } .pl-ink-sec, .pl-ink-band { color: var(--c-rho-text); }
+.pl-ink-asym { color: var(--a-asym); } .pl-ink-ref, .pl-ink-muted, .pl-ink-aux { color: var(--muted); } .pl-ink-pt { color: var(--c-point); } .pl-ink-fg { color: var(--fg); }

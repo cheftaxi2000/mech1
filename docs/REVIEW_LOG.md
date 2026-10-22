@@ -29,3 +29,23 @@ Every issue has an ID. Lessons mention it briefly where it matters (no separate 
 | R-022 | 27 | Ladder «Löse mit SMZ»: the solution is missing in the notes (student: «Lösung fehlt»). App supplement: Z at the intersection of the perpendiculars to v̲_A and v̲_B, ω = v_H/(L sin φ), v_V = ω L cos φ = v_H cot φ (= SdpG result). Note the ladder here slides *down* (v̲_A = (−v_H, 0, 0)), unlike p. 13 (R-006). | handled in L14 (supplement), verified `plane.test.ts` |
 | R-023 | 28 | Planetengetriebe: the sign convention (all ω counted in the same sense, velocities drawn to the left) is only implicit in the figure. The side question «ω₂R₂ = ω₁R₁ ?» → ω₃ = 0: the planet momentarily translates, Z₃ «at infinity». | handled in L15, verified `planetary.test.ts` |
 
+
+## Analysis 1 (Übungs-Resümees, D-023)
+
+Page = «Ü n / PDF page». Same rules: handled briefly in the lesson where it matters, verified by a test in `src/analysis/*.test.ts`.
+
+| ID | Page | Issue | Status |
+|---|---|---|---|
+| A-001 | Ü1/12, Ü2/1 | Geometric sum written S_n = a₁(1 + q + q² + … + **qⁿ**): n terms end with **qⁿ⁻¹**; the closed form a₁(1 − qⁿ)/(1 − q) on the same line is right (and matches the example 3 + 6 + 12 + 24 = 45). | open → handle in `ana-reihen` |
+| A-002 | Ü1/12 | «S_n = 1/1! + 1/2! + … + 1/n!; lim S_n = e» — this limit is **e − 1**; e needs the term 1/0! = 1 (S_n = Σ_{k=0}^n 1/k!). | open → handle in `ana-reihen` |
+| A-003 | Ü1/12, Ü2/2 | Harmonic series written «S_n = Σ_{n=1}^∞ 1/n = ∞»: the index n is used for the partial sum and the summation variable, and S_n names an infinite sum. Meant: S_n = Σ_{k=1}^n 1/k grows beyond every bound. | open → handle in `ana-reihen` |
+| A-004 | Ü1/11 | «Grad(Zähler) > Grad(Nenner) ⇒ lim = ∞»: true for the example; in general ±∞ with the sign of the ratio of the leading coefficients (e.g. (−n³)/n² → −∞). | open → handle in `ana-grenzwerte-folgen` |
+| A-005 | Ü2/3 | «D(f) ∈ ℝ∖{3}», «W ∈ ℝ∖{0}»: should be «=» (a set equals a set; ∈ means «is an element of»). For g(x) = (x−15)/(√x − 4) the domain is [0, ∞)∖{16} (x = 0 is allowed; «ℝ⁺∖{16}» is ambiguous). The image ℝ∖(6, 10) is correct (max 6 at x = 9, min 10 at x = 25). | open → handle in `ana-funktionen` |
+| A-006 | Ü2/3 | Barometer «[0, 10000 m] → ℝ, W = (0, 1]» (bar): the image of a closed height interval under a continuous pressure law is a closed interval, roughly [0,26; 1,01] bar. The slide's interval is a rough illustration. | open → one sentence in `ana-funktionen` |
+| A-007 | Ü2/5 | (x−1)/(2\|x−1\|) «ist unstetig im Punkt x = 1»: the function is not defined at x = 1; precisely, the one-sided limits ±½ differ, so no value f(1) can make it continuous (a jump). | open → handle in `ana-grenzwerte-funktionen` |
+| A-008 | Ü2/7, Ü5/6 | L'Hôpital: the stated conditions («0/0 oder ∞/∞») miss that lim f′/g′ must exist (or be ±∞) and g′ ≠ 0 near a. Counter-example: (x + sin x)/x for x → ∞ (limit 1, but f′/g′ = 1 + cos x has no limit). | open → handle in `ana-grenzwerte-funktionen` (and `ana-mws`) |
+| A-009 | Ü3/6 | Surjectivity «Graph-Test: Jede **senkrechte** Linie trifft mindestens einmal» — wrong: every **horizontal** line y = c with c in the target set must meet the graph at least once. (Vertical lines meeting the graph at most once is the test for «is a function».) | open → handle in `ana-umkehr` |
+| A-010 | Ü3/9 | Asymptote condition written only for x → ∞; the same holds for x → −∞ (Bsp. 2 says so). Vertical asymptotes are not of this form (next page). | open → one sentence in `ana-asymptoten` |
+| A-011 | Ü4/3 | «Wenn es den Differentialquotienten in **h** gibt … in h differenzierbar … in h stetig»: the point is **x₀**; h is the step. | open → handle in `ana-ableitung` |
+| A-012 | Ü5/4 | «f′ = 0 & f″ > 0: konvex / f′ = 0 & f″ < 0: konkav»: convexity needs only f″ > 0 (on an interval); f′ = 0 belongs to the extremum test above, not to curvature. | open → handle in `ana-mws` |
+| A-013 | Ü5/6 | «ℂ = {z = a **−** ib …}»: sign slip (p. 7 uses z = a + bi; with a, b ∈ ℝ both describe the same set, but the standard form is a + bi). «i = √−1» is shorthand: the real square root is not defined for −1, and √(ab) = √a·√b fails for negative numbers; the definition is i² = −1. | open → handle in `ana-komplex-rechnen` |

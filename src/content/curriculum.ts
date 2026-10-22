@@ -34,10 +34,10 @@ export const CHAPTERS: Record<string, [string, string]> = {
   '3': ['3 · Starrer Körper', '3 · Rigid body'],
   Q: ['Quiz', 'Quiz'],
   A1: ['Woche 1 · Folgen und Reihen', 'Week 1 · Sequences and series'],
-  A2: ['Woche 2 · Funktionen und Stetigkeit', 'Week 2 · Functions and continuity'],
-  A3: ['Woche 3 · Zwischenwertsatz, Umkehrfunktionen', 'Week 3 · Intermediate value theorem, inverses'],
+  A2: ['Woche 2 · Funktionen und Grenzwerte', 'Week 2 · Functions and limits'],
+  A3: ['Woche 3 · Stetigkeit, Umkehrfunktion, Asymptoten', 'Week 3 · Continuity, inverse functions, asymptotes'],
   A4: ['Woche 4 · Ableitungen', 'Week 4 · Derivatives'],
-  A5: ['Woche 5 · Mittelwertsatz', 'Week 5 · Mean value theorem'],
+  A5: ['Woche 5 · Fehlerrechnung, Mittelwertsatz, komplexe Zahlen', 'Week 5 · Errors, mean value theorem, complex numbers'],
   A6: ['Woche 6 · Komplexe Zahlen', 'Week 6 · Complex numbers'],
 };
 
@@ -49,10 +49,13 @@ export function sourceLabel(t: Topic): [string, string, string, string] {
   if (topicSubject(t) === 'mech') {
     return [`Vorlesung S. ${t.pages}`, `Lecture notes ${t.pages.includes('–') ? 'pp.' : 'p.'} ${t.pages}`, `S. ${t.pages}`, `p. ${t.pages}`];
   }
-  // Analysis: weeks 1–5 are the Übungs-Resümees (PDF), week 6 the online script of the ETH (complex numbers).
-  return t.pages.startsWith('Ü')
-    ? [`Übung ${t.pages.slice(1)}`, `Exercise class ${t.pages.slice(1)}`, `Üb. ${t.pages.slice(1)}`, `Ex. ${t.pages.slice(1)}`]
-    : ['Online-Skript', 'Online notes', 'Skript', 'notes'];
+  // Analysis: weeks 1–5 are the Übungs-Resümees (PDF, «Ü<n>/<pages>»), week 6 the online script of the ETH.
+  if (!t.pages.startsWith('Ü')) return ['Online-Skript', 'Online notes', 'Skript', 'notes'];
+  const [u, pp] = t.pages.slice(1).split('/');
+  const many = pp?.includes('–');
+  return pp
+    ? [`Übung ${u}, S. ${pp}`, `Exercise class ${u}, ${many ? 'pp.' : 'p.'} ${pp}`, `Üb. ${u}`, `Ex. ${u}`]
+    : [`Übung ${u}`, `Exercise class ${u}`, `Üb. ${u}`, `Ex. ${u}`];
 }
 
 export const TOPICS: Topic[] = [
@@ -75,11 +78,21 @@ export const TOPICS: Topic[] = [
   { id: 'quiz-2', chapter: 'Q', title: ['Quiz 2 · Geschwindigkeit', 'Quiz 2 · Velocity'], pages: '8–11', status: 'review', component: lazy(() => import('../lessons/Q2Quiz')) },
   { id: 'quiz-3', chapter: 'Q', title: ['Quiz 3 · Starrer Körper', 'Quiz 3 · Rigid body'], pages: '12–23', status: 'review', component: lazy(() => import('../lessons/Q3Quiz')) },
   { id: 'quiz-4', chapter: 'Q', title: ['Quiz 4 · Schraube, ebene Bewegung', 'Quiz 4 · Screw, plane motion'], pages: '24–28', status: 'review', component: lazy(() => import('../lessons/Q4Quiz')) },
-  // Analysis 1 – one chapter per week. Titles from the overview of the Übungs-Resümees (arazzakov.ch); contents pending the PDFs.
-  { id: 'ana-folgen', chapter: 'A1', title: ['Folgen und Reihen, Grenzwerte, Konvergenz und Monotonie', 'Sequences and series, limits, convergence and monotonicity'], pages: 'Ü1', status: 'planned' },
-  { id: 'ana-funktionen', chapter: 'A2', title: ['Funktionen, Definitions- und Wertebereich, Stetigkeit und Grenzwerte', 'Functions, domain and range, continuity and limits'], pages: 'Ü2', status: 'planned' },
-  { id: 'ana-zws', chapter: 'A3', title: ['Zwischenwertsatz, Graphentransformationen, Umkehrfunktionen und Asymptoten', 'Intermediate value theorem, graph transformations, inverse functions and asymptotes'], pages: 'Ü3', status: 'planned' },
-  { id: 'ana-ableitung', chapter: 'A4', title: ['Ableitungen & Tangenten', 'Derivatives and tangents'], pages: 'Ü4', status: 'planned' },
-  { id: 'ana-mws', chapter: 'A5', title: ['Mittelwertsatz & Fehlerrechnung', 'Mean value theorem and error estimation'], pages: 'Ü5', status: 'planned' },
+  // Analysis 1 – one chapter per week (D-023). `pages`: «Ü<n>/<pdf pages>» = Übungs-Resümee n, pages of that PDF.
+  { id: 'ana-folgen', chapter: 'A1', title: ['Folgen: beschränkt, monoton, konvergent', 'Sequences: bounded, monotonic, convergent'], pages: 'Ü1/10', status: 'planned' },
+  { id: 'ana-grenzwerte-folgen', chapter: 'A1', title: ['Grenzwerte von Folgen', 'Limits of sequences'], pages: 'Ü1/11', status: 'planned' },
+  { id: 'ana-reihen', chapter: 'A1', title: ['Arithmetische, geometrische und harmonische Reihe', 'Arithmetic, geometric and harmonic series'], pages: 'Ü1/11–12', status: 'planned' },
+  { id: 'ana-funktionen', chapter: 'A2', title: ['Funktionen, Definitions- und Wertebereich', 'Functions, domain and range'], pages: 'Ü2/2–4', status: 'planned' },
+  { id: 'ana-grenzwerte-funktionen', chapter: 'A2', title: ['Stetigkeit und Grenzwerte von Funktionen', 'Continuity and limits of functions'], pages: 'Ü2/4–7', status: 'planned' },
+  { id: 'ana-stetigkeit', chapter: 'A3', title: ['Lücken, Sprünge und Zwischenwertsatz', 'Gaps, jumps and the intermediate value theorem'], pages: 'Ü3/1–3', status: 'planned' },
+  { id: 'ana-transformationen', chapter: 'A3', title: ['Graphen verschieben, strecken, Kehrwert', 'Shifting and stretching graphs, reciprocals'], pages: 'Ü3/4–5', status: 'planned' },
+  { id: 'ana-umkehr', chapter: 'A3', title: ['Injektiv, surjektiv, Umkehrfunktion', 'Injective, surjective, inverse function'], pages: 'Ü3/5–8', status: 'planned' },
+  { id: 'ana-asymptoten', chapter: 'A3', title: ['Asymptoten', 'Asymptotes'], pages: 'Ü3/9–12', status: 'planned' },
+  { id: 'ana-ableitung', chapter: 'A4', title: ['Differenzenquotient und Ableitung', 'Difference quotient and derivative'], pages: 'Ü4/2–3', status: 'planned' },
+  { id: 'ana-ableitungsregeln', chapter: 'A4', title: ['Ableitungsregeln', 'Rules of differentiation'], pages: 'Ü4/4–7', status: 'planned' },
+  { id: 'ana-tangente', chapter: 'A4', title: ['Tangente und Normale', 'Tangent and normal'], pages: 'Ü4/8–9', status: 'planned' },
+  { id: 'ana-fehler', chapter: 'A5', title: ['Fehlerrechnung', 'Error estimation'], pages: 'Ü5/1–2', status: 'planned' },
+  { id: 'ana-mws', chapter: 'A5', title: ['Mittelwertsatz, Extrema und Wendepunkte', 'Mean value theorem, extrema and inflection points'], pages: 'Ü5/3–6', status: 'planned' },
+  { id: 'ana-komplex-rechnen', chapter: 'A5', title: ['Komplexe Zahlen: Rechnen', 'Complex numbers: arithmetic'], pages: 'Ü5/6–8', status: 'planned' },
   { id: 'ana-komplex', chapter: 'A6', title: ['Die komplexe Ebene', 'The complex plane'], pages: 'web', status: 'planned' },
 ];

@@ -1,10 +1,18 @@
 import type { ReactNode } from 'react';
 import { useLang, useTr } from '../i18n';
 
-/** Reference to the official material. `p` = printed page number in the Mitschrift. */
-export function Src({ p, fig }: { p: number | string; fig?: string }) {
+/**
+ * Reference to the official material. Mechanik: `p` = printed page number in the Mitschrift.
+ * Analysis: `u` = number of the Übung (exercise-class summary, PDF), `p` = page in that PDF.
+ */
+export function Src({ p, fig, u }: { p: number | string; fig?: string; u?: number }) {
   const tr = useTr();
   const pages = String(p).includes('–');
+  if (u !== undefined) return (
+    <span className="src" title={tr(`Übungs-Resümee ${u} (PDF), Seite`, `Summary of exercise class ${u} (PDF), page`)}>
+      {tr(`Übung ${u}, S. ${p}`, `Exercise class ${u}, ${pages ? 'pp.' : 'p.'} ${p}`)}{fig ? `, ${fig}` : ''}
+    </span>
+  );
   return (
     <span className="src" title={tr('Stelle im offiziellen Skript (gedruckte Seitenzahl)', 'Location in the official lecture notes (printed page number)')}>
       {tr(`Vorlesung S. ${p}`, `Lecture notes ${pages ? 'pp.' : 'p.'} ${p}`)}{fig ? `, ${fig}` : ''}
@@ -12,9 +20,10 @@ export function Src({ p, fig }: { p: number | string; fig?: string }) {
   );
 }
 
-type Kind = 'lecture' | 'supplement' | 'misconception' | 'review' | 'key' | 'intuition';
+type Kind = 'lecture' | 'uebung' | 'supplement' | 'misconception' | 'review' | 'key' | 'intuition';
 const LABEL: Record<Kind, [string, string]> = {
   lecture: ['Aus der Vorlesung', 'From the lecture'],
+  uebung: ['Aus der Übung', 'From the exercise class'],
   supplement: ['Ergänzung – nicht im Skript', 'Supplement – not in the lecture notes'],
   misconception: ['Häufiges Missverständnis', 'Common misconception'],
   review: ['Prüfhinweis', 'Review flag'],
