@@ -98,7 +98,7 @@ export function StripExplorer() {
           {mode === 'eps' && <>
             <Band from={L - eps} to={L + eps} />
             <HLine y={L} role="asym" />
-            <PLabel x={N_SHOWN + 0.6} y={L} tex={s.L !== null ? `L = ${num(L, 2, lang)}` : `L = ${num(L, 2, lang)}\\,?`} role="asym" anchor="r" dy={-12} small />
+            <PLabel x={N_SHOWN + 0.6} y={L} tex={s.L !== null ? `L = ${num(L, 2, lang)}` : `L = ${num(L, 2, lang)}\\,?`} role="asym" anchor="r" dy={-12 - (eps / 4.6) * 272} small />
             {N !== null && N > 1 && <>
               <VLine x={N - 0.5} role="aux" />
               <PLabel x={N - 0.5} y={-1.4} tex={`N = ${N}`} role="muted" anchor="l" dx={4} dy={-12} small />
@@ -153,7 +153,7 @@ const FRAC_WIN: Record<FracKey, { y: [number, number]; tick: number; grid: numbe
   gt: { y: [0, 230], tick: 50, grid: 25 },
   eq: { y: [0, 2.8], tick: 0.5, grid: 0.25 },
   lt: { y: [-0.8, 0.3], tick: 0.2, grid: 0.1 },
-  neg: { y: [-85, 5], tick: 20, grid: 10 },
+  neg: { y: [-85, 14], tick: 20, grid: 10 },
 };
 const LIM_TEX = (v: number) => (v === Infinity ? t`\infty` : v === -Infinity ? t`-\infty` : v === 0 ? '0' : t`\frac74`);
 const N_MAX = 40;
@@ -187,8 +187,8 @@ export function DegreeExplorer() {
       <figcaption className="vdemo-readout">
         <label className="slider wide-slider"><span><M>n</M></span>
           <input type="range" min={F.n0} max={N_MAX} step={1} value={nn} onChange={(e) => setN(Number(e.target.value))} aria-label="n" /><span className="val">{nn}</span></label>
-        <div className="v-result rt-readout"><M>{t`a_n = \frac{${polyTex(P)}}{${polyTex(Q)}}`}</M></div>
-        <div className="v-result pos rt-readout"><M>{t`a_{${nn}} = \frac{${polyNumTex(P, nn, lang)}}{${polyNumTex(Q, nn, lang)}} \approx ${signedTex(v, lang)}`}</M></div>
+        <div className="v-result rt-readout"><M>{t`a_n = \dfrac{${polyTex(P)}}{${polyTex(Q)}}`}</M></div>
+        <div className="v-result pos rt-readout"><M>{t`a_{${nn}} = \dfrac{${polyNumTex(P, nn, lang)}}{${polyNumTex(Q, nn, lang)}} \approx ${signedTex(v, lang)}`}</M></div>
         <div className="v-result rt-readout"><M>{t`\lim_{n\to\infty} a_n = ${LIM_TEX(lim)}`}</M></div>
         <p className="vdemo-note">{tr(
           <>Oben und unten ist alles durch die höchste Potenz des Nenners geteilt. Der Nenner geht gegen seine Leitzahl, die Brüche mit <M>n</M> unten gegen <M p=".">0</M> Bewege <M>n</M> und schau, welche Zahlen schrumpfen.</>,
@@ -209,7 +209,7 @@ export function GeoExplorer() {
   const [q, setQ] = useState(0.5);
   const lim = geoLimit(A1, q);
   const ns = Array.from({ length: NG }, (_, i) => i + 1);
-  const qt = num(q, 2, lang);
+  const qt = q < 0 ? `(${num(q, 2, lang)})` : num(q, 2, lang);
   const S = geoSum(A1, q, NG);
   return (
     <figure className="vdemo">
@@ -220,16 +220,16 @@ export function GeoExplorer() {
         <Plot x={[0, NG + 0.8]} y={[-4, 32]} grid={[5, 4]} tick={[5, 8]} axes={['n', 'S_n']} label={tr('Teilsummen der geometrischen Reihe', 'partial sums of the geometric series')}>
           {lim !== null && <HLine y={lim} role="asym" />}
           {lim !== null && <PLabel x={NG + 0.6} y={lim} tex={t`S_\infty = ${num(lim, 2, lang)}`} role="asym" anchor="r" dy={lim > 26 ? 14 : -14} small />}
-          {ns.map((k) => <Pt key={k} x={k} y={geoSum(A1, q, k)} r={3.6} />)}
+          {ns.map((k) => <Pt key={k} x={k} y={geoSum(A1, q, k)} r={3.6} role="f" />)}
         </Plot>
       </div>
       <figcaption className="vdemo-readout">
         <label className="slider wide-slider"><span><M>q</M></span>
           <input type="range" min={-1.2} max={1.2} step={0.05} value={q} onChange={(e) => setQ(Math.round(Number(e.target.value) * 100) / 100)} aria-label="q" /><span className="val">{fmtNum(q, 2, lang)}</span></label>
-        <div className="v-result rt-readout"><M>{q === 1 ? t`S_{${NG}} = ${NG}\cdot 3 = ${NG * 3}` : t`S_{${NG}} = 3\cdot\frac{1 - (${qt})^{${NG}}}{1 - (${qt})} \approx ${signedTex(S, lang)}`}</M></div>
+        <div className="v-result rt-readout"><M>{q === 1 ? t`S_{${NG}} = ${NG}\cdot 3 = ${NG * 3}` : t`S_{${NG}} = 3\cdot\dfrac{1 - ${qt}^{${NG}}}{1 - ${qt}} \approx ${signedTex(S, lang)}`}</M></div>
         <div className={`v-result rt-readout ${lim !== null ? 'pos' : 'neg'}`}>
           {lim !== null
-            ? <M>{t`|q| < 1:\quad S_\infty = \frac{3}{1 - (${qt})} = ${num(lim, 2, lang)}`}</M>
+            ? <M>{t`|q| < 1:\quad S_\infty = \dfrac{3}{1 - ${qt}} = ${num(lim, 2, lang)}`}</M>
             : <span><M p=":">{t`|q| \ge 1`}</M> {tr('keine endliche Summe', 'no finite sum')}</span>}
         </div>
         <p className="vdemo-note">{tr(

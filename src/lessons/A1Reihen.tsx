@@ -147,8 +147,8 @@ export default function A1Reihen() {
             label={tr('Animation: die Glieder 1/k als Säulen, in Gruppen auf das kleinste Glied gekürzt', 'Animation: the terms 1/k as columns, cut down group by group to the smallest term')}
             steps={[
               { ms: 1500, holdMs: 3000, caption: <T
-                de={<>Die Glieder <M>{t`\frac1k`}</M> als Säulen der Breite <M p=":">1</M> Fläche = Glied. Sie werden immer kleiner. Blau: die ersten beiden, <M p=".">{t`1 + \frac12`}</M></>}
-                en={<>The terms <M>{t`\frac1k`}</M> as columns of width <M p=":">1</M> area = term. They get ever smaller. Blue: the first two, <M p=".">{t`1 + \frac12`}</M></>} /> },
+                de={<>Die Glieder <M>{t`\frac1k`}</M> als Säulen der Breite <M p=":">1</M> die Fläche ist das Glied. Sie werden immer kleiner. Blau: die ersten beiden, <M p=".">{t`1 + \frac12`}</M></>}
+                en={<>The terms <M>{t`\frac1k`}</M> as columns of width <M p=":">1</M> the area is the term. They get ever smaller. Blue: the first two, <M p=".">{t`1 + \frac12`}</M></>} /> },
               { ms: 1600, holdMs: 3000, caption: <T
                 de={<>Magenta: <M p=".">{t`\frac13 + \frac14`}</M> Kürzt man <M>{t`\frac13`}</M> auf <M p=",">{t`\frac14`}</M> wird es kleiner: <M p=".">{t`\frac13 + \frac14 > \frac14 + \frac14 = \frac12`}</M></>}
                 en={<>Magenta: <M p=".">{t`\frac13 + \frac14`}</M> Cutting <M>{t`\frac13`}</M> down to <M>{t`\frac14`}</M> makes it smaller: <M p=".">{t`\frac13 + \frac14 > \frac14 + \frac14 = \frac12`}</M></>} /> },

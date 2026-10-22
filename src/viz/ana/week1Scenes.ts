@@ -37,7 +37,7 @@ const rect = (x0: number, y0: number, x1: number, y1: number): P2[] => [[x0, y0]
 export const KB_STEPS = 4;
 export function kbScene(step: number, t: number, lang: Lang): Scene {
   const e = ease(t), { a, L, eps, N, lo, hi, nMax } = KB;
-  const s = empty({ x: [0, nMax + 0.6], y: [-0.45, 1.95], grid: [1, 0.5], tick: [2, 0.5], axes: ['n', 'a_n'] });
+  const s = empty({ x: [-0.95, nMax + 0.6], y: [-0.45, 1.95], grid: [1, 0.5], tick: [2, 0.5], axes: ['n', 'a_n'] });
   const shown = step === 0 ? 1 + Math.floor(e * (nMax - 1) + 1e-9) : nMax;
   s.hlines.push({ at: L, role: 'asym', dashed: true });
   s.labels.push({ x: nMax + 0.4, y: L, tex: 'L = 1', role: 'asym', anchor: 'r', dy: step >= 1 ? -26 : -12, small: true });
@@ -57,7 +57,7 @@ export function kbScene(step: number, t: number, lang: Lang): Scene {
     const fade = step === 2 ? e : 1;
     if (fade > 0.3) {
       s.labels.push({ x: 2, y: a(2), tex: 'a_2', role: 'pt', anchor: 'l', dx: 9, dy: -4, small: true });
-      s.labels.push({ x: 1, y: a(1), tex: 'a_1', role: 'pt', anchor: 'l', dx: 9, dy: 8, small: true });
+      s.labels.push({ x: 1, y: a(1), tex: 'a_1', role: 'pt', anchor: 'l', dx: 8, dy: -12, small: true });
       s.labels.push({ x: 3, y: a(3), tex: 'a_3', role: 'pt', anchor: 'l', dx: 9, dy: 6, small: true });
     }
   }
@@ -66,7 +66,7 @@ export function kbScene(step: number, t: number, lang: Lang): Scene {
     s.hlines.push({ at: top, role: 'g' }, { at: bot, role: 'g' });
     if (e > 0.6) {
       s.labels.push({ x: 7, y: hi, tex: `a_n \\le ${num(hi, 1, lang)}`, role: 'g', anchor: 'b', dy: -5, small: true });
-      s.labels.push({ x: 7, y: lo, tex: `a_n \\ge ${num(lo, 1, lang)}`, role: 'g', anchor: 't', dy: 5, small: true });
+      s.labels.push({ x: 11, y: lo, tex: `a_n \\ge ${num(lo, 1, lang)}`, role: 'g', anchor: 'b', dy: -5, small: true });
     }
   }
   return s;
@@ -76,7 +76,7 @@ export function kbScene(step: number, t: number, lang: Lang): Scene {
 export const MB_STEPS = 4;
 export function mbScene(step: number, t: number, lang: Lang): Scene {
   const e = ease(t), { a, S, eps, bound0, N, nMax } = MB;
-  const s = empty({ x: [0, nMax + 0.6], y: [-0.15, 1.85], grid: [1, 0.5], tick: [2, 0.5], axes: ['n', 'a_n'] });
+  const s = empty({ x: [-0.95, nMax + 0.6], y: [-0.15, 1.85], grid: [1, 0.5], tick: [2, 0.5], axes: ['n', 'a_n'] });
   const shown = step === 0 ? 1 + Math.floor(e * (nMax - 1) + 1e-9) : nMax;
   const bound = step === 0 ? bound0 : step === 1 ? lerp(bound0, S, e) : S;
   s.hlines.push({ at: bound, role: 'g' });
@@ -126,7 +126,7 @@ export function rootScene(step: number, t: number, lang: Lang): Scene {
     s.polys.push({ pts: rect(1, 0, 1 + wid, sd + 1), role: 'g', fill: true });
   }
   if (step === 0) {
-    s.labels.push({ x: (1 + sd) / 2, y: sd / 2, tex: '\\delta', role: 'g', anchor: 'l', dx: 12, small: true });
+    s.labels.push({ x: sd, y: sd / 2, tex: '\\delta', role: 'g', anchor: 'l', dx: 8, small: true });
     s.labels.push({ x: 0.5, y: (1 + sd) / 2, tex: '\\delta', role: 'g', anchor: 'b', dy: -16, small: true });
     s.labels.push({ x: sd, y: sd, tex: 's^2 = 1 + \\tfrac1n', role: 'f', anchor: 'l', dx: 6, dy: -12 });
   } else if (step === 1) {
@@ -186,7 +186,7 @@ export function halfScene(step: number, t: number, lang: Lang): Scene {
   const s = empty({ x: [-0.2, 6.6], y: [-0.9, 1.7], grid: [0, 0], tick: [1, 0], axes: ['', ''] });
   s.polys.push({ pts: rect(0, 0, lim, 1), role: 'ref', dashed: true });
   s.vlines.push({ at: lim, role: 'asym', dashed: true });
-  s.labels.push({ x: lim, y: 1.7, tex: 'S_\\infty = 6', role: 'asym', anchor: 't', dy: 4, small: true });
+  s.labels.push({ x: lim, y: 1.7, tex: 'S_\\infty = 6', role: 'asym', anchor: 'r', dx: -8, dy: 14, small: true });
   const count = step < 4 ? step + 1 : 4 + Math.floor(e * 8);
   const frac = step < 4 ? e : 1;
   const texPiece = ['3', '\\tfrac32', '\\tfrac34', '\\tfrac38'];
@@ -199,9 +199,9 @@ export function halfScene(step: number, t: number, lang: Lang): Scene {
   const done = step < 4 ? (frac > 0.7 ? step + 1 : step) : 12;
   if (done >= 1) {
     const Sn = geoSum(a1, q, done), gap = lim - Sn;
-    s.labels.push({ x: Sn, y: 1, tex: step < 4 ? `S_${done} = ${num(Sn, 3, lang)}` : 'S_n \\to 6', role: 'fg', anchor: step < 4 ? 'b' : 'r', dy: -6, dx: step < 4 ? 0 : -4, small: true });
-    if (step < 4) s.labels.push({ x: lim, y: -0.45, tex: `6 - S_${done} = ${num(gap, 3, lang)}`, role: 'asym', anchor: 'r', small: true });
-    else s.labels.push({ x: lim, y: -0.45, tex: '6 - S_n = 6\\cdot\\left(\\tfrac12\\right)^{n} \\to 0', role: 'asym', anchor: 'r', small: true });
+    s.labels.push({ x: Sn, y: 1, tex: step < 4 ? `S_${done} = ${num(Sn, 3, lang)}` : 'S_n \\to 6', role: 'fg', anchor: step < 4 ? 'b' : 'r', dy: step < 4 ? -6 : -12, dx: step < 4 ? 0 : -10, small: true });
+    if (step < 4) s.labels.push({ x: lim, y: -0.45, tex: `6 - S_${done} = ${num(gap, 3, lang)}`, role: 'asym', anchor: 'r', dx: -10, small: true });
+    else s.labels.push({ x: lim, y: -0.45, tex: '6 - S_n = 6\\cdot\\left(\\tfrac12\\right)^{n} \\to 0', role: 'asym', anchor: 'r', dx: -10, small: true });
   }
   return s;
 }
@@ -215,7 +215,7 @@ export const harmGroupOf = (k: number) => (k <= 2 ? 0 : k <= 4 ? 1 : k <= 8 ? 2 
 export function harmScene(step: number, t: number, lang: Lang): Scene {
   void lang;
   const e = ease(t);
-  const s = empty({ x: [0, HARM_K + 0.6], y: [0, 1.15], grid: [0, 0.25], tick: [1, 0.25], axes: ['k', ''] });
+  const s = empty({ x: [-0.95, HARM_K + 0.6], y: [0, 1.15], grid: [0, 0.25], tick: [1, 0.25], axes: ['k', ''] });
   // groups that are already cut (step m cuts group m; group 0 = 1 + 1/2 is coloured in step 0)
   for (let k = 1; k <= HARM_K; k++) {
     const g = harmGroupOf(k), h = 1 / k;
@@ -232,7 +232,9 @@ export function harmScene(step: number, t: number, lang: Lang): Scene {
   for (let m = 1; m <= Math.min(step, 3); m++) {
     if (m === step && e < 0.7) continue;
     const [a, b] = group(m + 1), mid = (a - 1 + b) / 2; // scene group m = the slide's terms 1/(2^m + 1) … 1/2^(m+1)
-    s.labels.push({ x: mid, y: m === 1 ? 0.42 : m === 2 ? 0.3 : 0.18, tex: `\\ge ${lab[m]}`, role: GROLE[m], anchor: 'b', small: true });
+    s.labels.push(m === 1
+      ? { x: a - 1 + 0.15, y: 0.47, tex: `\\ge ${lab[m]}`, role: GROLE[m], anchor: 'l', small: true }
+      : { x: mid, y: m === 2 ? 0.3 : 0.18, tex: `\\ge ${lab[m]}`, role: GROLE[m], anchor: 'b', small: true });
   }
   if (step === 4 && e > 0.3) s.labels.push({ x: HARM_K + 0.5, y: 0.75, tex: 'S_{16} \\ge 1 + 4\\cdot\\tfrac12 = 3', role: 'fg', anchor: 'r' });
   return s;
