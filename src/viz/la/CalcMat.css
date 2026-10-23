@@ -100,3 +100,4 @@ input.la-in::-webkit-outer-spin-button, input.la-in::-webkit-inner-spin-button {
 .la-mirror::before { left: -6px; border-right: 0; border-radius: 6px 0 0 6px; }
 .la-mirror::after { right: -6px; border-left: 0; border-radius: 0 6px 6px 0; }
 .la-mirror .cell { font-size: 1.15rem; transition: none; }
+.la-mirror .cell.hit { z-index: 2; background: color-mix(in srgb, var(--la-miss) 32%, var(--panel)); box-shadow: 0 2px 8px rgb(0 0 0 / 0.18); }

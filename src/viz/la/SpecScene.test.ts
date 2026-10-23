@@ -39,10 +39,14 @@ describe('transpose animation (slide 33)', () => {
       }
     }
   });
-  it('the two partners of a moving pair never sit on the same spot mid-way', () => {
-    const f = transposeFrame(1, 0.5);
-    const a = f.cells.find((c) => c.key === '01')!, b = f.cells.find((c) => c.key === '10')!;
-    expect(Math.hypot(a.x - b.x, a.y - b.y)).toBeGreaterThan(0.5);
+  it('a moving number crosses only the mirror (diagonal) cells, never another resting one (the cells are boxes about 0.44 × 0.37 cell units)', () => {
+    for (let s = 0; s < TRANSPOSE_STEPS; s++) for (let k = 0; k <= 40; k++) {
+      const c = transposeFrame(s, k / 40).cells;
+      for (const a of c) for (const b of c) {
+        if (a === b || a.cls !== 'move' || b.cls === 'move' || b.cls === 'diag') continue; // only the mirror cells may be crossed
+        expect(Math.abs(a.x - b.x) >= 0.44 || Math.abs(a.y - b.y) >= 0.37, `step ${s} t ${k / 40}: ${a.key} at ${a.x.toFixed(2)},${a.y.toFixed(2)} over ${b.key}`).toBe(true);
+      }
+    }
   });
 });
 

@@ -57,7 +57,7 @@ export default function LA4Rechnen() {
             de={<p>Einfache Addition (oder Subtraktion) Eintrag für Eintrag («index-by-index»). Achte nur darauf, dass die Matrizen die gleiche Form haben: <M p=".">{t`A^{m\times n} + B^{m\times n} = C^{m\times n}`}</M></p>}
             en={<p>Simple index-by-index addition (or subtraction). Just make sure the matrices have the same shape: <M p=".">{t`A^{m\times n} + B^{m\times n} = C^{m\times n}`}</M></p>}
           />
-          <MD>{t`\begin{pmatrix}1&2&3\\4&5&6\end{pmatrix} + \begin{pmatrix}2&2&3\\4&1&2\end{pmatrix} = \begin{pmatrix}1+2&2+2&3+3\\4+4&5+1&6+2\end{pmatrix} = \begin{pmatrix}3&4&6\\8&6&8\end{pmatrix}`}</MD>
+          <MD>{t`\begin{aligned}\begin{pmatrix}1&2&3\\4&5&6\end{pmatrix} + \begin{pmatrix}2&2&3\\4&1&2\end{pmatrix} &= \begin{pmatrix}1+2&2+2&3+3\\4+4&5+1&6+2\end{pmatrix}\\ &= \begin{pmatrix}3&4&6\\8&6&8\end{pmatrix}\end{aligned}`}</MD>
         </Box>
         <T
           de={<>
@@ -158,7 +158,7 @@ export default function LA4Rechnen() {
       </Section>
 
       {/* ------------------------------------------------------------------ misconceptions */}
-      <Box kind="misconception" title={<T de="«A + B geht immer»" en="“A + B always works”" />}>
+      <Box kind="misconception" title={<T de={<>«<M>{t`A + B`}</M> geht immer»</>} en={<>“<M>{t`A + B`}</M> always works”</>} />}>
         <T
           de={<p>Nein. Die Summe gibt es nur, wenn beide Matrizen genau dieselbe Form haben. Eine <M>{t`2\times 3`}</M>-Matrix und eine <M>{t`3\times 2`}</M>-Matrix haben zwar gleich viele Einträge, aber die Felder haben keine gemeinsamen Adressen. Darum ist <M>{t`A+B`}</M> dort nicht definiert.</p>}
           en={<p>No. The sum exists only if both matrices have exactly the same shape. A <M>{t`2\times 3`}</M> matrix and a <M>{t`3\times 2`}</M> matrix have the same number of entries, but their cells do not share addresses. So <M>{t`A+B`}</M> is not defined there.</p>}
@@ -170,7 +170,7 @@ export default function LA4Rechnen() {
           en={<p>The scalar acts on <em>every</em> entry. Test with <M p=":">{t`2\begin{pmatrix}1&1\\0&2\end{pmatrix}`}</M> all four cells double, even the <M>0</M> (it stays <M p=").">0</M> Only if all cells are divisible by the same number may you factor it out.</p>}
         />
       </Box>
-      <Box kind="misconception" title={<T de="«A + B verschiebt die Matrix» oder «addiert die Pfeile von A und B»" en="“A + B shifts the matrix” or “adds the arrows of A and B”" />}>
+      <Box kind="misconception" title={<T de={<>«<M>{t`A + B`}</M> verschiebt die Matrix» oder «addiert die Pfeile von <M>A</M> und <M>B</M>»</>} en={<>“<M>{t`A + B`}</M> shifts the matrix” or “adds the arrows of <M>A</M> and <M>B</M>”</>} />}>
         <T
           de={<p>Nichts wird verschoben. <M>{t`A+B`}</M> ist eine neue Matrix mit eigenem Gitter. Addiert werden die <em>Bilder</em> eines Pfeils <M p=":">v</M> <M>Av</M> und <M p=".">Bv</M> Das Gitter von <M>{t`A+B`}</M> ist im Allgemeinen weder das von <M>A</M> noch das von <M p=".">B</M></p>}
           en={<p>Nothing is shifted. <M>{t`A+B`}</M> is a new matrix with its own grid. What is added are the <em>images</em> of one arrow <M p=":">v</M> <M>Av</M> and <M p=".">Bv</M> The grid of <M>{t`A+B`}</M> is in general neither the one of <M>A</M> nor the one of <M p=".">B</M></p>}
@@ -179,13 +179,13 @@ export default function LA4Rechnen() {
       <Box kind="key">
         <T
           de={<ul>
-            <li><M p=":">{t`A^{m\times n}`}</M> <M>m</M> Zeilen, <M p=";">n</M> Spalten <M>{t`A_{ij}`}</M> steht in Zeile <M p=",">i</M> Spalte <M p=".">j</M> Zeilen zuerst, Spalten später.</li>
+            <li><M p=":">{t`A^{m\times n}`}</M> <M>m</M> Zeilen, <M>n</M> Spalten; <M>{t`A_{ij}`}</M> steht in Zeile <M p=",">i</M> Spalte <M p=".">j</M> Zeilen zuerst, Spalten später.</li>
             <li><M>{t`A+B`}</M> geht nur bei gleicher Form und rechnet Feld für Feld: <M p=".">{t`C_{ij} = A_{ij}+B_{ij}`}</M></li>
             <li>Geometrisch: <M p=".">{t`(A+B)v = Av + Bv`}</M> Erst beide Bilder von <M>v</M> bilden, dann die Pfeile addieren.</li>
             <li><M>{t`\lambda A`}</M> multipliziert jeden Eintrag und streckt den Raum um <M p=".">{t`\lambda`}</M> Gemeinsame Faktoren darf man ausklammern.</li>
           </ul>}
           en={<ul>
-            <li><M p=":">{t`A^{m\times n}`}</M> <M>m</M> rows, <M p=";">n</M> columns <M>{t`A_{ij}`}</M> sits in row <M p=",">i</M> column <M p=".">j</M> Rows first, columns later.</li>
+            <li><M p=":">{t`A^{m\times n}`}</M> <M>m</M> rows, <M>n</M> columns; <M>{t`A_{ij}`}</M> sits in row <M p=",">i</M> column <M p=".">j</M> Rows first, columns later.</li>
             <li><M>{t`A+B`}</M> works only for the same shape and goes cell by cell: <M p=".">{t`C_{ij} = A_{ij}+B_{ij}`}</M></li>
             <li>Geometrically: <M p=".">{t`(A+B)v = Av + Bv`}</M> First form both images of <M p=",">v</M> then add the arrows.</li>
             <li><M>{t`\lambda A`}</M> multiplies every entry and stretches space by <M p=".">{t`\lambda`}</M> Common factors may be pulled out.</li>

@@ -108,7 +108,7 @@ function Rect({ rows, cols, name, cls, rowCls, colCls }: { rows: number; cols: n
   );
 }
 export function ShapeChecker() {
-  const tr = useTr();
+
   const [m, setM] = useState(3), [n, setN] = useState(3), [n2, setN2] = useState(3), [p, setP] = useState(1);
   const v = shapeVerdict(m, n, n2, p);
   const inner = v.ok ? 'pl-ink-c1' : 'pl-ink-tgt';
@@ -121,8 +121,8 @@ export function ShapeChecker() {
         <button type="button" onClick={() => set(2, 3, 2, 3)}><T de={<><M>{t`2\times 3`}</M> mal <M>{t`2\times 3`}</M></>} en={<><M>{t`2\times 3`}</M> times <M>{t`2\times 3`}</M></>} /></button>
       </div>
       <div className="la-row">
-        <span className="la-step-group"><M>A</M>: <Stepper label={<M>m</M>} value={m} min={1} max={5} onChange={setM} aria="m" /> <Stepper label={<M>n</M>} value={n} min={1} max={5} onChange={setN} aria="n" /></span>
-        <span className="la-step-group"><M>B</M>: <Stepper label={<M>{t`n'`}</M>} value={n2} min={1} max={5} onChange={setN2} aria="n'" /> <Stepper label={<M>p</M>} value={p} min={1} max={5} onChange={setP} aria="p" /></span>
+        <span className="la-step-group"><M p=":">A</M> <Stepper label={<M>m</M>} value={m} min={1} max={5} onChange={setM} aria="m" /> <Stepper label={<M>n</M>} value={n} min={1} max={5} onChange={setN} aria="n" /></span>
+        <span className="la-step-group"><M p=":">B</M> <Stepper label={<M>{t`n'`}</M>} value={n2} min={1} max={5} onChange={setN2} aria="n'" /> <Stepper label={<M>p</M>} value={p} min={1} max={5} onChange={setP} aria="p" /></span>
       </div>
       <div className="la-shape">
         <Rect rows={m} cols={n} name={<M>A</M>} cls="" colCls={inner} />
@@ -132,12 +132,12 @@ export function ShapeChecker() {
         {v.result ? <Rect rows={m} cols={p} name={<M>C</M>} cls="c" /> : <div className="la-rect bad"><span className="pl-ink-tgt">?</span></div>}
       </div>
       <div className={`la-panel ${v.ok ? 'ok' : 'no'}`}>
-        <span className="la-eqline"><M>{t`A^{${m}\times ${n}}\cdot B^{${n2}\times ${p}}`}</M><span className={inner}>{v.ok
-          ? <T de={<>: innen <M>{t`${n} = ${n2}`}</M> ✓</>} en={<>: inside <M>{t`${n} = ${n2}`}</M> ✓</>} />
-          : <T de={<>: innen <M>{t`${n} \neq ${n2}`}</M></>} en={<>: inside <M>{t`${n} \neq ${n2}`}</M></>} />}</span></span>
+        <span><M p=":">{t`A^{${m}\times ${n}}\cdot B^{${n2}\times ${p}}`}</M> <span className={inner}>{v.ok
+          ? <T de={<>innen <M p={'\u00a0✓'}>{t`${n} = ${n2}`}</M></>} en={<>inside <M p={'\u00a0✓'}>{t`${n} = ${n2}`}</M></>} />
+          : <T de={<>innen <M>{t`${n} \neq ${n2}`}</M></>} en={<>inside <M>{t`${n} \neq ${n2}`}</M></>} />}</span></span>
         <span className={`la-verdict ${v.ok ? 'ok' : 'no'}`}>{v.ok
           ? <T de={<>Das Produkt existiert: <M p=".">{t`C^{${m}\times ${p}}`}</M>{p === 1 ? ' Das Ergebnis ist ein Vektor.' : ''}</>} en={<>The product exists: <M p=".">{t`C^{${m}\times ${p}}`}</M>{p === 1 ? ' The result is a vector.' : ''}</>} />
-          : tr('Kein Produkt: Jede Zeile von A hat eine andere Länge als jede Spalte von B.', 'No product: every row of A has a different length than every column of B.')}</span>
+          : <T de={<>Kein Produkt: Jede Zeile von <M>A</M> hat eine andere Länge als jede Spalte von <M p=".">B</M></>} en={<>No product: every row of <M>A</M> has a different length than every column of <M p=".">B</M></>} />}</span>
         <p className="la-note"><T de={<>Die Aussenzahlen <M>m</M> und <M>p</M> geben die Form des Ergebnisses.</>} en={<>The outer numbers <M>m</M> and <M>p</M> give the shape of the result.</>} /></p>
       </div>
     </figure>
@@ -196,7 +196,7 @@ export function FingerComputer() {
             en={<>Column <M>{String(j + 1)}</M> of <M>C</M> is <M>A</M> applied to <Ink role="miss">column <M>{String(j + 1)}</M> of <M p=":">B</M></Ink> the columns of <M>A</M> weighted by these numbers.</>} /></p>
           <M>{t`A${texVec(xj, lang)} = ${xj.map((w, q) => `${w < 0 ? `(${n(w)})` : n(w)}\\cdot ${texVec(column(A, q), lang)}`).join(' + ')} = ${texVec(columnOfProduct(A, B, j), lang)}`}</M>
         </>}
-        <p className="la-note">{tr('Tipp auf ein Feld von C.', 'Tap a cell of C.')}</p>
+        <p className="la-note"><T de={<>Tipp auf ein Feld von <M p=".">C</M></>} en={<>Tap a cell of <M p=".">C</M></>} /></p>
       </div>
     </figure>
   );

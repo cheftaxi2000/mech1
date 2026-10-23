@@ -17,22 +17,26 @@ export const TRANSPOSE_STEPS = 4;
 
 /**
  * Step 0: A with the mirror line (fades in). Step 1: row 1 becomes column 1 (and column 1 becomes row 1).
- * Step 2: row 2 becomes column 2. Step 3: done, Aᵀ. Every entry travels from (i, j) to (j, i) on a small arc.
+ * Step 2: row 2 becomes column 2. Step 3: done, Aᵀ. Every entry travels on a straight line from (i, j) to (j, i); the pairs of a step move one after the other.
  */
 export function transposeFrame(step: number, t: number): MFrame {
   const n = 3, u = ease(clamp01(t));
   const done = new Set<string>();
   for (let s = 1; s < Math.min(step, MOVES.length); s++) for (const [i, j] of MOVES[s]) { done.add(`${i}${j}`); }
-  const now = new Set((MOVES[step] ?? []).map(([i, j]) => `${i}${j}`));
+  // the pairs of a step move one after the other; each partner crosses the diagonal at its own gap between diagonal cells
+  const moving = (MOVES[step] ?? []).map(([i, j]) => `${i}${j}`);
   const cells: MCell[] = [];
   for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) {
     const pair = i < j ? `${i}${j}` : `${j}${i}`;
     let x = j, y = i, cls: MCell['cls'] = i === j ? 'diag' : '';
+    const k = moving.indexOf(pair);
     if (i !== j && done.has(pair)) { x = i; y = j; cls = 'moved'; }
-    else if (i !== j && now.has(pair)) {
-      const s = i < j ? 1 : -1, b = 0.42 * Math.sin(Math.PI * u) * s; // bulge along the diagonal, opposite for the two partners
-      x = j + (i - j) * u + b; y = i + (j - i) * u + b;
-      cls = 'move';
+    else if (i !== j && k >= 0) {
+      const uk = ease(clamp01(clamp01(t) * moving.length - k));
+      // straight across the mirror: the two partners pass through each other (that is the swap) and glide over the diagonal;
+      // the figure draws moving numbers on top, so they never hide behind a resting one
+      x = j + (i - j) * uk; y = i + (j - i) * uk;
+      cls = uk > 0 && uk < 1 ? 'move' : uk >= 1 ? 'moved' : '';
     }
     if (step === 3 && i !== j) cls = 'moved';
     cells.push({ key: `${i}${j}`, tex: String(T_A[i][j]), x, y, cls });

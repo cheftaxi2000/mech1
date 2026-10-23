@@ -84,7 +84,7 @@ export default function LA5Produkt() {
       {/* ------------------------------------------------------------------ 3 */}
       <Section id="fingerrechner" title={<T de="3. Ausrechnen: der Finger-Rechner" en="3. Computing it: the finger computer" />}>
         <Box kind="uebung" src={<Src u={4} p="27, 29" slides />} title={<T de="Matrixmultiplikation und «Finger Computer»" en="Matrix multiplication and “finger computer”" />}>
-          <MD>{t`\begin{pmatrix}0&2\\1&0\end{pmatrix}\begin{pmatrix}1&-2\\1&0\end{pmatrix} = \begin{pmatrix}0\cdot 1 + 2\cdot 1 & 0\cdot(-2) + 2\cdot 0\\ 1\cdot 1 + 0\cdot 1 & 1\cdot(-2) + 0\cdot 0\end{pmatrix} = \begin{pmatrix}2&0\\1&-2\end{pmatrix}`}</MD>
+          <MD>{t`\begin{aligned}\begin{pmatrix}0&2\\1&0\end{pmatrix}\begin{pmatrix}1&-2\\1&0\end{pmatrix} &= \begin{pmatrix}0\cdot 1 + 2\cdot 1 & 0\cdot(-2) + 2\cdot 0\\ 1\cdot 1 + 0\cdot 1 & 1\cdot(-2) + 0\cdot 0\end{pmatrix}\\ &= \begin{pmatrix}2&0\\1&-2\end{pmatrix}\end{aligned}`}</MD>
           <T
             de={<p>Folie 27 rechnet dasselbe spaltenweise: Die Spalten der rechten Matrix sind zwei Vektoren. <M>A</M> angewendet auf <M>{t`(1, 1)^T`}</M> gibt <M p=",">{t`(0,1)^T\cdot 1 + (2,0)^T\cdot 1 = (2, 1)^T`}</M> angewendet auf <M>{t`(-2, 0)^T`}</M> gibt <M p=".">{t`(0,1)^T\cdot(-2) + (2,0)^T\cdot 0 = (0, -2)^T`}</M> Das sind die zwei Spalten des Ergebnisses. «Ich erkläre das nächste Woche visuell.»</p>}
             en={<p>Slide 27 computes the same column by column: the columns of the right matrix are two vectors. <M>A</M> applied to <M>{t`(1, 1)^T`}</M> gives <M p=",">{t`(0,1)^T\cdot 1 + (2,0)^T\cdot 1 = (2, 1)^T`}</M> applied to <M>{t`(-2, 0)^T`}</M> it gives <M p=".">{t`(0,1)^T\cdot(-2) + (2,0)^T\cdot 0 = (0, -2)^T`}</M> These are the two columns of the result. “I'll explain this visually next week.”</p>}
@@ -110,7 +110,7 @@ export default function LA5Produkt() {
         />
         <FingerComputer />
         <Box kind="supplement" title={<T de="Die Fingerregel als Formel" en="The finger rule as a formula" />}>
-          <MD>{t`C_{ij} = A_{i1}B_{1j} + A_{i2}B_{2j} + \dots + A_{in}B_{nj} = \sum_{k=1}^{n} A_{ik}B_{kj}`}</MD>
+          <MD>{t`\begin{aligned}C_{ij} &= A_{i1}B_{1j} + A_{i2}B_{2j} + \dots + A_{in}B_{nj}\\ &= \sum_{k=1}^{n} A_{ik}B_{kj}\end{aligned}`}</MD>
           <T
             de={<p>Das Summenzeichen <M>{t`\sum`}</M> heisst nur «zähle alle diese Produkte zusammen», wobei <M>k</M> von <M>1</M> bis <M>n</M> läuft. Hier sieht man auch die Bedingung aus Abschnitt 2: <M>k</M> zählt gleichzeitig die Spalten von <M>A</M> und die Zeilen von <M p=",">B</M> beide müssen bis <M>n</M> reichen.</p>}
             en={<p>The summation sign <M>{t`\sum`}</M> just says “add up all these products”, with <M>k</M> running from <M>1</M> to <M p=".">n</M> The requirement of section 2 is visible here too: <M>k</M> counts the columns of <M>A</M> and the rows of <M>B</M> at the same time; both must reach <M p=".">n</M></p>}
@@ -122,7 +122,8 @@ export default function LA5Produkt() {
       <Section id="beispiele" title={<T de="4. Die Aufgaben von Folie 30" en="4. The exercises of slide 30" />}>
         <Box kind="uebung" src={<Src u={4} p={30} slides />} title={<T de="Matrixmultiplikation – Aufgaben" en="Matrix multiplication – exercises" />}>
           <MD>{t`\begin{pmatrix}1\\1\\0\\3\end{pmatrix}\begin{pmatrix}1&0\end{pmatrix} = \begin{pmatrix}1&0\\1&0\\0&0\\3&0\end{pmatrix}`}</MD>
-          <MD>{t`\begin{pmatrix}1&0\\2&2\\0&1\end{pmatrix}\begin{pmatrix}1&2\\1&0\end{pmatrix} = \ ?\qquad \begin{pmatrix}2&0&0\\0&1&0\\0&0&-2\end{pmatrix}\begin{pmatrix}8&2\\5&2\\6&9\end{pmatrix} = \ ?`}</MD>
+          <MD>{t`\begin{pmatrix}1&0\\2&2\\0&1\end{pmatrix}\begin{pmatrix}1&2\\1&0\end{pmatrix} = \ ?`}</MD>
+          <MD>{t`\begin{pmatrix}2&0&0\\0&1&0\\0&0&-2\end{pmatrix}\begin{pmatrix}8&2\\5&2\\6&9\end{pmatrix} = \ ?`}</MD>
           <T
             de={<p>Im annotierten PDF ist nur die erste Antwort stehen geblieben; die beiden anderen rechnen wir unten selbst aus.</p>}
             en={<p>In the annotated PDF only the first answer is left; we work out the other two ourselves below.</p>}
@@ -137,7 +138,7 @@ export default function LA5Produkt() {
             de={<p><b>Aufgabe 2:</b> <M>{t`3\times 2`}</M> mal <M p=":">{t`2\times 2`}</M> innen <M p=",">{t`2 = 2`}</M> Ergebnis <M p=".">{t`3\times 2`}</M></p>}
             en={<p><b>Exercise 2:</b> <M>{t`3\times 2`}</M> times <M p=":">{t`2\times 2`}</M> inside <M p=",">{t`2 = 2`}</M> result <M p=".">{t`3\times 2`}</M></p>}
           />
-          <MD>{t`\begin{pmatrix}1&0\\2&2\\0&1\end{pmatrix}\begin{pmatrix}1&2\\1&0\end{pmatrix} = \begin{pmatrix}1\cdot1+0\cdot1 & 1\cdot2+0\cdot0\\ 2\cdot1+2\cdot1 & 2\cdot2+2\cdot0\\ 0\cdot1+1\cdot1 & 0\cdot2+1\cdot0\end{pmatrix} = \begin{pmatrix}1&2\\4&4\\1&0\end{pmatrix}`}</MD>
+          <MD>{t`\begin{aligned}\begin{pmatrix}1&0\\2&2\\0&1\end{pmatrix}\begin{pmatrix}1&2\\1&0\end{pmatrix} &= \begin{pmatrix}1\cdot1+0\cdot1 & 1\cdot2+0\cdot0\\ 2\cdot1+2\cdot1 & 2\cdot2+2\cdot0\\ 0\cdot1+1\cdot1 & 0\cdot2+1\cdot0\end{pmatrix}\\ &= \begin{pmatrix}1&2\\4&4\\1&0\end{pmatrix}\end{aligned}`}</MD>
           <T
             de={<p><b>Aufgabe 3:</b> <M>{t`3\times 3`}</M> mal <M p=":">{t`3\times 2`}</M> Ergebnis <M p=".">{t`3\times 2`}</M> Links steht eine Diagonalmatrix (Lektion <a href="#la-spezial">Spezielle Matrizen</a>). Sie multipliziert einfach jede <em>Zeile</em> von rechts mit ihrer Diagonalzahl: die erste mit <M p=",">2</M> die zweite mit <M p=",">1</M> die dritte mit <M p=".">-2</M></p>}
             en={<p><b>Exercise 3:</b> <M>{t`3\times 3`}</M> times <M p=":">{t`3\times 2`}</M> result <M p=".">{t`3\times 2`}</M> On the left is a diagonal matrix (lesson <a href="#la-spezial">Special matrices</a>). It simply multiplies every <em>row</em> of the right factor by its diagonal number: the first by <M p=",">2</M> the second by <M p=",">1</M> the third by <M p=".">-2</M></p>}
@@ -149,7 +150,8 @@ export default function LA5Produkt() {
             de={<p>Diese Regel aus der Lektion <a href="#la-spezial">Spezielle Matrizen</a> prüfen wir an Aufgabe 2. Links: das Ergebnis oben transponieren. Rechts: zuerst beide Faktoren transponieren und in umgekehrter Reihenfolge multiplizieren.</p>}
             en={<p>We check this rule from the lesson <a href="#la-spezial">Special matrices</a> on exercise 2. Left: transpose the result above. Right: first transpose both factors and multiply them in reverse order.</p>}
           />
-          <MD>{t`(AB)^T = \begin{pmatrix}1&4&1\\2&4&0\end{pmatrix},\qquad B^TA^T = \begin{pmatrix}1&1\\2&0\end{pmatrix}\begin{pmatrix}1&2&0\\0&2&1\end{pmatrix} = \begin{pmatrix}1&4&1\\2&4&0\end{pmatrix}\ \checkmark`}</MD>
+          <MD>{t`(AB)^T = \begin{pmatrix}1&4&1\\2&4&0\end{pmatrix}`}</MD>
+          <MD>{t`B^TA^T = \begin{pmatrix}1&1\\2&0\end{pmatrix}\begin{pmatrix}1&2&0\\0&2&1\end{pmatrix} = \begin{pmatrix}1&4&1\\2&4&0\end{pmatrix}\ \checkmark`}</MD>
           <T
             de={<p>Die Formen erklären die Umkehrung: <M>{t`A^T`}</M> ist <M>{t`2\times 3`}</M> und <M>{t`B^T`}</M> ist <M p=".">{t`2\times 2`}</M> Nur <M>{t`B^T A^T`}</M> passt zusammen. Eine Zahlenprobe ist kein Beweis, aber ein guter Test.</p>}
             en={<p>The shapes explain the reversal: <M>{t`A^T`}</M> is <M>{t`2\times 3`}</M> and <M>{t`B^T`}</M> is <M p=".">{t`2\times 2`}</M> Only <M>{t`B^T A^T`}</M> fits together. A numerical check is not a proof, but a good test.</p>}

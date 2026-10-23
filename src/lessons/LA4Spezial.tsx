@@ -78,7 +78,8 @@ export default function LA4Spezial() {
             de={<p><M p=":">{t`(A^{m\times n})^T \to A^{n\times m}`}</M> die Spalten werden zu Zeilen. Für eine quadratische Matrix: «an der Diagonalen gespiegelt».</p>}
             en={<p><M p=":">{t`(A^{m\times n})^T \to A^{n\times m}`}</M> the columns become rows. For a square matrix: “mirrored across diagonal”.</p>}
           />
-          <MD>{t`\begin{pmatrix}1&2\\3&4\\5&6\end{pmatrix}^T = \begin{pmatrix}1&3&5\\2&4&6\end{pmatrix},\qquad \begin{pmatrix}1&2&3\\4&5&6\\7&8&9\end{pmatrix}^T = \begin{pmatrix}1&4&7\\2&5&8\\3&6&9\end{pmatrix}`}</MD>
+          <MD>{t`\begin{pmatrix}1&2\\3&4\\5&6\end{pmatrix}^T = \begin{pmatrix}1&3&5\\2&4&6\end{pmatrix}`}</MD>
+          <MD>{t`\begin{pmatrix}1&2&3\\4&5&6\\7&8&9\end{pmatrix}^T = \begin{pmatrix}1&4&7\\2&5&8\\3&6&9\end{pmatrix}`}</MD>
           <T
             de={<p>Aus der Zusammenfassung (gedruckt auf der Folie): «Die Transponierte einer Matrix erhält man, indem man sie an ihrer Diagonalen „spiegelt“.» Rechenregeln:</p>}
             en={<p>From the summary printed on the slide: “The transpose of a matrix is obtained by ‘mirroring’ it across its diagonal.” Rules (<De en="rules of calculation">Rechenregeln</De>):</p>}
@@ -149,7 +150,8 @@ export default function LA4Spezial() {
       {/* ------------------------------------------------------------------ 4 */}
       <Section id="symmetrisch" title={<T de="4. Symmetrische Matrizen" en="4. Symmetric matrices" />}>
         <Box kind="uebung" src={<Src u={4} p={35} slides />} title={<T de="Symmetrische Matrix" en={<><De en="symmetric matrix">Symmetrische Matrix</De></>} />}>
-          <MD>{t`A^T = A,\qquad A = \begin{pmatrix}1&2&-2&0\\2&2&0&1\\-2&0&-3&0\\0&1&0&1\end{pmatrix} = A^T`}</MD>
+          <MD>{t`A^T = A`}</MD>
+          <MD>{t`A = \begin{pmatrix}1&2&-2&0\\2&2&0&1\\-2&0&-3&0\\0&1&0&1\end{pmatrix} = A^T`}</MD>
           <T
             de={<p>«Beachte: Das muss eine quadratische Matrix sein.» «Bringt viele nützliche Eigenschaften mit» – aus der gedruckten Zusammenfassung (Auszug): <M>{t`A^TA`}</M> und <M>{t`AA^T`}</M> sind immer symmetrisch; die Eigenwerte sind reell. Wichtige Zusammenhänge: <M>A</M> symmetrisch <M>{t`\Leftrightarrow A^{-1}`}</M> symmetrisch; <M>{t`A, B`}</M> symmetrisch <M>{t`\Leftrightarrow A+B`}</M> symmetrisch; <M>A</M> symmetrisch <M>{t`\Leftrightarrow A^2`}</M> symmetrisch; <b><M>{t`A, B`}</M> symmetrisch, aber <M>AB</M> nicht unbedingt symmetrisch</b> (auf der Folie markiert).</p>}
             en={<p>“Note that this has to be a square matrix.” “Comes with lots of useful properties” – from the printed summary (excerpt): <M>{t`A^TA`}</M> and <M>{t`AA^T`}</M> are always symmetric; the eigenvalues are real. Important connections: <M>A</M> symmetric <M>{t`\Leftrightarrow A^{-1}`}</M> symmetric; <M>{t`A, B`}</M> symmetric <M>{t`\Leftrightarrow A+B`}</M> symmetric; <M>A</M> symmetric <M>{t`\Leftrightarrow A^2`}</M> symmetric; <b><M>{t`A, B`}</M> symmetric, but <M>AB</M> not necessarily symmetric</b> (highlighted on the slide).</p>}
@@ -210,7 +212,7 @@ export default function LA4Spezial() {
       </Section>
 
       {/* ------------------------------------------------------------------ misconceptions */}
-      <Box kind="misconception" title={<T de="«Transponieren dreht die Matrix um 90°»" en="“Transposing rotates the matrix by 90°”" />}>
+      <Box kind="misconception" title={<T de={<>«Transponieren dreht die Matrix um <M p="»">{t`90^\circ`}</M></>} en={<>“Transposing rotates the matrix by <M p="”">{t`90^\circ`}</M></>} />}>
         <T
           de={<p>Nein, es spiegelt. Dreht man <M>{t`\begin{pmatrix}1&2\\3&4\end{pmatrix}`}</M> um eine Vierteldrehung im Uhrzeigersinn, erhält man <M p=".">{t`\begin{pmatrix}3&1\\4&2\end{pmatrix}`}</M> Die Transponierte ist aber <M p=".">{t`\begin{pmatrix}1&3\\2&4\end{pmatrix}`}</M> Erkennungszeichen: Beim Transponieren bleibt die Diagonale (<M>1</M> und <M p=")">4</M> stehen.</p>}
           en={<p>No, it mirrors. Rotating <M>{t`\begin{pmatrix}1&2\\3&4\end{pmatrix}`}</M> a quarter turn clockwise gives <M p=".">{t`\begin{pmatrix}3&1\\4&2\end{pmatrix}`}</M> The transpose, however, is <M p=".">{t`\begin{pmatrix}1&3\\2&4\end{pmatrix}`}</M> Tell-tale sign: when transposing, the diagonal (<M>1</M> and <M p=")">4</M> stays in place.</p>}
