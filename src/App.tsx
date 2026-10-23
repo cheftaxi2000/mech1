@@ -30,8 +30,11 @@ function Home() {
   const tr = useTr();
   const last = TOPICS.find((t) => t.id === readLast());
   return (
-    <article className="lesson">
-      <h1>Learning Lab · Mechanik I &amp; Analysis 1</h1>
+    <article className="lesson home">
+      <header className="hero">
+        <div className="hero-eyebrow">ETH Zürich</div>
+        <h1>Learning Lab<span className="hero-sep"> · </span><span className="hero-sub">Mechanik I &amp; Analysis 1</span></h1>
+      </header>
       {last && (
         <a className="resume" href={`#${last.id}`}>
           <span className="resume-kind">{tr('Weiterlesen', 'Continue reading')} · {tr(...SUBJECTS[topicSubject(last)])}</span>
@@ -161,6 +164,24 @@ function NotesList({ onPick }: { onPick: () => void }) {
   );
 }
 
+/** Thin reading-progress thread under the top bar (lessons only). */
+function ReadProgress({ route }: { route: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const upd = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      el.style.setProperty('--p', String(max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0));
+    };
+    upd();
+    window.addEventListener('scroll', upd, { passive: true });
+    window.addEventListener('resize', upd);
+    return () => { window.removeEventListener('scroll', upd); window.removeEventListener('resize', upd); };
+  }, [route]);
+  return <div className="read-progress" ref={ref} aria-hidden="true"><i /></div>;
+}
+
 export function App() {
   const route = useHashRoute();
   const tr = useTr();
@@ -185,6 +206,7 @@ export function App() {
         <a href="#" className="brand">{topic ? `${tr(...SUBJECTS[topicSubject(topic)])} Lab` : 'Learning Lab'}</a>
         {topic && <span className="topbar-topic">{tr(...topic.title)}</span>}
         <LangToggle />
+        <ReadProgress route={route} />
       </header>
       <div className={`drawer-backdrop${menu ? ' open' : ''}`} onClick={() => setMenu(false)} aria-hidden="true" />
       <nav id="chapters" className={`drawer${menu ? ' open' : ''}`} aria-label={tr('Kapitel', 'Chapters')} inert={!menu}>
