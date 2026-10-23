@@ -210,3 +210,5 @@ input[type="checkbox"] { accent-color: var(--accent); width: 18px; height: 18px;
 .box { --sbg: color-mix(in srgb, var(--c) var(--tint), var(--panel)); }
 .box-lecture, .box-uebung, .explorer, .vdemo, .quiz, .anim-fig { --sbg: var(--fill); }
 .derivation { --sbg: var(--bg); }
+/* consecutive notes read as one group, not a wall of separate cards */
+.box + .box { margin-top: 12px; }
