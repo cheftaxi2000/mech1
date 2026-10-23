@@ -23,8 +23,8 @@ export default function A6Bereiche() {
           <MD>{t`|z - z_0| < R: \quad \text{${tr('innen, ohne Rand', 'inside, without boundary')}} \qquad (R > 0)`}</MD>
         </Box>
         <T
-          de={<p>Warum ist <M>{t`|z - z_0|`}</M> ein Abstand? <M>{t`z - z_0`}</M> ist der Pfeil von <M>{t`z_0`}</M> nach <M>z</M> (wie beim Subtrahieren in Woche 5). Sein Betrag ist seine Länge. Also: <M>{t`|z - z_0|`}</M> = Abstand zwischen den Punkten <M>z</M> und <M p=".">{t`z_0`}</M> Auf der Zahlengerade kennst du das schon: <M>{t`|x - 3|`}</M> ist der Abstand von <M>x</M> zu <M p=".">3</M></p>}
-          en={<p>Why is <M>{t`|z - z_0|`}</M> a distance? <M>{t`z - z_0`}</M> is the arrow from <M>{t`z_0`}</M> to <M>z</M> (as with subtracting in week 5). Its modulus is its length. So: <M>{t`|z - z_0|`}</M> = distance between the points <M>z</M> and <M p=".">{t`z_0`}</M> You know this from the number line: <M>{t`|x - 3|`}</M> is the distance from <M>x</M> to <M p=".">3</M></p>}
+          de={<p>Warum ist <M>{t`|z - z_0|`}</M> ein Abstand? <M>{t`z - z_0`}</M> ist der Pfeil von <M>{t`z_0`}</M> nach <M>z</M> (wie beim Subtrahieren in Woche 5). Sein Betrag ist seine Länge. Also: <M>{t`|z - z_0|`}</M> <M>=</M> Abstand zwischen den Punkten <M>z</M> und <M p=".">{t`z_0`}</M> Auf der Zahlengerade kennst du das schon: <M>{t`|x - 3|`}</M> ist der Abstand von <M>x</M> zu <M p=".">3</M></p>}
+          en={<p>Why is <M>{t`|z - z_0|`}</M> a distance? <M>{t`z - z_0`}</M> is the arrow from <M>{t`z_0`}</M> to <M>z</M> (as with subtracting in week 5). Its modulus is its length. So: <M>{t`|z - z_0|`}</M> <M>=</M> distance between the points <M>z</M> and <M p=".">{t`z_0`}</M> You know this from the number line: <M>{t`|x - 3|`}</M> is the distance from <M>x</M> to <M p=".">3</M></p>}
         />
         <ul>
           <T
@@ -130,13 +130,13 @@ export default function A6Bereiche() {
         <Box kind="key">
           <T
             de={<ul>
-              <li><M>{t`|z - z_0|`}</M> = Abstand von <M>z</M> zu <M p=".">{t`z_0`}</M> <M p=":">{t`= R`}</M> Kreislinie, <M p=":">{t`< R`}</M> innen, <M p=":">{t`> R`}</M> aussen.</li>
+              <li><M>{t`|z - z_0|`}</M> <M>=</M> Abstand von <M>z</M> zu <M p=".">{t`z_0`}</M> <M p=":">{t`= R`}</M> Kreislinie, <M p=":">{t`< R`}</M> innen, <M p=":">{t`> R`}</M> aussen.</li>
               <li>Real- und Imaginärteil-Bedingungen: <M>{t`z = a + bi`}</M> einsetzen, ausrechnen – das gibt Geraden und Halbebenen.</li>
               <li>Mehrere Bedingungen: jede einzeln zeichnen, nur die gemeinsame Menge behalten.</li>
               <li>Rand dabei (<M p=",">{t`\leq, \geq`}</M> <M p=")">=</M> durchgezogen; ausgeschlossen (<M p=")">{t`<, >`}</M> gestrichelt.</li>
             </ul>}
             en={<ul>
-              <li><M>{t`|z - z_0|`}</M> = distance from <M>z</M> to <M p=".">{t`z_0`}</M> <M p=":">{t`= R`}</M> circle line, <M p=":">{t`< R`}</M> inside, <M p=":">{t`> R`}</M> outside.</li>
+              <li><M>{t`|z - z_0|`}</M> <M>=</M> distance from <M>z</M> to <M p=".">{t`z_0`}</M> <M p=":">{t`= R`}</M> circle line, <M p=":">{t`< R`}</M> inside, <M p=":">{t`> R`}</M> outside.</li>
               <li>Conditions on real and imaginary parts: substitute <M p=",">{t`z = a + bi`}</M> compute – this gives lines and half-planes.</li>
               <li>Several conditions: draw each one alone, keep only the common set.</li>
               <li>Boundary included (<M p=",">{t`\leq, \geq`}</M> <M p=")">=</M> solid; excluded (<M p=")">{t`<, >`}</M> dashed.</li>

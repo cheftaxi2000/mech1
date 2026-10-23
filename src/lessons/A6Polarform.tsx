@@ -79,13 +79,13 @@ export default function A6Polarform() {
         <ul>
           <T
             de={<>
-              <li><M>r</M> = Länge des Pfeils = Betrag <M p=".">{t`|z|`}</M></li>
-              <li><M>\varphi</M> (phi) = Winkel von der positiven reellen Achse aus, gegen den Uhrzeigersinn, im Bogenmass.</li>
+              <li><M>r</M> <M>=</M> Länge des Pfeils <M>=</M> Betrag <M p=".">{t`|z|`}</M></li>
+              <li><M>\varphi</M> (phi) <M>=</M> Winkel von der positiven reellen Achse aus, gegen den Uhrzeigersinn, im Bogenmass.</li>
               <li><M>{t`a = r\cos\varphi`}</M> und <M>{t`b = r\sin\varphi`}</M> sind die Schatten des Pfeils auf den Achsen – die Definition von Kosinus und Sinus im rechtwinkligen Dreieck mit Hypotenuse <M p=".">r</M></li>
             </>}
             en={<>
-              <li><M>r</M> = length of the arrow = modulus <M p=".">{t`|z|`}</M></li>
-              <li><M>\varphi</M> (phi) = angle from the positive real axis, counter-clockwise, in radians.</li>
+              <li><M>r</M> <M>=</M> length of the arrow <M>=</M> modulus <M p=".">{t`|z|`}</M></li>
+              <li><M>\varphi</M> (phi) <M>=</M> angle from the positive real axis, counter-clockwise, in radians.</li>
               <li><M>{t`a = r\cos\varphi`}</M> and <M>{t`b = r\sin\varphi`}</M> are the shadows of the arrow on the axes – the definition of cosine and sine in the right triangle with hypotenuse <M p=".">r</M></li>
             </>}
           />

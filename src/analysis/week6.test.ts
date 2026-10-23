@@ -184,3 +184,21 @@ describe('Bereiche (S. 10)', () => {
     expect(bisectorGap(a, a, b)).toBeLessThan(0);
   });
 });
+
+describe('quiz ideas (values for the later Analysis quiz page)', () => {
+  it('i^2026 = −1; arg(−1 − i) = 5π/4 while arctan(b/a) = π/4; (1 + i)^8 = 16', () => {
+    close(iPow(2026), cx(-1, 0));
+    expect(arg(cx(-1, -1))).toBeCloseTo((5 * PI) / 4, 12);
+    expect(naiveArctan(cx(-1, -1))).toBeCloseTo(PI / 4, 12);
+    close(cpowMul(cx(1, 1), 8), cx(16, 0), 9);
+  });
+  it('z^3 = 8i: √3 + i, −√3 + i, −2i', () => {
+    const rs = roots(cx(0, 8), 3);
+    close(rs[0].z, cx(Math.sqrt(3), 1)); close(rs[1].z, cx(-Math.sqrt(3), 1)); close(rs[2].z, cx(0, -2));
+  });
+  it('|z − 2| = |z − 2i| is the line b = a; smallest n with n(5π/16 + 15π/16) ∈ 2πℤ is 8', () => {
+    for (const s of [-1, 0.5, 3]) expect(bisectorGap(cx(s, s), cx(2, 0), cx(0, 2))).toBeCloseTo(0, 12);
+    const ok = (n: number) => { const q = (n * (5 / 16 + 15 / 16)) / 2; return Math.abs(q - Math.round(q)) < 1e-12; };
+    expect([1, 2, 3, 4, 5, 6, 7].some(ok)).toBe(false); expect(ok(8)).toBe(true);
+  });
+});

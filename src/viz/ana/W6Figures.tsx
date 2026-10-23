@@ -515,7 +515,7 @@ const BL = '#3b82f6', MG = '#ec4899';
 const DBL_LINES = [
   t`e^{2ix} = \left(e^{ix}\right)^2`,
   t`\cos(2x) + i\sin(2x) = (\cos x + i\sin x)^2`,
-  t`\begin{aligned}(\cos x + i\sin x)^2 &= \cos^2 x + 2i\sin x\cos x \\ &\phantom{=}\ + i^2\sin^2 x \\ &= {\color{${BL}}\cos^2 x - \sin^2 x} + i\,{\color{${MG}}2\sin x\cos x}\end{aligned}`,
+  t`\begin{aligned}&(\cos x + i\sin x)^2 \\ &= \cos^2 x + 2i\sin x\cos x + i^2\sin^2 x \\ &={\color{${BL}}\cos^2 x - \sin^2 x} + i\,{\color{${MG}}2\sin x\cos x}\end{aligned}`,
   t`\begin{gathered}{\color{${BL}}\cos(2x) = \cos^2 x - \sin^2 x} \\ {\color{${MG}}\sin(2x) = 2\sin x\cos x}\end{gathered}`,
 ];
 export function DoubleAngleLines({ step, t: tt }: { step: number; t: number }) {
