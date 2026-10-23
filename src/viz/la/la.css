@@ -61,3 +61,28 @@
 .la-cases { border-collapse: collapse; font-size: 0.95rem; }
 .la-cases th, .la-cases td { border-bottom: 1px solid var(--line); padding: 6px 10px; text-align: left; vertical-align: top; }
 .la-cases th { font-weight: 600; color: var(--muted); }
+
+/* ---- transformation explorer ---- */
+.la-tr-grid { display: grid; gap: 12px; }
+@media (min-width: 1000px) {
+  .la-tr-grid { grid-template-columns: minmax(0, 1.45fr) minmax(300px, 1fr); align-items: start; }
+  .la-tr-stage .la-plane .plot-fig { max-width: calc((100svh - var(--topbar, 52px) - 130px) * 4 / 3); }
+}
+.la-morph { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 8px; }
+.la-morph button, .la-seg button, .la-small-btn { font: inherit; min-height: 44px; padding: 4px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); cursor: pointer; }
+.la-morph button.primary { background: var(--accent); border-color: var(--accent); color: var(--panel); font-weight: 600; min-width: 8.5em; }
+.la-morph button[aria-pressed="true"], .la-seg button[aria-pressed="true"] { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); }
+.la-morph .slider { flex: 1; min-width: 180px; }
+.la-seg { display: flex; flex-wrap: wrap; gap: 6px; }
+.la-seg button { flex: 1; min-width: 10em; }
+.la-small-btn { min-height: 36px; padding: 2px 10px; font-size: 0.92rem; }
+.la-entry { width: 3.4em; font: inherit; font-family: KaTeX_Main, "Times New Roman", serif; font-size: 1.05em; text-align: center; color: inherit; background: color-mix(in srgb, var(--panel) 70%, transparent); border: 1px solid color-mix(in srgb, currentColor 35%, transparent); border-radius: 6px; padding: 3px 2px; margin: 2px 0; }
+.la-entry:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.la-line { margin: 0; }
+.la-verdict { font-weight: 600; }
+.la-tr .la-hint { margin: 0; }
+/* small pictures (slide 21) */
+.la-minis { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin: 12px 0; }
+.la-mini { border: 1px solid var(--line); border-radius: 12px; background: var(--panel); padding: 8px 10px 10px; }
+.la-mini .la-display { margin: 4px 0 6px; font-size: 1rem; }
+.la-mini p { margin: 4px 0 0; font-size: 0.95rem; }
