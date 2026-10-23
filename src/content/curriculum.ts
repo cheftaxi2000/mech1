@@ -94,7 +94,7 @@ export const TOPICS: Topic[] = [
   { id: 'ana-fehler', chapter: 'A5', title: ['Fehlerrechnung', 'Error estimation'], pages: 'Ü5/1–2', status: 'review', component: lazy(() => import('../lessons/A5Fehler')) },
   { id: 'ana-mws', chapter: 'A5', title: ['Mittelwertsatz, Extrema und Wendepunkte', 'Mean value theorem, extrema and inflection points'], pages: 'Ü5/3–6', status: 'review', component: lazy(() => import('../lessons/A5Mittelwertsatz')) },
   { id: 'ana-komplex-rechnen', chapter: 'A5', title: ['Komplexe Zahlen: Rechnen', 'Complex numbers: arithmetic'], pages: 'Ü5/6–8', status: 'review', component: lazy(() => import('../lessons/A5Komplex')) },
-  { id: 'ana-komplex', chapter: 'A6', title: ['Polarform und Eulerform', 'Polar form and Euler form'], pages: 'Ü6/1–7', status: 'planned' },
-  { id: 'ana-komplex-potenzen', chapter: 'A6', title: ['Potenzen, Wurzeln und Winkelformeln', 'Powers, roots and angle formulas'], pages: 'Ü6/8–11', status: 'planned' },
-  { id: 'ana-komplex-bereiche', chapter: 'A6', title: ['Bereiche in der komplexen Ebene', 'Regions in the complex plane'], pages: 'Ü6/10–12', status: 'planned' },
+  { id: 'ana-komplex', chapter: 'A6', title: ['Polarform und Eulerform', 'Polar form and Euler form'], pages: 'Ü6/1–7', status: 'review', component: lazy(() => import('../lessons/A6Polarform')) },
+  { id: 'ana-komplex-potenzen', chapter: 'A6', title: ['Potenzen, Wurzeln und Winkelformeln', 'Powers, roots and angle formulas'], pages: 'Ü6/8–9, 11', status: 'review', component: lazy(() => import('../lessons/A6Potenzen')) },
+  { id: 'ana-komplex-bereiche', chapter: 'A6', title: ['Bereiche in der komplexen Ebene', 'Regions in the complex plane'], pages: 'Ü6/10, 12', status: 'review', component: lazy(() => import('../lessons/A6Bereiche')) },
 ];

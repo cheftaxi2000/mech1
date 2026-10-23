@@ -57,8 +57,8 @@ export default function A5Komplex() {
         />
         <ComplexExplorer />
         <T
-          de={<p>Die Knöpfe oben im Bild gehören zu den Abschnitten 3 und 5. Wie man in der Ebene auch multipliziert und dividiert (mit Winkeln), zeigt die Lektion <a href="#ana-komplex">Die komplexe Ebene</a>.</p>}
-          en={<p>The buttons above the figure belong to sections 3 and 5. How to multiply and divide in the plane as well (with angles) is shown in the lesson <a href="#ana-komplex">The complex plane</a>.</p>}
+          de={<p>Die Knöpfe oben im Bild gehören zu den Abschnitten 3 und 5. Wie man in der Ebene auch multipliziert und dividiert (mit Winkeln), zeigt die Lektion <a href="#ana-komplex">Polarform und Eulerform</a>.</p>}
+          en={<p>The buttons above the figure belong to sections 3 and 5. How to multiply and divide in the plane as well (with angles) is shown in the lesson <a href="#ana-komplex">Polar form and Euler form</a>.</p>}
         />
       </Section>
 
