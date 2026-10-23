@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { ELEMENTS, bySymbol, byZ } from './elements';
 import { massFractions, molarMass, parseFormula } from './formula';
 import { balance } from './balance';
+import { chemTex } from './tex';
 import { N_A, R, R_L_ATM, ATM_PA, T_ZERO_C } from './constants';
 
 describe('elements', () => {
@@ -68,5 +69,23 @@ describe('constants', () => {
     expect(R / R_L_ATM).toBeCloseTo(ATM_PA / 1000, 1); // J per L·atm = 101.325
     expect(N_A * 1.380649e-23).toBeCloseTo(R, 4); // R = N_A k_B
     expect(T_ZERO_C).toBe(273.15);
+  });
+});
+
+describe('chemTex', () => {
+  it('subscripts and coefficients', () => {
+    expect(chemTex('H2O')).toBe(String.raw`\mathrm{H_{2}O}`);
+    expect(chemTex('2 H2 + O2 -> 2 H2O')).toBe(String.raw`\mathrm{2\,H_{2}\;+\;O_{2}\;\longrightarrow\;2\,H_{2}O}`);
+    expect(chemTex('Ca(OH)2')).toBe(String.raw`\mathrm{Ca(OH)_{2}}`);
+  });
+  it('charges and states', () => {
+    expect(chemTex('SO4^2-')).toBe(String.raw`\mathrm{SO_{4}^{2−}}`);
+    expect(chemTex('Na^+')).toBe(String.raw`\mathrm{Na^{+}}`);
+    expect(chemTex('H2O(l)')).toBe(String.raw`\mathrm{H_{2}O\,(l)}`);
+  });
+  it('renders in KaTeX without errors', async () => {
+    const katex = (await import('katex')).default;
+    for (const s of ['2 H2 + O2 -> 2 H2O(g)', 'Ag^+(aq) + Cl^-(aq) -> AgCl(s)', 'N2 + 3 H2 <=> 2 NH3', 'CuSO4·5 H2O'])
+      expect(() => katex.renderToString(chemTex(s), { throwOnError: true, strict: 'error' })).not.toThrow();
   });
 });
