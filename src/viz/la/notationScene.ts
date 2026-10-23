@@ -35,7 +35,7 @@ function defs(): Def[] {
       if ((c === 0 || v > 0) && Math.abs(v) > 1) out.push({ id: `a${r}${c}`, tex: String(v), kind: 'tok', role: 'num', at: [P(L0.c[c] - (v < 0 ? 1.2 : 0), y), m1, m2, m2] });
       else {
         // 1 and negative numbers behind a sign: layout 0 shows the magnitude (not for 1) and a separate sign token; the matrices show the signed number
-        if (Math.abs(v) > 1) out.push({ id: `a${r}${c}-abs`, tex: String(Math.abs(v)), kind: 'tok', role: 'num', at: [P(L0.c[c], y), m1, null, null] });
+        if (Math.abs(v) > 1) out.push({ id: `a${r}${c}-abs`, tex: String(Math.abs(v)), kind: 'tok', role: 'num', at: [P(L0.c[c], y), null, null, null] });
         out.push({ id: `a${r}${c}`, tex: String(v), kind: 'tok', role: 'num', at: [null, m1, m2, m2] });
       }
       // the unknown behind the coefficient: row 0 travels on (to the x column, then to the header), the others fade out

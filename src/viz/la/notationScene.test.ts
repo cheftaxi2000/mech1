@@ -53,6 +53,14 @@ describe('notation morph (Übung 2, slide 25)', () => {
     for (const k of f.filter((k) => /^a\d\d$/.test(k.id))) expect(k.x).toBeLessThan(bar);
     for (const k of f.filter((k) => /^b\d$/.test(k.id))) expect(k.x).toBeGreaterThan(bar);
   });
+  it('final frames: no two visible tokens sit on top of each other', () => {
+    for (let s = 0; s < 4; s++) {
+      const f = vis(s).filter((k) => k.kind === 'tok');
+      for (let i = 0; i < f.length; i++) for (let j = i + 1; j < f.length; j++) {
+        expect(Math.hypot(f[i].x - f[j].x, f[i].y - f[j].y), `${s}: ${f[i].id} / ${f[j].id}`).toBeGreaterThan(3);
+      }
+    }
+  });
   it('a number keeps its row while it glides (rows never mix)', () => {
     for (let s = 1; s < 4; s++) for (const k of notationScene(s, 0.5).filter((k) => /^b\d$/.test(k.id))) {
       expect([36, 58, 80]).toContain(Math.round(k.y));
