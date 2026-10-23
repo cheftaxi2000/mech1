@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import { useLang, useTr } from '../i18n';
+import { TOPICS, topicSubject } from '../content/curriculum';
 
 /**
  * Reference to the official material. Mechanik: `p` = printed page number in the Mitschrift.
@@ -44,10 +45,15 @@ const LABEL: Record<Kind, [string, string]> = {
 
 export function Box({ kind, title, children, src }: { kind: Kind; title?: ReactNode; children: ReactNode; src?: ReactNode }) {
   const tr = useTr();
+  // In the exercise-class subjects a supplement is "not in the slides / summary", not "not in the lecture notes".
+  const topic = typeof window !== 'undefined' ? TOPICS.find((t) => t.id === window.location.hash.replace(/^#\/?/, '')) : undefined;
+  const label: [string, string] = kind === 'supplement' && topic && topicSubject(topic) !== 'mech'
+    ? (topicSubject(topic) === 'la' ? ['Ergänzung – nicht in den Folien', 'Supplement – not in the slides'] : ['Ergänzung – nicht im Resümee', 'Supplement – not in the summary'])
+    : LABEL[kind];
   return (
     <aside className={`box box-${kind}`}>
       <header>
-        <span className="box-kind">{tr(...LABEL[kind])}</span>
+        <span className="box-kind">{tr(...label)}</span>
         {title && <span className="box-title">{title}</span>}
         {src}
       </header>

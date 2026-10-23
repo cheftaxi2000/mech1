@@ -8,7 +8,7 @@ Slide numbers = PDF pages (the printed numbers on the slides repeat on build sli
 - **7 Rank («Rang»).** Generic echelon matrix with m equations («Anzahl Gleichungen»), n unknowns («n: Anzahl Unbekannte»), pivots ⊛ in r rows, zero rows below with right-hand sides b₁ … b_m. Brace: **r: Rang**. Handwritten: «Will be relevant for all of LinAlg I/II!» and «The number of pivot variables represents the number of lin. independent eqs. as all dependent eqs. will cancel out to be zero!».
 - **8 Rank — table** (printed, from a Zusammenfassung): 
   - *Keine Lösung:* r < m und b_i ≠ 0 ∀ i > r (example m = 3, r = 2: rows (1 1 1|1),(0 1 2|1),(0 0 0|1)).
-  - *Eindeutige Lösung:* r = n = m (example m = n = 3, r = 3).
+  - *Eindeutige Lösung:* r = n = m (example m = n = 3, r = 3: rows (1 1 1|1),(0 1 1|1),(0 0 1|1)).
   - *Unendlich Lösungen:* r < n und b_i = 0 ∀ i > r; Anzahl freie Parameter: n − r (example n = 3, r = 2: (1 1 1|1),(0 1 2|1),(0 0 0|0); «Free variables = 3 − 2 = 1»).
   - *Ax = b für beliebiges b lösbar:* Voller Rang r = m, oder m = n und Ax = 0 hat nur die triviale Lösung x = 0.
   - *Ax = b für beliebiges b eindeutig lösbar:* Voller Rang r = m und gleich viele Gleichungen wie Unbekannte m = n.
