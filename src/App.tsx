@@ -60,11 +60,11 @@ function Home() {
       <h2 className="subject-head" id="analysis">{tr(...SUBJECTS.ana)}</h2>
       <T
         de={<p className="lede">
-          Ein Kapitel pro Semesterwoche: Wochen 1–5 folgen den Übungs-Resümees, Woche 6 dem Online-Skript zu den komplexen Zahlen.
+          Ein Kapitel pro Semesterwoche, jedes folgt dem Resümee der Übungsstunde.
           Gleiche Idee wie in der Mechanik, aber knapper: Gymnasium-Stoff nur kurz, das Neue gründlich und mit Bildern.
         </p>}
         en={<p className="lede">
-          One chapter per week of the semester: weeks 1–5 follow the summaries of the exercise classes, week 6 the online notes on complex numbers.
+          One chapter per week of the semester, each following the summary of that week's exercise class.
           Same idea as in mechanics, but leaner: high-school material only briefly, the new material thoroughly and with pictures.
         </p>}
       />
