@@ -169,6 +169,9 @@ input[type="checkbox"] { accent-color: var(--accent); width: 18px; height: 18px;
 :root[data-subject="la"] { --accent: #0a7f62; --link: #08705a; }
 :root[data-subject="la"][data-theme="dark"] { --accent: #12906f; --link: #4fd1ae; }
 @media (prefers-color-scheme: dark) { :root[data-subject="la"]:not([data-theme="light"]) { --accent: #12906f; --link: #4fd1ae; } }
+:root[data-subject="chem"] { --accent: #c4510c; --link: #b5460a; }
+:root[data-subject="chem"][data-theme="dark"] { --accent: #e2691f; --link: #ff9a5c; }
+@media (prefers-color-scheme: dark) { :root[data-subject="chem"]:not([data-theme="light"]) { --accent: #e2691f; --link: #ff9a5c; } }
 :root[data-subject="ana"] { --accent: #5856d6; --link: #4b49c8; }
 :root[data-subject="ana"][data-theme="dark"] { --accent: #6e6cf0; --link: #9a98ff; }
 @media (prefers-color-scheme: dark) { :root[data-subject="ana"]:not([data-theme="light"]) { --accent: #6e6cf0; --link: #9a98ff; } }
@@ -177,10 +180,13 @@ input[type="checkbox"] { accent-color: var(--accent); width: 18px; height: 18px;
 .landing-eyebrow { font-size: 0.95rem; font-weight: 500; color: var(--muted); }
 .landing-head h1 { font-size: clamp(2.75rem, 1.4rem + 5vw, 4.75rem); line-height: 1; letter-spacing: -0.045em; font-weight: 700; margin: 6px 0 0; }
 .landing-sub { margin: 14px 0 0; font-size: clamp(1.1rem, 1rem + 0.5vw, 1.4rem); color: var(--muted); letter-spacing: -0.02em; }
-.tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
 .tile { --accent: #0071e3; --link: #0066cc; display: flex; flex-direction: column; background: var(--fill); border-radius: 22px; overflow: hidden; color: var(--fg); text-decoration: none; transition: transform 0.35s var(--ease), background 0.2s; }
 .tile-ana { --accent: #5856d6; --link: #4b49c8; }
 .tile-la { --accent: #0a7f62; --link: #08705a; }
+.tile-chem { --accent: #c4510c; --link: #b5460a; }
+:root[data-theme="dark"] .tile-chem { --accent: #e2691f; --link: #ff9a5c; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tile-chem { --accent: #e2691f; --link: #ff9a5c; } }
 :root[data-theme="dark"] .tile-la { --accent: #12906f; --link: #4fd1ae; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tile-la { --accent: #12906f; --link: #4fd1ae; } }
 :root[data-theme="dark"] .tile-ana { --accent: #6e6cf0; --link: #9a98ff; }
@@ -220,13 +226,19 @@ input[type="checkbox"] { accent-color: var(--accent); width: 18px; height: 18px;
 .fg-square { fill: var(--accent); fill-opacity: 0.16; stroke: none; animation: fg-fade 0.8s ease 1s backwards; }
 .fg-e1 { fill: none; stroke: #0a8f3c; stroke-width: 3; stroke-linecap: round; animation: fg-fade 0.6s ease 1.2s backwards; }
 .fg-e2 { fill: none; stroke: #1f5fd6; stroke-width: 3; stroke-linecap: round; animation: fg-fade 0.6s ease 1.4s backwards; }
+/* chemistry tile: electrons circle the nucleus on tilted orbits */
+.fg-orbit { fill: none; stroke: var(--line-strong); stroke-width: 1.2; animation: fg-fade 0.8s ease calc(0.5s + var(--i, 0) * 0.15s) backwards; }
+.fg-nucleus { fill: var(--accent); animation: fg-pop 0.6s var(--ease) 0.9s backwards; transform-box: fill-box; transform-origin: center; }
+.fg-nucleus-hi { fill: #fff; opacity: 0.55; }
+.fg-electron { animation: fg-pop 0.5s var(--ease) 1.4s backwards; }
+.fg-electron-0 { fill: #1f5fd6; } .fg-electron-1 { fill: #0a8f3c; } .fg-electron-2 { fill: #d98a00; }
 @keyframes fg-draw { from { stroke-dashoffset: 1; } }
 @keyframes fg-fade { from { opacity: 0; } }
 @keyframes fg-pop { from { opacity: 0; transform: scale(0.2); } }
 .landing-head > *, .tile, .landing .resume { animation: rise 0.7s var(--ease) backwards; }
 .landing-head h1 { animation: rise 0.8s var(--ease) 0.05s backwards; }
 .landing-sub { animation: rise 0.8s var(--ease) 0.15s backwards; }
-.tile-mech { animation-delay: 0.25s; } .tile-ana { animation-delay: 0.38s; } .tile-la { animation-delay: 0.51s; } .landing .resume { animation-delay: 0.6s; }
+.tile-mech { animation-delay: 0.25s; } .tile-ana { animation-delay: 0.38s; } .tile-la { animation-delay: 0.51s; } .tile-chem { animation-delay: 0.64s; } .landing .resume { animation-delay: 0.75s; }
 @keyframes rise { from { opacity: 0; transform: translateY(14px); } }
 @media (prefers-reduced-motion: reduce) { .landing *, .fig * { animation: none !important; } }
 
@@ -323,3 +335,13 @@ input[type="checkbox"] { accent-color: var(--accent); width: 18px; height: 18px;
   :root:not([data-theme="light"]) .stepper-controls button:not(.primary), :root:not([data-theme="light"]) .motion-btn { box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 10%, transparent), inset 0 0 0 0.5px color-mix(in srgb, #fff 12%, transparent); }
 }
 @media (prefers-reduced-motion: reduce) { .stepper-controls button.primary, .btn { transition: none; } }
+
+/* Chemie colour roles (one system for every figure): the four gas variables P V T n, energy, entropy, free energy, ions, electrons */
+:root { --ch-p: #1f5fd6; --ch-p-t: #1f5fd6; --ch-v: #0a8f3c; --ch-v-t: #077a32; --ch-t: #d62828; --ch-t-t: #c41e1e; --ch-n: #8a2fa8; --ch-n-t: #8a2fa8; --ch-e: #d98a00; --ch-e-t: #a65800; --ch-s: #0a8a9a; --ch-s-t: #08707e; --ch-g: #4f46e5; --ch-g-t: #4f46e5; --ch-cat: #d62828; --ch-an: #1f5fd6; --ch-el: #c79200; }
+:root[data-theme="dark"] { --ch-p: #5b9bff; --ch-p-t: #8db9ff; --ch-v: #3ccf6e; --ch-v-t: #5fdc8a; --ch-t: #ff6b6b; --ch-t-t: #ff8e8e; --ch-n: #c77dff; --ch-n-t: #d9a3ff; --ch-e: #ffb020; --ch-e-t: #ffc761; --ch-s: #2ec4d6; --ch-s-t: #6ad9e8; --ch-g: #8b84ff; --ch-g-t: #aaa5ff; --ch-cat: #ff6b6b; --ch-an: #5b9bff; --ch-el: #ffd23f; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --ch-p: #5b9bff; --ch-p-t: #8db9ff; --ch-v: #3ccf6e; --ch-v-t: #5fdc8a; --ch-t: #ff6b6b; --ch-t-t: #ff8e8e; --ch-n: #c77dff; --ch-n-t: #d9a3ff; --ch-e: #ffb020; --ch-e-t: #ffc761; --ch-s: #2ec4d6; --ch-s-t: #6ad9e8; --ch-g: #8b84ff; --ch-g-t: #aaa5ff; --ch-cat: #ff6b6b; --ch-an: #5b9bff; --ch-el: #ffd23f; } }
+
+/* Plot roles for chemistry */
+.pl-cp { stroke: var(--ch-p); fill: var(--ch-p); } .pl-cv { stroke: var(--ch-v); fill: var(--ch-v); } .pl-ct { stroke: var(--ch-t); fill: var(--ch-t); } .pl-cn { stroke: var(--ch-n); fill: var(--ch-n); } .pl-ce { stroke: var(--ch-e); fill: var(--ch-e); } .pl-cs { stroke: var(--ch-s); fill: var(--ch-s); } .pl-cg { stroke: var(--ch-g); fill: var(--ch-g); } 
+.pl-curve.pl-cp, .pl-curve.pl-cv, .pl-curve.pl-ct, .pl-curve.pl-cn, .pl-curve.pl-ce, .pl-curve.pl-cs, .pl-curve.pl-cg { fill: none; }
+.pl-curve.filled.pl-cp { fill: var(--ch-p); } .pl-curve.filled.pl-cv { fill: var(--ch-v); } .pl-curve.filled.pl-ct { fill: var(--ch-t); } .pl-curve.filled.pl-cn { fill: var(--ch-n); } .pl-curve.filled.pl-ce { fill: var(--ch-e); } .pl-curve.filled.pl-cs { fill: var(--ch-s); } .pl-curve.filled.pl-cg { fill: var(--ch-g); }

@@ -94,9 +94,9 @@ for (const lang of LANGS) {
     await open(page, lang);
     await expect(page.getByRole('heading', { level: 1 })).toContainText('Learning Lab');
     const tiles = page.locator('a.tile');
-    await expect(tiles).toHaveCount(3);
+    await expect(tiles).toHaveCount(4);
     const i = lang === 'de' ? 0 : 1;
-    for (const [route, subject, ch] of [['mechanik', 'mech', (c: string) => !c.startsWith('A') && !c.startsWith('LA')], ['analysis', 'ana', (c: string) => c.startsWith('A') && !c.startsWith('LA')], ['algebra', 'la', (c: string) => c.startsWith('LA')]] as const) {
+    for (const [route, subject, ch] of [['mechanik', 'mech', (c: string) => !c.startsWith('A') && !c.startsWith('LA') && !c.startsWith('CH')], ['analysis', 'ana', (c: string) => c.startsWith('A') && !c.startsWith('LA')], ['algebra', 'la', (c: string) => c.startsWith('LA')], ['chemie', 'chem', (c: string) => c.startsWith('CH')]] as const) {
       await page.goto(`/#${route}`);
       await expect(page.getByRole('heading', { level: 1 })).toContainText(SUBJECTS[subject][i]);
       const main = page.locator('.toc');

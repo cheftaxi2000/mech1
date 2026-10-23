@@ -6,9 +6,20 @@ import { TOPICS, topicSubject } from '../content/curriculum';
  * Reference to the official material. Mechanik: `p` = printed page number in the Mitschrift.
  * Analysis: `u` = number of the Übung (exercise-class summary, PDF), `p` = page in that PDF.
  */
-export function Src({ p, fig, u, slides, vis }: { p?: number | string; fig?: string; u?: number; slides?: boolean; vis?: string }) {
+export function Src({ p, fig, u, slides, vis, lec, ex }: { p?: number | string; fig?: string; u?: number; slides?: boolean; vis?: string; lec?: number; ex?: number }) {
   const tr = useTr();
   const pages = String(p).includes('–');
+  // Chemistry: `lec` = lecture number, `p` = slide numbers (PDF pages) of that lecture's slides; `ex` = exercise class, `p` = page of the TA's filled-in slides.
+  if (lec !== undefined) return (
+    <span className="src" title={tr(`Vorlesungsfolien ${lec} (PDF), Foliennummer`, `Slides of lecture ${lec} (PDF), slide number`)}>
+      {tr(`Vorlesung ${lec}, Folie${pages || String(p).includes(',') ? 'n' : ''} ${p}`, `Lecture ${lec}, slide${pages || String(p).includes(',') ? 's' : ''} ${p}`)}{fig ? `, ${fig}` : ''}
+    </span>
+  );
+  if (ex !== undefined) return (
+    <span className="src" title={tr(`Ausgefüllte Folien der Übung ${ex} (PDF), Seite`, `Filled-in slides of exercise class ${ex} (PDF), page`)}>
+      {tr(`Übung ${ex}, S. ${p}`, `Exercise class ${ex}, ${pages ? 'pp.' : 'p.'} ${p}`)}{fig ? `, ${fig}` : ''}
+    </span>
+  );
   // Linear algebra: `slides` = slide numbers (PDF pages) of the annotated exercise-class deck; `vis` = the class's interactive visualisation.
   if (u !== undefined && vis) return (
     <span className="src" title={tr(`Interaktive Visualisierung zur Übung ${u}`, `Interactive visualisation for exercise class ${u}`)}>
@@ -48,7 +59,7 @@ export function Box({ kind, title, children, src }: { kind: Kind; title?: ReactN
   // In the exercise-class subjects a supplement is "not in the slides / summary", not "not in the lecture notes".
   const topic = typeof window !== 'undefined' ? TOPICS.find((t) => t.id === window.location.hash.replace(/^#\/?/, '')) : undefined;
   const label: [string, string] = kind === 'supplement' && topic && topicSubject(topic) !== 'mech'
-    ? (topicSubject(topic) === 'la' ? ['Ergänzung – nicht in den Folien', 'Supplement – not in the slides'] : ['Ergänzung – nicht im Resümee', 'Supplement – not in the summary'])
+    ? (topicSubject(topic) === 'la' || topicSubject(topic) === 'chem' ? ['Ergänzung – nicht in den Folien', 'Supplement – not in the slides'] : ['Ergänzung – nicht im Resümee', 'Supplement – not in the summary'])
     : LABEL[kind];
   return (
     <aside className={`box box-${kind}`}>

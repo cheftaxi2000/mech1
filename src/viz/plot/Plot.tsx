@@ -22,7 +22,9 @@ export const usePlot = () => { const f = useContext(Ctx); if (!f) throw new Erro
 
 export type Role = 'f' | 'g' | 'ref' | 'tan' | 'sec' | 'asym' | 'pt' | 'aux' | 'band' | 'muted' | 'fg'
   // Linear algebra (docs/linalg/NOTATION.md): first column / e₁ green, second column / e₂ blue, target b red, A x dark, miss orange, product purple
-  | 'c1' | 'c2' | 'tgt' | 'ax' | 'miss' | 'c3';
+  | 'c1' | 'c2' | 'tgt' | 'ax' | 'miss' | 'c3'
+  // Chemistry (docs/chem/NOTATION.md): pressure, volume, temperature, amount, energy/enthalpy, entropy, free energy
+  | 'cp' | 'cv' | 'ct' | 'cn' | 'ce' | 'cs' | 'cg';
 
 export interface PlotProps {
   x: Range; y: Range;

@@ -11,17 +11,19 @@ import { lazy, type ComponentType, type LazyExoticComponent } from 'react';
 export type Status = 'planned' | 'draft' | 'review' | 'complete';
 
 /** The two courses ("Rubriken"). Each chapter belongs to one; navigation and prev/next stay inside a subject. */
-export type Subject = 'mech' | 'ana' | 'la';
+export type Subject = 'mech' | 'ana' | 'la' | 'chem';
 export const SUBJECTS: Record<Subject, [string, string]> = {
   mech: ['Mechanik I', 'Mechanics 1'],
   ana: ['Analysis 1', 'Analysis 1'],
   la: ['Lineare Algebra I', 'Linear Algebra 1'],
+  chem: ['Chemie', 'Chemistry'],
 };
 /** Short names for narrow places (drawer switch). */
 export const SUBJECT_SHORT: Record<Subject, [string, string]> = {
   mech: ['Mechanik', 'Mechanics'],
   ana: ['Analysis', 'Analysis'],
   la: ['Lin. Algebra', 'Lin. Algebra'],
+  chem: ['Chemie', 'Chemistry'],
 };
 
 export interface Topic {
@@ -51,15 +53,29 @@ export const CHAPTERS: Record<string, [string, string]> = {
   LA3: ['Woche 3 · Rang und Spaltenbild', 'Week 3 · Rank and the column picture'],
   LA4: ['Woche 4 · Die Matrix', 'Week 4 · The matrix'],
   LA5: ['Woche 5 · Matrixprodukt', 'Week 5 · Matrix product'],
+  CH1: ['Woche 1 · Atome und Reaktionen', 'Week 1 · Atoms and reactions'],
+  CH2: ['Woche 2 · Gase', 'Week 2 · Gases'],
+  CH3: ['Woche 3 · Lösungen, Säuren und Redox', 'Week 3 · Solutions, acids and redox'],
+  CH4: ['Woche 4 · Energie und Enthalpie', 'Week 4 · Energy and enthalpy'],
+  CH5: ['Woche 5 · Entropie und freie Enthalpie', 'Week 5 · Entropy and free energy'],
+  CH6: ['Woche 6 · Elektronenstruktur', 'Week 6 · Electronic structure'],
 };
 
-export const chapterSubject = (ch: string): Subject => (ch.startsWith('LA') ? 'la' : ch.startsWith('A') ? 'ana' : 'mech');
+export const chapterSubject = (ch: string): Subject => (ch.startsWith('LA') ? 'la' : ch.startsWith('CH') ? 'chem' : ch.startsWith('A') ? 'ana' : 'mech');
 export const topicSubject = (t: Topic): Subject => chapterSubject(t.chapter);
 
 /** Where a topic comes from, for the crumbs and lists: [long German, long English, short German, short English]. */
 export function sourceLabel(t: Topic): [string, string, string, string] {
   if (topicSubject(t) === 'mech') {
     return [`Vorlesung S. ${t.pages}`, `Lecture notes ${t.pages.includes('–') ? 'pp.' : 'p.'} ${t.pages}`, `S. ${t.pages}`, `p. ${t.pages}`];
+  }
+  if (topicSubject(t) === 'chem') {
+    // Chemistry: «V<n>/<slides>» = lecture n (Prof. Norris), slides = PDF page numbers of the lecture slides.
+    const [v, pp] = t.pages.slice(1).split('/');
+    const many = pp?.includes('–') || pp?.includes(',');
+    return pp
+      ? [`Vorlesung ${v}, Folie${many ? 'n' : ''} ${pp}`, `Lecture ${v}, slide${many ? 's' : ''} ${pp}`, `Vl. ${v}`, `Lec. ${v}`]
+      : [`Vorlesung ${v}`, `Lecture ${v}`, `Vl. ${v}`, `Lec. ${v}`];
   }
   if (topicSubject(t) === 'la') {
     // Linear algebra: «Ü<n>/<slide numbers>» = exercise class n, slides (PDF page numbers) of its annotated slide deck.
@@ -127,4 +143,18 @@ export const TOPICS: Topic[] = [
   { id: 'la-rechnen', chapter: 'LA4', title: ['Matrizen: Notation, Summe, Skalar', 'Matrices: notation, sum, scalar'], pages: 'Ü4/22–25', status: 'review', component: lazy(() => import('../lessons/LA4Rechnen')) },
   { id: 'la-spezial', chapter: 'LA4', title: ['Spezielle Matrizen und Transponieren', 'Special matrices and the transpose'], pages: 'Ü4/31–36', status: 'review', component: lazy(() => import('../lessons/LA4Spezial')) },
   { id: 'la-produkt', chapter: 'LA5', title: ['Das Matrixprodukt', 'The matrix product'], pages: 'Ü4/26–30', status: 'review', component: lazy(() => import('../lessons/LA5Produkt')) },
+  // Chemie – one chapter per lecture (slides of Prof. D. J. Norris, HS 2026; «V<n>/<slides>»). Exercise classes 1–6 (TA slides) are woven into the lessons.
+  { id: 'ch-atome', chapter: 'CH1', title: ['Atome, Elemente und das Periodensystem', 'Atoms, elements and the periodic table'], pages: 'V1/10–24', status: 'planned' },
+  { id: 'ch-stoechio', chapter: 'CH1', title: ['Reaktionen, Mol und Stöchiometrie', 'Reactions, the mole and stoichiometry'], pages: 'V1/25–31', status: 'planned' },
+  { id: 'ch-gase', chapter: 'CH2', title: ['Gase: Druck und die Gasgesetze', 'Gases: pressure and the gas laws'], pages: 'V2/8–23', status: 'planned' },
+  { id: 'ch-kinetik', chapter: 'CH2', title: ['Kinetische Gastheorie und reale Gase', 'Kinetic theory and real gases'], pages: 'V2/24–30', status: 'planned' },
+  { id: 'ch-loesungen', chapter: 'CH3', title: ['Lösungen, Ionen und Fällungsreaktionen', 'Solutions, ions and precipitation'], pages: 'V3/8–16', status: 'planned' },
+  { id: 'ch-redox', chapter: 'CH3', title: ['Säuren, Basen und Redoxreaktionen', 'Acids, bases and redox reactions'], pages: 'V3/17–29', status: 'planned' },
+  { id: 'ch-energie', chapter: 'CH4', title: ['Energie und der 1. Hauptsatz', 'Energy and the first law'], pages: 'V4/6–15', status: 'planned' },
+  { id: 'ch-enthalpie', chapter: 'CH4', title: ['Enthalpie, Kalorimetrie und der Satz von Hess', 'Enthalpy, calorimetry and Hess’s law'], pages: 'V4/16–30', status: 'planned' },
+  { id: 'ch-entropie', chapter: 'CH5', title: ['Spontane Prozesse und Entropie', 'Spontaneous processes and entropy'], pages: 'V5/7–21', status: 'planned' },
+  { id: 'ch-gibbs', chapter: 'CH5', title: ['Freie Enthalpie nach Gibbs', 'Gibbs free energy'], pages: 'V5/22–29', status: 'planned' },
+  { id: 'ch-licht', chapter: 'CH6', title: ['Licht, Spektren und das Bohr-Modell', 'Light, spectra and the Bohr model'], pages: 'V6/6–12', status: 'planned' },
+  { id: 'ch-orbitale', chapter: 'CH6', title: ['Orbitale, Quantenzahlen und Elektronenkonfiguration', 'Orbitals, quantum numbers and electron configuration'], pages: 'V6/13–27', status: 'planned' },
+  { id: 'ch-trends', chapter: 'CH6', title: ['Abschirmung, Atomgrösse und Ionisierungsenergie', 'Screening, atomic size and ionisation energy'], pages: 'V6/28–32', status: 'planned' },
 ];

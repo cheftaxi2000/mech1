@@ -123,3 +123,29 @@ export function LaFigure() {
     </svg>
   );
 }
+
+/* ---------- Chemie: an atom, two electrons on tilted orbits around the nucleus ---------- */
+const CC = { x: 160, y: 100 };
+const orbit = (rx: number, ry: number, deg: number) => {
+  const a = (deg * Math.PI) / 180, c = Math.cos(a), s = Math.sin(a);
+  const pt = (t: number) => `${f(CC.x + rx * Math.cos(t) * c - ry * Math.sin(t) * s)},${f(CC.y + rx * Math.cos(t) * s + ry * Math.sin(t) * c)}`;
+  const n = 48, pts = Array.from({ length: n }, (_, i) => pt((2 * Math.PI * i) / n));
+  return { d: `M${pts.join(' L')} Z`, still: pt(0.9) };
+};
+const ORBITS = [orbit(94, 30, -24), orbit(94, 30, 36), orbit(94, 30, 96)];
+
+export function ChemFigure() {
+  const still = useReducedMotion();
+  return (
+    <svg className="fig fig-chem" viewBox="0 0 320 200" aria-hidden="true" focusable="false">
+      {ORBITS.map((o, i) => <path key={i} className="fg-orbit" style={{ ['--i' as string]: i }} d={o.d} />)}
+      <circle className="fg-nucleus" r="9" cx={CC.x} cy={CC.y} />
+      <circle className="fg-nucleus-hi" r="3" cx={CC.x - 2.5} cy={CC.y - 2.5} />
+      {ORBITS.map((o, i) => (
+        <circle key={i} className={`fg-electron fg-electron-${i}`} r="5" cx={still ? o.still.split(',')[0] : 0} cy={still ? o.still.split(',')[1] : 0}>
+          {!still && <animateMotion dur={`${5.5 + i * 1.7}s`} begin={`${-i * 1.9}s`} repeatCount="indefinite" path={o.d} />}
+        </circle>
+      ))}
+    </svg>
+  );
+}
