@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { CHAPTERS, TOPICS } from '../src/content/curriculum';
+import { SUBJECTS, TOPICS } from '../src/content/curriculum';
 
 type Lang = 'de' | 'en';
 const LANGS: Lang[] = ['de', 'en'];
@@ -89,14 +89,20 @@ const LEAK: Record<Lang, RegExp> = {
 };
 
 for (const lang of LANGS) {
-  test(`[${lang}] home page and navigation render`, async ({ page }) => {
+  test(`[${lang}] landing offers both subjects; each subject page lists its lessons`, async ({ page }) => {
     const errors = trackErrors(page);
     await open(page, lang);
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('Analysis 1');
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('Learning Lab');
+    const tiles = page.locator('a.tile');
+    await expect(tiles).toHaveCount(2);
     const i = lang === 'de' ? 0 : 1;
-    for (const t of TOPICS) await expect(page.getByRole('navigation').getByText(t.title[i], { exact: true })).toBeVisible();
-    for (const ch of Object.values(CHAPTERS)) await expect(page.getByRole('navigation').getByText(ch[i], { exact: true })).toBeVisible();
-    expect(await plainTextMath(page)).toEqual([]);
+    for (const [route, subject, ch] of [['mechanik', 'mech', (c: string) => !c.startsWith('A')], ['analysis', 'ana', (c: string) => c.startsWith('A')]] as const) {
+      await page.goto(`/#${route}`);
+      await expect(page.getByRole('heading', { level: 1 })).toContainText(SUBJECTS[subject][i]);
+      const main = page.locator('.toc');
+      for (const t of TOPICS.filter((t) => ch(t.chapter))) await expect(main.getByText(t.title[i], { exact: true })).toBeVisible();
+      expect(await plainTextMath(page)).toEqual([]);
+    }
     expect(errors).toEqual([]);
   });
 

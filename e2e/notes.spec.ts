@@ -71,7 +71,7 @@ for (const [w, h, name] of [[1180, 820, 'ipad'], [390, 844, 'phone']] as const) 
     await page.mouse.click(box.x + 60, Math.min(h - 120, 300));
     await expect(page.locator('.sticky')).toHaveCount(1);
     await page.waitForTimeout(700);
-    await page.locator('.topbar .brand').focus();
+    await page.locator('.topbar .burger').focus();
     await expect(page.locator('.sticky')).toHaveCount(0);
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     expect(overflow).toBeLessThanOrEqual(0);

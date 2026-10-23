@@ -2,7 +2,8 @@ import { Suspense, useEffect, useRef, useState } from 'react';
 import { NotesLayer } from './notes/StickyNotes';
 import { NotesProvider, useNotes } from './notes/store';
 import { CHAPTERS, SUBJECTS, TOPICS, chapterSubject, sourceLabel, topicSubject, type Status, type Subject, type Topic } from './content/curriculum';
-import { LangToggle, T, useLang, useTr } from './i18n';
+import { LangToggle, useLang, useTr } from './i18n';
+import { Landing, SUBJECT_ROUTE, SubjectPage, routeSubject } from './home/Pages';
 
 const useHashRoute = () => {
   // Plain `#topic` anchors (no slash): the claude.ai artifact viewer only passes bare tokens through. Old `#/topic` links still work.
@@ -24,58 +25,6 @@ const STATUS_LABEL: Record<Status, [string, string]> = {
 };
 
 const LAST_KEY = 'mech1.lastTopic';
-const readLast = () => { try { return localStorage.getItem(LAST_KEY); } catch { return null; } };
-
-function Home() {
-  const tr = useTr();
-  const last = TOPICS.find((t) => t.id === readLast());
-  return (
-    <article className="lesson home">
-      <header className="hero">
-        <div className="hero-eyebrow">ETH Zürich</div>
-        <h1>Learning Lab<span className="hero-sep"> · </span><span className="hero-sub">Mechanik I &amp; Analysis 1</span></h1>
-      </header>
-      {last && (
-        <a className="resume" href={`#${last.id}`}>
-          <span className="resume-kind">{tr('Weiterlesen', 'Continue reading')} · {tr(...SUBJECTS[topicSubject(last)])}</span>
-          <span className="resume-title">{tr(...last.title)}</span>
-          <span className="resume-pages">{tr(sourceLabel(last)[0], sourceLabel(last)[1])} ›</span>
-        </a>
-      )}
-      <h2 className="subject-head" id="mechanik">{tr(...SUBJECTS.mech)}</h2>
-      <T
-        de={<>
-          <p className="lede">
-            Ein interaktiver Begleiter zum Skript der ETH-Vorlesung Mechanik I. Jede Lektion folgt dem Skript Seite für Seite,
-            kennzeichnet klar, was <span className="src">aus der Vorlesung</span> stammt und was Ergänzung ist, und erklärt in ein, zwei Sätzen, wo das Skript eine Lücke oder einen Fehler hat.
-          </p>
-          <p>Beginne mit <a href="#koordinaten">Lage &amp; Koordinaten</a>. Alle fünfzehn Lektionen folgen dem Skript bis S. 28; am Schluss gibt es vier <a href="#quiz-1">Quiz-Seiten</a> zum Üben. Alle Kapitel findest du auch jederzeit im Menü oben links.</p>
-        </>}
-        en={<>
-          <p className="lede">
-            An interactive companion to the ETH Mechanics 1 lecture notes. Each lesson follows the notes page by page,
-            marks clearly what comes <span className="src">from the lecture</span> and what is a supplement, and explains in a sentence or two where the notes have a gap or a slip.
-          </p>
-          <p>Start with <a href="#koordinaten">Position &amp; coordinates</a>. All fifteen lessons follow the notes up to p. 28; at the end there are four <a href="#quiz-1">quiz pages</a> for practice. All chapters are also in the menu at the top left.</p>
-        </>}
-      />
-      <nav className="home-chapters" aria-label={tr('Kapitel Mechanik I', 'Chapters Mechanics 1')}><ChapterList route="" subject="mech" /></nav>
-      <h2 className="subject-head" id="analysis">{tr(...SUBJECTS.ana)}</h2>
-      <T
-        de={<p className="lede">
-          Ein Kapitel pro Semesterwoche, jedes folgt dem Resümee der Übungsstunde.
-          Gleiche Idee wie in der Mechanik, aber knapper: Gymnasium-Stoff nur kurz, das Neue gründlich und mit Bildern.
-        </p>}
-        en={<p className="lede">
-          One chapter per week of the semester, each following the summary of that week's exercise class.
-          Same idea as in mechanics, but leaner: high-school material only briefly, the new material thoroughly and with pictures.
-        </p>}
-      />
-      <nav className="home-chapters" aria-label={tr('Kapitel Analysis 1', 'Chapters Analysis 1')}><ChapterList route="" subject="ana" /></nav>
-      <p className="build-date">{tr('Stand', 'Version')}: {__BUILD_DATE__.split('-').reverse().join('.')}</p>
-    </article>
-  );
-}
 
 function TopicPage({ topic }: { topic: Topic }) {
   const lang = useLang(), tr = useTr();
@@ -186,6 +135,7 @@ export function App() {
   const route = useHashRoute();
   const tr = useTr();
   const topic = TOPICS.find((t) => t.id === route);
+  const subject: Subject | null = topic ? topicSubject(topic) : routeSubject(route);
   const [menu, setMenu] = useState(false);
   useEffect(() => {
     if (!menu) return;
@@ -195,30 +145,41 @@ export function App() {
   }, [menu]);
   useEffect(() => setMenu(false), [route]);
   useEffect(() => { if (topic) { try { localStorage.setItem(LAST_KEY, topic.id); } catch { /* not remembered; fine */ } } }, [topic]);
+  useEffect(() => {
+    if (subject) document.documentElement.dataset.subject = subject; else delete document.documentElement.dataset.subject;
+  }, [subject]);
+  const shown = (Object.keys(SUBJECTS) as Subject[]).filter((s) => !subject || s === subject);
   return (
     <NotesProvider>
     <div className="layout">
-      <header className="topbar">
+      <header className={`topbar${subject ? ' has-subject' : ''}`}>
         <button type="button" className="burger" onClick={() => setMenu((m) => !m)} aria-expanded={menu} aria-controls="chapters"
           aria-label={menu ? tr('Kapitel schliessen', 'Close chapters') : tr('Kapitel', 'Chapters')}>
           <svg viewBox="0 0 24 24" aria-hidden="true">{menu ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}</svg>
         </button>
-        <a href="#" className="brand">{topic ? `${tr(...SUBJECTS[topicSubject(topic)])} Lab` : 'Learning Lab'}</a>
+        <a href="#" className="brand">Learning Lab</a>
+        {subject && <a href={`#${SUBJECT_ROUTE[subject]}`} className="topbar-subject">{tr(...SUBJECTS[subject])}</a>}
         {topic && <span className="topbar-topic">{tr(...topic.title)}</span>}
         <LangToggle />
         <ReadProgress route={route} />
       </header>
       <div className={`drawer-backdrop${menu ? ' open' : ''}`} onClick={() => setMenu(false)} aria-hidden="true" />
       <nav id="chapters" className={`drawer${menu ? ' open' : ''}`} aria-label={tr('Kapitel', 'Chapters')} inert={!menu}>
-        {(Object.keys(SUBJECTS) as Subject[]).map((s) => (
+        <a className="drawer-all" href="#" onClick={() => setMenu(false)}>‹ {tr('Alle Fächer', 'All subjects')}</a>
+        <div className="seg" role="group" aria-label={tr('Fach', 'Subject')}>
+          {(Object.keys(SUBJECTS) as Subject[]).map((s) => (
+            <a key={s} href={`#${SUBJECT_ROUTE[s]}`} className={subject === s ? 'active' : ''} aria-current={subject === s ? 'true' : undefined} onClick={() => setMenu(false)}>{tr(...SUBJECTS[s])}</a>
+          ))}
+        </div>
+        {shown.map((s) => (
           <div key={s} className="drawer-subject">
-            <div className="subject-name">{tr(...SUBJECTS[s])}</div>
+            {!subject && <div className="subject-name">{tr(...SUBJECTS[s])}</div>}
             <ChapterList route={route} onPick={() => setMenu(false)} subject={s} />
           </div>
         ))}
         <NotesList onPick={() => setMenu(false)} />
       </nav>
-      <main className="content">{topic ? <TopicPage topic={topic} /> : <Home />}</main>
+      <main className="content">{topic ? <TopicPage topic={topic} /> : subject ? <SubjectPage subject={subject} /> : <Landing />}</main>
     </div>
     </NotesProvider>
   );

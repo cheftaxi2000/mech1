@@ -132,3 +132,6 @@
 
 ## 2026-10-23 — Analysis 1, week 6
 - Student supplied Übung 6 as PDF (instead of the online script). Read all 13 pages, no source errors found; lesson plan of three lessons (polar/Euler form, powers/roots/angle formulas, regions); one implementer built them (`A6*.tsx`, `week6.ts`, `W6Figures.tsx`, `w6Scenes.ts`, SOURCE_U06). Lead reviewed screenshots, merged, published.
+
+## 2026-10-23 — Design pass (D-024, D-025)
+Visual system rewritten in `src/design.css` (quiet, Apple-inspired). New entry flow: subject chooser landing, per-subject pages with table of contents, subject-aware top bar and drawer (`src/home/`). Home e2e test now checks landing + both subject pages; notes e2e focuses the burger instead of the brand (hidden on phones inside a subject). Checks: tsc, 734 unit tests, lessons/ui-shell/notes e2e green.
