@@ -74,3 +74,14 @@ Lessons built by one implementer per week (worktrees), reviewed by the lead agai
 | ana-komplex | Ü6/1–7 | review | «Polarform und Eulerform»: only the new bits of pp. 1–4 (i-cycle figure, \|z\|, conj rules, division formula); polar form; AngleExplorer (arctan(b/a) vs true φ in all quadrants); Euler form; multiplication animation + MulExplorer (lengths multiply, angles add; ÷ mode); supplement why the angles add. `week6.ts`. |
 | ana-komplex-potenzen | Ü6/8–9, 11 | review | PowerSpiral; ·i as quarter turn; z⁴ = −16 animation; RootsExplorer (n-gon, start angle θ/n, step 2π/n, «Probe» animation); double-angle formulas. |
 | ana-komplex-bereiche | Ü6/10, 12 | review | Re(iz) > 1 animation; RegionExplorer (disc, half-plane, annulus, Re z ≥ Im z, intersection; test point with ✓/✗ per condition; solid/dashed boundaries); supplement perpendicular bisector. |
+
+## Lineare Algebra I (D-026)
+| Kapitel | Lektion | Status |
+|---|---|---|
+| LA1 | la-einstieg | review |
+| LA2 | la-lgs, la-gauss | review |
+| LA3 | la-rang, la-spaltenbild | review |
+| LA4 | la-transformation, la-rechnen, la-spezial | review |
+| LA5 | la-produkt | review |
+
+Offen: Folien der Übungen 3 und 5 fehlen (aus Zusammenfassungen und TA-Visualisierungen ergänzt); Volltest e2e und Animationsframes noch nicht komplett gelaufen.

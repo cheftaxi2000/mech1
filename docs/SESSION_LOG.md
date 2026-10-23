@@ -135,3 +135,6 @@
 
 ## 2026-10-23 — Design pass (D-024, D-025)
 Visual system rewritten in `src/design.css` (quiet, Apple-inspired). New entry flow: subject chooser landing, per-subject pages with table of contents, subject-aware top bar and drawer (`src/home/`). Home e2e test now checks landing + both subject pages; notes e2e focuses the burger instead of the brand (hidden on phones inside a subject). Checks: tsc, 734 unit tests, lessons/ui-shell/notes e2e green.
+
+## 2026-10-23 — Lineare Algebra I (new subject)
+- Topics from exercise classes 1, 2, 4 (classes 3 and 5 filled from recap slides and the TA's visualisations; polybox links unreachable). Nine lessons in chapters LA1–LA5 (`src/lessons/LA*.tsx`, `src/viz/la/`, `src/linalg/`), accent teal-green, landing tile with warping grid. Four implementers in worktrees, lead merged and reviewed on screenshots (iPad landscape, phone). Checks: tsc, 985 unit tests, e2e `la-` and landing green. Review IDs LA-001…006.
