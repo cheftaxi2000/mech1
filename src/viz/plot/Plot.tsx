@@ -20,7 +20,9 @@ const Ctx = createContext<Frame | null>(null);
 const LayerCtx = createContext<HTMLDivElement | null>(null);
 export const usePlot = () => { const f = useContext(Ctx); if (!f) throw new Error('usePlot outside <Plot>'); return f; };
 
-export type Role = 'f' | 'g' | 'ref' | 'tan' | 'sec' | 'asym' | 'pt' | 'aux' | 'band' | 'muted' | 'fg';
+export type Role = 'f' | 'g' | 'ref' | 'tan' | 'sec' | 'asym' | 'pt' | 'aux' | 'band' | 'muted' | 'fg'
+  // Linear algebra (docs/linalg/NOTATION.md): first column / e₁ green, second column / e₂ blue, target b red, A x dark, miss orange, product purple
+  | 'c1' | 'c2' | 'tgt' | 'ax' | 'miss' | 'c3';
 
 export interface PlotProps {
   x: Range; y: Range;
@@ -176,4 +178,32 @@ export function PLabel({ x, y, tex, role = 'fg', dx = 0, dy = 0, anchor = 'c', s
     <div className={`plot-label pl-ink-${role} a-${anchor}${small ? ' small' : ''}${halo ? ' halo' : ''}`} style={pos(fr, px, py)}>
       <M>{tex}</M>
     </div>, layer);
+}
+
+/** Straight line a·x + b·y = c clipped to the window (a linear equation in two unknowns, Übung 2). */
+export function ELine({ a, b, c, role = 'f', dashed, width }: { a: number; b: number; c: number; role?: Role; dashed?: boolean; width?: number }) {
+  const fr = usePlot();
+  const pts: P2[] = [];
+  const push = (x: number, y: number) => { if (x >= fr.x[0] - 1e-9 && x <= fr.x[1] + 1e-9 && y >= fr.y[0] - 1e-9 && y <= fr.y[1] + 1e-9) pts.push([x, y]); };
+  if (Math.abs(b) > 1e-12) for (const x of fr.x) push(x, (c - a * x) / b);
+  if (Math.abs(a) > 1e-12) for (const y of fr.y) push((c - b * y) / a, y);
+  if (pts.length < 2) return null;
+  let [p, q] = [pts[0], pts[1]];
+  let best = -1;
+  for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) { const d = Math.hypot(pts[i][0] - pts[j][0], pts[i][1] - pts[j][1]); if (d > best) { best = d; p = pts[i]; q = pts[j]; } }
+  return <line className={`pl-line pl-${role}${dashed ? ' dashed' : ''}`} x1={fr.sx(p[0])} y1={fr.sy(p[1])} x2={fr.sx(q[0])} y2={fr.sy(q[1])} style={width ? { strokeWidth: width } : undefined} />;
+}
+
+/** The grid lines x = i, y = j (|i|, |j| ≤ n) after the linear map M = [[m11, m12], [m21, m22]]: what a matrix does to the plane. */
+export function GridWarp({ M, n = 6, role = 'aux', opacity = 0.35 }: { M: readonly [readonly [number, number], readonly [number, number]]; n?: number; role?: Role; opacity?: number }) {
+  const fr = usePlot();
+  const T = (x: number, y: number) => `${fr.sx(M[0][0] * x + M[0][1] * y).toFixed(1)},${fr.sy(M[1][0] * x + M[1][1] * y).toFixed(1)}`;
+  const k = [] as number[];
+  for (let i = -n; i <= n; i++) k.push(i);
+  return (
+    <g className={`pl-line pl-${role}`} style={{ opacity, strokeWidth: 1 }} fill="none">
+      {k.map((i) => <polyline key={`v${i}`} points={`${T(i, -n)} ${T(i, n)}`} />)}
+      {k.map((j) => <polyline key={`h${j}`} points={`${T(-n, j)} ${T(n, j)}`} />)}
+    </g>
+  );
 }

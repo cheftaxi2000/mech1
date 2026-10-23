@@ -287,3 +287,14 @@ input[type="checkbox"] { accent-color: var(--accent); width: 18px; height: 18px;
 .derivation { --sbg: var(--bg); }
 /* consecutive notes read as one group, not a wall of separate cards */
 .box + .box { margin-top: 12px; }
+
+/* ---- Linear algebra colour roles (docs/linalg/NOTATION.md): the colours of Mårten Olofsson's visualisations ---- */
+:root { --la-c1: #0a8f3c; --la-c1-t: #077a32; --la-c2: #1f5fd6; --la-c2-t: #1f5fd6; --la-tgt: #d62828; --la-tgt-t: #c41e1e; --la-miss: #e07a00; --la-miss-t: #a65800; --la-c3: #8a2fa8; --la-c3-t: #8a2fa8; }
+:root[data-theme="dark"] { --la-c1: #3ccf6e; --la-c1-t: #5fdc8a; --la-c2: #5b9bff; --la-c2-t: #8db9ff; --la-tgt: #ff6b6b; --la-tgt-t: #ff8e8e; --la-miss: #ffa033; --la-miss-t: #ffb866; --la-c3: #c77dff; --la-c3-t: #d9a3ff; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --la-c1: #3ccf6e; --la-c1-t: #5fdc8a; --la-c2: #5b9bff; --la-c2-t: #8db9ff; --la-tgt: #ff6b6b; --la-tgt-t: #ff8e8e; --la-miss: #ffa033; --la-miss-t: #ffb866; --la-c3: #c77dff; --la-c3-t: #d9a3ff; } }
+.pl-c1 { stroke: var(--la-c1); fill: var(--la-c1); } .pl-c2 { stroke: var(--la-c2); fill: var(--la-c2); } .pl-tgt { stroke: var(--la-tgt); fill: var(--la-tgt); }
+.pl-ax { stroke: var(--fg); fill: var(--fg); } .pl-miss { stroke: var(--la-miss); fill: var(--la-miss); } .pl-c3 { stroke: var(--la-c3); fill: var(--la-c3); }
+.pl-curve.pl-c1, .pl-curve.pl-c2, .pl-curve.pl-tgt, .pl-curve.pl-ax, .pl-curve.pl-miss, .pl-curve.pl-c3 { fill: none; }
+.pl-curve.filled.pl-c1 { fill: var(--la-c1); } .pl-curve.filled.pl-c2 { fill: var(--la-c2); } .pl-curve.filled.pl-tgt { fill: var(--la-tgt); } .pl-curve.filled.pl-c3 { fill: var(--la-c3); } .pl-curve.filled.pl-miss { fill: var(--la-miss); }
+.pl-ink-c1 { color: var(--la-c1-t); } .pl-ink-c2 { color: var(--la-c2-t); } .pl-ink-tgt { color: var(--la-tgt-t); } .pl-ink-ax { color: var(--fg); } .pl-ink-miss { color: var(--la-miss-t); } .pl-ink-c3 { color: var(--la-c3-t); }
+.fg-e1 { stroke: var(--la-c1); } .fg-e2 { stroke: var(--la-c2); }
