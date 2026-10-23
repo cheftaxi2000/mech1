@@ -71,4 +71,6 @@ Lessons built by one implementer per week (worktrees), reviewed by the lead agai
 | ana-fehler | Ü5/1–2 | review | Δf vs df animation, rectangle strip, ring unrolled (cylinder doubles), Quader; supplement xⁿ rule; `week5.ts`. |
 | ana-mws | Ü5/3–6 | review | MWS animation + MvtExplorer (several c, Rolle, \|x\|), CurvatureExplorer with f′/f″ sign bars (A-012), extremal-value animations, L'Hôpital example. |
 | ana-komplex-rechnen | Ü5/6–8 | review | Number sets, complex plane explorer (conjugate, sum, difference), multiplication grid animation, division animation (A-013). |
-| ana-komplex | Online-Skript | planned | Waiting for the student's PDF (site blocked by the network policy). |
+| ana-komplex | Ü6/1–7 | review | «Polarform und Eulerform»: only the new bits of pp. 1–4 (i-cycle figure, \|z\|, conj rules, division formula); polar form; AngleExplorer (arctan(b/a) vs true φ in all quadrants); Euler form; multiplication animation + MulExplorer (lengths multiply, angles add; ÷ mode); supplement why the angles add. `week6.ts`. |
+| ana-komplex-potenzen | Ü6/8–9, 11 | review | PowerSpiral; ·i as quarter turn; z⁴ = −16 animation; RootsExplorer (n-gon, start angle θ/n, step 2π/n, «Probe» animation); double-angle formulas. |
+| ana-komplex-bereiche | Ü6/10, 12 | review | Re(iz) > 1 animation; RegionExplorer (disc, half-plane, annulus, Re z ≥ Im z, intersection; test point with ✓/✗ per condition; solid/dashed boundaries); supplement perpendicular bisector. |

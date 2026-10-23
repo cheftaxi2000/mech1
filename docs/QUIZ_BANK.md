@@ -213,3 +213,5 @@ Short ideas for the quiz part at the end of the course (D-015). Every answer mus
 **Week 4.** Difference quotient of x² at 1 with h = −0,5 → 1,5 · |x| differentiable at 0? no (−1 vs +1) · (x² sin x)′(0) = 0 · (5 ln(x²+2))′(1) = 10/3 · (f⁻¹)′(3) for x² + 2 → ½ and f⁻¹(3) = 1 ≠ 1/11 · arctan′(1) = ½ · tangent to 1/√(1+2x) at 4, value at 13 → 0 · normal to x² at 1: y = 3/2 − x/2 · tangents to x² at ±1 meet in (0, −1) · (uv)′ = u′v′? test with x·x.
 
 **Week 5.** r with 2 % error: area ≈ 4 %, x³ ≈ 6 % · Quader exact Δd = 0,428 vs 0,421 · x² on [0,3; 2,9]: c = 1,6 (midpoint) · x³ − 3x on [−2, 2]: c = ±2/√3 · |x| on [−1, 1]: no c (why) · x³ − x on [−½, 1]: max 3/8 at the end · inflection points of x⁴ − x²: ±1/√6 · (2 − 3i)(1 + i) = 5 − i · (2 − 3i)/(1 + i) = −½ − 5/2 i · |3 + 4i| = 5.
+
+**Week 6.** i²⁰²⁶ = −1 · arg(−1 − i) = 5π/4 (arctan gives π/4) · (1 + i)⁸ = 16 · roots of z³ = 8i: √3 + i, −√3 + i, −2i · |z − 2| = |z − 2i| is the line b = a · |z − (1+i)| ≤ 2 and Re(iz) > 1: empty (they touch only at 1 − i, excluded) · Serie 6/3c: smallest n with n(5π/16 + 15π/16) ∈ 2πℤ is 8 · 0 < r < 1: ⁴√r > r («Radius in die n-te Wurzel, nicht durch n teilen»).

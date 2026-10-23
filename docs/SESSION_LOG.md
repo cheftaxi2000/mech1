@@ -129,3 +129,6 @@
 - Five implementers (one per week, worktrees) wrote the lessons, maths modules + tests, pure animation frames + tests, transcriptions `docs/analysis/SOURCE_U0n.md`; they found A-014…A-018. All hit the rate limit once and were resumed.
 - Lead reviewed every lesson on iPad screenshots, spot-checked the numbers in the figures, merged (CSS/curriculum conflicts kept both sides; curriculum order restored), removed a committed `node_modules` symlink and fixed `.gitignore` (`node_modules` without slash).
 - Known: `ana-grenzwerte-funktionen` is long; a few formula colours are fixed hex (KaTeX) and do not follow dark mode; some small labels close together on phones (see agent reports in PROGRESS notes).
+
+## 2026-10-23 — Analysis 1, week 6
+- Student supplied Übung 6 as PDF (instead of the online script). Read all 13 pages, no source errors found; lesson plan of three lessons (polar/Euler form, powers/roots/angle formulas, regions); one implementer built them (`A6*.tsx`, `week6.ts`, `W6Figures.tsx`, `w6Scenes.ts`, SOURCE_U06). Lead reviewed screenshots, merged, published.
