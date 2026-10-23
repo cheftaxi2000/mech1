@@ -122,7 +122,7 @@ export const TOPICS: Topic[] = [
   { id: 'la-lgs', chapter: 'LA2', title: ['Lineare Gleichungssysteme geometrisch', 'Linear systems, geometrically'], pages: 'Ü2/4–24', status: 'planned' },
   { id: 'la-gauss', chapter: 'LA2', title: ['Das Gauss-Verfahren', 'Gaussian elimination'], pages: 'Ü2/25–36', status: 'planned' },
   { id: 'la-rang', chapter: 'LA3', title: ['Pivots, freie Variablen und Rang', 'Pivots, free variables and rank'], pages: 'Ü4/5–11', status: 'planned' },
-  { id: 'la-spaltenbild', chapter: 'LA3', title: ['Ax = b als Spaltenbild', 'Ax = b as a column picture'], pages: 'Ü4/12–13', status: 'planned' },
+  { id: 'la-spaltenbild', chapter: 'LA3', title: ['Das Spaltenbild eines LGS', 'The column picture of a linear system'], pages: 'Ü4/12–13', status: 'review', component: lazy(() => import('../lessons/LA3Spaltenbild')) },
   { id: 'la-transformation', chapter: 'LA4', title: ['Die Matrix als Transformation des Raums', 'The matrix as a transformation of space'], pages: 'Ü4/14–21', status: 'planned' },
   { id: 'la-rechnen', chapter: 'LA4', title: ['Matrizen: Notation, Summe, Skalar', 'Matrices: notation, sum, scalar'], pages: 'Ü4/22–25', status: 'planned' },
   { id: 'la-spezial', chapter: 'LA4', title: ['Spezielle Matrizen und Transponieren', 'Special matrices and the transpose'], pages: 'Ü4/31–36', status: 'planned' },
