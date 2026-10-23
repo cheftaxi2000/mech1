@@ -298,3 +298,28 @@ input[type="checkbox"] { accent-color: var(--accent); width: 18px; height: 18px;
 .pl-curve.filled.pl-c1 { fill: var(--la-c1); } .pl-curve.filled.pl-c2 { fill: var(--la-c2); } .pl-curve.filled.pl-tgt { fill: var(--la-tgt); } .pl-curve.filled.pl-c3 { fill: var(--la-c3); } .pl-curve.filled.pl-miss { fill: var(--la-miss); }
 .pl-ink-c1 { color: var(--la-c1-t); } .pl-ink-c2 { color: var(--la-c2-t); } .pl-ink-tgt { color: var(--la-tgt-t); } .pl-ink-ax { color: var(--fg); } .pl-ink-miss { color: var(--la-miss-t); } .pl-ink-c3 { color: var(--la-c3-t); }
 .fg-e1 { stroke: var(--la-c1); } .fg-e2 { stroke: var(--la-c2); }
+
+/* Liquid-glass / metal button finish (CSS only, adapted from a button study; no content changes).
+   Primary actions get a soft top-lit gradient, an inner highlight rim and a pressed state;
+   neutral pills get a faint glass rim. */
+.stepper-controls button.primary, .btn {
+  background-image: linear-gradient(180deg, color-mix(in srgb, #fff 22%, transparent) 0%, transparent 55%, color-mix(in srgb, #000 12%, transparent) 100%);
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 45%, transparent), inset 0 -1px 0 color-mix(in srgb, #000 18%, transparent), 0 0 0 0.5px color-mix(in srgb, #000 25%, transparent), 0 6px 14px -6px color-mix(in srgb, var(--accent) 55%, transparent);
+  transition: background-color 0.15s, transform 0.25s cubic-bezier(0.1, 0.4, 0.2, 1), box-shadow 0.25s cubic-bezier(0.1, 0.4, 0.2, 1), filter 0.2s;
+}
+.stepper-controls button.primary:hover:not(:disabled), .btn:hover { filter: brightness(1.06); }
+.stepper-controls button.primary:active:not(:disabled), .btn:active {
+  transform: translateY(1px) scale(0.98);
+  box-shadow: inset 0 1px 2px color-mix(in srgb, #000 30%, transparent), 0 0 0 0.5px color-mix(in srgb, #000 30%, transparent);
+}
+.stepper-controls button:not(.primary), .motion-btn, .v-presets button, .numeric button {
+  box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 55%, transparent), inset 0 0 0 0.5px color-mix(in srgb, var(--fg) 12%, transparent);
+}
+.lang-toggle button.active, .tabs button.active, .seg a.active {
+  box-shadow: var(--lift), inset 0 1px 0 color-mix(in srgb, #fff 60%, transparent);
+}
+:root[data-theme="dark"] .stepper-controls button:not(.primary), :root[data-theme="dark"] .motion-btn { box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 10%, transparent), inset 0 0 0 0.5px color-mix(in srgb, #fff 12%, transparent); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .stepper-controls button:not(.primary), :root:not([data-theme="light"]) .motion-btn { box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 10%, transparent), inset 0 0 0 0.5px color-mix(in srgb, #fff 12%, transparent); }
+}
+@media (prefers-reduced-motion: reduce) { .stepper-controls button.primary, .btn { transition: none; } }
