@@ -120,8 +120,8 @@ export const TOPICS: Topic[] = [
   // Lineare Algebra I – one chapter per exercise class (slides of M. Olofsson; «Ü<n>/<slides>»).
   { id: 'la-einstieg', chapter: 'LA1', title: ['Wozu Lineare Algebra?', 'Why linear algebra?'], pages: 'Ü1/4–14', status: 'review', component: lazy(() => import('../lessons/LA1Einstieg')) },
   { id: 'la-lgs', chapter: 'LA2', title: ['Lineare Gleichungssysteme geometrisch', 'Linear systems, geometrically'], pages: 'Ü2/4–24', status: 'review', component: lazy(() => import('../lessons/LA2Lgs')) },
-  { id: 'la-gauss', chapter: 'LA2', title: ['Das Gauss-Verfahren', 'Gaussian elimination'], pages: 'Ü2/25–36', status: 'planned' },
-  { id: 'la-rang', chapter: 'LA3', title: ['Pivots, freie Variablen und Rang', 'Pivots, free variables and rank'], pages: 'Ü4/5–11', status: 'planned' },
+  { id: 'la-gauss', chapter: 'LA2', title: ['Das Gauss-Verfahren', 'Gaussian elimination'], pages: 'Ü2/25–36', status: 'review', component: lazy(() => import('../lessons/LA2Gauss')) },
+  { id: 'la-rang', chapter: 'LA3', title: ['Pivots, freie Variablen und Rang', 'Pivots, free variables and rank'], pages: 'Ü4/5–11', status: 'review', component: lazy(() => import('../lessons/LA3Rang')) },
   { id: 'la-spaltenbild', chapter: 'LA3', title: ['Gleichungssysteme im Spaltenbild', 'Linear systems as a column picture'], pages: 'Ü4/12–13', status: 'review', component: lazy(() => import('../lessons/LA3Spaltenbild')) },
   { id: 'la-transformation', chapter: 'LA4', title: ['Die Matrix als Transformation des Raums', 'The matrix as a transformation of space'], pages: 'Ü4/14–21', status: 'review', component: lazy(() => import('../lessons/LA4Transformation')) },
   { id: 'la-rechnen', chapter: 'LA4', title: ['Matrizen: Notation, Summe, Skalar', 'Matrices: notation, sum, scalar'], pages: 'Ü4/22–25', status: 'planned' },
