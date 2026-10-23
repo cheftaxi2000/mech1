@@ -1,0 +1,80 @@
+/* Lineare Algebra I, lessons «Wozu Lineare Algebra?» and «Lineare Gleichungssysteme geometrisch» (own file, D-026) */
+
+/* matrix with round brackets and coloured columns */
+.l12-mat { display: inline-grid; gap: 4px 22px; padding: 6px 16px; position: relative; vertical-align: middle; font-size: 1.05em; }
+.l12-mat::before, .l12-mat::after { content: ""; position: absolute; top: 0; bottom: 0; width: 9px; border: 2px solid var(--fg); }
+.l12-mat::before { left: 0; border-right: 0; border-radius: 10px 0 0 10px; }
+.l12-mat::after { right: 0; border-left: 0; border-radius: 0 10px 10px 0; }
+.l12-mat-cell { text-align: center; font-variant-numeric: tabular-nums; }
+.l12-mat-cell.c1 { color: var(--la-c1-t); } .l12-mat-cell.c2 { color: var(--la-c2-t); } .l12-mat-cell.c3 { color: var(--la-c3-t); }
+.l12-mat-cell.tgt { color: var(--la-tgt-t); } .l12-mat-cell.miss { color: var(--la-miss-t); }
+.l12-eq { display: inline-flex; align-items: center; gap: 8px; }
+.l12-fmat { display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 1.1rem; }
+.l12-state { text-align: center; font-size: 0.95rem; }
+.l12-row { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; justify-content: center; }
+.l12-stress .plot-fig { max-width: 520px; }
+.l12-stress figcaption { width: 100%; }
+
+/* roadmap */
+.l12-road { list-style: none; margin: 14px 0; padding: 0; display: grid; gap: 0; counter-reset: none; }
+.l12-road li { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 12px; align-items: start; position: relative; padding-bottom: 10px; }
+.l12-road li::before { content: ""; position: absolute; left: 25px; top: 38px; bottom: -2px; width: 2px; background: var(--line); }
+.l12-road li:last-child::before { display: none; }
+.l12-road-dot { width: 52px; height: 36px; display: grid; place-items: center; border-radius: 18px; font-weight: 700; font-size: 0.92rem;
+  border: 2px solid var(--line); background: var(--panel); color: var(--muted); font-variant-numeric: tabular-nums; }
+.l12-road li.on .l12-road-dot { border-color: var(--accent); background: var(--accent); color: var(--panel); }
+.l12-road-card { display: grid; gap: 2px; padding: 2px 0 6px; min-width: 0; }
+.l12-road-card strong { font-weight: 600; }
+.l12-road-sub { color: var(--muted); font-size: 0.88rem; }
+.l12-road li.off .l12-road-card { opacity: 0.55; }
+.l12-road-links { display: flex; flex-wrap: wrap; gap: 4px 8px; margin-top: 4px; }
+.l12-road-links a, .l12-road-links .here { display: inline-block; min-height: 32px; padding: 4px 10px; border-radius: 8px; border: 1px solid var(--line); font-size: 0.9rem; text-decoration: none; background: var(--panel); }
+.l12-road-links a { color: var(--accent); }
+.l12-road-links a:hover { border-color: var(--accent); }
+.l12-road-links .here { background: color-mix(in srgb, var(--accent) 14%, var(--panel)); border-color: var(--accent); font-weight: 600; }
+@media (min-width: 900px) {
+  .l12-road { grid-template-columns: 1fr 1fr; grid-auto-flow: column; grid-template-rows: repeat(8, auto); column-gap: 36px; }
+  .l12-road li:nth-child(8)::before { display: none; }
+}
+
+/* code snippets next to the matrix they build */
+.l12-code { display: grid; grid-template-columns: auto auto; justify-content: start; gap: 14px 28px; align-items: center; margin: 10px 0; padding: 12px 16px; border-radius: 10px; background: var(--panel); }
+.l12-code pre { margin: 0; overflow-x: auto; font-size: 0.95rem; }
+.l12-code code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+@media (max-width: 560px) { .l12-code { grid-template-columns: minmax(0, 1fr); justify-items: start; } }
+.l12-cmds { list-style: none; padding: 0; margin: 8px 0; display: grid; gap: 6px; }
+.l12-cmds li { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 10px; align-items: baseline; }
+.l12-cmds code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: var(--fill); padding: 1px 7px; border-radius: 6px; width: fit-content; }
+.l12-vs { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin: 10px 0; }
+.l12-vs > div { padding: 10px 14px; border-radius: 10px; background: var(--panel); display: grid; gap: 4px; align-content: start; min-width: 0; }
+.l12-vs h4 { margin: 0; font-size: 0.95rem; }
+@media (max-width: 640px) { .l12-vs { grid-template-columns: minmax(0, 1fr); } }
+
+/* linear or not: the four warm-up equations */
+.l12-warm { list-style: none; margin: 8px 0; padding: 0; display: grid; gap: 8px; }
+.l12-warm li { display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: 4px 10px; align-items: start; padding: 8px 12px; border-radius: 10px; background: var(--panel); }
+.l12-warm .tick { font-weight: 700; font-size: 1.1rem; line-height: 1.5; }
+.l12-warm .tick.yes { color: var(--ok); } .l12-warm .tick.no { color: var(--bad); }
+.l12-warm .why { grid-column: 2; color: var(--muted); font-size: 0.93rem; }
+
+/* line, two lines, combination explorers */
+.l12-lines .plot-fig { max-width: 560px; }
+.l12-eqs { display: grid; gap: 2px; justify-items: start; text-align: left; font-size: 0.95rem; }
+.l12-sliders { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2px 16px; width: 100%; }
+@media (max-width: 520px) { .l12-sliders { grid-template-columns: minmax(0, 1fr); } }
+.l12-verdict { padding: 6px 12px; border-radius: 8px; background: color-mix(in srgb, var(--fg) 5%, transparent); text-align: center; max-width: 100%; }
+.l12-verdict.one { background: color-mix(in srgb, var(--la-c1) 14%, transparent); }
+.l12-verdict.many { background: color-mix(in srgb, var(--la-c2) 14%, transparent); }
+.l12-verdict.none { background: color-mix(in srgb, var(--la-miss) 16%, transparent); }
+.l12-swatch { display: inline-block; width: 18px; height: 5px; border-radius: 3px; margin-right: 8px; vertical-align: middle; }
+
+/* planes explorer side panel */
+.l12-planes .side .controls { gap: 8px; }
+.l12-planes .l12-eqs { gap: 6px; }
+.l12-planes .l12-eqs > div { display: flex; align-items: center; flex-wrap: wrap; gap: 2px; }
+.l12-planes .tabs button { font-size: 0.88rem; }
+.l12-planes .l12-verdict { text-align: left; }
+.l12-planes .l12-note { font-size: 0.9rem; color: var(--muted); }
+.l12-sliders.flat { grid-template-columns: minmax(0, 1fr); }
+.l12-sliders.cols { grid-template-rows: repeat(3, auto); grid-auto-flow: column; }
+@media (max-width: 520px) { .l12-sliders.cols { grid-template-rows: none; grid-auto-flow: row; } }
