@@ -11,10 +11,17 @@ import { lazy, type ComponentType, type LazyExoticComponent } from 'react';
 export type Status = 'planned' | 'draft' | 'review' | 'complete';
 
 /** The two courses ("Rubriken"). Each chapter belongs to one; navigation and prev/next stay inside a subject. */
-export type Subject = 'mech' | 'ana';
+export type Subject = 'mech' | 'ana' | 'la';
 export const SUBJECTS: Record<Subject, [string, string]> = {
   mech: ['Mechanik I', 'Mechanics 1'],
   ana: ['Analysis 1', 'Analysis 1'],
+  la: ['Lineare Algebra I', 'Linear Algebra 1'],
+};
+/** Short names for narrow places (drawer switch). */
+export const SUBJECT_SHORT: Record<Subject, [string, string]> = {
+  mech: ['Mechanik', 'Mechanics'],
+  ana: ['Analysis', 'Analysis'],
+  la: ['Lin. Algebra', 'Lin. Algebra'],
 };
 
 export interface Topic {
@@ -39,15 +46,28 @@ export const CHAPTERS: Record<string, [string, string]> = {
   A4: ['Woche 4 · Ableitungen', 'Week 4 · Derivatives'],
   A5: ['Woche 5 · Fehlerrechnung, Mittelwertsatz, komplexe Zahlen', 'Week 5 · Errors, mean value theorem, complex numbers'],
   A6: ['Woche 6 · Komplexe Zahlen', 'Week 6 · Complex numbers'],
+  LA1: ['Woche 1 · Einstieg', 'Week 1 · Introduction'],
+  LA2: ['Woche 2 · Gleichungssysteme und Gauss', 'Week 2 · Linear systems and Gaussian elimination'],
+  LA3: ['Woche 3 · Rang und Spaltenbild', 'Week 3 · Rank and the column picture'],
+  LA4: ['Woche 4 · Die Matrix', 'Week 4 · The matrix'],
+  LA5: ['Woche 5 · Matrixprodukt', 'Week 5 · Matrix product'],
 };
 
-export const chapterSubject = (ch: string): Subject => (ch.startsWith('A') ? 'ana' : 'mech');
+export const chapterSubject = (ch: string): Subject => (ch.startsWith('LA') ? 'la' : ch.startsWith('A') ? 'ana' : 'mech');
 export const topicSubject = (t: Topic): Subject => chapterSubject(t.chapter);
 
 /** Where a topic comes from, for the crumbs and lists: [long German, long English, short German, short English]. */
 export function sourceLabel(t: Topic): [string, string, string, string] {
   if (topicSubject(t) === 'mech') {
     return [`Vorlesung S. ${t.pages}`, `Lecture notes ${t.pages.includes('–') ? 'pp.' : 'p.'} ${t.pages}`, `S. ${t.pages}`, `p. ${t.pages}`];
+  }
+  if (topicSubject(t) === 'la') {
+    // Linear algebra: «Ü<n>/<slide numbers>» = exercise class n, slides (PDF page numbers) of its annotated slide deck.
+    const [u, pp] = t.pages.slice(1).split('/');
+    const many = pp?.includes('–') || pp?.includes(',');
+    return pp
+      ? [`Übung ${u}, Folie${many ? 'n' : ''} ${pp}`, `Exercise class ${u}, slide${many ? 's' : ''} ${pp}`, `Üb. ${u}`, `Ex. ${u}`]
+      : [`Übung ${u}`, `Exercise class ${u}`, `Üb. ${u}`, `Ex. ${u}`];
   }
   // Analysis: every week is an Übungs-Resümee (PDF, «Ü<n>/<pages>»).
   if (!t.pages.startsWith('Ü')) return ['Online-Skript', 'Online notes', 'Skript', 'notes'];
@@ -97,4 +117,14 @@ export const TOPICS: Topic[] = [
   { id: 'ana-komplex', chapter: 'A6', title: ['Polarform und Eulerform', 'Polar form and Euler form'], pages: 'Ü6/1–7', status: 'review', component: lazy(() => import('../lessons/A6Polarform')) },
   { id: 'ana-komplex-potenzen', chapter: 'A6', title: ['Potenzen, Wurzeln und Winkelformeln', 'Powers, roots and angle formulas'], pages: 'Ü6/8–9, 11', status: 'review', component: lazy(() => import('../lessons/A6Potenzen')) },
   { id: 'ana-komplex-bereiche', chapter: 'A6', title: ['Bereiche in der komplexen Ebene', 'Regions in the complex plane'], pages: 'Ü6/10, 12', status: 'review', component: lazy(() => import('../lessons/A6Bereiche')) },
+  // Lineare Algebra I – one chapter per exercise class (slides of M. Olofsson; «Ü<n>/<slides>»).
+  { id: 'la-einstieg', chapter: 'LA1', title: ['Wozu Lineare Algebra?', 'Why linear algebra?'], pages: 'Ü1/4–14', status: 'planned' },
+  { id: 'la-lgs', chapter: 'LA2', title: ['Lineare Gleichungssysteme geometrisch', 'Linear systems, geometrically'], pages: 'Ü2/4–24', status: 'planned' },
+  { id: 'la-gauss', chapter: 'LA2', title: ['Das Gauss-Verfahren', 'Gaussian elimination'], pages: 'Ü2/25–36', status: 'planned' },
+  { id: 'la-rang', chapter: 'LA3', title: ['Pivots, freie Variablen und Rang', 'Pivots, free variables and rank'], pages: 'Ü4/5–11', status: 'planned' },
+  { id: 'la-spaltenbild', chapter: 'LA3', title: ['Ax = b als Spaltenbild', 'Ax = b as a column picture'], pages: 'Ü4/12–13', status: 'planned' },
+  { id: 'la-transformation', chapter: 'LA4', title: ['Die Matrix als Transformation des Raums', 'The matrix as a transformation of space'], pages: 'Ü4/14–21', status: 'planned' },
+  { id: 'la-rechnen', chapter: 'LA4', title: ['Matrizen: Notation, Summe, Skalar', 'Matrices: notation, sum, scalar'], pages: 'Ü4/22–25', status: 'planned' },
+  { id: 'la-spezial', chapter: 'LA4', title: ['Spezielle Matrizen und Transponieren', 'Special matrices and the transpose'], pages: 'Ü4/31–36', status: 'planned' },
+  { id: 'la-produkt', chapter: 'LA5', title: ['Das Matrixprodukt', 'The matrix product'], pages: 'Ü4/26–30', status: 'planned' },
 ];

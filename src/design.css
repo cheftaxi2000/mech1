@@ -166,6 +166,9 @@ input[type="checkbox"] { accent-color: var(--accent); width: 18px; height: 18px;
 .lesson-pager a:hover .pager-title { color: var(--link); }
 
 /* ---- landing: choose a subject ---- */
+:root[data-subject="la"] { --accent: #0a7f62; --link: #08705a; }
+:root[data-subject="la"][data-theme="dark"] { --accent: #12906f; --link: #4fd1ae; }
+@media (prefers-color-scheme: dark) { :root[data-subject="la"]:not([data-theme="light"]) { --accent: #12906f; --link: #4fd1ae; } }
 :root[data-subject="ana"] { --accent: #5856d6; --link: #4b49c8; }
 :root[data-subject="ana"][data-theme="dark"] { --accent: #6e6cf0; --link: #9a98ff; }
 @media (prefers-color-scheme: dark) { :root[data-subject="ana"]:not([data-theme="light"]) { --accent: #6e6cf0; --link: #9a98ff; } }
@@ -174,16 +177,19 @@ input[type="checkbox"] { accent-color: var(--accent); width: 18px; height: 18px;
 .landing-eyebrow { font-size: 0.95rem; font-weight: 500; color: var(--muted); }
 .landing-head h1 { font-size: clamp(2.75rem, 1.4rem + 5vw, 4.75rem); line-height: 1; letter-spacing: -0.045em; font-weight: 700; margin: 6px 0 0; }
 .landing-sub { margin: 14px 0 0; font-size: clamp(1.1rem, 1rem + 0.5vw, 1.4rem); color: var(--muted); letter-spacing: -0.02em; }
-.tiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
 .tile { --accent: #0071e3; --link: #0066cc; display: flex; flex-direction: column; background: var(--fill); border-radius: 22px; overflow: hidden; color: var(--fg); text-decoration: none; transition: transform 0.35s var(--ease), background 0.2s; }
 .tile-ana { --accent: #5856d6; --link: #4b49c8; }
+.tile-la { --accent: #0a7f62; --link: #08705a; }
+:root[data-theme="dark"] .tile-la { --accent: #12906f; --link: #4fd1ae; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tile-la { --accent: #12906f; --link: #4fd1ae; } }
 :root[data-theme="dark"] .tile-ana { --accent: #6e6cf0; --link: #9a98ff; }
 :root[data-theme="dark"] .tile-mech { --link: #2997ff; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tile-ana { --accent: #6e6cf0; --link: #9a98ff; } :root:not([data-theme="light"]) .tile-mech { --link: #2997ff; } }
 .tile:hover { text-decoration: none; transform: translateY(-4px); background: var(--fill-2); }
 .tile-fig { aspect-ratio: 16 / 9; display: grid; place-items: center; padding: 14px 18px 0; }
 .tile-fig .fig { width: 100%; height: 100%; display: block; overflow: visible; }
-.tile-body { padding: 8px 28px 26px; display: flex; flex-direction: column; flex: 1; }
+.tile-body { padding: 8px 24px 24px; display: flex; flex-direction: column; flex: 1; }
 .tile h2 { margin: 0; font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.1rem); letter-spacing: -0.03em; font-weight: 700; text-wrap: balance; }
 .tile p { margin: 8px 0 0; color: var(--muted); font-size: 1.02rem; line-height: 1.4; max-width: 28rem; }
 .tile-foot { margin-top: auto; padding-top: 22px; display: flex; justify-content: space-between; align-items: baseline; font-size: 0.9rem; color: var(--muted); }
@@ -208,13 +214,19 @@ input[type="checkbox"] { accent-color: var(--accent); width: 18px; height: 18px;
 .fg-limit { stroke: var(--accent); stroke-width: 1.6; stroke-dasharray: 5 5; fill: none; animation: fg-fade 0.7s ease 0.8s backwards; }
 .fg-dot { fill: var(--c-x); transform-box: fill-box; transform-origin: center; animation: fg-pop 0.45s var(--ease) var(--d, 1s) backwards; }
 .fg-dot.out { fill: var(--c-point); }
+/* linear algebra tile: the grid warps, e₁ / e₂ follow (columns of the matrix) */
+.fg-grid { fill: none; stroke: var(--line-strong); stroke-width: 1; animation: fg-fade 0.8s ease calc(0.5s + var(--i, 0) * 0.08s) backwards; }
+.fg-grid.axis { stroke: var(--muted); stroke-width: 1.5; }
+.fg-square { fill: var(--accent); fill-opacity: 0.16; stroke: none; animation: fg-fade 0.8s ease 1s backwards; }
+.fg-e1 { fill: none; stroke: #0a8f3c; stroke-width: 3; stroke-linecap: round; animation: fg-fade 0.6s ease 1.2s backwards; }
+.fg-e2 { fill: none; stroke: #1f5fd6; stroke-width: 3; stroke-linecap: round; animation: fg-fade 0.6s ease 1.4s backwards; }
 @keyframes fg-draw { from { stroke-dashoffset: 1; } }
 @keyframes fg-fade { from { opacity: 0; } }
 @keyframes fg-pop { from { opacity: 0; transform: scale(0.2); } }
 .landing-head > *, .tile, .landing .resume { animation: rise 0.7s var(--ease) backwards; }
 .landing-head h1 { animation: rise 0.8s var(--ease) 0.05s backwards; }
 .landing-sub { animation: rise 0.8s var(--ease) 0.15s backwards; }
-.tile-mech { animation-delay: 0.25s; } .tile-ana { animation-delay: 0.38s; } .landing .resume { animation-delay: 0.6s; }
+.tile-mech { animation-delay: 0.25s; } .tile-ana { animation-delay: 0.38s; } .tile-la { animation-delay: 0.51s; } .landing .resume { animation-delay: 0.6s; }
 @keyframes rise { from { opacity: 0; transform: translateY(14px); } }
 @media (prefers-reduced-motion: reduce) { .landing *, .fig * { animation: none !important; } }
 

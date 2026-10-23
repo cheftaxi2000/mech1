@@ -83,3 +83,43 @@ export function AnaFigure() {
     </svg>
   );
 }
+
+/* ---------- Lineare Algebra: a matrix warps the grid; the basis arrows e₁, e₂ become the columns ---------- */
+const LO = { x: 118, y: 112 }, LU = 46;
+const LF = [[1.15, 0.6], [0.25, 0.8]]; // the matrix the figure breathes towards
+const LN = 90;
+const lm = (k: number) => { const s = 0.5 - 0.5 * Math.cos((2 * Math.PI * k) / LN); return [[1 + (LF[0][0] - 1) * s, LF[0][1] * s], [LF[1][0] * s, 1 + (LF[1][1] - 1) * s]]; };
+const lp = (m: number[][], x: number, y: number) => ({ x: LO.x + LU * (m[0][0] * x + m[0][1] * y), y: LO.y - LU * (m[1][0] * x + m[1][1] * y) });
+const lfmt = (pts: { x: number; y: number }[]) => pts.map((p) => `${f(p.x)},${f(p.y)}`).join(' ');
+
+export function LaFigure() {
+  const still = useReducedMotion();
+  const frames = Array.from({ length: LN + 1 }, (_, k) => lm(k));
+  const last = lm(Math.round(LN * 0.5)); // reduced motion: the transformed state
+  const poly = (build: (m: number[][]) => { x: number; y: number }[]) => {
+    const first = build(still ? last : frames[0]);
+    return { points: lfmt(first), values: frames.map((m) => lfmt(build(m))).join(';') };
+  };
+  const an = (v: string) => still ? null : <animate attributeName="points" values={v} dur="14s" repeatCount="indefinite" />;
+  const lines: { key: string; build: (m: number[][]) => { x: number; y: number }[]; axis?: boolean }[] = [];
+  for (let i = -2; i <= 4; i++) {
+    lines.push({ key: `v${i}`, build: (m) => [lp(m, i, -2), lp(m, i, 3)], axis: i === 0 });
+  }
+  for (let j = -2; j <= 3; j++) {
+    lines.push({ key: `h${j}`, build: (m) => [lp(m, -2, j), lp(m, 4, j)], axis: j === 0 });
+  }
+  const sq = poly((m) => [lp(m, 0, 0), lp(m, 1, 0), lp(m, 1, 1), lp(m, 0, 1)]);
+  const e1 = poly((m) => [lp(m, 0, 0), lp(m, 1, 0)]), e2 = poly((m) => [lp(m, 0, 0), lp(m, 0, 1)]);
+  return (
+    <svg className="fig fig-la" viewBox="0 0 320 200" aria-hidden="true" focusable="false">
+      <defs><clipPath id="la-clip"><rect x="8" y="6" width="304" height="188" rx="10" /></clipPath></defs>
+      <g clipPath="url(#la-clip)">
+        {lines.map((l, i) => { const p = poly(l.build); return <polyline key={l.key} className={`fg-grid${l.axis ? ' axis' : ''}`} style={{ ['--i' as string]: i % 7 }} points={p.points}>{an(p.values)}</polyline>; })}
+        <polygon className="fg-square" points={sq.points}>{an(sq.values)}</polygon>
+        <polyline className="fg-e1" points={e1.points}>{an(e1.values)}</polyline>
+        <polyline className="fg-e2" points={e2.points}>{an(e2.values)}</polyline>
+        <circle className="fg-origin" r="3" cx={LO.x} cy={LO.y} />
+      </g>
+    </svg>
+  );
+}

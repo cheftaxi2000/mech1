@@ -89,14 +89,14 @@ const LEAK: Record<Lang, RegExp> = {
 };
 
 for (const lang of LANGS) {
-  test(`[${lang}] landing offers both subjects; each subject page lists its lessons`, async ({ page }) => {
+  test(`[${lang}] landing offers all subjects; each subject page lists its lessons`, async ({ page }) => {
     const errors = trackErrors(page);
     await open(page, lang);
     await expect(page.getByRole('heading', { level: 1 })).toContainText('Learning Lab');
     const tiles = page.locator('a.tile');
-    await expect(tiles).toHaveCount(2);
+    await expect(tiles).toHaveCount(3);
     const i = lang === 'de' ? 0 : 1;
-    for (const [route, subject, ch] of [['mechanik', 'mech', (c: string) => !c.startsWith('A')], ['analysis', 'ana', (c: string) => c.startsWith('A')]] as const) {
+    for (const [route, subject, ch] of [['mechanik', 'mech', (c: string) => !c.startsWith('A') && !c.startsWith('LA')], ['analysis', 'ana', (c: string) => c.startsWith('A') && !c.startsWith('LA')], ['algebra', 'la', (c: string) => c.startsWith('LA')]] as const) {
       await page.goto(`/#${route}`);
       await expect(page.getByRole('heading', { level: 1 })).toContainText(SUBJECTS[subject][i]);
       const main = page.locator('.toc');

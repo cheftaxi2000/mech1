@@ -5,9 +5,20 @@ import { useLang, useTr } from '../i18n';
  * Reference to the official material. Mechanik: `p` = printed page number in the Mitschrift.
  * Analysis: `u` = number of the Übung (exercise-class summary, PDF), `p` = page in that PDF.
  */
-export function Src({ p, fig, u }: { p: number | string; fig?: string; u?: number }) {
+export function Src({ p, fig, u, slides, vis }: { p?: number | string; fig?: string; u?: number; slides?: boolean; vis?: string }) {
   const tr = useTr();
   const pages = String(p).includes('–');
+  // Linear algebra: `slides` = slide numbers (PDF pages) of the annotated exercise-class deck; `vis` = the class's interactive visualisation.
+  if (u !== undefined && vis) return (
+    <span className="src" title={tr(`Interaktive Visualisierung zur Übung ${u}`, `Interactive visualisation for exercise class ${u}`)}>
+      {tr(`Übung ${u}, Visualisierung «${vis}»`, `Exercise class ${u}, visualisation “${vis}”`)}
+    </span>
+  );
+  if (u !== undefined && slides) return (
+    <span className="src" title={tr(`Annotierte Folien der Übung ${u} (PDF), Foliennummer`, `Annotated slides of exercise class ${u} (PDF), slide number`)}>
+      {tr(`Übung ${u}, Folie${pages || String(p).includes(',') ? 'n' : ''} ${p}`, `Exercise class ${u}, slide${pages || String(p).includes(',') ? 's' : ''} ${p}`)}{fig ? `, ${fig}` : ''}
+    </span>
+  );
   if (u !== undefined) return (
     <span className="src" title={tr(`Übungs-Resümee ${u} (PDF), Seite`, `Summary of exercise class ${u} (PDF), page`)}>
       {tr(`Übung ${u}, S. ${p}`, `Exercise class ${u}, ${pages ? 'pp.' : 'p.'} ${p}`)}{fig ? `, ${fig}` : ''}

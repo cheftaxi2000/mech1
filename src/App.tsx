@@ -1,7 +1,7 @@
 import { Suspense, useEffect, useRef, useState } from 'react';
 import { NotesLayer } from './notes/StickyNotes';
 import { NotesProvider, useNotes } from './notes/store';
-import { CHAPTERS, SUBJECTS, TOPICS, chapterSubject, sourceLabel, topicSubject, type Status, type Subject, type Topic } from './content/curriculum';
+import { CHAPTERS, SUBJECTS, SUBJECT_SHORT, TOPICS, chapterSubject, sourceLabel, topicSubject, type Status, type Subject, type Topic } from './content/curriculum';
 import { LangToggle, useLang, useTr } from './i18n';
 import { Landing, SUBJECT_ROUTE, SubjectPage, routeSubject } from './home/Pages';
 
@@ -168,7 +168,7 @@ export function App() {
         <a className="drawer-all" href="#" onClick={() => setMenu(false)}>‹ {tr('Alle Fächer', 'All subjects')}</a>
         <div className="seg" role="group" aria-label={tr('Fach', 'Subject')}>
           {(Object.keys(SUBJECTS) as Subject[]).map((s) => (
-            <a key={s} href={`#${SUBJECT_ROUTE[s]}`} className={subject === s ? 'active' : ''} aria-current={subject === s ? 'true' : undefined} onClick={() => setMenu(false)}>{tr(...SUBJECTS[s])}</a>
+            <a key={s} href={`#${SUBJECT_ROUTE[s]}`} className={subject === s ? 'active' : ''} aria-current={subject === s ? 'true' : undefined} onClick={() => setMenu(false)}>{tr(...SUBJECT_SHORT[s])}</a>
           ))}
         </div>
         {shown.map((s) => (
