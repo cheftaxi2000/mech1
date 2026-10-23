@@ -69,6 +69,7 @@ function Home() {
         </p>}
       />
       <nav className="home-chapters" aria-label={tr('Kapitel Analysis 1', 'Chapters Analysis 1')}><ChapterList route="" subject="ana" /></nav>
+      <p className="build-date">{tr('Stand', 'Version')}: {__BUILD_DATE__.split('-').reverse().join('.')}</p>
     </article>
   );
 }

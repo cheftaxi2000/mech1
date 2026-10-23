@@ -826,3 +826,4 @@ span.w6-key.w6-c1 { border-color: var(--a-g); background: color-mix(in srgb, var
 .w6-trig th, .w6-trig td { border: 1px solid var(--line); padding: 4px 10px; text-align: center; }
 .w6-trig thead th { background: color-mix(in srgb, var(--a-f) 14%, transparent); }
 .w6-thin .pl-curve { stroke-width: 1.7; }
+.build-date { margin-top: 28px; font-size: 0.8rem; color: var(--muted); text-align: center; }
