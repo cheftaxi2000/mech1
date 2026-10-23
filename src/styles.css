@@ -799,3 +799,30 @@ span.w5-key.w5-minus { background: color-mix(in srgb, var(--a-g) 55%, transparen
   .w3-iv-row { grid-template-columns: 4em minmax(90px, 1fr) 6.5em; gap: 6px; }
   .w3-div { font-size: 0.86rem; }
 }
+/* ==== ana week 6 ==== */
+.vdemo-fig.w6-plane { max-width: 460px; }
+.vdemo-fig.w6-small { max-width: 360px; }
+.w6-anim { width: 100%; max-width: 480px; margin-inline: auto; }
+.w6-anim.w6-square { max-width: 400px; }
+.w6-ok { color: var(--c-z-text); font-weight: 600; }
+.w6-no { color: var(--c-point); font-weight: 600; }
+.w6-region rect { fill: var(--a-sec); fill-opacity: 0.28; stroke: none; }
+.w6-single rect { fill-opacity: 0.06; stroke: none; }
+.w6-single.w6-c0 rect { fill: var(--a-f); } .w6-single.w6-c1 rect { fill: var(--a-g); }
+.w6-bd { fill: none; stroke-width: 2.4; }
+.w6-bd.dashed { stroke-dasharray: 7 5; }
+.w6-bd.faint { stroke-width: 1; opacity: 0.45; }
+.w6-bd.w6-c0 { stroke: var(--a-f); } .w6-bd.w6-c1 { stroke: var(--a-g); }
+.w6-cond { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; margin: 2px 0; }
+.w6-val { color: var(--muted); font-size: 0.92em; }
+span.w6-key { display: inline-block; width: 1em; height: 0.8em; border-radius: 3px; border: 2px solid; }
+span.w6-key.w6-c0 { border-color: var(--a-f); background: color-mix(in srgb, var(--a-f) 15%, transparent); }
+span.w6-key.w6-c1 { border-color: var(--a-g); background: color-mix(in srgb, var(--a-g) 15%, transparent); }
+.w6-lines { padding: 4px 0; min-height: 12em; }
+.w6-line { border-radius: 8px; padding: 0 8px; overflow-x: auto; }
+.w6-line.now { background: color-mix(in srgb, var(--accent) 9%, transparent); }
+.w6-table { overflow-x: auto; }
+.w6-trig { border-collapse: collapse; margin: 6px auto; }
+.w6-trig th, .w6-trig td { border: 1px solid var(--line); padding: 4px 10px; text-align: center; }
+.w6-trig thead th { background: color-mix(in srgb, var(--a-f) 14%, transparent); }
+.w6-thin .pl-curve { stroke-width: 1.7; }
