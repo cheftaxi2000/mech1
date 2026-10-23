@@ -179,10 +179,14 @@ export function placeLabels(items: readonly PItem[], v: View, obstacles: { at: V
   for (let k = Math.ceil(v.x[0] / v.tick); k * v.tick <= v.x[1]; k++) { if (k === 0) continue; const x = toPx(v, [k * v.tick, 0])[0]; placed.push([x - 8, O[1] + 4, x + 8, O[1] + 19]); }
   for (let k = Math.ceil(v.y[0] / v.tick); k * v.tick <= v.y[1]; k++) { if (k === 0) continue; const y = toPx(v, [0, k * v.tick])[1]; placed.push([O[0] - 20, y - 6, O[0] - 3, y + 6]); }
   // arrows and segments block labels too (sampled every ~14 units, so a label never sits on a drawn line)
+  const span = Math.hypot(v.x[1] - v.x[0], v.y[1] - v.y[0]);
   for (const it of items) {
-    if (it.k !== 'arrow' && it.k !== 'seg') continue;
+    if (it.k !== 'arrow' && it.k !== 'seg' && it.k !== 'line') continue;
     if ((it.o ?? 1) < 0.3) continue;
-    const a = toPx(v, it.a), b = toPx(v, it.b), L = Math.hypot(b[0] - a[0], b[1] - a[1]), n = Math.ceil(L / 14);
+    const ends: [V2, V2] = it.k === 'line'
+      ? (() => { const n = Math.hypot(it.dir[0], it.dir[1]) || 1, d: V2 = [(it.dir[0] / n) * span, (it.dir[1] / n) * span]; return [[it.p[0] - d[0], it.p[1] - d[1]], [it.p[0] + d[0], it.p[1] + d[1]]]; })()
+      : [it.a, it.b];
+    const a = toPx(v, ends[0]), b = toPx(v, ends[1]), L = Math.hypot(b[0] - a[0], b[1] - a[1]), n = Math.ceil(L / 14);
     const r = Math.max(2, (it.w ?? 2) / 2 + 1);
     for (let i = 0; i <= n; i++) { const x = a[0] + ((b[0] - a[0]) * i) / Math.max(1, n), y = a[1] + ((b[1] - a[1]) * i) / Math.max(1, n); placed.push([x - r, y - r, x + r, y + r]); }
   }

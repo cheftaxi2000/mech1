@@ -99,7 +99,7 @@ export function TransformExplorer({ start = 1 }: { start?: number }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [A, xin[0], xin[1], traces, mode, b]);
   const view = frozen.current ?? fitted;
-  const sc = trScene({ A, t: tm, inputs, b: mode === 'find' ? b : undefined, drag: mode === 'free' ? ['a1', 'a2', 'x'] : ['a1', 'a2', 'b'], lang }, view);
+  const sc = trScene({ A, t: tm, inputs, b: mode === 'find' ? b : undefined, drag: mode === 'free' ? ['a1', 'a2', 'x'] : ['a1', 'a2', 'b'], targets: true, lang }, view);
   const handles = sc.handles.map((h) => ({ ...h, label: h.id === 'a1' ? tr('Bild von e₁ (Spalte a₁) ziehen', 'drag the image of e₁ (column a₁)') : h.id === 'a2' ? tr('Bild von e₂ (Spalte a₂) ziehen', 'drag the image of e₂ (column a₂)') : h.id === 'b' ? tr('Ziel b ziehen', 'drag the target b') : tr('Eingabe x ziehen', 'drag the input x') }));
 
   const setCol = (j: 0 | 1, p: V2) => setA((M0) => { const N: M2 = [[M0[0][0], M0[0][1]], [M0[1][0], M0[1][1]]]; N[0][j] = p[0]; N[1][j] = p[1]; return N; });

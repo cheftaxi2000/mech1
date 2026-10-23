@@ -28,6 +28,10 @@ export interface TrState {
   b?: V2;
   /** draggable tips: a₁, a₂ (the images of e₁, e₂) and the given input ids / 'b' */
   drag?: string[];
+  /** more items (drawn on top, before the labels are placed) */
+  extra?: PItem[];
+  /** before the end: pale arrows to where e₁ and e₂ will land (the draggable columns) */
+  targets?: boolean;
   /** show the labels e₁ → a₁ */
   basisLabels?: boolean;
   lang: 'de' | 'en';
@@ -35,7 +39,7 @@ export interface TrState {
 
 const O: V2 = [0, 0];
 const col = (A: M2, j: 0 | 1): V2 => [A[0][j], A[1][j]];
-const tup = (v: V2, lang: 'de' | 'en') => String.raw`(${ntex(v[0], 2, lang)}${lang === 'de' ? ';\ ' : ',\ '}${ntex(v[1], 2, lang)})^T`;
+const tup = (v: V2, lang: 'de' | 'en') => String.raw`(${ntex(v[0], 2, lang)}${lang === 'de' ? ';\\ ' : ',\\ '}${ntex(v[1], 2, lang)})^T`;
 
 export function trScene(s: TrState, view: View): { items: PItem[]; handles: Handle[] } {
   const { A, t, lang } = s;
@@ -60,10 +64,15 @@ export function trScene(s: TrState, view: View): { items: PItem[]; handles: Hand
     find = findInput(A, s.b);
     if (find.kind === 'line') {
       const L = 40, f = find;
+      if (!start) items.push({ k: 'seg', id: 'sol-line-ghost', a: add(f.x, scale(f.dir, -L)), b: add(f.x, scale(f.dir, L)), role: 'miss', dashed: true, w: 2, o: 0.35 });
       items.push({ k: 'seg', id: 'sol-line', a: T(add(f.x, scale(f.dir, -L))), b: T(add(f.x, scale(f.dir, L))), role: 'miss', dashed: true, w: 2.6, o: 0.9 });
     }
   }
 
+  if (s.targets && !done) {
+    items.push({ k: 'arrow', id: 'a1-target', a: O, b: col(A, 0), role: 'c1', w: 1.6, o: 0.32, dashed: true });
+    items.push({ k: 'arrow', id: 'a2-target', a: O, b: col(A, 1), role: 'c2', w: 1.6, o: 0.32, dashed: true });
+  }
   // e₁, e₂ where they started (pale), once the plane has moved
   if (!start) {
     items.push({ k: 'arrow', id: 'e1-ghost', a: O, b: [1, 0], role: 'c1', w: 2, o: 0.35, dashed: true });
@@ -83,7 +92,7 @@ export function trScene(s: TrState, view: View): { items: PItem[]; handles: Hand
     else items.push({ k: 'dot', id: x.id, at: O, role: x.role, r: 5 });
     const lab = start ? x.label : done ? x.imgLabel : undefined;
     if (lab) {
-      const tex = x.value && done ? `${lab} = ${tup(img, lang)}` : lab;
+      const tex = x.value ? `${lab} = ${tup(img, lang)}` : lab;
       items.push({ k: 'label', id: `lab-${x.id}`, at: img, tex, role: x.role === 'c3' ? 'c3' : x.role, ...tipLabel(norm(img) > 0.05 ? img : [1, -1], 10), prio: 2 });
     }
     if (x.ghost && !start && x.label) items.push({ k: 'label', id: `lab-${x.id}-ghost`, at: x.p, tex: x.label, role: x.role, small: true, ...tipLabel(x.p, 8), prio: 6 });
@@ -117,6 +126,7 @@ export function trScene(s: TrState, view: View): { items: PItem[]; handles: Hand
     }
   }
 
+  if (s.extra) items.push(...s.extra);
   const handles: Handle[] = [];
   for (const id of s.drag ?? []) {
     if (id === 'a1') handles.push({ id, at: col(A, 0), role: 'c1' });
