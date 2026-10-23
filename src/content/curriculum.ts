@@ -124,7 +124,7 @@ export const TOPICS: Topic[] = [
   { id: 'la-rang', chapter: 'LA3', title: ['Pivots, freie Variablen und Rang', 'Pivots, free variables and rank'], pages: 'Ü4/5–11', status: 'planned' },
   { id: 'la-spaltenbild', chapter: 'LA3', title: ['Ax = b als Spaltenbild', 'Ax = b as a column picture'], pages: 'Ü4/12–13', status: 'planned' },
   { id: 'la-transformation', chapter: 'LA4', title: ['Die Matrix als Transformation des Raums', 'The matrix as a transformation of space'], pages: 'Ü4/14–21', status: 'planned' },
-  { id: 'la-rechnen', chapter: 'LA4', title: ['Matrizen: Notation, Summe, Skalar', 'Matrices: notation, sum, scalar'], pages: 'Ü4/22–25', status: 'planned' },
-  { id: 'la-spezial', chapter: 'LA4', title: ['Spezielle Matrizen und Transponieren', 'Special matrices and the transpose'], pages: 'Ü4/31–36', status: 'planned' },
-  { id: 'la-produkt', chapter: 'LA5', title: ['Das Matrixprodukt', 'The matrix product'], pages: 'Ü4/26–30', status: 'planned' },
+  { id: 'la-rechnen', chapter: 'LA4', title: ['Matrizen: Notation, Summe, Skalar', 'Matrices: notation, sum, scalar'], pages: 'Ü4/22–25', status: 'review', component: lazy(() => import('../lessons/LA4Rechnen')) },
+  { id: 'la-spezial', chapter: 'LA4', title: ['Spezielle Matrizen und Transponieren', 'Special matrices and the transpose'], pages: 'Ü4/31–36', status: 'review', component: lazy(() => import('../lessons/LA4Spezial')) },
+  { id: 'la-produkt', chapter: 'LA5', title: ['Das Matrixprodukt', 'The matrix product'], pages: 'Ü4/26–30', status: 'review', component: lazy(() => import('../lessons/LA5Produkt')) },
 ];
