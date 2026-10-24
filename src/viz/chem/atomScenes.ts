@@ -28,8 +28,8 @@ export function zoomScene(k: number): Scene {
   const r = zoomRadii(k);
   const c: P2 = [200, 130];
   const cloud = Math.min(r.cloud, 900);
-  if (r.cloud > 3) sb.shape({ key: 'cloud', kind: 'circle', cls: 'cs-cloud-an', pts: [c], r: cloud, o: 1 });
-  else disc(sb, 'cloud', 'cs-cloud-an', c, Math.max(r.cloud, 3));
+  if (r.cloud > 3) sb.shape({ key: 'cloud', kind: 'circle', cls: 'cs-cloud', pts: [c], r: cloud, o: 1 });
+  else disc(sb, 'cloud', 'cs-cloud', c, Math.max(r.cloud, 3));
   const nr = Math.max(r.nucleus, 1.5);
   disc(sb, 'nucleus', 'cs-nucleus', c, Math.min(nr, 900));
   if (r.nucleus < 4) sb.shape({ key: 'nuc-ring', kind: 'circle', cls: 'cs-dash', pts: [c], r: 10 });

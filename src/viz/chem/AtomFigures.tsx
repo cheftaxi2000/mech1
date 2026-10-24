@@ -20,7 +20,7 @@ function Still({ scene }: { scene: Scene }) {
 // ---------------------------------------------------------------- zoom into the atom (slide 14)
 export function ZoomFigure() {
   const tr = useTr(), lang = useLang();
-  const [k, setK] = useState(-9.5);
+  const [k, setK] = useState(-9);
   const r = zoomRadii(k);
   const scene = useMemo(() => zoomScene(k), [k]);
   return (

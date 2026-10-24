@@ -54,7 +54,7 @@ async function allLessonText(page: Page, mathHits: string[] = []): Promise<strin
 function textOutsideMathAndGerman(loc: ReturnType<Page['locator']>) {
   return loc.evaluate((el) => {
     const c = el.cloneNode(true) as HTMLElement;
-    c.querySelectorAll('.katex, [lang="de"], .src, code, canvas, svg').forEach((n) => n.remove());
+    c.querySelectorAll('.katex, [lang="de"], [lang="en"], .src, code, canvas, svg').forEach((n) => n.remove());
     return c.textContent ?? '';
   });
 }

@@ -144,8 +144,8 @@ export const TOPICS: Topic[] = [
   { id: 'la-spezial', chapter: 'LA4', title: ['Spezielle Matrizen und Transponieren', 'Special matrices and the transpose'], pages: 'Ü4/31–36', status: 'review', component: lazy(() => import('../lessons/LA4Spezial')) },
   { id: 'la-produkt', chapter: 'LA5', title: ['Das Matrixprodukt', 'The matrix product'], pages: 'Ü4/26–30', status: 'review', component: lazy(() => import('../lessons/LA5Produkt')) },
   // Chemie – one chapter per lecture (slides of Prof. D. J. Norris, HS 2026; «V<n>/<slides>»). Exercise classes 1–6 (TA slides) are woven into the lessons.
-  { id: 'ch-atome', chapter: 'CH1', title: ['Atome, Elemente und das Periodensystem', 'Atoms, elements and the periodic table'], pages: 'V1/10–24', status: 'planned' },
-  { id: 'ch-stoechio', chapter: 'CH1', title: ['Reaktionen, Mol und Stöchiometrie', 'Reactions, the mole and stoichiometry'], pages: 'V1/25–31', status: 'planned' },
+  { id: 'ch-atome', chapter: 'CH1', title: ['Atome, Elemente und das Periodensystem', 'Atoms, elements and the periodic table'], pages: 'V1/10–24', status: 'review', component: lazy(() => import('../lessons/CH1Atome')) },
+  { id: 'ch-stoechio', chapter: 'CH1', title: ['Reaktionen, Mol und Stöchiometrie', 'Reactions, the mole and stoichiometry'], pages: 'V1/25–31', status: 'review', component: lazy(() => import('../lessons/CH1Stoechio')) },
   { id: 'ch-gase', chapter: 'CH2', title: ['Gase: Druck und die Gasgesetze', 'Gases: pressure and the gas laws'], pages: 'V2/8–23', status: 'planned' },
   { id: 'ch-kinetik', chapter: 'CH2', title: ['Kinetische Gastheorie und reale Gase', 'Kinetic theory and real gases'], pages: 'V2/24–30', status: 'planned' },
   { id: 'ch-loesungen', chapter: 'CH3', title: ['Lösungen, Ionen und Fällungsreaktionen', 'Solutions, ions and precipitation'], pages: 'V3/8–16', status: 'planned' },
