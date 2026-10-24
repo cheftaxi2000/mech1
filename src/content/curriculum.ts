@@ -147,7 +147,7 @@ export const TOPICS: Topic[] = [
   { id: 'ch-atome', chapter: 'CH1', title: ['Atome, Elemente und das Periodensystem', 'Atoms, elements and the periodic table'], pages: 'V1/10–24', status: 'planned' },
   { id: 'ch-stoechio', chapter: 'CH1', title: ['Reaktionen, Mol und Stöchiometrie', 'Reactions, the mole and stoichiometry'], pages: 'V1/25–31', status: 'planned' },
   { id: 'ch-gase', chapter: 'CH2', title: ['Gase: Druck und die Gasgesetze', 'Gases: pressure and the gas laws'], pages: 'V2/8–23', status: 'review', component: lazy(() => import('../lessons/CH2Gase')) },
-  { id: 'ch-kinetik', chapter: 'CH2', title: ['Kinetische Gastheorie und reale Gase', 'Kinetic theory and real gases'], pages: 'V2/24–30', status: 'planned' },
+  { id: 'ch-kinetik', chapter: 'CH2', title: ['Kinetische Gastheorie und reale Gase', 'Kinetic theory and real gases'], pages: 'V2/24–30', status: 'review', component: lazy(() => import('../lessons/CH2Kinetik')) },
   { id: 'ch-loesungen', chapter: 'CH3', title: ['Lösungen, Ionen und Fällungsreaktionen', 'Solutions, ions and precipitation'], pages: 'V3/8–16', status: 'planned' },
   { id: 'ch-redox', chapter: 'CH3', title: ['Säuren, Basen und Redoxreaktionen', 'Acids, bases and redox reactions'], pages: 'V3/17–29', status: 'planned' },
   { id: 'ch-energie', chapter: 'CH4', title: ['Energie und der 1. Hauptsatz', 'Energy and the first law'], pages: 'V4/6–15', status: 'planned' },

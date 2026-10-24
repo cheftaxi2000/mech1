@@ -1,0 +1,25 @@
+/* Chemie: figures of the kinetic-theory lesson (speed distribution, diffusion walk, van der Waals). Colour roles: docs/chem/NOTATION.md */
+.kinfig .kf-controls { display: grid; gap: 6px; margin-top: 10px; }
+.kinfig .slider { grid-template-columns: 2.4em 1fr 5.6em; }
+.kinfig .slider.kf-t input { accent-color: var(--ch-t); } .kinfig .slider.kf-v input { accent-color: var(--ch-v); }
+.kinfig .kf-gases, .kinfig .kf-act { justify-content: flex-start; }
+.kinfig .mx-plot, .kinfig .vw-plot { max-width: 100%; }
+.kf-read { display: grid; gap: 3px; margin-top: 10px; font-size: 0.95rem; }
+.kf-row { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: baseline; }
+.kf-hl b { color: var(--ch-p-t); font-size: 1.05rem; }
+.kf-note { font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
+.vw-plots { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+@media (max-width: 640px) { .vw-plots { grid-template-columns: 1fr; } }
+.kf-table { margin-top: 8px; }
+.gb-table.kf-table td { text-align: right; } .gb-table.kf-table th { text-align: left; font-weight: 500; }
+.kf-corr th, .kf-corr td { color: var(--ch-e-t); }
+.dw-stage { max-width: 640px; margin-inline: auto; }
+.dw-stage svg { display: block; width: 100%; height: auto; }
+.dw-box { fill: color-mix(in srgb, var(--ch-p) 4%, var(--panel)); stroke: var(--muted); stroke-width: 2.4; }
+.dw-red { fill: var(--ch-t); opacity: 0.85; }
+.dw-blue { fill: var(--ch-p); stroke: var(--panel); stroke-width: 2; }
+.dw-path { fill: none; stroke: var(--ch-p); stroke-width: 2.2; stroke-linejoin: round; stroke-linecap: round; }
+.dw-hit { fill: var(--panel); stroke: var(--ch-p); stroke-width: 1.6; }
+.dw-net { stroke: var(--ch-e); stroke-width: 2.6; stroke-dasharray: 7 5; }
+.dw-start { fill: var(--fg); }
+/* vdW meaning animation (shapes of the scene) use the shared chem.css classes */
