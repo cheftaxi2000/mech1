@@ -34,7 +34,7 @@ export default function CH2Gase() {
             </ul>}
             en={<ul>
               <li>Gases are an important topic for engineers (industry and everyday life). Three states of matter: solid, liquid, vapour (example <C>H2O</C> as ice, water, steam).</li>
-              <li>Gases expand to fill their container. They can be compressed. They form homogeneous mixtures. The molecules occupy only a tiny fraction of the volume (for air about <M>{t`0.1\,\%`}</M>, handwritten).</li>
+              <li>Gases expand to fill their container. They can be compressed. They form homogeneous mixtures. The molecules occupy only a tiny fraction of the volume (for air about <M p=",">{t`0.1\,\%`}</M> handwritten).</li>
               <li>A simple gas needs only four quantities: volume <M>V</M> and amount <M>n</M> (number of moles) are <em>extensive</em> (they depend on the size of the sample); temperature <M>T</M> and pressure <M>P</M> are <em>intensive</em> (they do not).</li>
               <li>Pressure: <M p=".">{t`P=\dfrac{F}{A}`}</M> The SI unit of force is the newton <M p=",">{t`\mathrm{N}`}</M> that of pressure the pascal <M p=".">{t`\mathrm{Pa}=\mathrm{N/m^2}`}</M></li>
             </ul>}
@@ -75,7 +75,7 @@ export default function CH2Gase() {
             </ul>}
           />
           <T
-            de={<p>Handschrift: <M>{t`1\,\mathrm{bar}=1\cdot10^{5}\,\mathrm{Pa}`}</M> und <M p=".">g</M> ist die Beschleunigung durch die Erdanziehung. (Auf der Folie steht für <M>g</M> die Einheit <M p=",">{t`\mathrm{m^2/s}`}</M> gemeint ist <M p=".">{t`\mathrm{m/s^2}`}</M>)</p>}
+            de={<p>Handschrift: <M>{t`1\,\mathrm{bar}=1\cdot10^{5}\,\mathrm{Pa}`}</M> und <M p=".">g</M> ist die Beschleunigung durch die Erdanziehung. (Auf der Folie steht für <M>g</M> die Einheit <M p=",">{t`\mathrm{m^2/s}`}</M> gemeint ist <M p=".)">{t`\mathrm{m/s^2}`}</M></p>}
             en={<p>Handwritten: <M>{t`1\,\mathrm{bar}=1\cdot10^{5}\,\mathrm{Pa}`}</M> and <M>g</M> is the acceleration due to the Earth’s gravity. (The slide writes the unit of <M>g</M> as <M p=",">{t`\mathrm{m^2/s}`}</M> but <M>{t`\mathrm{m/s^2}`}</M> is meant.)</p>}
           />
         </Box>
@@ -135,8 +135,8 @@ export default function CH2Gase() {
             </ul>}
           />
           <T
-            de={<p>Handschrift: «Wir benutzen <M>\rho</M> für die Dichte, wie in euren anderen Fächern (Brown schreibt <M>d</M>).»</p>}
-            en={<p>Handwritten: “We will use <M>\rho</M> as the symbol for density to be consistent with your other classes (Brown uses <M>d</M>).”</p>}
+            de={<p>Handschrift: «Wir benutzen <M>\rho</M> für die Dichte, wie in euren anderen Fächern (Brown schreibt <M p=").">d</M>»</p>}
+            en={<p>Handwritten: “We will use <M>\rho</M> as the symbol for density to be consistent with your other classes (Brown uses <M p=").">d</M>”</p>}
           />
         </Box>
         <T
@@ -166,8 +166,8 @@ export default function CH2Gase() {
             label={tr('Animation: Herleitung P = ρ g h am Barometer', 'Animation: deriving P = ρ g h at the barometer')}
             steps={[
               { ms: 2500, holdMs: 2200, caption: <T
-                de={<>Das Rohr steht umgekehrt in der Quecksilberschale. Oben ist Vakuum. Die Luft drückt (<M>{t`P_{\mathrm{atm}}`}</M>) auf die Schale und hält die Säule der Höhe <M>h</M> hoch.</>}
-                en={<>The tube stands upside down in the dish of mercury. On top is a vacuum. The air presses (<M>{t`P_{\mathrm{atm}}`}</M>) on the dish and holds up the column of height <M p=".">h</M></>} /> },
+                de={<>Das Rohr steht umgekehrt in der Quecksilberschale. Oben ist Vakuum. Die Luft drückt (<M p=")">{t`P_{\mathrm{atm}}`}</M> auf die Schale und hält die Säule der Höhe <M>h</M> hoch.</>}
+                en={<>The tube stands upside down in the dish of mercury. On top is a vacuum. The air presses (<M p=")">{t`P_{\mathrm{atm}}`}</M> on the dish and holds up the column of height <M p=".">h</M></>} /> },
               { ms: 2500, holdMs: 2200, caption: <T
                 de={<>Die Säule hat ein Gewicht <M p=".">{t`F=mg`}</M> Ihr Druck auf den Fuss ist Kraft pro Fläche, <M p=".">{t`P_{\mathrm{Hg}}=F/A=mg/A`}</M></>}
                 en={<>The column has a weight <M p=".">{t`F=mg`}</M> Its pressure on the foot is force per area, <M p=".">{t`P_{\mathrm{Hg}}=F/A=mg/A`}</M></>} /> },
@@ -230,16 +230,16 @@ export default function CH2Gase() {
               <li>Charles: In <M>{t`^\circ\mathrm{C}`}</M> ist <M>V(T)</M> eine Gerade, die nicht durch den Nullpunkt geht. Verlängert man sie, trifft sie die Achse bei <M p=".">{t`-273{,}15\,^\circ\mathrm{C}`}</M> In Kelvin geht sie durch den Nullpunkt. Dort ist das Volumen null (nur gedacht, denn echtes Gas wird vorher flüssig).</li>
               <li>Avogadro: Doppelt so viele Mol, doppelt so viel Volumen: eine Gerade durch den Nullpunkt.</li>
             </ul>
-            <p>Die Figur unten zeigt das alles. Wähle ein Gesetz, bewege den obersten Regler (oder drücke «Abspielen») und beobachte den Punkt auf der Kurve. Die gestrichelten Kurven zeigen, was passiert, wenn man die festgehaltene Grösse ändert. Unter den Diagrammen steht die Konstante des Gesetzes: Sie bleibt beim Bewegen gleich. Das vierte Gesetz (<M>n</M> und <M>V</M> fest, <M>P</M> gegen <M>T</M>) ist das Beispiel 2 der Folie 19.</p>
+            <p>Die Figur unten zeigt das alles. Wähle ein Gesetz, bewege den obersten Regler (oder drücke «Abspielen») und beobachte den Punkt auf der Kurve. Die gestrichelten Kurven zeigen, was passiert, wenn man die festgehaltene Grösse ändert. Unter den Diagrammen steht die Konstante des Gesetzes: Sie bleibt beim Bewegen gleich. Das vierte Gesetz (<M>n</M> und <M>V</M> fest, <M>P</M> gegen <M p=")">T</M> ist das Beispiel 2 der Folie 19.</p>
           </>}
           en={<>
             <p><b>How to read this.</b> Each line has the same form: “hold two quantities fixed, move the third, the fourth follows.” The slides show two diagrams of each law. The first shows the data points, the second turns them into a straight line, where you recognise the law at once:</p>
             <ul>
-              <li>Boyle: plotted against <M>V</M>, <M>P</M> is a falling curve (a hyperbola). Plotted against <M>{t`1/V`}</M> it is a straight line through the origin.</li>
-              <li>Charles: in <M>{t`^\circ\mathrm{C}`}</M>, <M>V(T)</M> is a straight line that does not pass through the origin. Extend it and it meets the axis at <M p=".">{t`-273.15\,^\circ\mathrm{C}`}</M> In kelvin it passes through the origin. There the volume is zero (only imagined, because a real gas liquefies first).</li>
+              <li>Boyle: plotted against <M p=",">V</M> <M>P</M> is a falling curve (a hyperbola). Plotted against <M>{t`1/V`}</M> it is a straight line through the origin.</li>
+              <li>Charles: in <M p=",">{t`^\circ\mathrm{C}`}</M> <M>V(T)</M> is a straight line that does not pass through the origin. Extend it and it meets the axis at <M p=".">{t`-273.15\,^\circ\mathrm{C}`}</M> In kelvin it passes through the origin. There the volume is zero (only imagined, because a real gas liquefies first).</li>
               <li>Avogadro: twice as many moles, twice the volume: a straight line through the origin.</li>
             </ul>
-            <p>The figure below shows all of this. Choose a law, move the top slider (or press “Play”) and watch the point on the curve. The dashed curves show what happens when the fixed quantity is changed. Below the diagrams is the constant of the law: it stays the same while you move. The fourth law (<M>n</M> and <M>V</M> fixed, <M>P</M> against <M>T</M>) is example 2 of slide 19.</p>
+            <p>The figure below shows all of this. Choose a law, move the top slider (or press “Play”) and watch the point on the curve. The dashed curves show what happens when the fixed quantity is changed. Below the diagrams is the constant of the law: it stays the same while you move. The fourth law (<M>n</M> and <M>V</M> fixed, <M>P</M> against <M p=")">T</M> is example 2 of slide 19.</p>
           </>}
         />
         <GasLawExplorer />
@@ -256,13 +256,13 @@ export default function CH2Gase() {
         <Box kind="lecture" src={<Src lec={2} p="17–18" />} title={<T de="STP; ideales Gas; ideales Gasgesetz" en="STP; ideal gas; ideal gas law" />}>
           <T
             de={<ul>
-              <li><b>STP</b> (Normbedingungen): <M>{t`T=0\,^\circ\mathrm{C}=273{,}15\,\mathrm{K}`}</M> und <M p=".">{t`P=1\,\mathrm{atm}=101{,}325\,\mathrm{kPa}`}</M> Molares Volumen bei STP: <M p=".">{t`22{,}41\,\mathrm{L}`}</M> (Handschrift: «Als Ingenieur solltest du diese Zahl kennen»). Gute Näherung für jedes Gas, auch wenn 1 mol verschiedener Gase verschieden viel wiegt (<C>H2</C>: <M>{t`2\,\mathrm{g}`}</M>, <C>CH4</C>: <M p=").">{t`16\,\mathrm{g}`}</M></li>
+              <li><b>STP</b> (Normbedingungen): <M>{t`T=0\,^\circ\mathrm{C}=273{,}15\,\mathrm{K}`}</M> und <M p=".">{t`P=1\,\mathrm{atm}=101{,}325\,\mathrm{kPa}`}</M> Molares Volumen bei STP: <M p=".">{t`22{,}41\,\mathrm{L}`}</M> (Handschrift: «Als Ingenieur solltest du diese Zahl kennen»). Gute Näherung für jedes Gas, auch wenn 1 mol verschiedener Gase verschieden viel wiegt (<C>H2</C>: <M p=",">{t`2\,\mathrm{g}`}</M> <C>CH4</C>: <M p=").">{t`16\,\mathrm{g}`}</M></li>
               <li><b>Ideales Gas</b>: ein gedachtes Gas, das alle drei Gesetze befolgt: <M p=",">{t`V\propto 1/P`}</M> <M p=",">{t`V\propto T`}</M> <M p=".">{t`V\propto n`}</M> Zusammen <M p=",">{t`V\propto nT/P`}</M> also <M p=".">{t`V=R\,\dfrac{nT}{P}`}</M> <M>R</M> heisst Gaskonstante.</li>
               <li><b>Ideales Gasgesetz</b> (IGL, «unglaublich wichtig»): <M p=".">{t`PV=nRT`}</M> <M p=",">{t`R=8{,}314\,\mathrm{m^3\,Pa/(mol\,K)}=8{,}314\,\mathrm{J/(mol\,K)}`}</M> <M p=",">{t`R=0{,}08206\,\mathrm{L\,atm/(mol\,K)}`}</M> <M p=".">{t`R=62{,}36\,\mathrm{L\,torr/(mol\,K)}`}</M></li>
               <li>Annahmen: Die Moleküle wechselwirken nicht, und ihr eigenes Volumen ist viel kleiner als das Volumen des Behälters. Die Gasmenge hängt von der Zahl der <em>gasförmigen Teilchen</em> ab: <M p=",">{t`A\to B+C`}</M> verdoppelt den Druck, wenn <M>V</M> und <M>T</M> gleich bleiben.</li>
             </ul>}
             en={<ul>
-              <li><b>STP</b> (standard temperature and pressure): <M>{t`T=0\,^\circ\mathrm{C}=273.15\,\mathrm{K}`}</M> and <M p=".">{t`P=1\,\mathrm{atm}=101.325\,\mathrm{kPa}`}</M> Molar volume at STP: <M p=".">{t`22.41\,\mathrm{L}`}</M> (handwritten: “as an engineer you should know this number”). A good approximation for any gas, even though 1 mol of different gases has different masses (<C>H2</C>: <M>{t`2\,\mathrm{g}`}</M>, <C>CH4</C>: <M p=").">{t`16\,\mathrm{g}`}</M></li>
+              <li><b>STP</b> (standard temperature and pressure): <M>{t`T=0\,^\circ\mathrm{C}=273.15\,\mathrm{K}`}</M> and <M p=".">{t`P=1\,\mathrm{atm}=101.325\,\mathrm{kPa}`}</M> Molar volume at STP: <M p=".">{t`22.41\,\mathrm{L}`}</M> (handwritten: “as an engineer you should know this number”). A good approximation for any gas, even though 1 mol of different gases has different masses (<C>H2</C>: <M p=",">{t`2\,\mathrm{g}`}</M> <C>CH4</C>: <M p=").">{t`16\,\mathrm{g}`}</M></li>
               <li><b>Ideal gas</b>: a hypothetical gas that follows all three laws: <M p=",">{t`V\propto 1/P`}</M> <M p=",">{t`V\propto T`}</M> <M p=".">{t`V\propto n`}</M> Together <M p=",">{t`V\propto nT/P`}</M> so <M p=".">{t`V=R\,\dfrac{nT}{P}`}</M> <M>R</M> is the gas constant.</li>
               <li><b>Ideal gas law</b> (IGL, “incredibly important”): <M p=".">{t`PV=nRT`}</M> <M p=",">{t`R=8.314\,\mathrm{m^3\,Pa/(mol\,K)}=8.314\,\mathrm{J/(mol\,K)}`}</M> <M p=",">{t`R=0.08206\,\mathrm{L\,atm/(mol\,K)}`}</M> <M p=".">{t`R=62.36\,\mathrm{L\,torr/(mol\,K)}`}</M></li>
               <li>Assumptions: the molecules do not interact, and the volume they occupy is much smaller than the volume of the container. The amount of gas depends on the number of <em>gaseous particles</em>: <M p=",">{t`A\to B+C`}</M> doubles the pressure if <M>V</M> and <M>T</M> stay the same.</li>
@@ -323,13 +323,13 @@ export default function CH2Gase() {
           <T
             de={<ul>
               <li><b>Typ 1:</b> drei der vier Grössen sind gegeben, die vierte fehlt. Umstellen: <M p=",">{t`P=\dfrac{nRT}{V}`}</M> <M p=",">{t`V=\dfrac{nRT}{P}`}</M> <M p=",">{t`n=\dfrac{PV}{RT}`}</M> <M p=".">{t`T=\dfrac{PV}{nR}`}</M></li>
-              <li><b>Typ 2:</b> zwei Grössen bleiben konstant, zwei andere ändern sich. Beispiel 1 (<M>n</M>, <M>T</M> konstant): <M>PV</M> ist konstant, also <M p=",">{t`P_iV_i=P_fV_f`}</M> <M p=".">{t`P_f=P_iV_i/V_f`}</M> Beispiel 2 (<M>n</M>, <M>V</M> konstant): <M>P/T</M> ist konstant, also <M p=",">{t`P_i/T_i=P_f/T_f`}</M> <M p=".">{t`P_f=P_iT_f/T_i`}</M> (<M>i</M> = initial, <M>f</M> = final.)</li>
+              <li><b>Typ 2:</b> zwei Grössen bleiben konstant, zwei andere ändern sich. Beispiel 1 (<M p=",">n</M> <M>T</M> konstant): <M>PV</M> ist konstant, also <M p=",">{t`P_iV_i=P_fV_f`}</M> <M p=".">{t`P_f=P_iV_i/V_f`}</M> Beispiel 2 (<M p=",">n</M> <M>V</M> konstant): <M>P/T</M> ist konstant, also <M p=",">{t`P_i/T_i=P_f/T_f`}</M> <M p=".">{t`P_f=P_iT_f/T_i`}</M> (<M>i</M> = initial, <M>f</M> = final.)</li>
               <li><b>Typ 3:</b> eine Grösse bleibt konstant, drei ändern sich. Beispiel (<M>n</M> konstant): <M>PV/T=nR</M> ist konstant, also <M p=",">{t`P_iV_i/T_i=P_fV_f/T_f`}</M> <M p=".">{t`P_f=P_i\,\dfrac{V_i}{V_f}\,\dfrac{T_f}{T_i}`}</M></li>
               <li>Handschrift: Es geht nicht darum, diese Varianten auswendig zu lernen, sondern mit dem Gasgesetz aus Bekanntem und Unbekanntem zu arbeiten. Typisch für Prüfungen.</li>
             </ul>}
             en={<ul>
               <li><b>Type 1:</b> three of the four quantities are given, the fourth is missing. Rearrange: <M p=",">{t`P=\dfrac{nRT}{V}`}</M> <M p=",">{t`V=\dfrac{nRT}{P}`}</M> <M p=",">{t`n=\dfrac{PV}{RT}`}</M> <M p=".">{t`T=\dfrac{PV}{nR}`}</M></li>
-              <li><b>Type 2:</b> two quantities stay constant, two others change. Example 1 (<M>n</M>, <M>T</M> constant): <M>PV</M> is constant, so <M p=",">{t`P_iV_i=P_fV_f`}</M> <M p=".">{t`P_f=P_iV_i/V_f`}</M> Example 2 (<M>n</M>, <M>V</M> constant): <M>P/T</M> is constant, so <M p=",">{t`P_i/T_i=P_f/T_f`}</M> <M p=".">{t`P_f=P_iT_f/T_i`}</M> (<M>i</M> = initial, <M>f</M> = final.)</li>
+              <li><b>Type 2:</b> two quantities stay constant, two others change. Example 1 (<M p=",">n</M> <M>T</M> constant): <M>PV</M> is constant, so <M p=",">{t`P_iV_i=P_fV_f`}</M> <M p=".">{t`P_f=P_iV_i/V_f`}</M> Example 2 (<M p=",">n</M> <M>V</M> constant): <M>P/T</M> is constant, so <M p=",">{t`P_i/T_i=P_f/T_f`}</M> <M p=".">{t`P_f=P_iT_f/T_i`}</M> (<M>i</M> = initial, <M>f</M> = final.)</li>
               <li><b>Type 3:</b> one quantity stays constant, three change. Example (<M>n</M> constant): <M>PV/T=nR</M> is constant, so <M p=",">{t`P_iV_i/T_i=P_fV_f/T_f`}</M> <M p=".">{t`P_f=P_i\,\dfrac{V_i}{V_f}\,\dfrac{T_f}{T_i}`}</M></li>
               <li>Handwritten: the point is not to memorise these variations but to learn how to work with the ideal gas law given knowns and unknowns. Common on exams.</li>
             </ul>}
@@ -348,7 +348,7 @@ export default function CH2Gase() {
         <Box kind="lecture" src={<Src lec={2} p="20" />} title={<T de="Beispiel: der Ballon (Typ 3)" en="Example: the balloon (type 3)" />}>
           <T
             de={<p>Ein Ballon mit <M>{t`V=6{,}0\,\mathrm L`}</M> bei <M>{t`P=101{,}3\,\mathrm{kPa}`}</M> steigt, bis <M>{t`P=45{,}6\,\mathrm{kPa}`}</M> herrscht. Die Temperatur fällt von <M>{t`22\,^\circ\mathrm C`}</M> auf <M p=".">{t`-21\,^\circ\mathrm C`}</M> Wie gross ist das Endvolumen? Bekannt: <M>n</M> fest, <M p=",">{t`V_i`}</M> <M p=",">{t`P_i`}</M> <M p=",">{t`P_f`}</M> <M p=",">{t`T_i`}</M> <M p=".">{t`T_f`}</M> Gesucht: <M p=".">{t`V_f`}</M> Strategie: <M>PV/T=nR</M> ist konstant, also <M p=",">{t`P_iV_i/T_i=P_fV_f/T_f`}</M> nach der Unbekannten aufgelöst <M p=",">{t`V_f=V_i\,\dfrac{P_i}{P_f}\,\dfrac{T_f}{T_i}`}</M> eingesetzt: <M p=".">{t`V_f=11\,\mathrm L`}</M> Handschrift: Temperaturen müssen immer in Kelvin sein!</p>}
-            en={<p>A balloon of <M>{t`V=6.0\,\mathrm L`}</M> at <M>{t`P=101.3\,\mathrm{kPa}`}</M> rises until <M>{t`P=45.6\,\mathrm{kPa}`}</M>. The temperature falls from <M>{t`22\,^\circ\mathrm C`}</M> to <M p=".">{t`-21\,^\circ\mathrm C`}</M> What is the final volume? Known: <M>n</M> fixed, <M p=",">{t`V_i`}</M> <M p=",">{t`P_i`}</M> <M p=",">{t`P_f`}</M> <M p=",">{t`T_i`}</M> <M p=".">{t`T_f`}</M> Unknown: <M p=".">{t`V_f`}</M> Strategy: <M>PV/T=nR</M> is constant, so <M p=",">{t`P_iV_i/T_i=P_fV_f/T_f`}</M> solved for the unknown <M p=",">{t`V_f=V_i\,\dfrac{P_i}{P_f}\,\dfrac{T_f}{T_i}`}</M> inserted: <M p=".">{t`V_f=11\,\mathrm L`}</M> Handwritten: temperatures must always be in kelvin!</p>}
+            en={<p>A balloon of <M>{t`V=6.0\,\mathrm L`}</M> at <M>{t`P=101.3\,\mathrm{kPa}`}</M> rises until <M p=".">{t`P=45.6\,\mathrm{kPa}`}</M> The temperature falls from <M>{t`22\,^\circ\mathrm C`}</M> to <M p=".">{t`-21\,^\circ\mathrm C`}</M> What is the final volume? Known: <M>n</M> fixed, <M p=",">{t`V_i`}</M> <M p=",">{t`P_i`}</M> <M p=",">{t`P_f`}</M> <M p=",">{t`T_i`}</M> <M p=".">{t`T_f`}</M> Unknown: <M p=".">{t`V_f`}</M> Strategy: <M>PV/T=nR</M> is constant, so <M p=",">{t`P_iV_i/T_i=P_fV_f/T_f`}</M> solved for the unknown <M p=",">{t`V_f=V_i\,\dfrac{P_i}{P_f}\,\dfrac{T_f}{T_i}`}</M> inserted: <M p=".">{t`V_f=11\,\mathrm L`}</M> Handwritten: temperatures must always be in kelvin!</p>}
           />
         </Box>
         <T
@@ -385,12 +385,12 @@ export default function CH2Gase() {
             de={<>
               <p><b>Aufgabe 2 (Typ 1).</b> Ein Tennisball hat <M>{t`144\,\mathrm{cm^3}`}</M> und enthält <M>{t`0{,}33\,\mathrm g`}</M> <C>N2</C> bei <M p=".">{t`24\,^\circ\mathrm C`}</M> Wie gross ist der Druck? Man stellt <M>{t`PV=nRT=(m/M)RT`}</M> um: <M p=".">{t`P=\dfrac{mRT}{VM}`}</M> Eingesetzt, mit <M p=",">{t`T=297{,}15\,\mathrm K`}</M> <M p=",">{t`V=144\cdot10^{-6}\,\mathrm{m^3}`}</M> <M p=":">{t`M=28\,\mathrm{g/mol}`}</M> <M p=".">{t`P=\dfrac{0{,}33\cdot 8{,}314\cdot 297{,}15}{144\cdot10^{-6}\cdot 28}\,\mathrm{Pa}\approx 2{,}0\cdot10^{5}\,\mathrm{Pa}`}</M> Zwei gültige Ziffern. Das sind rund zwei Atmosphären, wie für einen Tennisball nötig. (Auf dem Blatt steht «<M>{t`20\cdot10^{5}\,\mathrm{Pa}`}</M>», eine Zehnerpotenz zu viel.)</p>
               <p><b>Typ 2.</b> Gegeben sind zwei Zustände, der Rest bleibt konstant: <M>{t`P_1`}</M> <M>{t`P_2`}</M> <M>{t`T_1`}</M> bekannt, gesucht <M p=".">{t`T_2`}</M> Konstant ist <M p=",">{t`P/T=nR/V`}</M> also <M p=",">{t`P_1/T_1=P_2/T_2`}</M> und <M p=".">{t`T_2=\dfrac{P_2}{P_1}\,T_1`}</M></p>
-              <p><b>Aufgabe 3 (Typ 2).</b> Ein Zylinder mit Kolben enthält <M>{t`50{,}0\,\mathrm L`}</M> <C>O2</C> bei <M p=".">{t`1{,}875\,\mathrm{MPa}`}</M> Welches Volumen hat das Gas bei konstanter Temperatur, wenn der Druck auf <M>{t`101{,}3\,\mathrm{kPa}`}</M> sinkt? Konstant ist <M p=",">{t`PV=nRT`}</M> also <M p=".">{t`V_2=\dfrac{P_1V_1}{P_2}=\dfrac{1875\cdot 50{,}0}{101{,}3}\,\mathrm L\approx 925\,\mathrm L`}</M> Drei gültige Ziffern. (Auf dem Blatt steht <M p=",">{t`926\,\mathrm L`}</M> genauer <M p=".">{t`925{,}5\,\mathrm L`}</M>)</p>
+              <p><b>Aufgabe 3 (Typ 2).</b> Ein Zylinder mit Kolben enthält <M>{t`50{,}0\,\mathrm L`}</M> <C>O2</C> bei <M p=".">{t`1{,}875\,\mathrm{MPa}`}</M> Welches Volumen hat das Gas bei konstanter Temperatur, wenn der Druck auf <M>{t`101{,}3\,\mathrm{kPa}`}</M> sinkt? Konstant ist <M p=",">{t`PV=nRT`}</M> also <M p=".">{t`V_2=\dfrac{P_1V_1}{P_2}=\dfrac{1875\cdot 50{,}0}{101{,}3}\,\mathrm L\approx 925\,\mathrm L`}</M> Drei gültige Ziffern. (Auf dem Blatt steht <M p=",">{t`926\,\mathrm L`}</M> genauer <M p=".)">{t`925{,}5\,\mathrm L`}</M></p>
             </>}
             en={<>
               <p><b>Task 2 (type 1).</b> A tennis ball has <M>{t`144\,\mathrm{cm^3}`}</M> and contains <M>{t`0.33\,\mathrm g`}</M> of <C>N2</C> at <M p=".">{t`24\,^\circ\mathrm C`}</M> What is the pressure? Rearrange <M>{t`PV=nRT=(m/M)RT`}</M> to <M p=".">{t`P=\dfrac{mRT}{VM}`}</M> Inserting <M p=",">{t`T=297.15\,\mathrm K`}</M> <M p=",">{t`V=144\cdot10^{-6}\,\mathrm{m^3}`}</M> <M p=":">{t`M=28\,\mathrm{g/mol}`}</M> <M p=".">{t`P=\dfrac{0.33\cdot 8.314\cdot 297.15}{144\cdot10^{-6}\cdot 28}\,\mathrm{Pa}\approx 2.0\cdot10^{5}\,\mathrm{Pa}`}</M> Two significant digits. That is about two atmospheres, as a tennis ball needs. (The sheet says “<M>{t`20\cdot10^{5}\,\mathrm{Pa}`}</M>”, a power of ten too large.)</p>
               <p><b>Type 2.</b> Two states are given, the rest is constant: <M>{t`P_1`}</M> <M>{t`P_2`}</M> <M>{t`T_1`}</M> are known, <M p=".">{t`T_2`}</M> is wanted. Constant is <M p=",">{t`P/T=nR/V`}</M> so <M p=",">{t`P_1/T_1=P_2/T_2`}</M> and <M p=".">{t`T_2=\dfrac{P_2}{P_1}\,T_1`}</M></p>
-              <p><b>Task 3 (type 2).</b> A cylinder with a piston holds <M>{t`50.0\,\mathrm L`}</M> of <C>O2</C> at <M p=".">{t`1.875\,\mathrm{MPa}`}</M> What volume does the gas occupy at constant temperature when the pressure falls to <M>{t`101.3\,\mathrm{kPa}`}</M>? Constant is <M p=",">{t`PV=nRT`}</M> so <M p=".">{t`V_2=\dfrac{P_1V_1}{P_2}=\dfrac{1875\cdot 50.0}{101.3}\,\mathrm L\approx 925\,\mathrm L`}</M> Three significant digits. (The sheet says <M p=",">{t`926\,\mathrm L`}</M> more exactly <M p=".">{t`925.5\,\mathrm L`}</M>)</p>
+              <p><b>Task 3 (type 2).</b> A cylinder with a piston holds <M>{t`50.0\,\mathrm L`}</M> of <C>O2</C> at <M p=".">{t`1.875\,\mathrm{MPa}`}</M> What volume does the gas occupy at constant temperature when the pressure falls to <M p="?">{t`101.3\,\mathrm{kPa}`}</M> Constant is <M p=",">{t`PV=nRT`}</M> so <M p=".">{t`V_2=\dfrac{P_1V_1}{P_2}=\dfrac{1875\cdot 50.0}{101.3}\,\mathrm L\approx 925\,\mathrm L`}</M> Three significant digits. (The sheet says <M p=",">{t`926\,\mathrm L`}</M> more exactly <M p=".)">{t`925.5\,\mathrm L`}</M></p>
             </>}
           />
         </Box>
@@ -439,8 +439,8 @@ export default function CH2Gase() {
         />
         <SigFigTool />
         <T
-          de={<p>Die Beispiele des Blatts, neu gerechnet. Summe: <M p=",">{t`20{,}43+1{,}322+83{,}1=104{,}852`}</M> der unsicherste Wert (<M>{t`83{,}1`}</M>) hat eine Nachkommastelle, also <M p=".">{t`104{,}9`}</M> (das Blatt hat <M>{t`104{,}842`}</M> und <M>{t`104{,}8`}</M> ein Rechenfehler). Produkt: <M p=",">{t`6{,}221\cdot 5{,}2=32{,}3492`}</M> zwei gültige Ziffern, also <M p=".">32</M> Aufgabe a: <M>{t`2{,}0\cdot 7{,}14=14{,}28`}</M> hat zwei gültige Ziffern, also <M p=",">14</M> dazu <M p=":">{t`9{,}00009`}</M> <M p=".">{t`14+9{,}00009=23`}</M> Aufgabe b: <M>{t`(8{,}1+7{,}26)\cdot 3{,}0`}</M> mit <M>{t`8{,}1+7{,}26=15{,}4`}</M> (eine Nachkommastelle) gibt <M>{t`15{,}4\cdot 3{,}0=46{,}2`}</M> und gerundet <M p=".">46</M> (das Blatt hat <M>{t`46{,}6\to 47`}</M> – ein Rechenfehler). Aufgabe c: <M p=".">{t`-\log_{10}(1{,}0\cdot10^3)=-3{,}00`}</M></p>}
-          en={<p>The sheet’s examples, recomputed. Sum: <M p=",">{t`20.43+1.322+83.1=104.852`}</M> the least certain value (<M>{t`83.1`}</M>) has one decimal place, so <M p=".">{t`104.9`}</M> (the sheet has <M>{t`104.842`}</M> and <M>{t`104.8`}</M>, an arithmetic slip). Product: <M p=",">{t`6.221\cdot 5.2=32.3492`}</M> two significant digits, so <M p=".">32</M> Task a: <M>{t`2.0\cdot 7.14=14.28`}</M> has two significant digits, so <M p=",">14</M> plus <M p=":">{t`9.00009`}</M> <M p=".">{t`14+9.00009=23`}</M> Task b: <M>{t`(8.1+7.26)\cdot 3.0`}</M> with <M>{t`8.1+7.26=15.4`}</M> (one decimal place) gives <M>{t`15.4\cdot 3.0=46.2`}</M> and rounded <M p=".">46</M> (the sheet has <M>{t`46.6\to 47`}</M>, an arithmetic slip). Task c: <M p=".">{t`-\log_{10}(1.0\cdot10^3)=-3.00`}</M></p>}
+          de={<p>Die Beispiele des Blatts, neu gerechnet. Summe: <M p=",">{t`20{,}43+1{,}322+83{,}1=104{,}852`}</M> der unsicherste Wert (<M p=")">{t`83{,}1`}</M> hat eine Nachkommastelle, also <M p=".">{t`104{,}9`}</M> (das Blatt hat <M>{t`104{,}842`}</M> und <M>{t`104{,}8`}</M> ein Rechenfehler). Produkt: <M p=",">{t`6{,}221\cdot 5{,}2=32{,}3492`}</M> zwei gültige Ziffern, also <M p=".">32</M> Aufgabe a: <M>{t`2{,}0\cdot 7{,}14=14{,}28`}</M> hat zwei gültige Ziffern, also <M p=",">14</M> dazu <M p=":">{t`9{,}00009`}</M> <M p=".">{t`14+9{,}00009=23`}</M> Aufgabe b: <M>{t`(8{,}1+7{,}26)\cdot 3{,}0`}</M> mit <M>{t`8{,}1+7{,}26=15{,}4`}</M> (eine Nachkommastelle) gibt <M>{t`15{,}4\cdot 3{,}0=46{,}2`}</M> und gerundet <M p=".">46</M> (das Blatt hat <M>{t`46{,}6\to 47`}</M> – ein Rechenfehler). Aufgabe c: <M p=".">{t`-\log_{10}(1{,}0\cdot10^3)=-3{,}00`}</M></p>}
+          en={<p>The sheet’s examples, recomputed. Sum: <M p=",">{t`20.43+1.322+83.1=104.852`}</M> the least certain value (<M p=")">{t`83.1`}</M> has one decimal place, so <M p=".">{t`104.9`}</M> (the sheet has <M>{t`104.842`}</M> and <M p=",">{t`104.8`}</M> an arithmetic slip). Product: <M p=",">{t`6.221\cdot 5.2=32.3492`}</M> two significant digits, so <M p=".">32</M> Task a: <M>{t`2.0\cdot 7.14=14.28`}</M> has two significant digits, so <M p=",">14</M> plus <M p=":">{t`9.00009`}</M> <M p=".">{t`14+9.00009=23`}</M> Task b: <M>{t`(8.1+7.26)\cdot 3.0`}</M> with <M>{t`8.1+7.26=15.4`}</M> (one decimal place) gives <M>{t`15.4\cdot 3.0=46.2`}</M> and rounded <M p=".">46</M> (the sheet has <M p=",">{t`46.6\to 47`}</M> an arithmetic slip). Task c: <M p=".">{t`-\log_{10}(1.0\cdot10^3)=-3.00`}</M></p>}
         />
       </Section>
 
@@ -456,7 +456,7 @@ export default function CH2Gase() {
             en={<ul>
               <li><b>Density:</b> rearranged, the gas law gives <M p=".">{t`\dfrac{n}{V}=\dfrac{P}{RT}`}</M> Multiplied by the molar mass <M>{t`M_w`}</M> (in g/mol): <M p=",">{t`\dfrac{n}{V}\cdot M_w=\dfrac{P}{RT}\cdot M_w`}</M> units: <M p=".">{t`\dfrac{\mathrm{mol}}{\mathrm L}\cdot\dfrac{\mathrm g}{\mathrm{mol}}=\dfrac{\mathrm g}{\mathrm L}`}</M> So <M p=".">{t`\rho=\dfrac{P}{RT}\,M_w`}</M></li>
               <li><b>Molar mass:</b> <M p=".">{t`M_w=\dfrac{\rho RT}{P}`}</M> You can find the density of a gas from the molar mass or the other way round.</li>
-              <li>Handwritten: the density of a gas depends on <M p=",">P</M> <M>T</M> and <M>{t`M_w`}</M>.</li>
+              <li>Handwritten: the density of a gas depends on <M p=",">P</M> <M>T</M> and <M p=".">{t`M_w`}</M></li>
             </ul>}
           />
         </Box>
@@ -473,7 +473,7 @@ export default function CH2Gase() {
         <DensityBoxes />
         <T
           de={<p><b>Zwei Rechenbeispiele</b> (nicht auf den Folien). Stickstoff bei STP: <M>{t`\rho=\dfrac{1\cdot 28{,}01}{0{,}08206\cdot 273{,}15}\,\mathrm{g/L}=1{,}25\,\mathrm{g/L}`}</M> – dasselbe wie <M p=".">{t`28{,}01/22{,}41`}</M> Luft (<M p=")">{t`M_w\approx 29\,\mathrm{g/mol}`}</M> bei <M>{t`25\,^\circ\mathrm C`}</M> und <M p=":">{t`1\,\mathrm{atm}`}</M> <M p=".">{t`\rho\approx 1{,}18\,\mathrm{g/L}`}</M> Umgekehrt: Ein Gas hat bei <M>{t`300\,\mathrm K`}</M> und <M>{t`1\,\mathrm{atm}`}</M> die Dichte <M p=".">{t`1{,}79\,\mathrm{g/L}`}</M> Dann ist <M p=",">{t`M_w=\dfrac{1{,}79\cdot 0{,}08206\cdot 300}{1}\approx 44\,\mathrm{g/mol}`}</M> also wohl <C>CO2</C></p>}
-          en={<p><b>Two worked examples</b> (not on the slides). Nitrogen at STP: <M>{t`\rho=\dfrac{1\cdot 28.01}{0.08206\cdot 273.15}\,\mathrm{g/L}=1.25\,\mathrm{g/L}`}</M> – the same as <M p=".">{t`28.01/22.41`}</M> Air (<M p=")">{t`M_w\approx 29\,\mathrm{g/mol}`}</M> at <M>{t`25\,^\circ\mathrm C`}</M> and <M p=":">{t`1\,\mathrm{atm}`}</M> <M p=".">{t`\rho\approx 1.18\,\mathrm{g/L}`}</M> The other way round: a gas has the density <M>{t`1.79\,\mathrm{g/L}`}</M> at <M>{t`300\,\mathrm K`}</M> and <M>{t`1\,\mathrm{atm}`}</M>. Then <M p=",">{t`M_w=\dfrac{1.79\cdot 0.08206\cdot 300}{1}\approx 44\,\mathrm{g/mol}`}</M> so probably <C>CO2</C></p>}
+          en={<p><b>Two worked examples</b> (not on the slides). Nitrogen at STP: <M>{t`\rho=\dfrac{1\cdot 28.01}{0.08206\cdot 273.15}\,\mathrm{g/L}=1.25\,\mathrm{g/L}`}</M> – the same as <M p=".">{t`28.01/22.41`}</M> Air (<M p=")">{t`M_w\approx 29\,\mathrm{g/mol}`}</M> at <M>{t`25\,^\circ\mathrm C`}</M> and <M p=":">{t`1\,\mathrm{atm}`}</M> <M p=".">{t`\rho\approx 1.18\,\mathrm{g/L}`}</M> The other way round: a gas has the density <M>{t`1.79\,\mathrm{g/L}`}</M> at <M>{t`300\,\mathrm K`}</M> and <M p=".">{t`1\,\mathrm{atm}`}</M> Then <M p=",">{t`M_w=\dfrac{1.79\cdot 0.08206\cdot 300}{1}\approx 44\,\mathrm{g/mol}`}</M> so probably <C>CO2</C></p>}
         />
       </Section>
 
@@ -491,7 +491,7 @@ export default function CH2Gase() {
               <li>A mixture of <M>i</M> ideal gases in the same container: the total pressure depends only on the total number of moles, <M p=".">{t`n_{\mathrm{tot}}=n_1+n_2+\dots+n_i`}</M></li>
               <li><M p=".">{t`P_{\mathrm{tot}}=n_{\mathrm{tot}}\dfrac{RT}{V}=n_1\dfrac{RT}{V}+n_2\dfrac{RT}{V}+\dots+n_i\dfrac{RT}{V}`}</M> (<M>T</M> and <M>V</M> are the same for all gases because they are in the same container.)</li>
               <li><b>Dalton’s law:</b> <M p=",">{t`P_{\mathrm{tot}}=P_1+P_2+\dots+P_i`}</M> <M>{t`P_i`}</M> is the <em>partial pressure</em> of species <M p=".">i</M> Handwritten: each ideal species behaves the same way and independently of the others. Only the number of gas molecules matters.</li>
-              <li><M p=",">{t`P_i=\dfrac{n_i}{n_{\mathrm{tot}}}\,P_{\mathrm{tot}}=X_i\,P_{\mathrm{tot}}`}</M> with the <b>mole fraction</b> <M p=".">{t`X_i\equiv\dfrac{n_i}{n_{\mathrm{tot}}}`}</M> It is the fraction of the moles that belongs to species <M>i</M>.</li>
+              <li><M p=",">{t`P_i=\dfrac{n_i}{n_{\mathrm{tot}}}\,P_{\mathrm{tot}}=X_i\,P_{\mathrm{tot}}`}</M> with the <b>mole fraction</b> <M p=".">{t`X_i\equiv\dfrac{n_i}{n_{\mathrm{tot}}}`}</M> It is the fraction of the moles that belongs to species <M p=".">i</M></li>
             </ul>}
           />
         </Box>
@@ -553,7 +553,7 @@ export default function CH2Gase() {
       <Box kind="misconception" title={<T de="«Ein schwereres Gas drückt stärker»" en="“A heavier gas presses harder”" />}>
         <T
           de={<p>Nein. Der Druck eines idealen Gases hängt nur von <M p=",">n</M> <M>T</M> und <M>V</M> ab, nicht von der Gasart. Die schweren Teilchen sind bei gleicher Temperatur langsamer; ihr schwererer Stoss wird genau durch das kleinere Tempo ausgeglichen. In Übung 5 hat Probe (i) mit viel Helium denselben Druck wie Probe (iii) mit viel Stickstoff, weil beide gleich viele Teilchen enthalten.</p>}
-          en={<p>No. The pressure of an ideal gas depends only on <M p=",">n</M> <M>T</M> and <M>V</M>, not on the kind of gas. The heavy particles are slower at the same temperature; their heavier push is exactly balanced by the smaller speed. In exercise 5, sample (i) with lots of helium has the same pressure as sample (iii) with lots of nitrogen, because both contain the same number of particles.</p>}
+          en={<p>No. The pressure of an ideal gas depends only on <M p=",">n</M> <M>T</M> and <M p=",">V</M> not on the kind of gas. The heavy particles are slower at the same temperature; their heavier push is exactly balanced by the smaller speed. In exercise 5, sample (i) with lots of helium has the same pressure as sample (iii) with lots of nitrogen, because both contain the same number of particles.</p>}
         />
       </Box>
       <Box kind="misconception" title={<T de="«Halbiert man das Volumen, verdoppelt sich der Druck – immer»" en="“Halve the volume and the pressure doubles – always”" />}>
@@ -585,7 +585,7 @@ export default function CH2Gase() {
             <li>Dichte <M p=",">{t`\rho=PM_w/(RT)`}</M> Daltons Gesetz <M p=",">{t`P_{\mathrm{tot}}=\sum P_i`}</M> <M p=".">{t`P_i=X_iP_{\mathrm{tot}}`}</M></li>
           </ul>}
           en={<ul>
-            <li>A gas is described by <M p=",">P</M> <M p=",">V</M> <M>T</M> and <M>n</M>. Pressure comes from particles hitting the wall: <M p=".">{t`P=F/A`}</M></li>
+            <li>A gas is described by <M p=",">P</M> <M p=",">V</M> <M>T</M> and <M p=".">n</M> Pressure comes from particles hitting the wall: <M p=".">{t`P=F/A`}</M></li>
             <li>Barometer: <M p=".">{t`P=\rho g h`}</M> manometer: <M p=".">{t`P_{\mathrm{gas}}=P_{\mathrm{atm}}+\rho g h`}</M> <M p=".">{t`1\,\mathrm{atm}=760\,\mathrm{torr}=101.325\,\mathrm{kPa}`}</M></li>
             <li>Boyle <M p=",">{t`PV=\text{const.}`}</M> Charles <M p=",">{t`V/T=\text{const.}`}</M> Avogadro <M p=".">{t`V/n=\text{const.}`}</M> Together: <M p=".">{t`PV=nRT`}</M> <M>T</M> always in kelvin; <M>R</M> matching the units.</li>
             <li>Type 1: rearrange. Types 2 and 3: <M>{t`PV/(nT)`}</M> before equals after, strike out what is constant. Molar volume at STP: <M p=".">{t`22.41\,\mathrm L`}</M></li>
