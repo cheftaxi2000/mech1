@@ -22,9 +22,18 @@
 .ion-pick { display: grid; gap: 4px; }
 .ion-pick > b { font-size: 0.9rem; }
 
-.act-ladder { display: grid; gap: 2px; }
-.act-row { display: grid; grid-template-columns: 2.4em 5.4em 1fr 2.4em; gap: 8px; align-items: center; padding: 3px 8px; border-radius: 6px; border: 2px solid transparent; font: inherit; background: var(--fill); color: var(--fg); text-align: left; cursor: pointer; min-height: 34px; }
+.act-ladder { display: grid; gap: 2px; overflow-x: auto; }
+.act-row { min-width: 440px; display: grid; grid-template-columns: 2.4em 5.4em 1fr 2.4em; gap: 8px; align-items: center; padding: 3px 8px; border-radius: 6px; border: 2px solid transparent; font: inherit; background: var(--fill); color: var(--fg); text-align: left; cursor: pointer; min-height: 34px; }
 .act-row.h { background: color-mix(in srgb, var(--ch-p) 20%, var(--fill)); }
 .act-row.sel-m { border-color: var(--ch-cat); } .act-row.sel-c { border-color: var(--ch-an); }
 .act-row:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 .act-arrow { color: var(--muted); font-size: 0.85rem; }
+
+.cs-strip { fill: color-mix(in srgb, var(--muted) 45%, var(--panel)); stroke: var(--muted); stroke-width: 1.4; }
+.cs-bubble { fill: none; stroke: var(--ch-p); stroke-width: 1.8; }
+.ox-row { display: flex; flex-wrap: wrap; gap: 6px 10px; justify-content: center; align-items: flex-end; padding: 8px 0; font-size: 1.5rem; }
+.ox-col { display: grid; justify-items: center; gap: 2px; padding: 4px 10px; border-radius: 8px; background: var(--fill); }
+.ox-num { font-size: 1.15rem; font-weight: 700; }
+.ox-num.pos { color: var(--ch-cat); } .ox-num.neg { color: var(--ch-an); } .ox-num.zero { color: var(--muted); }
+.ox-in { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.ox-in input { font: inherit; width: 9em; padding: 6px 8px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); }
