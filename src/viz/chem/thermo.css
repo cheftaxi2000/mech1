@@ -1,0 +1,124 @@
+/* Thermodynamics figures (Chemie, lessons Energie / Enthalpie / Entropie). Colour roles: docs/chem/NOTATION.md.
+   t = heat in / hot (red), e = energy, work, enthalpy (amber), s = entropy (teal), p = pressure (blue), v = volume (green),
+   n = amount (purple), g = Gibbs (indigo). All classes start with th- / ink-c- so they do not clash with other lessons. */
+
+.th-draw { --th-fs: 3.9cqw; }
+.th-draw .anim-label { font-size: clamp(11px, var(--th-fs), 17px); }
+.th-draw .anim-label.small { font-size: clamp(10px, calc(var(--th-fs) * 0.82), 14px); }
+.th-draw > svg { touch-action: pan-y; }
+.th-draw > svg.th-drag { touch-action: none; cursor: grab; }
+
+.ink-c-t { color: var(--ch-t-t); } .ink-c-e { color: var(--ch-e-t); } .ink-c-p { color: var(--ch-p-t); } .ink-c-v { color: var(--ch-v-t); }
+.ink-c-n { color: var(--ch-n-t); } .ink-c-s { color: var(--ch-s-t); } .ink-c-g { color: var(--ch-g-t); } .ink-c-muted { color: var(--muted); } .ink-c-fg { color: var(--fg); }
+.ink-c-bad { color: var(--bad); } .ink-c-ok { color: var(--ok); }
+
+/* arrows (stroke) and their heads (fill) */
+[class*="th-a-"] { fill: none; stroke-width: 3.2; stroke-linecap: round; }
+[class*="th-a-"][class$="-head"] { stroke: none; }
+.th-a-t { stroke: var(--ch-t); } .th-a-t-head { fill: var(--ch-t); }
+.th-a-e { stroke: var(--ch-e); } .th-a-e-head { fill: var(--ch-e); }
+.th-a-p { stroke: var(--ch-p); } .th-a-p-head { fill: var(--ch-p); }
+.th-a-v { stroke: var(--ch-v); } .th-a-v-head { fill: var(--ch-v); }
+.th-a-n { stroke: var(--ch-n); } .th-a-n-head { fill: var(--ch-n); }
+.th-a-s { stroke: var(--ch-s); } .th-a-s-head { fill: var(--ch-s); }
+.th-a-g { stroke: var(--ch-g); } .th-a-g-head { fill: var(--ch-g); }
+.th-a-fg { stroke: var(--fg); } .th-a-fg-head { fill: var(--fg); }
+.th-a-muted { stroke: var(--muted); } .th-a-muted-head { fill: var(--muted); }
+.th-a-thin { stroke-width: 2; } .th-a-thin-head { }
+
+/* thin lines */
+.th-l { fill: none; stroke: var(--muted); stroke-width: 1.4; }
+.th-l-dash { fill: none; stroke: var(--muted); stroke-width: 1.4; stroke-dasharray: 5 4; }
+.th-l-fg { fill: none; stroke: var(--fg); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.th-l-t { fill: none; stroke: var(--ch-t); stroke-width: 2.4; stroke-linecap: round; } .th-l-e { fill: none; stroke: var(--ch-e); stroke-width: 2.4; stroke-linecap: round; }
+.th-l-s { fill: none; stroke: var(--ch-s); stroke-width: 2.6; stroke-linecap: round; } .th-l-p { fill: none; stroke: var(--ch-p); stroke-width: 2.4; stroke-linecap: round; }
+.th-l-v { fill: none; stroke: var(--ch-v); stroke-width: 2.4; stroke-linecap: round; } .th-l-n { fill: none; stroke: var(--ch-n); stroke-width: 2.4; stroke-linecap: round; }
+.th-l-g { fill: none; stroke: var(--ch-g); stroke-width: 2.4; stroke-linecap: round; }
+.th-level { fill: none; stroke: var(--fg); stroke-width: 2.4; stroke-linecap: round; }
+.th-level-e { fill: none; stroke: var(--ch-e); stroke-width: 3; stroke-linecap: round; }
+.th-grid { fill: none; stroke: var(--line); stroke-width: 1; }
+.th-axis { fill: none; stroke: var(--fg); stroke-width: 1.6; } .th-axis-head { fill: var(--fg); }
+
+/* filled areas (soft) */
+.th-f { fill: color-mix(in srgb, var(--muted) 14%, transparent); stroke: var(--muted); stroke-width: 1.4; }
+.th-f-t { fill: color-mix(in srgb, var(--ch-t) 20%, transparent); stroke: var(--ch-t); stroke-width: 1.6; }
+.th-f-e { fill: color-mix(in srgb, var(--ch-e) 24%, transparent); stroke: var(--ch-e); stroke-width: 1.6; }
+.th-f-p { fill: color-mix(in srgb, var(--ch-p) 18%, transparent); stroke: var(--ch-p); stroke-width: 1.6; }
+.th-f-v { fill: color-mix(in srgb, var(--ch-v) 20%, transparent); stroke: var(--ch-v); stroke-width: 1.6; }
+.th-f-n { fill: color-mix(in srgb, var(--ch-n) 18%, transparent); stroke: var(--ch-n); stroke-width: 1.6; }
+.th-f-s { fill: color-mix(in srgb, var(--ch-s) 20%, transparent); stroke: var(--ch-s); stroke-width: 1.6; }
+.th-f-g { fill: color-mix(in srgb, var(--ch-g) 18%, transparent); stroke: var(--ch-g); stroke-width: 1.6; }
+.th-s-t { fill: var(--ch-t); stroke: none; } .th-s-e { fill: var(--ch-e); stroke: none; } .th-s-p { fill: var(--ch-p); stroke: none; }
+.th-s-v { fill: var(--ch-v); stroke: none; } .th-s-n { fill: var(--ch-n); stroke: none; } .th-s-s { fill: var(--ch-s); stroke: none; }
+.th-s-g { fill: var(--ch-g); stroke: none; } .th-s-fg { fill: var(--fg); stroke: none; } .th-s-muted { fill: var(--muted); stroke: none; }
+.th-s-bad { fill: var(--bad); stroke: none; } .th-s-ok { fill: var(--ok); stroke: none; }
+
+/* vessel, walls, gas */
+.th-wall { fill: none; stroke: var(--fg); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+.th-wall-thin { fill: none; stroke: var(--fg); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.th-wall-dash { fill: none; stroke: var(--muted); stroke-width: 2.4; stroke-dasharray: 7 5; stroke-linecap: round; }
+.th-gas { fill: color-mix(in srgb, var(--ch-p) 7%, transparent); stroke: none; }
+.th-piston { fill: color-mix(in srgb, var(--muted) 30%, var(--panel)); stroke: var(--fg); stroke-width: 2.4; }
+.th-atom { fill: color-mix(in srgb, var(--muted) 55%, var(--panel)); stroke: var(--fg); stroke-width: 1; }
+.th-atom-hot { fill: color-mix(in srgb, var(--ch-t) 70%, var(--panel)); stroke: var(--fg); stroke-width: 1; }
+.th-atom-n { fill: var(--ch-n); stroke: var(--fg); stroke-width: 1; }
+.th-water { fill: color-mix(in srgb, var(--ch-p) 22%, var(--panel)); stroke: none; }
+.th-merc { stroke: var(--ch-t); stroke-width: 4; stroke-linecap: round; }
+.th-glass { fill: color-mix(in srgb, var(--panel) 70%, var(--muted)); stroke: var(--fg); stroke-width: 1.6; }
+.th-cell { fill: color-mix(in srgb, var(--muted) 10%, var(--panel)); stroke: var(--line); stroke-width: 1.2; }
+.th-cell-hot { fill: color-mix(in srgb, var(--ch-n) 20%, var(--panel)); stroke: var(--ch-n); stroke-width: 1.2; }
+.th-ghost { opacity: 0.35; }
+
+/* moving dashes: heat flowing */
+@keyframes th-flow { to { stroke-dashoffset: -24; } }
+.th-flow { stroke-dasharray: 6 6; animation: th-flow 1.2s linear infinite; }
+.th-flow-rev { stroke-dasharray: 6 6; animation: th-flow 1.2s linear infinite reverse; }
+@media (prefers-reduced-motion: reduce) { .th-flow, .th-flow-rev { animation: none; } }
+
+/* figure frame: drawing left, controls right on wide screens */
+.th-fig { margin: 14px 0; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); padding: 10px 10px 12px; }
+.th-fig > .th-draw { max-width: 760px; margin-inline: auto; }
+.th-fig figcaption { display: grid; gap: 8px; margin-top: 8px; padding: 0 4px; }
+@media (min-width: 1024px) {
+  .th-fig.th-two { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr); column-gap: 24px; align-items: start; padding: 14px 18px 16px; }
+  .th-fig.th-two > .th-draw { grid-column: 1; max-width: calc((100svh - var(--topbar) - 90px) * 1.5); width: 100%; margin: 0; }
+  .th-fig.th-two > figcaption { grid-column: 2; align-self: center; margin-top: 0; }
+  .th-fig.th-two > .th-wide { grid-column: 1 / -1; }
+}
+.th-chips { justify-content: flex-start; }
+.th-slider { grid-template-columns: 6.2em 1fr 6.4em; }
+.th-slider .val { white-space: nowrap; }
+@media (max-width: 520px) { .th-slider { grid-template-columns: 4.6em 1fr 5.6em; gap: 6px; } }
+.th-read { display: grid; gap: 4px; padding: 8px 12px; border-radius: 8px; background: color-mix(in srgb, var(--fg) 5%, transparent); overflow-x: auto; }
+.th-read .katex { white-space: nowrap; }
+.th-read.ok { background: color-mix(in srgb, var(--ok) 12%, transparent); }
+.th-read.bad { background: color-mix(in srgb, var(--bad) 11%, transparent); }
+.th-verdict { font-weight: 600; }
+.th-note { color: var(--muted); font-size: 0.92rem; margin: 0; }
+.th-table { border-collapse: collapse; width: 100%; font-size: 0.95rem; }
+.th-table th, .th-table td { padding: 4px 8px; border-bottom: 1px solid var(--line); text-align: right; font-variant-numeric: tabular-nums; }
+.th-table th:first-child, .th-table td:first-child { text-align: left; }
+.th-table tr.sum td { font-weight: 600; border-top: 2px solid var(--fg); border-bottom: 0; }
+.th-tablewrap { overflow-x: auto; }
+.th-a-bad { stroke: var(--bad); stroke-width: 3; } .th-a-bad-head { fill: var(--bad); }
+.th-reaction { margin: 6px 0; text-align: center; }
+.th-hess { margin: 14px 0; display: grid; gap: 10px; }
+.th-reaction { overflow-x: auto; max-width: 100%; } .th-reaction .katex { font-size: 1em; } @media (max-width: 520px) { .th-reaction { font-size: 0.82rem; } }
+.th-fig figcaption { grid-template-columns: minmax(0, 1fr); } .th-fig figcaption > * { min-width: 0; } .th-read { max-width: 100%; }
+.th-rx { display: inline-block; max-width: 100%; overflow-x: auto; vertical-align: bottom; }
+.th-f-ok { fill: color-mix(in srgb, var(--ok) 28%, transparent); stroke: var(--ok); stroke-width: 1.6; } .th-f-bad { fill: color-mix(in srgb, var(--bad) 24%, transparent); stroke: var(--bad); stroke-width: 1.6; }
+.th-block { stroke: var(--fg); stroke-width: 2; }
+.th-temp-0 { fill: color-mix(in srgb, var(--ch-t) 8%, color-mix(in srgb, var(--ch-p) 45%, var(--panel))); }
+.th-temp-1 { fill: color-mix(in srgb, var(--ch-t) 18%, color-mix(in srgb, var(--ch-p) 45%, var(--panel))); }
+.th-temp-2 { fill: color-mix(in srgb, var(--ch-t) 29%, color-mix(in srgb, var(--ch-p) 45%, var(--panel))); }
+.th-temp-3 { fill: color-mix(in srgb, var(--ch-t) 39%, color-mix(in srgb, var(--ch-p) 45%, var(--panel))); }
+.th-temp-4 { fill: color-mix(in srgb, var(--ch-t) 50%, color-mix(in srgb, var(--ch-p) 45%, var(--panel))); }
+.th-temp-5 { fill: color-mix(in srgb, var(--ch-t) 61%, color-mix(in srgb, var(--ch-p) 45%, var(--panel))); }
+.th-temp-6 { fill: color-mix(in srgb, var(--ch-t) 71%, color-mix(in srgb, var(--ch-p) 45%, var(--panel))); }
+.th-temp-7 { fill: color-mix(in srgb, var(--ch-t) 82%, color-mix(in srgb, var(--ch-p) 45%, var(--panel))); }
+.th-temp-8 { fill: color-mix(in srgb, var(--ch-t) 93%, color-mix(in srgb, var(--ch-p) 45%, var(--panel))); }
+.th-phases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.th-phase { text-align: center; border: 1px solid var(--line); border-radius: 8px; padding: 4px; opacity: 0.55; }
+.th-phase.on { opacity: 1; border-color: var(--ch-s); background: color-mix(in srgb, var(--ch-s) 10%, transparent); }
+.th-phase svg { width: 100%; height: auto; display: block; } .th-phase span { font-size: 0.85rem; }
+.th-draw-plot { min-width: 0; }
