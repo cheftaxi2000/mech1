@@ -128,7 +128,7 @@ export function makeMixScene(cfg: MixCfg) {
       if (cfg.product === 'solid') sb.label('prod', [292, 246], cfg.productTex, INK.fg, seg(st.react, 0.9, 1), 'l');
     }
     // legend
-    const xs = [24, 100, 176, 252];
+    const xs = [20, 88, 190, 270];
     KINDS.forEach((kd, n) => {
       const k = cfg.kinds[kd];
       disc(sb, `leg-${kd}`, k.cat ? 'cs-ion-cat' : 'cs-ion-an', [xs[n], 284], k.r - 2);

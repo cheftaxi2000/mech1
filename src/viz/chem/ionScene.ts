@@ -44,17 +44,17 @@ export function ionScene(step: number, t: number, lang: Lang): Scene {
     }
   }
   // names above
-  sb.label('na-name0', [s.naX, 62], String.raw`\mathrm{Na}`, INK.fg, 1 - s.u);
-  sb.label('na-name1', [s.naX, 62], String.raw`\mathrm{Na}^{+}`, INK.cat, s.u);
-  sb.label('cl-name0', [s.clX, 62], String.raw`\mathrm{Cl}`, INK.fg, 1 - s.u);
-  sb.label('cl-name1', [s.clX, 62], String.raw`\mathrm{Cl}^{-}`, INK.an, s.u);
+  sb.label('na-name0', [s.naX - 22, 62], String.raw`\mathrm{Na}`, INK.fg, 1 - s.u);
+  sb.label('na-name1', [s.naX - 22, 62], String.raw`\mathrm{Na}^{+}`, INK.cat, s.u);
+  sb.label('cl-name0', [s.clX + 22, 62], String.raw`\mathrm{Cl}`, INK.fg, 1 - s.u);
+  sb.label('cl-name1', [s.clX + 22, 62], String.raw`\mathrm{Cl}^{-}`, INK.an, s.u);
   // particle counts below
   const rows = (p: number, e: number) => [{ tex: String.raw`${p}\,\mathrm{p}^{+}`, ink: INK.cat }, { tex: String.raw`${e}\,\mathrm{e}^{-}`, ink: INK.el }];
   const early = s.u < 0.5;
-  sb.label('na-cnt0', [s.naX, 214], '', INK.fg, early ? 1 : 0, 'c', { rows: rows(11, 11) });
-  sb.label('na-cnt1', [s.naX, 214], '', INK.fg, early ? 0 : 1, 'c', { rows: rows(11, 10) });
-  sb.label('cl-cnt0', [s.clX, 214], '', INK.fg, early ? 1 : 0, 'c', { rows: rows(17, 17) });
-  sb.label('cl-cnt1', [s.clX, 214], '', INK.fg, early ? 0 : 1, 'c', { rows: rows(17, 18) });
+  sb.label('na-cnt0', [s.naX - 22, 214], '', INK.fg, early ? 1 : 0, 'c', { rows: rows(11, 11) });
+  sb.label('na-cnt1', [s.naX - 22, 214], '', INK.fg, early ? 0 : 1, 'c', { rows: rows(11, 10) });
+  sb.label('cl-cnt0', [s.clX + 22, 214], '', INK.fg, early ? 1 : 0, 'c', { rows: rows(17, 17) });
+  sb.label('cl-cnt1', [s.clX + 22, 214], '', INK.fg, early ? 0 : 1, 'c', { rows: rows(17, 18) });
   // legend
   disc(sb, 'leg-e', 'cs-electron', [118, 276], 5.5);
   sb.label('leg-e-l', [128, 276], String.raw`\mathrm{e}^{-}`, INK.el, 1, 'l');

@@ -1,0 +1,30 @@
+/* Periodic table figure */
+.pt-fig { --pt-metal: #c9a45c; --pt-metalloid: #9b86d6; --pt-nonmetal: #46b987; }
+:root[data-theme="dark"] .pt-fig { --pt-metal: #a98a45; --pt-metalloid: #8570c4; --pt-nonmetal: #36a275; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .pt-fig { --pt-metal: #a98a45; --pt-metalloid: #8570c4; --pt-nonmetal: #36a275; } }
+.pt-wrap { overflow-x: auto; }
+.pt-grid { display: grid; grid-template-columns: repeat(18, minmax(30px, 1fr)); grid-template-rows: repeat(7, auto) 10px repeat(2, auto); gap: 2px; min-width: 620px; }
+.pt-cell { font: inherit; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2px 0; min-height: 38px; border-radius: 4px; border: 1px solid transparent; color: var(--fg); cursor: pointer; line-height: 1.05; }
+.pt-cell:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.pt-cell.sel { border-color: var(--fg); box-shadow: 0 0 0 2px var(--panel), 0 0 0 4px var(--accent); z-index: 1; }
+.pt-z { font-size: 0.62rem; color: color-mix(in srgb, var(--fg) 70%, transparent); }
+.pt-sym { font-size: 0.95rem; font-weight: 600; }
+.pt-sym .katex { font-size: 1em; }
+.cls-metal, .fam-transition { background: color-mix(in srgb, var(--pt-metal) 38%, var(--panel)); }
+.cls-metalloid { background: color-mix(in srgb, var(--pt-metalloid) 45%, var(--panel)); }
+.cls-nonmetal { background: color-mix(in srgb, var(--pt-nonmetal) 40%, var(--panel)); }
+.fam-alkali { background: color-mix(in srgb, #e5484d 40%, var(--panel)); }
+.fam-alkaline { background: color-mix(in srgb, #f08a24 42%, var(--panel)); }
+.fam-lanthanide { background: color-mix(in srgb, #3aa0b8 40%, var(--panel)); }
+.fam-actinide { background: color-mix(in srgb, #6c7ae0 40%, var(--panel)); }
+.fam-chalcogen { background: color-mix(in srgb, #d6b800 42%, var(--panel)); }
+.fam-halogen { background: color-mix(in srgb, #3fb869 42%, var(--panel)); }
+.fam-noble { background: color-mix(in srgb, #a557d6 40%, var(--panel)); }
+.fam-other { background: color-mix(in srgb, var(--muted) 18%, var(--panel)); }
+.pt-legend { font-size: 0.88rem; }
+.pt-sw { border-radius: 3px !important; border: 1px solid var(--line) !important; }
+.pt-detail { grid-template-columns: auto 1fr; align-items: center; gap: 14px; }
+.pt-big { width: 92px; height: 92px; border-radius: 8px; display: grid; grid-template-rows: auto 1fr auto; justify-items: center; align-items: center; padding: 4px 6px; border: 1px solid var(--line-strong); }
+.pt-big-z { font-size: 0.9rem; justify-self: start; } .pt-big-sym { font-size: 2rem; font-weight: 700; line-height: 1; } .pt-big-m { font-size: 0.85rem; font-variant-numeric: tabular-nums; }
+.pt-facts { display: grid; gap: 4px; }
+@media (max-width: 700px) { .pt-detail { grid-template-columns: 1fr; } }

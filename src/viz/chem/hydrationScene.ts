@@ -90,10 +90,10 @@ export function hydrationScene(step: number, t: number, lang: Lang): Scene {
   disc(sb, 'leg-cat', 'cs-ion-cat', [30, 284], R_CAT - 1);
   sign(sb, 'leg-cat-s', [30, 284], true, R_CAT - 1);
   sb.label('leg-cat-l', [43, 284], String.raw`\mathrm{Na}^{+}`, INK.cat, 1, 'l');
-  disc(sb, 'leg-an', 'cs-ion-an', [118, 284], R_AN - 2);
-  sign(sb, 'leg-an-s', [118, 284], false, R_AN - 2);
-  sb.label('leg-an-l', [133, 284], String.raw`\mathrm{Cl}^{-}`, INK.an, 1, 'l');
-  const wc: P2 = [290, 284];
+  disc(sb, 'leg-an', 'cs-ion-an', [104, 284], R_AN - 2);
+  sign(sb, 'leg-an-s', [104, 284], false, R_AN - 2);
+  sb.label('leg-an-l', [118, 284], String.raw`\mathrm{Cl}^{-}`, INK.an, 1, 'l');
+  const wc: P2 = [320, 284];
   water(sb, 'leg-w', wc, 0);
   const { H1, H2 } = waterAtoms(wc, 0);
   sb.label('leg-dm', [wc[0] + 14, 284], String.raw`\delta^{-}`, INK.an, 1, 'l');

@@ -77,3 +77,14 @@
   .chfig-body { padding: 8px 10px; }
   .chfig-ctl { padding: 8px 10px 12px; }
 }
+
+/* ---- atom figures ---- */
+.cs-proton { fill: var(--ch-cat); stroke: color-mix(in srgb, var(--ch-cat) 55%, var(--fg)); stroke-width: 0.8; }
+.cs-neutron { fill: color-mix(in srgb, var(--muted) 55%, var(--panel)); stroke: var(--muted); stroke-width: 0.8; }
+.cs-bar-iso { fill: color-mix(in srgb, var(--ch-n) 50%, var(--panel)); stroke: var(--ch-n); stroke-width: 1.4; }
+.cs-mean { stroke: var(--ch-e); stroke-width: 2.6; stroke-dasharray: 6 4; }
+.cs-box { fill: color-mix(in srgb, var(--ch-an) 8%, var(--panel)); stroke: var(--line-strong); stroke-width: 1.4; }
+.cs-box-sel { stroke: var(--accent); stroke-width: 3.2; }
+.cs-atomA { fill: #3f7be0; stroke: #2551a3; stroke-width: 1.2; }
+.cs-atomB { fill: #c9a05a; stroke: #8c6a2c; stroke-width: 1.2; }
+.cs-stick { stroke: color-mix(in srgb, var(--fg) 55%, var(--panel)); stroke-width: 5; stroke-linecap: round; }
