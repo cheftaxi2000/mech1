@@ -1,0 +1,62 @@
+/* ---- barometer + manometer ---- */
+.pt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.pt-panel { display: grid; gap: 6px; justify-items: center; }
+.pt-title { font-weight: 600; font-size: 0.95rem; }
+.pt-stage { width: 100%; max-width: 300px; }
+.pt-liq.hg { fill: color-mix(in srgb, var(--fg) 36%, var(--panel)); stroke: none; }
+.pt-liq.water { fill: color-mix(in srgb, var(--ch-p) 30%, var(--panel)); stroke: none; }
+.pt-glass { fill: none; stroke: var(--muted); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.pt-arr { stroke: var(--ch-p); stroke-width: 3; stroke-linecap: round; } .pt-arr-h { fill: var(--ch-p); }
+.pt-dash { stroke: var(--ch-v); stroke-width: 1.3; stroke-dasharray: 4 4; }
+.pt-dim { stroke: var(--ch-v); stroke-width: 3; } .pt-dim-h { fill: var(--ch-v); }
+.pt-bulb { fill: color-mix(in srgb, var(--ch-p) 8%, var(--panel)); stroke: var(--muted); stroke-width: 3; }
+.pt-gas { fill: var(--ch-n); }
+.pt-gasfill { fill: color-mix(in srgb, var(--ch-p) 9%, var(--panel)); }
+.pt-l { font-size: clamp(13px, 5cqw, 19px); } .pt-l.p { color: var(--ch-p-t); } .pt-l.v { color: var(--ch-v-t); } .pt-l.g { color: var(--ch-p-t); } .pt-l.m { color: var(--muted); font-size: clamp(12px, 4.2cqw, 16px); }
+.pt-read { font-size: 1.05rem; }
+.pt-liquid { justify-content: center; }
+.pt-sliders { margin-top: 8px; }
+.pt-sliders .slider.pt-w input { accent-color: var(--ch-p); } .pt-sliders .slider.pt-g input { accent-color: var(--ch-p); }
+.pt-units { display: flex; flex-wrap: wrap; gap: 6px 18px; justify-content: center; margin-top: 8px; font-size: 0.98rem; }
+@media (max-width: 560px) { .pt-grid { grid-template-columns: 1fr; } }
+
+/* ---- gas-law explorer ---- */
+.gf-tabs { justify-content: flex-start; margin-bottom: 8px; }
+.gf-plots { display: grid; gap: 10px; }
+.gf-plots.n2 { grid-template-columns: 1fr 1fr; }
+.gf-plots .gf-plot { max-width: 100%; }
+@media (max-width: 640px) { .gf-plots.n2 { grid-template-columns: 1fr; } }
+.gf-sliders { margin-top: 10px; }
+.gf-s.gf-free { font-weight: 600; }
+.gf-s.cp input { accent-color: var(--ch-p); } .gf-s.cv input { accent-color: var(--ch-v); } .gf-s.ct input { accent-color: var(--ch-t); } .gf-s.cn input { accent-color: var(--ch-n); }
+.gf-note { font-size: 0.85rem; color: var(--muted); }
+.gf-table { margin-top: 8px; }
+.gf-table th { width: 2.4em; } .gf-table td { text-align: left; }
+.gf-tag { color: var(--muted); font-size: 0.85rem; }
+.gf-r-free th, .gf-r-free td { font-weight: 600; }
+.gf-hint { margin: 8px 0 0; font-size: 0.92rem; color: var(--muted); }
+
+/* ---- density boxes ---- */
+.dn-boxes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.dn-col { display: grid; gap: 4px; justify-items: center; text-align: center; }
+.dn-col svg { width: 100%; max-width: 150px; height: auto; }
+.dn-box { fill: color-mix(in srgb, var(--ch-p) 5%, var(--panel)); stroke: var(--muted); stroke-width: 2.4; }
+.dn-he { fill: var(--ch-e); stroke: color-mix(in srgb, var(--fg) 30%, transparent); stroke-width: 0.6; }
+.dn-n2 { fill: var(--ch-s); stroke: color-mix(in srgb, var(--fg) 30%, transparent); stroke-width: 0.6; }
+.dn-co2 { fill: var(--ch-g); stroke: color-mix(in srgb, var(--fg) 30%, transparent); stroke-width: 0.6; }
+.dn-m { display: block; font-size: 0.82rem; color: var(--muted); }
+.dn-bar { width: 100%; max-width: 150px; height: 12px; border-radius: 6px; background: color-mix(in srgb, var(--fg) 8%, transparent); overflow: hidden; }
+.dn-bar i { display: block; height: 100%; border-radius: 6px; }
+.dn-bar i.dn-he { background: var(--ch-e); } .dn-bar i.dn-n2 { background: var(--ch-s); } .dn-bar i.dn-co2 { background: var(--ch-g); }
+.dn-rho { font-size: 0.98rem; }
+.dn-sum { margin-top: 10px; }
+.dn-fig .slider.gb-p input { accent-color: var(--ch-p); }
+@media (max-width: 480px) { .dn-name { font-size: 0.9rem; } .dn-rho { font-size: 0.88rem; } }
+
+/* ---- significant figures ---- */
+.sf-in { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 10px 0 4px; }
+.sf-in input { font: inherit; font-size: 1.1rem; padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--fg); width: 11em; }
+.sf-digits { display: flex; flex-wrap: wrap; font-family: KaTeX_Main, "Times New Roman", serif; font-size: 2.2rem; line-height: 1.3; min-height: 2.6rem; }
+.sf-d { padding: 0 2px; color: var(--muted); border-bottom: 4px solid transparent; }
+.sf-d.sig { color: var(--fg); border-bottom-color: var(--ch-v); }
+.sf-count { margin-top: 4px; }

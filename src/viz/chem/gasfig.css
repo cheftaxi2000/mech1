@@ -1,0 +1,47 @@
+@import "./gasfig2.css";
+/* Chemie: interactive gas figures (particle box, mixture box, barometer, explorers). Colour roles: docs/chem/NOTATION.md */
+.gasfig { --gf-n: var(--ch-n); }
+.gasfig .gb-stage { position: relative; container-type: inline-size; max-width: 640px; margin-inline: auto; }
+.gasfig .gb-stage > svg { display: block; width: 100%; height: auto; }
+.gb-box { fill: color-mix(in srgb, var(--ch-p) 5%, var(--panel)); stroke: var(--muted); stroke-width: 2.4; }
+.gb-piston { fill: color-mix(in srgb, var(--ch-v) 55%, var(--panel)); stroke: var(--ch-v); stroke-width: 1.5; }
+.gb-rod { stroke: var(--ch-v); stroke-width: 3; stroke-linecap: round; }
+.gb-dim { stroke: var(--ch-v); stroke-width: 1.6; }
+.gb-flash { stroke: var(--ch-p); stroke-width: 4; stroke-linecap: round; }
+.gb-p { fill: var(--ch-n); stroke: color-mix(in srgb, var(--fg) 30%, transparent); stroke-width: 0.8; }
+.gb-he { fill: var(--ch-e); stroke: color-mix(in srgb, var(--fg) 30%, transparent); stroke-width: 0.8; }
+.gb-n2 circle { fill: var(--ch-s); stroke: color-mix(in srgb, var(--fg) 30%, transparent); stroke-width: 0.8; }
+.gb-n2:not(g) { fill: var(--ch-s); }
+.gb-vlab { font-size: clamp(13px, 4cqw, 19px); color: var(--ch-v-t); }
+.gb-legend { position: absolute; right: 6px; top: 4px; margin: 0; padding: 4px 8px; list-style: none; display: flex; gap: 12px; align-items: center; font-size: 0.9rem; background: color-mix(in srgb, var(--panel) 85%, transparent); border-radius: 8px; }
+.gb-legend li { display: flex; gap: 5px; align-items: center; }
+.gb-body { display: grid; gap: 10px; margin-top: 8px; }
+.gb-controls { display: grid; gap: 4px; }
+.gasfig .slider { grid-template-columns: 2.6em 1fr 5.4em; }
+.gasfig .slider.gb-t input { accent-color: var(--ch-t); } .gasfig .slider.gb-v input { accent-color: var(--ch-v); } .gasfig .slider.gb-n input { accent-color: var(--ch-n); }
+.gasfig .slider.gb-he-s input { accent-color: var(--ch-e); } .gasfig .slider.gb-n2-s input { accent-color: var(--ch-s); }
+.gb-readout { display: grid; gap: 4px; }
+.gb-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.gb-cp { color: var(--ch-p-t); }
+.gb-gauge { margin-top: 2px; }
+.gb-track { position: relative; height: 16px; border-radius: 8px; background: var(--fill-2, color-mix(in srgb, var(--fg) 8%, transparent)); overflow: visible; }
+.gb-track i { position: absolute; top: 0; bottom: 0; border-radius: 8px; transition: width 0.18s linear, left 0.18s linear; }
+.gb-track .gb-fill-p { background: var(--ch-p); } .gb-track .gb-fill-he { background: var(--ch-e); border-radius: 8px 0 0 8px; } .gb-track .gb-fill-n2 { background: var(--ch-s); border-radius: 0 8px 8px 0; }
+.gb-tick { position: absolute; top: -4px; bottom: -4px; width: 3px; margin-left: -1.5px; background: var(--fg); border-radius: 2px; }
+.gb-scale { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--muted); margin-top: 3px; }
+.gb-foot { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; justify-content: space-between; margin-top: 10px; }
+.gb-table { border-collapse: collapse; width: 100%; font-size: 0.95rem; }
+.gb-table th, .gb-table td { padding: 3px 8px; text-align: right; border-bottom: 1px solid var(--line); }
+.gb-table thead th { color: var(--muted); font-weight: 500; font-size: 0.85rem; }
+.gb-table tbody th { text-align: left; }
+.gb-table .gb-sum td, .gb-table .gb-sum th { border-top: 1.5px solid var(--fg); border-bottom: 0; font-weight: 600; }
+.gb-unit { font-size: 0.82rem; color: var(--muted); margin-top: -6px; }
+.gb-read2 { display: grid; gap: 3px; font-size: 0.95rem; }
+.gb-read2 > div { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: baseline; }
+@media (max-width: 600px) {
+  .gasfig .slider { grid-template-columns: 2.2em 1fr 4.6em; }
+  .gb-table { font-size: 0.86rem; } .gb-table th, .gb-table td { padding: 3px 4px; }
+}
+@media (min-width: 900px) {
+  .gasfig .gb-body { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
+}
