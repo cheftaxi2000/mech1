@@ -154,7 +154,7 @@ export const TOPICS: Topic[] = [
   { id: 'ch-enthalpie', chapter: 'CH4', title: ['Enthalpie, Kalorimetrie und der Satz von Hess', 'Enthalpy, calorimetry and Hess’s law'], pages: 'V4/16–30', status: 'planned' },
   { id: 'ch-entropie', chapter: 'CH5', title: ['Spontane Prozesse und Entropie', 'Spontaneous processes and entropy'], pages: 'V5/7–21', status: 'planned' },
   { id: 'ch-gibbs', chapter: 'CH5', title: ['Freie Enthalpie nach Gibbs', 'Gibbs free energy'], pages: 'V5/22–29', status: 'planned' },
-  { id: 'ch-licht', chapter: 'CH6', title: ['Licht, Spektren und das Bohr-Modell', 'Light, spectra and the Bohr model'], pages: 'V6/6–12', status: 'planned' },
+  { id: 'ch-licht', chapter: 'CH6', title: ['Licht, Spektren und das Bohr-Modell', 'Light, spectra and the Bohr model'], pages: 'V6/6–12', status: 'review', component: lazy(() => import('../lessons/CH6Licht')) },
   { id: 'ch-orbitale', chapter: 'CH6', title: ['Orbitale, Quantenzahlen und Elektronenkonfiguration', 'Orbitals, quantum numbers and electron configuration'], pages: 'V6/13–27', status: 'planned' },
   { id: 'ch-trends', chapter: 'CH6', title: ['Abschirmung, Atomgrösse und Ionisierungsenergie', 'Screening, atomic size and ionisation energy'], pages: 'V6/28–32', status: 'planned' },
 ];
