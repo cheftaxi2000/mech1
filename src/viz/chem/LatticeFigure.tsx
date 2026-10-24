@@ -8,7 +8,7 @@ import { useInView, useReducedMotion } from './useFrames';
 
 const t = String.raw;
 const sci = (x: number, lang: 'de' | 'en') => { const e = Math.floor(Math.log10(Math.abs(x))), m = x / 10 ** e; return `${fmtNum(m, 2, lang, true)}\\cdot 10^{${e}}`; };
-const big = (n: number, lang: 'de' | 'en') => (n < 10000 ? String(n) : n.toLocaleString(lang === 'de' ? 'de-CH' : 'en-US').replace(/[’'\u202f]/g, '\\,').replace(/,/g, '\\,'));
+const big = (n: number, _lang: 'de' | 'en') => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '\\,');
 
 /** Slides 11, 17–19, 21: count the arrangements W of N particles, S = k_B ln W, and open the partition. */
 export function LatticeFigure() {

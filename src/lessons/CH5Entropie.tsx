@@ -375,14 +375,14 @@ export default function CH5Entropie() {
       <Box kind="key">
         <T
           de={<ul>
-            <li>Spontan = läuft ohne Hilfe ab; nicht schnell, nicht «Energie sinkt» als einziges Kriterium. Alle spontanen Prozesse sind irreversibel.</li>
+            <li>Spontan heisst: läuft ohne Hilfe ab; nicht schnell, nicht «Energie sinkt» als einziges Kriterium. Alle spontanen Prozesse sind irreversibel.</li>
             <li><M>{t`\Delta S = q_\mathrm{rev}/T`}</M> (isotherm, absolute Temperatur); <M>S</M> ist eine Zustandsfunktion. Beispiel Eis: <M p=".">{t`+22\,\mathrm{J\,mol^{-1}\,K^{-1}}`}</M></li>
             <li>2. Hauptsatz: <M p=",">{t`\Delta S_\mathrm{univ} = \Delta S_\mathrm{sys} + \Delta S_\mathrm{surr} \geq 0`}</M> bei spontanen Prozessen <M p=".">{t`> 0`}</M></li>
             <li><M p=",">{t`S = k_\mathrm{B}\ln W`}</M> <M p=";">{t`\Delta S = k_\mathrm{B}\ln(W_\mathrm{final}/W_\mathrm{initial})`}</M> <M>S</M> wächst mit <M p=",">V</M> <M p=",">T</M> Teilchenzahl, Komplexität, beim Schmelzen und Verdampfen.</li>
             <li>3. Hauptsatz: perfekter Kristall bei <M p=":">{t`0\,\mathrm{K}`}</M> <M p=",">{t`W = 1`}</M> <M p=".">{t`S = 0`}</M></li>
           </ul>}
           en={<ul>
-            <li>Spontaneous = happens without assistance; not fast, and «energy decreases» is not the only criterion. All spontaneous processes are irreversible.</li>
+            <li>Spontaneous means: happens without assistance; not fast, and «energy decreases» is not the only criterion. All spontaneous processes are irreversible.</li>
             <li><M>{t`\Delta S = q_\mathrm{rev}/T`}</M> (isothermal, absolute temperature); <M>S</M> is a state function. Example ice: <M p=".">{t`+22\,\mathrm{J\,mol^{-1}\,K^{-1}}`}</M></li>
             <li>2nd law: <M p=",">{t`\Delta S_\mathrm{univ} = \Delta S_\mathrm{sys} + \Delta S_\mathrm{surr} \geq 0`}</M> for spontaneous processes <M p=".">{t`> 0`}</M></li>
             <li><M p=",">{t`S = k_\mathrm{B}\ln W`}</M> <M p=";">{t`\Delta S = k_\mathrm{B}\ln(W_\mathrm{final}/W_\mathrm{initial})`}</M> <M>S</M> grows with <M p=",">V</M> <M p=",">T</M> particle number, complexity, on melting and vaporizing.</li>
