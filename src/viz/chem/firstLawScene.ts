@@ -40,7 +40,6 @@ export function firstLawScene(q: number, w: number, pistonY: number, lang: Lang)
     else b.arrow(`w-${x}`, 'th-a-e', [x, pistonY - 12], [x, top], 1, 9);
   }
   b.label('lab-gas', [cx, base - 14], String.raw`\text{System}`, 'muted', 1, 'c', { small: true });
-  b.label('lab-surr', [cylX0 - 8, cylTop + 6], lang === 'de' ? String.raw`\text{Umgebung}` : String.raw`\text{surroundings}`, 'muted', 1, 'tl', { small: true });
   if (hq > 0.04) b.label('lab-q', [cylX1 + 10, base + 28], q > 0 ? String.raw`q>0` : String.raw`q<0`, 't', 1, 'l');
   if (Math.abs(w) > 0.04) b.label('lab-w', [cylX1 + 10, pistonY - 30], w > 0 ? String.raw`w>0` : String.raw`w<0`, 'e', 1, 'l');
 
