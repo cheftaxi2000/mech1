@@ -5,6 +5,7 @@ import { molarMass } from '../../chem/formula';
 import { fractionAbove, maxwell, meanKEMolar, vAv, vMp, vRms } from '../../chem/kinetic';
 import { niceMax, niceStep } from '../../chem/lawExplorer';
 import { Curve, PLabel, Path, Plot, Seg } from '../plot/Plot';
+import './gasfig.css';
 import './kinfig.css';
 
 const t = String.raw;

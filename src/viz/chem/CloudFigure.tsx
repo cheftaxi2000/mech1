@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { M } from '../../components/Tex';
 import { useTr } from '../../i18n';
 import { cloudPoints, cloudRadius } from '../../chem/light';
+import './gasfig.css';
 import './lightfig.css';
 
 const t = String.raw;

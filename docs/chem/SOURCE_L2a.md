@@ -115,10 +115,10 @@ Tabelle Formel / Name / Eigenschaft: HCN hydrogen cyanide (very toxic, slight od
 - **S. 11** 2.6 Problem Set 2 (optional problems, Aufgaben 1–5 bis nächste Woche abgeben): 1) P = ρ g h, Höhendifferenz entspricht Druckdifferenz; 2) PV = nRT, n = m/M; 3) ideales Gas, V = const., molares Verhältnis χ_CO2 = 0,75; χ_H2O = 0,25; 4) V = 4/3 π r³, PV = nRT = const.; 5) check theory if unsure. 2.7 Kahoot.
 - **S. 12** 2.8 Bonus: Automobile air bags are inflated with nitrogen gas, which is formed by the decomposition of solid sodium azide (NaN3). The other product is sodium metal. Calculate the volume of nitrogen gas at 27 °C and 100.8 kPa formed by the decomposition of 130 g of sodium azide. a) Find the amount of N2 (in moles) b) Find the volume. M_Na = 23 g/mol, M_N = 14 g/mol. Gleichung: 2 NaN3(s) → 2 Na(s) + 3 N2(g); a) n_NaN3 = m/M = 130 g/((23 + 3·14) g/mol) = 2,0 mol; n_N2 = n_NaN3 · 3/2 = 3,0 mol; b) V = nRT/P = 3,0 mol · 8,314 m³Pa/(mol K) · 300 K/100'800 Pa = 0,074 m³ (2 SigFigs).
 
-# Fehler / Auffälligkeiten (für `docs/REVIEW_LOG.md` vorgeschlagen)
-- **CH-A (Folie 11):** «g = 9.8 m²/s» — die Einheit der Fallbeschleunigung ist m/s² (Quadrat am falschen Symbol). Rechnung 10⁴ kg · 9.8 m/s² ≈ 1·10⁵ N stimmt.
+# Fehler / Auffälligkeiten (vorgeschlagene Review-IDs)
+- **CH-A (Folie 11):** «g = 9.8 m²/s» — die Einheit der Fallbeschleunigung ist m/s². Die Rechnung 10⁴ kg · 9.8 m/s² ≈ 1·10⁵ N stimmt.
 - **CH-B (Übung 2, S. 4):** «R ≙ Boltzmann constant» — R ist die (universelle) Gaskonstante; die Boltzmann-Konstante ist k_B = R/N_A ≈ 1,38·10⁻²³ J/K.
-- **CH-C (Übung 2, S. 5, Exercise 2):** Ergebnis «20·10⁵ Pa» — die Rechnung gibt 2,0·10⁵ Pa (Zehnerpotenz).
-- **CH-D (Übung 2, S. 9, Exercise 5b):** Rangfolge der He-Partialdrücke; unsere Zählung im Bild (5, 3, 2 He-Atome) stützt P_He,i > P_He,ii > P_He,iii (kein Fehler, nur Bestätigung).
-- Folie 12: ρ_Hg = 13.5 g/cm³ (genauer 13.595 g/cm³ bei 0 °C); mit 13.5 gibt ρgh für h = 760 mm ≈ 100.6 kPa statt 101.3 kPa (Rundung, kein Fehler).
-- Folie 13 Handschrift/Bild: Quecksilberstände 136.4 mm und 103.8 mm (Bild aus Brown); Differenz h = 32.6 mm. Die Folie rechnet kein Beispiel vor.
+- **CH-C (Übung 2, S. 5, Exercise 2):** Ergebnis «20·10⁵ Pa» — die Rechnung gibt 2,0·10⁵ Pa (Zehnerpotenz zu viel).
+- **CH-D (Übung 2, S. 6, Exercise 3):** V₂ = 1875·50,0/101,3 = 925,5 L → auf drei Ziffern **925 L**; das Blatt schreibt 926 L.
+- **CH-E (Übung 2, S. 2–3, SigFigs):** (1) 20,43 + 1,322 + 83,1 = 104,852 (das Blatt schreibt 104,842) → nach der Regel **104,9** (das Blatt: 104,8). (2) Exercise 1b: (8,1 + 7,26)·3,0 = 15,4·3,0 = 46,2 → **46** (das Blatt: 46,6 → 47).
+- Keine Fehler, nur Rundung: Folie 12 ρ_Hg = 13.5 g/cm³ (genauer 13.595); mit 13.5 gibt ρgh für 760 mm ≈ 100.6 kPa statt 101.3 kPa. Folie 13: Quecksilberstände 136.4 mm und 103.8 mm (Bild aus Brown), h = 32.6 mm; die Folie rechnet kein Beispiel vor.

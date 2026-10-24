@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { M } from '../../components/Tex';
 import { fmtNum, useLang, useTr } from '../../i18n';
 import { SERIES, balmerNm, levelEnergy, nm, regionOf, transition, visibleRGB, type Region } from '../../chem/light';
+import './gasfig.css';
 import './lightfig.css';
 
 const t = String.raw;
@@ -81,8 +82,8 @@ export function BohrExplorer() {
             </g>}
             <circle className="bx-e" cx={55} cy={yf} r={5.5} />
           </svg>
-          {N.map((n) => <div key={n} className="bx-l" style={{ left: `${(158 / 220) * 100}%`, top: `${(levelY(n) / 300) * 100}%` }}><M>{t`n=${n}`}</M></div>)}
-          <div className="bx-l" style={{ left: `${(158 / 220) * 100}%`, top: `${(levelY(Infinity) / 300) * 100}%` }}><M>{t`n=\infty`}</M></div>
+          {N.filter((n) => n <= 3 || n === ni || n === nf).map((n) => <div key={n} className="bx-l" style={{ left: `${(158 / 220) * 100}%`, top: `${(levelY(n) / 300) * 100}%` }}><M>{t`n=${n}`}</M></div>)}
+          <div className="bx-l" style={{ left: `${(158 / 220) * 100}%`, top: `${((levelY(Infinity) - 13) / 300) * 100}%` }}><M>{t`n=\infty`}</M></div>
           <div className="bx-l muted" style={{ left: `${(14 / 220) * 100}%`, top: `${(levelY(Infinity) / 300) * 100}%` }}><M>0</M></div>
           <div className="bx-l e" style={{ left: `${(14 / 220) * 100}%`, top: `${(8 / 300) * 100}%` }}><M>E</M></div>
         </div>

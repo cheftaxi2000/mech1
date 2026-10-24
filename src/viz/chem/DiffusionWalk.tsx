@@ -3,6 +3,7 @@ import { M } from '../../components/Tex';
 import { fmtNum, useLang, useTr } from '../../i18n';
 import { makeWalk, pathLength, pointAtLength, theoryMfp } from '../../chem/walk';
 import { useReducedMotion } from '../figUtils';
+import './gasfig.css';
 import './kinfig.css';
 
 const t = String.raw;

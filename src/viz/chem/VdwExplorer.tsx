@@ -4,6 +4,7 @@ import { fmtNum, useLang, useTr } from '../../i18n';
 import { VDW_TABLE, attractionTerm, idealPm, vdwP, vdwTc, vdwZCurve, zFactor } from '../../chem/kinetic';
 import { niceMax, niceStep } from '../../chem/lawExplorer';
 import { Curve, HLine, Path, Plot, Pt, Seg } from '../plot/Plot';
+import './gasfig.css';
 import './kinfig.css';
 
 const t = String.raw;

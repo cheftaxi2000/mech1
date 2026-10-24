@@ -14,8 +14,8 @@
 .lw-bg { fill: color-mix(in srgb, var(--fg) 14%, var(--panel)); }
 .lw-frame { fill: none; stroke: var(--muted); stroke-width: 1.2; }
 .lw-mark { fill: var(--fg); }
-.lw-r { position: absolute; top: 56%; transform: translateX(-50%); font-size: 0.78rem; color: var(--muted); white-space: nowrap; pointer-events: none; }
-.lw-r.vis { top: 56%; }
+.lw-r { position: absolute; top: 19%; transform: translateX(-50%); font-size: 0.78rem; color: var(--muted); white-space: nowrap; pointer-events: none; }
+.lw-r.vis { display: none; }
 .lw-controls { display: grid; gap: 6px; margin-top: 16px; }
 .lw-table { margin-top: 8px; } .gb-table.lw-table td { text-align: left; }
 .lw-ebar { height: 12px; border-radius: 6px; background: color-mix(in srgb, var(--fg) 8%, transparent); overflow: hidden; margin-top: 8px; }

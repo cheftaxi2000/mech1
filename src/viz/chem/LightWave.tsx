@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { M } from '../../components/Tex';
 import { fmtNum, useLang, useTr } from '../../i18n';
 import { frequency, photonEnergy, regionOf, visibleRGB, type Region } from '../../chem/light';
+import './gasfig.css';
 import './lightfig.css';
 
 const t = String.raw;
