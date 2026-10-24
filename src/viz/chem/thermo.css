@@ -103,3 +103,6 @@
 .th-a-bad { stroke: var(--bad); stroke-width: 3; } .th-a-bad-head { fill: var(--bad); }
 .th-reaction { margin: 6px 0; text-align: center; }
 .th-hess { margin: 14px 0; display: grid; gap: 10px; }
+.th-reaction { overflow-x: auto; max-width: 100%; } .th-reaction .katex { font-size: 1em; } @media (max-width: 520px) { .th-reaction { font-size: 0.82rem; } }
+.th-fig figcaption { grid-template-columns: minmax(0, 1fr); } .th-fig figcaption > * { min-width: 0; } .th-read { max-width: 100%; }
+.th-rx { display: inline-block; max-width: 100%; overflow-x: auto; vertical-align: bottom; }

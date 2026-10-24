@@ -1,4 +1,4 @@
-import { Box, De, Section, Src } from '../components/Blocks';
+import { Box, Section, Src } from '../components/Blocks';
 import { C } from '../components/Chem';
 import { M, MD } from '../components/Tex';
 import { T } from '../i18n';
@@ -18,8 +18,8 @@ export default function CH4Energie() {
       />
       <Box kind="intuition">
         <T
-          de={<p>Stell dir ein Bankkonto vor. Du siehst nie «den Kontostand an sich» im Universum, aber du siehst jede Einzahlung und jede Abhebung. Wie viel sich geändert hat, ist die Summe der Buchungen. Das System ist das Konto, Wärme <M>q</M> und Arbeit <M>w</M> sind die zwei Arten von Buchungen, und <M>{t`\Delta E`}</M> ist die Änderung des Kontostands.</p>}
-          en={<p>Think of a bank account. You never see «the balance itself» of the universe, but you see every deposit and every withdrawal. The change is the sum of the bookings. The system is the account, heat <M>q</M> and work <M>w</M> are the two kinds of bookings, and <M>{t`\Delta E`}</M> is the change of the balance.</p>}
+          de={<p>Stell dir ein Bankkonto vor. Du kennst den Kontostand nicht «an sich», aber du siehst jede Einzahlung und jede Abhebung. Wie viel sich geändert hat, ist die Summe der Buchungen. Das System ist das Konto, Wärme <M>q</M> und Arbeit <M>w</M> sind die zwei Arten von Buchungen, und <M>{t`\Delta E`}</M> ist die Änderung des Kontostands.</p>}
+          en={<p>Think of a bank account. You do not know the balance «as such», but you see every deposit and every withdrawal. The change is the sum of the bookings. The system is the account, heat <M>q</M> and work <M>w</M> are the two kinds of bookings, and <M>{t`\Delta E`}</M> is the change of the balance.</p>}
         />
       </Box>
 
@@ -64,13 +64,13 @@ export default function CH4Energie() {
               <p><b>Innere Energie</b> (<i>internal energy</i>) <M p=":">E</M> gesamte kinetische plus potenzielle Energie im System. Den tatsächlichen Wert von <M>E</M> kennt man typischerweise nicht. Stattdessen interessiert man sich für Änderungen:</p>
               <MD>{t`\Delta E = E_\mathrm{final} - E_\mathrm{initial}`}</MD>
               <p>«Nachher minus vorher»: nachdem «etwas» mit dem System passiert ist, meist eine chemische Reaktion. Das Vorzeichen ist wichtig: <M>{t`\Delta E > 0`}</M> heisst, das System hat Energie gewonnen (aus der Umgebung); <M>{t`\Delta E < 0`}</M> heisst, es hat Energie verloren (an die Umgebung). Bei einer Reaktion gilt <M>{t`E_\mathrm{final}`}</M> für die Produkte und <M>{t`E_\mathrm{initial}`}</M> für die Ausgangsstoffe.</p>
-              <p>Energiediagramm: <C>{'2 H2(g) + O2(g) -> 2 H2O(l)'}</C> gibt Energie an die Umgebung ab, also <M p=".">{t`\Delta E < 0`}</M></p>
+              <p>Energiediagramm: <span className="th-rx"><C>{'2 H2(g) + O2(g) -> 2 H2O(l)'}</C></span> gibt Energie an die Umgebung ab, also <M p=".">{t`\Delta E < 0`}</M></p>
             </>}
             en={<>
               <p><b>Internal energy</b> <M p=":">E</M> total kinetic plus potential energy in the system. Typically we do not know the actual value of <M p=".">E</M> Instead we focus on changes:</p>
               <MD>{t`\Delta E = E_\mathrm{final} - E_\mathrm{initial}`}</MD>
               <p>«After minus before»: after «something» happened to the system, usually a chemical reaction. The sign is important: <M>{t`\Delta E > 0`}</M> means the system has gained energy (from the surroundings); <M>{t`\Delta E < 0`}</M> means it has lost energy (to the surroundings). For a chemical reaction, <M>{t`E_\mathrm{final}`}</M> belongs to the products and <M>{t`E_\mathrm{initial}`}</M> to the reactants.</p>
-              <p>Energy diagram: <C>{'2 H2(g) + O2(g) -> 2 H2O(l)'}</C> releases energy to the surroundings, so <M p=".">{t`\Delta E < 0`}</M></p>
+              <p>Energy diagram: <span className="th-rx"><C>{'2 H2(g) + O2(g) -> 2 H2O(l)'}</C></span> releases energy to the surroundings, so <M p=".">{t`\Delta E < 0`}</M></p>
             </>}
           />
         </Box>
@@ -107,7 +107,7 @@ export default function CH4Energie() {
             <ol>
               <li>Zuerst die Frage: Was hat das System <em>bekommen</em>? Wärme und Arbeit, die hineinfliessen, zählen plus.</li>
               <li>Was es <em>abgegeben</em> hat, zählt minus. Ein Gas, das den Kolben hinausschiebt, gibt Arbeit ab: <M p=".">{t`w < 0`}</M></li>
-              <li>Beides zusammenzählen gibt <M p=".">{t`\Delta E`}</M> Das System ist dabei immer <em>wir selbst als Buchhalter des Systems</em>: Alles wird aus seiner Sicht gezählt.</li>
+              <li>Beides zusammenzählen gibt <M p=".">{t`\Delta E`}</M> Alles wird dabei aus der Sicht des Systems gezählt.</li>
             </ol>
             <p>Im Bild unten stellst du <M>q</M> und <M>w</M> selbst ein. Die Teilchen sind das System: bekommt es Energie, werden sie schneller. Rechts steht die Buchführung von Anfang zu Ende. Die Voreinstellungen sind die Folien und die Aufgabe 1 der Übung.</p>
           </>}
@@ -125,7 +125,7 @@ export default function CH4Energie() {
         <Box kind="uebung" src={<Src ex={4} p="4" />} title={<T de="Aufgabe 1 mit Lösung" en="Exercise 1 with solution" />}>
           <T
             de={<>
-              <p>Drei geschlossene Kästen (Voreinstellungen oben, «Übung 1»). Die Pfeile zeigen <M p=";">q</M> und <M>w</M> ihre Länge ist ihr Betrag. In (i) fliesst Wärme hinaus und Arbeit hinein (Arbeit grösser); in (ii) nur Arbeit hinein; in (iii) Wärme hinein und Arbeit hinaus, beide gleich lang.</p>
+              <p>Drei geschlossene Kästen (Voreinstellungen oben, «Übung 1»). Die Pfeile zeigen <M>q</M> und <M p=";">w</M> ihre Länge ist ihr Betrag. In (i) fliesst Wärme hinaus und Arbeit hinein (Arbeit grösser); in (ii) nur Arbeit hinein; in (iii) Wärme hinein und Arbeit hinaus, beide gleich lang.</p>
               <ul>
                 <li>a) Endotherm (<M p=")?">{t`q > 0`}</M> Nur (iii).</li>
                 <li>b) Exotherm (<M p=")?">{t`q < 0`}</M> Nur (i).</li>
@@ -135,7 +135,7 @@ export default function CH4Energie() {
               </ul>
             </>}
             en={<>
-              <p>Three closed boxes (presets above, «Exercise 1»). The arrows show <M p=";">q</M> and <M>w</M> their length is their magnitude. In (i) heat flows out and work flows in (work larger); in (ii) only work flows in; in (iii) heat in and work out, both equally long.</p>
+              <p>Three closed boxes (presets above, «Exercise 1»). The arrows show <M>q</M> and <M p=";">w</M> their length is their magnitude. In (i) heat flows out and work flows in (work larger); in (ii) only work flows in; in (iii) heat in and work out, both equally long.</p>
               <ul>
                 <li>a) Endothermic (<M p=")?">{t`q > 0`}</M> Only (iii).</li>
                 <li>b) Exothermic (<M p=")?">{t`q < 0`}</M> Only (i).</li>
@@ -169,25 +169,25 @@ export default function CH4Energie() {
         <Box kind="lecture" src={<Src lec={4} p="14–15" />} title={<T de={<><M>E</M> ist eine Zustandsfunktion</>} en={<><M>E</M> is a state function</>} />}>
           <T
             de={<>
-              <p>Die innere Energie <M p=",">E</M> ist eine <b>Zustandsfunktion</b> (<i>state function</i>): Ihr Wert hängt nur vom jetzigen «Zustand» des Systems ab, <em>nicht</em> vom Weg dorthin. Der Zustand ist durch Bedingungen wie <M p=",">P</M> <M>V</M> … festgelegt. <M>E</M> hängt auch von der Stoffmenge ab: <M>E</M> ist eine <i>extensive</i> Grösse.</p>
+              <p>Die innere Energie <M>E</M> ist eine <b>Zustandsfunktion</b> (<i>state function</i>): Ihr Wert hängt nur vom jetzigen «Zustand» des Systems ab, <em>nicht</em> vom Weg dorthin. Der Zustand ist durch Bedingungen wie <M p=",">P</M> <M p=",">V</M> … festgelegt. <M>E</M> hängt auch von der Stoffmenge ab: <M>E</M> ist eine <i>extensive</i> Grösse.</p>
               <p><M>{t`\Delta E`}</M> hängt also nur vom Anfangs- und Endzustand ab; wie wir dorthin gekommen sind, ist egal. Dagegen sind <M>q</M> und <M>w</M> keine Zustandsfunktionen: <b>der Weg zählt!</b></p>
-              <p>Beispiel: <C>{'2 H2(g) + O2(g) -> 2 H2O(l)'}</C> – zwei Mol Wasserstoff verbrennen. Methode 1: im Brenner, der alles als Wärme liefert: <M p=".">{t`\Delta E = q`}</M> Methode 2: im Kolben, der Arbeit plus Wärme liefert: <M p=".">{t`\Delta E = q + w`}</M> <M>{t`\Delta E`}</M> ist gleich, aber <M>q</M> und <M>w</M> hängen von der Methode ab. (Und die Frage am Ende: Welche weiteren Zustandsfunktionen gibt es?)</p>
+              <p>Beispiel: <span className="th-rx"><C>{'2 H2(g) + O2(g) -> 2 H2O(l)'}</C></span> – zwei Mol Wasserstoff verbrennen. Methode 1: im Brenner, der alles als Wärme liefert: <M p=".">{t`\Delta E = q`}</M> Methode 2: im Kolben, der Arbeit plus Wärme liefert: <M p=".">{t`\Delta E = q + w`}</M> <M>{t`\Delta E`}</M> ist gleich, aber <M>q</M> und <M>w</M> hängen von der Methode ab. (Und die Frage am Ende der Folie: Welche weiteren Zustandsfunktionen gibt es?)</p>
             </>}
             en={<>
-              <p>The internal energy <M p=",">E</M> is a <b>state function</b>: its value depends only on the current «state» of the system, <em>not</em> on the path taken to get there. The state is specified by conditions such as <M p=",">P</M> <M>V</M> … <M>E</M> also depends on the quantity of matter: <M>E</M> is an <i>extensive</i> property.</p>
+              <p>The internal energy <M>E</M> is a <b>state function</b>: its value depends only on the current «state» of the system, <em>not</em> on the path taken to get there. The state is specified by conditions such as <M p=",">P</M> <M p=",">V</M> … <M>E</M> also depends on the quantity of matter: <M>E</M> is an <i>extensive</i> property.</p>
               <p>So <M>{t`\Delta E`}</M> depends only on the initial and final state; how we got there does not matter. In contrast <M>q</M> and <M>w</M> are not state functions: <b>the path matters!</b></p>
-              <p>Example: <C>{'2 H2(g) + O2(g) -> 2 H2O(l)'}</C> – combust two moles of hydrogen. Method 1: in a burner that produces all heat: <M p=".">{t`\Delta E = q`}</M> Method 2: in a piston that produces work plus heat: <M p=".">{t`\Delta E = q + w`}</M> <M>{t`\Delta E`}</M> is the same, but <M>q</M> and <M>w</M> depend on the method. (And the question at the end: which other state functions can we consider?)</p>
+              <p>Example: <span className="th-rx"><C>{'2 H2(g) + O2(g) -> 2 H2O(l)'}</C></span> – combust two moles of hydrogen. Method 1: in a burner that produces all heat: <M p=".">{t`\Delta E = q`}</M> Method 2: in a piston that produces work plus heat: <M p=".">{t`\Delta E = q + w`}</M> <M>{t`\Delta E`}</M> is the same, but <M>q</M> and <M>w</M> depend on the method. (And the question at the end of the slide: which other state functions can we consider?)</p>
             </>}
           />
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b> Stell dir einen Berg vor. Die Höhe über dem Meer ist eine Zustandsfunktion: Wenn du von Zermatt nach Gornergrat gehst, hängt der Höhenunterschied nicht davon ab, welchen Weg du nimmst. Wie lange du gelaufen bist, wie viel du geschwitzt hast, hängt dagegen sehr wohl vom Weg ab. Die Höhe ist <M p=",">E</M> der Höhenunterschied ist <M p=",">{t`\Delta E`}</M> und die Mühe des Weges sind <M>q</M> und <M p=".">w</M></p>
-            <p>Unten siehst du das mit den Zahlen der Wasserstoff-Verbrennung (die Zahlen sind eine Ergänzung, sie stehen nicht auf der Folie). Methode 1 liefert alles als Wärme. Methode 2 lässt den Kolben Arbeit leisten; mit dem Regler wählst du, wie viel. Die dunklen Balken <M>{t`\Delta E`}</M> sind immer gleich hoch.</p>
+            <p><b>So liest man das:</b> Stell dir einen Berg vor. Die Höhe über dem Meer ist eine Zustandsfunktion: Wenn du von Zermatt zum Gornergrat gehst, hängt der Höhenunterschied nicht davon ab, welchen Weg du nimmst. Wie lange du gelaufen bist und wie viel du geschwitzt hast, hängt dagegen sehr wohl vom Weg ab. Die Höhe ist <M p=",">E</M> der Höhenunterschied ist <M p=",">{t`\Delta E`}</M> und die Mühe des Weges sind <M>q</M> und <M p=".">w</M></p>
+            <p>Unten siehst du das mit den Zahlen der Wasserstoff-Verbrennung (die Zahlen sind eine Ergänzung, sie stehen nicht auf der Folie). Methode 1 liefert alles als Wärme. Methode 2 lässt den Kolben Arbeit leisten; mit dem Regler wählst du, wie viel. Die grauen Balken <M>{t`\Delta E`}</M> sind immer gleich hoch.</p>
           </>}
           en={<>
-            <p><b>How to read this:</b> picture a mountain. The height above sea level is a state function: if you walk from Zermatt to Gornergrat, the height difference does not depend on the path you take. How long you walked and how much you sweated do depend on the path. The height is <M p=",">E</M> the height difference is <M p=",">{t`\Delta E`}</M> and the effort of the way is <M>q</M> and <M p=".">w</M></p>
-            <p>Below you see this with the numbers of hydrogen combustion (the numbers are a supplement, they are not on the slide). Method 1 delivers everything as heat. Method 2 lets the piston do work; with the slider you choose how much. The dark bars <M>{t`\Delta E`}</M> are always equally tall.</p>
+            <p><b>How to read this:</b> picture a mountain. The height above sea level is a state function: if you walk from Zermatt to the Gornergrat, the height difference does not depend on the path you take. How long you walked and how much you sweated do depend on the path. The height is <M p=",">E</M> the height difference is <M p=",">{t`\Delta E`}</M> and the effort of the way is <M>q</M> and <M p=".">w</M></p>
+            <p>Below you see this with the numbers of hydrogen combustion (the numbers are a supplement, they are not on the slide). Method 1 delivers everything as heat. Method 2 lets the piston do work; with the slider you choose how much. The grey bars <M>{t`\Delta E`}</M> are always equally tall.</p>
           </>}
         />
         <StateFunctionFigure />
@@ -240,4 +240,3 @@ export default function CH4Energie() {
     </article>
   );
 }
-void De;

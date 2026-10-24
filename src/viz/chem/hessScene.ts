@@ -10,7 +10,7 @@ import type { HessRoute } from '../../chem/hess';
 import { ease, seg } from '../anim/geometry';
 import { cbuilder, lerp, type CScene } from './cscene';
 
-export const HS = { W: 560, H: 300, labelX: 292, xa0: 330, dx: 24, top: 30, bottom: 270, minGap: 36, maxGap: 66 } as const;
+export const HS = { W: 520, H: 290, labelX: 262, xa0: 292, dx: 24, top: 28, bottom: 262, minGap: 36, maxGap: 66 } as const;
 
 /** KJ with up to two decimals, TeX decimal comma in German, explicit sign. */
 export function kj(x: number, lang: Lang): string {

@@ -48,7 +48,7 @@ export function HessFigure({ initial = 'propane' }: { initial?: string }) {
   };
   const table = ex.rxn && ex.id !== 'water' ? formationTable(ex.rxn) : null;
   return (
-    <div className="th-hess">
+    <>
       <ThChips label={tr('Reaktion wählen', 'Choose a reaction')} value={id} onPick={setId} items={HESS_EXAMPLES.map((e) => ({
         id: e.id, label: e.id === 'fe' ? <T de="Fe₂O₃ + C (Aufg. 5b)" en="Fe₂O₃ + C (Ex. 5b)" /> : <T de={names[e.id][0]} en={names[e.id][1]} />,
       }))} />
@@ -69,6 +69,6 @@ export function HessFigure({ initial = 'propane' }: { initial?: string }) {
           </table>
         </div>
       )}
-    </div>
+    </>
   );
 }
