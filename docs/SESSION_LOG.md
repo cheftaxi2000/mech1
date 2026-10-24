@@ -138,3 +138,6 @@ Visual system rewritten in `src/design.css` (quiet, Apple-inspired). New entry f
 
 ## 2026-10-23 — Lineare Algebra I (new subject)
 - Topics from exercise classes 1, 2, 4 (classes 3 and 5 filled from recap slides and the TA's visualisations; polybox links unreachable). Nine lessons in chapters LA1–LA5 (`src/lessons/LA*.tsx`, `src/viz/la/`, `src/linalg/`), accent teal-green, landing tile with warping grid. Four implementers in worktrees, lead merged and reviewed on screenshots (iPad landscape, phone). Checks: tsc, 985 unit tests, e2e `la-` and landing green. Review IDs LA-001…006.
+
+## 2026-10-24 — Chemie (new subject, 13 lessons)
+Four implementer agents wrote 13 lessons from lectures 1–6 and the TA's exercise slides; merged by the lead. Name clashes (`mixScene.ts`, `chem.css`, `periodic.css`) resolved: the calorimeter scene is now `thermoMixScene.ts`. Review IDs CH-001…CH-012. vitest 1445 green, ch-* e2e (de/en/phone) 67 green. Screenshot spot-checks on iPad landscape.

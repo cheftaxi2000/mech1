@@ -85,3 +85,15 @@ Lessons built by one implementer per week (worktrees), reviewed by the lead agai
 | LA5 | la-produkt | review |
 
 Offen: Folien der Übungen 3 und 5 fehlen (aus Zusammenfassungen und TA-Visualisierungen ergänzt); Volltest e2e und Animationsframes noch nicht komplett gelaufen.
+
+## Chemie (D-027)
+| Kapitel | Lektion | Status |
+|---|---|---|
+| CH1 | ch-atome, ch-stoechio | review |
+| CH2 | ch-gase, ch-kinetik | review |
+| CH3 | ch-loesungen, ch-redox | review |
+| CH4 | ch-energie, ch-enthalpie | review |
+| CH5 | ch-entropie, ch-gibbs | review |
+| CH6 | ch-licht, ch-orbitale, ch-trends | review |
+
+Offen: Polybox-Links nicht erreichbar; Übungen 2–4 handschriftlich (nur Bild) — Werte aus Scans gelesen; iPad-Hochformat und Animationsframes nicht für alle Lektionen geprüft. Quellen: `docs/chem/SOURCE_*.md`.

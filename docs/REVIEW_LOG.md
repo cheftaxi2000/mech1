@@ -60,3 +60,15 @@ Page = «Ü n / PDF page». Same rules: handled briefly in the lesson where it m
 | LA-004 | Ü4/35 | Transpose rules written with double arrows «⇔» where a one-way «⇒» is meant. | handled in la-spezial (one sentence) |
 | LA-005 | Ü4/36 | A bullet sits under the wrong heading. | handled in la-spezial |
 | LA-006 | Ü4/34 | Several transposes are left blank in the printed table. | handled in la-spezial (filled in as supplement) |
+| CH-001 | V4/27–28 | Propane combustion: inserting the printed rounded ΔH°f values gives −2222 kJ, not −2220; the table values (−103,85 …) give −2219,85. | handled in ch-enthalpie (one sentence) |
+| CH-002 | Ü4 Ex. 6 | Spoon in coffee: equation gives T_eq = 94,0 °C; sheet says 89 °C. | handled in ch-enthalpie |
+| CH-003 | V5/15 | ΔS_univ = +3,0 comes from rounded 22 − 19; exact 21,98 − 19,35 gives +2,6 J mol⁻¹ K⁻¹. | handled in ch-entropie |
+| CH-004 | Ü3 p. 7, Bsp. 4 | Net ionic equation treats Al(OH)₃ as dissolved; by the solubility chart it stays solid: 3 H⁺ + Al(OH)₃(s) → Al³⁺ + 3 H₂O. | handled in ch-redox (one sentence) |
+| CH-005 | Ü3 p. 3, Bsp. 1 | BAC 0,02 mol/L is a one-significant-figure rounding of 0,0174. | handled in ch-loesungen |
+| CH-006 | V2/11 | g written «m²/s», should be m/s². | handled in ch-gase |
+| CH-007 | Ü2 p. 4 | R called «Boltzmann constant»; it is the gas constant. | handled in ch-gase |
+| CH-008 | Ü2 p. 5 | Tennis ball pressure «20·10⁵ Pa»; calculation gives 2,0·10⁵ Pa. | handled in ch-gase |
+| CH-009 | Ü2 p. 6 | 926 L vs. computed 925,5 L. | handled in ch-gase |
+| CH-010 | Ü2 p. 2–3 | Significant figures: 20,43+1,322+83,1 = 104,852 (not 104,842); (8,1+7,26)·3,0 = 46 (not 47). | handled in ch-gase |
+| CH-011 | Ü5 p. 13, Ex. 6b | Handwritten 848,3 kJ/mol; Appendix C gives 856,3 (conclusion unchanged). | handled in ch-gibbs |
+| CH-012 | V6/28, Ü6 p. 8 | «Average distance grows s<p<d» — for hydrogen-like orbitals ⟨r⟩ actually falls slightly; the real reason is penetration. | handled in ch-orbitale, ch-trends |
