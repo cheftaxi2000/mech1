@@ -1,0 +1,26 @@
+/* Shared look of the label figures (LabelFig) and ink colours of the chemistry roles (docs/chem/NOTATION.md). */
+.lf-ink-p { color: var(--ch-p-t); } .lf-ink-v { color: var(--ch-v-t); } .lf-ink-t { color: var(--ch-t-t); } .lf-ink-n { color: var(--ch-n-t); }
+.lf-ink-e { color: var(--ch-e-t); } .lf-ink-s { color: var(--ch-s-t); } .lf-ink-g { color: var(--ch-g-t); }
+.lf-ink-cat { color: var(--ch-cat); } .lf-ink-an { color: var(--ch-an); } .lf-ink-el { color: var(--ch-el); }
+.lf-ink-fg { color: var(--fg); } .lf-ink-muted { color: var(--muted); }
+/* the same inks for the shared Plot labels (roles cp … cg) */
+.pl-ink-cp { color: var(--ch-p-t); } .pl-ink-cv { color: var(--ch-v-t); } .pl-ink-ct { color: var(--ch-t-t); } .pl-ink-cn { color: var(--ch-n-t); }
+.pl-ink-ce { color: var(--ch-e-t); } .pl-ink-cs { color: var(--ch-s-t); } .pl-ink-cg { color: var(--ch-g-t); }
+
+.lf svg { overflow: visible; }
+.lf-fill-p { fill: var(--ch-p); } .lf-fill-v { fill: var(--ch-v); } .lf-fill-t { fill: var(--ch-t); } .lf-fill-n { fill: var(--ch-n); }
+.lf-fill-e { fill: var(--ch-e); } .lf-fill-s { fill: var(--ch-s); } .lf-fill-g { fill: var(--ch-g); }
+.lf-fill-cat { fill: var(--ch-cat); } .lf-fill-an { fill: var(--ch-an); } .lf-fill-el { fill: var(--ch-el); }
+.lf-fill-fg { fill: var(--fg); } .lf-fill-muted { fill: var(--muted); }
+.lf-stroke.lf-p { stroke: var(--ch-p); fill: var(--ch-p); } .lf-stroke.lf-v { stroke: var(--ch-v); fill: var(--ch-v); }
+.lf-stroke.lf-t { stroke: var(--ch-t); fill: var(--ch-t); } .lf-stroke.lf-n { stroke: var(--ch-n); fill: var(--ch-n); }
+.lf-stroke.lf-e { stroke: var(--ch-e); fill: var(--ch-e); } .lf-stroke.lf-s { stroke: var(--ch-s); fill: var(--ch-s); }
+.lf-stroke.lf-g { stroke: var(--ch-g); fill: var(--ch-g); } .lf-stroke.lf-fg { stroke: var(--fg); fill: var(--fg); }
+.lf-stroke.lf-muted { stroke: var(--muted); fill: var(--muted); } .lf-stroke.lf-el { stroke: var(--ch-el); fill: var(--ch-el); }
+.lf-stroke.lf-cat { stroke: var(--ch-cat); fill: var(--ch-cat); } .lf-stroke.lf-an { stroke: var(--ch-an); fill: var(--ch-an); }
+.lf-zero { stroke: var(--muted); stroke-width: 1.4; }
+.lf-box { fill: var(--fill); stroke: var(--line); stroke-width: 1.4; }
+.lf-chips { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+.lf-chips button { font: inherit; font-size: 0.88rem; font-weight: 500; border: 0; border-radius: 980px; background: var(--fill-2); color: var(--fg); padding: 7px 14px; min-height: 36px; cursor: pointer; }
+.lf-chips button[aria-pressed="true"] { background: var(--accent); color: #fff; }
+.lf-chips button:hover:not([aria-pressed="true"]) { background: color-mix(in srgb, var(--fg) 14%, var(--fill-2)); }
