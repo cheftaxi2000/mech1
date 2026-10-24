@@ -86,7 +86,7 @@ export function pistonScene(step: number, t: number, lang: Lang): CScene {
       bar('b-H', 4, 0, qp, 'th-f-g', g4);
       if (g4 > 0.5) { b.line('eq', 'th-l-dash', [xs[0] + bw, y(qp)], [xs[4], y(qp)], ease(seg(t, 0.8, 1))); }
     }
-    b.label('unit', [W - 8, 292], de ? String.raw`\mathrm{kJ}\;(\text{Beispielzahlen})` : String.raw`\mathrm{kJ}\;(\text{example numbers})`, 'muted', 1, 'br', { small: true });
+    b.label('unit', [W - 8, 292], de ? String.raw`\text{kJ}\;(\text{Beispielzahlen})` : String.raw`\text{kJ}\;(\text{example numbers})`, 'muted', 1, 'br', { small: true });
   }
   return b.finish({ step, move, yp, dV: move * (yi - yf) });
 }

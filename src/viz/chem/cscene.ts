@@ -12,7 +12,8 @@ export interface CShape { key: string; kind: 'line' | 'polyline' | 'polygon' | '
 export interface CLabel { key: string; at: P2; tex: string; ink: string; anchor: CAnchor; o: number; box?: boolean; small?: boolean }
 export interface CScene { w: number; h: number; shapes: CShape[]; labels: CLabel[]; data: Record<string, number> }
 
-const asBase = (l: CLabel): SceneLabel => ({ key: l.key, at: l.at, tex: l.tex, ink: 'fg', anchor: l.anchor, o: l.o, box: l.box });
+const est = (tex: string) => tex.replace(/\\mathrm\{([^}]*)\}/g, '$1').replace(/\\mathbf\{([^}]*)\}/g, '$1').replace(/\\!/g, '');
+const asBase = (l: CLabel): SceneLabel => ({ key: l.key, at: l.at, tex: est(l.tex), ink: 'fg', anchor: l.anchor, o: l.o, box: l.box });
 export const labelBox = (l: CLabel) => baseBox(asBase(l));
 export const labelOverlap = (a: CLabel, b: CLabel) => baseOverlap(asBase(a), asBase(b));
 export { texWidth };

@@ -48,11 +48,11 @@ export function stateFnScene(w2: number, lang: Lang): CScene {
     b.label(`h-q${g}`, [a, 38], 'q', 't', 1, 'c'); b.label(`h-w${g}`, [c, 38], 'w', 'e', 1, 'c'); b.label(`h-d${g}`, [d, 38], String.raw`\Delta E`, 'fg', 1, 'c');
     b.label(`n${g}`, [(a + d) / 2 + 2, 14], name, ink, 1, 'c', { small: true });
     b.label(`v-q${g}`, [a, y(q) + 12], r0(q), 't', 1, 'c', { small: true });
-    if (Math.abs(w) >= 1) b.label(`v-w${g}`, [c, Math.max(y(q), y(q + w)) + 12], r0(w), 'e', 1, 'c', { small: true });
+    if (Math.abs(w) >= 1) b.label(`v-w${g}`, [c, Math.min(y(q), y(q + w)) - 11], r0(w), 'e', 1, 'c', { small: true });
     b.label(`v-d${g}`, [d, y(q + w) + 12], r0(q + w), 'fg', 1, 'c', { small: true });
   };
   grp(0, q1, w1, de ? String.raw`\text{Methode 1: Brenner}` : String.raw`\text{method 1: burner}`, 'fg');
   grp(1, q2, w2, de ? String.raw`\text{Methode 2: Kolben}` : String.raw`\text{method 2: piston}`, 'e');
-  b.label('unit', [W - 8, 288], String.raw`\mathrm{kJ}`, 'muted', 1, 'br', { small: true });
+  b.label('unit', [W - 8, 288], String.raw`\text{kJ}`, 'muted', 1, 'br', { small: true });
   return b.finish({ dE, q1, q2, w2, sum1: q1 + w1, sum2: q2 + w2 });
 }

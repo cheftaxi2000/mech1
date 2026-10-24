@@ -100,3 +100,6 @@
 .th-table th:first-child, .th-table td:first-child { text-align: left; }
 .th-table tr.sum td { font-weight: 600; border-top: 2px solid var(--fg); border-bottom: 0; }
 .th-tablewrap { overflow-x: auto; }
+.th-a-bad { stroke: var(--bad); stroke-width: 3; } .th-a-bad-head { fill: var(--bad); }
+.th-reaction { margin: 6px 0; text-align: center; }
+.th-hess { margin: 14px 0; display: grid; gap: 10px; }

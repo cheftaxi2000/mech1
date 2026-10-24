@@ -27,7 +27,7 @@ export function firstLawScene(q: number, w: number, pistonY: number, lang: Lang)
   b.line('handle', 'th-wall', [cx - 26, cylTop - 12], [cx + 26, cylTop - 12]);
   b.rect('piston', 'th-piston', cylX0 + 2, pistonY - 9, cylX1 - cylX0 - 4, 9, 1, 2);
   // heat q through the bottom wall (red)
-  const hq = Math.abs(q), hl = Math.min(44, 8 + hq * 3.4);
+  const hq = Math.abs(q), hl = Math.min(26, 6 + hq * 2.2);
   if (hq > 0.04) for (const x of [cylX0 + 34, cx, cylX1 - 34]) {
     if (q > 0) b.arrow(`q-${x}`, 'th-a-t th-flow', [x, base + 4 + hl + 12], [x, base + 6], 1, 9);
     else b.arrow(`q-${x}`, 'th-a-t th-flow', [x, base + 6], [x, base + 4 + hl + 12], 1, 9);
@@ -72,7 +72,7 @@ export function firstLawScene(q: number, w: number, pistonY: number, lang: Lang)
   if (Math.abs(q) > 0.04) b.label('v-q', [cxs(1), Math.min(y(E0), y(E1)) - 11], mk(q, lang), 't', 1, 'c', { small: true });
   if (Math.abs(w) > 0.04) b.label('v-w', [cxs(2), Math.min(y(E1), y(E2)) - 11], mk(w, lang), 'e', 1, 'c', { small: true });
   b.label('v-E1', [cxs(3), y(Math.max(E2, 0)) - 11], f(E2, lang), 'fg', 1, 'c', { small: true });
-  b.label('unit', [W - 8, 16], String.raw`\mathrm{kJ}`, 'muted', 1, 'tr', { small: true });
+  b.label('unit', [W - 8, 16], String.raw`\text{kJ}`, 'muted', 1, 'tr', { small: true });
   return b.finish({ q, w, dE: q + w, E1, E2, pistonY });
 }
 export { sg };

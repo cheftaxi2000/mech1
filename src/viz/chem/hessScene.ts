@@ -27,6 +27,12 @@ export function hessLayout(route: HessRoute) {
   const lo = Math.min(...ys), hi = Math.max(...ys), span = hi - lo;
   const avail = HS.bottom - HS.top, f = Math.min(1, avail / Math.max(span, 1));
   ys = ys.map((y) => HS.top + (y - lo) * f + (avail - span * f) / 2);
+  // levels that are close in H must still be far enough apart for their labels: spread them (the order stays)
+  const order = ys.map((_, i) => i).sort((a, b) => ys[a] - ys[b] || a - b);
+  const MIN = 36;
+  for (let k = 1; k < order.length; k++) ys[order[k]] = Math.max(ys[order[k]], ys[order[k - 1]] + MIN);
+  const over = Math.max(...ys) - HS.bottom;
+  if (over > 0) { const top = Math.min(...ys), sc = (HS.bottom - top) / (Math.max(...ys) - top); ys = ys.map((y) => top + (y - top) * sc); }
   const xa = Array.from({ length: n + 1 }, (_, i) => HS.xa0 + HS.dx * (i - 1)); // xa[i] = x of arrow i (1-based)
   const xNet = xa[n] + 44;
   return { n, ys, xa, xNet };
@@ -45,7 +51,7 @@ export function hessScene(route: HessRoute, step: number, t: number, lang: Lang)
     b.line(`lv${i}`, i === 0 || i === n ? 'th-level' : 'th-level', [x0f, ys[i]], [x1f, ys[i]], o);
     b.line(`ld${i}`, 'th-l-dash', [HS.labelX + 6, ys[i]], [x0f - 2, ys[i]], o * 0.7);
     b.label(`name${i}`, [HS.labelX, ys[i] - (i === 0 ? 0 : 9)], route.levels[i].tex, 'fg', o, 'r', { small: true });
-    if (i >= 1) b.label(`val${i}`, [HS.labelX, ys[i] + 9], String.raw`\Delta H_{${i}} = ${kj(route.steps[i - 1].dH, lang)}\,\mathrm{kJ}`, 'e', o, 'r', { small: true });
+    if (i >= 1) b.label(`val${i}`, [HS.labelX, ys[i] + 9], String.raw`\Delta H_{${i}} = ${kj(route.steps[i - 1].dH, lang)}\,\text{kJ}`, 'e', o, 'r', { small: true });
   }
   // the last level is stored under index n−1+1 = n in `levels`: draw it (levels has n+1 entries)
   {
@@ -54,7 +60,7 @@ export function hessScene(route: HessRoute, step: number, t: number, lang: Lang)
     b.line(`lv${i}`, 'th-level', [x0, ys[i]], [x1, ys[i]], o);
     b.line(`ld${i}`, 'th-l-dash', [HS.labelX + 6, ys[i]], [x0 - 2, ys[i]], o * 0.7);
     b.label(`name${i}`, [HS.labelX, ys[i] - 9], route.levels[i].tex, 'fg', o, 'r', { small: true });
-    b.label(`val${i}`, [HS.labelX, ys[i] + 9], String.raw`\Delta H_{${i}} = ${kj(route.steps[i - 1].dH, lang)}\,\mathrm{kJ}`, 'e', o, 'r', { small: true });
+    b.label(`val${i}`, [HS.labelX, ys[i] + 9], String.raw`\Delta H_{${i}} = ${kj(route.steps[i - 1].dH, lang)}\,\text{kJ}`, 'e', o, 'r', { small: true });
   }
   // step arrows 1..n, arrow i belongs to animation step i
   for (let i = 1; i <= n; i++) {
@@ -74,7 +80,7 @@ export function hessScene(route: HessRoute, step: number, t: number, lang: Lang)
     const o = ease(seg(step === n + 1 ? t : 1, 0.6, 1));
     const mid = (ys[0] + ys[n]) / 2;
     b.label('net-name', [xNet + 9, mid - 10], std ? String.raw`\Delta H^\circ_\mathrm{rxn}` : String.raw`\Delta H_\mathrm{rxn}`, 'fg', o, 'l');
-    b.label('net-val', [xNet + 9, mid + 10], String.raw`${kj(route.total, lang)}\,\mathrm{kJ}`, 'fg', o, 'l', { small: true });
+    b.label('net-val', [xNet + 9, mid + 10], String.raw`${kj(route.total, lang)}\,\text{kJ}`, 'fg', o, 'l', { small: true });
   }
   b.label('axis', [12, 12], 'H', 'muted', 1, 'tl');
   b.arrow('axis-a', 'th-a-muted', [18, 50], [18, 24], 1, 7);
