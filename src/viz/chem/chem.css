@@ -1,0 +1,79 @@
+/* Chemistry figures (lessons ch-atome, ch-stoechio, ch-loesungen, ch-redox). Uses --ch-* of design.css; no global overrides. */
+
+/* ---- inks for scene labels ---- */
+.ink-cat { color: var(--ch-cat); } .ink-an { color: var(--ch-an); } .ink-el { color: color-mix(in srgb, var(--ch-el) 72%, var(--fg)); }
+.ink-n { color: var(--ch-n-t); } .ink-e { color: var(--ch-e-t); } .ink-s { color: var(--ch-s-t); } .ink-v { color: var(--ch-v-t); } .ink-p { color: var(--ch-p-t); }
+
+/* ---- scene shapes ---- */
+.cs-water { fill: color-mix(in srgb, var(--ch-an) 10%, var(--panel)); stroke: none; }
+.cs-glass { fill: none; stroke: var(--muted); stroke-width: 2.4; stroke-linejoin: round; stroke-linecap: round; }
+.cs-cloud { fill: color-mix(in srgb, var(--muted) 16%, var(--panel)); stroke: var(--muted); stroke-width: 1.6; }
+.cs-cloud-cat { fill: color-mix(in srgb, var(--ch-cat) 22%, var(--panel)); stroke: var(--ch-cat); stroke-width: 1.8; }
+.cs-cloud-an { fill: color-mix(in srgb, var(--ch-an) 22%, var(--panel)); stroke: var(--ch-an); stroke-width: 1.8; }
+.cs-nucleus { fill: var(--ch-cat); }
+.cs-electron { fill: var(--ch-el); stroke: color-mix(in srgb, var(--ch-el) 55%, var(--fg)); stroke-width: 1; }
+.cs-pull { stroke: var(--fg); stroke-width: 2.2; stroke-linecap: round; } .cs-pull-head { fill: var(--fg); }
+.cs-sign { stroke: var(--panel); stroke-width: 1.9; stroke-linecap: round; }
+.cs-wO { fill: color-mix(in srgb, var(--ch-an) 38%, var(--panel)); stroke: var(--ch-an); stroke-width: 1.1; }
+.cs-wH { fill: color-mix(in srgb, var(--ch-cat) 30%, var(--panel)); stroke: var(--ch-cat); stroke-width: 1.1; }
+.cs-ion-cat { fill: var(--ch-cat); stroke: color-mix(in srgb, var(--ch-cat) 60%, var(--fg)); stroke-width: 1; }
+.cs-ion-an { fill: var(--ch-an); stroke: color-mix(in srgb, var(--ch-an) 60%, var(--fg)); stroke-width: 1; }
+.cs-ring-cat { fill: color-mix(in srgb, var(--ch-cat) 12%, var(--panel)); stroke: var(--ch-cat); stroke-width: 2; }
+.cs-ring-an { fill: color-mix(in srgb, var(--ch-an) 12%, var(--panel)); stroke: var(--ch-an); stroke-width: 2; }
+.cs-solid { fill: color-mix(in srgb, var(--muted) 30%, var(--panel)); stroke: var(--muted); stroke-width: 1.2; }
+.cs-div { stroke: var(--muted); stroke-width: 2; stroke-dasharray: 5 4; }
+.cs-link { stroke: var(--fg); stroke-width: 2; stroke-linecap: round; }
+.cs-dash { fill: none; stroke: var(--muted); stroke-width: 1.4; stroke-dasharray: 4 3; }
+.cs-flow { stroke: var(--ch-el); stroke-width: 2.4; fill: none; stroke-linecap: round; }
+.cs-flow-head { fill: var(--ch-el); }
+/* element colours of the classic palette, always with the symbol next to it */
+.cs-aH { fill: color-mix(in srgb, #ffffff 70%, var(--panel)); stroke: var(--muted); stroke-width: 1.3; }
+.cs-aO { fill: #e5484d; stroke: #b02a30; stroke-width: 1.3; }
+.cs-aN { fill: #4f7be8; stroke: #2c4fa8; stroke-width: 1.3; }
+.cs-aC { fill: #5b5f6a; stroke: #2f323a; stroke-width: 1.3; }
+.cs-aCl { fill: #3fb869; stroke: #217a42; stroke-width: 1.3; }
+.cs-aX { fill: color-mix(in srgb, var(--muted) 40%, var(--panel)); stroke: var(--muted); stroke-width: 1.3; }
+.cs-ghost { opacity: 0.35; }
+.cs-bar-ok { fill: color-mix(in srgb, var(--ch-v) 55%, var(--panel)); stroke: var(--ch-v); stroke-width: 1.2; }
+.cs-bar-bad { fill: color-mix(in srgb, var(--ch-e) 50%, var(--panel)); stroke: var(--ch-e); stroke-width: 1.2; }
+.cs-note-box { fill: color-mix(in srgb, var(--accent) 8%, var(--panel)); stroke: color-mix(in srgb, var(--accent) 50%, var(--line)); stroke-width: 1.4; }
+
+/* ---- figure shells ---- */
+.chfig { margin: 14px 0; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); overflow: hidden; }
+.chfig-body { padding: 10px 14px; display: grid; gap: 10px; }
+.chfig-ctl { display: grid; gap: 6px; padding: 8px 14px 12px; border-top: 1px solid var(--line); }
+.chfig .anim-fig { border: 0; border-radius: 0; }
+.chfig-info { display: flex; flex-wrap: wrap; gap: 4px 18px; align-items: baseline; font-size: 0.98rem; }
+.chfig-info > * { white-space: nowrap; }
+.chfig-note { margin: 0; color: var(--muted); font-size: 0.92rem; }
+.chfig-row { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; }
+.chfig-status { min-height: 1.5em; }
+.chfig-ok { color: var(--ch-v-t); font-weight: 600; } .chfig-bad { color: var(--ch-e-t); font-weight: 600; }
+.chfig .v-presets { justify-content: flex-start; }
+.chfig .v-presets button { min-width: 44px; }
+.ch-pill { display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--fill); font-size: 0.95rem; }
+.ch-btn { font: inherit; min-width: 44px; min-height: 44px; padding: 4px 14px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); cursor: pointer; }
+.ch-btn:hover:not(:disabled) { border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); }
+.ch-btn:disabled { opacity: 0.4; cursor: default; }
+.ch-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.ch-btn.sm { min-width: 40px; min-height: 40px; padding: 2px 10px; }
+.ch-legend { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 0.92rem; align-items: center; }
+.ch-legend i { display: inline-block; width: 14px; height: 14px; border-radius: 50%; margin-right: 6px; vertical-align: -2px; border: 1.5px solid currentColor; }
+.ch-legend i.cat { color: var(--ch-cat); background: color-mix(in srgb, var(--ch-cat) 55%, var(--panel)); }
+.ch-legend i.an { color: var(--ch-an); background: color-mix(in srgb, var(--ch-an) 55%, var(--panel)); }
+.ch-legend i.el { color: var(--ch-el); background: var(--ch-el); }
+.ch-legend i.neu { color: var(--muted); background: color-mix(in srgb, var(--muted) 20%, var(--panel)); }
+.ch-legend i.ring-cat { color: var(--ch-cat); background: transparent; }
+.ch-legend i.ring-an { color: var(--ch-an); background: transparent; }
+
+/* ---- generic table of values ---- */
+.ch-table { border-collapse: collapse; margin: 8px 0; font-size: 0.97rem; }
+.ch-table th, .ch-table td { padding: 5px 12px; border-bottom: 1px solid var(--line); text-align: left; }
+.ch-table th { color: var(--muted); font-weight: 600; font-size: 0.9rem; }
+.ch-table td.num, .ch-table th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.ch-scroll { overflow-x: auto; }
+
+@media (max-width: 700px) {
+  .chfig-body { padding: 8px 10px; }
+  .chfig-ctl { padding: 8px 10px 12px; }
+}
