@@ -44,13 +44,13 @@ export function HessFigure({ initial = 'propane' }: { initial?: string }) {
   const steps = useMemo(() => captions(id, route, lang), [id, route, lang]);
   const names: Record<string, [string, string]> = {
     water: ['Wasser (Folien 23–25)', 'Water (slides 23–25)'], propane: ['Propan (Folie 28)', 'Propane (slide 28)'], methanol: ['Methanol (Übung 4, Aufg. 3)', 'Methanol (exercise 4, Ex. 3)'],
-    cao: ['CaO + HF (Aufg. 5a)', 'CaO + HF (Ex. 5a)'], fe: ['Fe₂O₃ + C (Aufg. 5b)', 'Fe₂O₃ + C (Ex. 5b)'],
+    cao: ['CaO + HF (Aufg. 5a)', 'CaO + HF (Ex. 5a)'], fe: ['', ''],
   };
   const table = ex.rxn && ex.id !== 'water' ? formationTable(ex.rxn) : null;
   return (
     <>
       <ThChips label={tr('Reaktion wählen', 'Choose a reaction')} value={id} onPick={setId} items={HESS_EXAMPLES.map((e) => ({
-        id: e.id, label: e.id === 'fe' ? <T de="Fe₂O₃ + C (Aufg. 5b)" en="Fe₂O₃ + C (Ex. 5b)" /> : <T de={names[e.id][0]} en={names[e.id][1]} />,
+        id: e.id, label: e.id === 'fe' ? <T de={<><C>Fe2O3</C> + <C>C</C> (Aufg. 5b)</>} en={<><C>Fe2O3</C> + <C>C</C> (Ex. 5b)</>} /> : <T de={names[e.id][0]} en={names[e.id][1]} />,
       }))} />
       <p className="th-reaction"><C>{ex.src}</C></p>
       <StepPlayer key={id + lang} steps={steps} label={tr('Enthalpiediagramm: Stufen und Pfeile', 'Enthalpy diagram: levels and arrows')}>

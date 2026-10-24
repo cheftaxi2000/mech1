@@ -106,3 +106,19 @@
 .th-reaction { overflow-x: auto; max-width: 100%; } .th-reaction .katex { font-size: 1em; } @media (max-width: 520px) { .th-reaction { font-size: 0.82rem; } }
 .th-fig figcaption { grid-template-columns: minmax(0, 1fr); } .th-fig figcaption > * { min-width: 0; } .th-read { max-width: 100%; }
 .th-rx { display: inline-block; max-width: 100%; overflow-x: auto; vertical-align: bottom; }
+.th-f-ok { fill: color-mix(in srgb, var(--ok) 28%, transparent); stroke: var(--ok); stroke-width: 1.6; } .th-f-bad { fill: color-mix(in srgb, var(--bad) 24%, transparent); stroke: var(--bad); stroke-width: 1.6; }
+.th-block { stroke: var(--fg); stroke-width: 2; }
+.th-temp-0 { fill: color-mix(in srgb, var(--ch-t) 8%, color-mix(in srgb, var(--ch-p) 45%, var(--panel))); }
+.th-temp-1 { fill: color-mix(in srgb, var(--ch-t) 18%, color-mix(in srgb, var(--ch-p) 45%, var(--panel))); }
+.th-temp-2 { fill: color-mix(in srgb, var(--ch-t) 29%, color-mix(in srgb, var(--ch-p) 45%, var(--panel))); }
+.th-temp-3 { fill: color-mix(in srgb, var(--ch-t) 39%, color-mix(in srgb, var(--ch-p) 45%, var(--panel))); }
+.th-temp-4 { fill: color-mix(in srgb, var(--ch-t) 50%, color-mix(in srgb, var(--ch-p) 45%, var(--panel))); }
+.th-temp-5 { fill: color-mix(in srgb, var(--ch-t) 61%, color-mix(in srgb, var(--ch-p) 45%, var(--panel))); }
+.th-temp-6 { fill: color-mix(in srgb, var(--ch-t) 71%, color-mix(in srgb, var(--ch-p) 45%, var(--panel))); }
+.th-temp-7 { fill: color-mix(in srgb, var(--ch-t) 82%, color-mix(in srgb, var(--ch-p) 45%, var(--panel))); }
+.th-temp-8 { fill: color-mix(in srgb, var(--ch-t) 93%, color-mix(in srgb, var(--ch-p) 45%, var(--panel))); }
+.th-phases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.th-phase { text-align: center; border: 1px solid var(--line); border-radius: 8px; padding: 4px; opacity: 0.55; }
+.th-phase.on { opacity: 1; border-color: var(--ch-s); background: color-mix(in srgb, var(--ch-s) 10%, transparent); }
+.th-phase svg { width: 100%; height: auto; display: block; } .th-phase span { font-size: 0.85rem; }
+.th-draw-plot { min-width: 0; }

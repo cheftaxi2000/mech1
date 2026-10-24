@@ -29,3 +29,21 @@ describe('gas in a box (pictures)', () => {
     expect(speedForEnergy(0, 1)).toBeGreaterThan(0);
   });
 });
+
+import { stepGasRange } from './gasBox';
+describe('gas between two moving walls', () => {
+  it('stays between the walls even when the left wall sweeps over the particles', () => {
+    let ps = makeGas(20, 1, 3);
+    for (let i = 0; i < 600; i++) {
+      const x0 = Math.min(0.6, i / 600), x1 = 1;
+      ps = stepGasRange(ps, 1 / 60, x0, x1, 0.8);
+      for (const p of ps) { expect(p.x).toBeGreaterThanOrEqual(x0 - 1e-9); expect(p.x).toBeLessThanOrEqual(x1 + 1e-9); }
+    }
+  });
+  it('a gas confined to the right half spreads over the whole box once the wall is removed', () => {
+    let ps = makeGas(30, 1, 8).map((p) => ({ ...p, x: 0.5 + p.x / 2 }));
+    for (let i = 0; i < 600; i++) ps = stepGasRange(ps, 1 / 60, 0, 1, 0.8);
+    const left = ps.filter((p) => p.x < 0.5).length;
+    expect(left).toBeGreaterThan(8); expect(left).toBeLessThan(22);
+  });
+});

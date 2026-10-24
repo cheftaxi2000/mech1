@@ -47,3 +47,20 @@ export const meanKinetic = (ps: readonly Particle[], speed: number) =>
  * kinetic energy ∝ speed², so speed ∝ √(E/E₀), floored so that the gas never freezes completely.
  */
 export const speedForEnergy = (E: number, E0: number, base = 0.35) => base * Math.sqrt(Math.max(0.05, E / E0));
+
+/**
+ * Like `stepGas`, but the gas lives between two walls x0 <= x <= x1 (e.g. a partition or a piston on the left).
+ * A particle that finds itself outside (because a wall moved over it) is pushed back inside and sent away from the wall.
+ */
+export function stepGasRange(ps: readonly Particle[], dt: number, x0: number, x1: number, speed: number): Particle[] {
+  return ps.map((p) => {
+    let { x, y, vx, vy } = p;
+    x += vx * speed * dt; y += vy * speed * dt;
+    for (let k = 0; k < 4; k++) {
+      if (x < x0) { x = x0 + Math.min(x0 - x, x1 - x0); vx = Math.abs(vx); } else if (x > x1) { x = x1 - Math.min(x - x1, x1 - x0); vx = -Math.abs(vx); }
+      if (y < 0) { y = -y; vy = Math.abs(vy); } else if (y > 1) { y = 2 - y; vy = -Math.abs(vy); }
+    }
+    x = Math.min(x1, Math.max(x0, x)); y = Math.min(1, Math.max(0, y));
+    return { x, y, vx, vy };
+  });
+}
