@@ -1,0 +1,21 @@
+/* Chemie: shared figure styles (animations drawn from pure scenes, see scene.ts). Colour roles: docs/chem/NOTATION.md. */
+.chem-anim svg .c { fill: none; stroke: var(--ink, var(--fg)); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.chem-anim svg .c.f { fill: var(--ink, var(--fg)); }
+.chem-anim svg .c.soft { fill: var(--ink, var(--fg)); fill-opacity: 0.16; }
+.chem-anim svg .c.nostroke { stroke: none; }
+.chem-anim svg .c.dash { stroke-dasharray: 5 4; }
+.chem-anim svg .c.w1 { stroke-width: 1.2; } .chem-anim svg .c.w3 { stroke-width: 3; } .chem-anim svg .c.w4 { stroke-width: 4.5; }
+.i-p { --ink: var(--ch-p); } .i-v { --ink: var(--ch-v); } .i-t { --ink: var(--ch-t); } .i-n { --ink: var(--ch-n); }
+.i-e { --ink: var(--ch-e); } .i-s { --ink: var(--ch-s); } .i-g { --ink: var(--ch-g); } .i-el { --ink: var(--ch-el); }
+.i-fg { --ink: var(--fg); } .i-muted { --ink: var(--muted); }
+.chem-anim svg .c.atom { fill: color-mix(in srgb, var(--muted) 55%, var(--panel)); stroke: color-mix(in srgb, var(--fg) 40%, transparent); stroke-width: 1; }
+.chem-anim svg .c.ground { fill: color-mix(in srgb, var(--fg) 10%, var(--panel)); stroke: var(--muted); }
+.chem-anim svg .c.glass { fill: color-mix(in srgb, var(--ch-p) 6%, var(--panel)); stroke: var(--muted); stroke-width: 2.2; }
+.chem-anim svg .c.hg { fill: color-mix(in srgb, var(--fg) 38%, var(--panel)); stroke: var(--fg); stroke-width: 1.4; }
+.chem-anim svg .c.water { fill: color-mix(in srgb, var(--ch-p) 22%, var(--panel)); stroke: var(--ch-p); stroke-width: 1.4; }
+.anim-label.ink-cp { color: var(--ch-p-t); } .anim-label.ink-cv { color: var(--ch-v-t); } .anim-label.ink-ct { color: var(--ch-t-t); }
+.anim-label.ink-cn { color: var(--ch-n-t); } .anim-label.ink-ce { color: var(--ch-e-t); } .anim-label.ink-cs { color: var(--ch-s-t); }
+.anim-label.ink-cg { color: var(--ch-g-t); } .anim-label.ink-cel { color: var(--ch-el); }
+.chem-anim .anim-label .row.ink-cp { color: var(--ch-p-t); } .chem-anim .anim-label .row.ink-cv { color: var(--ch-v-t); } .chem-anim .anim-label .row.ink-ct { color: var(--ch-t-t); }
+.chem-anim .anim-label .row.ink-cn { color: var(--ch-n-t); } .chem-anim .anim-label .row.ink-ce { color: var(--ch-e-t); } .chem-anim .anim-label .row.ink-fg { color: var(--fg); }
+.chem-anim .anim-label .row.ink-muted { color: var(--muted); }
