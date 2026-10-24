@@ -89,5 +89,5 @@
 .cs-atomB { fill: #c9a05a; stroke: #8c6a2c; stroke-width: 1.2; }
 .cs-stick { stroke: color-mix(in srgb, var(--fg) 55%, var(--panel)); stroke-width: 5; stroke-linecap: round; }
 
-.chfig .anim-fig { max-width: 640px; margin-inline: auto; }
+.chfig .anim-fig { width: 100%; max-width: 640px; margin-inline: auto; }
 .chfig .anim-fig.wide { max-width: 760px; }
