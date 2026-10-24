@@ -69,7 +69,7 @@ export function GasLawExplorer() {
         <Pt x={s.V} y={s.P} role="fg" r={6} />
         <PLabel x={s.V} y={s.P} tex={t`\bigl(${f(s.V, 1)}${tupleSep(lang)}${f(s.P, 2)}\bigr)`} role="fg" dx={8} dy={-14} anchor="l" small />
       </Plot>,
-      <Plot key="b" x={[0, invMax]} y={[0, Pmax]} grid={[0.1, gridOf(Pmax)]} tick={[0.1, gridOf(Pmax)]} axes={[t`1/V\ (\mathrm{L^{-1}})`, t`P\ (\mathrm{atm})`]} className="gf-plot" label={tr('P gegen 1/V: eine Gerade', 'P against 1/V: a straight line')}>
+      <Plot key="b" x={[0, invMax]} y={[0, Pmax]} grid={[0.1, gridOf(Pmax)]} tick={[0.1, gridOf(Pmax)]} axes={[t`1/V`, t`P\ (\mathrm{atm})`]} className="gf-plot" label={tr('P gegen 1/V: eine Gerade', 'P against 1/V: a straight line')}>
         {ghost(s.T, 'T').map((T) => <Curve key={T} f={(x) => curve('boyle', { ...s, T })(1 / x)} dom={[0.01, invMax]} role="aux" dashed width={1.6} />)}
         <Curve f={(x) => f0(1 / x)} dom={[0.02, invMax]} role="cp" />
         <Seg a={[1 / s.V, 0]} b={[1 / s.V, s.P]} role="aux" dashed /><Seg a={[0, s.P]} b={[1 / s.V, s.P]} role="aux" dashed />

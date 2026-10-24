@@ -39,6 +39,15 @@ describe('seeded particle box (pressure from wall hits)', () => {
     const P = measuredP(sim)!, Pi = idealPSim(sim);
     expect(P / Pi).toBeGreaterThan(0.94); expect(P / Pi).toBeLessThan(1.06);
   });
+  it('even a small sample (20 particles) measures the right pressure, for every seed', () => {
+    for (const seed of [1, 2, 3, 4, 5, 20]) {
+      const sim = createSim({ seed, W: 1, T: 300, masses: [N2], counts: [20], keep: 10 });
+      run(sim, 4);
+      const r = measuredP(sim)! / idealPSim(sim);
+      expect(r, `seed ${seed}`).toBeGreaterThan(0.8); expect(r, `seed ${seed}`).toBeLessThan(1.2);
+      expect(meanKE(sim) / (kSim * 300)).toBeCloseTo(1, 9);
+    }
+  });
   it('Boyle: halving the box halves the area and doubles the measured pressure', () => {
     const sim = createSim({ seed: 9, W: 1.6, T: 300, masses: [N2], counts: [300] });
     run(sim, 6); const P1 = measuredP(sim)!;

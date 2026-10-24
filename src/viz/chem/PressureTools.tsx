@@ -33,7 +33,7 @@ export function PressureTools() {
   // manometer: h in mm of mercury (> 0: the open side stands higher)
   const hm = ((pgas - patm) * 1e3) / (RHO_HG_EXACT * G) * 1000; // mm
   const d = Math.max(-110, Math.min(110, hm * SCALE2));
-  const mid = 168, yl = mid + d / 2, yr = mid - d / 2;
+  const mid = 150, yl = mid + d / 2, yr = mid - d / 2;
   const Pa = patm * 1e3;
   const setH = (mm: number) => setPgas(manometerP(Pa, RHO_HG_EXACT, mm / 1000, G) / 1e3);
   const unitRow: [string, number][] = [
@@ -58,7 +58,7 @@ export function PressureTools() {
             </svg>
             <div className="vdemo-label pt-l p" style={at(VB1, 22, surface - 62)}><M>{t`P_{\mathrm{atm}}`}</M></div>
             <div className="vdemo-label pt-l v" style={at(VB1, 200, (yTop + surface) / 2)}><M>h</M></div>
-            <div className="vdemo-label pt-l m" style={at(VB1, (tubeL + tubeR) / 2, topY + Math.max(14, Math.min(40, (yTop - topY) / 2)))}>{yTop - topY > 30 ? tr('Vakuum', 'vacuum') : ''}</div>
+            <div className="vdemo-label pt-l m" style={at(VB1, tubeR + 38, topY + 14)}>{yTop - topY > 26 ? tr('Vakuum', 'vacuum') : ''}</div>
           </div>
           <div className="pt-read"><M>{liquid === 'hg' ? t`h=${f(h * 1000, 0)}\,\mathrm{mm}` : t`h=${f(h, 2)}\,\mathrm{m}`}</M></div>
           <div className="v-presets pt-liquid" role="group" aria-label={tr('Flüssigkeit', 'Liquid')}>
@@ -70,27 +70,25 @@ export function PressureTools() {
           <div className="pt-title">{tr('Manometer', 'Manometer')}</div>
           <div className="gb-stage pt-stage">
             <svg viewBox={VB2.join(' ')} role="img" aria-label={tr('Manometer: U-Rohr mit Quecksilber, links das Gas, rechts offen', 'Manometer: U-tube with mercury, gas on the left, open on the right')}>
-              {/* gas side: bulb, tube, tinted gas above the left mercury level */}
-              <circle className="pt-bulb" cx={34} cy={96} r={26} />
-              {[[26, 90], [40, 100], [30, 104], [42, 86], [24, 102]].map(([x, y], i) => <circle key={i} className="pt-gas" cx={x} cy={y} r={2.8} />)}
-              <rect className="pt-gasfill" x={72} y={50} width={18} height={yl - 50} />
-              {/* mercury */}
-              <path className="pt-liq hg" d={`M72 ${yl} H90 V250 H142 V${yr} H160 V258 H72 Z`} />
-              <rect className="pt-liq hg" x={142 + 1.5} y={yr} width={14} height={30} />
-              <polyline className="pt-glass" points={`72,50 72,258 160,258 160,34`} />
-              <polyline className="pt-glass" points={`90,50 90,250 142,250 142,34`} />
-              <path className="pt-glass" d={`M60 96 H72 M60 108 H72`} />
-              <line className="pt-glass" x1={90} y1={50} x2={72} y2={50} />
-              <line className="pt-arr" x1={151} y1={4} x2={151} y2={26} /><polygon className="pt-arr-h" points="151,32 146,23 156,23" />
-              <line className="pt-dash" x1={160} x2={196} y1={yr} y2={yr} />
-              <line className="pt-dash" x1={90} x2={196} y1={yl} y2={yl} />
+              <circle className="pt-bulb" cx={30} cy={62} r={26} />
+              {[[22, 56], [36, 66], [26, 70], [38, 52], [20, 68]].map(([x, y], i) => <circle key={i} className="pt-gas" cx={x} cy={y} r={2.8} />)}
+              <rect className="pt-gasfill" x={54} y={54} width={16} height={16} />
+              <rect className="pt-gasfill" x={70} y={40} width={22} height={yl - 40} />
+              <polygon className="pt-liq hg" points={`70,${yl} 92,${yl} 92,240 140,240 140,${yr} 162,${yr} 162,262 70,262`} />
+              <polyline className="pt-glass" points="70,40 70,262 162,262 162,20" />
+              <polyline className="pt-glass" points="92,40 92,240 140,240 140,20" />
+              <line className="pt-glass" x1={70} y1={40} x2={92} y2={40} />
+              <line className="pt-glass" x1={54} y1={54} x2={70} y2={54} /><line className="pt-glass" x1={54} y1={70} x2={70} y2={70} />
+              <line className="pt-arr" x1={151} y1={0} x2={151} y2={16} /><polygon className="pt-arr-h" points="151,26 146,15 156,15" />
+              <line className="pt-dash" x1={162} x2={200} y1={yr} y2={yr} />
+              <line className="pt-dash" x1={92} x2={200} y1={yl} y2={yl} />
               {Math.abs(d) > 6 && <g><line className="pt-dim" x1={190} x2={190} y1={d > 0 ? yl : yr} y2={d > 0 ? yr + 7 : yl + 7} />
                 <polygon className="pt-dim-h" points={d > 0 ? `190,${yr} 185,${yr + 9} 195,${yr + 9}` : `190,${yl} 185,${yl - 9} 195,${yl - 9}`} /></g>}
             </svg>
-            <div className="vdemo-label pt-l p" style={at(VB2, 126, 12)}><M>{t`P_{\mathrm{atm}}`}</M></div>
-            <div className="vdemo-label pt-l g" style={at(VB2, 34, 146)}><M>{t`P_{\mathrm{gas}}`}</M></div>
-            {Math.abs(d) > 6 && <div className="vdemo-label pt-l v" style={at(VB2, 216, (yl + yr) / 2)}><M>h</M></div>}
-            <div className="vdemo-label pt-l m" style={at(VB2, 116, 266)}><M>{t`\mathrm{Hg}`}</M></div>
+            <div className="vdemo-label pt-l p" style={at(VB2, 122, 10)}><M>{t`P_{\mathrm{atm}}`}</M></div>
+            <div className="vdemo-label pt-l g" style={at(VB2, 30, 100)}><M>{t`P_{\mathrm{gas}}`}</M></div>
+            {Math.abs(d) > 6 && <div className="vdemo-label pt-l v" style={at(VB2, 214, (yl + yr) / 2)}><M>h</M></div>}
+            <div className="vdemo-label pt-l m" style={at(VB2, 116, 272)}><M>{t`\mathrm{Hg}`}</M></div>
           </div>
           <div className="pt-read"><M>{t`h=${f(hm, 1)}\,\mathrm{mm}`}</M></div>
           <div className="v-presets pt-liquid" role="group" aria-label={tr('Beispiele', 'Examples')}>

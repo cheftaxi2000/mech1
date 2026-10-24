@@ -31,7 +31,7 @@
 .gf-s.cp input { accent-color: var(--ch-p); } .gf-s.cv input { accent-color: var(--ch-v); } .gf-s.ct input { accent-color: var(--ch-t); } .gf-s.cn input { accent-color: var(--ch-n); }
 .gf-note { font-size: 0.85rem; color: var(--muted); }
 .gf-table { margin-top: 8px; }
-.gf-table th { width: 2.4em; } .gf-table td { text-align: left; }
+.gb-table.gf-table th { width: 2.4em; } .gb-table.gf-table td { text-align: left; }
 .gf-tag { color: var(--muted); font-size: 0.85rem; }
 .gf-r-free th, .gf-r-free td { font-weight: 600; }
 .gf-hint { margin: 8px 0 0; font-size: 0.92rem; color: var(--muted); }

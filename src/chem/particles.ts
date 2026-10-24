@@ -50,12 +50,29 @@ function newPart(sim: Sim, s: number): Part {
   const sd = Math.sqrt((kSim * sim.T) / sim.masses[s]); // each velocity component is Gaussian with variance kT/m
   return { x: rand(sim) * sim.W, y: rand(sim), vx: gauss(sim) * sd, vy: gauss(sim) * sd, s };
 }
+/**
+ * Give all particles of species s a fresh set of velocities with mean kinetic energy exactly kT: Rayleigh-distributed
+ * speeds (the 2-D Maxwell shape) and evenly spread directions. The particles do not collide, so a lucky or unlucky
+ * random sample would otherwise stay with a small box for ever; this keeps even 5 particles honest.
+ */
+function rethermalize(sim: Sim, s: number) {
+  const ps = sim.parts.filter((p) => p.s === s);
+  const n = ps.length;
+  if (!n) return;
+  const sp = ps.map(() => Math.sqrt(-2 * Math.log(1 - rand(sim))));
+  const mean2 = sp.reduce((a, v) => a + v * v, 0) / n;
+  const k = Math.sqrt((2 * kSim * sim.T) / (sim.masses[s] * mean2)); // ⟨v²⟩ = 2kT/m in 2-D
+  const off = rand(sim);
+  const order = ps.map((_, i) => i);
+  for (let i = n - 1; i > 0; i--) { const j = Math.floor(rand(sim) * (i + 1)); [order[i], order[j]] = [order[j], order[i]]; }
+  ps.forEach((p, i) => { const a = (2 * Math.PI * (order[i] + off)) / n; p.vx = Math.cos(a) * sp[i] * k; p.vy = Math.sin(a) * sp[i] * k; });
+}
 const emptyWin = (n: number): Window => ({ imp: new Array(n).fill(0), dur: 0 });
 
 /** counts[s] particles of species s with masses[s] (u). */
 export function createSim(o: { seed: number; W: number; T: number; masses: number[]; counts: number[]; keep?: number }): Sim {
   const sim: Sim = { seed: o.seed, W: o.W, T: o.T, masses: o.masses, parts: [], time: 0, win: [], cur: emptyWin(o.masses.length), flashes: [], hits: 0, keep: o.keep ?? WINDOWS_KEPT };
-  o.counts.forEach((c, s) => { for (let i = 0; i < c; i++) sim.parts.push(newPart(sim, s)); });
+  o.counts.forEach((c, s) => { for (let i = 0; i < c; i++) sim.parts.push(newPart(sim, s)); rethermalize(sim, s); });
   return sim;
 }
 
@@ -81,6 +98,7 @@ export function setCount(sim: Sim, s: number, n: number) {
   let have = countOf(sim, s);
   while (have < n) { sim.parts.push(newPart(sim, s)); have++; }
   while (have > n) { const i = sim.parts.map((p) => p.s).lastIndexOf(s); sim.parts.splice(i, 1); have--; }
+  rethermalize(sim, s);
   resetMeasurement(sim);
 }
 
