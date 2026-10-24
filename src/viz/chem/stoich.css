@@ -1,0 +1,38 @@
+/* stoichiometry figures (lesson ch-stoechio) */
+.bal-eq { font-size: 1.35rem; text-align: center; padding: 6px 0; overflow-x: auto; }
+.bal-ctl { display: flex; flex-wrap: wrap; gap: 8px 16px; justify-content: center; }
+.bal-one { display: flex; align-items: center; gap: 6px; }
+.bal-sp { min-width: 3.2em; text-align: right; }
+.bal-n { min-width: 1.2em; text-align: center; font-variant-numeric: tabular-nums; }
+.bal-ledger { display: grid; gap: 4px; max-width: 520px; margin: 0 auto; width: 100%; }
+.bal-head, .bal-row { display: grid; grid-template-columns: 3em 1fr 1fr; gap: 10px; align-items: center; }
+.bal-head { color: var(--muted); font-size: 0.85rem; }
+.bal-sq { display: flex; flex-wrap: wrap; gap: 3px; align-items: center; min-height: 24px; }
+.bal-sq i { width: 14px; height: 14px; border-radius: 3px; background: color-mix(in srgb, var(--ch-v) 55%, var(--panel)); border: 1px solid var(--ch-v); }
+.bal-sq i.bad { background: color-mix(in srgb, var(--ch-e) 55%, var(--panel)); border-color: var(--ch-e); }
+.bal-sq b { margin-left: 6px; font-variant-numeric: tabular-nums; }
+
+.mc-custom input { font: inherit; width: 9em; padding: 4px 8px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); }
+.mc-grid { display: grid; gap: 8px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.mc-grid label { display: grid; gap: 4px; }
+.mc-grid input { font: inherit; width: 100%; min-width: 0; padding: 6px 8px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); font-variant-numeric: tabular-nums; }
+.mc-bars { display: flex; gap: 8px; align-items: flex-end; height: 130px; padding-top: 6px; }
+.mc-bar { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; position: relative; font-size: 0.85rem; }
+.mc-bar i { display: block; width: 70%; background: color-mix(in srgb, var(--ch-n) 40%, var(--panel)); border: 1px solid var(--ch-n); border-radius: 4px 4px 0 0; }
+.mc-bar.on i { background: var(--ch-n); }
+.mc-bar small { color: var(--muted); }
+@media (max-width: 600px) { .mc-grid { grid-template-columns: 1fr; } }
+
+.st-mols { width: 100%; max-width: 480px; margin: 0 auto; display: block; }
+.st-dots { fill: var(--muted); font-size: 18px; }
+.st-table td, .st-table th { white-space: nowrap; }
+.st-stack { display: flex; gap: 14px; align-items: flex-end; justify-content: center; height: 150px; }
+.st-col { width: 90px; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; align-items: stretch; position: relative; }
+.st-col > div { display: grid; place-items: center; border: 1px solid var(--line-strong); min-height: 4px; font-size: 0.85rem; }
+.st-col .h2 { background: color-mix(in srgb, var(--ch-p) 30%, var(--panel)); }
+.st-col .o2 { background: color-mix(in srgb, var(--ch-t) 30%, var(--panel)); }
+.st-col .h2o { background: color-mix(in srgb, var(--ch-an) 25%, var(--panel)); }
+.st-col small { text-align: center; color: var(--muted); margin-top: 2px; }
+.st-eq { align-self: center; font-size: 1.4rem; }
+
+.dim-chain { font-size: 1.15rem; overflow-x: auto; padding: 6px 4px; text-align: center; }

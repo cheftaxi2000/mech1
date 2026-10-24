@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { WATER_CS } from '../../chem/thermo';
 import { CAL, calScene, thermoY } from './calScene';
 import { FL, firstLawScene, pistonTarget } from './firstLawScene';
-import { mixScene } from './mixScene';
+import { mixScene } from './thermoMixScene';
 import { DE_WATER_L, SF, W_RANGE, stateFnScene } from './stateFnScene';
 import { SYS_FLOWS, systemScene, type SysKind } from './systemScene';
 import { expectInside, expectNoOverlap, lab, shape } from './cTestKit';

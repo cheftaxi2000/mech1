@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { M } from '../../components/Tex';
 import { T, fmtNum, useLang, useTr } from '../../i18n';
 import { SceneFig, ThChips, ThSlider } from './ChemFig';
-import { mixScene } from './mixScene';
+import { mixScene } from './thermoMixScene';
 
 const t = String.raw;
 

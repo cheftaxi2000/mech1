@@ -1,0 +1,16 @@
+/* atom figures (lesson ch-atome) */
+.cs-proton { fill: var(--ch-cat); stroke: color-mix(in srgb, var(--ch-cat) 55%, var(--fg)); stroke-width: 0.8; }
+.cs-neutron { fill: color-mix(in srgb, var(--muted) 55%, var(--panel)); stroke: var(--muted); stroke-width: 0.8; }
+.cs-bar-iso { fill: color-mix(in srgb, var(--ch-n) 50%, var(--panel)); stroke: var(--ch-n); stroke-width: 1.4; }
+.cs-mean { stroke: var(--ch-e); stroke-width: 2.6; stroke-dasharray: 6 4; }
+.cs-box { fill: color-mix(in srgb, var(--ch-an) 8%, var(--panel)); stroke: var(--line-strong); stroke-width: 1.4; }
+.cs-box-sel { stroke: var(--accent); stroke-width: 3.2; }
+.cs-atomA { fill: #3f7be0; stroke: #2551a3; stroke-width: 1.2; }
+.cs-atomB { fill: #c9a05a; stroke: #8c6a2c; stroke-width: 1.2; }
+.cs-stick { stroke: color-mix(in srgb, var(--fg) 55%, var(--panel)); stroke-width: 5; stroke-linecap: round; }
+
+.ion-row { display: flex; flex-wrap: wrap; gap: 4px; }
+.ion-btn { font: inherit; min-height: 40px; min-width: 44px; padding: 2px 8px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); cursor: pointer; opacity: 0.75; }
+.ion-btn.bold { opacity: 1; font-weight: 700; border-color: var(--line-strong); }
+.ion-btn[aria-pressed="true"] { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 14%, transparent); opacity: 1; }
+.ion-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
