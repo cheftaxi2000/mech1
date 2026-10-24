@@ -249,7 +249,7 @@ export default function CH6Orbitale() {
             <p><b>So liest man das Bild:</b></p>
             <ol>
               <li>Wasserstoff: Nur ein Elektron, es spürt nur den Kern. Dann zählt allein, wie weit weg es ist, also <M p=".">n</M> Alle Kästchen einer Schale liegen gleich hoch. Die Formel dazu aus der Übung: <M p=".">{t`E_n = -R_H/n^2`}</M></li>
-              <li>Mehrelektronenatom: Die anderen Elektronen stossen ab. Wie stark, hängt davon ab, wie nah ein Elektron dem Kern kommt. Ein s-Elektron dringt im Mittel am nächsten heran, ein p-Elektron weniger, ein d-Elektron noch weniger. Die Übung sagt es so: Der mittlere Abstand wächst, <M p=",">{t`\Delta x_s < \Delta x_p < \Delta x_d < \Delta x_f`}</M> und damit steigt die Energie, <M p=".">{t`E_s < E_p < E_d < E_f`}</M></li>
+              <li>Mehrelektronenatom: Die anderen Elektronen stossen ab. Wie stark, hängt davon ab, wie nah ein Elektron dem Kern kommt. Ein s-Elektron dringt im Mittel am nächsten heran, ein p-Elektron weniger, ein d-Elektron noch weniger. Die Übung sagt es so (genauer ist es die «Durchdringung», siehe die Lektion zur Abschirmung, CH-601): Der mittlere Abstand wächst, <M p=",">{t`\Delta x_s < \Delta x_p < \Delta x_d < \Delta x_f`}</M> und damit steigt die Energie, <M p=".">{t`E_s < E_p < E_d < E_f`}</M></li>
               <li>Darum liegt 4s <em>unter</em> 3d. Das Bild schaltet zwischen beiden Fällen um. Auf der nächsten Lektion (Abschirmung) wird dieser Grund genauer erklärt.</li>
             </ol>
           </>}
@@ -257,7 +257,7 @@ export default function CH6Orbitale() {
             <p><b>How to read the figure:</b></p>
             <ol>
               <li>Hydrogen: only one electron, it feels only the nucleus. Then only its distance counts, that is, <M p=".">n</M> All boxes of a shell lie at the same height. The formula from the exercise class: <M p=".">{t`E_n = -R_H/n^2`}</M></li>
-              <li>Multielectron atom: the other electrons repel. How strongly depends on how close an electron comes to the nucleus. An s electron comes closest on average, a p electron less, a d electron even less. The exercise class says it this way: the average distance grows, <M p=",">{t`\Delta x_s < \Delta x_p < \Delta x_d < \Delta x_f`}</M> and so the energy rises, <M p=".">{t`E_s < E_p < E_d < E_f`}</M></li>
+              <li>Multielectron atom: the other electrons repel. How strongly depends on how close an electron comes to the nucleus. An s electron comes closest on average, a p electron less, a d electron even less. The exercise class says it this way (more precisely it is “penetration”, see the lesson on screening, CH-601): the average distance grows, <M p=",">{t`\Delta x_s < \Delta x_p < \Delta x_d < \Delta x_f`}</M> and so the energy rises, <M p=".">{t`E_s < E_p < E_d < E_f`}</M></li>
               <li>This is why 4s lies <em>below</em> 3d. The figure switches between the two cases. The next lesson (screening) explains this reason in more detail.</li>
             </ol>
           </>}
