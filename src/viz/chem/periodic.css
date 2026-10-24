@@ -1,0 +1,13 @@
+/* Periodic table grid (PeriodicGrid) */
+.pg { display: grid; grid-template-columns: repeat(18, minmax(0, 1fr)); grid-template-rows: repeat(5, auto); gap: 2px; container-type: inline-size; width: 100%; max-width: 760px; margin-inline: auto; }
+.pg-cell { display: flex; flex-direction: column; align-items: center; justify-content: center; aspect-ratio: 1 / 1; min-width: 0; padding: 0; border: 0; border-radius: 3px; background: var(--fill-2); color: var(--fg); font: inherit; line-height: 1; overflow: hidden; }
+button.pg-cell { cursor: pointer; }
+button.pg-cell:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; z-index: 1; }
+.pg-cell.ring { outline: 2.5px solid var(--fg); outline-offset: -1px; z-index: 1; }
+.pg-sym { font-size: clamp(7.5px, 2.9cqw, 17px); }
+.pg-sym .katex { font-size: 1em; }
+.pg-sub { font-size: clamp(5px, 1.7cqw, 10px); margin-top: 1px; font-variant-numeric: tabular-nums; opacity: 0.85; }
+/* block colours of the slides: s blue, p pink, d orange, f beige */
+.pg-b-s { background: color-mix(in srgb, var(--ch-p) 45%, var(--panel)); }
+.pg-b-p { background: color-mix(in srgb, var(--ch-t) 38%, var(--panel)); }
+.pg-b-d { background: color-mix(in srgb, var(--ch-e) 45%, var(--panel)); }

@@ -13,11 +13,12 @@ const FigCtx = createContext<Ctx | null>(null);
 
 export type Ink = 'p' | 'v' | 't' | 'n' | 'e' | 's' | 'g' | 'cat' | 'an' | 'el' | 'fg' | 'muted';
 
-export function LabelFig({ w, h, label, className, children }: { w: number; h: number; label: string; className?: string; children: ReactNode }) {
+export function LabelFig({ w, h, label, className, behind, children }: { w: number; h: number; label: string; className?: string; behind?: ReactNode; children: ReactNode }) {
   const [layer, setLayer] = useState<HTMLDivElement | null>(null);
   return (
     <FigCtx.Provider value={{ w, h, layer }}>
       <div className={`plot-fig lf${className ? ` ${className}` : ''}`} style={{ aspectRatio: `${w} / ${h}` }}>
+        {behind && <div className="lf-behind">{behind}</div>}
         <svg viewBox={`0 0 ${w} ${h}`} role="img" aria-label={label}>{children}</svg>
         <div className="plot-layer" ref={setLayer} />
       </div>
@@ -26,11 +27,11 @@ export function LabelFig({ w, h, label, className, children }: { w: number; h: n
 }
 
 /** KaTeX label at viewBox position (x, y); `anchor` says which side of the label touches the point. */
-export function FLabel({ x, y, tex, ink = 'fg', anchor = 'c', small, halo = true, opacity }: { x: number; y: number; tex: string; ink?: Ink; anchor?: 'c' | 'l' | 'r' | 't' | 'b'; small?: boolean; halo?: boolean; opacity?: number }) {
+export function FLabel({ x, y, tex, ink = 'fg', anchor = 'c', small, halo = true, opacity, slide }: { x: number; y: number; tex: string; ink?: Ink; anchor?: 'c' | 'l' | 'r' | 't' | 'b'; small?: boolean; halo?: boolean; opacity?: number; slide?: boolean }) {
   const c = useContext(FigCtx);
   if (!c?.layer || !tex) return null;
   return createPortal(
-    <div className={`plot-label lf-ink-${ink} a-${anchor}${small ? ' small' : ''}${halo ? ' halo' : ''}`}
+    <div className={`plot-label lf-ink-${ink} a-${anchor}${small ? ' small' : ''}${halo ? ' halo' : ''}${slide ? ' lf-slide' : ''}`}
       style={{ left: `${(x / c.w) * 100}%`, top: `${(y / c.h) * 100}%`, ...(opacity !== undefined ? { opacity } : {}) }}>
       <M>{tex}</M>
     </div>, c.layer);

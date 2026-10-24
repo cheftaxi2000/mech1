@@ -177,7 +177,7 @@ export default function CH5Gibbs() {
           <T de={<p>«Bei konstantem <M p=":">T</M> Vergleiche!»</p>} en={<p>“At constant <M p=":">T</M> Compare!”</p>} />
           <MD>{t`\Delta G_{\mathrm{sys}} = \Delta H_{\mathrm{sys}} - T\,\Delta S_{\mathrm{sys}}`}</MD>
           <T
-            de={<p>«Ein spontaner Prozess verlangt <M p=".">{t`\Delta S_{\mathrm{univ}} > 0`}</M> Also …» (Handschriftlich: «da <M p="»">{t`T > 0`}</M> Notiz: «Wir nennen <M>{t`\Delta G_{\mathrm{sys}}`}</M> einfach <M p=".">{t`\Delta G`}</M>» Josiah Willard Gibbs (1839–1903), Amerikaner, als Erster mit einem amerikanischen Doktorat in Ingenieurwissenschaften ausgezeichnet (1863).</p>}
+            de={<p>«Ein spontaner Prozess verlangt <M p=".">{t`\Delta S_{\mathrm{univ}} > 0`}</M> Also …» (Handschriftlich: «da <M p="»).">{t`T > 0`}</M> Notiz: «Wir nennen <M>{t`\Delta G_{\mathrm{sys}}`}</M> einfach <M p=".">{t`\Delta G`}</M>» Josiah Willard Gibbs (1839–1903), Amerikaner, als Erster mit einem amerikanischen Doktorat in Ingenieurwissenschaften ausgezeichnet (1863).</p>}
             en={<p>“Spontaneous process requires <M p=".">{t`\Delta S_{\mathrm{univ}} > 0`}</M> Thus…” (handwritten: “since <M p=".">{t`T > 0`}</M>”). Note: “We call <M>{t`\Delta G_{\mathrm{sys}}`}</M> simply <M p=".">{t`\Delta G`}</M>” Josiah Willard Gibbs (1839–1903), American, first to be awarded an American doctorate in engineering (1863).</p>}
           />
         </Box>
