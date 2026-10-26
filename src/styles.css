@@ -4,15 +4,15 @@
   --lecture: #2563eb; --supplement: #7c3aed; --mis: #d97706; --review: #dc2626; --key: #0f766e; --intu: #0891b2;
   --tint: 6%;
   --scene-bg: #f6f7f9; --scene-fg: #64748b;
-  --c-x: #2563eb; --c-y: #d97706; --c-y-text: #b45309; --c-z: #16a34a; --c-z-text: #15803d; --c-rho: #0d9488; --c-rho-text: #0f766e; --c-r: #1c2230; --c-angle: #9333ea; --c-point: #e11d48;
+  --c-x: #2563eb; --c-y: #d97706; --c-y-text: #b45309; --c-z: #16a34a; --c-z-text: #15803d; --c-rho: #0d9488; --c-rho-text: #0f766e; --c-r: #1c2230; --c-angle: #9333ea; --c-point: #e11d48; --c-force: #ea580c; --c-force-text: #c2410c; --c-vel: var(--c-point);
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   color: var(--fg); background: var(--bg);
 }
 /* 3D scenes stay light in both themes: their labels are drawn into the WebGL image in dark ink. */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { --c-x: #60a5fa; --c-y: #fbbf24; --c-y-text: #fbbf24; --c-z: #4ade80; --c-z-text: #4ade80; --c-rho: #2dd4bf; --c-rho-text: #2dd4bf; --c-r: #e5e7eb; --c-angle: #c084fc; --c-point: #fb7185; --bg: #11141a; --panel: #181c24; --fg: #e5e7eb; --muted: #94a3b8; --line: #2a303b; --accent: #60a5fa; --tint: 14%; --scene-bg: #eef0f3; color-scheme: dark; }
+  :root:not([data-theme="light"]) { --c-x: #60a5fa; --c-y: #fbbf24; --c-y-text: #fbbf24; --c-z: #4ade80; --c-z-text: #4ade80; --c-rho: #2dd4bf; --c-rho-text: #2dd4bf; --c-r: #e5e7eb; --c-angle: #c084fc; --c-point: #fb7185; --c-force: #fb923c; --c-force-text: #fdba74; --c-vel: var(--c-point); --bg: #11141a; --panel: #181c24; --fg: #e5e7eb; --muted: #94a3b8; --line: #2a303b; --accent: #60a5fa; --tint: 14%; --scene-bg: #eef0f3; color-scheme: dark; }
 }
-:root[data-theme="dark"] { --c-x: #60a5fa; --c-y: #fbbf24; --c-y-text: #fbbf24; --c-z: #4ade80; --c-z-text: #4ade80; --c-rho: #2dd4bf; --c-rho-text: #2dd4bf; --c-r: #e5e7eb; --c-angle: #c084fc; --c-point: #fb7185; --bg: #11141a; --panel: #181c24; --fg: #e5e7eb; --muted: #94a3b8; --line: #2a303b; --accent: #60a5fa; --tint: 14%; --scene-bg: #eef0f3; color-scheme: dark; }
+:root[data-theme="dark"] { --c-x: #60a5fa; --c-y: #fbbf24; --c-y-text: #fbbf24; --c-z: #4ade80; --c-z-text: #4ade80; --c-rho: #2dd4bf; --c-rho-text: #2dd4bf; --c-r: #e5e7eb; --c-angle: #c084fc; --c-point: #fb7185; --c-force: #fb923c; --c-force-text: #fdba74; --c-vel: var(--c-point); --bg: #11141a; --panel: #181c24; --fg: #e5e7eb; --muted: #94a3b8; --line: #2a303b; --accent: #60a5fa; --tint: 14%; --scene-bg: #eef0f3; color-scheme: dark; }
 * { box-sizing: border-box; }
 body { margin: 0; background: var(--bg); color: var(--fg); line-height: 1.6; font-size: 16.5px; }
 a { color: var(--accent); }
@@ -164,7 +164,7 @@ b.bad { color: var(--bad); } b.ok { color: var(--ok); }
 .anim-label[data-anchor="bl"] { transform: translateY(-100%); }
 .anim-label[data-anchor="br"] { transform: translate(-100%, -100%); }
 .anim-label .katex { font-size: 1em; }
-.ink-muted { color: var(--muted); } .ink-point { color: var(--c-point); } .ink-angle { color: var(--c-angle); }
+.ink-force { color: var(--c-force-text); } .ink-vel { color: var(--c-point); } .ink-muted { color: var(--muted); } .ink-point { color: var(--c-point); } .ink-angle { color: var(--c-angle); }
 .ink-x { color: var(--c-x); } .ink-y { color: var(--c-y-text); } .ink-z { color: var(--c-z-text); } .ink-rho { color: var(--c-rho-text); } .ink-r, .ink-fg { color: var(--fg); }
 .anim-label.abox { background: color-mix(in srgb, var(--panel) 90%, transparent); border: 1px solid var(--line); border-radius: 6px; padding: 0.35em 0.55em; text-shadow: none; }
 .anim-label .row { padding: 0.12em 0; }

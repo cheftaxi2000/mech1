@@ -97,3 +97,14 @@ Offen: Folien der Übungen 3 und 5 fehlen (aus Zusammenfassungen und TA-Visualis
 | CH6 | ch-licht, ch-orbitale, ch-trends | review |
 
 Offen: Polybox-Links nicht erreichbar; Übungen 2–4 handschriftlich (nur Bild) — Werte aus Scans gelesen; iPad-Hochformat und Animationsframes nicht für alle Lektionen geprüft. Quellen: `docs/chem/SOURCE_*.md`.
+
+## Mechanik Kap. 4 Kräfte / Kap. 5 Leistung (D-028)
+| Topic | Pages | Status |
+|---|---|---|
+| kraft | 29 | planned |
+| reaktionsprinzip | 30 | planned |
+| systemabgrenzung | 30–31 | planned |
+| verteilte-kraefte | 31–32 | planned |
+| leistung | 33 | planned |
+| leistung-rotation | 33–35 | planned |
+| leistung-kraeftegruppe | 34–36 | planned |

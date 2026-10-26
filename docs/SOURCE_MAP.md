@@ -248,3 +248,62 @@ Equation numbers in parentheses are the lecture's own.
   Boxed: **ω_Arm = ω₂ · R₂/(R₂+R₁) + ω₁ · R₁/(R₂+R₁)**.
 - Red (partly legible): «ω₂ = 0 → 1. (erstes) Übersetzungsverhältnis»; «ω₂ ≠ 0 … ω₂ < 0 ⇒ ω_Arm ↓».
 - Sign convention implied by the figure: all velocities drawn in the same sense (to the left), i.e. ω₁, ω₂, ω₃, ω_Arm counted in the same turning sense (counter-clockwise for the drawn arrows). Verified `planetary.test.ts`.
+
+---
+## Kapitel 4 «Kräfte» (pp. 29–32) und Kapitel 5 «Leistung» (pp. 33–36)
+(Source: the student's Goodnotes PDF «2018 HS Mitschrift», PDF pages 31–38 = printed pages 29–36; read from screenshots, pages 29–36. Handwriting in *italics*, colours in brackets. Verified numbers: `src/physics/force.test.ts`.)
+
+### p. 29 — 4 Kräfte: Eigenschaften, mathematische Beschreibung
+- **Eigenschaften:** • Beschreiben Wechselwirkung zwischen materiellen Systemen. • Ursachen für Veränderung von v̲ oder Veränderung der Gestalt [«v̲» and «Gestalt» underlined]. • Statik: Wie sollen Kräfte sein, damit ein System in Ruhe bleibt? → *Gleichgewicht*.
+- **Mathematische Beschreibung:** → Charakterisierung der Wirkung durch Richtung, Betrag und Angriffspunkt. ⇒ Kraft: punktgebundener Vektor {A | F̲} [*Vektor F̲*, *Angriffspunkt «A»* with arrows to the two parts of {A|F̲}]. Einheit: N := Kgm/s² (Newton). → R-024
+- • **Kontaktkräfte:** Wechselwirkung mit Berührung. • **Fernkräfte:** Wechselwirkung ohne Berührung. • **Kräftegruppe:** mehrere Kräfte am System [green: *äquivalente Darstellung*].
+  {A_i | F̲_i}, i = 1, 2, 3… → {{A₁|F̲₁}, {A₂|F̲₂}, {A₃|F̲₃}, …}; [green: *speziell*] {A | F̲_i}, i = 1, 2, 3… → {A | R̲}, R̲ = Σ_i F̲_i.
+- **Fig. 4.1: Kräfte als punktgebundene Vektoren:** a horizontal bar with five points A₁…A₅ on/at it and the forces F̲₁…F̲₅ drawn as grey arrows at them in different directions (F₁ up from A₁ at the left end, F₂ down-left onto A₂ from above, F₃ down onto A₃, F₄ down-left through A₄ (arrow tip below-left), F₅ up-right at A₅ at the right end).
+- **Fig. 4.2: Kräfte mit gleichem Angriffspunkt:** (a) and (b): the same five forces F̲₁…F̲₅ at one point A, and the resultant R̲ (grey, between F̲₄ and F̲₅) — (a) with underlined letters, (b) without.
+
+### p. 30 — Reaktionsprinzip
+- **Das Reaktionsprinzip. POSTULAT:** Übt ein erster materieller Punkt A₁ auf einen zweiten A₂ die Kraft {A₂ | F̲} aus (*Actio*), so wirkt seinerseits der materielle Punkt A₂ auf A₁ mit der Gegenkraft {A₁ | −F̲} (*Reactio*).
+- **ZUSATZPOSTULAT:** Bei Fernkräften liegen die Wirkungslinien von Kraft und Gegenkraft auf der Verbindungsgeraden durch A₁ und A₂.
+- Figure left: two curved bodies A₁ (above, hatched) and A₂ (below, hatched) touching at one point. [*zur Zeit t₀: Kontaktkräfte: A₁(t₀) = A₂(t₀); Fernkräfte: A₁(t₀) ≠ A₂(t₀)*]. Figure right: the same two bodies slightly apart, {A₂ | F̲} with F̲₂ = F̲ drawn down onto A₂ and F̲₁ = −F̲ drawn up onto A₁, {A₁ | −F̲}; the two forces circled in red. Lower right: two circles A₁ (small, left) and A₂ (large, right) with a dashed red line through both centres, force arrows ±F̲ on the line [blue crosses at the centres].
+- • Es existiert keine Kraft ohne Reaktion. • Innere und äussere Kräfte ↔ Systemabgrenzung.
+- Innere Kraft: Angriffspunkt der Reaktion *auch* im System. Äussere Kraft: Angriffspunkt der Reaktion *ausserhalb* vom System.
+
+### p. 31 — Innere/äussere Kräfte am Beispiel; Systemabgrenzung; Fig. 4.8
+- Three drawings (top → bottom): (1) **Träger auf zwei Stützen mit Lastkörper:** Lastkörper (block, weight G̲ at its centre, pull Z̲ to the right at its right end, normal forces N̲₁, N̲₂ at its two feet, friction R̲₁, R̲₂ pointing left) lies on the Träger (long beam); under the beam the reactions −N̲₁, −N̲₂ (down), −R̲₁, −R̲₂ (to the right); Stützen at A (left) and B (right) [label «Stütze»]: F̲_A (up-left) and F̲_B at the beam, −F̲_A (down-right) and −F̲_B at the supports (all grey). (2) Lastkörper alone with G̲, Z̲, N̲₁, N̲₂, R̲₁, R̲₂. (3) Lastkörper + Träger with G̲, Z̲, N̲₁, N̲₂, R̲₁, R̲₂, −R̲₁, −R̲₂, −N̲₁, −N̲₂, F̲_A, F̲_B.
+- Below (labels): [pink] **äussere Kräfte**, [black] **innere Kräfte**; then (4) Lastkörper alone with its forces in pink (all external), (5) Lastkörper + Träger with G̲, Z̲, F̲_A, F̲_B in pink (the contact forces N, R, −N, −R grey = inner).
+- **Systemabgrenzung** System: Teilbereich des 3D Raumes, besteht i.A. aus mehreren Körpern. Abgrenzung: je nach Ziel der Analyse.
+- **Fig. 4.8: verteilte Kräfte:** (a) Träger und Stütze: a single arrow on the beam on a support ⇒ the same with the force spread as hatched strip (contact area); (b) Kugel auf ebener Unterlage: arrow ⇒ arrow with hatched contact patch; (c) Ladungen: two circles (charges) with arrow ⇒ two hatched cylinders/volumes.
+
+### p. 32 — verteilte Kräfte, Kraftdichte
+- Kontaktkräfte → Flächenverteilt; Fernkräfte → Volumenverteilt } [red underlined] **Kraftdichte – verteilte Kräfte**.
+- **Flächenkräfte → Flächenkraftdichte** [N/m²]: s̲ = lim_{ΔA→0} ΔF̲/ΔA. → Kraft am infinitesimalen Flächenelement: dF̲ = s̲ dA. Summe aller Kräfte: R̲ = ∫∫_A s̲ dA [typed as ∫ ∫_A, written «∫ ∫_A s̲ dA»]. Figure: a curved surface patch A with a small element dA and the force dF̲ on it.
+- **Volumenkräfte → Raumkraftdichte** [N/m³]: F̲ = lim_{ΔV→0} ΔF̲/ΔV. → Kraft am infinitesimalen Volumenelement: dF̲ = F̲ dV. → R-025
+- [handwritten] *das Gewicht:* a box with axes e̲_x, e̲_y, e̲_z (z up); **F̲ = −ρ·g·e̲_z** [brace over ρ·g: *γ*]; **dF̲ = dG̲ = −ρ·g·dV e̲_z**. *Summe der Kräfte:* **G̲ = −∭_V ρ g dV e̲_z = −ρ·g·V e̲_z** [*Falls homogen*, arrow to the second form].
+- [handwritten, framed on the right] *Parenthèse:* ΔV → 0 ⇒ ΔM → 0; ΔV → 0 ⇒ ΔM/ΔV ≠ 0; lim_{ΔV→0} ΔM/ΔV = ρ.
+- **Linienkräfte → Linienkraftdichte** [N/m]: q̲ = lim_{Δx→0} ΔF̲/Δx; dF̲ = q̲ dx → R̲ = ∫ q̲(x) dx. Figure: beam on two supports with a row of equal arrows above it (a constant line load); below: an x-axis from 0 to L with a small element dx and the arrow dF̲; R̲ = ∫₀^L q̲(x) dx.
+
+### p. 33 — 5 Leistung
+- «5 Leistung» [handwritten bubble: *„charakterisiert die Wirkung einer Kraft“*]. {A | F̲}: **P = F̲ · v̲_A**, [N m/s] = [W]. P = |F̲||v̲_A| cos α [angle α between F̲ and v̲_A in a small sketch].
+- [handwritten classification, with small F/v sketches] **Antriebskraft** α < π/2: P = ++ (F ∥ v), P = + (F oblique forward). **Widerstandskraft** α > π/2: P = − , P = −−. **Leistungslos** α = π/2: P = 0.
+- **Figur 5.2: Kraft ohne Leistung.** Left «Normalkraft»: a ball (circle) on a curved surface; N̲ at the contact point M₁ (on the ball), −N̲ at M₂ (on the surface), velocities v̲₁ (of M₁, tangent) and v̲₂ (of M₂, tangent). Right «Lorentzkraft»: charge +q with B̲ (up), v̲ (up-right), F̲ (down-right), right angles marked.
+- **Leistung einer Einzelkraft F̲ bei Rotation:** [*F in P*] {P | F̲}, P ∉ μ: v̲_P = ω̲ × OP̲; **boxed:** P = (ω̲ × OP̲)·F̲ = ω̲·(OP̲ × F̲) [underbraces: v̲_P and M̲_O]. Side figure: a circular body K rotating about the axis μ (vertical line) with centre O on the axis, a point P and the force F̲ (blue), ω̲ (red) along the axis.
+- «Leistung von F̲ bei Starrkörperrotation» [figure: grey body, axis μ with ω̲ (blue) upward, O′ on the axis above, O at the bottom, P with F̲ (red); e̲_z axes]: P = F̲·v̲_P = F̲·(ω̲×OP̲) = ω̲·(OP̲×F̲) = ω̲·M̲_O; P = ω̲·M̲_O = ω̲·M̲_O′; P = ω̲·M̲_O = ω̲·e̲_z·M̲_O = ω·M_z.
+
+### p. 34 — Moment; mehrere Kräfte am System
+- M̲_O: «Moment der Kraft {P | F̲} bez. O». M̲_O = OP̲ × F̲ = F̲ × PO̲. P = F̲·v̲_P = M̲_O·ω̲. O′ ∈ μ: M̲_O′ = O′P̲ × F̲; O′P̲ = O′O̲ + OP̲.
+  M̲_O′·ω̲ = ω̲·[(O′O̲ + OP̲) × F̲] = ω̲·(O′O̲ × F̲) [underbrace: 0] + ω̲·(OP̲ × F̲) [underbrace: ω̲·M̲_O]; P = M̲_O·ω̲ = M̲_O′·ω̲.
+  **Merke:** M̲_O = OP̲ × F̲ ≠ M̲_O′ = O′P̲ × F̲. μ ≡ z: P = M̲_z·ω̲ = M̲_z′·ω̲, Projektion von M̲ in z-Richtung. [handwritten: P = ω·e̲_z·M̲_O = ω·e̲_z·M̲_O′ with underbraces M_z, M_z′]; M_z′ = M̲_O′·e̲_z; M_z = M̲_O·e̲_z; M_z = M_z′; (OP̲×F̲)·e̲_z =? ((O′O̲+OP̲)×F̲)·e̲_z = (O′O̲×F̲)·e̲_z [underbrace 0] + (OP̲×F̲)·e̲_z [M_O, M_O′ underbraces].
+- **Mehrere Kräfte am System:** Leistung einer Kräftegruppe: P(F̲₁, …, F̲_n) = P(F̲₁) + P(F̲₂) + … + P(F̲_n). {A | F̲_i} → P = F̲₁·v̲_A + … + F̲_n·v̲_A = (Σ_{i=1}^n F̲_i)·v̲_A = R̲·v̲_A [brace under the sum: R̲]. {A_i | F̲_i} → P = F̲₁·v̲₁ + F̲₂·v̲₂ + … + F̲_n·v̲_n.
+- System: starre Körper ⇒ Einfacher! **Boxed: P = R̲·v̲_B + M̲_B·ω̲** [handwritten arrows: *Resultierende der Kräftegruppe*; *Moment der Kräftegruppe bezüglich B*].
+- Leistung berechnen: • starrer Körper K, • Kinemate in B: {v̲_B, ω̲}, • Kräftegruppe {A_i, F̲_i} → P = R̲·v̲_B + M̲_B·ω̲; R̲ = Σ_{i=1}^n F̲_i: Resultierende der Kräftegruppe; M̲_B = Σ_{i=1}^n (BA̲_i × F̲_i): Moment der Kräftegruppe bez. B.
+
+### p. 35 — Moment; Beweis; Beispiel Leiter (Figur 5.6)
+- Figures: F̲ (red) at A with O: **M̲_O = OA̲ × F̲** (M̲_O blue ⟂ the plane of OA̲ and F̲, angle φ between F̲ and OA̲); **M̲_O = OA̲ × F̲ = F̲ × AO̲** (angle π − φ between F̲ and AO̲); three pictures of the right-hand rule: parallelepiped (C = A × B), hand, screw.
+- **Beispiel: 2 Kräfte in B.** Rigid body with B, v̲_B (green), ω̲ (green), forces F̲₁ at A₁, F̲₂ at A₂ [red]. *in B bekannt: v̲_B, ω̲*. v̲₁ = v̲_B + ω̲ × BA̲₁; v̲₂ = v̲_B + ω̲ × BA̲₂. P = F̲₁·v̲₁ + F̲₂·v̲₂ = F̲₁·v̲_B + F̲₁·(ω̲ × BA̲₁) + F̲₂·v̲_B + F̲₂·(ω̲ × BA̲₂) [red: *a̲·(b̲×c̲) = b̲·(c̲×a̲)*] = (F̲₁ + F̲₂)·v̲_B + ω̲·(BA̲₁ × F̲₁) + ω̲·(BA̲₂ × F̲₂) [underbraces: R̲; M̲_B₁, M̲_B₂] = R̲·v̲_B + ω̲·M̲_B q.e.d.
+- **Figur 5.6 (Leiter):** a ladder A–B (length L, B at the top right, 45° at A, midpoint C, «L/2» twice); |F̲_B| =: G (down at B), |F̲_C| =: W at C (red arrow from below right *to* C, perpendicular to the ladder, a right-angle mark at C); axes e̲_x (right), e̲_y (up), e̲_z (out of the page); v̲ (blue arrow at A to the right), ω̲ (⊙ at A). *Geg.:* v̲_A = (v, 0, 0)ᵀ, ω̲ = (0, 0, ω)ᵀ. *Ges.:* Gesamtleistung. → R-026
+  **Methode I** (circled): M̲_AG = AB̲ × G̲ = (0, 0, −GL√2/2)ᵀ; M̲_AW = AC̲ × W̲ = (0, 0, W·L/2)ᵀ; P = R̲·v̲_A + ω̲·M̲_A = (−(√2/2)W, (√2/2)W − G, 0)·(v, 0, 0) + (0, 0, ω)·(0, 0, −GL√2/2 + W·L/2) = −(√2/2)Wv + ωW L/2 − ωGL√2/2.
+  **Methode II** (circled): v̲_C = v̲_A + ω̲ × AC̲ = (v, 0, 0) + (0,0,ω)×(L√2/4, L√2/4, 0) = (v − ωL√2/4, ωL√2/4, 0); v̲_B = v̲_A + ω̲ × AB̲ = (v − ωL√2/2, ωL√2/2, 0); P = Σ_{i=1}^{2} F̲_i·v̲_i = (−(√2/2)W, (√2/2)W, 0)·v̲_C [in C] + (0, −G, 0)·v̲_B [in B] = −(√2/2)Wv + W (L/2) ω − Gω L (√2/2).
+
+### p. 36 — Figur 5.6 graphisch
+- **III** *in B:* G (red, down), velocity components of B in blue (v to the right, (√2/2)ωL up and left) → **P_B = −G (√2/2) ω L**. *in C:* velocity components of C (ωL/2 along the ladder-perpendicular direction, (√2/2)v …) with W (red) → **P_C = +W ω L/2 − W (√2/2) v**.
+- **IV** *in A:* R̲: components −(√2/2)W (to the left), (√2/2)W up, G down (red), v to the right (blue) → **R̲·v̲_A = −v (√2/2) W**. M̲_A: ⊙ ω (blue), ⊙ W L/2 (red), ⊗ (√2/2) G L (red) [*M̲_A = M̲_AW + M̲_AG*, *M̲_A bezüglich z Achse*] → **M̲_A·ω̲ = +W (L/2) ω − (√2/2) G L ω**.
