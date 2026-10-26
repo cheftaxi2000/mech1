@@ -1,0 +1,130 @@
+/* Figures of the lessons «Systemabgrenzung» (K3) and «Verteilte Kräfte» (K4).
+   Colours: outer forces vermilion (--c-force), inner forces grey (--muted), points red (--c-point), system frame blue (--accent). */
+
+.kf { margin: 14px 0; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); padding: 10px 10px 12px; }
+.kf-fig { position: relative; container-type: inline-size; margin-inline: auto; width: 100%; }
+.kf-fig > svg { display: block; width: 100%; height: auto; user-select: none; -webkit-user-select: none; }
+.kf-lbl { position: absolute; transform: translate(-50%, -50%); white-space: nowrap; pointer-events: none; line-height: 1;
+  font-size: clamp(11px, 3.3cqw, 18px); text-shadow: 0 0 2px var(--panel), 0 0 3px var(--panel), 0 0 5px var(--panel), 0 0 7px var(--panel); }
+.kf-lbl.a-l { transform: translate(0, -50%); } .kf-lbl.a-r { transform: translate(-100%, -50%); }
+.kf-lbl.a-t { transform: translate(-50%, 0); } .kf-lbl.a-b { transform: translate(-50%, -100%); }
+.kf-lbl.small { font-size: clamp(11px, 2.8cqw, 15px); }
+.kf-lbl.word { font-size: clamp(11px, 2.9cqw, 15px); color: var(--muted); }
+.kf-lbl .katex { font-size: 1em; }
+.kf-lbl.ink-out { color: var(--c-force-text); } .kf-lbl.ink-in { color: var(--muted); } .kf-lbl.ink-sys { color: var(--accent); }
+.kf-lbl.ink-pos { color: var(--ok); } .kf-lbl.ink-neg { color: var(--c-y-text); }
+.kf-lbl.ink-ghost { color: var(--muted); opacity: 0.55; } .kf-lbl.dim { opacity: 0.4; } .kf-lbl.focus { font-weight: 700; }
+
+/* arrows (React figures) */
+.kf-arrow { --kw: 3; }
+.kf-arrow line { stroke: currentColor; stroke-width: calc(var(--kw) * 1px); stroke-linecap: round; }
+.kf-arrow polygon { fill: currentColor; }
+.kf-arrow.out { color: var(--c-force); } .kf-arrow.in { color: var(--muted); } .kf-arrow.load { color: var(--fg); }
+.kf-arrow.neutral { color: color-mix(in srgb, var(--fg) 55%, transparent); }
+.kf-arrow.ghost { color: color-mix(in srgb, var(--muted) 42%, transparent); }
+.kf-arrow.pos { color: var(--ok); } .kf-arrow.neg { color: var(--c-y); }
+.kf-arrow.dim { opacity: 0.4; }
+.kf-arrow.focus line { stroke-width: calc(var(--kw) * 1px + 2px); }
+.kf-halo { stroke: var(--accent); stroke-opacity: 0.28; stroke-linecap: round; fill: none; }
+.kf-hit { stroke: transparent; stroke-width: 22px; stroke-linecap: round; fill: none; pointer-events: stroke; cursor: pointer; }
+
+/* bodies, frames, ground */
+.kf-body { fill: color-mix(in srgb, var(--muted) 10%, var(--panel)); stroke: var(--muted); stroke-width: 1.6px; stroke-linejoin: round; }
+.kf-body.in { fill: color-mix(in srgb, var(--accent) 13%, var(--panel)); stroke: var(--accent); }
+.kf-body.drag { cursor: grab; touch-action: none; }
+.kf-ground { stroke: var(--muted); stroke-width: 1.6px; fill: none; }
+.kf-frame-fill { fill: color-mix(in srgb, var(--accent) 7%, transparent); stroke: none; }
+.kf-frame { fill: none; stroke: var(--accent); stroke-width: 2.2px; stroke-dasharray: 8 5; stroke-linejoin: round; }
+.kf-dot { fill: var(--c-point); } .kf-ring { fill: var(--panel); stroke: var(--c-point); stroke-width: 2px; }
+.kf-wheel { fill: var(--panel); stroke: var(--muted); stroke-width: 1.6px; }
+
+/* controls */
+.kf-body-chips { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; align-items: center; margin-bottom: 8px; }
+.kf-body-chips .kf-cap { color: var(--muted); font-size: 0.9rem; margin-right: 2px; }
+.kf-chip { font: inherit; min-height: 44px; padding: 2px 14px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); cursor: pointer; }
+.kf-chip[aria-pressed="true"] { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 14%, transparent); font-weight: 600; }
+.kf-chip.small { min-height: 40px; padding: 2px 10px; font-size: 0.92rem; }
+.kf-chip:hover { border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); } .kf-chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.kf-controls { display: grid; gap: 4px 22px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-top: 8px; padding: 0 4px; }
+.kf-slider { grid-template-columns: auto minmax(90px, 1fr) 5.2em; }
+.kf-slider .val { white-space: nowrap; }
+.kf-readout { margin-top: 8px; display: grid; gap: 8px; }
+.kf-lists { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 8px 14px; }
+.kf-list { border: 1px solid var(--line); border-radius: 10px; padding: 6px 10px 8px; background: var(--bg); }
+.kf-list h4 { margin: 0 0 4px; font-size: 0.86rem; font-weight: 650; letter-spacing: 0.01em; display: flex; align-items: center; gap: 8px; }
+.kf-list h4 i { display: inline-block; width: 16px; height: 4px; border-radius: 2px; background: var(--muted); }
+.kf-list.out h4 i { background: var(--c-force); }
+.kf-items { display: flex; flex-wrap: wrap; gap: 4px; min-height: 36px; align-items: center; }
+.kf-item { font: inherit; min-height: 36px; padding: 0 9px; border-radius: 8px; border: 1px solid var(--line); background: var(--panel); color: var(--fg); cursor: pointer; }
+.kf-list.out .kf-item { border-color: color-mix(in srgb, var(--c-force) 55%, var(--line)); color: var(--c-force-text); }
+.kf-list.in .kf-item { color: var(--muted); }
+.kf-item[aria-pressed="true"], .kf-item:hover { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); }
+.kf-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.kf-empty { color: var(--muted); font-size: 0.9rem; }
+.kf-info { padding: 7px 12px; border-radius: 8px; background: color-mix(in srgb, var(--fg) 5%, transparent); font-size: 0.95rem; min-height: 3.1em; }
+.kf-info p { margin: 0; }
+.kf-sums { display: flex; flex-wrap: wrap; gap: 4px 20px; justify-content: center; }
+.kf-sums .v-result { padding: 3px 12px; }
+.kf-hint { color: var(--muted); font-size: 0.92rem; text-align: center; margin: 4px 0 0; }
+
+/* step animation shapes (AnimFigure): kinds out / in / ld / gh / nt, heads with -h */
+.ks-out { stroke: var(--c-force); stroke-width: 3.2; stroke-linecap: round; } .ks-out-h { fill: var(--c-force); }
+.ks-outs { stroke: var(--c-force); stroke-width: 2; stroke-linecap: round; } .ks-outs-h { fill: var(--c-force); }
+.ks-in { stroke: var(--muted); stroke-width: 3.2; stroke-linecap: round; } .ks-in-h { fill: var(--muted); }
+.ks-ld { stroke: var(--fg); stroke-width: 3.2; stroke-linecap: round; } .ks-ld-h { fill: var(--fg); }
+.ks-gh { stroke: color-mix(in srgb, var(--muted) 55%, transparent); stroke-width: 2.4; stroke-linecap: round; } .ks-gh-h { fill: color-mix(in srgb, var(--muted) 55%, transparent); }
+.ks-ac { stroke: var(--accent); stroke-width: 3.2; stroke-linecap: round; } .ks-ac-h { fill: var(--accent); }
+.ks-pos { stroke: var(--ok); stroke-width: 3.2; stroke-linecap: round; } .ks-pos-h { fill: var(--ok); }
+.ks-body { fill: color-mix(in srgb, var(--muted) 10%, var(--panel)); stroke: var(--muted); stroke-width: 1.8; stroke-linejoin: round; }
+.ks-body.sys { fill: color-mix(in srgb, var(--accent) 13%, var(--panel)); stroke: var(--accent); }
+.ks-body.fade { fill: color-mix(in srgb, var(--muted) 6%, var(--panel)); stroke-opacity: 0.6; }
+.ks-ground { stroke: var(--muted); stroke-width: 1.6; fill: none; }
+.ks-frame { fill: none; stroke: var(--accent); stroke-width: 2.4; stroke-dasharray: 8 5; stroke-linejoin: round; stroke-linecap: round; }
+.ks-frame-fill { fill: color-mix(in srgb, var(--accent) 7%, transparent); stroke: none; }
+.ks-dot { fill: var(--c-point); } .ks-ring { fill: var(--panel); stroke: var(--c-point); stroke-width: 2; }
+.ks-curve { fill: none; stroke: var(--c-force); stroke-width: 2.6; stroke-linejoin: round; stroke-linecap: round; }
+.ks-bar { fill: color-mix(in srgb, var(--c-force) 22%, transparent); stroke: var(--c-force); stroke-width: 1.3; stroke-linejoin: round; }
+.ks-area { fill: color-mix(in srgb, var(--c-force) 26%, transparent); stroke: none; }
+.ks-axis { stroke: var(--muted); stroke-width: 1.6; fill: none; }
+.ks-cut { stroke: var(--fg); stroke-width: 1.2; stroke-dasharray: 3 3; fill: none; opacity: 0.6; }
+.ks-guide { stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 4 4; fill: none; }
+.anim-label.ink-out { color: var(--c-force-text); } .anim-label.ink-in { color: var(--muted); } .anim-label.ink-sys { color: var(--accent); }
+.anim-label.ink-ld { color: var(--fg); } .anim-label.ink-pos { color: var(--ok); }
+.anim-label.word { font-size: clamp(11px, 3.1cqw, 15px); color: var(--muted); }
+
+/* K4 */
+.kf-patch-row { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-bottom: 8px; }
+.kf-plots { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 10px; margin-top: 8px; }
+.kf-plot { border: 1px solid var(--line); border-radius: 10px; padding: 4px 6px 6px; background: var(--bg); }
+.kf-plot .kf-fig { max-width: 420px; }
+.kf-plot figcaption { font-size: 0.86rem; color: var(--muted); text-align: center; margin: 0 0 2px; }
+.kf-axis { stroke: var(--muted); stroke-width: 1.4; fill: none; } .kf-tick { stroke: var(--muted); stroke-width: 1; }
+.kf-curve-out { fill: none; stroke: var(--c-force); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.kf-curve-in { fill: none; stroke: var(--c-rho); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.kf-ref { stroke: var(--c-rho); stroke-width: 1.4; stroke-dasharray: 5 4; fill: none; }
+.kf-cursor { fill: var(--c-point); stroke: var(--panel); stroke-width: 1.5; }
+.kf-cell { stroke: color-mix(in srgb, var(--panel) 70%, transparent); stroke-width: 0.6; }
+.kf-cellsel { fill: none; stroke: var(--accent); stroke-width: 2.4; }
+.kf-probe { fill: color-mix(in srgb, var(--accent) 14%, transparent); stroke: var(--accent); stroke-width: 2; }
+.kf-marker { fill: var(--c-point); stroke: var(--panel); stroke-width: 2; cursor: grab; touch-action: none; }
+.kf-marker-ring { fill: color-mix(in srgb, var(--c-point) 14%, transparent); stroke: var(--c-point); stroke-width: 1.6; stroke-dasharray: 3 3; cursor: grab; touch-action: none; }
+.kf-press { fill: color-mix(in srgb, var(--c-force) 28%, transparent); stroke: var(--c-force); stroke-width: 1.4; }
+.kf-press-line { stroke: var(--c-force); stroke-width: 1.3; opacity: 0.7; }
+.kf-bandline { stroke: var(--line); stroke-width: 1; }
+.kf-dim { stroke: var(--muted); stroke-width: 1.3; fill: none; }
+.kf-units { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+.kf-units th, .kf-units td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.kf-units th { color: var(--muted); font-weight: 600; font-size: 0.86rem; }
+.kf-units-wrap { overflow-x: auto; margin: 10px 0; }
+.kf-table { border-collapse: collapse; font-size: 0.95rem; width: 100%; }
+.kf-table th, .kf-table td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.kf-table th { color: var(--muted); font-weight: 600; font-size: 0.86rem; }
+.kf-table tr.cur td { background: color-mix(in srgb, var(--accent) 11%, transparent); }
+.kf-table-wrap { overflow-x: auto; margin: 10px 0; }
+
+@media (prefers-reduced-motion: reduce) { .kf-chip, .kf-item { transition: none; } }
+@media (max-width: 480px) { .kf { padding: 8px 6px 10px; } .kf-controls { grid-template-columns: 1fr; } }
+/* phones: the figure is small, so only the outer forces (and the pair you tapped) carry labels; the lists below name the rest */
+@media (max-width: 560px) {
+  .kf-lbl.ink-ghost:not(.focus), .kf-lbl.ink-in:not(.focus) { display: none; }
+}
