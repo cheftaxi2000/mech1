@@ -22,7 +22,7 @@ export function weightScene(step: number, t: number, _lang: Lang): Scene {
   const sb = sceneBuilder();
   const e = ease(t);
   const { a, b, c, na, nc, d } = WB;
-  const f = boxFaces(a, b, c);
+  const f = boxFaces(a, b, c, undefined, [200, 150]);
   const S = (key: string, kind: 'line' | 'polyline' | 'polygon' | 'circle', cls: string, pts: P2[], o = 1, r?: number) => { if (o > 0.01) sb.shape({ key, kind, cls, pts, o, r }); };
   const arrow = (key: string, a0: P2, b0: P2, o = 1, head = 7, cls = 'out') => {
     if (o <= 0.01 || Math.hypot(b0[0] - a0[0], b0[1] - a0[1]) < 3) return;
@@ -59,7 +59,7 @@ export function weightScene(step: number, t: number, _lang: Lang): Scene {
     const equal = step === 3 ? e : 0;
     for (let i = 0; i < na; i++) for (let k = 0; k < nc; k++) {
       const p = f.P(((i + 0.5) * a) / na, 0, ((k + 0.5) * c) / nc);
-      arrow(`cell-${i}-${k}`, [p[0], p[1] - 9], [p[0], p[1] - 9 + 22 * cellK(i, k, equal)], gridO * small, 5);
+      arrow(`cell-${i}-${k}`, [p[0], p[1] - 9], [p[0], p[1] - 9 + 22 * cellK(i, k, equal)], gridO * small, 6, 'outs');
     }
   }
   // step 3: one big arrow G from the centre

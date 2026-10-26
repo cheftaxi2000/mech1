@@ -215,3 +215,27 @@ Short ideas for the quiz part at the end of the course (D-015). Every answer mus
 **Week 5.** r with 2 % error: area ≈ 4 %, x³ ≈ 6 % · Quader exact Δd = 0,428 vs 0,421 · x² on [0,3; 2,9]: c = 1,6 (midpoint) · x³ − 3x on [−2, 2]: c = ±2/√3 · |x| on [−1, 1]: no c (why) · x³ − x on [−½, 1]: max 3/8 at the end · inflection points of x⁴ − x²: ±1/√6 · (2 − 3i)(1 + i) = 5 − i · (2 − 3i)/(1 + i) = −½ − 5/2 i · |3 + 4i| = 5.
 
 **Week 6.** i²⁰²⁶ = −1 · arg(−1 − i) = 5π/4 (arctan gives π/4) · (1 + i)⁸ = 16 · roots of z³ = 8i: √3 + i, −√3 + i, −2i · |z − 2| = |z − 2i| is the line b = a · |z − (1+i)| ≤ 2 and Re(iz) > 1: empty (they touch only at 1 − i, excluded) · Serie 6/3c: smallest n with n(5π/16 + 15π/16) ∈ 2πℤ is 8 · 0 < r < 1: ⁴√r > r («Radius in die n-te Wurzel, nicht durch n teilen»).
+
+## L16 Kräfte/Leistung — systemabgrenzung (pp. 30–31)
+- System «nur Lastkörper»: welche Kräfte sind äussere? (G, Z, N₁, N₂, R₁, R₂ – alle sechs; ihre Reaktionen liegen an Erde, Zug, Träger.)
+- System «Lastkörper + Träger»: wie viele äussere Kräfte? (4: G, Z, F_A, F_B.) Welche sind jetzt innere? (N₁, N₂, R₁, R₂ mit ihren Reaktionen.)
+- Dieselbe Kraft N₁: für welches System äussere, für welches innere Kraft? (Lastkörper allein: äussere; Lastkörper + Träger: innere.)
+- Warum ist G für jede Wahl von Lastkörper/Träger/Stützen eine äussere Kraft? (Die Reaktion greift an der Erde an.)
+- Zwei Wagen (H = 70 N auf Wagen 1, P = 42 N auf Wagen 2): Σ der äusseren Kräfte für Wagen 1? (70 − 42 = 28 N), für beide Wagen? (70 N). Σ der inneren? (0.)
+- Welches System wählst du, um F_A zu bestimmen, ohne N und R zu kennen? (Lastkörper + Träger.)
+- True/false: «Die Summe der inneren Kräfte ist immer null» (true, Reaktionsprinzip); «Die Summe der äusseren Kräfte ist immer null» (false: nur im Gleichgewicht).
+- Beim Abtrennen des Lastkörpers: welche Kraft wirkt am Träger, wenn N₁ am Lastkörper wirkt? (−N₁.)
+- Our example (G = 80 N, Z = 50 N, Ort 40 %): F_A = (−25; 48) N, F_B = (−25; 32) N (`supportForces`).
+
+## L17 Kräfte/Leistung — verteilte Kräfte (pp. 31–32)
+- Einheiten: s in N/m², F (Raumkraftdichte) in N/m³, q in N/m. Welche Einheit hat ∬ s dA? (N.)
+- 700 N auf 100 cm² gegen 700 N auf 10 cm²: s = 70 kPa gegen 700 kPa (Faktor 10).
+- Gleichmässiger Schnee s = 1000 N/m² auf 6 m × 4 m: R = 24 kN. Mit s = 400 + 250 x (x in m): R = 27,6 kN (Mittelwert 1150 N/m²).
+- Gleichlast q = 40 N/m auf L = 4 m: R = 160 N. Rampe 0…60 N/m: R = 120 N (Dreieck, ½ q_max L). Parabel 100 (x/L)²: R ≈ 133,3 N (⅓ q_max L).
+- q(x) = 20 + 60 (x/L)², L = 4 m: Mittelpunktsumme n = 2: 155 N; n = 4: 158,75 N; n = 8: 159,6875 N; Integral 160 N.
+- Parenthèse: Was passiert mit ΔM und mit ΔM/ΔV, wenn ΔV → 0? (ΔM → 0; ΔM/ΔV → ρ.) Bei konstantem ρ: ΔM/ΔV = ρ für jedes ΔV.
+- Gewicht: 1 L Wasser (ρ = 1000 kg/m³): G = 9,81 N. Quader 2 m × 1,5 m × 0,5 m Beton (2400 kg/m³): G = 35,3 kN (3600 kg · 9,81).
+- ρ g für Wasser: 9,81 kN/m³; Beton 23,5 kN/m³; Stahl ≈ 77 kN/m³.
+- Dichte nimmt nach oben ab, ρ(z) = ρ₀ (1 + 0,8 (1 − z/c)): Mittelwert 1,4 ρ₀, also G um 40 % grösser als bei ρ₀ (Stahlquader 2 × 1,5 × 1,2: G = 388,1 kN).
+- True/false: «q ist eine Kraft in N» (false), «R = q L gilt immer» (false: nur bei konstantem q), «ρ ist die Raumkraftdichte der Schwerkraft» (false: ρ g).
+- Wo greift R = ∫ q dx an? (Das beantwortet die Seite nicht – kommt mit den Momenten.)

@@ -5,7 +5,7 @@ import { ROOF, roofCellAt, roofGrid, roofS, roofTotal, type RoofKind } from '../
 import { KL, clamp, fmtSig, svgPoint, type V, type ViewBox } from './k34Common';
 
 const t = String.raw;
-const VB: ViewBox = [0, 0, 600, 330];
+const VB: ViewBox = [0, 0, 600, 346];
 const X0 = 24, Y0 = 14, S = 70;            // roof corner (top left) and scale: px per metre
 const SMAX = 2400;                          // N/m² at the top of the colour scale
 const HS = [2, 1, 0.5, 0.25, 0.1, 0.01];
@@ -76,9 +76,9 @@ export function CellsFigure() {
         </svg>
         <KL vb={VB} at={[pp[0] + 12, pp[1] - 14]} ink="point" anchor="l"><M>P</M></KL>
         {[0, 2, 4, 6].map((x) => <KL key={x} vb={VB} at={[X0 + S * x, Y0 + S * ROOF.b + 17]} ink="muted" className="small"><M>{x === 6 ? t`6\,\mathrm m` : String(x)}</M></KL>)}
-        <KL vb={VB} at={[X0 + S * 3, Y0 + S * ROOF.b + 38]} ink="muted" className="small"><M>x</M></KL>
-        <KL vb={VB} at={[510, Y0 - 1]} ink="muted" className="small" anchor="b"><M>{t`s`}</M></KL>
-        {[0, 1200, 2400].map((v) => <KL key={v} vb={VB} at={[532, Y0 + S * ROOF.b * (1 - v / SMAX)]} ink="muted" anchor="l" className="small"><M>{v === 2400 ? t`2400\,\mathrm{N/m^2}` : String(v)}</M></KL>)}
+        <KL vb={VB} at={[X0 + S * 3, Y0 + S * ROOF.b + 38]} ink="muted" className="small">{tr('Dach von oben, Länge in Metern', 'roof seen from above, length in metres')}</KL>
+        <KL vb={VB} at={[510, Y0 + S * ROOF.b + 17]} ink="muted" className="small"><M>{t`s\ [\mathrm{N/m^2}]`}</M></KL>
+        {[0, 1200, 2400].map((v) => <KL key={v} vb={VB} at={[532, Y0 + S * ROOF.b * (1 - v / SMAX)]} ink="muted" anchor="l" className="small"><M>{String(v)}</M></KL>)}
       </div>
       <div className="kf-patch-row" role="group" aria-label={tr('Kantenlänge der Quadrate', 'side length of the squares')}>
         <span className="kf-cap" style={{ color: 'var(--muted)', alignSelf: 'center' }}>{tr('Quadrate mit Kante', 'squares with side')}</span>

@@ -115,7 +115,7 @@ export function DensityFigure() {
           <Plot vb={PV} d={d1} cursor={[px(h), py1(cur.dM)]} xTicks={xT}
             yTicks={[0, 1, 2, 3].map((k) => ({ y: py1((k * yNice) / 3), tex: k === 0 ? '0' : fmtSig((k * yNice) / 3, 3, lang) }))}>
             <KL vb={PV} at={[58, 12]} ink="muted" anchor="l" className="small"><M>{t`\Delta M\ [\mathrm{kg}]`}</M></KL>
-            <KL vb={PV} at={[292, 178]} ink="muted" anchor="r" className="small"><M>h</M></KL>
+            <KL vb={PV} at={[292, 146]} ink="muted" anchor="r" className="small"><M>h</M></KL>
           </Plot>
         </div>
         <div className="kf-plot">
@@ -124,7 +124,7 @@ export function DensityFigure() {
             yTicks={[RHO_LO, 2250, RHO_HI].map((r) => ({ y: py2(r), tex: String(r) }))}>
             <KL vb={PV} at={[58, 12]} ink="muted" anchor="l" className="small"><M>{t`\Delta M/\Delta V\ [\mathrm{kg/m^3}]`}</M></KL>
             <KL vb={PV} at={[292, py2(rhoP) - 11]} ink="rho" anchor="r" className="small"><M>{t`\rho(P)`}</M></KL>
-            <KL vb={PV} at={[292, 178]} ink="muted" anchor="r" className="small"><M>h</M></KL>
+            <KL vb={PV} at={[292, 146]} ink="muted" anchor="r" className="small"><M>h</M></KL>
           </Plot>
         </div>
       </div>

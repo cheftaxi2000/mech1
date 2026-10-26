@@ -6,7 +6,7 @@ import { KArrow, KL, KSlider, fmtSig, type ViewBox } from './k34Common';
 
 const t = String.raw;
 const VB: ViewBox = [0, 0, 600, 330];
-const X0 = 50, KX = 125, BASE = 258, KY = 1.45;            // x of the left end, px per metre, baseline of the load, px per N/m
+const X0 = 50, KX = 125, BASE = 258, KY = 1.75;            // x of the left end, px per metre, baseline of the load, px per N/m
 
 /**
  * p. 32, Linienkraftdichte: R = ∫₀ᴸ q(x) dx. Cut the beam into n pieces: every piece carries about q(x_i)·Δx.
@@ -51,12 +51,12 @@ export function LineFigure() {
           {[0, LINE_L].map((x) => <line key={x} className="kf-tick" x1={X0 + KX * x} y1={BASE + 18} x2={X0 + KX * x} y2={BASE + 30} />)}
           <KArrow a={[X0 + KX * LINE_L + 10, BASE + 30]} b={[X0 + KX * LINE_L + 50, BASE + 30]} kind="load" w={1.6} head={8} />
         </svg>
-        <KL vb={VB} at={[X0, BASE + 44]} ink="muted" className="small"><M>0</M></KL>
-        <KL vb={VB} at={[X0 + KX * LINE_L, BASE + 44]} ink="muted" className="small"><M>L</M></KL>
+        <KL vb={VB} at={[X0, BASE + 68]} ink="muted" className="small"><M>0</M></KL>
+        <KL vb={VB} at={[X0 + KX * LINE_L, BASE + 68]} ink="muted" className="small"><M>L</M></KL>
         <KL vb={VB} at={[X0 + KX * LINE_L + 58, BASE + 30]} ink="muted" className="small" anchor="l"><M>x</M></KL>
         <KL vb={VB} at={[X0 + KX * LINE_L * 0.5, BASE + 44]} ink="muted" className="small"><M>{t`\Delta x = ${fx(dx, 3)}\,\mathrm m`}</M></KL>
-        <KL vb={VB} at={[X0 + 4, 30]} ink="out" anchor="l"><M>{t`q(x)`}</M></KL>
-        <KL vb={VB} at={[X0 + 4, 52]} ink="muted" anchor="l" className="small"><M>{t`[\mathrm{N/m}]`}</M></KL>
+        <KL vb={VB} at={[X0 + 4, 26]} ink="out" anchor="l"><M>{t`\v q(x)`}</M></KL>
+        <KL vb={VB} at={[X0 + 4, 48]} ink="muted" anchor="l" className="small"><M>{t`[\mathrm{N/m}]`}</M></KL>
       </div>
       <div className="kf-controls">
         <KSlider label={tr('Stücke', 'pieces')} min={1} max={40} step={1} value={n} onChange={setN} val={<M>{t`n = ${n}`}</M>} aria={tr('Anzahl Stücke n', 'number of pieces n')} />

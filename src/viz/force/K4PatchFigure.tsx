@@ -22,7 +22,7 @@ export function PatchFigure() {
   const barMax = 700e3;                                  // N/m² at the top of the scale
   const barH = Math.max(3, (s / barMax) * 215);
   const BX = 470, BASE = 300;
-  const presets = [{ de: 'Schuhsohle', en: 'shoe sole', w: 10 }, { de: 'breiter Absatz', en: 'broad heel', w: 4 }, { de: 'schmaler Absatz', en: 'narrow heel', w: 1 }];
+  const presets = [{ de: 'breit: 10 cm', en: 'wide: 10 cm', w: 10 }, { de: 'mittel: 4 cm', en: 'medium: 4 cm', w: 4 }, { de: 'schmal: 1 cm', en: 'narrow: 1 cm', w: 1 }];
   const fx = (x: number, d = 3) => fmtSig(x, d, lang);
   return (
     <figure className="kf">
@@ -60,9 +60,9 @@ export function PatchFigure() {
           <rect className="kf-press" x={BX} y={BASE - barH} width={52} height={barH} />
         </svg>
         <KL vb={VB} at={[CX + 24, 70]} ink="out" anchor="l"><M>{t`\v F = ${fx(PATCH.F, 3)}\,\mathrm N`}</M></KL>
-        <KL vb={VB} at={[CX, TOP - 60]} className="word">{tr('Träger', 'beam')}</KL>
-        <KL vb={VB} at={[CX, TOP + 48]} className="word">{tr('Stütze', 'support')}</KL>
-        {dist && <KL vb={VB} at={[CX, TOP + 18 + 30]} ink="muted" className="small" anchor="b"><M>{t`w`}</M></KL>}
+        <KL vb={VB} at={[CX, TOP - 62]} className="word">{tr('Körper', 'body')}</KL>
+        <KL vb={VB} at={[80, TOP + 44]} className="word">{tr('Unterlage', 'support')}</KL>
+        {dist && <KL vb={VB} at={[CX, TOP + 48]} ink="muted" className="small"><M>{t`w`}</M></KL>}
         <KL vb={VB} at={[BX + 26, BASE - barH - 14]} ink="out"><M>{t`s`}</M></KL>
         <KL vb={VB} at={[BX - 30, BASE - 215]} ink="muted" anchor="r" className="small"><M>{t`700\,\mathrm{kPa}`}</M></KL>
         <KL vb={VB} at={[BX - 30, BASE - 107]} ink="muted" anchor="r" className="small"><M>{t`350`}</M></KL>

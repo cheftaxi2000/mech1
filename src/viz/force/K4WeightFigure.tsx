@@ -10,7 +10,6 @@ import { KArrow, KL, KSlider, fmtSig, pts, type V, type ViewBox } from './k34Com
 const t = String.raw;
 const VB: ViewBox = [0, 0, 520, 330];
 const VIEW: View = { ...OBLIQUE, cx: 250, cy: 232, s: 50 };
-const boxF = (a: number, b: number, c: number) => boxFaces(a, b, c, VIEW);
 
 /**
  * Weight as a volume force: choose a material and the size of a box; G = ρ g V. The toggle lets the density change with the
@@ -22,7 +21,7 @@ export function WeightFigure() {
   const [a, setA] = useState(1), [b, setB] = useState(0.6), [c, setC] = useState(0.5);
   const [vary, setVary] = useState(false);
   const w = boxWeight(mat.rho, a, b, c, vary);
-  const f = boxF(a, b, c);
+  const f = boxFaces(a, b, c, { ...VIEW, s: Math.min(140, 380 / (a + b + c)) }, [270, 125]);
   const fx = (x: number, d = 3) => fmtSig(x, d, lang);
   const op = 0.14 + 0.7 * (mat.rho / 7850);
   const tri = (v: Vec3): V => { const o = project([0, 0, 0], { ...VIEW, cx: 62, cy: 292, s: 34 }), q = project(v, { ...VIEW, cx: 62, cy: 292, s: 34 }); return [q[0] - o[0] + 62, q[1] - o[1] + 292]; };

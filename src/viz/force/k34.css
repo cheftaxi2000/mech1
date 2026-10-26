@@ -69,6 +69,7 @@
 
 /* step animation shapes (AnimFigure): kinds out / in / ld / gh / nt, heads with -h */
 .ks-out { stroke: var(--c-force); stroke-width: 3.2; stroke-linecap: round; } .ks-out-h { fill: var(--c-force); }
+.ks-outs { stroke: var(--c-force); stroke-width: 2; stroke-linecap: round; } .ks-outs-h { fill: var(--c-force); }
 .ks-in { stroke: var(--muted); stroke-width: 3.2; stroke-linecap: round; } .ks-in-h { fill: var(--muted); }
 .ks-ld { stroke: var(--fg); stroke-width: 3.2; stroke-linecap: round; } .ks-ld-h { fill: var(--fg); }
 .ks-gh { stroke: color-mix(in srgb, var(--muted) 55%, transparent); stroke-width: 2.4; stroke-linecap: round; } .ks-gh-h { fill: color-mix(in srgb, var(--muted) 55%, transparent); }
