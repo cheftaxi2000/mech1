@@ -57,6 +57,15 @@ function clipScreen(p: V2, d: V2, m = 10): [V2, V2] | null {
   return lo > hi ? null : [[p[0] + lo * d[0], p[1] + lo * d[1]], [p[0] + hi * d[0], p[1] + hi * d[1]]];
 }
 
+
+/** Position of a label beside the segment a–b: its middle, pushed k px to the side that lies below (down) or above it on the screen. */
+function sideAt(a: V2, b: V2, k: number, down: boolean): React.CSSProperties {
+  const dx = b[0] - a[0], dy = b[1] - a[1], l = Math.hypot(dx, dy) || 1;
+  let nx = -dy / l, ny = dx / l;
+  if ((ny > 0) !== down) { nx = -nx; ny = -ny; }
+  return at(LV_VB, (a[0] + b[0]) / 2 + k * nx, (a[1] + b[1]) / 2 + k * ny);
+}
+
 /**
  * Lecture pp. 34–35, M̲_O = OP̲ × F̲ = F̲ × PO̲ (top view, the axis comes out of the page). Drag P and the tip of F̲.
  * The dashed perpendicular from O to the line of action is the lever arm d; |M̲_O| = |F̲| d = |OP̲||F̲| sin φ.
@@ -148,9 +157,9 @@ export function LeverFigure() {
         </svg>
         <div className="vdemo-label dark small halo" style={at(LV_VB, LV_O[0] + 14, LV_O[1] + 14)}><M>O</M></div>
         <div className="vdemo-label point small halo" style={at(LV_VB, Ps[0] + 16, Ps[1] + 16)}><M>P</M></div>
-        {rOP > 0.6 && <div className="vdemo-label dark small halo" style={at(LV_VB, (LV_O[0] + Ps[0]) / 2 - 8 * Math.sin(aOP), (LV_O[1] + Ps[1]) / 2 - 14 * Math.cos(aOP) - 6)}><M>{t`\v{OP}`}</M></div>}
+        {rOP > 0.6 && <div className="vdemo-label dark small halo" style={sideAt(LV_O, Ps, 15, true)}><M>{t`\v{OP}`}</M></div>}
         {nf > 0.3 && (() => { const dx = tipF[0] - Ps[0], dy = tipF[1] - Ps[1], l = Math.hypot(dx, dy); return <div className="vdemo-label force small halo" style={at(LV_VB, tipF[0] + (22 * dx) / l, tipF[1] + (20 * dy) / l)}><M>{t`\v F`}</M></div>; })()}
-        {nf > 0 && d > 0.45 && <div className="vdemo-label dark small halo" style={at(LV_VB, (LV_O[0] + footS[0]) / 2 + 10 * Math.sin(aOP) * 0 + (footS[1] > LV_O[1] ? 12 : -12) * Math.abs(dirS[1]) , (LV_O[1] + footS[1]) / 2 - 12 * Math.abs(dirS[0]) * (footS[0] > LV_O[0] ? 1 : -1))}><M>d</M></div>}
+        {nf > 0 && d > 0.45 && <div className="vdemo-label dark small halo" style={sideAt(LV_O, footS, 13, false)}><M>d</M></div>}
         {showAngle && <div className="vdemo-label angle small halo" style={at(LV_VB, Ps[0] + 40 * Math.cos(midA), Ps[1] + 40 * Math.sin(midA))}><M>{reading === 'OPxF' ? t`\varphi` : t`\pi-\varphi`}</M></div>}
         {showAngle && reading === 'FxPO' && <div className="vdemo-label dark small halo" style={at(LV_VB, Ps[0] - dirOP[0] * (stubLen + 14) + 0, Ps[1] - dirOP[1] * (stubLen + 14) + 4)}><M>{t`\v{PO}`}</M></div>}
         {sense && <div className="vdemo-label force small halo" style={at(LV_VB, LV_O[0] - 62, LV_O[1])}><M>{ccw ? t`\v M_O\ \odot` : t`\v M_O\ \otimes`}</M></div>}
@@ -165,11 +174,11 @@ export function LeverFigure() {
         </div>
         <div className="v-result rt-readout lp-formula">
           {reading === 'OPxF'
-            ? <M>{t`|\v M_O| = |\v{OP}|\,|\v F|\sin\varphi = ${f2(rOP)}\cdot ${f2(nf)}\cdot\sin ${phiDeg}^\circ = ${f2(Math.abs(Mz))}\ \text{N}\,\text{m}`}</M>
-            : <M>{t`|\v M_O| = |\v F|\,|\v{PO}|\sin(\pi-\varphi) = ${f2(nf)}\cdot ${f2(rOP)}\cdot\sin ${phiDeg}^\circ = ${f2(Math.abs(Mz))}\ \text{N}\,\text{m}`}</M>}
+            ? <><M>{t`|\v M_O| = |\v{OP}|\,|\v F|\sin\varphi`}</M><M>{t`= ${f2(rOP)}\cdot ${f2(nf)}\cdot\sin ${phiDeg}^\circ = ${f2(Math.abs(Mz))}\ \text{N}\,\text{m}`}</M></>
+            : <><M>{t`|\v M_O| = |\v F|\,|\v{PO}|\sin(\pi-\varphi)`}</M><M>{t`= ${f2(nf)}\cdot ${f2(rOP)}\cdot\sin ${phiDeg}^\circ = ${f2(Math.abs(Mz))}\ \text{N}\,\text{m}`}</M></>}
         </div>
-        <div className="v-result rt-readout lp-formula"><M>{t`|\v M_O| = |\v F|\,d = ${f2(nf)}\cdot ${f2(d)} = ${f2(nf * d)}\ \text{N}\,\text{m},\qquad |\v{OP}| = ${f2(rOP)}\ \text{m}`}</M></div>
-        <div className="v-result rt-readout lp-formula"><M>{t`M_z = x\,F_y - y\,F_x = ${f2(P[0])}\cdot ${f2(F[1])} - (${f2(P[1])})\cdot ${f2(F[0])} = ${f2(Mz)}\ \text{N}\,\text{m}`}</M></div>
+        <div className="v-result rt-readout lp-formula"><M p=",">{t`|\v M_O| = |\v F|\,d = ${f2(nf)}\cdot ${f2(d)} = ${f2(nf * d)}\ \text{N}\,\text{m}`}</M><M>{t`|\v{OP}| = ${f2(rOP)}\ \text{m}`}</M></div>
+        <div className="v-result rt-readout lp-formula"><M>{t`M_z = x\,F_y - y\,F_x`}</M><M>{t`= ${f2(P[0])}\cdot ${f2(F[1])} - (${f2(P[1])})\cdot ${f2(F[0])} = ${f2(Mz)}\ \text{N}\,\text{m}`}</M></div>
         <p className="vdemo-note">{tr(
           <>Ziehe <M>P</M> und die Spitze von <M p=".">{t`\v F`}</M> Der Schieber verschiebt <M>P</M> entlang der Wirkungslinie: <M>{t`|\v{OP}|`}</M> ändert sich, der Hebelarm <M>d</M> und das Moment bleiben. {ccw ? <>Der gebogene Pfeil läuft gegen den Uhrzeigersinn: <M>{t`\v M_O`}</M> zeigt aus der Seite zu dir (<M p=").">{t`\odot`}</M></> : cw ? <>Der gebogene Pfeil läuft im Uhrzeigersinn: <M>{t`\v M_O`}</M> zeigt in die Seite hinein (<M p=").">{t`\otimes`}</M></> : <>Hier ist <M p=",">{t`\v M_O = \v 0`}</M> die Wirkungslinie geht durch <M p=".">O</M></>}</>,
           <>Drag <M>P</M> and the tip of <M p=".">{t`\v F`}</M> The slider moves <M>P</M> along the line of action: <M>{t`|\v{OP}|`}</M> changes, the lever arm <M>d</M> and the moment stay. {ccw ? <>The curved arrow runs counter-clockwise: <M>{t`\v M_O`}</M> points out of the page toward you (<M p=").">{t`\odot`}</M></> : cw ? <>The curved arrow runs clockwise: <M>{t`\v M_O`}</M> points into the page (<M p=").">{t`\otimes`}</M></> : <>Here <M p=",">{t`\v M_O = \v 0`}</M> the line of action passes through <M p=".">O</M></>}</>)}</p>
@@ -304,8 +313,8 @@ export function WheelPower() {
           <label className="slider"><M>r</M><input type="range" min={0.5} max={2} step={0.05} value={r} onChange={(e) => setR(Number(e.target.value))} aria-label="r" /><span className="val">{fmtNum(r, 2, lang)}</span></label>
         </div>
         <div className="lp-toggles"><label className="toggle"><input type="checkbox" checked={turn} onChange={(e) => setTurn(e.target.checked)} /> {tr('Rad dreht sich (Bild dreht mit)', 'wheel turns (the picture turns along)')}</label></div>
-        <div className="v-result rt-readout lp-formula"><M>{t`P = \v F\cdot\v v_P = F_t\cdot\omega r = ${par(Ft)}\cdot ${par(w)}\cdot ${f2(r)} = ${f2(Math.abs(power) < 0.005 ? 0 : power)}\,\text{W}`}</M></div>
-        <div className="v-result rt-readout lp-formula"><M>{t`P = \omega\,M_z = \omega\,(r\,F_t) = ${par(w)}\cdot ${f2(Mz)} = ${f2(Math.abs(w * Mz) < 0.005 ? 0 : w * Mz)}\,\text{W}`}</M></div>
+        <div className="v-result rt-readout lp-formula"><M>{t`P = \v F\cdot\v v_P = F_t\cdot\omega r`}</M><M>{t`= ${par(Ft)}\cdot ${par(w)}\cdot ${f2(r)} = ${f2(Math.abs(power) < 0.005 ? 0 : power)}\,\text{W}`}</M></div>
+        <div className="v-result rt-readout lp-formula"><M>{t`P = \omega\,M_z = \omega\,(r\,F_t)`}</M><M>{t`= ${par(w)}\cdot ${f2(Mz)} = ${f2(Math.abs(w * Mz) < 0.005 ? 0 : w * Mz)}\,\text{W}`}</M></div>
         <p className="vdemo-note">{tr(
           <>Die Kraft ist am Rad festgeschweisst, darum dreht das ganze Bild mit. Nur <M>{t`F_t`}</M> (der Teil längs <M>{t`\v v_P`}</M>, vollfarbig) zählt; <M>{t`F_r`}</M> (grau, gestrichelt) zeigt zur Nabe hin oder von ihr weg und ist leistungslos. <M>{t`F_t`}</M> mal <M>r</M> ist genau das Moment <M p=".">{t`M_z`}</M> Ziehe <M>P</M> entlang der Speiche und die Spitze von <M p=".">{t`\v F`}</M></>,
           <>The force is welded to the wheel, so the whole picture turns along. Only <M>{t`F_t`}</M> (the part along <M>{t`\v v_P`}</M>, full colour) counts; <M>{t`F_r`}</M> (grey, dashed) points toward or away from the hub and does no power. <M>{t`F_t`}</M> times <M>r</M> is exactly the moment <M p=".">{t`M_z`}</M> Drag <M>P</M> along the spoke and the tip of <M p=".">{t`\v F`}</M></>)}</p>

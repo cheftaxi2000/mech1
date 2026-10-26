@@ -11,12 +11,12 @@ const t = String.raw;
 type F2 = [number, number];
 
 /* ─────────────────────────────── geometry of the power explorer ─────────────────────────────── */
-export const PE_VB: [number, number, number, number] = [0, 0, 400, 262];
+export const PE_VB: [number, number, number, number] = [0, 0, 400, 276];
 export const PE_A: V2 = [140, 118]; // the point A (the track runs through it, to the right)
 export const PE_KF = 26; // px per newton
 export const PE_KV = 42; // px per m/s
 const F_MAX = 3.5, V_MIN = 0.5, V_MAX = 3;
-const BAR_Y = 232, BAR_X0 = 200, BAR_K = 12.5; // power bar: zero at x = 200, 12.5 px per watt (|P| ≤ 12 W)
+const BAR_Y = 244, BAR_X0 = 200, BAR_K = 12.5; // power bar: zero at x = 200, 12.5 px per watt (|P| ≤ 12 W)
 
 export type PePreset = 'pp' | 'p' | 'm' | 'mm' | 'z';
 /** The five handwritten sketches of p. 33 (v to the right in all of them). */
@@ -148,8 +148,7 @@ export function PowerExplorer() {
         {Math.abs(F[0]) > 0.5 && <div className={`vdemo-label small halo ${cls.replace('lp-', '')}`} style={at(PE_VB, (Ax + foot[0]) / 2, Ay + 26)}><M>{t`|\v F|\cos\alpha`}</M></div>}
         <div className="vdemo-label minus small halo" style={at(PE_VB, 24, BAR_Y - 16)}><M>{t`P < 0`}</M></div>
         <div className="vdemo-label plus small halo" style={at(PE_VB, 376, BAR_Y - 16)}><M>{t`P > 0`}</M></div>
-        <div className="vdemo-label muted small halo" style={at(PE_VB, BAR_X0, BAR_Y + 18)}><M>0</M></div>
-        <div className={`vdemo-label small halo ${cls.replace('lp-', '')}`} style={at(PE_VB, Math.max(46, Math.min(354, barEnd + (P >= 0 ? 34 : -34))), BAR_Y - 17)}><M>{t`P = ${Pn}\,\text{W}`}</M></div>
+        <div className={`vdemo-label small halo ${cls.replace('lp-', '')}`} style={at(PE_VB, BAR_X0, BAR_Y + 24)}><M>{t`P = ${Pn}\,\text{W}`}</M></div>
       </div>
       <figcaption className="vdemo-readout">
         <div className={`v-result rt-readout lp-class ${cls}`}>{chip}</div>

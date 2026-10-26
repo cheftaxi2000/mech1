@@ -65,7 +65,7 @@ export default function K6Moment() {
               <li><b>Quer zur Tür</b> drücken bringt sie in Bewegung. In der Richtung der Tür, auf die Angeln zu, drückst du nur die Angeln – es dreht sich nichts.</li>
               <li>Ein Schraubenschlüssel mit langem Griff dreht eine Schraube leichter als ein kurzer: wieder der Abstand.</li>
             </ul>
-            <p>Die «Dreh-Wirksamkeit» einer Kraft hängt also von drei Dingen ab: wie stark sie ist, wie weit von der Achse sie angreift und wie quer sie dort steht. Die Zahl dafür heisst <b>Moment</b>. Das Skript <em>definiert</em> das Moment einfach als <M>{t`\v{OP}\times\v F`}</M> und zeigt, dass es in der Leistung auftaucht. Dass es die Dreh-Wirksamkeit misst, ist die Deutung dahinter; sie wird in der Statik wichtig.</p>
+            <p>Die «Dreh-Wirksamkeit» einer Kraft hängt also von drei Dingen ab: wie stark sie ist, wie weit von der Achse sie angreift und wie quer sie dort steht. Dafür gibt es eine eigene Grösse, das <b>Moment</b> (ein Pfeil: Länge = «wie stark», Richtung = «um welche Achse»). Das Skript <em>definiert</em> das Moment einfach als <M>{t`\v{OP}\times\v F`}</M> und zeigt, dass es in der Leistung auftaucht. Dass es die Dreh-Wirksamkeit misst, ist die Deutung dahinter; sie wird in der Statik wichtig.</p>
           </>}
           en={<>
             <p>You push a door open, always with the same force.</p>
@@ -74,7 +74,7 @@ export default function K6Moment() {
               <li>Pushing <b>across the door</b> sets it moving. Pushing along the door, toward the hinges, you only press on the hinges – nothing turns.</li>
               <li>A wrench with a long handle turns a screw more easily than a short one: again the distance.</li>
             </ul>
-            <p>The «turning effectiveness» of a force thus depends on three things: how strong it is, how far from the axis it acts, and how much across it points there. The number for this is called the <b>moment</b>. The notes simply <em>define</em> the moment as <M>{t`\v{OP}\times\v F`}</M> and show that it appears in the power. That it measures the turning effectiveness is the interpretation behind it; it becomes important in statics.</p>
+            <p>The «turning effectiveness» of a force thus depends on three things: how strong it is, how far from the axis it acts, and how much across it points there. There is a quantity of its own for this, the <b>moment</b> (an arrow: length = «how strong», direction = «about which axis»). The notes simply <em>define</em> the moment as <M>{t`\v{OP}\times\v F`}</M> and show that it appears in the power. That it measures the turning effectiveness is the interpretation behind it; it becomes important in statics.</p>
           </>}
         />
       </Box>
@@ -127,8 +127,8 @@ export default function K6Moment() {
       {/* ------------------------------------------------------------------ 2 */}
       <Section id="herleitung" title={<T de="2. Warum darf man Kreuz und Punkt tauschen?" en="2. Why may the cross and the dot swap places?" />}>
         <T
-          de={<p>Die Animation baut die Rechnung von S. 33 Schritt für Schritt auf. Die Pfeile sind so gezeichnet, dass jede Zahl die Länge 1 pro Einheit hat (<M p=",">{t`1\,\text{m}`}</M> <M p=",">{t`1\,\text{N}`}</M> <M p=",">{t`1\,\text{m/s}`}</M> <M p="):">{t`1\,\text{rad/s}`}</M> Das Volumen im Bild ist darum genau die Zahl <M p=".">P</M> Zwei Spitzen am Pfeil heissen: Das ist eine <em>Drehgrösse</em> (<M>{t`\v\omega`}</M> oder ein Moment), kein gewöhnlicher Pfeil. Mit dem Knopf ⛶ bekommst du das Bild gross.</p>}
-          en={<p>The animation builds up the calculation of p. 33 step by step. The arrows are drawn so that every number has length 1 per unit (<M p=",">{t`1\,\text{m}`}</M> <M p=",">{t`1\,\text{N}`}</M> <M p=",">{t`1\,\text{m/s}`}</M> <M p="):">{t`1\,\text{rad/s}`}</M> the volume in the picture is therefore exactly the number <M p=".">P</M> Two heads on an arrow mean: this is a <em>turning quantity</em> (<M>{t`\v\omega`}</M> or a moment), not an ordinary arrow. The button ⛶ makes the picture large.</p>}
+          de={<p>Die Animation baut die Rechnung von S. 33 Schritt für Schritt auf. Die Pfeile sind so gezeichnet, dass jede Zahl die Länge 1 pro Einheit hat (<M p=",">{t`1\,\text{m}`}</M> <M p=",">{t`1\,\text{N}`}</M> <M p=",">{t`1\,\text{m/s}`}</M> <M p="):">{t`1\,\text{rad/s}`}</M> Das Volumen im Bild ist darum genau die Zahl <M p=".">P</M> In diesen Bildern tragen <M>{t`\v\omega`}</M> und die Momente zwei Pfeilspitzen – eine Zeichen-Abmachung dieser Lektion, damit man sie von Kraft- und Geschwindigkeitspfeilen unterscheidet. Mit dem Vollbild-Knopf oben rechts im Bild bekommst du es gross.</p>}
+          en={<p>The animation builds up the calculation of p. 33 step by step. The arrows are drawn so that every number has length 1 per unit (<M p=",">{t`1\,\text{m}`}</M> <M p=",">{t`1\,\text{N}`}</M> <M p=",">{t`1\,\text{m/s}`}</M> <M p="):">{t`1\,\text{rad/s}`}</M> the volume in the picture is therefore exactly the number <M p=".">P</M> In these pictures <M>{t`\v\omega`}</M> and the moments carry two arrowheads – a drawing convention of this lesson, to tell them apart from force and velocity arrows. The fullscreen button at the top right of the picture makes it large.</p>}
         />
         <StepPlayer
           label={tr('Animation: P = F · v_P = ω · (OP × F)', 'Animation: P = F · v_P = ω · (OP × F)')}
@@ -186,7 +186,7 @@ export default function K6Moment() {
               <li>Das Moment <M>{t`\v M_O`}</M> ist ein <em>Pfeil</em>. Er gehört zur Kraft <em>und</em> zum Punkt <M p=",">O</M> von dem aus man misst. Ändert man <M p=",">O</M> ändert sich <M p=".">{t`\v M_O`}</M></li>
               <li>Es ist das Kreuzprodukt aus «Arm» <M>{t`\v{OP}`}</M> und Kraft <M p=".">\v F</M> in dieser Reihenfolge.</li>
               <li><b>Länge:</b> <M p=".">{t`|\v M_O| = |\v{OP}|\,|\v F|\sin\varphi`}</M> Gross, wenn der Arm lang ist, die Kraft gross und beide quer zueinander stehen (<M>{t`\varphi = 90^\circ`}</M> gibt den grössten Wert). Null, wenn <M>\v F</M> längs des Arms zeigt.</li>
-              <li><b>Richtung:</b> senkrecht auf <M>{t`\v{OP}`}</M> und auf <M p=",">\v F</M> und zwar nach der <b>Rechte-Hand-Regel</b>: Krümme die Finger der rechten Hand von <M>{t`\v{OP}`}</M> nach <M>\v F</M> (den kurzen Weg), dann zeigt der Daumen in Richtung <M p=".">{t`\v M_O`}</M> Mit Zahlen: Dreht die Kraft gegen den Uhrzeigersinn um <M p=",">O</M> zeigt <M>{t`\v M_O`}</M> zu dir hin.</li>
+              <li><b>Richtung:</b> senkrecht auf <M>{t`\v{OP}`}</M> und auf <M p=",">\v F</M> und zwar nach der <b>Rechte-Hand-Regel</b>: Krümme die Finger der rechten Hand von <M>{t`\v{OP}`}</M> nach <M>\v F</M> (den kurzen Weg), dann zeigt der Daumen in Richtung <M p=".">{t`\v M_O`}</M> Kurz gesagt: Dreht die Kraft gegen den Uhrzeigersinn um <M p=",">O</M> zeigt <M>{t`\v M_O`}</M> zu dir hin.</li>
               <li><M>{t`\v F\times\v{PO}`}</M> ist derselbe Pfeil: <M>{t`\v{PO} = -\v{OP}`}</M> ändert ein Vorzeichen, und die Reihenfolge zu vertauschen ändert noch eines. Der Winkel zwischen <M>\v F</M> und <M>{t`\v{PO}`}</M> ist <M p=",">{t`\pi-\varphi`}</M> aber <M>{t`\sin(\pi-\varphi) = \sin\varphi`}</M> gibt dieselbe Länge.</li>
             </ol>
             <p><b>Der Hebelarm.</b> Auf der Wirkungslinie (der Geraden, auf der der Kraftpfeil liegt) gibt es einen Punkt, der <M>O</M> am nächsten ist. Seine Entfernung zu <M>O</M> heisst <b>Hebelarm</b> <M p=".">d</M> Im rechtwinkligen Dreieck ist <M>{t`d = |\v{OP}|\sin\varphi`}</M> und deshalb gilt <M p=".">{t`|\v M_O| = |\v F|\,d`}</M> Kraft mal Hebelarm – die Tür aus dem Anfang: weit weg und quer heisst grosser Hebelarm.</p>
@@ -198,7 +198,7 @@ export default function K6Moment() {
               <li>The moment <M>{t`\v M_O`}</M> is an <em>arrow</em>. It belongs to the force <em>and</em> to the point <M p=",">O</M> from which you measure. If you change <M p=",">O</M> then <M>{t`\v M_O`}</M> changes.</li>
               <li>It is the cross product of the «arm» <M>{t`\v{OP}`}</M> and the force <M p=",">\v F</M> in this order.</li>
               <li><b>Length:</b> <M p=".">{t`|\v M_O| = |\v{OP}|\,|\v F|\sin\varphi`}</M> Large when the arm is long, the force is large and the two are across each other (<M>{t`\varphi = 90^\circ`}</M> gives the largest value). Zero when <M>\v F</M> points along the arm.</li>
-              <li><b>Direction:</b> perpendicular to <M>{t`\v{OP}`}</M> and to <M p=",">\v F</M> by the <b>right-hand rule</b>: curl the fingers of your right hand from <M>{t`\v{OP}`}</M> toward <M>\v F</M> (the short way), then the thumb points along <M p=".">{t`\v M_O`}</M> In practice: if the force turns counter-clockwise about <M p=",">O</M> then <M>{t`\v M_O`}</M> points toward you.</li>
+              <li><b>Direction:</b> perpendicular to <M>{t`\v{OP}`}</M> and to <M p=",">\v F</M> by the <b>right-hand rule</b>: curl the fingers of your right hand from <M>{t`\v{OP}`}</M> toward <M>\v F</M> (the short way), then the thumb points along <M p=".">{t`\v M_O`}</M> In short: if the force turns counter-clockwise about <M p=",">O</M> then <M>{t`\v M_O`}</M> points toward you.</li>
               <li><M>{t`\v F\times\v{PO}`}</M> is the same arrow: <M>{t`\v{PO} = -\v{OP}`}</M> changes one sign, and swapping the order changes another. The angle between <M>\v F</M> and <M>{t`\v{PO}`}</M> is <M p=",">{t`\pi-\varphi`}</M> but <M>{t`\sin(\pi-\varphi) = \sin\varphi`}</M> gives the same length.</li>
             </ol>
             <p><b>The lever arm.</b> On the line of action (the line the force arrow lies on) there is a point closest to <M p=".">O</M> Its distance to <M>O</M> is called the <b>lever arm</b> <M p=".">d</M> In the right triangle <M>{t`d = |\v{OP}|\sin\varphi`}</M> and therefore <M p=".">{t`|\v M_O| = |\v F|\,d`}</M> Force times lever arm – the door from the beginning: far away and across means a large lever arm.</p>
@@ -221,7 +221,7 @@ export default function K6Moment() {
           </>}
         />
         <WheelPower />
-        <Box kind="supplement" title={<T de={<>Warum ist <M>{t`M_z = r\,F_t`}</M>?</>} en={<>Why is <M>{t`M_z = r\,F_t`}</M>?</>} />}>
+        <Box kind="supplement" title={<T de={<>Warum ist <M p="?">{t`M_z = r\,F_t`}</M></>} en={<>Why is <M p="?">{t`M_z = r\,F_t`}</M></>} />}>
           <T
             de={<>
               <p>Eigene Rechnung, nicht im Skript. In der Ebene ist <M>{t`\v{OP} = (x, y, 0)`}</M> und <M>{t`\v F = (F_x, F_y, 0)`}</M> und das Kreuzprodukt hat nur eine Komponente längs der Achse: <M p=".">{t`M_z = x\,F_y - y\,F_x`}</M> Dreht man die Koordinaten so, dass <M>P</M> auf der <M>x</M>-Achse liegt (<M p=",">{t`x = r`}</M> <M p=")">{t`y = 0`}</M> wird daraus <M>{t`M_z = r\,F_y`}</M> und <M>{t`F_y`}</M> ist genau der tangentiale Teil <M p=".">{t`F_t`}</M> Die Geschwindigkeit ist <M>{t`\v v_P = \omega r\,\v e_y`}</M> also <M p=",">{t`P = \v F\cdot\v v_P = F_t\,\omega r = \omega\,M_z`}</M> in Übereinstimmung mit <M p=".">{t`P = \v\omega\cdot\v M_O`}</M></p>
@@ -245,11 +245,9 @@ export default function K6Moment() {
           <T
             de={<>
               <p>«Merke:» <M p=".">{t`\v M_O = \v{OP}\times\v F \neq \v M_{O'} = \v{O'P}\times\v F`}</M> Mit <M>{t`\mu\equiv z`}</M> (die Achse ist die <M>z</M>-Achse) gilt <M p=",">{t`P = M_z\cdot\omega = M_{z'}\cdot\omega`}</M> «Projektion von <M>{t`\v M`}</M> in <M>z</M>-Richtung». Handschriftlich: <M p=".">{t`P = \omega\,\v e_z\cdot\v M_O = \omega\,\v e_z\cdot\v M_{O'}`}</M> Dann <M p=",">{t`M_{z'} = \v M_{O'}\cdot\v e_z`}</M> <M p=",">{t`M_z = \v M_O\cdot\v e_z`}</M> «<M>{t`M_z = M_z'`}</M>» mit der Probe <M p=".">{t`(\v{OP}\times\v F)\cdot\v e_z \overset{?}{=} ((\v{O'O}+\v{OP})\times\v F)\cdot\v e_z = \underbrace{(\v{O'O}\times\v F)\cdot\v e_z}_{0} + (\v{OP}\times\v F)\cdot\v e_z`}</M></p>
-              <p>Im gedruckten Text steht <M>{t`\v\omega`}</M> unterstrichen bei <M p=",">{t`M_z\cdot\omega`}</M> gemeint ist die Zahl <M p=".">\omega</M> (die Handschrift darunter schreibt es richtig).</p>
             </>}
             en={<>
               <p>«Note:» <M p=".">{t`\v M_O = \v{OP}\times\v F \neq \v M_{O'} = \v{O'P}\times\v F`}</M> With <M>{t`\mu\equiv z`}</M> (the axis is the <M>z</M>-axis) <M p=",">{t`P = M_z\cdot\omega = M_{z'}\cdot\omega`}</M> «projection of <M>{t`\v M`}</M> in <M>z</M>-direction». Handwritten: <M p=".">{t`P = \omega\,\v e_z\cdot\v M_O = \omega\,\v e_z\cdot\v M_{O'}`}</M> Then <M p=",">{t`M_{z'} = \v M_{O'}\cdot\v e_z`}</M> <M p=",">{t`M_z = \v M_O\cdot\v e_z`}</M> «<M>{t`M_z = M_z'`}</M>» with the check <M p=".">{t`(\v{OP}\times\v F)\cdot\v e_z \overset{?}{=} ((\v{O'O}+\v{OP})\times\v F)\cdot\v e_z = \underbrace{(\v{O'O}\times\v F)\cdot\v e_z}_{0} + (\v{OP}\times\v F)\cdot\v e_z`}</M></p>
-              <p>In the printed text <M>{t`\v\omega`}</M> is underlined in <M p=",">{t`M_z\cdot\omega`}</M> the number <M>\omega</M> is meant (the handwriting below writes it correctly).</p>
             </>}
           />
         </Box>
