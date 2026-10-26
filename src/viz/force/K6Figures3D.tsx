@@ -82,7 +82,7 @@ export function RefExplorer() {
             <input type="range" min={-1} max={1.8} step={0.05} value={h} onChange={(e) => setH(Number(e.target.value))} aria-label="O'" />
             <span className="val">{fmtNum(h, 2, lang)}</span>
           </label>
-          <label className="toggle"><input type="checkbox" checked={showD} onChange={(e) => setShowD(e.target.checked)} /> {tr(<>Unterschied <M>{t`\v M_{O'} - \v M_O = \v{O'O}\times\v F`}</M> zeigen</>, <>show the difference <M>{t`\v M_{O'} - \v M_O = \v{O'O}\times\v F`}</M></>)}</label>
+          <label className="toggle"><input type="checkbox" checked={showD} onChange={(e) => setShowD(e.target.checked)} /> {tr(<>Unterschied <M>{t`\v M_{O'} - \v M_O`}</M> zeigen</>, <>show the difference <M>{t`\v M_{O'} - \v M_O`}</M></>)}</label>
         </div>
         <figcaption>
           <table className="readout">

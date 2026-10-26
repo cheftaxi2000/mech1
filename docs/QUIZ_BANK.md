@@ -215,3 +215,22 @@ Short ideas for the quiz part at the end of the course (D-015). Every answer mus
 **Week 5.** r with 2 % error: area ≈ 4 %, x³ ≈ 6 % · Quader exact Δd = 0,428 vs 0,421 · x² on [0,3; 2,9]: c = 1,6 (midpoint) · x³ − 3x on [−2, 2]: c = ±2/√3 · |x| on [−1, 1]: no c (why) · x³ − x on [−½, 1]: max 3/8 at the end · inflection points of x⁴ − x²: ±1/√6 · (2 − 3i)(1 + i) = 5 − i · (2 − 3i)/(1 + i) = −½ − 5/2 i · |3 + 4i| = 5.
 
 **Week 6.** i²⁰²⁶ = −1 · arg(−1 − i) = 5π/4 (arctan gives π/4) · (1 + i)⁸ = 16 · roots of z³ = 8i: √3 + i, −√3 + i, −2i · |z − 2| = |z − 2i| is the line b = a · |z − (1+i)| ≤ 2 and Re(iz) > 1: empty (they touch only at 1 − i, excluded) · Serie 6/3c: smallest n with n(5π/16 + 15π/16) ∈ 2πℤ is 8 · 0 < r < 1: ⁴√r > r («Radius in die n-te Wurzel, nicht durch n teilen»).
+
+## L5 Kräfte/Leistung — leistung (p. 33, P = F · v)
+- F̲ = (2,6; 1,5) N, v̲_A = (2,0; 0) m/s: P = 5,2 W, α = 30° (`powerMoment` / `K5Figures.test.ts`). Welche der fünf Skizzen (++, +, −, −−, 0) passt?
+- F̲ = (0; 3; 0) N, v̲ = (2; 0; 0) m/s: P = 0 — warum «leistungslos»?
+- F̲ = (−3; 0; 0) N, v̲ = (2; 0; 0) m/s: P = −6 W, Widerstandskraft; Vorzeichen heisst «gegen die Bewegung», nicht «schlecht».
+- Wahr/falsch: «Wer ein 10-kg-Gewicht still hält, leistet P = 98 W» (falsch, v̲_A = 0); «Die Normalkraft leistet nie etwas» (falsch bei bewegter Unterlage: Lift, P = N·u); «Die Lorentzkraft ändert nie die Leistung» (P = 0 immer).
+- Lift: N = 4 N, Boden fährt mit u = 0,5 m/s nach oben: P₁ = +2 W auf den Körper, P₂ = −2 W auf den Boden, Summe 0.
+- Alltag (Grössenordnung): 15 N · 7 m/s ≈ 105 W (Velo), 500 N · 28 m/s ≈ 14 kW (Auto bei 100 km/h), 200 kN · 20 m/s = 4 MW (Lokomotive).
+- Dieselbe Kraft an zwei Punkten eines rollenden Rades: am Berührpunkt (v̲ = 0) P = 0, an der Nabe P = F̲ · v̲_C.
+
+## L5 Kräfte/Leistung — leistung-rotation (pp. 33–35, Moment)
+- ω̲ = (0; 0; 1) rad/s, OP̲ = (1,2; 0; 0) m, F̲ = (−0,5; 0,8; 0,5) N: v̲_P = (0; 1,2; 0), M̲_O = (0; −0,60; 0,96) N·m, P = 0,96 W — beide Wege (F̲ · v̲_P und ω̲ · M̲_O) rechnen (`powerMoment.test.ts`).
+- Gleiche Aufgabe, O′ = (0; 0; 1,2): M̲_O′ = (0,96; 0; 0,96), M̲_O′ − M̲_O = O′O̲ × F̲ = (0,96; 0,60; 0) ⟂ Achse; M_z = M_z′ = 0,96, P gleich.
+- F̲ ∥ Achse (0; 0; 0,9) N: M̲_O waagrecht, M_z = 0, P = 0 — obwohl M̲_O ≠ 0.
+- Hebelarm: P = (1,3; 0,5), F̲ = (0,2; 1,5) N: |M_O| = 1,85 N·m, d = 1,22 m ≠ |OP̲| = 1,39 m; P entlang der Wirkungslinie verschieben ändert d nicht.
+- Vorzeichen: Kraft dreht gegen den Uhrzeigersinn um O — zeigt M̲_O zum Betrachter oder in die Seite? (⊙)
+- Wahr/falsch: «M̲_O ist eine Eigenschaft der Kraft allein» (falsch); «F̲ × PO̲ = OP̲ × F̲» (wahr); «N·m und J sind dieselbe Grösse» (falsch).
+- Rad: r = 1,5 m, ω = 1 rad/s, F̲ = (0,7; 1,2) N (radial/tangential): F_t = 1,2 N, M_z = r F_t = 1,8 N·m, P = 1,8 W; die radiale Komponente trägt nichts bei.
+- Spat: a · (b × c) = b · (c × a) — am Volumenbild begründen.

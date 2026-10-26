@@ -147,8 +147,8 @@ export function NormalForceFigure() {
           <label className="slider"><M>{t`s_2`}</M><input type="range" min={-2} max={2} step={0.1} value={s2} onChange={(e) => setS2(Number(e.target.value))} aria-label="s2" /><span className="val">{fmtNum(s2, 1, lang)}</span></label>
           <label className="slider"><M>u</M><input type="range" min={-1} max={1} step={0.1} value={u} onChange={(e) => setU(Number(e.target.value))} aria-label="u" /><span className="val">{fmtNum(u, 1, lang)}</span></label>
         </div>
-        <div className="v-result rt-readout lp-formula"><M>{t`P_1 = \v N\cdot\v v_1 = N\,(s_1\cos 90^\circ + u) = ${fx(NF_N0)}\cdot ${sg(u)} = ${fx(P1)}\,\text{W}`}</M></div>
-        <div className="v-result rt-readout lp-formula"><M>{t`P_2 = (-\v N)\cdot\v v_2 = -N\,(s_2\cos 90^\circ + u) = ${fx(P2)}\,\text{W}`}</M></div>
+        <div className="v-result rt-readout lp-formula"><M>{t`P_1 = \v N\cdot\v v_1 = N\,(s_1\cos 90^\circ + u)`}</M><M>{t`= ${fx(NF_N0)}\cdot ${sg(u)} = ${fx(P1)}\,\text{W}`}</M></div>
+        <div className="v-result rt-readout lp-formula"><M>{t`P_2 = (-\v N)\cdot\v v_2 = -N\,(s_2\cos 90^\circ + u)`}</M><M>{t`= ${fx(P2)}\,\text{W}`}</M></div>
         <p className="vdemo-note">{lift
           ? tr(<>Fährt die Unterlage selbst entlang <M>{t`\v N`}</M> (<M>{t`u \neq 0`}</M> wie ein Lift), ist <M>{t`\v N`}</M> nicht mehr senkrecht zur Bewegung: <M>{t`P_1`}</M> und <M>{t`P_2`}</M> sind nicht 0, aber sie haben entgegengesetzte Vorzeichen – die Summe bleibt <M p=".">0</M></>,
             <>If the surface itself moves along <M>{t`\v N`}</M> (<M>{t`u \neq 0`}</M>, like a lift), <M>{t`\v N`}</M> is no longer perpendicular to the motion: <M>{t`P_1`}</M> and <M>{t`P_2`}</M> are not 0, but they have opposite signs – the sum stays <M p=".">0</M></>)
@@ -216,7 +216,7 @@ export function LorentzFigure() {
         <div className="lp-sliders">
           <label className="slider"><M>B</M><input type="range" min={1} max={2.5} step={0.1} value={B} onChange={(e) => setB(Number(e.target.value))} aria-label="B" /><span className="val">{fmtNum(B, 1, lang)}</span></label>
         </div>
-        <div className="v-result rt-readout lp-formula"><M>{t`\v F = q\,\v v\times\v B,\qquad |\v F| = |q|\,v\,B = ${f1(Math.abs(q))}\cdot ${f1(LZ_V)}\cdot ${f1(B)} = ${f2(Fmag)}`}</M></div>
+        <div className="v-result rt-readout lp-formula"><M p=",">{t`\v F = q\,\v v\times\v B`}</M><M>{t`|\v F| = |q|\,v\,B = ${f1(Math.abs(q))}\cdot ${f1(LZ_V)}\cdot ${f1(B)} = ${f2(Fmag)}`}</M></div>
         <div className="v-result rt-readout lp-formula lp-zero"><M>{t`P = \v F\cdot\v v = ${f2(P)}\ \ (\text{${tr('immer', 'always')}})`}</M></div>
         <p className="vdemo-note">{tr(
           <>Von oben gesehen zeigt <M>{t`\v B`}</M> aus der Seite heraus (<M p=").">{t`\odot`}</M> Das Kreuzprodukt <M>{t`\v v\times\v B`}</M> steht senkrecht auf <M>{t`\v v`}</M> – in jedem Augenblick, wohin sich die Ladung auch bewegt. Darum ist <M p=",">{t`\v F\cdot\v v = 0`}</M> die Kraft lenkt die Ladung nur ab. (Ergänzung, kommt mit der Dynamik: Das Tempo bleibt dabei gleich; wirkt nur diese Kraft, läuft die Ladung auf einem Kreis, enger bei grösserem <M p=".)">B</M></>,
@@ -235,32 +235,31 @@ export const WATT_MARKS = [
 ] as const;
 export const wattMarkValue = (m: { F: number; v: number }) => watt(m.F, m.v);
 
-/** Logarithmic scale from 1 W to 10 MW with four F · v examples (supplement, rounded numbers). */
+/** Logarithmic scale from 1 W to 10 MW with four F · v examples (supplement, rounded numbers): numbered marks on the axis, the examples listed below. */
 export function WattScale() {
   const tr = useTr(), lang = useLang();
-  const vb: [number, number, number, number] = [0, 0, 400, 128];
-  const x = (P: number) => 30 + (Math.log10(P) / 7) * 340; // 1 W … 10 MW
+  const vb: [number, number, number, number] = [0, 0, 400, 78];
+  const x = (P: number) => 28 + (Math.log10(P) / 7) * 344; // 1 W … 10 MW
   const ticks = [[1, '1\\,\\text{W}'], [1e1, '10'], [1e2, '100'], [1e3, '1\\,\\text{kW}'], [1e4, '10'], [1e5, '100'], [1e6, '1\\,\\text{MW}'], [1e7, '10']] as const;
   const fmtP = (P: number) => (P >= 1e6 ? `${fmtNum(P / 1e6, 0, lang, true)}\\,\\text{MW}` : P >= 1e3 ? `${fmtNum(P / 1e3, 0, lang, true)}\\,\\text{kW}` : `${fmtNum(P, 0, lang, true)}\\,\\text{W}`);
-  const rows = [100, 72, 100, 72]; // alternate heights so the labels do not collide
   return (
     <figure className="vdemo lp-fig">
       <div className="vdemo-fig wide">
         <svg viewBox={vb.join(' ')} aria-label={tr('Leistung auf einer logarithmischen Skala', 'Power on a logarithmic scale')}>
-          <line x1={x(1)} y1={30} x2={x(1e7)} y2={30} className="lp-axis" />
-          {ticks.map(([P]) => <line key={P} x1={x(P)} y1={25} x2={x(P)} y2={35} className="lp-scaletick" />)}
+          <line x1={x(1)} y1={50} x2={x(1e7)} y2={50} className="lp-axis" />
+          {ticks.map(([P]) => <line key={P} x1={x(P)} y1={45} x2={x(P)} y2={55} className="lp-scaletick" />)}
           {WATT_MARKS.map((m, i) => { const P = wattMarkValue(m); return (
-            <g key={m.id}><line x1={x(P)} y1={30} x2={x(P)} y2={rows[i] - 24} className="lp-mark-stem" /><circle cx={x(P)} cy={30} r={5} className="lp-mark" /></g>
+            <g key={m.id}><circle cx={x(P)} cy={50} r={10} className="lp-mark" /><text x={x(P)} y={54.5} textAnchor="middle" className="lp-marknum">{i + 1}</text></g>
           ); })}
         </svg>
-        {ticks.map(([P, tex]) => <div key={P} className="vdemo-label muted small" style={at(vb, x(P), 12)}><M>{tex}</M></div>)}
-        {WATT_MARKS.map((m, i) => { const P = wattMarkValue(m); return (
-          <div key={m.id} className="vdemo-label dark small halo lp-markrow" style={at(vb, Math.min(352, Math.max(48, x(P))), rows[i])}>
-            <div>{tr(m.de, m.en)}</div>
-            <div><M>{t`${m.FtexDe}\cdot ${m.vtex} ${m.id === 'unit' ? '=' : '\\approx'} ${fmtP(P)}`}</M></div>
-          </div>
-        ); })}
+        {ticks.map(([P, tex]) => <div key={P} className="vdemo-label muted small" style={at(vb, x(P), 24)}><M>{tex}</M></div>)}
       </div>
+      <ol className="lp-markrows">
+        {WATT_MARKS.map((m, i) => { const P = wattMarkValue(m); return (
+          <li key={m.id}><span className="lp-marknumhtml">{i + 1}</span><span className="lp-markname">{tr(m.de, m.en)}</span>
+            <M>{t`${m.FtexDe}\cdot ${m.vtex} ${m.id === 'unit' ? '=' : '\\approx'} ${fmtP(P)}`}</M></li>
+        ); })}
+      </ol>
     </figure>
   );
 }

@@ -90,11 +90,11 @@ export default function K6Moment() {
           <T
             de={<>
               <p>Dazu «Leistung von <M>\v F</M> bei Starrkörperrotation»: Figur mit einem Körper, der Achse <M>\mu</M> mit <M p=",">{t`\v\omega`}</M> zwei Punkten <M>O</M> und <M>{t`O'`}</M> auf der Achse, dem Punkt <M>P</M> mit der Kraft <M>\v F</M> und <M>{t`\v e_z`}</M> in Achsenrichtung. Darunter:</p>
-              <MD>{t`\begin{aligned} P &= \v F\cdot\v v_P = \v F\cdot(\v\omega\times\v{OP}) = \v\omega\cdot(\v{OP}\times\v F) = \v\omega\cdot\v M_O\\ P &= \v\omega\cdot\v M_O = \v\omega\cdot\v M_{O'}\\ P &= \v\omega\cdot\v M_O = \omega\,\v e_z\cdot\v M_O = \omega\cdot M_z \end{aligned}`}</MD>
+              <MD>{t`\begin{aligned} P &= \v F\cdot\v v_P = \v F\cdot(\v\omega\times\v{OP})\\ &= \v\omega\cdot(\v{OP}\times\v F) = \v\omega\cdot\v M_O\\ P &= \v\omega\cdot\v M_O = \v\omega\cdot\v M_{O'}\\ P &= \v\omega\cdot\v M_O = \omega\,\v e_z\cdot\v M_O = \omega\cdot M_z \end{aligned}`}</MD>
             </>}
             en={<>
               <p>Then «Power of <M>\v F</M> in a rigid-body rotation»: a figure with a body, the axis <M>\mu</M> with <M p=",">{t`\v\omega`}</M> two points <M>O</M> and <M>{t`O'`}</M> on the axis, the point <M>P</M> with the force <M>\v F</M> and <M>{t`\v e_z`}</M> along the axis. Below:</p>
-              <MD>{t`\begin{aligned} P &= \v F\cdot\v v_P = \v F\cdot(\v\omega\times\v{OP}) = \v\omega\cdot(\v{OP}\times\v F) = \v\omega\cdot\v M_O\\ P &= \v\omega\cdot\v M_O = \v\omega\cdot\v M_{O'}\\ P &= \v\omega\cdot\v M_O = \omega\,\v e_z\cdot\v M_O = \omega\cdot M_z \end{aligned}`}</MD>
+              <MD>{t`\begin{aligned} P &= \v F\cdot\v v_P = \v F\cdot(\v\omega\times\v{OP})\\ &= \v\omega\cdot(\v{OP}\times\v F) = \v\omega\cdot\v M_O\\ P &= \v\omega\cdot\v M_O = \v\omega\cdot\v M_{O'}\\ P &= \v\omega\cdot\v M_O = \omega\,\v e_z\cdot\v M_O = \omega\cdot M_z \end{aligned}`}</MD>
             </>}
           />
         </Box>
@@ -173,7 +173,7 @@ export default function K6Moment() {
             de={<p><M p=":">{t`\v M_O`}</M> «Moment der Kraft <M>{t`\{P\,|\,\v F\}`}</M> bez. <M p=".">O</M>» Auf S. 35 heisst der Angriffspunkt <M>A</M> statt <M p=".">P</M></p>}
             en={<p><M p=":">{t`\v M_O`}</M> «moment of the force <M>{t`\{P\,|\,\v F\}`}</M> about <M p=".">O</M>» On p. 35 the point of application is called <M>A</M> instead of <M p=".">P</M></p>}
           />
-          <MD>{t`\v M_O = \v{OP}\times\v F = \v F\times\v{PO},\qquad P = \v F\cdot\v v_P = \v M_O\cdot\v\omega`}</MD>
+          <MD>{t`\begin{aligned} \v M_O &= \v{OP}\times\v F = \v F\times\v{PO}\\ P &= \v F\cdot\v v_P = \v M_O\cdot\v\omega \end{aligned}`}</MD>
           <T
             de={<p>Figuren auf S. 35: <M>{t`\v M_O = \v{OA}\times\v F`}</M> mit dem Winkel <M>\varphi</M> zwischen <M>{t`\v{OA}`}</M> und <M>\v F</M> und <M>{t`\v M_O`}</M> senkrecht auf beiden; <M>{t`\v M_O = \v{OA}\times\v F = \v F\times\v{AO}`}</M> mit dem Winkel <M p=";">{t`\pi-\varphi`}</M> darunter drei Bilder zur Rechte-Hand-Regel (Spat, Hand, Schraube).</p>}
             en={<p>Figures on p. 35: <M>{t`\v M_O = \v{OA}\times\v F`}</M> with the angle <M>\varphi</M> between <M>{t`\v{OA}`}</M> and <M>\v F</M> and <M>{t`\v M_O`}</M> perpendicular to both; <M>{t`\v M_O = \v{OA}\times\v F = \v F\times\v{AO}`}</M> with the angle <M p=";">{t`\pi-\varphi`}</M> below, three pictures of the right-hand rule (box, hand, screw).</p>}

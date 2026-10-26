@@ -12,10 +12,10 @@ type F2 = [number, number];
 
 /* ─────────────────────────────── geometry of the power explorer ─────────────────────────────── */
 export const PE_VB: [number, number, number, number] = [0, 0, 400, 262];
-export const PE_A: V2 = [140, 116]; // the point A (the track runs through it, to the right)
-export const PE_KF = 31; // px per newton
+export const PE_A: V2 = [140, 118]; // the point A (the track runs through it, to the right)
+export const PE_KF = 26; // px per newton
 export const PE_KV = 42; // px per m/s
-const F_MAX = 4, V_MIN = 0.5, V_MAX = 3;
+const F_MAX = 3.5, V_MIN = 0.5, V_MAX = 3;
 const BAR_Y = 232, BAR_X0 = 200, BAR_K = 12.5; // power bar: zero at x = 200, 12.5 px per watt (|P| ≤ 12 W)
 
 export type PePreset = 'pp' | 'p' | 'm' | 'mm' | 'z';
@@ -154,11 +154,13 @@ export function PowerExplorer() {
       <figcaption className="vdemo-readout">
         <div className={`v-result rt-readout lp-class ${cls}`}>{chip}</div>
         <div className="v-result rt-readout lp-formula">
-          <M>{t`P = \v F\cdot\v v_A = F_x v_x + F_y v_y = ${par(F[0])}\cdot ${f1(v)} + ${par(F[1])}\cdot 0 = ${Pn}\,\text{W}`}</M>
+          <M>{t`P = \v F\cdot\v v_A = F_x v_x + F_y v_y`}</M>
+          <M>{t`= ${par(F[0])}\cdot ${f1(v)} + ${par(F[1])}\cdot 0 = ${Pn}\,\text{W}`}</M>
         </div>
         {fr.alpha !== null && (
           <div className="v-result rt-readout lp-formula">
-            <M>{t`P = |\v F|\,|\v v_A|\cos\alpha = ${f2(fr.Fabs)}\cdot ${f1(v)}\cdot\cos ${alphaTex}^\circ = ${Pn}\,\text{W}`}</M>
+            <M>{t`P = |\v F|\,|\v v_A|\cos\alpha`}</M>
+            <M>{t`= ${f2(fr.Fabs)}\cdot ${f1(v)}\cdot\cos ${alphaTex}^\circ = ${Pn}\,\text{W}`}</M>
           </div>
         )}
         <p className="vdemo-note">{tr(

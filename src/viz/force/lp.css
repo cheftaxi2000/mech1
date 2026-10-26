@@ -46,10 +46,15 @@
 .lp-everyday .lp-sign.lp-plus { background: color-mix(in srgb, var(--c-z) 14%, transparent); color: var(--c-z-text); }
 .lp-everyday .lp-sign.lp-minus { background: color-mix(in srgb, var(--c-y) 16%, transparent); color: var(--c-y-text); }
 .lp-everyday .lp-sign.lp-zero { background: color-mix(in srgb, var(--muted) 14%, transparent); }
-@media (max-width: 640px) { .lp-everyday { grid-template-columns: 1fr; } .lp-everyday > figure { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: 8px; align-items: center; text-align: left; } }
+@media (max-width: 640px) { .lp-everyday { grid-template-columns: 1fr; } .lp-everyday .lp-ev-fig { max-width: 260px; } }
 .lp-axis { stroke: var(--muted); stroke-width: 1.4; }
 .lp-scaletick { stroke: var(--muted); stroke-width: 1.2; }
 .lp-mark { fill: var(--c-point); }
+.lp-marknum { fill: #fff; font: 700 11px system-ui, sans-serif; }
+.lp-markrows { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 4px; }
+.lp-markrows li { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 10px; }
+.lp-marknumhtml { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--c-point); color: #fff; font-size: 0.75rem; font-weight: 700; flex: none; }
+.lp-markname { min-width: 11em; }
 .lp-mark-stem { stroke: var(--c-point); stroke-width: 1.4; opacity: 0.7; }
 .lp-glyph { fill: color-mix(in srgb, var(--muted) 12%, transparent); stroke: var(--fg); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; opacity: 0.8; }
 .lp-ground { stroke: var(--muted); stroke-width: 1.6; fill: none; opacity: 0.8; }

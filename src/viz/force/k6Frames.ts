@@ -224,7 +224,7 @@ export function refAnimFrame(step: number, t: number, lang: Lang): Frame3 {
   const near = s >= 2; // close view: the picture is reduced to the arrows around O
 
   lines.push({ key: 'mu', pts: [[0, 0, -0.7], [0, 0, 2.35]], col: 'axis', w: 3.5 });
-  lab('mu', [0, 0, 2.35], LAB.mu, 'axis', 0.12, 0.05);
+  if (!near) lab('mu', [0, 0, 2.35], LAB.mu, 'axis', 0.12, 0.05);
   dots.push({ key: 'O', at: O, col: 'dark', r: 0.045 }, { key: 'Op', at: Op, col: 'dark', r: 0.045 }, { key: 'P', at: P, col: 'point', r: 0.05, o: near ? 0 : 1 });
   lab('O', O, LAB.O, 'dark', -0.14, -0.1);
   lab('Op', Op, LAB.Op, 'dark', -0.16, 0.06);
@@ -253,9 +253,9 @@ export function refAnimFrame(step: number, t: number, lang: Lang): Frame3 {
   if (s === 1) {
     const g1 = intro(1, 0.35, 0.7), g2 = intro(1, 0.65, 1);
     arrows.push({ key: 'OpO', from: Op, to: add(Op, scale(g1, sub(O, Op))), col: 'axis', w: 5 });
-    if (g1 > 0.9) lab('OpO', scale(0.5, Op), [ul('O′O')], 'axis', 0.3, 0.05);
-    if (g2 > 0.9) lab('OpP', scale(0.5, add(Op, P)), [ul('O′P')], 'dark', 0.2, 0.2);
-    if (g2 > 0.9) lab('OPl', scale(0.5, P), LAB.OP, 'dark', 0.1, -0.22);
+    if (g1 > 0.9) lab('OpO', scale(0.55, Op), [ul('O′O')], 'axis', -0.34, 0);
+    if (g2 > 0.9) lab('OpP', scale(0.5, add(Op, P)), [ul('O′P')], 'dark', 0.26, 0.12);
+    if (g2 > 0.9) lab('OPl', scale(0.45, P), LAB.OP, 'dark', -0.1, -0.2);
     if (g2 > 0.95) eq = String.raw`\v{O'P} = \v{O'O} + \v{OP}`;
   }
 
@@ -271,7 +271,7 @@ export function refAnimFrame(step: number, t: number, lang: Lang): Frame3 {
       lab('MO', tip(O, R.MO), LAB.MO, 'force', -0.22, 0.04);
       lab('MOp', tip(O, R.MOp), LAB.MOp, 'force2', 0.26, 0.0);
     }
-    if (gD > 0.9) lab('D', add(tip(O, R.MO), scale(0.7 * KM, R.D)), LAB.D, 'dark', 0.12, 0.22);
+    if (gD > 0.9) lab('D', add(tip(O, R.MO), scale(0.9 * KM, R.D)), LAB.D, 'dark', 0.1, 0.32);
     if (s === 2 && gD > 0.95) eq = String.raw`\v M_{O'} = \v{O'O}\times\v F + \v M_O`;
   }
 
@@ -291,7 +291,7 @@ export function refAnimFrame(step: number, t: number, lang: Lang): Frame3 {
     lines.push({ key: 'dropOp', pts: [tip(O, R.MOp), [0, 0, z]], col: 'dark', w: 2.2, dashed: true, o: g4 });
     lines.push({ key: 'Mz', pts: [O, [0, 0, z * g4]], col: 'plus', w: 8, o: 0.8 });
     dots.push({ key: 'Mzdot', at: [0, 0, z], col: 'plus', r: 0.045, o: g4 });
-    if (g4 > 0.9) lab('Mz', [0, 0, z * 0.4], [{ t: 'M', sub: 'z' }], 'plus', -0.3, -0.2);
+    if (g4 > 0.9) lab('Mz', [0, 0, z * 0.4], [{ t: 'M', sub: 'z' }], 'plus', -0.42, -0.34);
     if (g4 > 0.95) eq = String.raw`\v\omega\cdot\v M_{O'} = \v\omega\cdot\v M_O = \omega M_z = ${f2(R.P, lang)}\,\text{W}`;
   }
   return { arrows, lines, dots, labels, faces, disc: near ? 0.35 : 1, eq, cam, data: { step: s, Mz: R.Mz, Mzp: R.Mzp, P: R.P } };
@@ -300,7 +300,7 @@ export function refAnimFrame(step: number, t: number, lang: Lang): Frame3 {
 // ───────────────────────────── the explorer with the slider for O′ ─────────────────────────────
 
 export interface RefOptions { h: number; F: Vec3; showD: boolean }
-export const EXPLORER_CAM: Cam = camAt([0.85, -0.3, 1.0], 0.95);
+export const EXPLORER_CAM: Cam = camAt([0.85, -0.3, 1.1], 1.0);
 export function refExplorerFrame({ h, F, showD }: RefOptions): Frame3 {
   const { O, P } = K6;
   const cam = EXPLORER_CAM;
