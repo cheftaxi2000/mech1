@@ -66,12 +66,12 @@ describe('K5: P = F · v = F∥ |v| (p. 33)', () => {
 });
 
 describe('K6: the moment (pp. 33–35)', () => {
-  const O: Vec3 = [0, 0, 0], P: Vec3 = [1.1, 0.5, 0], F: Vec3 = [-0.3, 0.9, 0.7], om: Vec3 = [0, 0, 1];
-  it('the lesson example: v_P = (−0,5; 1,1; 0), M_O = (0,35; −0,77; 1,14), P = 1,14 = F·v_P = ω·M_O', () => {
+  const O: Vec3 = [0, 0, 0], P: Vec3 = [1.2, 0, 0], F: Vec3 = [-0.5, 0.8, 0.5], om: Vec3 = [0, 0, 1];
+  it('the lesson example: v_P = (0; 1,2; 0), M_O = (0; −0,60; 0,96), P = 0,96 = F·v_P = ω·M_O', () => {
     const v = rotVelocity(om, O, P), M = moment(O, { A: P, F });
-    close(v[0], -0.5); close(v[1], 1.1); close(v[2], 0);
-    close(M[0], 0.35); close(M[1], -0.77); close(M[2], 1.14);
-    close(power(F, v), 1.14); close(dot(om, M), 1.14);
+    close(v[0], 0); close(v[1], 1.2); close(v[2], 0);
+    close(M[0], 0); close(M[1], -0.6); close(M[2], 0.96);
+    close(power(F, v), 0.96); close(dot(om, M), 0.96);
     close(powerRotation(om, O, { A: P, F }), powerViaMoment(om, O, { A: P, F }), 1e-12);
   });
   it('triple product: (a×b)·c = b·(c×a) = c·(a×b), the volume of the parallelepiped read in three ways', () => {
@@ -85,7 +85,7 @@ describe('K6: the moment (pp. 33–35)', () => {
   it('parallelepiped of the animation: base (ω, OP) × height = base (OP, F) × height = P', () => {
     const base1 = norm(cross(om, P)), h1 = heightOverBase(om, P, F);
     const base2 = norm(cross(P, F)), h2 = heightOverBase(P, F, om);
-    close(base1 * h1, 1.14); close(base2 * h2, 1.14);
+    close(base1 * h1, 0.96); close(base2 * h2, 0.96);
     expect(h1).toBeGreaterThan(0); expect(h2).toBeGreaterThan(0);
   });
   it('plane case: M_z = x F_y − y F_x = |F| d (counter-clockwise positive), lever arm = distance to the line of action', () => {
@@ -140,10 +140,10 @@ describe('K6: the moment (pp. 33–35)', () => {
       close(dot([0, 0, 2], s.MO), dot([0, 0, 2], s.MOp), 1e-12);
     }
   });
-  it('the lesson example for the reference point: O′ = (0, 0, 1,2) gives M_O′ = (1,43; −0,41; 1,14), D = (1,08; 0,36; 0)', () => {
+  it('the lesson example for the reference point: O′ = (0, 0, 1,2) gives M_O′ = (0,96; 0; 0,96), D = (0,96; 0,60; 0)', () => {
     const s = momentShift(O, [0, 0, 1.2], P, F);
-    close(s.MOp[0], 1.43); close(s.MOp[1], -0.41); close(s.MOp[2], 1.14);
-    close(s.D[0], 1.08); close(s.D[1], 0.36); close(s.D[2], 0);
+    close(s.MOp[0], 0.96); close(s.MOp[1], 0); close(s.MOp[2], 0.96);
+    close(s.D[0], 0.96); close(s.D[1], 0.6); close(s.D[2], 0);
     expect(norm(sub(s.MO, s.MOp))).toBeGreaterThan(0.5); // M_O ≠ M_O′
   });
 });
