@@ -267,3 +267,21 @@ All numbers are checked in `src/physics/kraeftegruppe.test.ts` / `force.test.ts`
 - Ladder (L = 4 m, v = 1 m/s, ω = 0,5/s, G = 20 N, W = 15 N): P_B = −28,3 W, P_C = 4,4 W, R·v_A = −10,6 W, M_A·ω = −13,3 W, P = −23,9 W (both ways). M_AG = −56,6 N·m, M_AW = +30 N·m.
 - Ladder, ω = 0: P = −(√2/2) W v (only W resists); v = 0: P_B < 0 (lifting), P_C > 0.
 - Units: N·m/s = W and (N·m)·(1/s) = W; why R and M_B cannot be added.
+## L5 Kräfte/Leistung — leistung (p. 33, P = F · v)
+- F̲ = (2,6; 1,5) N, v̲_A = (2,0; 0) m/s: P = 5,2 W, α = 30° (`powerMoment` / `K5Figures.test.ts`). Welche der fünf Skizzen (++, +, −, −−, 0) passt?
+- F̲ = (0; 3; 0) N, v̲ = (2; 0; 0) m/s: P = 0 — warum «leistungslos»?
+- F̲ = (−3; 0; 0) N, v̲ = (2; 0; 0) m/s: P = −6 W, Widerstandskraft; Vorzeichen heisst «gegen die Bewegung», nicht «schlecht».
+- Wahr/falsch: «Wer ein 10-kg-Gewicht still hält, leistet P = 98 W» (falsch, v̲_A = 0); «Die Normalkraft leistet nie etwas» (falsch bei bewegter Unterlage: Lift, P = N·u); «Die Lorentzkraft ändert nie die Leistung» (P = 0 immer).
+- Lift: N = 4 N, Boden fährt mit u = 0,5 m/s nach oben: P₁ = +2 W auf den Körper, P₂ = −2 W auf den Boden, Summe 0.
+- Alltag (Grössenordnung): 15 N · 7 m/s ≈ 105 W (Velo), 500 N · 28 m/s ≈ 14 kW (Auto bei 100 km/h), 200 kN · 20 m/s = 4 MW (Lokomotive).
+- Dieselbe Kraft an zwei Punkten eines rollenden Rades: am Berührpunkt (v̲ = 0) P = 0, an der Nabe P = F̲ · v̲_C.
+
+## L5 Kräfte/Leistung — leistung-rotation (pp. 33–35, Moment)
+- ω̲ = (0; 0; 1) rad/s, OP̲ = (1,2; 0; 0) m, F̲ = (−0,5; 0,8; 0,5) N: v̲_P = (0; 1,2; 0), M̲_O = (0; −0,60; 0,96) N·m, P = 0,96 W — beide Wege (F̲ · v̲_P und ω̲ · M̲_O) rechnen (`powerMoment.test.ts`).
+- Gleiche Aufgabe, O′ = (0; 0; 1,2): M̲_O′ = (0,96; 0; 0,96), M̲_O′ − M̲_O = O′O̲ × F̲ = (0,96; 0,60; 0) ⟂ Achse; M_z = M_z′ = 0,96, P gleich.
+- F̲ ∥ Achse (0; 0; 0,9) N: M̲_O waagrecht, M_z = 0, P = 0 — obwohl M̲_O ≠ 0.
+- Hebelarm: P = (1,3; 0,5), F̲ = (0,2; 1,5) N: |M_O| = 1,85 N·m, d = 1,22 m ≠ |OP̲| = 1,39 m; P entlang der Wirkungslinie verschieben ändert d nicht.
+- Vorzeichen: Kraft dreht gegen den Uhrzeigersinn um O — zeigt M̲_O zum Betrachter oder in die Seite? (⊙)
+- Wahr/falsch: «M̲_O ist eine Eigenschaft der Kraft allein» (falsch); «F̲ × PO̲ = OP̲ × F̲» (wahr); «N·m und J sind dieselbe Grösse» (falsch).
+- Rad: r = 1,5 m, ω = 1 rad/s, F̲ = (0,7; 1,2) N (radial/tangential): F_t = 1,2 N, M_z = r F_t = 1,8 N·m, P = 1,8 W; die radiale Komponente trägt nichts bei.
+- Spat: a · (b × c) = b · (c × a) — am Volumenbild begründen.
