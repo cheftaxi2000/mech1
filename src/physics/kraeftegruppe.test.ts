@@ -8,33 +8,38 @@ const S2 = Math.SQRT1_2;
 describe('the plate of the proof animation (p. 35)', () => {
   const n = plateNumbers(PROOF);
   it('v_i = v_B + ω × BA_i', () => {
-    expect(n.v[0]).toEqual([2, -0.5]);
-    expect(n.v[1]).toEqual([0, 2.5]);
+    expect(n.v[0]).toEqual([2, -2]);
+    expect(n.v[1]).toEqual([0.5, 1.5]);
     expect(rotPart(1, [-1.5, -1])).toEqual([1, -1.5]);
+    expect(rotPart(1, [2, 0.5])).toEqual([-0.5, 2]);
   });
   it('P_i = F_i · v_i', () => {
-    close(n.P[0], 1.5); close(n.P[1], 2.5); close(n.sumP, 4);
+    close(n.P[0], 3); close(n.P[1], 2.5); close(n.sumP, 5.5);
   });
   it('split P_i = F_i·v_B + ω·(BA_i × F_i)', () => {
-    close(n.trans[0], -0.5); close(n.trans[1], 2); close(n.rot[0], 2); close(n.rot[1], 0.5);
+    close(n.trans[0], 1); close(n.trans[1], 1.5); close(n.rot[0], 2); close(n.rot[1], 1);
     for (let i = 0; i < 2; i++) close(n.trans[i] + n.rot[i], n.P[i]);
   });
   it('M_i are the moments about B; ω M_i is the rotation part (a·(b×c) = b·(c×a))', () => {
-    close(n.Mi[0], 2); close(n.Mi[1], 0.5);
+    close(n.Mi[0], 2); close(n.Mi[1], 1);
     for (let i = 0; i < 2; i++) close(PROOF.omega * n.Mi[i], n.rot[i]);
   });
   it('R, M_B, and the boxed formula P = R·v_B + M_B·ω', () => {
-    expect(n.R).toEqual([1.5, 0]);
-    close(n.MB, 2.5);
-    close(n.translation, 1.5); close(n.rotation, 2.5); close(n.total, 4);
+    expect(n.R).toEqual([2.5, 0]);
+    close(n.MB, 3);
+    close(n.translation, 2.5); close(n.rotation, 3); close(n.total, 5.5);
     close(n.total, n.sumP);
     close(n.translation, n.trans[0] + n.trans[1]); close(n.rotation, n.rot[0] + n.rot[1]);
   });
   it('the shadow of the sum is the sum of the shadows (dot product is linear)', () => {
-    const F = PROOF.forces[0].F;
-    const parts = shadow(PROOF.vB, F) + shadow(rotPart(PROOF.omega, [-1.5, -1]), F);
-    close(parts, shadow(n.v[0], F));
-    close(shadow(n.v[0], F) * Math.hypot(F[0], F[1]), n.P[0]);
+    for (let i = 0; i < 2; i++) {
+      const F = PROOF.forces[i].F, A = PROOF.forces[i].A;
+      close(shadow(PROOF.vB, F) + shadow(rotPart(PROOF.omega, A), F), shadow(n.v[i], F));
+      close(shadow(n.v[i], F) * Math.hypot(F[0], F[1]), n.P[i]);
+    }
+  });
+  it('every part is a multiple of 0.5 W and at least 1 W (the stacked bars stay readable)', () => {
+    for (const x of [...n.P, ...n.trans, ...n.rot]) { expect(x).toBeGreaterThanOrEqual(1); close(x * 2, Math.round(x * 2)); }
   });
 });
 

@@ -53,10 +53,10 @@ export const rotPart = (omega: number, r: P2): P2 => [-omega * r[1], omega * r[0
 
 // ───────────────────────────── the plate of the proof animation (p. 35) ─────────────────────────────
 
-/** Two forces F̲₁ at A₁, F̲₂ at A₂; B known with {v̲_B, ω}. Numbers chosen so that all parts are different and nothing is zero. */
+/** Two forces F̲₁ at A₁, F̲₂ at A₂; B known with {v̲_B, ω}. Numbers chosen so that every part (P_i, F̲_i · v̲_B, ω · M_i) is a positive multiple of 0.5 W and all six are different. */
 export const PROOF: Plate = {
-  B: [0, 0], vB: [1, 1], omega: 1,
-  forces: [{ A: [-1.5, -1], F: [0.5, -1] }, { A: [1.5, 1], F: [1, 1] }],
+  B: [0, 0], vB: [1, -0.5], omega: 1,
+  forces: [{ A: [-1.5, -1], F: [0.5, -1] }, { A: [2, 0.5], F: [2, 1] }],
 };
 
 // ───────────────────────────── Fig. 5.6, the ladder: parts for the figures (pp. 35–36) ─────────────────────────────
