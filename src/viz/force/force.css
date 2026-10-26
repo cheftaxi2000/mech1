@@ -1,0 +1,119 @@
+/* Figures of the chapters «Kräfte» and «Leistung» (K1–K7). Prefix kf-. Colours: forces --c-force, velocities --c-vel,
+   angles/ω --c-angle, points --c-point, inner forces --muted (lecture p. 31). Everything works in light and dark mode. */
+
+/* ---- generic building blocks ---- */
+.kf-svg { display: block; width: 100%; height: auto; touch-action: none; user-select: none; -webkit-user-select: none; }
+.kf-svg.pan { touch-action: pan-y; }
+.kf-f { stroke: var(--c-force); stroke-width: 3.2; stroke-linecap: round; fill: none; }
+.kf-f-head { fill: var(--c-force); }
+.kf-f.thin { stroke-width: 2.2; } .kf-f.dim { opacity: 0.4; } .kf-f.ghost { stroke-dasharray: 5 4; opacity: 0.75; }
+.kf-r { stroke: var(--c-force-text); stroke-width: 5.2; stroke-linecap: round; fill: none; }
+.kf-r-head { fill: var(--c-force-text); }
+.kf-in { stroke: var(--muted); stroke-width: 3; stroke-linecap: round; fill: none; } .kf-in-head { fill: var(--muted); }
+.kf-v { stroke: var(--c-vel); stroke-width: 3; stroke-linecap: round; fill: none; } .kf-v-head { fill: var(--c-vel); }
+.kf-sum { stroke: var(--fg); stroke-width: 1.8; stroke-dasharray: 2 5; stroke-linecap: round; fill: none; opacity: 0.8; }
+.kf-sum-head { fill: var(--fg); }
+.kf-guide { stroke: var(--muted); stroke-width: 1.3; stroke-dasharray: 5 5; fill: none; }
+.kf-guide.line { stroke: var(--c-point); stroke-width: 1.5; stroke-dasharray: 6 5; opacity: 0.85; }
+.kf-body { fill: color-mix(in srgb, var(--muted) 12%, var(--panel)); stroke: var(--muted); stroke-width: 1.8; }
+.kf-body.soft { fill: color-mix(in srgb, var(--muted) 7%, var(--panel)); }
+.kf-body.ghost { fill: none; stroke-dasharray: 6 5; opacity: 0.7; }
+.kf-body.hot { stroke: var(--c-force); stroke-width: 2.6; }
+.kf-hatch { stroke: var(--muted); stroke-width: 1.2; opacity: 0.7; }
+.kf-pt { fill: var(--panel); stroke: var(--c-point); stroke-width: 2.4; }
+.kf-pt.solid { fill: var(--c-point); }
+.kf-cm { stroke: var(--fg); stroke-width: 1.8; fill: none; }
+.kf-trail { stroke: var(--c-point); stroke-width: 1.6; stroke-dasharray: 3 5; fill: none; opacity: 0.8; }
+.kf-handle { fill: color-mix(in srgb, var(--c-force) 12%, transparent); stroke: var(--c-force); stroke-width: 1.5; stroke-dasharray: 3 3; cursor: grab; }
+.kf-handle.pt { fill: color-mix(in srgb, var(--c-point) 12%, transparent); stroke: var(--c-point); }
+.kf-handle:active { cursor: grabbing; }
+.kf-axis { stroke: var(--muted); stroke-width: 1.2; }
+.kf-ground { fill: color-mix(in srgb, var(--muted) 14%, var(--panel)); stroke: var(--muted); stroke-width: 1.4; }
+.kf-hand { fill: color-mix(in srgb, var(--c-point) 14%, var(--panel)); stroke: var(--c-point); stroke-width: 1.8; }
+.kf-bracket { fill: none; stroke: var(--muted); stroke-width: 1.4; }
+
+/* label inks (HTML labels) */
+.vdemo-label.force { color: var(--c-force-text); } .vdemo-label.res { color: var(--c-force-text); font-weight: 600; }
+.vdemo-label.inner { color: var(--muted); } .vdemo-label.vel { color: var(--c-vel); }
+.vdemo-label.fg { color: var(--fg); } .vdemo-label.ang { color: var(--c-angle); }
+.vdemo-label.nowrapl { white-space: nowrap; }
+
+/* the one-sentence «Was du sehen sollst» line above a figure */
+.kf-see { margin: 14px 0 6px; padding: 2px 0 2px 12px; border-left: 3px solid var(--c-force); color: var(--fg); font-size: 0.97rem; }
+.kf-see b { color: var(--c-force-text); }
+.lesson > .section > .kf-see, .lesson > .kf-see { max-width: var(--measure); margin-inline: auto; }
+
+/* controls */
+.kf-ctl { display: grid; gap: 8px; width: 100%; }
+.kf-ctl .row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.kf-ctl .slider { grid-template-columns: minmax(3.4em, auto) 1fr 4.6em; }
+.kf-chip { font: inherit; min-height: 40px; padding: 2px 14px; border-radius: 980px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); cursor: pointer; }
+.kf-chip[aria-pressed="true"] { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 14%, transparent); }
+.kf-chip.go { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; padding-inline: 22px; }
+.kf-chip.go:disabled { opacity: 0.45; cursor: default; }
+.kf-check { display: inline-flex; gap: 8px; align-items: center; min-height: 40px; cursor: pointer; }
+.kf-check input { width: 20px; height: 20px; accent-color: var(--accent); }
+
+/* read-outs */
+.kf-read { font-size: 0.95rem; display: grid; gap: 6px; }
+.kf-read .row { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; }
+.kf-read .katex { white-space: nowrap; }
+.kf-read .big { padding: 6px 12px; border-radius: 10px; background: color-mix(in srgb, var(--c-force) 11%, transparent); overflow-x: auto; max-width: 100%; }
+.kf-table { border-collapse: collapse; font-size: 0.92rem; width: 100%; }
+.kf-table th { text-align: right; font-weight: 600; color: var(--muted); padding: 2px 6px; white-space: nowrap; }
+.kf-table td { text-align: right; padding: 2px 6px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.kf-table th:first-child, .kf-table td:first-child { text-align: left; }
+.kf-table tr.sum td { border-top: 1.5px solid var(--fg); font-weight: 600; }
+.kf-table tr.hl td { background: color-mix(in srgb, var(--c-force) 12%, transparent); }
+.kf-table .katex { white-space: nowrap; }
+.kf-wrapx { overflow-x: auto; max-width: 100%; }
+.kf-note { color: var(--muted); font-size: 0.9rem; }
+
+/* bar chart on a log axis (1 N scale) */
+.kf-log { display: grid; gap: 4px; margin: 6px 0; }
+.kf-log .r { display: grid; grid-template-columns: minmax(7.2em, 11em) 1fr 5.8em; gap: 8px; align-items: center; min-height: 34px; }
+.kf-log .r .nm { font-size: 0.95rem; }
+.kf-log .r .bar { position: relative; height: 18px; border-radius: 4px; background: color-mix(in srgb, var(--muted) 12%, transparent); }
+.kf-log .r .bar i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 4px; background: var(--c-force); opacity: 0.85; }
+.kf-log .r.you .bar i { background: var(--c-angle); } .kf-log .r.anchor .bar i { background: var(--c-force-text); opacity: 1; }
+.kf-log .r .vl { text-align: right; font-variant-numeric: tabular-nums; font-size: 0.95rem; white-space: nowrap; }
+.kf-log .r.anchor .nm, .kf-log .r.anchor .vl { font-weight: 600; }
+.kf-log .ax { display: grid; grid-template-columns: minmax(7.2em, 11em) 1fr 5.8em; gap: 8px; }
+.kf-log .ax .scale { position: relative; height: 22px; border-top: 1.5px solid var(--muted); }
+.kf-log .ax .scale span { position: absolute; top: 2px; transform: translateX(-50%); font-size: 0.8rem; color: var(--muted); white-space: nowrap; }
+.kf-log .ax .scale span::before { content: ''; position: absolute; left: 50%; top: -5px; height: 5px; border-left: 1.5px solid var(--muted); }
+@media (max-width: 520px) {
+  .kf-log .r, .kf-log .ax { grid-template-columns: minmax(6em, 7.4em) 1fr 4.6em; gap: 6px; }
+  .kf-log .r .nm, .kf-log .r .vl { font-size: 0.85rem; }
+}
+
+/* two-panel figures (what forces do; contact / distance) */
+.kf-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 640px) { .kf-pair { grid-template-columns: minmax(0, 1fr); } }
+.kf-panel { position: relative; container-type: inline-size; background: var(--panel); border-radius: 12px; overflow: hidden; }
+.kf-panel .cap { padding: 8px 12px 10px; font-size: 0.93rem; }
+.kf-panel .cap .state { font-weight: 600; }
+figure.kf-wide { margin: 14px 0; padding: 12px; border-radius: var(--r-surf, 14px); background: var(--fill, var(--panel)); }
+figure.kf-wide figcaption { margin-top: 8px; font-size: 0.93rem; }
+
+/* K1 figures */
+.kf-sponge { fill: color-mix(in srgb, var(--c-y) 38%, var(--panel)); stroke: var(--c-y); stroke-width: 1.6; }
+.kf-pore { fill: color-mix(in srgb, var(--c-y) 70%, #000); opacity: 0.35; }
+.kf-apple { fill: color-mix(in srgb, var(--c-point) 70%, var(--panel)); stroke: var(--c-point); stroke-width: 1.6; }
+.kf-stem { fill: none; stroke: var(--c-z); stroke-width: 2.2; stroke-linecap: round; }
+.kf-gridl { stroke: var(--muted); stroke-width: 0.8; opacity: 0.18; }
+.kf-stripe { stroke: var(--muted); stroke-width: 1.4; opacity: 0.7; }
+.kf-lever { stroke: var(--c-point); stroke-width: 2; }
+.kf-matchbox.vdemo-fig { max-width: 640px; }
+
+/* K2 figures */
+.ok-mark { color: var(--ok); font-weight: 700; }
+.kf-limb { fill: none; stroke: var(--muted); stroke-width: 12; stroke-linecap: round; stroke-linejoin: round; opacity: 0.75; }
+.kf-mag-l { fill: color-mix(in srgb, var(--muted) 26%, var(--panel)); stroke: var(--muted); stroke-width: 1.8; }
+.kf-mag-r { fill: color-mix(in srgb, var(--muted) 8%, var(--panel)); stroke: var(--muted); stroke-width: 1.8; }
+.kf-rung { stroke: var(--muted); stroke-width: 1.6; }
+.kf-hit { stroke: transparent; stroke-width: 26; cursor: pointer; fill: none; pointer-events: stroke; }
+.kf-pick { fill: none; stroke: var(--c-force); stroke-width: 2; }
+.kf-tag { font-size: 0.78rem; color: var(--muted); }
+.kf-chip.sm { min-height: 36px; padding: 2px 12px; font-size: 0.9rem; text-align: left; }
+.kf-chip.sm .katex { font-size: 1em; }
