@@ -115,7 +115,7 @@ export const TOPICS: Topic[] = [
   { id: 'kraft', chapter: '4', title: ['Die Kraft als punktgebundener Vektor', 'Force as a point-bound vector'], pages: '29', status: 'planned' },
   { id: 'reaktionsprinzip', chapter: '4', title: ['Das Reaktionsprinzip', 'The reaction principle'], pages: '30', status: 'planned' },
   { id: 'systemabgrenzung', chapter: '4', title: ['Innere und äussere Kräfte, Systemabgrenzung', 'Inner and outer forces, system boundary'], pages: '30–31', status: 'review', component: lazy(() => import('../lessons/K3System')) },
-  { id: 'verteilte-kraefte', chapter: '4', title: ['Verteilte Kräfte und Kraftdichte', 'Distributed forces and force density'], pages: '31–32', status: 'planned' },
+  { id: 'verteilte-kraefte', chapter: '4', title: ['Verteilte Kräfte und Kraftdichte', 'Distributed forces and force density'], pages: '31–32', status: 'review', component: lazy(() => import('../lessons/K4Verteilt')) },
   { id: 'leistung', chapter: '5', title: ['Leistung einer Kraft: P = F · v', 'Power of a force: P = F · v'], pages: '33', status: 'planned' },
   { id: 'leistung-rotation', chapter: '5', title: ['Leistung bei Rotation und das Moment', 'Power in rotation and the moment'], pages: '33–35', status: 'planned' },
   { id: 'leistung-kraeftegruppe', chapter: '5', title: ['Leistung einer Kräftegruppe am starren Körper', 'Power of a group of forces on a rigid body'], pages: '34–36', status: 'planned' },
