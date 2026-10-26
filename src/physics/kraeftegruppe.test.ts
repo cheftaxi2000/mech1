@@ -43,6 +43,14 @@ describe('the plate of the proof animation (p. 35)', () => {
   });
 });
 
+describe('the proof plate described at B′ = A₂ (numbers of docs/QUIZ_BANK.md)', () => {
+  it('v_B′ = (0,5; 1,5), R·v_B′ = 1,25, M_B′ = 4,25; the sum stays 5,5 W', () => {
+    const q = moveReference(PROOF, [2, 0.5]), n = plateNumbers(q);
+    expect(q.vB).toEqual([0.5, 1.5]);
+    close(n.translation, 1.25); close(n.MB, 4.25); close(n.rotation, 4.25); close(n.total, 5.5);
+  });
+});
+
 describe('moving the reference point: the Kinemate changes, the power does not', () => {
   const plates: Plate[] = [
     PROOF,

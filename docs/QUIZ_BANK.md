@@ -215,3 +215,16 @@ Short ideas for the quiz part at the end of the course (D-015). Every answer mus
 **Week 5.** r with 2 % error: area ≈ 4 %, x³ ≈ 6 % · Quader exact Δd = 0,428 vs 0,421 · x² on [0,3; 2,9]: c = 1,6 (midpoint) · x³ − 3x on [−2, 2]: c = ±2/√3 · |x| on [−1, 1]: no c (why) · x³ − x on [−½, 1]: max 3/8 at the end · inflection points of x⁴ − x²: ±1/√6 · (2 − 3i)(1 + i) = 5 − i · (2 − 3i)/(1 + i) = −½ − 5/2 i · |3 + 4i| = 5.
 
 **Week 6.** i²⁰²⁶ = −1 · arg(−1 − i) = 5π/4 (arctan gives π/4) · (1 + i)⁸ = 16 · roots of z³ = 8i: √3 + i, −√3 + i, −2i · |z − 2| = |z − 2i| is the line b = a · |z − (1+i)| ≤ 2 and Re(iz) > 1: empty (they touch only at 1 − i, excluded) · Serie 6/3c: smallest n with n(5π/16 + 15π/16) ∈ 2πℤ is 8 · 0 < r < 1: ⁴√r > r («Radius in die n-te Wurzel, nicht durch n teilen»).
+
+
+## L7 Kräfte/Leistung — leistung-kraeftegruppe (K7)
+
+All numbers are checked in `src/physics/kraeftegruppe.test.ts` / `force.test.ts`.
+
+- Plate of the proof (B = (0,0), v_B = (1; −0,5) m/s, ω = 1/s; F₁ = (0,5; −1) N at A₁ = (−1,5; −1) m, F₂ = (2; 1) N at A₂ = (2; 0,5) m): v₁ = (2; −2), v₂ = (0,5; 1,5) m/s; P₁ = 3,0 W, P₂ = 2,5 W; R = (2,5; 0) N, R·v_B = 2,5 W, M_B = 3,0 N·m, M_B·ω = 3,0 W; P = 5,5 W.
+- Same plate described in B′ = (2; 0,5) (= A₂): v_B′ = (0,5; 1,5), R·v_B′ = 1,25 W, M_B′ = 4,25 N·m, M_B′·ω = 4,25 W; the sum stays 5,5 W (R·v_B and M_B·ω change, the sum does not).
+- All forces at one point A and B = A: M_B = 0, P = R·v_A. Two equal and opposite forces: R = 0, P = M_B·ω for every B.
+- True/false: «P = R·v ist immer die ganze Leistung» (false: needs M_B·ω unless ω = 0 or M_B = 0) · «R und v_B hängen von B ab» (R does not, v_B does) · «die Formel gilt für jeden verformbaren Körper» (false: rigid bodies only).
+- Ladder (L = 4 m, v = 1 m/s, ω = 0,5/s, G = 20 N, W = 15 N): P_B = −28,3 W, P_C = 4,4 W, R·v_A = −10,6 W, M_A·ω = −13,3 W, P = −23,9 W (both ways). M_AG = −56,6 N·m, M_AW = +30 N·m.
+- Ladder, ω = 0: P = −(√2/2) W v (only W resists); v = 0: P_B < 0 (lifting), P_C > 0.
+- Units: N·m/s = W and (N·m)·(1/s) = W; why R and M_B cannot be added.
