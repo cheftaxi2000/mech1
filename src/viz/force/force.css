@@ -107,7 +107,7 @@ figure.kf-wide figcaption { margin-top: 8px; font-size: 0.93rem; }
 .kf-matchbox.vdemo-fig { max-width: 640px; }
 
 /* K2 figures */
-.ok-mark { color: var(--ok); font-weight: 700; }
+.ok-mark { color: var(--c-z-text); font-weight: 700; }
 .kf-limb { fill: none; stroke: var(--muted); stroke-width: 12; stroke-linecap: round; stroke-linejoin: round; opacity: 0.75; }
 .kf-mag-l { fill: color-mix(in srgb, var(--muted) 26%, var(--panel)); stroke: var(--muted); stroke-width: 1.8; }
 .kf-mag-r { fill: color-mix(in srgb, var(--muted) 8%, var(--panel)); stroke: var(--muted); stroke-width: 1.8; }

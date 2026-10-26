@@ -84,7 +84,7 @@ export function K2Fern() {
         <KLabel vb={VB} x={l1[0]} y={l1[1]} ink="force">{t`\{A_1\,|\,-\v F\}`}</KLabel>
         {!contact && <KLabel vb={VB} x={A1[0] - 8} y={A1[1] + 28} ink="point">{t`A_1`}</KLabel>}
         {!contact && <KLabel vb={VB} x={A2[0] + 2} y={A2[1] + 36} ink="point">{t`A_2`}</KLabel>}
-        {contact && (() => { let nx = -Math.sin(angle), ny = Math.cos(angle); if (ny < 0) { nx = -nx; ny = -ny; } return <KLabel vb={VB} x={A1[0] + 34 * nx} y={A1[1] + 34 * ny} ink="point">{t`A_1 = A_2`}</KLabel>; })()}
+        {contact && (() => { let nx = -Math.sin(angle), ny = Math.cos(angle); if (ny < 0) { nx = -nx; ny = -ny; } return <KLabel vb={VB} x={A1[0] + 50 * nx} y={A1[1] + 50 * ny} ink="point">{t`A_1 = A_2`}</KLabel>; })()}
       </>}
       caption={<>
         <div className="kf-ctl">
