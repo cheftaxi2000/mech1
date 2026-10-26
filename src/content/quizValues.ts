@@ -10,6 +10,12 @@ import { rigidVelocity } from '../physics/rigid';
 import { rotationVelocity } from '../physics/rotation';
 import { type Vec3, add, cross, dot, norm, scale } from '../physics/vec';
 import { FIG330, fig330Solution } from '../physics/screw';
+import { ladder as ladderPower, power, resultant } from '../physics/force';
+import { boxWeight, lineExact } from '../physics/distributed';
+import { classifyBeam, classifyCarts } from '../physics/systemModel';
+import { PROOF, moveReference, plateNumbers } from '../physics/kraeftegruppe';
+import { leverArm2D, momentZ2D } from '../physics/powerMoment';
+
 import { ladderMZ } from '../physics/plane';
 import { omega3, omegaArm, ratioRingFixed } from '../physics/planetary';
 
@@ -73,3 +79,25 @@ export const Q4 = {
   armStill: -gear.R1 / gear.R2, armStillCheck: omegaArm(gear, 1, -gear.R1 / gear.R2),
 };
 
+
+/** Kapitel 4 und 5, pp. 29–36: Kräfte, Systemabgrenzung, verteilte Kräfte, Leistung, Moment, Kräftegruppe */
+const f1to4: Vec3[] = [[5, -25, 0], [-20, -45, 0], [-30, 5, 0], [15, 55, 0]];
+const rest = resultant(f1to4.map((F) => ({ F })));
+const plate = plateNumbers(PROOF), plateB2 = plateNumbers(moveReference(PROOF, [2, 0.5]));
+const lad = ladderPower({ L: 4, G: 20, W: 15, v: 1, omega: 0.5 });
+export const Q5 = {
+  f5Equilibrium: norm(scale(-1, rest)), // F5 = −(F1 + … + F4) = (30; 10) N, |F5| ≈ 31,6 N
+  outerBeam: classifyBeam({ G: 80, Z: 50, s: 0.4 }, new Set(['last', 'traeger'])).outer.length, // 4
+  outerBeamLoad: classifyBeam({ G: 80, Z: 50, s: 0.4 }, new Set(['last'])).outer.length, // 6
+  cartsOuter: classifyCarts(70, 42, new Set(['w1', 'w2'])).sumOuter[0], // 70 N
+  cartsInner: classifyCarts(70, 42, new Set(['w1', 'w2'])).sumInner[0], // 0
+  rampR: lineExact('ramp'), // 120 N
+  concreteG: boxWeight(2400, 2, 1.5, 0.5, false).G / 1000, // kN, ≈ 35,3
+  powerPush: power([2.6, 1.5, 0], [2, 0, 0]), // 5,2 W
+  momentO: Math.abs(momentZ2D([1.3, 0.5], [0.2, 1.5])), // 1,85 N·m
+  leverD: leverArm2D([1.3, 0.5], [0.2, 1.5]).d, // 1,22 m
+  wheelM: momentZ2D([1.5, 0], [0.7, 1.2]), // 1,8 N·m
+  plateP: plate.total, plateRvB: plate.translation, plateMw: plate.rotation, // 5,5 = 2,5 + 3,0 W
+  plateRvB2: plateB2.translation, plateMw2: plateB2.rotation, plateP2: plateB2.total, // 1,25 + 4,25 = 5,5 W
+  ladderP: lad.methodI, ladderP2: lad.methodII, ladderRvA: lad.parts.RvA, ladderMw: lad.parts.MAomega, // −23,9 W
+};

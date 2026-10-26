@@ -141,3 +141,9 @@ Visual system rewritten in `src/design.css` (quiet, Apple-inspired). New entry f
 
 ## 2026-10-24 — Chemie (new subject, 13 lessons)
 Four implementer agents wrote 13 lessons from lectures 1–6 and the TA's exercise slides; merged by the lead. Name clashes (`mixScene.ts`, `chem.css`, `periodic.css`) resolved: the calorimeter scene is now `thermoMixScene.ts`. Review IDs CH-001…CH-012. vitest 1445 green, ch-* e2e (de/en/phone) 67 green. Screenshot spot-checks on iPad landscape.
+
+## 2026-10-26 — Mechanik Kapitel 4 «Kräfte» und 5 «Leistung» (pp. 29–36)
+- Student sent eight Goodnotes screenshots (pp. 29–36). Lead built the foundation: transcription in `SOURCE_MAP.md`, numeric truth `src/physics/force.ts` (+28 tests), colour tokens (`--c-force`, `--c-vel`), D-028, brief with the explanation checklist. Four implementers (worktrees) wrote seven lessons: `kraft`, `reaktionsprinzip`, `systemabgrenzung`, `verteilte-kraefte`, `leistung`, `leistung-rotation`, `leistung-kraeftegruppe`, each with interactive figures, step-synchronised animations (frame tests) and supplements marked as ours. They hit the usage limit twice and were resumed.
+- Lead merged (conflicts only in `curriculum.ts` / `QUIZ_BANK.md`), reviewed all lessons on iPad-landscape screenshots, built Quiz 5 (`Q5Quiz.tsx`, values `Q5` in `quizValues.ts` with tests). Source issues R-024…R-035 in `REVIEW_LOG.md`.
+- Fixed: the circled I/II of the ladder example (p. 35) were swapped in `SOURCE_MAP.md`/`force.ts` (checked against the screenshot); curriculum title of `leistung` had plain-text math (broke the e2e plain-text test for every lesson).
+- Known: dark mode, phone and iPad portrait were checked by the implementers, not by the lead; K6 close-up frames of the O′ animation are the least clear picture.

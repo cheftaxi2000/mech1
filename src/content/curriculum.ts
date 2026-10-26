@@ -123,6 +123,7 @@ export const TOPICS: Topic[] = [
   { id: 'quiz-2', chapter: 'Q', title: ['Quiz 2 · Geschwindigkeit', 'Quiz 2 · Velocity'], pages: '8–11', status: 'review', component: lazy(() => import('../lessons/Q2Quiz')) },
   { id: 'quiz-3', chapter: 'Q', title: ['Quiz 3 · Starrer Körper', 'Quiz 3 · Rigid body'], pages: '12–23', status: 'review', component: lazy(() => import('../lessons/Q3Quiz')) },
   { id: 'quiz-4', chapter: 'Q', title: ['Quiz 4 · Schraube, ebene Bewegung', 'Quiz 4 · Screw, plane motion'], pages: '24–28', status: 'review', component: lazy(() => import('../lessons/Q4Quiz')) },
+  { id: 'quiz-5', chapter: 'Q', title: ['Quiz 5 · Kräfte, Leistung', 'Quiz 5 · Forces, power'], pages: '29–36', status: 'review', component: lazy(() => import('../lessons/Q5Quiz')) },
   // Analysis 1 – one chapter per week (D-023). `pages`: «Ü<n>/<pdf pages>» = Übungs-Resümee n, pages of that PDF.
   { id: 'ana-folgen', chapter: 'A1', title: ['Folgen: beschränkt, monoton, konvergent', 'Sequences: bounded, monotonic, convergent'], pages: 'Ü1/10', status: 'review', component: lazy(() => import('../lessons/A1Folgen')) },
   { id: 'ana-grenzwerte-folgen', chapter: 'A1', title: ['Grenzwerte von Folgen', 'Limits of sequences'], pages: 'Ü1/11', status: 'review', component: lazy(() => import('../lessons/A1Grenzwerte')) },

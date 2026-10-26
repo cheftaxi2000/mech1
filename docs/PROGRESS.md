@@ -101,10 +101,11 @@ Offen: Polybox-Links nicht erreichbar; Übungen 2–4 handschriftlich (nur Bild)
 ## Mechanik Kap. 4 Kräfte / Kap. 5 Leistung (D-028)
 | Topic | Pages | Status |
 |---|---|---|
-| kraft | 29 | planned |
-| reaktionsprinzip | 30 | planned |
-| systemabgrenzung | 30–31 | planned |
-| verteilte-kraefte | 31–32 | planned |
-| leistung | 33 | planned |
-| leistung-rotation | 33–35 | planned |
-| leistung-kraeftegruppe | 34–36 | planned |
+| kraft | 29 | review |
+| reaktionsprinzip | 30 | review |
+| systemabgrenzung | 30–31 | review |
+| verteilte-kraefte | 31–32 | review |
+| leistung | 33 | review |
+| leistung-rotation | 33–35 | review |
+| leistung-kraeftegruppe | 34–36 | review |
+| quiz-5 | 29–36 | review |

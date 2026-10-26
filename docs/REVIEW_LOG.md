@@ -80,3 +80,7 @@ Page = «Ü n / PDF page». Same rules: handled briefly in the lesson where it m
 | R-029 | 31 | G̲ and Z̲ are drawn without a counter-force although the Reaktionsprinzip applies; the reaction acts on the Earth or on whatever pulls and is not drawn. | handled in systemabgrenzung (table «Wer zieht an wem?») |
 | R-030 | 31 | The first drawing shows no weight for beam or supports, and −R₁, −R₂ are drawn grey like inner forces in the first picture. | handled in systemabgrenzung (ground forces H_A, H_B marked as our addition) |
 | R-031 | 32 | γ appears only as a handwritten brace over ρ·g with no name or unit (we call it «Wichte» in a supplement); the page never says where G̲ or R̲ acts. | handled in verteilte-kraefte (one sentence each) |
+| R-032 | 33 | `v_P = ω × OP` holds only for O on the axis μ; the text does not say so, the figure shows O on the axis. | handled in leistung-rotation (one sentence) |
+| R-033 | 34 | The identity is written «M_z = M_z′» in the lecture box and once as «M′_z»; underlining of ω in `P = M_z·ω = M_z′·ω` is not legible in the scan. | handled in leistung-rotation (lesson makes no claim about it) |
+| R-034 | 35 | The point of application is called A on this page instead of P. | handled in leistung-rotation (one sentence) |
+| R-035 | 35–36 | Circled I/II on p. 35 were transcribed in the wrong order in SOURCE_MAP: I = right column (each force with its point's velocity, drawn as III on p. 36), II = left column (R, M_A in A, drawn as IV). | corrected in SOURCE_MAP, force.ts, leistung-kraeftegruppe |
