@@ -118,7 +118,7 @@ export const TOPICS: Topic[] = [
   { id: 'verteilte-kraefte', chapter: '4', title: ['Verteilte Kräfte und Kraftdichte', 'Distributed forces and force density'], pages: '31–32', status: 'review', component: lazy(() => import('../lessons/K4Verteilt')) },
   { id: 'leistung', chapter: '5', title: ['Leistung einer Kraft', 'Power of a force'], pages: '33', status: 'planned' },
   { id: 'leistung-rotation', chapter: '5', title: ['Leistung bei Rotation und das Moment', 'Power in rotation and the moment'], pages: '33–35', status: 'planned' },
-  { id: 'leistung-kraeftegruppe', chapter: '5', title: ['Leistung einer Kräftegruppe am starren Körper', 'Power of a group of forces on a rigid body'], pages: '34–36', status: 'planned' },
+  { id: 'leistung-kraeftegruppe', chapter: '5', title: ['Leistung einer Kräftegruppe am starren Körper', 'Power of a group of forces on a rigid body'], pages: '34–36', status: 'review', component: lazy(() => import('../lessons/K7Kraeftegruppe')) },
   { id: 'quiz-1', chapter: 'Q', title: ['Quiz 1 · Lage & Vektoren', 'Quiz 1 · Position & vectors'], pages: '3–7', status: 'review', component: lazy(() => import('../lessons/Q1Quiz')) },
   { id: 'quiz-2', chapter: 'Q', title: ['Quiz 2 · Geschwindigkeit', 'Quiz 2 · Velocity'], pages: '8–11', status: 'review', component: lazy(() => import('../lessons/Q2Quiz')) },
   { id: 'quiz-3', chapter: 'Q', title: ['Quiz 3 · Starrer Körper', 'Quiz 3 · Rigid body'], pages: '12–23', status: 'review', component: lazy(() => import('../lessons/Q3Quiz')) },

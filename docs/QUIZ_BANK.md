@@ -255,3 +255,15 @@ Short ideas for the quiz part at the end of the course (D-015). Every answer mus
 - Dichte nimmt nach oben ab, ρ(z) = ρ₀ (1 + 0,8 (1 − z/c)): Mittelwert 1,4 ρ₀, also G um 40 % grösser als bei ρ₀ (Stahlquader 2 × 1,5 × 1,2: G = 388,1 kN).
 - True/false: «q ist eine Kraft in N» (false), «R = q L gilt immer» (false: nur bei konstantem q), «ρ ist die Raumkraftdichte der Schwerkraft» (false: ρ g).
 - Wo greift R = ∫ q dx an? (Das beantwortet die Seite nicht – kommt mit den Momenten.)
+
+## L7 Kräfte/Leistung — leistung-kraeftegruppe (K7)
+
+All numbers are checked in `src/physics/kraeftegruppe.test.ts` / `force.test.ts`.
+
+- Plate of the proof (B = (0,0), v_B = (1; −0,5) m/s, ω = 1/s; F₁ = (0,5; −1) N at A₁ = (−1,5; −1) m, F₂ = (2; 1) N at A₂ = (2; 0,5) m): v₁ = (2; −2), v₂ = (0,5; 1,5) m/s; P₁ = 3,0 W, P₂ = 2,5 W; R = (2,5; 0) N, R·v_B = 2,5 W, M_B = 3,0 N·m, M_B·ω = 3,0 W; P = 5,5 W.
+- Same plate described in B′ = (2; 0,5) (= A₂): v_B′ = (0,5; 1,5), R·v_B′ = 1,25 W, M_B′ = 4,25 N·m, M_B′·ω = 4,25 W; the sum stays 5,5 W (R·v_B and M_B·ω change, the sum does not).
+- All forces at one point A and B = A: M_B = 0, P = R·v_A. Two equal and opposite forces: R = 0, P = M_B·ω for every B.
+- True/false: «P = R·v ist immer die ganze Leistung» (false: needs M_B·ω unless ω = 0 or M_B = 0) · «R und v_B hängen von B ab» (R does not, v_B does) · «die Formel gilt für jeden verformbaren Körper» (false: rigid bodies only).
+- Ladder (L = 4 m, v = 1 m/s, ω = 0,5/s, G = 20 N, W = 15 N): P_B = −28,3 W, P_C = 4,4 W, R·v_A = −10,6 W, M_A·ω = −13,3 W, P = −23,9 W (both ways). M_AG = −56,6 N·m, M_AW = +30 N·m.
+- Ladder, ω = 0: P = −(√2/2) W v (only W resists); v = 0: P_B < 0 (lifting), P_C > 0.
+- Units: N·m/s = W and (N·m)·(1/s) = W; why R and M_B cannot be added.
