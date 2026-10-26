@@ -3,8 +3,8 @@
  * arrows with one or two heads (moments and ω̲ get a double head), arcs, stacked bars, plain-language «ink» names.
  * Colours (see styles.css and K7.css): forces vermilion, velocities rose, ω̲ and angles purple, power > 0 green, < 0 amber.
  */
-import type { Ink, SceneLabel } from '../anim/scene';
-import { arrowHead, sceneBuilder } from '../anim/scene';
+import type { Ink, SceneLabel, Shape } from '../anim/scene';
+import { arrowHead } from '../anim/scene';
 import { clamp01, ease, seg, type P2 } from '../anim/geometry';
 
 /** The vermilion «force» ink exists in styles.css (.ink-force); the scene type of the shared kit does not list it yet. */
@@ -13,7 +13,7 @@ export const FORCE = 'force' as unknown as Ink;
 export const VEL: Ink = 'point';
 export const OMEGA: Ink = 'angle';
 
-type Builder = ReturnType<typeof sceneBuilder>;
+type Builder = { shape: (s: Shape) => void };
 type Kind = 'line' | 'polyline' | 'polygon' | 'circle';
 
 /** Opacity of an element that appears during step `k` (between t = a and t = b) and stays afterwards. */
@@ -52,11 +52,17 @@ export function draw(sb: Builder) {
     head(aEnd, '-h');
     if (heads === 2 && Math.abs(aEnd - a0) > 0.8) head(aEnd - dir * d * 0.95, '-h2');
   };
-  /** The lecture's ⊙ (a vector pointing out of the page) with a counter-clockwise double-head arc around it: ω̲ or a moment M̲. */
-  const spin = (key: string, cls: string, c: P2, r: number, o = 1) => {
+  /**
+   * The lecture's ⊙ (vector pointing out of the page) or ⊗ (into the page) with a double-head arc around it, counter-clockwise
+   * for ⊙ (positive), clockwise for ⊗ (negative): ω̲ or a moment M̲ seen from above.
+   */
+  const spin = (key: string, cls: string, c: P2, r: number, o = 1, ccw = true) => {
     if (o <= 0.01) return;
-    S(key + '-dot', 'circle', cls.split(' ')[0] + '-dot', [c], o, 2.6);
-    arc(key, cls, c, r, 0.2 * Math.PI, 1.75 * Math.PI, o, 2);
+    const c0 = cls.split(' ')[0];
+    if (ccw) S(key + '-dot', 'circle', c0 + '-dot', [c], o, 2.6);
+    else { const q = 3.2; S(key + '-x1', 'line', c0 + '-cross', [[c[0] - q, c[1] - q], [c[0] + q, c[1] + q]], o); S(key + '-x2', 'line', c0 + '-cross', [[c[0] - q, c[1] + q], [c[0] + q, c[1] - q]], o); }
+    if (ccw) arc(key, cls, c, r, 0.2 * Math.PI, 1.75 * Math.PI, o, 2);
+    else arc(key, cls, c, r, 0.8 * Math.PI, -0.75 * Math.PI, o, 2);
   };
   /** Rectangle as a polygon. */
   const rect = (key: string, cls: string, x0: number, y0: number, x1: number, y1: number, o = 1) =>
@@ -70,5 +76,17 @@ export const num = (x: number, digits: number, de: boolean) => {
   const s = v.toFixed(digits);
   return (de ? s.replace('.', '{,}') : s);
 };
+
+/**
+ * Round values to `digits` decimals so that the rounded values add up to the rounded sum
+ * (largest-remainder rule): the numbers on screen never contradict «a + b = c» by a rounding step.
+ */
+export function roundToSum(values: number[], digits = 1): number[] {
+  const u = 10 ** digits, scaled = values.map((v) => v * u), fl = scaled.map(Math.floor);
+  let rest = Math.round(scaled.reduce((a, b) => a + b, 0)) - fl.reduce((a, b) => a + b, 0);
+  const order = scaled.map((v, i) => [v - fl[i], i] as const).sort((a, b) => b[0] - a[0]);
+  for (let k = 0; rest > 0 && k < order.length; k++, rest--) fl[order[k][1]] += 1;
+  return fl.map((v) => (Object.is(v, -0) ? 0 : v / u));
+}
 
 export type { SceneLabel };

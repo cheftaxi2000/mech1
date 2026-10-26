@@ -13,10 +13,10 @@
 .k7-force { stroke: var(--c-force); stroke-width: 3.4; stroke-linecap: round; } .k7-force-head { fill: var(--c-force); }
 .k7-force.ghost { stroke-width: 2.4; stroke-dasharray: 5 3; } .k7-force.big { stroke-width: 4.2; }
 .k7-vel { stroke: var(--c-vel); stroke-width: 3.4; stroke-linecap: round; } .k7-vel-head { fill: var(--c-vel); }
-.k7-vt { stroke: var(--c-vel); stroke-width: 2.4; stroke-linecap: round; opacity: 0.8; } .k7-vt-head { fill: var(--c-vel); }
+.k7-vt { stroke: var(--c-vel); stroke-width: 2.4; stroke-linecap: round; stroke-opacity: 0.8; } .k7-vt-head { fill: var(--c-vel); }
 .k7-vr { stroke: var(--c-angle); stroke-width: 2.6; stroke-linecap: round; } .k7-vr-head { fill: var(--c-angle); }
 .k7-mom { fill: none; stroke: var(--c-force); stroke-width: 3; stroke-linecap: round; } .k7-mom-head { fill: var(--c-force); }
-.k7-mom.soft { stroke-width: 2.2; opacity: 0.6; } .k7-mom.big { stroke-width: 3.6; }
+.k7-mom.soft { stroke-width: 2.2; stroke-opacity: 0.65; } .k7-mom.big { stroke-width: 3.6; }
 .k7-om { fill: none; stroke: var(--c-angle); stroke-width: 3; stroke-linecap: round; } .k7-om-head { fill: var(--c-angle); }
 .k7-om-dot { fill: var(--c-angle); } .k7-mom-dot { fill: var(--c-force); }
 .k7-bracket { fill: none; stroke: var(--muted); stroke-width: 1.2; }
@@ -31,3 +31,26 @@
 .k7-seg-p.b { fill: color-mix(in srgb, var(--fg) 26%, transparent); }
 .k7-seg-t { fill: color-mix(in srgb, var(--c-vel) 38%, transparent); stroke: var(--c-vel); stroke-width: 1.4; }
 .k7-seg-r { fill: color-mix(in srgb, var(--c-angle) 38%, transparent); stroke: var(--c-angle); stroke-width: 1.4; }
+
+/* explorer additions */
+.k7-om-cross { stroke: var(--c-angle); stroke-width: 2.2; stroke-linecap: round; } .k7-mom-cross { stroke: var(--c-force); stroke-width: 2.2; stroke-linecap: round; }
+.k7-bpoint { fill: var(--c-point); stroke: var(--panel); stroke-width: 1.5; }
+.k7-vt.thin { stroke-width: 1.8; stroke-opacity: 0.55; }
+.k7-total { stroke-width: 2; stroke-dasharray: 5 4; } .k7-total.pos { stroke: var(--c-z); } .k7-total.neg { stroke: var(--c-y); }
+.k7-handle { fill: color-mix(in srgb, var(--accent) 10%, transparent); stroke: var(--accent); stroke-width: 1.3; stroke-dasharray: 3 3; cursor: grab; }
+.k7-handle.on { stroke-width: 2.4; fill: color-mix(in srgb, var(--accent) 22%, transparent); }
+.k7-fig > svg { touch-action: none; }
+/* dense figures: labels a little smaller than the default so that rows of 22 units stay apart */
+.k7-fig .anim-label { font-size: clamp(12px, 2.9cqw, 17px); }
+.k7-fig .anim-label.abox { font-size: clamp(12px, 2.7cqw, 16px); }
+
+/* ladder (Fig. 5.6) */
+.k7-ladder-fill { fill: color-mix(in srgb, var(--muted) 12%, transparent); stroke: none; }
+.k7-rail { stroke: var(--fg); stroke-width: 3; stroke-linecap: round; }
+.k7-rung { stroke: var(--muted); stroke-width: 1.4; }
+.k7-dim { stroke: var(--muted); stroke-width: 1.3; fill: none; }
+.k7-loa { stroke: var(--c-force); stroke-width: 1.2; stroke-dasharray: 2 5; stroke-opacity: 0.7; }
+.k7-pivot { fill: var(--panel); stroke: var(--fg); stroke-width: 2; }
+.k7-ra { fill: none; stroke: var(--fg); stroke-width: 1.3; }
+.k7-axis-a { stroke: var(--muted); stroke-width: 2; } .k7-axis-a-head { fill: var(--muted); }
+.k7-axis-z { fill: none; stroke: var(--muted); stroke-width: 1.5; } .k7-axis-zd { fill: var(--muted); }
