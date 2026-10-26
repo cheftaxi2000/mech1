@@ -18,7 +18,7 @@ import { FORCE, OMEGA, VEL, draw, num, roundToSum } from './k7Draw';
 import { makeScene } from './K7Svg';
 
 export const LW = 520, LH = 478;
-export const LD = { AX: 118, AY: 242, S: 60, KF: 2.4, KV: 30, X0: 300, KW: 1.9, XMIN: 120, XMAX: 508, ROWS: { I: [334, 356], II: [410, 432] } as const, YT: 462, L: 4 };
+export const LD = { AX: 118, AY: 262, S: 60, KF: 2.4, KV: 36, X0: 300, KW: 1.9, XMIN: 120, XMAX: 508, ROWS: { I: [334, 356], II: [410, 432] } as const, YT: 462, L: 4 };
 const S2 = Math.SQRT1_2;
 export const lPx = (p: Q2): P2 => [LD.AX + LD.S * p[0], LD.AY - LD.S * p[1]];
 const dv = (v: Q2, k: number): P2 => [k * v[0], -k * v[1]];
@@ -82,7 +82,7 @@ export function ladderScene(par: Omit<Ladder, 'L'>, lang: Lang, ly: Layers) {
   S('ang', 'polyline', 'k7-dim', Array.from({ length: 9 }, (_, i) => { const a = (i / 8) * (Math.PI / 4); return [A[0] + arcR * Math.cos(a), A[1] - arcR * Math.sin(a)] as P2; }));
   sc.label('lab-45', add2(A, [arcR + 18, -19]), String.raw`45^\circ`, 'muted', 1, 'c');
   // axes triad
-  const T0: P2 = [36, 250];
+  const T0: P2 = [36, 270];
   arrow('ex', 'k7-axis-a', T0, add2(T0, [26, 0]), 1, 6); arrow('ey', 'k7-axis-a', T0, add2(T0, [0, -26]), 1, 6);
   S('ez', 'circle', 'k7-axis-z', [add2(T0, [-18, 0])], 1, 5); S('ez-dot', 'circle', 'k7-axis-zd', [add2(T0, [-18, 0])], 1, 1.5);
   sc.label('lab-ex', add2(T0, [36, 3]), String.raw`\e{x}`, 'muted', 1, 'c'); sc.label('lab-ey', add2(T0, [5, -36]), String.raw`\e{y}`, 'muted', 1, 'c'); sc.label('lab-ez', add2(T0, [-18, 15]), String.raw`\e{z}`, 'muted', 1, 'c');
@@ -160,9 +160,9 @@ export function ladderScene(par: Omit<Ladder, 'L'>, lang: Lang, ly: Layers) {
   spin('om', 'k7-om', add2(A, [-30, -26]), 9, Math.abs(omega) > 0.04 ? 1 : 0, omega > 0);
   sc.label('lab-om', add2(A, [-52, -26]), String.raw`\v\omega`, OMEGA, Math.abs(omega) > 0.04 ? 1 : 0, 'c');
   S('pA', 'circle', 'k7-pivot', [A], 1, 5); S('pB', 'circle', 'k7-pivot', [B], 1, 5); S('pC', 'circle', 'k7-pivot', [C], 1, 5);
-  sc.label('lab-A', add2(A, [-6, 17]), 'A', 'fg', 1, 'c');
+  sc.label('lab-A', add2(A, [-17, 3]), 'A', 'fg', 1, 'c');
   sc.label('lab-B', add2(B, [14, -9]), 'B', 'fg', 1, 'c');
-  sc.label('lab-C', add2(C, [-3, -16]), 'C', 'fg', 1, 'c');
+  sc.label('lab-C', add2(C, [19, 2]), 'C', 'fg', 1, 'c');
 
   // ---- bars: Weg I (two rows) and Weg II (two rows), both ending at the same total ----
   const total = q.wegI, shownT = roundToSum([total], 1)[0];
