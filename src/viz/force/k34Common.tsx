@@ -60,19 +60,24 @@ export function KSlider({ label, min, max, step, value, onChange, val, aria }: {
   );
 }
 
-/** Format with significant digits; scientific notation (as TeX) outside [0.01, 10⁵). German decimal comma inside TeX is `{,}`. */
+/** Group the integer part of a plain number string with thin spaces (TeX `\,`) from 10 000 on. */
+const group = (s: string, dec: string) => {
+  const [int, frac] = s.split(dec);
+  const g = int.replace(/\B(?=(\d{3})+(?!\d))/g, '\\,');
+  return frac === undefined ? g : g + dec + frac;
+};
+
+/** Format with significant digits (as TeX); scientific notation outside [0.01, 10⁶). German decimal comma inside TeX is `{,}`. */
 export function fmtSig(x: number, sig: number, lang: 'de' | 'en'): string {
   if (x === 0) return '0';
-  const ax = Math.abs(x);
+  const ax = Math.abs(x), dsep = lang === 'de' ? '{,}' : '.';
   const dec = (v: number, d: number) => { const s = v.toFixed(Math.max(0, d)); return lang === 'de' ? s.replace('.', '{,}') : s; };
-  if (ax >= 0.01 && ax < 1e5) {
+  const trim = (s: string) => (s.includes(dsep) ? s.replace(/0+$/, '').replace(new RegExp(`${dsep.replace(/[{}.]/g, '\\$&')}$`), '') : s);
+  if (ax >= 0.01 && ax < 1e6) {
     const digits = sig - 1 - Math.floor(Math.log10(ax));
-    // no trailing zeros after rounding to significant digits
-    let s = dec(x, digits);
-    if (s.includes(lang === 'de' ? '{,}' : '.')) s = s.replace(/0+$/, '').replace(/(\{,\}|\.)$/, '');
-    return s;
+    const s = trim(dec(x, digits));
+    return ax >= 1e4 ? group(s, dsep) : s;
   }
   const e = Math.floor(Math.log10(ax));
-  const m = x / 10 ** e;
-  return `${dec(m, sig - 1).replace(/0+$/, '').replace(/(\{,\}|\.)$/, '')}\\cdot 10^{${e}}`;
+  return `${trim(dec(x / 10 ** e, sig - 1))}\\cdot 10^{${e}}`;
 }
