@@ -228,7 +228,7 @@ Short ideas for the quiz part at the end of the course (D-015). Every answer mus
 ## L16 Kräfte/Leistung — reaktionsprinzip (p. 30 oben)
 - Gegenkraft zu {A₂ | F̲}? ({A₁ | −F̲}: gleich gross, entgegengesetzt, anderer Körper.)
 - Heben sich Actio und Reactio auf? (Nein: verschiedene Körper; aufheben können sich nur Kräfte am selben Körper.)
-- Buch auf dem Tisch: Gewicht G̲ und Tischkraft N̲ – ein Actio/Reactio-Paar? (Nein, beide wirken auf das Buch. Gegenkraft von G̲: Anzug des Buchs auf die Erde; von N̲: Druck des Buchs auf den Tisch; `k2Data.test`/`k2Geom.test.ts`.)
+- Buch auf dem Tisch: Gewicht G̲ und Tischkraft N̲ – ein Actio/Reactio-Paar? (Nein, beide wirken auf das Buch. Gegenkraft von G̲: Anziehung des Buchs auf die Erde; von N̲: Druck des Buchs auf den Tisch; `k2Data.test`/`k2Geom.test.ts`.)
 - Zusatzpostulat: A₁ = (0; 0), A₂ = (3; 4); welche Kraft auf A₂ ist erlaubt: (6; 8), (−3; −4), (8; −6)? (Die ersten zwei: parallel zu A₁A₂; `actsAlongConnection`.)
 - Kontaktkraft: Was gilt für die Orte A₁(t₀), A₂(t₀)? (Sie fallen zusammen; bei Fernkraft nicht.)
 - Rollschuhe m₁ = 60 kg, m₂ = 30 kg, F = 90 N für 0,5 s: v₁, v₂? (0,75 und 1,50 m/s, `skaters.ts`; Impulse m₁v₁ = −m₂v₂.)

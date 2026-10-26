@@ -266,7 +266,7 @@ export default function K1Kraft() {
               <li>Die zweite Zeile ist der Spezialfall: <em>alle</em> Kräfte greifen im selben Punkt <M>A</M> an. Dort steht kein Index am <M p=",">A</M> denn es gibt nur einen Punkt.</li>
               <li>Dann lässt sich die ganze Gruppe durch eine einzige Kraft <M>{t`\{A\,|\,\v R\}`}</M> ausdrücken, mit <M p=".">{t`\v R = \sum_i \v F_i`}</M> Lies <M>{t`\sum_i`}</M> als «Summe über alle <M p="».">i</M> <M>{t`\v R`}</M> heisst Resultierende; der Vektor <M>{t`\v R`}</M> ist die Summe der Vektoren.</li>
             </ol>
-            <p>Fig. 4.2 ist genau dieser Fall: fünf Pfeile in <M p=",">A</M> und der graue Pfeil <M p=",">{t`\v R`}</M> der alle zusammenfasst. Wie ein Pfeil aus fünf wird, zeigt die Animation.</p>
+            <p>Fig. 4.2 ist genau dieser Fall: fünf Pfeile in <M p=",">A</M> und der graue Pfeil <M p=",">{t`\v R`}</M> der alle zusammenfasst. Wie ein Pfeil aus fünf wird, zeigt die Animation. (Das Skript zeichnet <M>{t`\v R`}</M> grau; bei uns ist es der dicke, dunkle Pfeil.)</p>
           </>}
           en={<>
             <p><b>How to read the lines:</b></p>
@@ -276,7 +276,7 @@ export default function K1Kraft() {
               <li>The second line is the special case: <em>all</em> forces act at the same point <M p=".">A</M> There is no index on <M p=",">A</M> because there is only one point.</li>
               <li>Then the whole group can be expressed by a single force <M p=",">{t`\{A\,|\,\v R\}`}</M> with <M p=".">{t`\v R = \sum_i \v F_i`}</M> Read <M>{t`\sum_i`}</M> as “sum over all <M p="”.">i</M> <M>{t`\v R`}</M> is called the resultant (<span lang="de">Resultierende</span>); the vector <M>{t`\v R`}</M> is the sum of the vectors.</li>
             </ol>
-            <p>Fig. 4.2 is exactly this case: five arrows at <M p=",">A</M> and the grey arrow <M p=",">{t`\v R`}</M> which sums them up. How one arrow comes out of five is shown by the animation.</p>
+            <p>Fig. 4.2 is exactly this case: five arrows at <M p=",">A</M> and the grey arrow <M p=",">{t`\v R`}</M> which sums them up. How one arrow comes out of five is shown by the animation. (The notes draw <M>{t`\v R`}</M> in grey; ours is the thick, dark arrow.)</p>
           </>}
         />
         <ForceAnim
