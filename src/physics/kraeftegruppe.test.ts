@@ -106,7 +106,7 @@ describe('Fig. 5.6, the ladder: the parts drawn in the figures', () => {
       close(q.alongG, -S2 * c.omega * c.L);
       close(q.alongW, c.omega * c.L / 2 - S2 * c.v);
       close(q.PB, q.m.parts.PB); close(q.PC, q.m.parts.PC);
-      close(q.wegI, q.m.methodII);
+      close(q.wegI, q.m.methodI);
     }
   });
   it('Weg II: R·v_A and ω·M_A (p. 36, IV); M_A = M_AG + M_AW', () => {

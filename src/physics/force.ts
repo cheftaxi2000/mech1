@@ -209,10 +209,10 @@ export function ladder({ L, G, W, v, omega }: Ladder) {
   const red = powerReduced(forces, A, vA, om);
   return {
     A, AB, AC, FB, FC, vA, om, vB, vC, PB, PC, forces, red,
-    /** Methode II (p. 35 right): P = Σ F_i · v_i */
-    methodII: PB + PC,
-    /** Methode I (p. 35 left): P = R·v_A + ω·M_A */
-    methodI: red.total,
+    /** Methode I (circled I, p. 35 right; III on p. 36): P = Σ F_i · v_i */
+    methodI: PB + PC,
+    /** Methode II (circled II, p. 35 left; IV on p. 36): P = R·v_A + ω·M_A */
+    methodII: red.total,
     /** handwritten result: −(√2/2) W v + ω W L/2 − (√2/2) G L ω */
     closed: -S2 * W * v + omega * W * L / 2 - S2 * G * L * omega,
     /** page 36 (III, IV) */
