@@ -5,7 +5,7 @@
  * Contact forces: A = B (the two points coincide, p. 30); forces at a distance: the force lies on the line through A and B (Zusatzpostulat).
  */
 export type V = readonly [number, number];
-export interface KBody { id: string; de: string; en: string; box: readonly [number, number, number, number] }
+export interface KBody { id: string; de: string; en: string; box: readonly [number, number, number, number]; /** where the name is written (screen px); omitted = not written */ lab?: V }
 export interface KPair {
   id: string;
   /** TeX name of the force on the body `on` (the reaction is called −name) */
@@ -27,9 +27,9 @@ export const K2_SCENES: KScene[] = [
   {
     id: 'book', de: 'Buch auf Tisch', en: 'Book on a table',
     bodies: [
-      { id: 'book', de: 'Buch', en: 'book', box: [200, 128, 280, 170] },
-      { id: 'table', de: 'Tisch', en: 'table', box: [110, 170, 370, 262] },
-      { id: 'earth', de: 'Erde', en: 'Earth', box: [0, 262, 480, 300] },
+      { id: 'book', de: 'Buch', en: 'book', box: [200, 128, 280, 170], lab: [310, 148] },
+      { id: 'table', de: 'Tisch', en: 'table', box: [110, 170, 370, 262], lab: [420, 177] },
+      { id: 'earth', de: 'Erde', en: 'Earth', box: [0, 262, 480, 300], lab: [44, 282] },
     ],
     pairs: [
       { id: 'G', sym: String.raw`\v G`, on: 'book', by: 'earth', A: [240, 149], B: [240, 282], dir: [0, 1], len: 52, fern: true,
@@ -45,9 +45,9 @@ export const K2_SCENES: KScene[] = [
   {
     id: 'wall', de: 'Hand an der Wand', en: 'Hand on a wall',
     bodies: [
-      { id: 'person', de: 'Person', en: 'person', box: [110, 56, 332, 266] },
-      { id: 'wall', de: 'Wand', en: 'wall', box: [330, 30, 392, 262] },
-      { id: 'floor', de: 'Boden', en: 'floor', box: [0, 262, 480, 300] },
+      { id: 'person', de: 'Person', en: 'person', box: [110, 56, 332, 266], lab: [168, 96] },
+      { id: 'wall', de: 'Wand', en: 'wall', box: [330, 30, 392, 262], lab: [361, 70] },
+      { id: 'floor', de: 'Boden', en: 'floor', box: [0, 262, 480, 300], lab: [44, 282] },
     ],
     pairs: [
       { id: 'F', sym: String.raw`\v F`, on: 'wall', by: 'person', A: [331, 146], B: [331, 146], dir: [1, 0], len: 56, fern: false,
@@ -63,9 +63,9 @@ export const K2_SCENES: KScene[] = [
   {
     id: 'ladder', de: 'Leiter an der Wand', en: 'Ladder against a wall',
     bodies: [
-      { id: 'ladder', de: 'Leiter', en: 'ladder', box: [186, 96, 424, 262] },
-      { id: 'wall', de: 'Wand', en: 'wall', box: [420, 20, 480, 262] },
-      { id: 'earth', de: 'Boden / Erde', en: 'floor / Earth', box: [0, 260, 480, 300] },
+      { id: 'ladder', de: 'Leiter', en: 'ladder', box: [186, 96, 424, 262], lab: [262, 150] },
+      { id: 'wall', de: 'Wand', en: 'wall', box: [420, 20, 480, 262], lab: [450, 60] },
+      { id: 'earth', de: 'Boden / Erde', en: 'floor / Earth', box: [0, 260, 480, 300], lab: [60, 282] },
     ],
     pairs: [
       { id: 'W', sym: String.raw`\v W`, on: 'ladder', by: 'wall', A: [421, 104], B: [421, 104], dir: [-1, 0], len: 44, fern: false,
@@ -86,8 +86,8 @@ export const K2_SCENES: KScene[] = [
   {
     id: 'magnet', de: 'Zwei Magnete', en: 'Two magnets',
     bodies: [
-      { id: 'm1', de: 'Magnet 1', en: 'magnet 1', box: [70, 118, 190, 162] },
-      { id: 'm2', de: 'Magnet 2', en: 'magnet 2', box: [290, 118, 410, 162] },
+      { id: 'm1', de: 'Magnet 1', en: 'magnet 1', box: [70, 118, 190, 162], lab: [130, 184] },
+      { id: 'm2', de: 'Magnet 2', en: 'magnet 2', box: [290, 118, 410, 162], lab: [350, 184] },
     ],
     pairs: [
       { id: 'F', sym: String.raw`\v F`, on: 'm2', by: 'm1', A: [350, 140], B: [130, 140], dir: [-1, 0], len: 70, fern: true,

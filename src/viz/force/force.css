@@ -117,3 +117,5 @@ figure.kf-wide figcaption { margin-top: 8px; font-size: 0.93rem; }
 .kf-tag { font-size: 0.78rem; color: var(--muted); }
 .kf-chip.sm { min-height: 36px; padding: 2px 12px; font-size: 0.9rem; text-align: left; }
 .kf-chip.sm .katex { font-size: 1em; }
+.kf-pick.dashed { stroke-dasharray: 3 3; }
+@media (max-width: 520px) { .kf-log .ax .scale span.minor { color: transparent; } }

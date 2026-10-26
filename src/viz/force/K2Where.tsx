@@ -77,20 +77,17 @@ export function K2Where() {
   const pickedText = sel.side === 'on' ? pair[lang].force : pair[lang].counter;
   const counterText = sel.side === 'on' ? pair[lang].counter : pair[lang].force;
   const actedOn = body(sel.side === 'on' ? pair.by : pair.on);
-  const tag = (txt: string, p: V, dx: number, dy: number) => <div className="vdemo-label kf-tag halo" style={{ left: `${((p[0] + dx) / 480) * 100}%`, top: `${((p[1] + dy) / 300) * 100}%` }}>{txt}</div>;
 
   return (
     <Frame vb={VB} label={tr('Vier Alltagsszenen: gewählte Kraft und ihre Gegenkraft', 'Four everyday scenes: chosen force and its counter-force')}
       labels={<>
-        {sc.bodies.map((b) => <div key={b.id} className="vdemo-label small inner" style={{ left: `${(((b.box[0] + b.box[2]) / 2) / 480) * 100}%`, top: `${(Math.min(b.box[3] - 10, (b.box[1] + b.box[3]) / 2 + (b.id === 'earth' || b.id === 'floor' ? 4 : 0)) / 300) * 100}%`, display: sc.id === 'book' && b.id === 'book' ? 'none' : undefined }}>{name(b)}</div>)}
+        {sc.bodies.filter((b) => b.lab).map((b) => <div key={b.id} className="vdemo-label small inner" style={{ left: `${(b.lab![0] / 480) * 100}%`, top: `${(b.lab![1] / 300) * 100}%` }}>{name(b)}</div>)}
         {(['on', 'by'] as const).map((side) => {
           const p = pair, [a, tip] = arrowOf(p, side);
           const dx = tip[0] - a[0], dy = tip[1] - a[1], horiz = Math.abs(dx) > Math.abs(dy);
           const off: V = horiz ? [0, -17] : [dx >= 0 ? 17 : -17, 0];
           return <KLabel key={p.id + side} vb={VB} x={a[0] + dx / 2 + off[0]} y={a[1] + dy / 2 + off[1]} ink="force" anchor={horiz ? 't' : dx >= 0 ? 'l' : 'r'}>{side === 'on' ? p.sym : `-${p.sym}`}</KLabel>;
         })}
-        {tag(sel.side === 'on' ? tr('gewählt', 'chosen') : tr('Gegenkraft', 'counter-force'), arrowOf(pair, 'on')[1], 0, 14)}
-        {tag(sel.side === 'by' ? tr('gewählt', 'chosen') : tr('Gegenkraft', 'counter-force'), arrowOf(pair, 'by')[1], 0, 14)}
       </>}
       caption={<>
         <div className="kf-ctl">
@@ -107,6 +104,7 @@ export function K2Where() {
         <div className="kf-read" role="status">
           <div className="big"><b>{tr('Gewählt:', 'Chosen:')}</b> {pickedText}<br /><b>{tr('Gegenkraft:', 'Counter-force:')}</b> {counterText}</div>
           <div>{tr('Die Gegenkraft greift am anderen Körper an: am ', 'The counter-force acts on the other body: on the ')}<b>{name(actedOn)}</b>.</div>
+          <div className="kf-note">{tr('Voller Ring: die gewählte Kraft. Gestrichelter Ring: ihre Gegenkraft. Blasse Pfeile gehören zu anderen Paaren.', 'Solid ring: the chosen force. Dashed ring: its counter-force. Pale arrows belong to other pairs.')}</div>
           {pair.note && <div className="kf-note"><Rich text={pair.note[lang]} /></div>}
         </div>
       </>}>
@@ -124,7 +122,7 @@ export function K2Where() {
                 <g key={side}>
                   <Arrow a={a} b={tip} cls={`kf-f${picked ? '' : ' thin'}`} />
                   <circle cx={a[0]} cy={a[1]} r={picked ? 5 : 3.5} className="kf-pt solid" />
-                  {chosen && <circle cx={a[0]} cy={a[1]} r={10} className="kf-pick" />}
+                  {picked && <circle cx={a[0]} cy={a[1]} r={10} className={chosen ? 'kf-pick' : 'kf-pick dashed'} />}
                   <line x1={a[0]} y1={a[1]} x2={tip[0]} y2={tip[1]} className="kf-hit" onClick={() => setSel({ pair: p.id, side })} />
                 </g>
               );

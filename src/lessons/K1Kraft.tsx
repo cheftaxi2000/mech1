@@ -158,12 +158,12 @@ export default function K1Kraft() {
         </Box>
         <T
           de={<>
-            <p>Im Skript steht «Kgm/s²» mit grossem K. Gemeint ist <M p=".">{t`\mathrm{kg\,m/s^2}`}</M> Man liest: Kilogramm mal Meter durch Sekunde im Quadrat. Das <M>:=</M> heisst: «ist per Definition gleich» – das Newton ist <em>so festgelegt</em>.</p>
+            <p>Im Skript steht «<M p="»">{t`\mathrm{Kgm/s^2}`}</M> mit grossem <M p=".">{t`\mathrm{K}`}</M> Gemeint ist <M p=".">{t`\mathrm{kg\,m/s^2}`}</M> Man liest: Kilogramm mal Meter durch Sekunde im Quadrat. Das <M>:=</M> heisst: «ist per Definition gleich» – das Newton ist <em>so festgelegt</em>.</p>
             <p>Ergänzung, in Worten: Eine Kraft von <M>{t`1\,\mathrm{N}`}</M> gibt einer Masse von <M>{t`1\,\mathrm{kg}`}</M> in jeder Sekunde <M>{t`1\,\mathrm{m/s}`}</M> Tempo dazu (<M>{t`1\,\mathrm{m/s}`}</M> sind 3,6 km/h). Wie das genau zusammenhängt, ist Dynamik und kommt später.</p>
             <p>Wie gross ist das? Das Bild unten gibt einen Anker: Die Gewichtskraft eines Apfels ist ungefähr <M p=".">{t`1\,\mathrm{N}`}</M> Der Apfel hat die <em>Masse</em> 100 g; die Erde zieht ihn mit der <em>Kraft</em> 1 N an. Masse (<M p=")">{t`\mathrm{kg}`}</M> und Kraft (<M p=")">{t`\mathrm{N}`}</M> sind zwei verschiedene Grössen.</p>
           </>}
           en={<>
-            <p>The notes write “Kgm/s²” with a capital K. What is meant is <M p=".">{t`\mathrm{kg\,m/s^2}`}</M> Read: kilogram times metre per second squared. The <M>:=</M> means “is equal by definition” – the newton is <em>defined</em> like this.</p>
+            <p>The notes write “<M p="”">{t`\mathrm{Kgm/s^2}`}</M> with a capital <M p=".">{t`\mathrm{K}`}</M> What is meant is <M p=".">{t`\mathrm{kg\,m/s^2}`}</M> Read: kilogram times metre per second squared. The <M>:=</M> means “is equal by definition” – the newton is <em>defined</em> like this.</p>
             <p>Supplement, in words: a force of <M>{t`1\,\mathrm{N}`}</M> adds <M>{t`1\,\mathrm{m/s}`}</M> of speed to a mass of <M>{t`1\,\mathrm{kg}`}</M> every second (<M>{t`1\,\mathrm{m/s}`}</M> is 3.6 km/h). Exactly how this fits together is dynamics and comes later.</p>
             <p>How big is that? The picture below gives an anchor: the weight of an apple is roughly <M p=".">{t`1\,\mathrm{N}`}</M> The apple has the <em>mass</em> 100 g; the Earth pulls it with the <em>force</em> 1 N. Mass (<M p=")">{t`\mathrm{kg}`}</M> and force (<M p=")">{t`\mathrm{N}`}</M> are two different quantities.</p>
           </>}

@@ -38,17 +38,17 @@ export function K2Skaters() {
   }, [phase, reduced]);
 
   const st = skaterAt(spec, 0, phase === 'ready' ? 0 : ts);
-  const hw = (m: number) => 9 + 0.17 * m; // half width of a body grows with mass
+  const hw = (m: number) => 11 + 0.2 * m; // half width of a body grows with mass
   const h1 = hw(m1), h2 = hw(m2);
   const c1 = CX - h1 + PXM * st.x1, c2 = CX + h2 + PXM * st.x2; // centres on screen
   const e1 = c1 + h1, e2 = c2 - h2; // the facing edges (the hands)
   const pushing = phase !== 'ready' && st.pushing;
-  const contact: V = [(e1 + e2) / 2, 112];
+  const contact: V = [(e1 + e2) / 2, 96];
   const body = (c: number, h: number, key: string, face: 1 | -1) => (
     <g key={key}>
-      <rect x={c - h} y={GROUND - 74} width={2 * h} height={66} rx={10} className="kf-body" />
-      <circle cx={c + face * 2} cy={GROUND - 92} r={11} className="kf-body" />
-      <circle cx={c - h * 0.55} cy={GROUND - 3} r={5.5} className="kf-body" /><circle cx={c + h * 0.55} cy={GROUND - 3} r={5.5} className="kf-body" />
+      <rect x={c - h} y={GROUND - 92} width={2 * h} height={84} rx={12} className="kf-body" />
+      <circle cx={c + face * 2} cy={GROUND - 114} r={14} className="kf-body" />
+      <circle cx={c - h * 0.55} cy={GROUND - 3} r={6} className="kf-body" /><circle cx={c + h * 0.55} cy={GROUND - 3} r={6} className="kf-body" />
     </g>
   );
   const f = (x: number, d = 2) => fmtNum(x, d, lang);
@@ -59,14 +59,14 @@ export function K2Skaters() {
   return (
     <Frame vb={VB} label={tr('Zwei Personen auf Rollschuhen stossen sich voneinander ab', 'Two people on roller skates push each other apart')} className="kf-skaters"
       labels={<>
-        {pushing && <KLabel vb={VB} x={contact[0] + 36} y={86} ink="force" anchor="l">{t`\{A_2\,|\,\v F\}`}</KLabel>}
-        {pushing && <KLabel vb={VB} x={contact[0] - 36} y={86} ink="force" anchor="r">{t`\{A_1\,|\,-\v F\}`}</KLabel>}
-        {rolling && v1 > 0 && <KLabel vb={VB} x={c1 + (Math.sign(st.v1) * Math.abs(st.v1) * 40) / 2} y={GROUND - 124} ink="vel">{t`\v v_1`}</KLabel>}
-        {rolling && v2 > 0 && <KLabel vb={VB} x={c2 + (st.v2 * 40) / 2} y={GROUND - 124} ink="vel">{t`\v v_2`}</KLabel>}
+        {pushing && <KLabel vb={VB} x={contact[0] + 36} y={78} ink="force" anchor="l">{t`\{A_2\,|\,\v F\}`}</KLabel>}
+        {pushing && <KLabel vb={VB} x={contact[0] - 36} y={78} ink="force" anchor="r">{t`\{A_1\,|\,-\v F\}`}</KLabel>}
+        {rolling && v1 > 0 && <KLabel vb={VB} x={c1 + (Math.sign(st.v1) * Math.abs(st.v1) * 40) / 2} y={GROUND - 150} ink="vel">{t`\v v_1`}</KLabel>}
+        {rolling && v2 > 0 && <KLabel vb={VB} x={c2 + (st.v2 * 40) / 2} y={GROUND - 150} ink="vel">{t`\v v_2`}</KLabel>}
         <KLabel vb={VB} x={c1} y={GROUND + 18} ink="fg">{t`A_1`}</KLabel>
         <KLabel vb={VB} x={c2} y={GROUND + 18} ink="fg">{t`A_2`}</KLabel>
-        <div className="vdemo-label small fg" style={{ left: `${(c1 / 400) * 100}%`, top: `${((GROUND - 40) / 200) * 100}%` }}>{m1} kg</div>
-        <div className="vdemo-label small fg" style={{ left: `${(c2 / 400) * 100}%`, top: `${((GROUND - 40) / 200) * 100}%` }}>{m2} kg</div>
+        <div className="vdemo-label small fg" style={{ left: `${(c1 / 400) * 100}%`, top: `${((GROUND - 48) / 200) * 100}%` }}>{m1} kg</div>
+        <div className="vdemo-label small fg" style={{ left: `${(c2 / 400) * 100}%`, top: `${((GROUND - 48) / 200) * 100}%` }}>{m2} kg</div>
       </>}
       caption={<>
         <div className="kf-ctl">
@@ -94,11 +94,11 @@ export function K2Skaters() {
       {body(c2, h2, 'b2', -1)}
       {pushing && <>
         <Arrow a={contact} b={[contact[0] + LEN_F * F, contact[1]]} cls="kf-f" />
-        <Arrow a={[contact[0], contact[1] + 12]} b={[contact[0] - LEN_F * F, contact[1] + 12]} cls="kf-f" />
-        <circle cx={contact[0]} cy={contact[1]} r={4.5} className="kf-pt solid" /><circle cx={contact[0]} cy={contact[1] + 12} r={4.5} className="kf-pt solid" />
+        <Arrow a={[contact[0], contact[1] + 14]} b={[contact[0] - LEN_F * F, contact[1] + 14]} cls="kf-f" />
+        <circle cx={contact[0]} cy={contact[1]} r={4.5} className="kf-pt solid" /><circle cx={contact[0]} cy={contact[1] + 14} r={4.5} className="kf-pt solid" />
       </>}
-      {rolling && Math.abs(st.v1) > 0.01 && <Arrow a={[c1, GROUND - 112]} b={[c1 + st.v1 * 40, GROUND - 112]} cls="kf-v" />}
-      {rolling && Math.abs(st.v2) > 0.01 && <Arrow a={[c2, GROUND - 112]} b={[c2 + st.v2 * 40, GROUND - 112]} cls="kf-v" />}
+      {rolling && Math.abs(st.v1) > 0.01 && <Arrow a={[c1, GROUND - 136]} b={[c1 + st.v1 * 40, GROUND - 136]} cls="kf-v" />}
+      {rolling && Math.abs(st.v2) > 0.01 && <Arrow a={[c2, GROUND - 136]} b={[c2 + st.v2 * 40, GROUND - 136]} cls="kf-v" />}
     </Frame>
   );
 }

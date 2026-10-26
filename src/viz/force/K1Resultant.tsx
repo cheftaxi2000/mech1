@@ -88,8 +88,8 @@ export function K1Resultant() {
           <table className="kf-table" aria-label={tr('Komponenten der Kräfte und der Resultierenden', 'Components of the forces and of the resultant')}>
             <thead><tr><th /><th><M>{t`F_x\ [\mathrm N]`}</M></th><th><M>{t`F_y\ [\mathrm N]`}</M></th></tr></thead>
             <tbody>
-              {F.map((f, i) => <tr key={i} className={sel === i ? 'hl' : ''}><td><M>{`\\v F_${i + 1}`}</M></td><td>{fmtNum(f[0], 0, lang)}</td><td>{fmtNum(f[1], 0, lang)}</td></tr>)}
-              <tr className="sum"><td><M>{t`\v R = \sum \v F_i`}</M></td><td>{fmtNum(R[0], 0, lang)}</td><td>{fmtNum(R[1], 0, lang)}</td></tr>
+              {F.map((f, i) => <tr key={i} className={sel === i ? 'hl' : ''}><td><M>{`\\v F_${i + 1}`}</M></td><td><M>{fmtNum(f[0], 0, lang, true)}</M></td><td><M>{fmtNum(f[1], 0, lang, true)}</M></td></tr>)}
+              <tr className="sum"><td><M>{t`\v R = \sum \v F_i`}</M></td><td><M>{fmtNum(R[0], 0, lang, true)}</M></td><td><M>{fmtNum(R[1], 0, lang, true)}</M></td></tr>
             </tbody>
           </table>
         </div>

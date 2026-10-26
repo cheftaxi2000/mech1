@@ -3,10 +3,10 @@ import { M } from '../../components/Tex';
 import { actsAlongConnection } from '../../physics/force';
 import { fmtNum, useLang, useTr } from '../../i18n';
 import { Arrow, Frame, KLabel, svgPt, t } from './kfKit';
-import { MIN_GAP, fernPair, phys, snapA2, type V } from './k2Geom';
+import { fernPair, phys, snapA2, type V } from './k2Geom';
 
 const VB: [number, number, number, number] = [0, 0, 480, 290];
-const R1 = 12, R2 = 20; // radii of the two discs (A₁ small, A₂ large, as in the lecture's figure)
+const R1 = 9, R2 = 14; // radii of the two discs (A₁ small, A₂ large, as in the lecture's figure)
 const X: [number, number] = [70, 410], Y: [number, number] = [70, 222];
 const clampP = (p: V): V => [Math.max(X[0], Math.min(X[1], p[0])), Math.max(Y[0], Math.min(Y[1], p[1]))];
 const TILT = (38 * Math.PI) / 180;
@@ -30,8 +30,8 @@ export function K2Fern() {
 
   const contact = Math.hypot(A2[0] - A1[0], A2[1] - A1[1]) < 1e-6;
   const d = Math.hypot(A2[0] - A1[0], A2[1] - A1[1]);
-  const len = 20 + 4.2 * mag;
-  const lenEff = contact ? len : Math.max(14, Math.min(len, attractive ? d / 2 - R2 - 8 : len));
+  const len = 24 + 5.5 * mag;
+  const lenEff = contact ? len : Math.max(14, Math.min(len, attractive ? d / 2 - R2 - 6 : len));
   const pair = contact
     ? { onA2: [Math.cos(angle) * len, Math.sin(angle) * len] as V, onA1: [-Math.cos(angle) * len, -Math.sin(angle) * len] as V }
     : fernPair(A1, A2, lenEff, attractive, tilted ? TILT : 0);
@@ -62,14 +62,18 @@ export function K2Fern() {
   };
   const onUp = () => { drag.current = null; };
 
-  const f1 = (x: number) => fmtNum(x, 1, lang, true);
-  const dU = d / 76; // «Kästchen»: 76 px ≙ 1 unit of the figure
   const lineEnds = (() => {
     const u: V = [(A2[0] - A1[0]) / (d || 1), (A2[1] - A1[1]) / (d || 1)];
     return [[A1[0] - 300 * u[0], A1[1] - 300 * u[1]], [A2[0] + 300 * u[0], A2[1] + 300 * u[1]]] as const;
   })();
   const tip2 = plus(A2, pair.onA2), tip1 = plus(A1, pair.onA1);
-  const lab = (from: V, to: V, k = 22): V => { const n = Math.hypot(to[0] - from[0], to[1] - from[1]) || 1; return [to[0] + (k * (to[0] - from[0])) / n, to[1] + (k * (to[1] - from[1])) / n]; };
+  // label beside the middle of an arrow, on the upper side
+  const lab = (from: V, to: V, k = 22): V => {
+    const dx = to[0] - from[0], dy = to[1] - from[1], n = Math.hypot(dx, dy) || 1;
+    let nx = -dy / n, ny = dx / n;
+    if (ny > 0 || (ny === 0 && nx < 0)) { nx = -nx; ny = -ny; }
+    return [from[0] + dx / 2 + k * nx, from[1] + dy / 2 + k * ny];
+  };
   const l2 = lab(A2, tip2), l1 = lab(A1, tip1);
 
   return (
@@ -80,7 +84,7 @@ export function K2Fern() {
         <KLabel vb={VB} x={l1[0]} y={l1[1]} ink="force">{t`\{A_1\,|\,-\v F\}`}</KLabel>
         {!contact && <KLabel vb={VB} x={A1[0] - 8} y={A1[1] + 28} ink="point">{t`A_1`}</KLabel>}
         {!contact && <KLabel vb={VB} x={A2[0] + 2} y={A2[1] + 36} ink="point">{t`A_2`}</KLabel>}
-        {contact && <KLabel vb={VB} x={A1[0] - 40} y={A1[1] + 22} ink="point">{t`A_1 = A_2`}</KLabel>}
+        {contact && (() => { let nx = -Math.sin(angle), ny = Math.cos(angle); if (ny < 0) { nx = -nx; ny = -ny; } return <KLabel vb={VB} x={A1[0] + 34 * nx} y={A1[1] + 34 * ny} ink="point">{t`A_1 = A_2`}</KLabel>; })()}
       </>}
       caption={<>
         <div className="kf-ctl">
@@ -98,14 +102,14 @@ export function K2Fern() {
           <div className="big">
             {contact
               ? <><M>{t`A_1(t_0) = A_2(t_0)`}</M>{' – '}<b>{tr('Kontaktkraft', 'contact force')}</b></>
-              : <><M>{t`A_1(t_0) \neq A_2(t_0)`}</M>{' – '}<b>{tr('Fernkraft', 'force at a distance')}</b>{', '}<M>{t`d = ${f1(dU)}`}</M></>}
+              : <><M>{t`A_1(t_0) \neq A_2(t_0)`}</M>{' – '}<b>{tr('Fernkraft', 'force at a distance')}</b></>}
           </div>
           {contact
             ? <div>{tr('Die beiden Punkte fallen zusammen: Es gibt keine Verbindungsgerade mehr. Das Zusatzpostulat fordert hier nichts; die Richtung der Kraft ist frei (zieh an der Pfeilspitze).', 'The two points coincide: there is no connecting line any more. The additional postulate asks nothing here; the direction of the force is free (drag the arrow tip).')}</div>
             : <div>{onLine
               ? <>{tr('Kraft und Gegenkraft liegen auf der Geraden durch ', 'Force and counter-force lie on the line through ')}<M>{t`A_1`}</M>{tr(' und ', ' and ')}<M p="">{t`A_2`}</M>{' '}<span className="ok-mark"><M>{t`\checkmark`}</M></span></>
               : <b className="bad">{tr('Gleich gross und entgegengesetzt, aber nicht auf der Verbindungsgeraden: Das schliesst das Zusatzpostulat aus.', 'Equal and opposite, but not on the connecting line: the additional postulate rules this out.')}</b>}</div>}
-          <div className="kf-note">{tr('Zieh die zwei Punkte aufeinander zu, bis sie einrasten, und wieder auseinander (kleinster Abstand ', 'Drag the two points towards each other until they snap together, and apart again (smallest gap ')}{fmtNum(MIN_GAP / 76, 1, lang)}{tr(').', ').')}</div>
+          <div className="kf-note">{tr('Zieh die zwei Punkte aufeinander zu, bis sie einrasten, und wieder auseinander.', 'Drag the two points towards each other until they snap together, and apart again.')}</div>
         </div>
       </>}>
       {!contact && <line x1={lineEnds[0][0]} y1={lineEnds[0][1]} x2={lineEnds[1][0]} y2={lineEnds[1][1]} className="kf-guide line" />}

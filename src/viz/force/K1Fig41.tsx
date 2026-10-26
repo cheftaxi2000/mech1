@@ -127,7 +127,7 @@ export function K1Fig41() {
         </div>
         <div className="kf-note" role="status">{vecOnly
           ? tr('Ohne Angriffspunkte sind es nur noch fünf Pfeile. Welche Kraft zieht wo am Balken? Das steht nirgends mehr.', 'Without points of application there are only five arrows. Which force pulls where on the bar? It is written nowhere any more.')
-          : tr('Ziehe an einem Pfeilende oder an einem Punkt. Der Pfeilmassstab ist fest: Länge = Betrag.', 'Drag an arrow end or a point. The arrow scale is fixed: length = magnitude.')}</div>
+          : tr('Ziehe an einem Pfeilende oder an einem Punkt. Der Pfeilmassstab ist fest: Je länger der Pfeil, desto grösser der Betrag.', 'Drag an arrow end or a point. The arrow scale is fixed: the longer the arrow, the larger the magnitude.')}</div>
       </>}>
       <rect x={X0} y={BAR_Y0} width={BAR_L * PXM} height={BAR_H} rx={2} className="kf-body" opacity={1 - 0.85 * k} />
       {/* scale bar */}

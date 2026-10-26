@@ -17,9 +17,10 @@ export function fmtForce(n: number, lang: Lang): string {
   return `${fmtNum(v, dig, lang)} ${unit}`;
 }
 export function fmtMass(m: number, lang: Lang): string {
-  if (m >= 1000) return `${fmtNum(m / 1000, m >= 10000 ? 0 : 1, lang)} t`;
-  if (m >= 1) return `${fmtNum(m, m >= 10 ? 0 : 1, lang)} kg`;
-  return `${fmtNum(m * 1000, m >= 0.01 ? 0 : 1, lang)} g`;
+  const num = (x: number, d: number) => fmtNum(Math.abs(x - Math.round(x)) < 0.05 ? Math.round(x) : x, Math.abs(x - Math.round(x)) < 0.05 ? 0 : d, lang);
+  if (m >= 1000) return `${num(m / 1000, m >= 10000 ? 0 : 1)} t`;
+  if (m >= 1) return `${num(m, m >= 10 ? 0 : 1)} kg`;
+  return `${num(m * 1000, m >= 0.01 ? 0 : 1)} g`;
 }
 
 /**
@@ -30,7 +31,7 @@ export function K1Newton() {
   const tr = useTr(), lang = useLang();
   const [lg, setLg] = useState(0.4); // log10 of the mass in kg
   const m = 10 ** lg, w = weightOfMass(m);
-  const ticks: [number, string][] = [[0.01, `${fmtNum(0.01, 2, lang)} N`], [1, '1 N'], [100, '100 N'], [1e4, '10 kN'], [1e6, '1 MN']];
+  const ticks: [number, string, boolean][] = [[0.01, `${fmtNum(0.01, 2, lang)} N`, true], [1, '1 N', false], [100, '100 N', true], [1e4, '10 kN', false], [1e6, '1 MN', true]];
   return (
     <figure className="vdemo kf-wide">
       <div className="kf-log" role="group" aria-label={tr('Gewichtskräfte alltäglicher Dinge auf einer logarithmischen Skala', 'Weights of everyday things on a logarithmic scale')}>
@@ -50,7 +51,7 @@ export function K1Newton() {
           <span className="vl"><b>{fmtForce(w, lang)}</b></span>
         </div>
         <div className="ax"><span />
-          <span className="scale">{ticks.map(([v, lab]) => <span key={v} style={{ left: `${pct(v)}%` }}>{lab}</span>)}</span>
+          <span className="scale">{ticks.map(([v, lab, major]) => <span key={v} className={major ? 'major' : 'minor'} style={{ left: `${pct(v)}%` }}>{lab}</span>)}</span>
           <span /></div>
       </div>
       <div className="kf-ctl" style={{ marginTop: 8 }}>
