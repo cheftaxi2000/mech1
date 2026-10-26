@@ -215,3 +215,20 @@ Short ideas for the quiz part at the end of the course (D-015). Every answer mus
 **Week 5.** r with 2 % error: area ≈ 4 %, x³ ≈ 6 % · Quader exact Δd = 0,428 vs 0,421 · x² on [0,3; 2,9]: c = 1,6 (midpoint) · x³ − 3x on [−2, 2]: c = ±2/√3 · |x| on [−1, 1]: no c (why) · x³ − x on [−½, 1]: max 3/8 at the end · inflection points of x⁴ − x²: ±1/√6 · (2 − 3i)(1 + i) = 5 − i · (2 − 3i)/(1 + i) = −½ − 5/2 i · |3 + 4i| = 5.
 
 **Week 6.** i²⁰²⁶ = −1 · arg(−1 − i) = 5π/4 (arctan gives π/4) · (1 + i)⁸ = 16 · roots of z³ = 8i: √3 + i, −√3 + i, −2i · |z − 2| = |z − 2i| is the line b = a · |z − (1+i)| ≤ 2 and Re(iz) > 1: empty (they touch only at 1 − i, excluded) · Serie 6/3c: smallest n with n(5π/16 + 15π/16) ∈ 2πℤ is 8 · 0 < r < 1: ⁴√r > r («Radius in die n-te Wurzel, nicht durch n teilen»).
+
+## L16 Kräfte/Leistung — kraft (p. 29)
+- Welche drei Angaben legen eine Kraft fest? (Richtung, Betrag, Angriffspunkt: punktgebundener Vektor {A | F̲}.)
+- Sind {A₁ | F̲} und {A₂ | F̲} dieselbe Kraft? (Nein: gleicher Vektor, anderer Angriffspunkt; Versuch auf dem Tisch: gleicher Schwerpunktsweg, andere Drehung.)
+- Einheit N in Basiseinheiten? (kg·m/s²; R-024: im Skript «Kgm/s²».) Gewichtskraft von 2 kg: ≈ 19,6 N (`kraftScale.ts`, g = 9,81 N/kg).
+- Kontaktkraft oder Fernkraft? Hand schiebt Kiste (Kontakt), Erde zieht Apfel (Fern), Magnet (Fern), Tisch trägt Buch (Kontakt).
+- Kräftegruppe der Fig. 4.2 (unsere Zahlen, `resultantScene.ts`): F̲₁ = (5; −25), F̲₂ = (−20; −45), F̲₃ = (−30; 5), F̲₄ = (15; 55), F̲₅ = (55; 55) N → R̲ = (25; 45) N, |R̲| = 51,5 N; welche Kraft F̲₅ macht R̲ = 0̲ bei gleichen F̲₁ … F̲₄? ((30; 10) N.)
+- Wahr/falsch: «R̲ ersetzt jede Kräftegruppe» (falsch: nur gemeinsamer Angriffspunkt, p. 29 «speziell»); «Ändert man die Reihenfolge der Kopien in der Kette, ändert sich R̲» (falsch).
+- Warum bleibt ein Wagen in Ruhe, an dem links und rechts gleich stark gedrückt wird? (Gleichgewicht: die Kräfte gleichen sich aus; der Schwamm wird dabei trotzdem verformt.)
+
+## L16 Kräfte/Leistung — reaktionsprinzip (p. 30 oben)
+- Gegenkraft zu {A₂ | F̲}? ({A₁ | −F̲}: gleich gross, entgegengesetzt, anderer Körper.)
+- Heben sich Actio und Reactio auf? (Nein: verschiedene Körper; aufheben können sich nur Kräfte am selben Körper.)
+- Buch auf dem Tisch: Gewicht G̲ und Tischkraft N̲ – ein Actio/Reactio-Paar? (Nein, beide wirken auf das Buch. Gegenkraft von G̲: Anziehung des Buchs auf die Erde; von N̲: Druck des Buchs auf den Tisch; `k2Data.test`/`k2Geom.test.ts`.)
+- Zusatzpostulat: A₁ = (0; 0), A₂ = (3; 4); welche Kraft auf A₂ ist erlaubt: (6; 8), (−3; −4), (8; −6)? (Die ersten zwei: parallel zu A₁A₂; `actsAlongConnection`.)
+- Kontaktkraft: Was gilt für die Orte A₁(t₀), A₂(t₀)? (Sie fallen zusammen; bei Fernkraft nicht.)
+- Rollschuhe m₁ = 60 kg, m₂ = 30 kg, F = 90 N für 0,5 s: v₁, v₂? (0,75 und 1,50 m/s, `skaters.ts`; Impulse m₁v₁ = −m₂v₂.)
