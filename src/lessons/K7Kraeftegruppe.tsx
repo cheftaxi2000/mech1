@@ -45,7 +45,8 @@ export default function K7Kraeftegruppe() {
           />
           <MD>{t`\begin{aligned}
 &P(\v F_1, \v F_2, \dots, \v F_n) = P(\v F_1) + P(\v F_2) + \dots + P(\v F_n)\\[4pt]
-&\{A \mid \v F_i\}\ \to\ P = \v F_1\cdot\v v_A + \v F_2\cdot\v v_A + \dots + \v F_n\cdot\v v_A = \Big(\underbrace{\textstyle\sum_{i=1}^{n}\v F_i}_{\v R}\Big)\cdot\v v_A = \v R\cdot\v v_A\\[4pt]
+&\{A \mid \v F_i\}\ \to\ P = \v F_1\cdot\v v_A + \v F_2\cdot\v v_A + \dots + \v F_n\cdot\v v_A\\
+&\qquad\qquad\ = \Big(\underbrace{\textstyle\sum_{i=1}^{n}\v F_i}_{\v R}\Big)\cdot\v v_A = \v R\cdot\v v_A\\[4pt]
 &\{A_i \mid \v F_i\}\ \to\ P = \v F_1\cdot\v v_1 + \v F_2\cdot\v v_2 + \dots + \v F_n\cdot\v v_n
 \end{aligned}`}</MD>
           <MD>{t`\boxed{\ P = \v R\cdot\v v_B + \v M_B\cdot\v\omega\ }`}</MD>
@@ -112,10 +113,12 @@ export default function K7Kraeftegruppe() {
           />
           <MD>{t`\begin{aligned}
 &\text{${tr('in $B$ bekannt', 'known in $B$')}}\colon\ \v v_B,\ \v\omega\\
-&\v v_1 = \v v_B + \v\omega\times\v{BA}_1,\qquad \v v_2 = \v v_B + \v\omega\times\v{BA}_2\\
+&\v v_1 = \v v_B + \v\omega\times\v{BA}_1\\
+&\v v_2 = \v v_B + \v\omega\times\v{BA}_2\\[4pt]
 &P = \v F_1\cdot\v v_1 + \v F_2\cdot\v v_2\\
-&\ \ = \v F_1\cdot\v v_B + \v F_1\cdot(\v\omega\times\v{BA}_1) + \v F_2\cdot\v v_B + \v F_2\cdot(\v\omega\times\v{BA}_2)\qquad \big[\,\v a\cdot(\v b\times\v c) = \v b\cdot(\v c\times\v a)\,\big]\\
-&\ \ = \underbrace{(\v F_1 + \v F_2)}_{\v R}\cdot\v v_B + \v\omega\cdot\underbrace{(\v{BA}_1\times\v F_1)}_{\v M_{B,1}} + \v\omega\cdot\underbrace{(\v{BA}_2\times\v F_2)}_{\v M_{B,2}}\\
+&\ \ = \v F_1\cdot\v v_B + \v F_1\cdot(\v\omega\times\v{BA}_1) + \v F_2\cdot\v v_B + \v F_2\cdot(\v\omega\times\v{BA}_2)\\
+&\qquad\big[\,\v a\cdot(\v b\times\v c) = \v b\cdot(\v c\times\v a)\,\big]\\[4pt]
+&\ \ = \underbrace{(\v F_1 + \v F_2)}_{\v R}\cdot\v v_B + \v\omega\cdot\underbrace{(\v{BA}_1\times\v F_1)}_{\v M_{B,1}} + \v\omega\cdot\underbrace{(\v{BA}_2\times\v F_2)}_{\v M_{B,2}}\\[4pt]
 &\ \ = \v R\cdot\v v_B + \v\omega\cdot\v M_B\qquad \text{q.e.d.}
 \end{aligned}`}</MD>
         </Box>
@@ -269,17 +272,23 @@ export default function K7Kraeftegruppe() {
             </>}
           />
           <MD>{t`\begin{aligned}
-\v v_C &= \v v_A + \v\omega\times\v{AC} = \begin{pmatrix}v\\0\\0\end{pmatrix} + \begin{pmatrix}0\\0\\\omega\end{pmatrix}\times\begin{pmatrix}L\sqrt2/4\\L\sqrt2/4\\0\end{pmatrix} = \begin{pmatrix}v - \omega L\sqrt2/4\\ \omega L\sqrt2/4\\0\end{pmatrix}\\[4pt]
-\v v_B &= \v v_A + \v\omega\times\v{AB} = \begin{pmatrix}v - \omega L\sqrt2/2\\ \omega L\sqrt2/2\\0\end{pmatrix}\\[4pt]
-P &= \sum_{i=1}^{2}\v F_i\cdot\v v_i = \underbrace{\begin{pmatrix}-\tfrac{\sqrt2}{2}W\\ \tfrac{\sqrt2}{2}W\\0\end{pmatrix}\cdot\v v_C}_{\text{in } C} + \underbrace{\begin{pmatrix}0\\-G\\0\end{pmatrix}\cdot\v v_B}_{\text{in } B} = -\tfrac{\sqrt2}{2}Wv + W\tfrac L2\,\omega - G\omega L\tfrac{\sqrt2}{2}
+\v v_C &= \v v_A + \v\omega\times\v{AC}\\
+&= \begin{pmatrix}v\\0\\0\end{pmatrix} + \begin{pmatrix}0\\0\\\omega\end{pmatrix}\times\begin{pmatrix}L\sqrt2/4\\L\sqrt2/4\\0\end{pmatrix}\\
+&= \begin{pmatrix}v - \omega L\sqrt2/4\\ \omega L\sqrt2/4\\0\end{pmatrix}\\[8pt]
+\v v_B &= \v v_A + \v\omega\times\v{AB} = \begin{pmatrix}v - \omega L\sqrt2/2\\ \omega L\sqrt2/2\\0\end{pmatrix}\\[8pt]
+P &= \sum_{i=1}^{2}\v F_i\cdot\v v_i\\
+&= \underbrace{\begin{pmatrix}-\tfrac{\sqrt2}{2}W\\ \tfrac{\sqrt2}{2}W\\0\end{pmatrix}\cdot\v v_C}_{\text{in } C} + \underbrace{\begin{pmatrix}0\\-G\\0\end{pmatrix}\cdot\v v_B}_{\text{in } B}\\[6pt]
+&= -\tfrac{\sqrt2}{2}Wv + W\tfrac L2\,\omega - G\omega L\tfrac{\sqrt2}{2}
 \end{aligned}`}</MD>
           <T
             de={<p><b>② (S. 35 links)</b> in <M>A</M> gebündelt:</p>}
             en={<p><b>② (p. 35, left)</b> bundled at <M p=":">A</M></p>}
           />
           <MD>{t`\begin{aligned}
-\v M_{AG} &= \v{AB}\times\v G = \begin{pmatrix}0\\0\\-GL\tfrac{\sqrt2}{2}\end{pmatrix},\qquad \v M_{AW} = \v{AC}\times\v W = \begin{pmatrix}0\\0\\W\cdot\tfrac L2\end{pmatrix}\\[4pt]
-P &= \v R\cdot\v v_A + \v\omega\cdot\v M_A = \begin{pmatrix}-\tfrac{\sqrt2}{2}W\\ \tfrac{\sqrt2}{2}W - G\\0\end{pmatrix}\cdot\begin{pmatrix}v\\0\\0\end{pmatrix} + \begin{pmatrix}0\\0\\\omega\end{pmatrix}\cdot\begin{pmatrix}0\\0\\-GL\tfrac{\sqrt2}{2} + W\tfrac L2\end{pmatrix}\\[4pt]
+\v M_{AG} &= \v{AB}\times\v G = \begin{pmatrix}0\\0\\-GL\tfrac{\sqrt2}{2}\end{pmatrix}\\[8pt]
+\v M_{AW} &= \v{AC}\times\v W = \begin{pmatrix}0\\0\\W\cdot\tfrac L2\end{pmatrix}\\[8pt]
+P &= \v R\cdot\v v_A + \v\omega\cdot\v M_A\\
+&= \begin{pmatrix}-\tfrac{\sqrt2}{2}W\\ \tfrac{\sqrt2}{2}W - G\\0\end{pmatrix}\cdot\begin{pmatrix}v\\0\\0\end{pmatrix} + \begin{pmatrix}0\\0\\\omega\end{pmatrix}\cdot\begin{pmatrix}0\\0\\-GL\tfrac{\sqrt2}{2} + W\tfrac L2\end{pmatrix}\\[6pt]
 &= -\tfrac{\sqrt2}{2}Wv + \omega W\tfrac L2 - \omega GL\tfrac{\sqrt2}{2}
 \end{aligned}`}</MD>
           <T

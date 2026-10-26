@@ -98,8 +98,8 @@ export function explorerScene(p: Plate, lang: Lang) {
   });
   bar('RV', 'k7-seg-t', rows.B[0], 0, n.translation, '\\v R\\cdot\\v v_B', VEL, f1(shownT[0]));
   bar('MW', 'k7-seg-r', rows.B[1], n.translation, n.translation + n.rotation, '\\v M_B\\cdot\\v\\omega', OMEGA, f1(shownT[1]));
-  sc.label('head-A', [8, 288], String.raw`\sum_i \v F_i\cdot\v v_i\ \ \text{${de ? '(jede Kraft für sich)' : '(each force on its own)'}}`, 'muted', 1, 'l');
-  sc.label('head-B', [8, 388], String.raw`\v R\cdot\v v_B + \v M_B\cdot\v\omega\ \ \text{${de ? '(gebündelt in' : '(bundled in'}}\ B\text{)}`, 'muted', 1, 'l');
+  sc.label('head-A', [8, 288], String.raw`\sum_i \v F_i\cdot\v v_i\ \ \text{${de ? '(einzeln)' : '(one by one)'}}`, 'muted', 1, 'l');
+  sc.label('head-B', [8, 388], String.raw`\v R\cdot\v v_B + \v M_B\cdot\v\omega\ \ \text{${de ? '(in ' : '(bundled in '}}B\text{${de ? ' gebündelt)' : ')'}}`, 'muted', 1, 'l');
   const xT = barX(total), ink: Ink = total >= 0 ? 'z' : 'y';
   S('total', 'line', total >= 0 ? 'k7-total pos' : 'k7-total neg', [[xT, 300], [xT, 448]]);
   sc.label('lab-total', [Math.max(70, Math.min(EW - 70, xT)), E.YT], String.raw`P = ${f1(roundToSum([total], 1)[0])}\,\text{W}`, ink, 1, 'c');

@@ -17,8 +17,8 @@ import type { Ink } from '../anim/scene';
 import { FORCE, OMEGA, VEL, draw, num, roundToSum } from './k7Draw';
 import { makeScene } from './K7Svg';
 
-export const LW = 520, LH = 478;
-export const LD = { AX: 118, AY: 262, S: 60, KF: 2.4, KV: 36, X0: 300, KW: 1.9, XMIN: 120, XMAX: 508, ROWS: { I: [334, 356], II: [410, 432] } as const, YT: 462, L: 4 };
+export const LW = 520, LH = 504;
+export const LD = { AX: 118, AY: 262, S: 60, KF: 2.4, KV: 36, X0: 300, KW: 1.9, XMIN: 120, XMAX: 508, ROWS: { I: [354, 376], II: [430, 452] } as const, YT: 486, L: 4 };
 const S2 = Math.SQRT1_2;
 export const lPx = (p: Q2): P2 => [LD.AX + LD.S * p[0], LD.AY - LD.S * p[1]];
 const dv = (v: Q2, k: number): P2 => [k * v[0], -k * v[1]];
@@ -167,7 +167,7 @@ export function ladderScene(par: Omit<Ladder, 'L'>, lang: Lang, ly: Layers) {
   // ---- bars: Weg I (two rows) and Weg II (two rows), both ending at the same total ----
   const total = q.wegI, shownT = roundToSum([total], 1)[0];
   const anyBars = Math.max(ly.barsI, ly.barsII);
-  S('zero', 'line', 'k7-axis', [[LD.X0, 318], [LD.X0, 448]], anyBars);
+  S('zero', 'line', 'k7-axis', [[LD.X0, 338], [LD.X0, 470]], anyBars);
   const bar = (key: string, cls: string, y: number, from: number, to: number, label: string, ink: Ink, val: string, o: number) => {
     const x0 = barX(Math.min(from, to)), x1 = barX(Math.max(from, to));
     if (x1 - x0 >= 0.6) rect(key, cls, x0, y - 7, x1, y + 7, o);
@@ -175,14 +175,14 @@ export function ladderScene(par: Omit<Ladder, 'L'>, lang: Lang, ly: Layers) {
     sc.label('row-' + key, [8, y], label, ink, o > 0.3 ? o : 0, 'l');
   };
   const [pb, pc] = roundToSum([q.PB, q.PC], 1), [rv, ma] = roundToSum([q.RvA, q.MAomega], 1);
-  bar('PB', 'k7-seg-p', rowsI[0], 0, q.PB, String.raw`P_B = \v F_B\cdot\v v_B`, 'fg', f1(pb), ly.barsI);
-  bar('PC', 'k7-seg-p b', rowsI[1], q.PB, q.PB + q.PC, String.raw`P_C = \v F_C\cdot\v v_C`, 'fg', f1(pc), ly.barsI);
+  bar('PB', 'k7-seg-p', rowsI[0], 0, q.PB, String.raw`P_B`, 'fg', f1(pb), ly.barsI);
+  bar('PC', 'k7-seg-p b', rowsI[1], q.PB, q.PB + q.PC, String.raw`P_C`, 'fg', f1(pc), ly.barsI);
   bar('RV', 'k7-seg-t', rowsII[0], 0, q.RvA, String.raw`\v R\cdot\v v_A`, VEL, f1(rv), ly.barsII);
   bar('MW', 'k7-seg-r', rowsII[1], q.RvA, q.RvA + q.MAomega, String.raw`\v M_A\cdot\v\omega`, OMEGA, f1(ma), ly.barsII);
-  sc.label('head-I', [8, 313], String.raw`\text{${de ? 'Weg I: jede Kraft mit der Geschwindigkeit ihres Punktes' : 'Route I: each force with the velocity of its point'}}`, 'muted', ly.barsI > 0.3 ? ly.barsI : 0, 'l');
-  sc.label('head-II', [8, 388], String.raw`\text{${de ? 'Weg II: gebündelt in' : 'Route II: bundled in'}}\ A`, 'muted', ly.barsII > 0.3 ? ly.barsII : 0, 'l');
+  sc.label('head-I', [8, 333], String.raw`\text{${de ? 'Weg I: Punkt für Punkt' : 'Route I: point by point'}}`, 'muted', ly.barsI > 0.3 ? ly.barsI : 0, 'l');
+  sc.label('head-II', [8, 408], String.raw`\text{${de ? 'Weg II: gebündelt in' : 'Route II: bundled in'}}\ A`, 'muted', ly.barsII > 0.3 ? ly.barsII : 0, 'l');
   const xT = barX(total), ink: Ink = total >= 0 ? 'z' : 'y';
-  S('total', 'line', total >= 0 ? 'k7-total pos' : 'k7-total neg', [[xT, 318], [xT, 448]], ly.total);
+  S('total', 'line', total >= 0 ? 'k7-total pos' : 'k7-total neg', [[xT, 338], [xT, 470]], ly.total);
   sc.label('lab-total', [Math.max(70, Math.min(LW - 70, xT)), LD.YT], String.raw`P = ${f1(shownT)}\,\text{W}`, ink, lab(ly.total), 'c');
   return Object.assign(sc.finish({ total, wegi: q.wegI, wegii: q.wegII, pb: q.PB, pc: q.PC, rva: q.RvA, maw: q.MAomega }), { parts: q });
 }
