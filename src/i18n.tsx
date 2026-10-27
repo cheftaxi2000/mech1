@@ -16,20 +16,24 @@ function initialLang(): Lang {
   return 'de';
 }
 
-const LangContext = createContext<{ lang: Lang; setLang: (l: Lang) => void }>({ lang: 'de', setLang: () => {} });
+const LangContext = createContext<{ lang: Lang; setLang: (l: Lang) => void; forceEn: (on: boolean) => void }>({ lang: 'de', setLang: () => {}, forceEn: () => {} });
 
 export function LangProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>(initialLang);
+  const [chosen, setLangState] = useState<Lang>(initialLang);
+  /** Informatik I is taught in English only: while it is open the language is English, the stored choice is kept for the other subjects. */
+  const [forced, forceEn] = useState(false);
+  const lang: Lang = forced ? 'en' : chosen;
   useEffect(() => { document.documentElement.lang = lang; }, [lang]);
   const setLang = (l: Lang) => {
     setLangState(l);
     try { localStorage.setItem(KEY, l); } catch { /* not persisted; fine */ }
   };
-  return <LangContext.Provider value={{ lang, setLang }}>{children}</LangContext.Provider>;
+  return <LangContext.Provider value={{ lang, setLang, forceEn }}>{children}</LangContext.Provider>;
 }
 
 export const useLang = () => useContext(LangContext).lang;
 export const useSetLang = () => useContext(LangContext).setLang;
+export const useForceEn = () => useContext(LangContext).forceEn;
 
 /** Translate a pair of strings in components: const tr = useTr(); tr('Prüfen', 'Check'). */
 export function useTr() {

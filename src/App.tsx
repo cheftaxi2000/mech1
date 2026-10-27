@@ -2,7 +2,7 @@ import { Suspense, useEffect, useRef, useState } from 'react';
 import { NotesLayer } from './notes/StickyNotes';
 import { NotesProvider, useNotes } from './notes/store';
 import { CHAPTERS, SUBJECTS, SUBJECT_SHORT, TOPICS, chapterSubject, sourceLabel, topicSubject, type Status, type Subject, type Topic } from './content/curriculum';
-import { DetailToggle, LangToggle, useLang, useTr } from './i18n';
+import { DetailToggle, LangToggle, useForceEn, useLang, useTr } from './i18n';
 import { Landing, SUBJECT_ROUTE, SubjectPage, routeSubject } from './home/Pages';
 
 const useHashRoute = () => {
@@ -137,6 +137,8 @@ export function App() {
   const topic = TOPICS.find((t) => t.id === route);
   const subject: Subject | null = topic ? topicSubject(topic) : routeSubject(route);
   const [menu, setMenu] = useState(false);
+  const forceEn = useForceEn();
+  useEffect(() => { forceEn(subject === 'info'); }, [subject, forceEn]);
   useEffect(() => {
     if (!menu) return;
     const key = (e: KeyboardEvent) => { if (e.key === 'Escape') setMenu(false); };
@@ -161,7 +163,7 @@ export function App() {
         {subject && <a href={`#${SUBJECT_ROUTE[subject]}`} className="topbar-subject">{tr(...SUBJECTS[subject])}</a>}
         {topic && <span className="topbar-topic">{tr(...topic.title)}</span>}
         {subject && <DetailToggle />}
-        <LangToggle />
+        {subject !== 'info' && <LangToggle />}
         <ReadProgress route={route} />
       </header>
       <div className={`drawer-backdrop${menu ? ' open' : ''}`} onClick={() => setMenu(false)} aria-hidden="true" />

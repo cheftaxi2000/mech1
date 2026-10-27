@@ -98,15 +98,17 @@ for (const lang of LANGS) {
     const i = lang === 'de' ? 0 : 1;
     for (const [route, subject, ch] of [['mechanik', 'mech', (c: string) => !c.startsWith('A') && !c.startsWith('LA') && !c.startsWith('CH') && !/^I\d/.test(c)], ['analysis', 'ana', (c: string) => c.startsWith('A') && !c.startsWith('LA')], ['algebra', 'la', (c: string) => c.startsWith('LA')], ['chemie', 'chem', (c: string) => c.startsWith('CH')], ['informatik', 'info', (c: string) => /^I\d/.test(c)]] as const) {
       await page.goto(`/#${route}`);
-      await expect(page.getByRole('heading', { level: 1 })).toContainText(SUBJECTS[subject][i]);
+      const k = subject === 'info' ? 1 : i; // Informatik I is English only
+      await expect(page.getByRole('heading', { level: 1 })).toContainText(SUBJECTS[subject][k]);
       const main = page.locator('.toc');
-      for (const t of TOPICS.filter((t) => ch(t.chapter))) await expect(main.getByText(t.title[i], { exact: true })).toBeVisible();
+      for (const t of TOPICS.filter((t) => ch(t.chapter))) await expect(main.getByText(t.title[k], { exact: true })).toBeVisible();
       expect(await plainTextMath(page)).toEqual([]);
     }
     expect(errors).toEqual([]);
   });
 
-  for (const topic of written) {
+  // Informatik I is shown in English only, whatever language was chosen
+  for (const topic of written.filter((t) => lang === 'en' || topicSubject(t) !== 'info')) {
     test(`[${lang}] lesson "${topic.id}" renders without math or console errors`, async ({ page }) => {
       const errors = trackErrors(page);
       await open(page, lang, `#${topic.id}`);
