@@ -212,7 +212,7 @@ export default function A2Grenzwerte() {
           de={<p>Einsetzen gibt beide Male <M p=".">{t`\frac00`}</M> Warum kommt bei <M>{t`\frac{\sin x}{x}`}</M> genau <M>1</M> heraus? Für kleine Winkel ist <M>{t`\sin x`}</M> fast gleich <M>x</M> (im Bogenmass). Die Animation zeigt, warum – mit drei Flächen im Einheitskreis.</p>}
           en={<p>Substituting gives <M>{t`\frac00`}</M> both times. Why does <M>{t`\frac{\sin x}{x}`}</M> give exactly <M p="?">1</M> For small angles <M>{t`\sin x`}</M> is almost equal to <M>x</M> (in radians). The animation shows why – with three areas in the unit circle.</p>}
         />
-        <Box kind="supplement" title={<T de={<>Warum <M p="">{t`\frac{\sin x}{x} \to 1`}</M> – das Bild im Einheitskreis</>} en={<>Why <M p="">{t`\frac{\sin x}{x} \to 1`}</M> – the picture in the unit circle</>} />}>
+        <Box keep kind="supplement" title={<T de={<>Warum <M p="">{t`\frac{\sin x}{x} \to 1`}</M> – das Bild im Einheitskreis</>} en={<>Why <M p="">{t`\frac{\sin x}{x} \to 1`}</M> – the picture in the unit circle</>} />}>
           <StepPlayer
             label={tr('Animation: Einheitskreis, drei Flächen, Einschnürung von x durch sin x', 'Animation: unit circle, three areas, squeezing x over sin x')}
             steps={[

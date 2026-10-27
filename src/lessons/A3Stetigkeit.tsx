@@ -145,7 +145,7 @@ export default function A3Stetigkeit() {
             </ol>
           </>}
         />
-        <Box kind="supplement" title={<T de="Wie findet man die Nullstelle? Halbieren" en="How to find the zero? Halving" />}>
+        <Box keep kind="supplement" title={<T de="Wie findet man die Nullstelle? Halbieren" en="How to find the zero? Halving" />}>
           <T
             de={<p>Der ZWS sagt nur «irgendwo dazwischen». Man kann ihn aber immer wieder anwenden: Mitte nehmen, Vorzeichen prüfen, die Hälfte mit dem Vorzeichenwechsel behalten. Das heisst <b>Bisektion</b>.</p>}
             en={<p>The IVT only says “somewhere in between”. But one can apply it again and again: take the midpoint, check the sign, keep the half with the change of sign. This is called <b>bisection</b>.</p>}
