@@ -147,3 +147,9 @@ Four implementer agents wrote 13 lessons from lectures 1–6 and the TA's exerci
 - Lead merged (conflicts only in `curriculum.ts` / `QUIZ_BANK.md`), reviewed all lessons on iPad-landscape screenshots, built Quiz 5 (`Q5Quiz.tsx`, values `Q5` in `quizValues.ts` with tests). Source issues R-024…R-035 in `REVIEW_LOG.md`.
 - Fixed: the circled I/II of the ladder example (p. 35) were swapped in `SOURCE_MAP.md`/`force.ts` (checked against the screenshot); curriculum title of `leistung` had plain-text math (broke the e2e plain-text test for every lesson).
 - Known: dark mode, phone and iPad portrait were checked by the implementers, not by the lead; K6 close-up frames of the O′ animation are the least clear picture.
+
+## 2026-10-27 — Short version for Mechanik, quizzes removed, start at home
+- Added the «Ausführlich / Kurz» switch (D-029) and curated all 22 Mechanik lessons (text 35–75 % of the full version; all step animations kept; checked by `e2e/short.spec.ts` and by screenshots).
+- Removed Quiz 1–5 from Mechanik; the home tile now says «Kurzfassung» instead of the quiz count.
+- The app opens at the home menu (hash cleared on load unless reload).
+- Open: the student reviews which prose should stay or go; rotation (74 %) and zentralachse (68 %) keep the most because their proofs live in lecture boxes. Figures that sit inside hidden boxes (e.g. K5 «EverydayPower», «WattScale») are hidden in Short.

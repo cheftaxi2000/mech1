@@ -68,16 +68,16 @@ export default function K7Kraeftegruppe() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das Skript:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das Skript:</b></p>
+            <ol className="keep">
               <li><M>{t`P(\v F_1, \dots, \v F_n) = \sum P(\v F_i)`}</M> sagt: Die Leistungen mehrerer Kräfte addiert man, wie die Leistungen zweier Motoren, die zusammen ziehen.</li>
               <li>Greifen alle Kräfte am <b>selben Punkt</b> <M>A</M> an, haben sie alle dieselbe Geschwindigkeit <M p=".">{t`\v v_A`}</M> Dann darf man <M>{t`\v v_A`}</M> ausklammern, denn das Skalarprodukt ist in jedem Faktor additiv (<a href="#vektoren">S. 5</a>). Die Summe der Kräfte in der Klammer ist die <a href="#kraft">Resultierende</a> <M p=".">{t`\v R = \sum\v F_i`}</M> Mehrere Kräfte an einem Punkt wirken also wie eine einzige.</li>
               <li>Greifen sie an <b>verschiedenen Punkten</b> <M>{t`A_i`}</M> an, hat jede Kraft ihren eigenen Punkt und damit ihre eigene Geschwindigkeit <M p=".">{t`\v v_i`}</M> Ausklammern geht nicht mehr. Man bräuchte alle <M>n</M> Geschwindigkeiten.</li>
               <li>Bei einem <b>starren Körper</b> sind die Geschwindigkeiten aber nicht frei: Sie hängen über die <a href="#allgemein">Grundgleichung</a> <M>{t`\v v_i = \v v_B + \v\omega\times\v{BA}_i`}</M> zusammen. Es genügt die <De en="pair of velocity of B and angular velocity">Kinemate</De> <M>{t`\{\v v_B, \v\omega\}`}</M> in einem Punkt <M p=",">B</M> siehe <a href="#zentralachse">Kinemate</a>.</li>
               <li>Setzt man das ein, bleibt der eingerahmte Kasten übrig. Warum, zeigt der nächste Abschnitt.</li>
             </ol>
-            <p><b>Was die Symbole sind:</b></p>
-            <ul>
+            <p className="keep"><b>Was die Symbole sind:</b></p>
+            <ul className="keep">
               <li><M>{t`\v R = \sum\v F_i`}</M> in N: alle Kraftpfeile zu einem Pfeil addiert (<a href="#kraft">Lektion Kraft</a>, S. 29). Er hängt nicht von <M>B</M> ab.</li>
               <li><M>{t`\v M_B = \sum\v{BA}_i\times\v F_i`}</M> in N·m: die <a href="#leistung-rotation">Momente</a> aller Kräfte um <M>B</M> zusammengezählt, <M>{t`\v M_{B,i} = \v{BA}_i\times\v F_i`}</M> ist das Moment der <M>i</M>-ten Kraft.</li>
               <li><M>{t`\v v_B`}</M> in m/s und <M>{t`\v\omega`}</M> in 1/s: die Bewegung des Körpers, beschrieben im Punkt <M p=".">B</M></li>
@@ -85,16 +85,16 @@ export default function K7Kraeftegruppe() {
             </ul>
           </>}
           en={<>
-            <p><b>How to read the notes:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the notes:</b></p>
+            <ol className="keep">
               <li><M>{t`P(\v F_1, \dots, \v F_n) = \sum P(\v F_i)`}</M> says: you add the powers of several forces, like the powers of two engines pulling together.</li>
               <li>If all forces act at the <b>same point</b> <M p=",">A</M> they all have the same velocity <M p=".">{t`\v v_A`}</M> Then <M>{t`\v v_A`}</M> can be factored out, because the dot product is additive in each factor (<a href="#vektoren">p. 5</a>). The sum of the forces in the bracket is the <a href="#kraft">resultant</a> <M p=".">{t`\v R = \sum\v F_i`}</M> Several forces at one point therefore act like a single one.</li>
               <li>If they act at <b>different points</b> <M p=",">{t`A_i`}</M> each force has its own point and therefore its own velocity <M p=".">{t`\v v_i`}</M> Factoring out no longer works. You would need all <M>n</M> velocities.</li>
               <li>For a <b>rigid body</b> the velocities are not free, though: they are tied together by the <a href="#allgemein">fundamental equation</a> <M p=".">{t`\v v_i = \v v_B + \v\omega\times\v{BA}_i`}</M> The <De en="pair of velocity of B and angular velocity">Kinemate</De> <M>{t`\{\v v_B, \v\omega\}`}</M> at one point <M>B</M> is enough, see <a href="#zentralachse">Kinemate</a>.</li>
               <li>Insert this and the boxed formula is what remains. The next section shows why.</li>
             </ol>
-            <p><b>What the symbols are:</b></p>
-            <ul>
+            <p className="keep"><b>What the symbols are:</b></p>
+            <ul className="keep">
               <li><M>{t`\v R = \sum\v F_i`}</M> in N: all force arrows added into one arrow (<a href="#kraft">lesson on force</a>, p. 29). It does not depend on <M p=".">B</M></li>
               <li><M>{t`\v M_B = \sum\v{BA}_i\times\v F_i`}</M> in N·m: the <a href="#leistung-rotation">moments</a> of all forces about <M>B</M> added up, <M>{t`\v M_{B,i} = \v{BA}_i\times\v F_i`}</M> is the moment of the <M>i</M>-th force.</li>
               <li><M>{t`\v v_B`}</M> in m/s and <M>{t`\v\omega`}</M> in 1/s: the motion of the body, described at the point <M p=".">B</M></li>
@@ -203,11 +203,11 @@ export default function K7Kraeftegruppe() {
       <Section id="bezugspunkt" title={<T de="3. Den Bezugspunkt B wählen" en="3. Choosing the reference point B" />}>
         <T
           de={<>
-            <p>Im Beweis war <M>B</M> irgendein Punkt des Körpers. Du darfst ihn frei wählen. Wechselst du <M p=",">B</M> ändern sich alle drei Grössen <M p=",">{t`\v v_B`}</M> <M>{t`\v M_B`}</M> und damit die beiden Produkte. <b>Die Summe ändert sich nicht.</b> Das ist der Kern der Formel: Man verteilt dieselbe Leistung anders auf «Schieben» und «Drehen».</p>
+            <p className="keep">Im Beweis war <M>B</M> irgendein Punkt des Körpers. Du darfst ihn frei wählen. Wechselst du <M p=",">B</M> ändern sich alle drei Grössen <M p=",">{t`\v v_B`}</M> <M>{t`\v M_B`}</M> und damit die beiden Produkte. <b>Die Summe ändert sich nicht.</b> Das ist der Kern der Formel: Man verteilt dieselbe Leistung anders auf «Schieben» und «Drehen».</p>
             <p><b>Was du sehen sollst:</b> Ziehe <M>B</M> über die Platte. Die zwei unteren Balken verschieben sich gegeneinander, aber sie enden immer an derselben grünen Linie wie die Balken der oberen Gruppe.</p>
           </>}
           en={<>
-            <p>In the proof <M>B</M> was just some point of the body. You may choose it freely. If you change <M p=",">B</M> the quantities <M p=",">{t`\v v_B`}</M> <M>{t`\v M_B`}</M> change and with them the two products. <b>The sum does not change.</b> This is the heart of the formula: the same power is shared differently between “pushing” and “turning”.</p>
+            <p className="keep">In the proof <M>B</M> was just some point of the body. You may choose it freely. If you change <M p=",">B</M> the quantities <M p=",">{t`\v v_B`}</M> <M>{t`\v M_B`}</M> change and with them the two products. <b>The sum does not change.</b> This is the heart of the formula: the same power is shared differently between “pushing” and “turning”.</p>
             <p><b>What you should see:</b> Drag <M>B</M> over the plate. The two lower bars slide against each other, but they always end at the same green line as the bars of the upper group.</p>
           </>}
         />
@@ -236,7 +236,7 @@ export default function K7Kraeftegruppe() {
             </ul>
           </>}
         />
-        <Box kind="supplement" title={<T de="Warum ändert sich P nicht? (drei Zeilen)" en="Why does P not change? (three lines)" />}>
+        <Box keep kind="supplement" title={<T de="Warum ändert sich P nicht? (drei Zeilen)" en="Why does P not change? (three lines)" />}>
           <T
             de={<>
               <p>Das Skript sagt es nicht ausdrücklich, aber es folgt aus den Definitionen. Wechselt man von <M>B</M> nach <M p=",">{t`B'`}</M> ändern sich zwei Dinge, die man beide schon kennt:</p>
@@ -298,8 +298,8 @@ P &= \v R\cdot\v v_A + \v\omega\cdot\v M_A\\
         </Box>
         <T
           de={<>
-            <p><b>So liest man die Lösung:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man die Lösung:</b></p>
+            <ol className="keep">
               <li>Gegeben sind nur <M>{t`\v v_A`}</M> und <M p=".">{t`\v\omega`}</M> Die Leiter bewegt sich in der Ebene: Der Fuss <M>A</M> schiebt sich nach rechts, und die Leiter dreht sich gegen den Uhrzeigersinn (<M p=").">⊙</M> Gesucht ist die Leistung beider Kräfte zusammen.</li>
               <li><b>Weg ①, Punkt für Punkt.</b> Zuerst die Geschwindigkeiten der beiden Angriffspunkte, mit der Grundgleichung: <M p=".">{t`\v v_C = \v v_A + \v\omega\times\v{AC}`}</M> In der Spalte steht <M>{t`\v\omega\times\v{AC}`}</M> als <M p=":">{t`(0,0,\omega)\times(L\sqrt2/4,\,L\sqrt2/4,\,0)`}</M> Das Kreuzprodukt mit <M>{t`\e z`}</M> dreht den Vektor um <M>{t`90^\circ`}</M> gegen den Uhrzeigersinn, also <M p=".">{t`(-L\sqrt2/4,\,L\sqrt2/4)\,\omega`}</M> Dasselbe gilt für <M p=".">B</M></li>
               <li>Dann jede Kraft mal ihre Geschwindigkeit. Bei <M>B</M> zählt nur die senkrechte Komponente von <M p=",">{t`\v v_B`}</M> weil <M>{t`\v F_B`}</M> senkrecht nach unten zeigt: <M p=".">{t`P_B = -G\cdot\tfrac{\sqrt2}{2}\omega L`}</M> Bei <M>C</M> zählt der Anteil von <M>{t`\v v_C`}</M> längs <M p=",">{t`\v F_C`}</M> also <M p=".">{t`P_C = W\,(\omega L/2 - \tfrac{\sqrt2}{2}v)`}</M> Die Summe ist die handschriftliche Zeile am Ende.</li>
@@ -307,11 +307,11 @@ P &= \v R\cdot\v v_A + \v\omega\cdot\v M_A\\
               <li>Jetzt <M p=".">{t`P = \v R\cdot\v v_A + \v\omega\cdot\v M_A`}</M> Von <M>{t`\v R`}</M> zählt nur die <M>x</M>-Komponente, weil <M>{t`\v v_A`}</M> nach rechts zeigt: <M p=".">{t`\v R\cdot\v v_A = -\tfrac{\sqrt2}{2}Wv`}</M> Von den Momenten zählt nur das <M>z</M>-Moment, weil <M>{t`\v\omega`}</M> nach <M>z</M> zeigt: <M>{t`\omega\,(W\tfrac L2 - GL\tfrac{\sqrt2}{2})`}</M></li>
               <li>Beide Wege enden bei derselben Formel. Das ist die Probe, dass die Formel für starre Körper stimmt.</li>
             </ol>
-            <p>Quelle: Der Aufgabentext fehlt in der Mitschrift, und die Richtungen von <M>{t`\v F_B`}</M> und <M>{t`\v F_C`}</M> sind nur der Figur zu entnehmen (<M>{t`\v F_C = W(-\tfrac{\sqrt2}{2},\,\tfrac{\sqrt2}{2},\,0)`}</M> steht in der Rechnung). Die Pfeilspitze von <M>{t`\v F_C`}</M> liegt in der Figur bei <M p=",">C</M> die von <M>{t`\v F_B`}</M> unten. Beides ist in unserer Figur wie im Skript gezeichnet. Das handgeschriebene <M>v</M> neben dem blauen Pfeil in <M>A</M> ist <M p=".">{t`\v v_A`}</M></p>
+            <p className="keep">Quelle: Der Aufgabentext fehlt in der Mitschrift, und die Richtungen von <M>{t`\v F_B`}</M> und <M>{t`\v F_C`}</M> sind nur der Figur zu entnehmen (<M>{t`\v F_C = W(-\tfrac{\sqrt2}{2},\,\tfrac{\sqrt2}{2},\,0)`}</M> steht in der Rechnung). Die Pfeilspitze von <M>{t`\v F_C`}</M> liegt in der Figur bei <M p=",">C</M> die von <M>{t`\v F_B`}</M> unten. Beides ist in unserer Figur wie im Skript gezeichnet. Das handgeschriebene <M>v</M> neben dem blauen Pfeil in <M>A</M> ist <M p=".">{t`\v v_A`}</M></p>
           </>}
           en={<>
-            <p><b>How to read the solution:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the solution:</b></p>
+            <ol className="keep">
               <li>Only <M>{t`\v v_A`}</M> and <M>{t`\v\omega`}</M> are given. The ladder moves in the plane: the foot <M>A</M> slides to the right and the ladder turns counter-clockwise (<M p=").">⊙</M> Wanted is the power of both forces together.</li>
               <li><b>Route ①, point by point.</b> First the velocities of the two points of application, with the fundamental equation: <M p=".">{t`\v v_C = \v v_A + \v\omega\times\v{AC}`}</M> The column shows <M>{t`\v\omega\times\v{AC}`}</M> as <M p=":">{t`(0,0,\omega)\times(L\sqrt2/4,\,L\sqrt2/4,\,0)`}</M> the cross product with <M>{t`\e z`}</M> turns the vector by <M>{t`90^\circ`}</M> counter-clockwise, so <M p=".">{t`(-L\sqrt2/4,\,L\sqrt2/4)\,\omega`}</M> The same holds for <M p=".">B</M></li>
               <li>Then each force times its velocity. At <M>B</M> only the vertical component of <M>{t`\v v_B`}</M> counts, because <M>{t`\v F_B`}</M> points straight down: <M p=".">{t`P_B = -G\cdot\tfrac{\sqrt2}{2}\omega L`}</M> At <M>C</M> the part of <M>{t`\v v_C`}</M> along <M>{t`\v F_C`}</M> counts, so <M p=".">{t`P_C = W\,(\omega L/2 - \tfrac{\sqrt2}{2}v)`}</M> The sum is the handwritten line at the end.</li>
@@ -319,7 +319,7 @@ P &= \v R\cdot\v v_A + \v\omega\cdot\v M_A\\
               <li>Now <M p=".">{t`P = \v R\cdot\v v_A + \v\omega\cdot\v M_A`}</M> Of <M>{t`\v R`}</M> only the <M>x</M>-component counts, because <M>{t`\v v_A`}</M> points to the right: <M p=".">{t`\v R\cdot\v v_A = -\tfrac{\sqrt2}{2}Wv`}</M> Of the moments only the <M>z</M>-moment counts, because <M>{t`\v\omega`}</M> points along <M p=":">z</M> <M>{t`\omega\,(W\tfrac L2 - GL\tfrac{\sqrt2}{2})`}</M></li>
               <li>Both routes end at the same formula. That is the check that the formula for rigid bodies works.</li>
             </ol>
-            <p>Source: the task text is missing in the notes, and the directions of <M>{t`\v F_B`}</M> and <M>{t`\v F_C`}</M> can only be read from the figure (<M>{t`\v F_C = W(-\tfrac{\sqrt2}{2},\,\tfrac{\sqrt2}{2},\,0)`}</M> appears in the calculation). In the figure the arrowhead of <M>{t`\v F_C`}</M> sits at <M p=",">C</M> that of <M>{t`\v F_B`}</M> at the bottom. Both are drawn in our figure as in the notes. The handwritten <M>v</M> next to the blue arrow at <M>A</M> is <M p=".">{t`\v v_A`}</M></p>
+            <p className="keep">Source: the task text is missing in the notes, and the directions of <M>{t`\v F_B`}</M> and <M>{t`\v F_C`}</M> can only be read from the figure (<M>{t`\v F_C = W(-\tfrac{\sqrt2}{2},\,\tfrac{\sqrt2}{2},\,0)`}</M> appears in the calculation). In the figure the arrowhead of <M>{t`\v F_C`}</M> sits at <M p=",">C</M> that of <M>{t`\v F_B`}</M> at the bottom. Both are drawn in our figure as in the notes. The handwritten <M>v</M> next to the blue arrow at <M>A</M> is <M p=".">{t`\v v_A`}</M></p>
           </>}
         />
         <Derivation title={<T de="Die Lösung in sechs Bildern" en="The solution in six pictures" />}>
@@ -377,7 +377,7 @@ P &= \v R\cdot\v v_A + \v\omega\cdot\v M_A\\
       </Section>
 
       {/* ------------------------------------------------------------------ 5 */}
-      <Section id="missverstaendnisse" title={<T de="5. Häufige Missverständnisse" en="5. Common misconceptions" />}>
+      <Section long id="missverstaendnisse" title={<T de="5. Häufige Missverständnisse" en="5. Common misconceptions" />}>
         <Box kind="misconception" title={<T de={<>«Die Leistung ist <M p="»">{t`\v R\cdot\v v`}</M></>} en={<>“The power is <M p="”">{t`\v R\cdot\v v`}</M></>} />}>
           <T
             de={<>Das ist nur die halbe Formel. Es fehlt <M p=".">{t`\v M_B\cdot\v\omega`}</M> Allein <M>{t`\v R\cdot\v v_B`}</M> stimmt nur bei reiner Verschiebung (<M p="),">{t`\omega = 0`}</M> bei <M>{t`\v M_B = \v 0`}</M> oder wenn alle Kräfte am selben Punkt <M>B</M> angreifen. Zwei gegengleiche Kräfte haben <M p=",">{t`\v R = \v 0`}</M> aber bei einem sich drehenden Körper trotzdem Leistung.</>}

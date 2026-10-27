@@ -72,8 +72,8 @@ export default function K5Leistung() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li><M>{t`\{A\,|\,\v F\}`}</M> ist eine Kraft, die im Punkt <M>A</M> angreift (die <a href="#kraft">Kraft als punktgebundener Vektor</a>). Jede Kraft hat ihren eigenen Punkt, und der ist wichtig.</li>
               <li><M>{t`\v v_A`}</M> ist die Geschwindigkeit <em>dieses</em> Punktes <M p=",">A</M> nicht die des ganzen Körpers und nicht die eines anderen Punktes. Bei einem drehenden Körper hat jeder Punkt seine eigene Geschwindigkeit.</li>
               <li>Der Punkt zwischen <M>\v F</M> und <M>{t`\v v_A`}</M> ist das <a href="#vektoren">Skalarprodukt</a> (S. 5). Es multipliziert Komponente mit Komponente und addiert: <M p=".">{t`\v F\cdot\v v = F_xv_x + F_yv_y + F_zv_z`}</M> Das Ergebnis ist eine <em>Zahl</em>, kein Pfeil.</li>
@@ -82,8 +82,8 @@ export default function K5Leistung() {
             </ol>
           </>}
           en={<>
-            <p><b>How to read this:</b></p>
-            <ol>
+            <p className="keep"><b>How to read this:</b></p>
+            <ol className="keep">
               <li><M>{t`\{A\,|\,\v F\}`}</M> is a force that acts at the point <M>A</M> (<a href="#kraft">force as a point-bound vector</a>). Every force has its own point, and that point matters.</li>
               <li><M>{t`\v v_A`}</M> is the velocity of <em>this</em> point <M p=",">A</M> not that of the whole body and not that of another point. In a turning body every point has its own velocity.</li>
               <li>The dot between <M>\v F</M> and <M>{t`\v v_A`}</M> is the <a href="#vektoren">dot product</a> (p. 5). It multiplies component by component and adds: <M p=".">{t`\v F\cdot\v v = F_xv_x + F_yv_y + F_zv_z`}</M> The result is a <em>number</em>, not an arrow.</li>
@@ -109,12 +109,12 @@ export default function K5Leistung() {
         <PowerExplorer />
         <T
           de={<>
-            <p><b>Warum nur der Streifen zählt.</b> Teile die Kraft in zwei Teile: einen <em>längs</em> der Bewegung und einen <em>quer</em> dazu. Der Querteil schiebt den Punkt weder vorwärts noch hält er ihn auf. In der Formel verschwindet er von selbst: Er steht senkrecht auf <M p=",">{t`\v v_A`}</M> und das Skalarprodukt zweier senkrechter Vektoren ist null. Mit <M>{t`\v v_A = (v, 0, 0)`}</M> sieht man es sogar ausgeschrieben: <M p=".">{t`\v F\cdot\v v_A = F_x\,v + F_y\cdot 0 + F_z\cdot 0`}</M> Übrig bleibt der Streifen <M>{t`F_x = |\v F|\cos\alpha`}</M> (die Ankathete im rechtwinkligen Dreieck) mal <M p=".">v</M> Das ist genau die zweite Zeile des Skripts.</p>
+            <p className="keep"><b>Warum nur der Streifen zählt.</b> Teile die Kraft in zwei Teile: einen <em>längs</em> der Bewegung und einen <em>quer</em> dazu. Der Querteil schiebt den Punkt weder vorwärts noch hält er ihn auf. In der Formel verschwindet er von selbst: Er steht senkrecht auf <M p=",">{t`\v v_A`}</M> und das Skalarprodukt zweier senkrechter Vektoren ist null. Mit <M>{t`\v v_A = (v, 0, 0)`}</M> sieht man es sogar ausgeschrieben: <M p=".">{t`\v F\cdot\v v_A = F_x\,v + F_y\cdot 0 + F_z\cdot 0`}</M> Übrig bleibt der Streifen <M>{t`F_x = |\v F|\cos\alpha`}</M> (die Ankathete im rechtwinkligen Dreieck) mal <M p=".">v</M> Das ist genau die zweite Zeile des Skripts.</p>
             <p><b>Die fünf Skizzen.</b> «<M p="»:">{t`P = \mathord{+}\mathord{+}`}</M> <M>\v F</M> zeigt in Richtung <M p=",">{t`\v v_A`}</M> der Streifen ist so lang wie <M>\v F</M> selbst. «<M p="»:">{t`P = \mathord{+}`}</M> <M>\v F</M> zeigt schräg nach vorn, der Streifen ist kürzer. «<M p="»:">{t`P = \mathord{-}`}</M> schräg nach hinten, der Streifen zeigt gegen <M p=".">{t`\v v_A`}</M> «<M p="»:">{t`P = \mathord{-}\mathord{-}`}</M> genau gegen <M p=".">{t`\v v_A`}</M> «<M p="»:">{t`P = 0`}</M> <M>\v F</M> steht quer, der Streifen hat die Länge null. (Wir lesen «<M>{t`\mathord{+}\mathord{+}`}</M> und «<M>{t`\mathord{+}`}</M> als «stark positiv» und «schwach positiv»; das Skript schreibt dazu keinen Text.)</p>
             <p><b>Zwei Sonderfälle.</b> Ist <M>{t`\v F = \v 0`}</M> oder <M p=",">{t`\v v_A = \v 0`}</M> dann ist <M>{t`P = 0`}</M> – auch wenn der Winkel <M>\alpha</M> dann gar keinen Sinn hat. Und: <M>P</M> ist eine Zahl <em>mit Vorzeichen</em>. Das Vorzeichen sagt nur «mit» oder «gegen» die Bewegung, nicht «gut» oder «schlecht».</p>
           </>}
           en={<>
-            <p><b>Why only the strip counts.</b> Split the force into two parts: one <em>along</em> the motion and one <em>across</em> it. The cross part neither pushes the point forward nor holds it back. In the formula it vanishes by itself: it is perpendicular to <M p=",">{t`\v v_A`}</M> and the dot product of two perpendicular vectors is zero. With <M>{t`\v v_A = (v, 0, 0)`}</M> you can even see it written out: <M p=".">{t`\v F\cdot\v v_A = F_x\,v + F_y\cdot 0 + F_z\cdot 0`}</M> What remains is the strip <M>{t`F_x = |\v F|\cos\alpha`}</M> (the adjacent side of the right triangle) times <M p=".">v</M> That is exactly the second line of the notes.</p>
+            <p className="keep"><b>Why only the strip counts.</b> Split the force into two parts: one <em>along</em> the motion and one <em>across</em> it. The cross part neither pushes the point forward nor holds it back. In the formula it vanishes by itself: it is perpendicular to <M p=",">{t`\v v_A`}</M> and the dot product of two perpendicular vectors is zero. With <M>{t`\v v_A = (v, 0, 0)`}</M> you can even see it written out: <M p=".">{t`\v F\cdot\v v_A = F_x\,v + F_y\cdot 0 + F_z\cdot 0`}</M> What remains is the strip <M>{t`F_x = |\v F|\cos\alpha`}</M> (the adjacent side of the right triangle) times <M p=".">v</M> That is exactly the second line of the notes.</p>
             <p><b>The five sketches.</b> «<M p="»:">{t`P = \mathord{+}\mathord{+}`}</M> <M>\v F</M> points the way <M p=",">{t`\v v_A`}</M> points, the strip is as long as <M>\v F</M> itself. «<M p="»:">{t`P = \mathord{+}`}</M> <M>\v F</M> points obliquely forward, the strip is shorter. «<M p="»:">{t`P = \mathord{-}`}</M> obliquely backward, the strip points against <M p=".">{t`\v v_A`}</M> «<M p="»:">{t`P = \mathord{-}\mathord{-}`}</M> exactly against <M p=".">{t`\v v_A`}</M> «<M p="»:">{t`P = 0`}</M> <M>\v F</M> is across, the strip has length zero. (We read «<M>{t`\mathord{+}\mathord{+}`}</M> and «<M>{t`\mathord{+}`}</M> as «strongly positive» and «weakly positive»; the notes add no text.)</p>
             <p><b>Two special cases.</b> If <M>{t`\v F = \v 0`}</M> or <M p=",">{t`\v v_A = \v 0`}</M> then <M>{t`P = 0`}</M> – even though the angle <M>\alpha</M> makes no sense then. And: <M>P</M> is a number <em>with a sign</em>. The sign only says «with» or «against» the motion, not «good» or «bad».</p>
           </>}
@@ -123,7 +123,7 @@ export default function K5Leistung() {
 
       {/* ------------------------------------------------------------------ 3 */}
       <Section id="plausibel" title={<T de="3. Woher kommt das Produkt?" en="3. Where does the product come from?" />}>
-        <Box kind="supplement" title={<T de={<>Warum ist <M>{t`P = \v F\cdot\v v`}</M> plausibel?</>} en={<>Why is <M>{t`P = \v F\cdot\v v`}</M> plausible?</>} />}>
+        <Box keep kind="supplement" title={<T de={<>Warum ist <M>{t`P = \v F\cdot\v v`}</M> plausibel?</>} en={<>Why is <M>{t`P = \v F\cdot\v v`}</M> plausible?</>} />}>
           <T
             de={<p>Das Skript <em>legt</em> die Leistung durch <M>{t`P = \v F\cdot\v v_A`}</M> fest. Hier nur ein Bild, warum das eine sinnvolle Zahl ist: Wir messen, wie stark die Kraft den Punkt auf einem kurzen Wegstück vorwärts «schiebt», und teilen durch die Zeit.</p>}
             en={<p>The notes <em>define</em> the power by <M p=".">{t`P = \v F\cdot\v v_A`}</M> Here is just a picture of why this is a sensible number: we measure how strongly the force «pushes» the point forward over a short stretch, and divide by the time.</p>}
@@ -169,22 +169,22 @@ export default function K5Leistung() {
         </Box>
         <T
           de={<>
-            <p><b>Die Normalkraft.</b> «Normal» heisst «senkrecht»: Die Fläche drückt auf die Kugel, und zwar senkrecht zur Fläche. Nach dem <a href="#reaktionsprinzip">Reaktionsprinzip</a> (S. 30) drückt die Kugel mit <M>{t`-\v N`}</M> zurück auf die Fläche. <M>{t`M_1`}</M> und <M>{t`M_2`}</M> sind zwei Namen für <em>denselben Ort</em>: <M>{t`M_1`}</M> ist der Punkt der Kugel, <M>{t`M_2`}</M> der Punkt der Fläche. Sie dürfen verschieden schnell sein (die Kugel kann gleiten). Aber beide Geschwindigkeiten liegen in der Berührebene: Die Kugel dringt nicht ein und hebt nicht ab. Darum gilt <M>{t`\v N\cdot\v v_1 = 0`}</M> und <M p=".">{t`(-\v N)\cdot\v v_2 = 0`}</M></p>
+            <p className="keep"><b>Die Normalkraft.</b> «Normal» heisst «senkrecht»: Die Fläche drückt auf die Kugel, und zwar senkrecht zur Fläche. Nach dem <a href="#reaktionsprinzip">Reaktionsprinzip</a> (S. 30) drückt die Kugel mit <M>{t`-\v N`}</M> zurück auf die Fläche. <M>{t`M_1`}</M> und <M>{t`M_2`}</M> sind zwei Namen für <em>denselben Ort</em>: <M>{t`M_1`}</M> ist der Punkt der Kugel, <M>{t`M_2`}</M> der Punkt der Fläche. Sie dürfen verschieden schnell sein (die Kugel kann gleiten). Aber beide Geschwindigkeiten liegen in der Berührebene: Die Kugel dringt nicht ein und hebt nicht ab. Darum gilt <M>{t`\v N\cdot\v v_1 = 0`}</M> und <M p=".">{t`(-\v N)\cdot\v v_2 = 0`}</M></p>
             <p className="lp-see"><b>Was du sehen sollst:</b> Wie schnell die Punkte auch gleiten – <M>{t`s_1`}</M> und <M>{t`s_2`}</M> – die beiden Leistungen bleiben null. Der dritte Schieber <M>u</M> ist eine Ergänzung, nicht aus dem Skript: Er lässt die Fläche selbst längs <M>\v N</M> fahren, wie den Boden eines Lifts.</p>
           </>}
           en={<>
-            <p><b>The normal force.</b> «Normal» means «perpendicular»: the surface presses on the ball, perpendicular to the surface. By the <a href="#reaktionsprinzip">reaction principle</a> (p. 30) the ball presses back on the surface with <M p=".">{t`-\v N`}</M> <M>{t`M_1`}</M> and <M>{t`M_2`}</M> are two names for <em>the same place</em>: <M>{t`M_1`}</M> is the point of the ball, <M>{t`M_2`}</M> the point of the surface. They may move at different speeds (the ball can slide). But both velocities lie in the contact plane: the ball neither digs in nor lifts off. So <M>{t`\v N\cdot\v v_1 = 0`}</M> and <M p=".">{t`(-\v N)\cdot\v v_2 = 0`}</M></p>
+            <p className="keep"><b>The normal force.</b> «Normal» means «perpendicular»: the surface presses on the ball, perpendicular to the surface. By the <a href="#reaktionsprinzip">reaction principle</a> (p. 30) the ball presses back on the surface with <M p=".">{t`-\v N`}</M> <M>{t`M_1`}</M> and <M>{t`M_2`}</M> are two names for <em>the same place</em>: <M>{t`M_1`}</M> is the point of the ball, <M>{t`M_2`}</M> the point of the surface. They may move at different speeds (the ball can slide). But both velocities lie in the contact plane: the ball neither digs in nor lifts off. So <M>{t`\v N\cdot\v v_1 = 0`}</M> and <M p=".">{t`(-\v N)\cdot\v v_2 = 0`}</M></p>
             <p className="lp-see"><b>What you should see:</b> However fast the points slide – <M>{t`s_1`}</M> and <M>{t`s_2`}</M> – both powers stay zero. The third slider <M>u</M> is a supplement, not from the notes: it lets the surface itself move along <M p=",">\v N</M> like the floor of a lift.</p>
           </>}
         />
         <NormalForceFigure />
         <T
           de={<>
-            <p><b>Die Lorentzkraft.</b> Auf eine bewegte Ladung <M>q</M> wirkt in einem Magnetfeld <M>\v B</M> die Kraft <M p=".">{t`\v F = q\,\v v\times\v B`}</M> Die Formel steht nicht auf der Seite (das Skript zeichnet nur die rechten Winkel); aus der Physik bekannt, erklärt sie, warum <M>\v F</M> senkrecht auf <M>\v v</M> steht. Das <a href="#vektoren">Kreuzprodukt</a> steht nämlich immer senkrecht auf beiden Faktoren. Also ist <M>{t`\v F\cdot\v v = 0`}</M> in jedem Augenblick, wohin sich die Ladung auch bewegt.</p>
+            <p className="keep"><b>Die Lorentzkraft.</b> Auf eine bewegte Ladung <M>q</M> wirkt in einem Magnetfeld <M>\v B</M> die Kraft <M p=".">{t`\v F = q\,\v v\times\v B`}</M> Die Formel steht nicht auf der Seite (das Skript zeichnet nur die rechten Winkel); aus der Physik bekannt, erklärt sie, warum <M>\v F</M> senkrecht auf <M>\v v</M> steht. Das <a href="#vektoren">Kreuzprodukt</a> steht nämlich immer senkrecht auf beiden Faktoren. Also ist <M>{t`\v F\cdot\v v = 0`}</M> in jedem Augenblick, wohin sich die Ladung auch bewegt.</p>
             <p className="lp-see"><b>Was du sehen sollst:</b> Die Ladung läuft herum, <M>\v v</M> und <M>\v F</M> drehen mit, und das Winkelzeichen bleibt ein rechter Winkel. Die Leistung zeigt dauernd <M p=".">0</M></p>
           </>}
           en={<>
-            <p><b>The Lorentz force.</b> A moving charge <M>q</M> in a magnetic field <M>\v B</M> feels the force <M p=".">{t`\v F = q\,\v v\times\v B`}</M> The formula is not on the page (the notes draw only the right angles); known from physics, it explains why <M>\v F</M> is perpendicular to <M p=".">\v v</M> The <a href="#vektoren">cross product</a> is always perpendicular to both factors. So <M>{t`\v F\cdot\v v = 0`}</M> at every instant, wherever the charge moves.</p>
+            <p className="keep"><b>The Lorentz force.</b> A moving charge <M>q</M> in a magnetic field <M>\v B</M> feels the force <M p=".">{t`\v F = q\,\v v\times\v B`}</M> The formula is not on the page (the notes draw only the right angles); known from physics, it explains why <M>\v F</M> is perpendicular to <M p=".">\v v</M> The <a href="#vektoren">cross product</a> is always perpendicular to both factors. So <M>{t`\v F\cdot\v v = 0`}</M> at every instant, wherever the charge moves.</p>
             <p className="lp-see"><b>What you should see:</b> The charge runs around, <M>\v v</M> and <M>\v F</M> turn with it, and the angle mark stays a right angle. The power shows <M p=".">0</M> all the time.</p>
           </>}
         />
@@ -214,7 +214,7 @@ export default function K5Leistung() {
       </Section>
 
       {/* ------------------------------------------------------------------ 6 */}
-      <Section id="missverstaendnisse" title={<T de="6. Häufige Missverständnisse" en="6. Common misconceptions" />}>
+      <Section long id="missverstaendnisse" title={<T de="6. Häufige Missverständnisse" en="6. Common misconceptions" />}>
         <Box kind="misconception" title={<T de="«Wer ein schweres Gewicht festhält, leistet Leistung.»" en="“Whoever holds a heavy weight up is delivering power.”" />}>
           <T
             de={<>Mechanisch nicht: Die Kraft ist gross, aber der Punkt steht still, <M>{t`\v v_A = \v 0`}</M> also <M p=".">{t`P = \v F\cdot\v 0 = 0`}</M> Dass die Arme trotzdem müde werden, liegt daran, dass die Muskeln innen dauernd arbeiten und Wärme erzeugen – das zählt hier nicht. Die Formel kennt nur Kraft <em>und</em> Bewegung des Angriffspunkts.</>}

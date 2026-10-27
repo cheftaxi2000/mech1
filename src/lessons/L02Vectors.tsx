@@ -103,11 +103,11 @@ export default function L02Vectors() {
           <MD>{t`\v e_1\times\v e_2 = \v e_3,\qquad \v e_2\times\v e_3 = \v e_1,\qquad \v e_3\times\v e_1 = \v e_2 \qquad\to\ ` + tr(t`\text{Rechtssystem}`, t`\text{right-handed system}`)}</MD>
         </Box>
         <T
-          de={<p>
+          de={<p className="keep">
             Das Ergebnis ist ein <b>Vektor</b>. Seine Länge ist der Flächeninhalt des von <M>{t`\v a`}</M> und <M>{t`\v b`}</M> aufgespannten Parallelogramms (Grundseite <M p=",">{t`|\v a|`}</M> Höhe <M p=").">{t`|\v b|\sin\varphi`}</M>{' '}
             Er steht senkrecht auf beiden; welche der zwei senkrechten Richtungen, sagt die <b>Rechte-Hand-Regel</b>. Bewege den Schieberegler und drehe das Bild:
           </p>}
-          en={<p>
+          en={<p className="keep">
             The result is a <b>vector</b>. Its length is the area of the parallelogram spanned by <M>{t`\v a`}</M> and <M>{t`\v b`}</M> (base <M p=",">{t`|\v a|`}</M> height <M p=").">{t`|\v b|\sin\varphi`}</M>{' '}
             It is perpendicular to both; which of the two perpendicular directions is fixed by the <b>right-hand rule</b>. Move the slider and rotate the view:
           </p>}
@@ -143,7 +143,7 @@ export default function L02Vectors() {
             The lesson <a href="#basen">Cartesian, cylindrical, spherical basis</a> <Src p={6} /> shows how to extract the components with the dot product: <M p=".">{t`r_x = \v r\cdot\v e_x = x`}</M>
           </p>}
         />
-        <Box kind="supplement" title={<T de="Rechnen mit Komponenten" en="Calculating with components" />}>
+        <Box keep kind="supplement" title={<T de="Rechnen mit Komponenten" en="Calculating with components" />}>
           <T
             de={<p>Für Übungen braucht man beide Produkte in Komponenten. Sie folgen direkt aus den Regeln für die Basis (nicht im Skript):</p>}
             en={<p>Exercises need both products in components. They follow directly from the rules for the basis (not in the notes):</p>}
@@ -172,7 +172,7 @@ export default function L02Vectors() {
 
       {/* ------------------------------------------------------------------ 5 */}
       <Section id="misconceptions" title={<T de="5. Häufiges Missverständnis und das Wichtigste" en="5. Common misconception and the essentials" />}>
-        <Box kind="misconception" title={<T de={<>«<M>{t`\v a\times\v b = \v b\times\v a`}</M>»</>} en={<>“<M>{t`\v a\times\v b = \v b\times\v a`}</M>”</>} />}>
+        <Box keep kind="misconception" title={<T de={<>«<M>{t`\v a\times\v b = \v b\times\v a`}</M>»</>} en={<>“<M>{t`\v a\times\v b = \v b\times\v a`}</M>”</>} />}>
           <T de={<>Falsch: Vertauschen dreht die Richtung um, <M p=".">{t`\v b\times\v a = -\,\v a\times\v b`}</M> Beim Skalarprodukt dagegen ist die Reihenfolge egal.</>}
             en={<>Wrong: swapping reverses the direction, <M p=".">{t`\v b\times\v a = -\,\v a\times\v b`}</M> For the dot product, by contrast, the order does not matter.</>} />
         </Box>

@@ -40,8 +40,8 @@ export default function L14Plane() {
         <T
           de={<>
             <p>In deinem Skript sind die beiden Nullen der <M>z</M>-Zeile rot eingerahmt, mit der Notiz «immer bei einer ebenen Bewegung». Genau das ist der Kern: Die <M>z</M>-Komponente jeder Geschwindigkeit ist null.</p>
-            <p><b>So liest man die Rechnung:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man die Rechnung:</b></p>
+            <ol className="keep">
               <li>Die Bewegungsebene <M>E</M> wird parallel zur <M>xy</M>-Ebene gelegt. Dann heisst «bleibt in der Ebene» einfach: keine Bewegung in <M>z</M>-Richtung, also <M>{t`v_z = 0`}</M> für jeden Punkt.</li>
               <li><M>P</M> und <M>A</M> sind zwei Punkte desselben starren Körpers. Für sie gilt die <a href="#allgemein">Grundgleichung</a> <M p=".">{t`\v v_A = \v v_P + \v\omega\times\v{PA}`}</M></li>
               <li>Man schreibt sie in Komponenten und schaut nur die dritte Zeile an. Links steht <M>{t`v_{Az} = 0`}</M> (ebene Bewegung), rechts zuerst <M>{t`v_{Pz} = 0`}</M> und dann die <M>z</M>-Komponente des Kreuzprodukts: <M p=".">{t`\omega_x PA_y - \omega_y PA_x`}</M> Das <M>{t`PA_z`}</M> kommt darin gar nicht vor.</li>
@@ -51,8 +51,8 @@ export default function L14Plane() {
           </>}
           en={<>
             <p>In your notes the two zeros of the <M>z</M>-row are framed in red, with the note «<span lang="de">immer bei einer ebenen Bewegung</span>» (always in a plane motion). That is exactly the core: the <M>z</M>-component of every velocity is zero.</p>
-            <p><b>How to read the calculation:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the calculation:</b></p>
+            <ol className="keep">
               <li>The plane of motion <M>E</M> is placed parallel to the <M>xy</M>-plane. Then “stays in the plane” simply means: no motion in the <M>z</M>-direction, <M>{t`v_z = 0`}</M> for every point.</li>
               <li><M>P</M> and <M>A</M> are two points of the same rigid body. The <a href="#allgemein">fundamental equation</a> holds for them: <M p=".">{t`\v v_A = \v v_P + \v\omega\times\v{PA}`}</M></li>
               <li>Write it in components and look at the third row only. On the left stands <M>{t`v_{Az} = 0`}</M> (plane motion); on the right first <M>{t`v_{Pz} = 0`}</M> and then the <M>z</M>-component of the cross product, <M p=".">{t`\omega_x PA_y - \omega_y PA_x`}</M> <M>{t`PA_z`}</M> does not even appear in it.</li>
@@ -113,8 +113,8 @@ export default function L14Plane() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man den Satz:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man den Satz:</b></p>
+            <ol className="keep">
               <li>«Ebener Schnitt <M p="»:">{t`K_E`}</M> Man schneidet den Körper mit der Ebene <M>E</M> und schaut nur diese Scheibe an – alle anderen Scheiben bewegen sich genau gleich.</li>
               <li><M p=":">{t`Z \equiv \mu\cap E`}</M> Die Drehachse <M>\mu</M> steht senkrecht auf <M>E</M> (Abschnitt 1) und durchstösst <M>E</M> in genau einem Punkt. Das ist <M p=".">Z</M></li>
               <li>«In Gedanken auf die ganze Ebene ausgedehnt»: <M>Z</M> muss nicht auf dem Körper liegen. Man denkt sich eine riesige, starr mit dem Körper verbundene Glasplatte; auf ihr ruht genau ein Punkt.</li>
@@ -123,8 +123,8 @@ export default function L14Plane() {
             </ol>
           </>}
           en={<>
-            <p><b>How to read the theorem:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the theorem:</b></p>
+            <ol className="keep">
               <li>“Plane cut <M p="”:">{t`K_E`}</M> cut the body with the plane <M>E</M> and look at this slice only – all other slices move in exactly the same way.</li>
               <li><M p=":">{t`Z \equiv \mu\cap E`}</M> the axis <M>\mu</M> is perpendicular to <M>E</M> (section 1) and pierces <M>E</M> in exactly one point. That is <M p=".">Z</M></li>
               <li>“Imagined as extended to the whole plane”: <M>Z</M> need not lie on the body. Imagine a huge glass plate rigidly attached to the body; exactly one point of it is at rest.</li>
@@ -134,8 +134,8 @@ export default function L14Plane() {
           </>}
         />
         <T
-          de={<p><b>Das Werkzeug: <M>Z</M> aus zwei Geschwindigkeiten finden.</b> Weil jede Geschwindigkeit senkrecht auf ihrem Strahl von <M>Z</M> steht, liegt <M>Z</M> auf dem <b>Lot</b> zu <M>{t`\v v_A`}</M> durch <M>A</M> (der Geraden durch <M>A</M> senkrecht zu <M p=")">{t`\v v_A`}</M> Ebenso auf dem Lot zu <M>{t`\v v_B`}</M> durch <M p=".">B</M> Wo sich die beiden Lote schneiden, ist <M p=".">Z</M> Danach kennt man jede Geschwindigkeit: senkrecht auf ihrem Strahl, Betrag <M p=".">{t`\omega r`}</M> Probiere es aus:</p>}
-          en={<p><b>The tool: finding <M>Z</M> from two velocities.</b> Since every velocity is perpendicular to its ray from <M p=",">Z</M> <M>Z</M> lies on the <b>perpendicular</b> to <M>{t`\v v_A`}</M> through <M>A</M> (the line through <M>A</M> at right angles to <M p=").">{t`\v v_A`}</M> Likewise on the perpendicular to <M>{t`\v v_B`}</M> through <M p=".">B</M> Where the two perpendiculars meet is <M p=".">Z</M> After that every velocity is known: perpendicular to its ray, magnitude <M p=".">{t`\omega r`}</M> Try it:</p>}
+          de={<p className="keep"><b>Das Werkzeug: <M>Z</M> aus zwei Geschwindigkeiten finden.</b> Weil jede Geschwindigkeit senkrecht auf ihrem Strahl von <M>Z</M> steht, liegt <M>Z</M> auf dem <b>Lot</b> zu <M>{t`\v v_A`}</M> durch <M>A</M> (der Geraden durch <M>A</M> senkrecht zu <M p=")">{t`\v v_A`}</M> Ebenso auf dem Lot zu <M>{t`\v v_B`}</M> durch <M p=".">B</M> Wo sich die beiden Lote schneiden, ist <M p=".">Z</M> Danach kennt man jede Geschwindigkeit: senkrecht auf ihrem Strahl, Betrag <M p=".">{t`\omega r`}</M> Probiere es aus:</p>}
+          en={<p className="keep"><b>The tool: finding <M>Z</M> from two velocities.</b> Since every velocity is perpendicular to its ray from <M p=",">Z</M> <M>Z</M> lies on the <b>perpendicular</b> to <M>{t`\v v_A`}</M> through <M>A</M> (the line through <M>A</M> at right angles to <M p=").">{t`\v v_A`}</M> Likewise on the perpendicular to <M>{t`\v v_B`}</M> through <M p=".">B</M> Where the two perpendiculars meet is <M p=".">Z</M> After that every velocity is known: perpendicular to its ray, magnitude <M p=".">{t`\omega r`}</M> Try it:</p>}
         />
         <CentreDemo />
         <T
@@ -169,8 +169,8 @@ export default function L14Plane() {
           />
         </Box>
         <T
-          de={<p><b>So liest man das:</b> Rollt das Rad ohne zu rutschen, ruht der Berührpunkt (Lektion <a href="#rollen">Rollen</a>). Ein ruhender Punkt ist nach dem Satz das Momentanzentrum: <M p=".">Z</M> Also steht jede Geschwindigkeit senkrecht auf ihrem Strahl von <M p=",">Z</M> und ihr Betrag ist <M>\omega</M> mal Strahllänge. Für den Mittelpunkt ist die Strahllänge <M p=",">R</M> darum <M p=".">{t`v_O = \omega R`}</M> Für den obersten Punkt ist sie <M p=",">{t`2R`}</M> er ist doppelt so schnell.</p>}
-          en={<p><b>How to read this:</b> if the wheel rolls without slipping, the contact point is at rest (lesson <a href="#rollen">Rolling</a>). By the theorem a resting point is the instantaneous centre: <M p=".">Z</M> So every velocity is perpendicular to its ray from <M p=",">Z</M> and its size is <M>\omega</M> times the length of the ray. For the centre the ray has length <M p=",">R</M> hence <M p=".">{t`v_O = \omega R`}</M> For the top point it is <M p=":">{t`2R`}</M> it is twice as fast.</p>}
+          de={<p className="keep"><b>So liest man das:</b> Rollt das Rad ohne zu rutschen, ruht der Berührpunkt (Lektion <a href="#rollen">Rollen</a>). Ein ruhender Punkt ist nach dem Satz das Momentanzentrum: <M p=".">Z</M> Also steht jede Geschwindigkeit senkrecht auf ihrem Strahl von <M p=",">Z</M> und ihr Betrag ist <M>\omega</M> mal Strahllänge. Für den Mittelpunkt ist die Strahllänge <M p=",">R</M> darum <M p=".">{t`v_O = \omega R`}</M> Für den obersten Punkt ist sie <M p=",">{t`2R`}</M> er ist doppelt so schnell.</p>}
+          en={<p className="keep"><b>How to read this:</b> if the wheel rolls without slipping, the contact point is at rest (lesson <a href="#rollen">Rolling</a>). By the theorem a resting point is the instantaneous centre: <M p=".">Z</M> So every velocity is perpendicular to its ray from <M p=",">Z</M> and its size is <M>\omega</M> times the length of the ray. For the centre the ray has length <M p=",">R</M> hence <M p=".">{t`v_O = \omega R`}</M> For the top point it is <M p=":">{t`2R`}</M> it is twice as fast.</p>}
         />
         <WheelRays />
         <T
@@ -199,7 +199,7 @@ export default function L14Plane() {
           de={<p>Hier rutscht die Leiter <b>hinunter</b>: <M>A</M> gleitet nach links, weg von der Wand. Auf S. 13 (Lektion <a href="#sdpg">SdpG</a>) ging sie hinauf, und der Winkel hiess dort in der Rechnung <M p=".">\alpha</M> «SMZ» ist die Abkürzung für den Satz vom Momentanzentrum. Die Lösung bricht in deiner Mitschrift nach «<M p="»">{t`v_H =`}</M> ab – du hast «Lösung fehlt» notiert. Hier ist sie, als Ergänzung:</p>}
           en={<p>Here the ladder slides <b>down</b>: <M>A</M> slides to the left, away from the wall. On p. 13 (lesson <a href="#sdpg">SdpG</a>) it went up, and the angle was called <M>\alpha</M> in the calculation there. “SMZ” is short for <span lang="de">Satz vom Momentanzentrum</span>. In your notes the solution breaks off after “<M p="”">{t`v_H =`}</M> – you wrote «<span lang="de">Lösung fehlt</span>» (solution missing). Here it is, as a supplement:</p>}
         />
-        <Box kind="supplement" title={<T de="Lösung mit dem Momentanzentrum" en="Solution with the instantaneous centre" />}>
+        <Box keep kind="supplement" title={<T de="Lösung mit dem Momentanzentrum" en="Solution with the instantaneous centre" />}>
           <Derivation title={<T de="Die Leiter Schritt für Schritt" en="The ladder step by step" />}>
             <StepPlayer
               label={tr('Animation: Leiter, Momentanzentrum als Schnitt der Lote', 'Animation: ladder, instantaneous centre as the intersection of the perpendiculars')}
@@ -242,7 +242,7 @@ export default function L14Plane() {
       </Section>
 
       {/* ------------------------------------------------------------------ 5 */}
-      <Section id="missverstaendnisse" title={<T de="5. Häufige Missverständnisse" en="5. Common misconceptions" />}>
+      <Section long id="missverstaendnisse" title={<T de="5. Häufige Missverständnisse" en="5. Common misconceptions" />}>
         <Box kind="misconception" title={<T de={<>«<M>Z</M> ist ein Punkt des Körpers.»</>} en={<>“<M>Z</M> is a point of the body.”</>} />}>
           <T de={<>Nicht unbedingt. Bei der Leiter liegt <M>Z</M> in der Luft, weit weg von der Leiter. Darum sagt der Satz: der «in Gedanken auf die ganze Ebene ausgedehnte» Körper.</>} en={<>Not necessarily. For the ladder <M>Z</M> lies in the air, far from the ladder. That is why the theorem speaks of the body “imagined as extended to the whole plane”.</>} />
         </Box>

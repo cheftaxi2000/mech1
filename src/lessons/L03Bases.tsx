@@ -40,8 +40,8 @@ export default function L03Bases() {
         </Box>
         <T
           de={<>
-            <p>Das ist ein Rezept in drei Schritten, für jedes Koordinatensystem gleich:</p>
-            <ol>
+            <p className="keep">Das ist ein Rezept in drei Schritten, für jedes Koordinatensystem gleich:</p>
+            <ol className="keep">
               <li>Zeichne durch den Punkt <M>M</M> die drei Koordinatenlinien (eine Koordinate läuft, die anderen zwei sind fest – <a href="#koordinaten">Lage &amp; Koordinaten</a>).</li>
               <li>Nimm an jeder Linie in <M>M</M> die Tangente, in die Richtung, in der die Koordinate <em>wächst</em>.</li>
               <li>Mache daraus Einheitsvektoren (Länge 1).</li>
@@ -49,8 +49,8 @@ export default function L03Bases() {
             <p>Bei kartesischen Koordinaten sind die Koordinatenlinien Geraden parallel zu den Achsen. Darum ist die Basis in <M>M</M> dieselbe wie in <M>O</M> – das zeigt die Figur im Skript. Bei krummen Koordinatenlinien (Kreise) ist das nicht mehr so.</p>
           </>}
           en={<>
-            <p>This is a three-step recipe, the same for every coordinate system:</p>
-            <ol>
+            <p className="keep">This is a three-step recipe, the same for every coordinate system:</p>
+            <ol className="keep">
               <li>Draw the three coordinate lines through the point <M>M</M> (one coordinate runs, the other two are fixed – <a href="#koordinaten">Position &amp; coordinates</a>).</li>
               <li>At <M p=",">M</M> take the tangent to each line, pointing in the direction in which that coordinate <em>increases</em>.</li>
               <li>Make them unit vectors (length 1).</li>
@@ -95,7 +95,7 @@ export default function L03Bases() {
             en={<p>This is the animation as formulas: <M>{t`\v e_\rho`}</M> is the unit-circle point at angle <M p=",">\varphi</M> <M>{t`\v e_\varphi`}</M> the same rotated by a further <M p=".">{t`90^\circ`}</M> Because both depend on <M p=",">\varphi</M> they change when <M>M</M> moves – the velocity in cylindrical coordinates builds on this (pp. 9–10).</p>}
           />
         </Box>
-        <Box kind="misconception" title={<T de={<>«<M p=".">{t`\v r = \rho\,\v e_\rho + \varphi\,\v e_\varphi + z\,\v e_z`}</M>»</>} en={<>“<M p=".">{t`\v r = \rho\,\v e_\rho + \varphi\,\v e_\varphi + z\,\v e_z`}</M>”</>} />}>
+        <Box keep kind="misconception" title={<T de={<>«<M p=".">{t`\v r = \rho\,\v e_\rho + \varphi\,\v e_\varphi + z\,\v e_z`}</M>»</>} en={<>“<M p=".">{t`\v r = \rho\,\v e_\rho + \varphi\,\v e_\varphi + z\,\v e_z`}</M>”</>} />}>
           <T
             de={<>Falsch – das Skript streicht genau das durch (S. 11: <M>{t`(R, \varphi(t), z_0)`}</M> «Falsch!»). <M>\varphi</M> ist ein Winkel, keine Länge, und <M>{t`\v r`}</M> hat gar keine <span className="nowrap"><M>{t`\v e_\varphi`}</M>-Komponente</span>: <M>{t`\v e_\varphi`}</M> steht senkrecht auf der Ebene, in der <M>{t`\v r`}</M> liegt. Beispiel <M p=",">{t`\rho = 1{,}5`}</M> <M p=",">{t`\varphi = 90^\circ`}</M> <M p=":">{t`z = 0`}</M> richtig ist <M p=";">{t`(0;\ 1{,}5;\ 0)`}</M> die falsche Formel landet bei <M p=".">{t`(-1{,}57;\ 1{,}5;\ 0)`}</M></>}
             en={<>Wrong – the notes cross out exactly this (p. 11: <M>{t`(R, \varphi(t), z_0)`}</M> “Falsch!”). <M>\varphi</M> is an angle, not a length, and <M>{t`\v r`}</M> has no <span className="nowrap"><M>{t`\v e_\varphi`}</M>-component</span> at all: <M>{t`\v e_\varphi`}</M> is perpendicular to the plane containing <M p=".">{t`\v r`}</M> Example <M p=",">{t`\rho = 1.5`}</M> <M p=",">{t`\varphi = 90^\circ`}</M> <M p=":">{t`z = 0`}</M> correct is <M p=";">{t`(0, 1.5, 0)`}</M> the wrong formula lands at <M p=".">{t`(-1.57, 1.5, 0)`}</M></>}
@@ -112,7 +112,7 @@ export default function L03Bases() {
         <T
           de={<>
             <p>Dasselbe Rezept mit den Koordinatenlinien aus <a href="#koordinaten">Lage &amp; Koordinaten</a>:</p>
-            <ul>
+            <ul className="keep">
               <li><M>{t`\v e_r`}</M> entlang der <span className="nowrap"><M>r</M>-Linie</span>: radial nach aussen, weg von <M p=".">O</M></li>
               <li><M>{t`\v e_\theta`}</M> tangential an den Meridian, in Richtung wachsendes <M p=":">\theta</M> «nach Süden».</li>
               <li><M>{t`\v e_\psi`}</M> tangential an den Breitenkreis, in Richtung wachsendes <M p=":">\psi</M> waagrecht «nach Osten».</li>
@@ -121,7 +121,7 @@ export default function L03Bases() {
           </>}
           en={<>
             <p>The same recipe with the coordinate lines from <a href="#koordinaten">Position &amp; coordinates</a>:</p>
-            <ul>
+            <ul className="keep">
               <li><M>{t`\v e_r`}</M> along the <span className="nowrap"><M>r</M>-line</span>: radially outwards, away from <M p=".">O</M></li>
               <li><M>{t`\v e_\theta`}</M> tangent to the meridian, towards increasing <M p=":">\theta</M> “south”.</li>
               <li><M>{t`\v e_\psi`}</M> tangent to the circle of latitude, towards increasing <M p=":">\psi</M> horizontally “east”.</li>
@@ -129,7 +129,7 @@ export default function L03Bases() {
             <p>The position vector has only <em>one</em> term, <M p=".">{t`\v r = r\,\v e_r`}</M> Both angles are hidden in the direction of <M p=",">{t`\v e_r(\theta, \psi)`}</M> and again there are three pieces of information. Now all three basis vectors depend on the point (<M>{t`\v e_\psi`}</M> only on <M p=").">\psi</M> At the end of this lesson you can look at them at any point in the explorer (mode “Spherical”).</p>
           </>}
         />
-        <Box kind="supplement" title={<T de="In kartesischen Komponenten" en="In Cartesian components" />}>
+        <Box keep kind="supplement" title={<T de="In kartesischen Komponenten" en="In Cartesian components" />}>
           <MD>{t`\v e_r = \begin{pmatrix} \sin\theta\cos\psi \\ \sin\theta\sin\psi \\ \cos\theta \end{pmatrix}, \quad \v e_\theta = \begin{pmatrix} \cos\theta\cos\psi \\ \cos\theta\sin\psi \\ -\sin\theta \end{pmatrix}, \quad \v e_\psi = \begin{pmatrix} -\sin\psi \\ \cos\psi \\ 0 \end{pmatrix}`}</MD>
           <T
             de={<p>So erhält man sie: <M>{t`\v r(r, \theta, \psi)`}</M> nach einer Koordinate ableiten heisst, an der Koordinatenlinie entlangzulaufen – die Ableitung ist tangential. Durch ihre Länge teilen gibt den Einheitsvektor. Die Längen sind <M p=",">1</M> <M>r</M> und <M>{t`r\sin\theta`}</M> (der Radius des Breitenkreises); genau diese Faktoren erscheinen später in <M>{t`\dot{\v r} = \dot r\,\v e_r + r\dot\theta\,\v e_\theta + r\sin\theta\,\dot\psi\,\v e_\psi`}</M> <Src p={10} />.</p>}

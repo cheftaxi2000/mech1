@@ -93,7 +93,7 @@ export default function L01Coordinates() {
         </Box>
         <T
           de={<>
-            <p>
+            <p className="keep">
               <b>Zur Notation.</b> <M>{t`x'Ox`}</M> bezeichnet die Gerade durch <M p=",">O</M> orientiert von der Seite <M>{t`x'`}</M> zur Seite <M p=".">x</M>{' '}
               Die Koordinate <M>x</M> ist die <em>vorzeichenbehaftete</em> Länge <M p=",">{t`\overline{OM_x}`}</M> wobei <M>{t`M_x`}</M> der Fusspunkt des Lotes
               von <M>M</M> auf die <span className="nowrap"><M>x</M>-Achse</span> ist (Fig. 1.4). Negatives <M>x</M> bedeutet, dass <M>{t`M_x`}</M> auf der Seite <M>{t`x'`}</M> liegt.{' '}
@@ -113,7 +113,7 @@ export default function L01Coordinates() {
             </p>
           </>}
           en={<>
-            <p>
+            <p className="keep">
               <b>Reading the notation.</b> <M>{t`x'Ox`}</M> names the straight line through <M p=",">O</M> oriented from the <M>{t`x'`}</M> side towards
               the <M>x</M> side. The coordinate <M>x</M> is the <em>signed</em> length <M p=",">{t`\overline{OM_x}`}</M> where <M>{t`M_x`}</M> is the foot of the
               perpendicular from <M>M</M> onto the <span className="nowrap"><M>x</M>-axis</span> (Fig. 1.4). Negative <M>x</M> means <M>{t`M_x`}</M> lies on the <M>{t`x'`}</M> side.{' '}
@@ -147,16 +147,16 @@ export default function L01Coordinates() {
         </Box>
         <T
           de={<>
-            <p><b>Bedeutung der drei Zahlen.</b></p>
-            <ul>
+            <p className="keep"><b>Bedeutung der drei Zahlen.</b></p>
+            <ul className="keep">
               <li><M p=":">\rho</M> Abstand von <M>M</M> zur <M>z</M>-<em>Achse</em> (= Länge <M p=").">{t`\overline{OM_{xy}}`}</M> Nicht der Abstand zum Ursprung!</li>
               <li><M p=":">\varphi</M> Winkel von der positiven <span className="nowrap"><M>x</M>-Achse</span> zur Strecke <M p=",">{t`OM_{xy}`}</M> gemessen in der <span className="nowrap"><M>xy</M>-Ebene</span>, im Gegenuhrzeigersinn bei Blick von <M p=".">+z</M></li>
               <li><M p=":">z</M> identisch mit dem kartesischen <M p=",">z</M> die Höhe über der <span className="nowrap"><M>xy</M>-Ebene</span>.</li>
             </ul>
           </>}
           en={<>
-            <p><b>Meaning of the three numbers.</b></p>
-            <ul>
+            <p className="keep"><b>Meaning of the three numbers.</b></p>
+            <ul className="keep">
               <li><M p=":">\rho</M> distance of <M>M</M> from the <M>z</M>-<em>axis</em> (= length <M p=").">{t`\overline{OM_{xy}}`}</M> Not the distance from the origin!</li>
               <li><M p=":">\varphi</M> angle from the positive <span className="nowrap"><M>x</M>-axis</span> to the segment <M p=",">{t`OM_{xy}`}</M> measured in the <span className="nowrap"><M>xy</M>-plane</span>, counter-clockwise when looking down from <M p=".">+z</M></li>
               <li><M p=":">z</M> identical to the Cartesian <M p=",">z</M> the height above the <span className="nowrap"><M>xy</M>-plane</span>.</li>
@@ -202,8 +202,8 @@ export default function L01Coordinates() {
         </Box>
         <T
           de={<>
-            <h3>Koordinatenlinien (Fig. 1.10)</h3>
-            <ul>
+            <h3 className="keep">Koordinatenlinien (Fig. 1.10)</h3>
+            <ul className="keep">
               <li><b><span className="nowrap"><M>\rho</M>-Linie</span></b> (<M>{t`\varphi, z`}</M> fest): horizontaler Strahl, der auf der <span className="nowrap"><M>z</M>-Achse</span> beginnt und durch <M>M</M> geht.</li>
               <li><b><span className="nowrap"><M>\varphi</M>-Linie</span></b> (<M>{t`\rho, z`}</M> fest): horizontaler <em>Kreis</em> mit Radius <M>\rho</M> um die <span className="nowrap"><M>z</M>-Achse</span>, der Kreis in Fig. 1.10.</li>
               <li><b><span className="nowrap"><M>z</M>-Linie</span></b> (<M>{t`\rho, \varphi`}</M> fest): vertikale Gerade durch <M>M</M> (die Linie <M>{t`\bar z`}</M> in der Figur).</li>
@@ -211,8 +211,8 @@ export default function L01Coordinates() {
             <p>Zum Namen: Die <em>Fläche</em> <M>{t`\rho = \text{const}`}</M> ist ein Zylinder um die <span className="nowrap"><M>z</M>-Achse</span>. Daher kommt der Name.</p>
           </>}
           en={<>
-            <h3>Coordinate lines (Fig. 1.10)</h3>
-            <ul>
+            <h3 className="keep">Coordinate lines (Fig. 1.10)</h3>
+            <ul className="keep">
               <li><b><span className="nowrap"><M>\rho</M>-line</span></b> (<M>{t`\varphi, z`}</M> fixed): horizontal ray starting at the <span className="nowrap"><M>z</M>-axis</span> and passing through <M p=".">M</M></li>
               <li><b><span className="nowrap"><M>\varphi</M>-line</span></b> (<M>{t`\rho, z`}</M> fixed): horizontal <em>circle</em> of radius <M>\rho</M> around the <span className="nowrap"><M>z</M>-axis</span>, the circle drawn in Fig. 1.10.</li>
               <li><b><span className="nowrap"><M>z</M>-line</span></b> (<M>{t`\rho, \varphi`}</M> fixed): vertical straight line through <M>M</M> (the <M>{t`\bar z`}</M> line in the figure).</li>
@@ -247,11 +247,11 @@ export default function L01Coordinates() {
           />
         </Box>
         <T
-          de={<ul>
+          de={<ul className="keep">
             <li><M p=":">r</M> Abstand von <M>M</M> zum <em>Ursprung</em> <M p=".">O</M></li>
             <li><M p=":">\theta</M> Winkel zwischen <M>+z</M> und <M>{t`OM`}</M> (Polarwinkel). <M>{t`\theta=0`}</M> ist der «Nordpol», <M>{t`\theta=\pi/2`}</M> die <span className="nowrap"><M>xy</M>-Ebene</span>, <M>{t`\theta=\pi`}</M> der «Südpol».</li>
           </ul>}
-          en={<ul>
+          en={<ul className="keep">
             <li><M p=":">r</M> distance of <M>M</M> from the <em>origin</em> <M p=".">O</M></li>
             <li><M p=":">\theta</M> angle between <M>+z</M> and <M>{t`OM`}</M> (polar angle). <M>{t`\theta=0`}</M> is the “north pole”, <M>{t`\theta=\pi/2`}</M> the <span className="nowrap"><M>xy</M>-plane</span>, <M>{t`\theta=\pi`}</M> the “south pole”.</li>
           </ul>}
@@ -291,16 +291,16 @@ export default function L01Coordinates() {
         </Derivation>
         <T
           de={<>
-            <h3>Koordinatenlinien</h3>
-            <ul>
+            <h3 className="keep">Koordinatenlinien</h3>
+            <ul className="keep">
               <li><b><span className="nowrap"><M>r</M>-Linie</span></b>: Strahl von <M>O</M> durch <M p=".">M</M></li>
               <li><b><span className="nowrap"><M>\theta</M>-Linie</span></b>: Meridian, ein halber Grosskreis mit Radius <M>r</M> vom Nord- zum Südpol, durch <M p=".">M</M></li>
               <li><b><span className="nowrap"><M>\psi</M>-Linie</span></b>: Breitenkreis, ein horizontaler Kreis mit Radius <M>{t`r\sin\theta`}</M> auf der Höhe <M p=".">{t`r\cos\theta`}</M></li>
             </ul>
           </>}
           en={<>
-            <h3>Coordinate lines</h3>
-            <ul>
+            <h3 className="keep">Coordinate lines</h3>
+            <ul className="keep">
               <li><b><span className="nowrap"><M>r</M>-line</span></b>: ray from <M>O</M> through <M p=".">M</M></li>
               <li><b><span className="nowrap"><M>\theta</M>-line</span></b>: meridian, half of a great circle of radius <M>r</M> from the north to the south pole, through <M p=".">M</M></li>
               <li><b><span className="nowrap"><M>\psi</M>-line</span></b>: circle of latitude, a horizontal circle of radius <M>{t`r\sin\theta`}</M> at height <M p=".">{t`r\cos\theta`}</M></li>
@@ -359,11 +359,11 @@ export default function L01Coordinates() {
       {/* ------------------------------------------------------------------ 6 */}
       <Section id="example" title={<T de="6. Durchgerechnetes Beispiel (Ergänzung)" en="6. Worked example (supplement)" />}>
         <T
-          de={<p>Rechne <M>{t`M = (x,y,z) = (-1,\ 1,\ \sqrt 2)`}</M> in zylindrische und sphärische Koordinaten um und rechne zur Kontrolle zurück.</p>}
-          en={<p>Convert <M>{t`M = (x,y,z) = (-1,\ 1,\ \sqrt 2)`}</M> into cylindrical and spherical coordinates, then convert back as a check.</p>}
+          de={<p className="keep">Rechne <M>{t`M = (x,y,z) = (-1,\ 1,\ \sqrt 2)`}</M> in zylindrische und sphärische Koordinaten um und rechne zur Kontrolle zurück.</p>}
+          en={<p className="keep">Convert <M>{t`M = (x,y,z) = (-1,\ 1,\ \sqrt 2)`}</M> into cylindrical and spherical coordinates, then convert back as a check.</p>}
         />
         <T
-          de={<ol className="steps">
+          de={<ol className="steps keep">
             <li><b>Zuerst den Punkt verorten.</b> <M p=":">{t`x<0,\ y>0`}</M> <M>{t`M_{xy}`}</M> liegt im 2. Quadranten, also muss der Azimut zwischen <M>{t`90^\circ`}</M> und <M>{t`180^\circ`}</M> liegen. <M p=":">{t`z>0`}</M> oberhalb der <span className="nowrap"><M>xy</M>-Ebene</span>, also <M p=".">{t`\theta < 90^\circ`}</M></li>
             <li><M p=".">{t`\rho = \sqrt{(-1)^2+1^2} = \sqrt 2`}</M></li>
             <li><M p=":">{t`\arctan(y/x) = \arctan(-1) = -45^\circ`}</M> 4. Quadrant, Widerspruch zu Schritt 1. <M>{t`180^\circ`}</M> addieren: <M p=".">{t`\varphi = 135^\circ = 3\pi/4`}</M></li>
@@ -371,7 +371,7 @@ export default function L01Coordinates() {
             <li><M>{t`\cos\theta = z/r = \sqrt2/2 \Rightarrow \theta = 45^\circ`}</M> (passt zu Schritt 1). <M p=".">{t`\psi = \varphi = 135^\circ`}</M></li>
             <li><b>Kontrolle:</b> <M p="✓,">{t`x = 2\sin45^\circ\cos135^\circ = 2\cdot\tfrac{\sqrt2}{2}\cdot\left(-\tfrac{\sqrt2}{2}\right) = -1`}</M> <M p="✓,">{t`y = 2\cdot\tfrac{\sqrt2}{2}\cdot\tfrac{\sqrt2}{2} = 1`}</M> <M p="✓.">{t`z = 2\cos45^\circ = \sqrt2`}</M></li>
           </ol>}
-          en={<ol className="steps">
+          en={<ol className="steps keep">
             <li><b>Locate the point first.</b> <M p=":">{t`x<0,\ y>0`}</M> <M>{t`M_{xy}`}</M> is in the 2nd quadrant, so the azimuth must lie between <M>{t`90^\circ`}</M> and <M p=".">{t`180^\circ`}</M> <M p=":">{t`z>0`}</M> above the <span className="nowrap"><M>xy</M>-plane</span>, so <M p=".">{t`\theta < 90^\circ`}</M></li>
             <li><M p=".">{t`\rho = \sqrt{(-1)^2+1^2} = \sqrt 2`}</M></li>
             <li><M p=":">{t`\arctan(y/x) = \arctan(-1) = -45^\circ`}</M> 4th quadrant, contradicts step 1. Add <M p=":">{t`180^\circ`}</M> <M p=".">{t`\varphi = 135^\circ = 3\pi/4`}</M></li>
@@ -381,13 +381,13 @@ export default function L01Coordinates() {
           </ol>}
         />
         <T
-          de={<p>Resultat: <M p=",">{t`(\rho,\varphi,z) = (\sqrt2,\ 3\pi/4,\ \sqrt2)`}</M> <M p=".">{t`(r,\theta,\psi) = (2,\ \pi/4,\ 3\pi/4)`}</M> Eine Gewohnheit, die sich lohnt: <em>Vor dem arctan den Quadranten skizzieren.</em></p>}
-          en={<p>Result: <M p=",">{t`(\rho,\varphi,z) = (\sqrt2,\ 3\pi/4,\ \sqrt2)`}</M> <M p=".">{t`(r,\theta,\psi) = (2,\ \pi/4,\ 3\pi/4)`}</M> Habit worth keeping: <em>sketch the quadrant before using arctan.</em></p>}
+          de={<p className="keep">Resultat: <M p=",">{t`(\rho,\varphi,z) = (\sqrt2,\ 3\pi/4,\ \sqrt2)`}</M> <M p=".">{t`(r,\theta,\psi) = (2,\ \pi/4,\ 3\pi/4)`}</M> Eine Gewohnheit, die sich lohnt: <em>Vor dem arctan den Quadranten skizzieren.</em></p>}
+          en={<p className="keep">Result: <M p=",">{t`(\rho,\varphi,z) = (\sqrt2,\ 3\pi/4,\ \sqrt2)`}</M> <M p=".">{t`(r,\theta,\psi) = (2,\ \pi/4,\ 3\pi/4)`}</M> Habit worth keeping: <em>sketch the quadrant before using arctan.</em></p>}
         />
       </Section>
 
       {/* ------------------------------------------------------------------ 7 */}
-      <Section id="misconceptions" title={<T de="7. Typische Missverständnisse" en="7. Typical misconceptions" />}>
+      <Section long id="misconceptions" title={<T de="7. Typische Missverständnisse" en="7. Typical misconceptions" />}>
         <Box kind="misconception" title={<T de={<>«<M>\rho</M> und <M>r</M> sind derselbe Abstand.»</>} en={<>“<M>\rho</M> and <M>r</M> are the same distance.”</>} />}>
           <T
             de={<><M>\rho</M> ist der Abstand zur <M>z</M>-<em>Achse</em>, <M>r</M> der Abstand zum <em>Ursprung</em>. Sie stimmen nur in der <span className="nowrap"><M>xy</M>-Ebene</span> überein; allgemein gilt <M p=".">{t`\rho = r\sin\theta \le r`}</M></>}

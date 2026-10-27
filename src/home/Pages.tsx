@@ -10,13 +10,12 @@ export const routeSubject = (route: string): Subject | null =>
   route === 'mechanik' ? 'mech' : route === 'analysis' ? 'ana' : route === 'algebra' ? 'la' : route === 'chemie' ? 'chem' : null;
 
 const lessons = (s: Subject) => TOPICS.filter((t) => topicSubject(t) === s);
-const isQuiz = (id: string) => id.startsWith('quiz-');
 
 /** Entry page: choose a subject. */
 export function Landing() {
   const tr = useTr();
   const last = TOPICS.find((t) => t.id === readLast());
-  const mechN = lessons('mech').filter((t) => !isQuiz(t.id)).length, quizN = lessons('mech').filter((t) => isQuiz(t.id)).length;
+  const mechN = lessons('mech').length;
   const laN = lessons('la').length, laWeeks = Object.keys(CHAPTERS).filter((c) => chapterSubject(c) === 'la').length;
   const chN = lessons('chem').length, chWeeks = Object.keys(CHAPTERS).filter((c) => chapterSubject(c) === 'chem').length;
   const anaN = lessons('ana').length, weeks = Object.keys(CHAPTERS).filter((c) => chapterSubject(c) === 'ana').length;
@@ -33,7 +32,7 @@ export function Landing() {
           <div className="tile-body">
             <h2>{tr(...SUBJECTS.mech)}</h2>
             <p>{tr('Koordinaten, Geschwindigkeit und die Bewegung starrer Körper.', 'Coordinates, velocity and the motion of rigid bodies.')}</p>
-            <div className="tile-foot"><span>{tr(`${mechN} Lektionen · ${quizN} Quiz`, `${mechN} lessons · ${quizN} quizzes`)}</span><span className="tile-go">{tr('Öffnen', 'Open')}<i aria-hidden="true">›</i></span></div>
+            <div className="tile-foot"><span>{tr(`${mechN} Lektionen · Kurzfassung`, `${mechN} lessons · short version`)}</span><span className="tile-go">{tr('Öffnen', 'Open')}<i aria-hidden="true">›</i></span></div>
           </div>
         </a>
         <a className="tile tile-ana" href={`#${SUBJECT_ROUTE.ana}`}>

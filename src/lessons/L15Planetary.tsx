@@ -27,24 +27,24 @@ export default function L15Planetary() {
       <Section id="teile" title={<T de="1. Die vier Teile" en="1. The four parts" />}>
         <T
           de={<>
-            <ul>
+            <ul className="keep">
               <li><b>Sonnenrad</b> <M p=":">{t`\boxed{1}`}</M> das Zahnrad in der Mitte, Radius <M p=",">{t`R_1`}</M> dreht sich um <M>O</M> mit der Winkelgeschwindigkeit <M p=".">{t`\omega_1`}</M></li>
               <li><b>Hohlrad</b> <M p=":">{t`\boxed{2}`}</M> der äussere Ring mit den Zähnen innen, Radius <M p=",">{t`R_2`}</M> dreht sich ebenfalls um <M p=",">O</M> mit <M p=".">{t`\omega_2`}</M></li>
               <li><b>Planetenrad</b> <M p=":">{t`\boxed{3}`}</M> sitzt zwischen den beiden, Radius <M p=",">{t`R_3`}</M> Mittelpunkt <M p=".">A</M> Es dreht sich mit <M>{t`\omega_3`}</M> – momentan um seinen ruhenden Punkt <M p=".">{t`Z_3`}</M></li>
               <li><b>Arm</b> (auch Steg genannt): verbindet <M>O</M> mit <M p=",">A</M> Länge <M p=",">L</M> dreht sich um <M>O</M> mit <M p=".">{t`\omega_{\text{Arm}}`}</M></li>
             </ul>
             <p>Der Planet berührt die Sonne im Punkt <M>P</M> und das Hohlrad im Punkt <M p=".">Q</M> Die Zähne sorgen dafür, dass dort nichts rutscht: Es ist <a href="#rollen">Rollen</a>. Beim Rollen sind die beiden Körper im Berührpunkt gleich schnell. Daraus folgt alles.</p>
-            <p><b>Vorzeichen.</b> Das Skript sagt es nicht ausdrücklich, aber die Figur zeichnet alle Geschwindigkeiten oben nach links: Alle <M>\omega</M> werden im gleichen Drehsinn gezählt, positiv im Gegenuhrzeigersinn. Ein negatives <M>\omega</M> heisst: Drehung im Uhrzeigersinn.</p>
+            <p className="keep"><b>Vorzeichen.</b> Das Skript sagt es nicht ausdrücklich, aber die Figur zeichnet alle Geschwindigkeiten oben nach links: Alle <M>\omega</M> werden im gleichen Drehsinn gezählt, positiv im Gegenuhrzeigersinn. Ein negatives <M>\omega</M> heisst: Drehung im Uhrzeigersinn.</p>
           </>}
           en={<>
-            <ul>
+            <ul className="keep">
               <li><b>Sun gear</b> (<span lang="de">Sonnenrad</span>) <M p=":">{t`\boxed{1}`}</M> the gear in the middle, radius <M p=",">{t`R_1`}</M> turning about <M>O</M> with angular velocity <M p=".">{t`\omega_1`}</M></li>
               <li><b>Ring gear</b> (<span lang="de">Hohlrad</span>) <M p=":">{t`\boxed{2}`}</M> the outer ring with its teeth on the inside, radius <M p=",">{t`R_2`}</M> also turning about <M p=",">O</M> with <M p=".">{t`\omega_2`}</M></li>
               <li><b>Planet gear</b> (<span lang="de">Planetenrad</span>) <M p=":">{t`\boxed{3}`}</M> sits between the two, radius <M p=",">{t`R_3`}</M> centre <M p=".">A</M> It turns with <M>{t`\omega_3`}</M> – momentarily about its point at rest <M p=".">{t`Z_3`}</M></li>
               <li><b>Arm</b> (also called carrier): joins <M>O</M> to <M p=",">A</M> length <M p=",">L</M> turning about <M>O</M> with <M p=".">{t`\omega_{\text{Arm}}`}</M></li>
             </ul>
             <p>The planet touches the sun at the point <M>P</M> and the ring gear at the point <M p=".">Q</M> The teeth make sure nothing slips there: it is <a href="#rollen">rolling</a>. In rolling, the two bodies are equally fast at the contact point. Everything follows from this.</p>
-            <p><b>Signs.</b> The notes do not say it explicitly, but the figure draws all velocities at the top to the left: every <M>\omega</M> is counted in the same turning sense, positive counter-clockwise. A negative <M>\omega</M> means: turning clockwise.</p>
+            <p className="keep"><b>Signs.</b> The notes do not say it explicitly, but the figure draws all velocities at the top to the left: every <M>\omega</M> is counted in the same turning sense, positive counter-clockwise. A negative <M>\omega</M> means: turning clockwise.</p>
           </>}
         />
       </Section>
@@ -87,11 +87,11 @@ export default function L15Planetary() {
         </Box>
         <T
           de={<>
-            <p><b>Die Geometrie zuerst:</b> Der Planet füllt die Lücke zwischen Sonne und Hohlrad genau aus. Sein Durchmesser ist also <M p=",">{t`2R_3 = R_2 - R_1`}</M> und das ist <M p=".">{t`R_3 = \tfrac12(R_2 - R_1)`}</M> Der Arm reicht von <M>O</M> bis zur Mitte <M>A</M> des Planeten: <M p=".">{t`L = R_1 + R_3`}</M> In der Legende heisst die Winkelgeschwindigkeit des Arms einfach <M p=";">\omega</M> in der Lösung <M p=".">{t`\omega_{\text{Arm}}`}</M></p>
+            <p className="keep"><b>Die Geometrie zuerst:</b> Der Planet füllt die Lücke zwischen Sonne und Hohlrad genau aus. Sein Durchmesser ist also <M p=",">{t`2R_3 = R_2 - R_1`}</M> und das ist <M p=".">{t`R_3 = \tfrac12(R_2 - R_1)`}</M> Der Arm reicht von <M>O</M> bis zur Mitte <M>A</M> des Planeten: <M p=".">{t`L = R_1 + R_3`}</M> In der Legende heisst die Winkelgeschwindigkeit des Arms einfach <M p=";">\omega</M> in der Lösung <M p=".">{t`\omega_{\text{Arm}}`}</M></p>
             <p>Die Figur unten folgt Fig. 3.21 (Sonne rosa, Planet hellblau, Arm sandfarben). Stell mit <M>{t`\omega_1`}</M> und <M>{t`\omega_2`}</M> ein, wie schnell Sonne und Hohlrad drehen, und drück «Getriebe drehen». Alles andere – <M p=",">{t`\omega_3`}</M> <M p=",">{t`\omega_{\text{Arm}}`}</M> <M>{t`Z_3`}</M> – rechnet das Bild mit den Formeln des Skripts aus. Die Zähne greifen dabei immer richtig ineinander: Es rutscht nichts.</p>
           </>}
           en={<>
-            <p><b>The geometry first:</b> the planet exactly fills the gap between sun and ring. So its diameter is <M p=",">{t`2R_3 = R_2 - R_1`}</M> which is <M p=".">{t`R_3 = \tfrac12(R_2 - R_1)`}</M> The arm reaches from <M>O</M> to the centre <M>A</M> of the planet: <M p=".">{t`L = R_1 + R_3`}</M> In the legend the arm’s angular velocity is simply called <M p=";">\omega</M> in the solution it is <M p=".">{t`\omega_{\text{Arm}}`}</M></p>
+            <p className="keep"><b>The geometry first:</b> the planet exactly fills the gap between sun and ring. So its diameter is <M p=",">{t`2R_3 = R_2 - R_1`}</M> which is <M p=".">{t`R_3 = \tfrac12(R_2 - R_1)`}</M> The arm reaches from <M>O</M> to the centre <M>A</M> of the planet: <M p=".">{t`L = R_1 + R_3`}</M> In the legend the arm’s angular velocity is simply called <M p=";">\omega</M> in the solution it is <M p=".">{t`\omega_{\text{Arm}}`}</M></p>
             <p>The figure below follows Fig. 3.21 (sun pink, planet light blue, arm sand). Set with <M>{t`\omega_1`}</M> and <M>{t`\omega_2`}</M> how fast sun and ring turn, and press “Turn the gear”. Everything else – <M p=",">{t`\omega_3`}</M> <M p=",">{t`\omega_{\text{Arm}}`}</M> <M>{t`Z_3`}</M> – the figure computes with the formulas of the notes. The teeth always mesh correctly: nothing slips.</p>
           </>}
         />
@@ -167,11 +167,11 @@ export default function L15Planetary() {
       <Section id="deutung" title={<T de="4. Was die Formel sagt" en="4. What the formula says" />}>
         <T
           de={<>
-            <p><b>Ein gewichteter Mittelwert.</b> Die eingerahmte Formel lässt sich lesen als</p>
+            <p className="keep"><b>Ein gewichteter Mittelwert.</b> Die eingerahmte Formel lässt sich lesen als</p>
             <MD>{t`\omega_{\text{Arm}} = \frac{R_1\,\omega_1 + R_2\,\omega_2}{R_1 + R_2}.`}</MD>
             <p>Das ist ein Mittelwert von <M>{t`\omega_1`}</M> und <M p=",">{t`\omega_2`}</M> bei dem das Hohlrad mehr zählt (es ist grösser). Darum liegt <M>{t`\omega_{\text{Arm}}`}</M> immer zwischen <M>{t`\omega_1`}</M> und <M p=".">{t`\omega_2`}</M> Der Grund ist einfach: <M>{t`v_A`}</M> ist der Mittelwert von <M>{t`v_P`}</M> und <M p=",">{t`v_Q`}</M> und <M>{t`\omega_{\text{Arm}}`}</M> ist <M>{t`v_A`}</M> geteilt durch <M p=".">L</M> Drehen Sonne und Hohlrad gleich schnell (<M p="),">{t`\omega_1 = \omega_2`}</M> dreht sich alles zusammen wie ein einziger starrer Körper.</p>
-            <p><b>Die Sonderfälle</b> (Knöpfe im Getriebe-Bild):</p>
-            <ul>
+            <p className="keep"><b>Die Sonderfälle</b> (Knöpfe im Getriebe-Bild):</p>
+            <ul className="keep">
               <li><b>Hohlrad fest, <M p="">{t`\omega_2 = 0`}</M></b> Dann ruht <M p=",">Q</M> also ist <M p=".">{t`Z_3 = Q`}</M> Der Arm dreht mit <M p=",">{t`\omega_{\text{Arm}} = \omega_1\frac{R_1}{R_1 + R_2}`}</M> viel langsamer als die Sonne. Der Planet dreht sogar rückwärts: <M>{t`\omega_3 = -\omega_1R_1/(R_2 - R_1)`}</M> (im Bild <M p=").">{t`-0{,}4`}</M> Das ist dein «erstes Übersetzungsverhältnis».</li>
               <li><b>Sonne fest, <M p="">{t`\omega_1 = 0`}</M></b> Dann ruht <M p=",">P</M> <M p=":">{t`Z_3 = P`}</M> Der Planet rollt auf der stehenden Sonne ab.</li>
               <li><b><M p="">{t`\omega_2R_2 = \omega_1R_1`}</M></b> – deine Frage im Skript. Dann ist <M p=",">{t`v_P = v_Q`}</M> und die Formel gibt <M p=".">{t`\omega_3 = 0`}</M> Der Planet dreht sich nicht, er verschiebt sich nur: Alle seine Punkte sind gleich schnell (eine <a href="#translation">Translation</a> auf einer Kreisbahn, wie eine Riesenrad-Gondel). Die Pfeilspitzen liegen auf einer Parallelen zur Geraden <M p=";">{t`QPO`}</M> <M>{t`Z_3`}</M> liegt «im Unendlichen» – der Satz vom Momentanzentrum gilt ja nur für <M p=".">{t`\v\omega\neq\v 0`}</M> Die Gleichung <M>{t`Z_3P\cdot\omega_3 = v_P`}</M> hat dann keine Lösung.</li>
@@ -179,11 +179,11 @@ export default function L15Planetary() {
             </ul>
           </>}
           en={<>
-            <p><b>A weighted mean.</b> The boxed formula can be read as</p>
+            <p className="keep"><b>A weighted mean.</b> The boxed formula can be read as</p>
             <MD>{t`\omega_{\text{Arm}} = \frac{R_1\,\omega_1 + R_2\,\omega_2}{R_1 + R_2}.`}</MD>
             <p>This is a mean of <M>{t`\omega_1`}</M> and <M p=",">{t`\omega_2`}</M> in which the ring counts more (it is larger). So <M>{t`\omega_{\text{Arm}}`}</M> always lies between <M>{t`\omega_1`}</M> and <M p=".">{t`\omega_2`}</M> The reason is simple: <M>{t`v_A`}</M> is the mean of <M>{t`v_P`}</M> and <M p=",">{t`v_Q`}</M> and <M>{t`\omega_{\text{Arm}}`}</M> is <M>{t`v_A`}</M> divided by <M p=".">L</M> If sun and ring turn equally fast (<M p="),">{t`\omega_1 = \omega_2`}</M> everything turns together like one single rigid body.</p>
-            <p><b>The special cases</b> (buttons in the gear figure):</p>
-            <ul>
+            <p className="keep"><b>The special cases</b> (buttons in the gear figure):</p>
+            <ul className="keep">
               <li><b>Ring fixed, <M p="">{t`\omega_2 = 0`}</M></b> Then <M>Q</M> is at rest, so <M p=".">{t`Z_3 = Q`}</M> The arm turns with <M p=",">{t`\omega_{\text{Arm}} = \omega_1\frac{R_1}{R_1 + R_2}`}</M> much more slowly than the sun. The planet even turns backwards: <M>{t`\omega_3 = -\omega_1R_1/(R_2 - R_1)`}</M> (in the figure <M p=").">{t`-0.4`}</M> This is your “first transmission ratio”.</li>
               <li><b>Sun fixed, <M p="">{t`\omega_1 = 0`}</M></b> Then <M>P</M> is at rest, <M p=":">{t`Z_3 = P`}</M> the planet rolls on the standing sun.</li>
               <li><b><M p="">{t`\omega_2R_2 = \omega_1R_1`}</M></b> – your question in the notes. Then <M p=",">{t`v_P = v_Q`}</M> and the formula gives <M p=".">{t`\omega_3 = 0`}</M> The planet does not turn, it only shifts: all its points are equally fast (a <a href="#translation">translation</a> along a circle, like a Ferris-wheel gondola). The arrow tips lie on a parallel to the line <M p=";">{t`QPO`}</M> <M>{t`Z_3`}</M> is “at infinity” – the theorem of the instantaneous centre only holds for <M p=".">{t`\v\omega\neq\v 0`}</M> The equation <M>{t`Z_3P\cdot\omega_3 = v_P`}</M> then has no solution.</li>
@@ -191,7 +191,7 @@ export default function L15Planetary() {
             </ul>
           </>}
         />
-        <Box kind="supplement" title={<T de="Übersetzungsverhältnis" en={<>Transmission ratio (<span lang="de">Übersetzungsverhältnis</span>)</>} />}>
+        <Box keep kind="supplement" title={<T de="Übersetzungsverhältnis" en={<>Transmission ratio (<span lang="de">Übersetzungsverhältnis</span>)</>} />}>
           <T
             de={<p>Das Wort steht in deiner Notiz, nicht im gedruckten Skript. Das Übersetzungsverhältnis ist das Verhältnis der Winkelgeschwindigkeiten von Antrieb und Abtrieb: <M p=".">{t`i = \omega_{\text{an}}/\omega_{\text{ab}}`}</M> Bei festem Hohlrad treibt man die Sonne an und nimmt die Drehung am Arm ab:</p>}
             en={<p>The word is in your note, not in the printed notes. The transmission ratio is the ratio of the angular velocities of input and output: <M p=".">{t`i = \omega_{\text{in}}/\omega_{\text{out}}`}</M> With the ring fixed, the sun is driven and the turning is taken off at the arm:</p>}
@@ -205,7 +205,7 @@ export default function L15Planetary() {
       </Section>
 
       {/* ------------------------------------------------------------------ 5 */}
-      <Section id="missverstaendnisse" title={<T de="5. Häufige Missverständnisse" en="5. Common misconceptions" />}>
+      <Section long id="missverstaendnisse" title={<T de="5. Häufige Missverständnisse" en="5. Common misconceptions" />}>
         <Box kind="misconception" title={<T de={<>«Der Planet dreht sich mit dem Arm mit, also <M p="»">{t`\omega_3 = \omega_{\text{Arm}}`}</M></>} en={<>“The planet turns along with the arm, so <M p="”">{t`\omega_3 = \omega_{\text{Arm}}`}</M></>} />}>
           <T de={<>Nein. Bei festem Hohlrad ist im Bild <M p=",">{t`\omega_{\text{Arm}} \approx 0{,}22`}</M> aber <M p=":">{t`\omega_3 = -0{,}4`}</M> Der Planet dreht sich sogar in die andere Richtung. Gleich sind sie nur, wenn sich alles zusammen dreht (<M p=").">{t`\omega_1 = \omega_2`}</M></>} en={<>No. With the ring fixed the figure has <M p=",">{t`\omega_{\text{Arm}} \approx 0.22`}</M> but <M p=":">{t`\omega_3 = -0.4`}</M> the planet even turns the other way. They are equal only when everything turns together (<M p=").">{t`\omega_1 = \omega_2`}</M></>} />
         </Box>

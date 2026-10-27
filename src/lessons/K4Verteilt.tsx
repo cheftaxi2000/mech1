@@ -113,11 +113,11 @@ export default function K4Verteilt() {
         <T
           de={<>
             <p><b>Woher kommt welche Dichte?</b> Ein Kontakt hat eine Fläche, also verteilt sich die Kraft über eine Fläche. Eine Fernkraft wie die Schwerkraft wirkt in jedem Stück des Körpers, also über das Volumen. Eine Linienlast ist ein Sonderfall: Bei einem langen schmalen Ding wie einem Balken fasst man die Breite zusammen und gibt nur die Kraft <em>pro Meter</em> an.</p>
-            <p><b>«Dichte» heisst immer «pro»:</b> Kraft pro Fläche, Kraft pro Volumen, Kraft pro Länge. Das «pro» steckt in der Einheit: Newton geteilt durch Quadratmeter, Kubikmeter oder Meter.</p>
+            <p className="keep"><b>«Dichte» heisst immer «pro»:</b> Kraft pro Fläche, Kraft pro Volumen, Kraft pro Länge. Das «pro» steckt in der Einheit: Newton geteilt durch Quadratmeter, Kubikmeter oder Meter.</p>
           </>}
           en={<>
             <p><b>Where does which density come from?</b> A contact has an area, so the force is spread over an area. A remote force like gravity acts in every piece of the body, so over the volume. A line load is a special case: for a long, narrow thing like a beam you lump the width together and only state the force <em>per metre</em>.</p>
-            <p><b>“Density” always means “per”:</b> force per area, force per volume, force per length. The “per” is in the unit: newtons divided by square metres, cubic metres or metres.</p>
+            <p className="keep"><b>“Density” always means “per”:</b> force per area, force per volume, force per length. The “per” is in the unit: newtons divided by square metres, cubic metres or metres.</p>
           </>}
         />
       </Section>
@@ -144,8 +144,8 @@ export default function K4Verteilt() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li><M>{t`\Delta A`}</M> ist ein kleines Stück der Fläche um einen Punkt (das <M>{t`\Delta`}</M> heisst «ein kleines Stück von»). <M>{t`\Delta\v F`}</M> ist die Kraft, die genau auf dieses Stück wirkt.</li>
               <li><M>{t`\Delta\v F/\Delta A`}</M> ist die Kraft pro Fläche, <em>gemittelt</em> über das Stück. Es ist wie «Einwohner dieses Quartiers geteilt durch seine Fläche».</li>
               <li><M>{t`\lim_{\Delta A\to 0}`}</M> heisst: Das Stück zieht sich auf den Punkt zusammen. Man nimmt den Wert, dem der Quotient dabei immer näher kommt. Das ist die Dichte <em>an dieser Stelle</em>: <M p=".">{t`\v s`}</M></li>
@@ -156,8 +156,8 @@ export default function K4Verteilt() {
             <p className="vdemo-note"><b>Was du sehen sollst:</b> Das Dach wird in Quadrate der Kante <M>h</M> zerlegt. Jedes Quadrat trägt ein Stück <M p=".">{t`\Delta F`}</M> Mach die Quadrate kleiner: <M>{t`\Delta F`}</M> des markierten Quadrats wird winzig, aber <M>{t`\Delta F/\Delta A`}</M> nähert sich <M p=".">{t`s(P)`}</M> Und alle Quadrate zusammen ergeben immer dieselbe Gesamtkraft <M p=".">R</M> Ziehe den Punkt <M>P</M> an eine andere Stelle.</p>
           </>}
           en={<>
-            <p><b>How to read this:</b></p>
-            <ol>
+            <p className="keep"><b>How to read this:</b></p>
+            <ol className="keep">
               <li><M>{t`\Delta A`}</M> is a small piece of the surface around a point (the <M>{t`\Delta`}</M> means “a small piece of”). <M>{t`\Delta\v F`}</M> is the force that acts on exactly this piece.</li>
               <li><M>{t`\Delta\v F/\Delta A`}</M> is the force per area, <em>averaged</em> over the piece. It is like “inhabitants of this district divided by its area”.</li>
               <li><M>{t`\lim_{\Delta A\to 0}`}</M> means: the piece shrinks to the point. You take the value the quotient comes closer and closer to. That is the density <em>at this place</em>: <M p=".">{t`\v s`}</M></li>
@@ -206,8 +206,8 @@ export default function K4Verteilt() {
           />
         </Box>
         <T
-          de={<p><b>Achtung, ein Namensproblem (R-025):</b> Das Skript schreibt für die Raumkraftdichte wieder <M p=",">{t`\v F`}</M> obwohl <M>{t`\v F`}</M> sonst eine Kraft in N ist. Hier ist es eine Dichte in <M p=".">{t`\mathrm{N/m^3}`}</M> Du erkennst es an der Einheit und am Wort «Raumkraftdichte». Darum nennen wir sie im Text immer so.</p>}
-          en={<p><b>Careful, a naming problem (R-025):</b> The notes write <M>{t`\v F`}</M> again for the volume force density, although <M>{t`\v F`}</M> is otherwise a force in N. Here it is a density in <M p=".">{t`\mathrm{N/m^3}`}</M> You recognise it by the unit and by the words “volume force density”. That is why we always call it that in the text.</p>}
+          de={<p className="keep"><b>Achtung, ein Namensproblem (R-025):</b> Das Skript schreibt für die Raumkraftdichte wieder <M p=",">{t`\v F`}</M> obwohl <M>{t`\v F`}</M> sonst eine Kraft in N ist. Hier ist es eine Dichte in <M p=".">{t`\mathrm{N/m^3}`}</M> Du erkennst es an der Einheit und am Wort «Raumkraftdichte». Darum nennen wir sie im Text immer so.</p>}
+          en={<p className="keep"><b>Careful, a naming problem (R-025):</b> The notes write <M>{t`\v F`}</M> again for the volume force density, although <M>{t`\v F`}</M> is otherwise a force in N. Here it is a density in <M p=".">{t`\mathrm{N/m^3}`}</M> You recognise it by the unit and by the words “volume force density”. That is why we always call it that in the text.</p>}
         />
 
         <h3><T de="4.1 Warum ein Grenzwert? Die «Parenthèse»" en="4.1 Why a limit? The “Parenthèse”" /></h3>
@@ -370,7 +370,7 @@ export default function K4Verteilt() {
       <Section id="einheiten" title={<T de="6. Die drei Dichten im Überblick" en="6. The three densities at a glance" />}>
         <T
           de={<>
-            <p>Die drei Fälle sehen gleich aus. Nur das «pro» ändert sich:</p>
+            <p className="keep">Die drei Fälle sehen gleich aus. Nur das «pro» ändert sich:</p>
             <div className="kf-table-wrap">
               <table className="kf-table">
                 <thead><tr><th>Dichte</th><th>Symbol im Skript</th><th>Einheit</th><th>«pro» …</th><th>Gesamtkraft</th></tr></thead>
@@ -382,10 +382,10 @@ export default function K4Verteilt() {
               </table>
             </div>
             <p>Die Zeile für <M>{t`\v R = \iiint\v F\,\mathrm dV`}</M> steht so nicht im Skript; sie folgt aus <M>{t`\mathrm d\v F = \v F\,\mathrm dV`}</M> und dem Aufsummieren, genau wie bei den anderen zwei. Beim Gewicht ist sie die Zeile <M>{t`\v G = -\iiint\rho g\,\mathrm dV\,\e z`}</M> von oben.</p>
-            <p>Jedes Mal gilt: <b>Dichte mal Mass ergibt die Kraft.</b> Wenn das «Mass» (Länge, Fläche, Volumen) klein ist, ist die Kraft klein. Die Dichte selbst bleibt am Ort ein fester Wert.</p>
+            <p className="keep">Jedes Mal gilt: <b>Dichte mal Mass ergibt die Kraft.</b> Wenn das «Mass» (Länge, Fläche, Volumen) klein ist, ist die Kraft klein. Die Dichte selbst bleibt am Ort ein fester Wert.</p>
           </>}
           en={<>
-            <p>The three cases look alike. Only the “per” changes:</p>
+            <p className="keep">The three cases look alike. Only the “per” changes:</p>
             <div className="kf-table-wrap">
               <table className="kf-table">
                 <thead><tr><th>density</th><th>symbol in the notes</th><th>unit</th><th>“per” …</th><th>total force</th></tr></thead>
@@ -397,7 +397,7 @@ export default function K4Verteilt() {
               </table>
             </div>
             <p>The line <M>{t`\v R = \iiint\v F\,\mathrm dV`}</M> is not in the notes in this form; it follows from <M>{t`\mathrm d\v F = \v F\,\mathrm dV`}</M> and adding up, exactly as for the other two. For the weight it is the line <M>{t`\v G = -\iiint\rho g\,\mathrm dV\,\e z`}</M> from above.</p>
-            <p>Every time: <b>density times measure gives the force.</b> If the “measure” (length, area, volume) is small, the force is small. The density itself stays a fixed value at the place.</p>
+            <p className="keep">Every time: <b>density times measure gives the force.</b> If the “measure” (length, area, volume) is small, the force is small. The density itself stays a fixed value at the place.</p>
           </>}
         />
         <Box kind="supplement" title={<T de="Alltagszahlen zum Einordnen" en="Everyday numbers for orientation" />}>
@@ -417,7 +417,7 @@ export default function K4Verteilt() {
       </Section>
 
       {/* ------------------------------------------------------------------ 7 */}
-      <Section id="missverstaendnisse" title={<T de="7. Häufige Missverständnisse" en="7. Common misconceptions" />}>
+      <Section long id="missverstaendnisse" title={<T de="7. Häufige Missverständnisse" en="7. Common misconceptions" />}>
         <Box kind="misconception" title={<T de={<>«<M p=",">{t`\v s`}</M> <M>{t`\v F`}</M> (als Dichte) und <M>{t`\v q`}</M> sind Kräfte in Newton.»</>} en={<>“<M p=",">{t`\v s`}</M> <M>{t`\v F`}</M> (as a density) and <M>{t`\v q`}</M> are forces in newtons.”</>} />}>
           <T de={<>Nein. Es sind Kräfte <em>pro</em> Fläche, Volumen oder Länge: <M p=",">{t`\mathrm{N/m^2}`}</M> <M p=",">{t`\mathrm{N/m^3}`}</M> N/m. Erst nach dem Integrieren kommt eine Kraft in N heraus. Ein Pfeil einer Streckenlast ist darum <em>kein</em> Kraftpfeil, sondern ein Bild der Dichte an dieser Stelle. Das Skript benutzt dasselbe Zeichen <M>{t`\v F`}</M> für beides (R-025): Achte auf die Einheit.</>} en={<>No. They are forces <em>per</em> area, volume or length: <M p=",">{t`\mathrm{N/m^2}`}</M> <M p=",">{t`\mathrm{N/m^3}`}</M> N/m. Only after integrating do you get a force in N. An arrow of a line load is therefore <em>not</em> a force arrow but a picture of the density at that place. The notes use the same sign <M>{t`\v F`}</M> for both (R-025): watch the unit.</>} />
         </Box>

@@ -42,8 +42,8 @@ export default function L12General() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li><M>K</M> ist der Körper, <M>B</M> einer seiner Punkte, den man als <b>Bezugspunkt</b> wählt. <M>{t`\v\rho = \v{BM}`}</M> zeigt von <M>B</M> nach <M p=".">M</M> Also <M p=".">{t`\v r_M = \v r_B + \v\rho`}</M></li>
               <li>Ableiten nach der Zeit: <M p=".">{t`\v v_M = \v v_B + \dot{\v\rho}`}</M> <M>{t`\dot{\v\rho}`}</M> ist die Geschwindigkeit, die <M>M</M> hat, wenn man mit <M>B</M> mitfährt («bezüglich <M p="»).">B</M></li>
               <li>Für den Mitfahrer ruht <M p=",">B</M> und <M>{t`|\v\rho|`}</M> bleibt gleich (starrer Körper). Wichtig: Er fährt mit, <em>ohne sich mitzudrehen</em>; darum sieht er dasselbe <M>{t`\dot{\v\rho}`}</M> wie wir. Für ihn ruht ein Punkt des Körpers: eine Kreiselung um <M>B</M> (S. 20). Eine Kreiselung ist eine momentane Rotation, <M>{t`\v v = \v\omega\times\v r`}</M> mit <M>{t`\v r`}</M> vom ruhenden Punkt aus (S. 21). Hier ist das <M p=",">B</M> also <M p=".">{t`\dot{\v\rho} = \v\omega^*\times\v\rho`}</M> <M>{t`\v\omega^*`}</M> ist die Winkelgeschwindigkeit dieser Kreiselung; das Skript nennt <M>{t`\dot{\v\rho}`}</M> auch <M p=".">{t`\v v^*_M`}</M></li>
@@ -51,8 +51,8 @@ export default function L12General() {
             </ol>
           </>}
           en={<>
-            <p><b>How to read this:</b></p>
-            <ol>
+            <p className="keep"><b>How to read this:</b></p>
+            <ol className="keep">
               <li><M>K</M> is the body, <M>B</M> one of its points, chosen as the <b>reference point</b>. <M>{t`\v\rho = \v{BM}`}</M> points from <M>B</M> to <M p=".">M</M> So <M p=".">{t`\v r_M = \v r_B + \v\rho`}</M></li>
               <li>Differentiate with respect to time: <M p=".">{t`\v v_M = \v v_B + \dot{\v\rho}`}</M> <M>{t`\dot{\v\rho}`}</M> is the velocity <M>M</M> has when you ride along with <M>B</M> (“relative to <M p="”).">B</M></li>
               <li>For the rider <M>B</M> is at rest and <M>{t`|\v\rho|`}</M> stays the same (rigid body). Important: the rider moves along <em>without turning</em>, so they see the same <M>{t`\dot{\v\rho}`}</M> as we do. For them one point of the body is at rest: a spinning motion about <M>B</M> (p. 20). A spinning motion is a momentary rotation, <M>{t`\v v = \v\omega\times\v r`}</M> with <M>{t`\v r`}</M> from the point at rest (p. 21). Here that is <M p=",">B</M> so <M p=".">{t`\dot{\v\rho} = \v\omega^*\times\v\rho`}</M> <M>{t`\v\omega^*`}</M> is the angular velocity of this spinning motion; the notes also call <M>{t`\dot{\v\rho}`}</M> <M p=".">{t`\v v^*_M`}</M></li>
@@ -109,8 +109,8 @@ export default function L12General() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die Rechnung:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man die Rechnung:</b></p>
+            <ol className="keep">
               <li>Dieselbe Geschwindigkeit <M>{t`\v v_M`}</M> zweimal geschrieben: einmal mit <M>B</M> als Bezugspunkt, einmal mit <M p=".">C</M> Ob die beiden <M>\omega</M> gleich sind, weiss man noch nicht – darum heissen sie <M>{t`\v\omega^*`}</M> und <M p=".">{t`\v\omega^{**}`}</M></li>
               <li>Der Weg von <M>B</M> nach <M>M</M> geht auch über <M p=":">C</M> <M p=".">{t`\v{BM} = \v{BC} + \v{CM}`}</M> Das Kreuzprodukt darf man ausmultiplizieren: <M p=".">{t`\v\omega^*\times(\v{BC} + \v{CM}) = \v\omega^*\times\v{BC} + \v\omega^*\times\v{CM}`}</M></li>
               <li>Für <M>{t`\v v_C`}</M> setzt man die Formel mit <M>B</M> ein (mit <M p=")">{t`M = C`}</M> <M p=".">{t`\v v_C = \v v_B + \v\omega^*\times\v{BC}`}</M></li>
@@ -119,8 +119,8 @@ export default function L12General() {
             </ol>
           </>}
           en={<>
-            <p><b>How to read the calculation:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the calculation:</b></p>
+            <ol className="keep">
               <li>The same velocity <M>{t`\v v_M`}</M> written twice: once with <M>B</M> as the reference point, once with <M p=".">C</M> Whether the two <M>\omega</M> are equal is not known yet – so they are called <M>{t`\v\omega^*`}</M> and <M p=".">{t`\v\omega^{**}`}</M></li>
               <li>The way from <M>B</M> to <M>M</M> can also pass through <M p=":">C</M> <M p=".">{t`\v{BM} = \v{BC} + \v{CM}`}</M> The cross product may be multiplied out: <M p=".">{t`\v\omega^*\times(\v{BC} + \v{CM}) = \v\omega^*\times\v{BC} + \v\omega^*\times\v{CM}`}</M></li>
               <li>For <M>{t`\v v_C`}</M> insert the formula with <M>B</M> (with <M p=")">{t`M = C`}</M> <M p=".">{t`\v v_C = \v v_B + \v\omega^*\times\v{BC}`}</M></li>
@@ -150,8 +150,8 @@ export default function L12General() {
           />
         </Box>
         <T
-          de={<p><b>So liest man das:</b> <M>\forall</M> heisst «für alle». Die Formel gilt für jedes Paar von Punkten <M>M</M> und <M>B</M> des Körpers <M p=".">K</M> Kennt man die Geschwindigkeit eines einzigen Punktes und <M p=",">{t`\v\omega`}</M> kennt man die Geschwindigkeit jedes Punktes. Der ganze <b>Bewegungszustand</b> – alle Geschwindigkeiten in diesem Augenblick – steckt also in zwei Vektoren.</p>}
-          en={<p><b>How to read this:</b> <M>\forall</M> means “for all”. The formula holds for every pair of points <M>M</M> and <M>B</M> of the body <M p=".">K</M> If you know the velocity of a single point and <M p=",">{t`\v\omega`}</M> you know the velocity of every point. So the whole <b>state of motion</b> (<span lang="de">Bewegungszustand</span>) – all velocities at this instant – is contained in two vectors.</p>}
+          de={<p className="keep"><b>So liest man das:</b> <M>\forall</M> heisst «für alle». Die Formel gilt für jedes Paar von Punkten <M>M</M> und <M>B</M> des Körpers <M p=".">K</M> Kennt man die Geschwindigkeit eines einzigen Punktes und <M p=",">{t`\v\omega`}</M> kennt man die Geschwindigkeit jedes Punktes. Der ganze <b>Bewegungszustand</b> – alle Geschwindigkeiten in diesem Augenblick – steckt also in zwei Vektoren.</p>}
+          en={<p className="keep"><b>How to read this:</b> <M>\forall</M> means “for all”. The formula holds for every pair of points <M>M</M> and <M>B</M> of the body <M p=".">K</M> If you know the velocity of a single point and <M p=",">{t`\v\omega`}</M> you know the velocity of every point. So the whole <b>state of motion</b> (<span lang="de">Bewegungszustand</span>) – all velocities at this instant – is contained in two vectors.</p>}
         />
         <FieldDemo />
         <T
@@ -203,18 +203,18 @@ export default function L12General() {
         </Box>
         <T
           de={<>
-            <p>Die Lage der Punkte steht nur in der Figur; aus den Rechnungen folgt <M p=",">{t`P_1 = (L, L, 0)`}</M> <M p=",">{t`P_2 = (0, L, L)`}</M> <M p=".">{t`P_3 = (0, 0, L)`}</M> «Kinemat in <M p="»">B</M> meint das Paar <M>{t`\v v_B`}</M> und <M p=":">{t`\v\omega`}</M> genau die zwei Vektoren, die die Grundgleichung braucht. Auf S. 24 nennt das Skript dieses Paar «Kinemate» – weiter geht es in der Lektion <a href="#zentralachse">Kinemate, Zentralachse &amp; Schraube</a>.</p>
-            <p><b>So liest man die Lösung:</b></p>
-            <ol>
+            <p className="keep">Die Lage der Punkte steht nur in der Figur; aus den Rechnungen folgt <M p=",">{t`P_1 = (L, L, 0)`}</M> <M p=",">{t`P_2 = (0, L, L)`}</M> <M p=".">{t`P_3 = (0, 0, L)`}</M> «Kinemat in <M p="»">B</M> meint das Paar <M>{t`\v v_B`}</M> und <M p=":">{t`\v\omega`}</M> genau die zwei Vektoren, die die Grundgleichung braucht. Auf S. 24 nennt das Skript dieses Paar «Kinemate» – weiter geht es in der Lektion <a href="#zentralachse">Kinemate, Zentralachse &amp; Schraube</a>.</p>
+            <p className="keep"><b>So liest man die Lösung:</b></p>
+            <ol className="keep">
               <li>Grundgleichung mit <M>{t`P_1`}</M> als Bezugspunkt und <M>{t`P_3`}</M> als <M p=".">M</M> Weil <M p=",">{t`\v v_1 = \v v_3`}</M> muss <M>{t`\v\omega\times\v{P_1P_3}`}</M> null sein. Ein Kreuzprodukt ist null, wenn die Vektoren parallel sind: <M>{t`\v\omega`}</M> zeigt entlang der Raumdiagonale <M p=".">{t`\v{P_1P_3} = (-L, -L, L)`}</M> Ausgeschrieben gibt das Kreuzprodukt drei Gleichungen (zweite Zeile im Kasten). Durch <M>L</M> geteilt: <M p=",">{t`\omega_y = -\omega_z`}</M> <M p=",">{t`\omega_x = -\omega_z`}</M> <M p=".">{t`\omega_x = \omega_y`}</M> Also <M p=".">{t`\v\omega = (\omega_x, \omega_x, -\omega_x)`}</M></li>
               <li>Mit <M>{t`P_3`}</M> als Bezugspunkt und <M>{t`P_2`}</M> als <M p=":">M</M> <M p=".">{t`\v v_2 - \v v_3 = \v\omega\times\v{P_3P_2}`}</M> Links steht <M p=",">{t`(v, 0, v)`}</M> rechts <M p=".">{t`\v\omega\times(0, L, 0) = (\omega_x L, 0, \omega_x L)`}</M> Also <M p=".">{t`\omega_x = v/L`}</M></li>
               <li>Jetzt ist <M>{t`\v\omega`}</M> bekannt, und die Grundgleichung gibt <M p=":">{t`\v v_B`}</M> <M p=".">{t`\tfrac{v}{L}(1, 1, -1)\times(0, 0, -L) = (-v, v, 0)`}</M> Dazu <M>{t`\v v_3`}</M> addiert: <M p=".">{t`\v v_B = (-2v, v, 0)`}</M> Die <M>z</M>-Komponente ist im Skript leer geblieben; sie ist <M p=".">0</M></li>
             </ol>
           </>}
           en={<>
-            <p>The positions of the points are only in the figure; the calculations imply <M p=",">{t`P_1 = (L, L, 0)`}</M> <M p=",">{t`P_2 = (0, L, L)`}</M> <M p=".">{t`P_3 = (0, 0, L)`}</M> “<span lang="de">Kinemat in</span> <M p="”">B</M> means the pair <M>{t`\v v_B`}</M> and <M p=":">{t`\v\omega`}</M> exactly the two vectors the fundamental equation needs. On p. 24 the notes call this pair <De en="velocity and angular velocity as a pair">Kinemate</De> – continued in the lesson <a href="#zentralachse">Kinemate, central axis and screw</a>.</p>
-            <p><b>How to read the solution:</b></p>
-            <ol>
+            <p className="keep">The positions of the points are only in the figure; the calculations imply <M p=",">{t`P_1 = (L, L, 0)`}</M> <M p=",">{t`P_2 = (0, L, L)`}</M> <M p=".">{t`P_3 = (0, 0, L)`}</M> “<span lang="de">Kinemat in</span> <M p="”">B</M> means the pair <M>{t`\v v_B`}</M> and <M p=":">{t`\v\omega`}</M> exactly the two vectors the fundamental equation needs. On p. 24 the notes call this pair <De en="velocity and angular velocity as a pair">Kinemate</De> – continued in the lesson <a href="#zentralachse">Kinemate, central axis and screw</a>.</p>
+            <p className="keep"><b>How to read the solution:</b></p>
+            <ol className="keep">
               <li>Fundamental equation with <M>{t`P_1`}</M> as the reference point and <M>{t`P_3`}</M> as <M p=".">M</M> Since <M p=",">{t`\v v_1 = \v v_3`}</M> <M>{t`\v\omega\times\v{P_1P_3}`}</M> must be zero. A cross product is zero when the vectors are parallel: <M>{t`\v\omega`}</M> points along the space diagonal <M p=".">{t`\v{P_1P_3} = (-L, -L, L)`}</M> Written out, the cross product gives three equations (second line in the box). Divided by <M p=":">L</M> <M p=",">{t`\omega_y = -\omega_z`}</M> <M p=",">{t`\omega_x = -\omega_z`}</M> <M p=".">{t`\omega_x = \omega_y`}</M> So <M p=".">{t`\v\omega = (\omega_x, \omega_x, -\omega_x)`}</M></li>
               <li>With <M>{t`P_3`}</M> as the reference point and <M>{t`P_2`}</M> as <M p=":">M</M> <M p=".">{t`\v v_2 - \v v_3 = \v\omega\times\v{P_3P_2}`}</M> The left side is <M p=",">{t`(v, 0, v)`}</M> the right side <M p=".">{t`\v\omega\times(0, L, 0) = (\omega_x L, 0, \omega_x L)`}</M> So <M p=".">{t`\omega_x = v/L`}</M></li>
               <li>Now <M>{t`\v\omega`}</M> is known, and the fundamental equation gives <M p=":">{t`\v v_B`}</M> <M p=".">{t`\tfrac{v}{L}(1, 1, -1)\times(0, 0, -L) = (-v, v, 0)`}</M> Adding <M p=":">{t`\v v_3`}</M> <M p=".">{t`\v v_B = (-2v, v, 0)`}</M> The <M>z</M>-component was left empty in the notes; it is <M p=".">0</M></li>
@@ -258,7 +258,7 @@ export default function L12General() {
       </Section>
 
       {/* ------------------------------------------------------------------ 5 */}
-      <Section id="missverstaendnisse" title={<T de="5. Häufige Missverständnisse" en="5. Common misconceptions" />}>
+      <Section long id="missverstaendnisse" title={<T de="5. Häufige Missverständnisse" en="5. Common misconceptions" />}>
         <Box kind="misconception" title={<T de={<>«<M>{t`\v\omega`}</M> hängt davon ab, welchen Bezugspunkt man wählt.»</>} en={<>“<M>{t`\v\omega`}</M> depends on the reference point you choose.”</>} />}>
           <T de={<>Nein, <M>{t`\v\omega`}</M> ist für alle Bezugspunkte gleich. Nur der Translationsteil <M>{t`\v v_B`}</M> hängt von <M>B</M> ab (Knöpfe «Bezugspunkt» im Feld-Bild).</>} en={<>No, <M>{t`\v\omega`}</M> is the same for every reference point. Only the translation part <M>{t`\v v_B`}</M> depends on <M>B</M> (buttons “reference point” in the field figure).</>} />
         </Box>
