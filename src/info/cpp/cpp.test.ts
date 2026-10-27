@@ -278,3 +278,51 @@ describe('chapter 5 claims (notes pp. 97–113), checked with g++', () => {
     expect(rowGap).not.toBe('3'); // between rows there is a gap (allocator bookkeeping)
   });
 });
+
+describe('chapters 6 and 7 claims, checked with g++', () => {
+  const build = (code: string, flags: string[] = []) => {
+    const dir = mkdtempSync(join(tmpdir(), 'cpp-'));
+    const src = join(dir, 'a.cpp'), bin = join(dir, 'a.out');
+    writeFileSync(src, code);
+    const c = spawnSync('g++', ['-std=c++20', ...flags, '-o', bin, src], { encoding: 'utf8', env: { ...process.env, LC_ALL: 'C' } });
+    return { c, run: (input = '') => spawnSync(bin, [], { encoding: 'utf8', input, timeout: 20000 }) };
+  };
+  it.skipIf(!hasGpp)('std::string counts bytes, not characters: "Grüezi" has size 7', () => {
+    const b = build('#include <iostream>\n#include <string>\nint main() { std::string s = "Gr\\xc3\\xbc" "ezi"; std::cout << s.size(); }');
+    expect(b.c.status).toBe(0);
+    expect(b.run().stdout).toBe('7');
+  });
+  it.skipIf(!hasGpp)('char is 8 bits and a char holds a number: int(c) + 1, c / d', () => {
+    const b = build('#include <iostream>\nint main() { std::cout << sizeof(char) * 8 << " " << (int)\'a\' << " " << \'a\' / \'b\'; }');
+    expect(b.run().stdout).toBe('8 97 0');
+  });
+  it.skipIf(!hasGpp)('the recursion without a base case overflows the stack (segmentation fault)', () => {
+    const b = build(P.infRec.code, ['-O0']);
+    expect(b.c.status).toBe(0);
+    const r = b.run();
+    expect(r.signal).toBe('SIGSEGV');
+  });
+  it.skipIf(!hasGpp)('13! overflows int (prints 1932053504 with g++ -O0), the iterative Fibonacci overflows at F47', () => {
+    const b = build('#include <iostream>\nint fac(int n) { if (n <= 1) return 1; else return fac(n-1) * n; }\nint main() { std::cout << fac(12) << " " << fac(13); }', ['-O0', '-fwrapv']);
+    expect(b.run().stdout).toBe('479001600 1932053504');
+    const f = build(`${P.fibIter.code.replace(/int main\(\) \{[\s\S]*$/, '')}int main() { std::cout << fibonacci(46) << " " << fibonacci(47) << " " << fibonacci(50); }`, ['-O0', '-fwrapv']);
+    expect(f.c.status).toBe(0);
+    expect(f.run().stdout).toBe('1836311903 -1323752223 -298632863');
+  });
+  it.skipIf(!hasGpp)('all_bit_strings(6) prints the same as counting from 0 to 63 and writing the bits (std::bitset)', () => {
+    const rec = build(P.bitStrings.code.replace('all_bit_strings(3, "")', 'all_bit_strings(6, "")'));
+    const it2 = build('#include <iostream>\n#include <bitset>\nint main() { for (int x = 0; x < 64; ++x) std::cout << std::bitset<6>(x) << "\\n"; }');
+    expect(rec.c.status).toBe(0);
+    expect(it2.c.status).toBe(0);
+    const a = rec.run().stdout;
+    expect(a).toBe(it2.run().stdout);
+    expect(a.trim().split('\n').length).toBe(64);
+  });
+  it.skipIf(!hasGpp)('the sum with an initializer list compiles with std::vector<int> const& (all three sums = 16) and the compiler accepts at(from)', () => {
+    for (const p of [P.sumLoop, P.sumDecrease, P.sumDivide]) {
+      const b = build(p.code);
+      expect(b.c.status, b.c.stderr).toBe(0);
+      expect(b.run().stdout).toBe('16');
+    }
+  });
+});

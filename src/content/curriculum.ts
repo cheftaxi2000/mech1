@@ -66,6 +66,8 @@ export const CHAPTERS: Record<string, [string, string]> = {
   I3: ['3 · Kontrollstrukturen', '3 · Control statements'],
   I4: ['4 · Funktionen', '4 · Functions'],
   I5: ['5 · Vektoren und Referenzen', '5 · Vectors and references'],
+  I6: ['6 · Zeichen und Texte', '6 · Characters and texts'],
+  I7: ['7 · Rekursion', '7 · Recursion'],
 };
 
 export const chapterSubject = (ch: string): Subject => (/^I\d/.test(ch) ? 'info' : ch.startsWith('LA') ? 'la' : ch.startsWith('CH') ? 'chem' : ch.startsWith('A') ? 'ana' : 'mech');
@@ -194,4 +196,12 @@ export const TOPICS: Topic[] = [
   { id: 'i-vektor-2d', chapter: 'I5', title: ['Vektoren von Vektoren', 'Vectors of vectors'], pages: '103–106', status: 'draft', component: lazy(() => import('../lessons/I5Vektor2D')) },
   { id: 'i-referenz', chapter: 'I5', title: ['Referenzen: ein zweiter Name', 'References: a second name'], pages: '107–109', status: 'draft', component: lazy(() => import('../lessons/I5Referenz')) },
   { id: 'i-rueckgabe', chapter: 'I5', title: ['Rückgabe per Referenz und const-Referenzen', 'Return by reference and const references'], pages: '109–113', status: 'draft', component: lazy(() => import('../lessons/I5Rueckgabe')) },
+  { id: 'i-zeichen', chapter: 'I6', title: ['Zeichen, ASCII und UTF-8', 'Characters, ASCII and UTF-8'], pages: '114–116', status: 'draft', component: lazy(() => import('../lessons/I6Zeichen')) },
+  { id: 'i-caesar', chapter: 'I6', title: ['Die Caesar-Chiffre', 'The Caesar cipher'], pages: '115–117', status: 'draft', component: lazy(() => import('../lessons/I6Caesar')) },
+  { id: 'i-text', chapter: 'I6', title: ['Texte: std::string', 'Texts: std::string'], pages: '116–118', status: 'draft', component: lazy(() => import('../lessons/I6Text')) },
+  { id: 'i-rekursion', chapter: 'I7', title: ['Rekursion: eine Funktion ruft sich selbst auf', 'Recursion: a function calls itself'], pages: '119–120', status: 'draft', component: lazy(() => import('../lessons/I7Rekursion')) },
+  { id: 'i-stapel', chapter: 'I7', title: ['Der Aufrufstapel und Euklid rekursiv', 'The call stack and Euclid recursively'], pages: '120–123', status: 'draft', component: lazy(() => import('../lessons/I7Stapel')) },
+  { id: 'i-bitfolgen', chapter: 'I7', title: ['Alle Bitfolgen erzeugen', 'Generating all bit strings'], pages: '123–127', status: 'draft', component: lazy(() => import('../lessons/I7Bitfolgen')) },
+  { id: 'i-strategien', chapter: 'I7', title: ['Verkleinern und Herrschen, Teilen und Herrschen', 'Decrease and conquer, divide and conquer'], pages: '127–131', status: 'draft', component: lazy(() => import('../lessons/I7Strategien')) },
+  { id: 'i-fibonacci', chapter: 'I7', title: ['Fibonacci: Rekursion und Iteration', 'Fibonacci: recursion and iteration'], pages: '131–133', status: 'draft', component: lazy(() => import('../lessons/I7Fibonacci')) },
 ];

@@ -23,13 +23,17 @@ export type Ev =
   | { kind: 'ub'; msg: string }
   | { kind: 'overflow'; src: string }
   | { kind: 'end' };
-export interface Snap { line: number | null; frames: FrameView[]; out: string; ev?: Ev }
+export interface Snap {
+  line: number | null; frames: FrameView[]; out: string; ev?: Ev;
+  /** calls and returns that happened since the previous snapshot, in order (several can happen between two steps) */
+  flow?: Ev[];
+}
 export interface Trace { snaps: Snap[]; stdout: string; exit: number | null; error?: { msg: string; line: number }; truncated?: boolean }
 
 export class RuntimeError extends Error { constructor(msg: string, public line: number) { super(msg); } }
 class Stop extends Error {}
 
-interface Cell { id: number; ty: TyV; v: unknown; init: boolean; isConst: boolean }
+interface Cell { id: number; ty: TyV; v: unknown; init: boolean; isConst: boolean; /** a proxy cell (a character of a string) writes through to its owner */ onSet?: () => void }
 interface Binding { name: string; cell: Cell; isRef: boolean }
 interface Frame { fn: string; line: number; scopes: Binding[][] }
 interface RV { ty: TyV; v: unknown; cell?: Cell }
@@ -131,6 +135,9 @@ class Interp {
   ub: string | undefined;
   maxSnaps: number; maxDepth: number;
   truncated = false;
+  /** `std::cin >> std::noskipws` and the failbit of std::cin */
+  noskipws = false; inFail = false;
+  pendingFlow: Ev[] = [];
   retVal: RV | undefined; signal: 'break' | 'continue' | 'return' | null = null;
   overflowSrc: string | undefined;
 
@@ -177,7 +184,9 @@ class Interp {
     let evOut = e;
     if (this.ub) { evOut = { kind: 'ub', msg: this.ub }; this.ub = undefined; }
     else if (this.overflowSrc) { evOut = { kind: 'overflow', src: this.overflowSrc }; this.overflowSrc = undefined; }
-    this.snaps.push({ line, frames: this.views(), out: this.out, ev: evOut });
+    const flow = this.pendingFlow.length ? this.pendingFlow : undefined;
+    this.pendingFlow = [];
+    this.snaps.push({ line, frames: this.views(), out: this.out, ev: evOut, flow });
   }
 
   // ---- scopes
@@ -242,6 +251,7 @@ class Interp {
       case 'method': return this.method(e);
       case 'index': {
         const b = this.eval(e.base), i = this.num(this.eval(e.idx));
+        if (b.ty.n === 'string') return this.charAt(b, i, e.line, false);
         if (b.ty.n !== 'vector') throw new RuntimeError('subscripted value is not a vector', e.line);
         const arr = b.v as Cell[];
         if (i < 0 || i >= arr.length) throw new RuntimeError(`index ${i} is out of bounds for a vector of size ${arr.length} (undefined behavior)`, e.line);
@@ -250,7 +260,7 @@ class Interp {
     }
   }
 
-  private truthy(r: RV): boolean { if (!isArith(r.ty)) throw new RuntimeError('not a condition', 0); return typeof r.v === 'boolean' ? r.v : (r.v as number) !== 0; }
+  private truthy(r: RV): boolean { if (r.ty.n === 'istream') return !this.inFail; if (!isArith(r.ty)) throw new RuntimeError('not a condition', 0); return typeof r.v === 'boolean' ? r.v : (r.v as number) !== 0; }
 
   private unary(e: Expr & { k: 'unary' }): RV {
     if (e.op === '++' || e.op === '--') {
@@ -299,6 +309,7 @@ class Interp {
     const a = this.eval(e.l);
     if (e.op === '<<' && a.ty.n === 'ostream') { this.print(this.eval(e.r)); return a; }
     if (e.op === '>>' && a.ty.n === 'istream') {
+      if (e.r.k === 'id' && /^(std::)?(no)?skipws$/.test(e.r.name)) { this.noskipws = e.r.name.includes('noskipws'); return a; }
       const target = this.lval(e.r);
       if (!target.cell) throw new RuntimeError('cin >> needs a variable', e.line);
       this.readInput(target.cell, e.line);
@@ -311,7 +322,7 @@ class Interp {
       const x = convert(a, t, e.line) as number, y = convert(b, t, e.line) as number;
       return this.rv(BOOL, e.op === '<' ? x < y : e.op === '>' ? x > y : e.op === '<=' ? x <= y : e.op === '>=' ? x >= y : e.op === '==' ? x === y : x !== y);
     }
-    if (e.op === '+' && a.ty.n === 'string' && b.ty.n === 'string') return this.rv(STR, (a.v as string) + (b.v as string));
+    if (e.op === '+' && a.ty.n === 'string' && (b.ty.n === 'string' || b.ty.n === 'char')) return this.rv(STR, (a.v as string) + (b.ty.n === 'char' ? String.fromCharCode(b.v as number) : (b.v as string)));
     return this.arith(e.op, a, b, e.line, e.src);
   }
 
@@ -319,7 +330,8 @@ class Interp {
     const l = this.lval(e.l);
     if (!l.cell) throw new RuntimeError('expression is not assignable (lvalue required as left operand of assignment)', e.line);
     let r = this.eval(e.r);
-    if (e.op !== '=') r = this.arith(e.op[0], this.read(l.cell, e.line), r, e.line, e.src);
+    if (e.op === '+=' && l.cell.ty.n === 'string') r = this.rv(STR, (l.cell.v as string) + (r.ty.n === 'char' ? String.fromCharCode(r.v as number) : (r.v as string)));
+    else if (e.op !== '=') r = this.arith(e.op[0], this.read(l.cell, e.line), r, e.line, e.src);
     this.store(l.cell, r, e.line);
     return { ty: l.cell.ty, v: l.cell.v, cell: l.cell };
   }
@@ -328,6 +340,7 @@ class Interp {
     if (c.isConst) throw new RuntimeError('assignment of read-only variable', line);
     const v = convert(r, c.ty, line);
     c.v = c.ty.n === 'vector' ? this.cloneVec(v as Cell[]) : v; c.init = true;
+    c.onSet?.();
   }
 
   private print(r: RV) {
@@ -341,9 +354,20 @@ class Interp {
   }
 
   private readInput(c: Cell, line: number) {
+    void line;
     const rest = this.stdin.slice(this.inPos);
+    if (this.noskipws && c.ty.n === 'char') { // reads every character, also blanks and line breaks
+      if (rest.length === 0) { this.inFail = true; return; }
+      c.v = rest.charCodeAt(0); c.init = true; this.inPos += 1; c.onSet?.();
+      this.pending = { kind: 'input', text: showChar(c.v as number) };
+      return;
+    }
     const m = /^\s*(\S+)/.exec(rest);
-    if (!m) throw new RuntimeError('no more input', line);
+    if (!m) { // end of input: the stream fails (the variable of a failed read keeps its value, numbers become 0)
+      this.inFail = true;
+      if (isArith(c.ty) && c.ty.n !== 'char') { c.v = c.ty.n === 'bool' ? false : 0; c.init = true; }
+      return;
+    }
     let tok = m[1], used = m[0].length;
     switch (c.ty.n) {
       case 'char': tok = tok[0]; used = m[0].length - m[1].length + 1; c.v = tok.charCodeAt(0); break;
@@ -353,6 +377,7 @@ class Interp {
       default: { const x = parseInt(tok, 10); c.v = c.ty.n === 'unsigned' ? wrapUns(Number.isNaN(x) ? 0 : x) : wrapInt(Number.isNaN(x) ? 0 : x); }
     }
     c.init = true;
+    c.onSet?.();
     this.inPos += used;
     this.pending = { kind: 'input', text: tok };
   }
@@ -381,7 +406,7 @@ class Interp {
         if (!this.truthy(this.eval(e.args[0]))) throw new RuntimeError(`Assertion \`${e.args[0].src}' failed.`, e.line);
         return this.rv(VOID, undefined);
       }
-      if (bare === 'ssize') { const r = this.eval(e.args[0]); if (r.ty.n !== 'vector') throw new RuntimeError('std::ssize needs a vector', e.line); return this.rv(INT, (r.v as Cell[]).length); }
+      if (bare === 'ssize') { const r = this.eval(e.args[0]); if (r.ty.n === 'string') return this.rv(INT, (r.v as string).length); if (r.ty.n !== 'vector') throw new RuntimeError('std::ssize needs a vector or a string', e.line); return this.rv(INT, (r.v as Cell[]).length); }
       if (['int', 'unsigned', 'double', 'float', 'bool', 'char'].includes(bare)) { const to = { n: bare } as TyV; return this.rv(to, convert(this.eval(e.args[0]), to, e.line)); }
       if (bare === 'swap') {
         const a = this.lval(e.args[0]), b = this.lval(e.args[1]);
@@ -396,7 +421,10 @@ class Interp {
   private callUser(fn: FuncDef, e: Expr & { k: 'call' }): RV {
     if (e.args.length !== fn.params.length) throw new RuntimeError(`wrong number of arguments to '${fn.name}'`, e.line);
     if (this.frames.length >= this.maxDepth) throw new RuntimeError('stack overflow (too many nested calls)', e.line);
-    const args = e.args.map((a, i) => ({ r: fn.params[i].ty.isRef ? this.lval(a) : this.eval(a), p: fn.params[i] }));
+    const args = e.args.map((a, i) => ({
+      r: a.k === 'initlist' ? this.rv(toTy(fn.params[i].ty), this.fromList(toTy(fn.params[i].ty), a, e.line)) : fn.params[i].ty.isRef ? this.lval(a) : this.eval(a),
+      p: fn.params[i],
+    }));
     const frame: Frame = { fn: fn.name, line: fn.line, scopes: [[]] };
     const callerLine = e.line;
     this.frames.push(frame);
@@ -410,6 +438,7 @@ class Interp {
       } else this.declare(p.name, this.newCell(pt, convert(r, pt, callerLine), true, p.ty.isConst));
     }
     this.pending = { kind: 'call', name: fn.name, args: args.map((a) => this.show(a.r)) };
+    this.pendingFlow.push(this.pending);
     this.signal = null; this.retVal = undefined;
     this.execBlockBody(fn.body.body);
     this.frames.pop();
@@ -424,6 +453,7 @@ class Interp {
     }
     this.signal = null; this.retVal = undefined;
     this.pending = { kind: 'returned', name: fn.name, value: fn.ret.name === 'void' ? undefined : this.showV(result) };
+    this.pendingFlow.push(this.pending);
     return result;
   }
 
@@ -440,6 +470,9 @@ class Interp {
     if (o.ty.n === 'string') {
       const s = o.v as string;
       if (e.name === 'size' || e.name === 'length') return this.rv({ n: 'unsigned' }, s.length);
+      if (e.name === 'at') return this.charAt(o, this.num(this.eval(e.args[0])), e.line, true);
+      if (e.name === 'empty') return this.rv(BOOL, s.length === 0);
+      if (e.name === 'push_back' && o.cell) { o.cell.v = s + String.fromCharCode(this.num(this.eval(e.args[0]))); return this.rv(VOID, undefined); }
     }
     throw new RuntimeError(`no member '${e.name}'`, e.line);
   }
@@ -454,11 +487,30 @@ class Interp {
 
   private scoped(body: () => void) { this.frame.scopes.push([]); try { body(); } finally { this.frame.scopes.pop(); } }
 
+  /** `s[i]` / `s.at(i)` of a string: a character cell that writes through to the string. */
+  private charAt(b: RV, i: number, line: number, checked: boolean): RV {
+    const str = b.v as string;
+    if (i < 0 || i >= str.length) {
+      throw new RuntimeError(checked ? `basic_string::at: __n (which is ${i}) >= this->size() (which is ${str.length}) – throws std::out_of_range` : `index ${i} is out of bounds for a string of length ${str.length} (undefined behavior)`, line);
+    }
+    const owner = b.cell;
+    const cell: Cell = { id: -1, ty: { n: 'char' }, v: str.charCodeAt(i), init: true, isConst: !!owner?.isConst || !owner };
+    if (owner) cell.onSet = () => { const cur = owner.v as string; owner.v = cur.slice(0, i) + String.fromCharCode(((cell.v as number) + 256) % 256) + cur.slice(i + 1); };
+    return { ty: cell.ty, v: cell.v, cell };
+  }
+
   private zero(t: TyV): unknown { return t.n === 'bool' ? false : t.n === 'string' ? '' : t.n === 'vector' ? [] : 0; }
 
   /** `std::vector<T>(n)` and `std::vector<T>(n, e)`. */
   private construct(t: TyV, args: Expr[], line: number): RV {
-    if (t.n !== 'vector') throw new RuntimeError('only vectors can be constructed here', line);
+    if (t.n === 'string') { // std::string(n, c), std::string(), std::string("text")
+      if (args.length === 0) return this.rv(STR, '');
+      const first = this.eval(args[0]);
+      if (first.ty.n === 'string') return this.rv(STR, first.v);
+      const ch = String.fromCharCode(this.num(this.eval(args[1])));
+      return this.rv(STR, ch.repeat(Math.max(0, this.num(first))));
+    }
+    if (t.n !== 'vector') throw new RuntimeError('only vectors and strings can be constructed here', line);
     const et = t.e!;
     const arr: Cell[] = [];
     if (args.length) {
@@ -488,6 +540,7 @@ class Interp {
       if (item.init) return this.newCell(t, this.fromList(t, item.init, line), true, ty.isConst);
       return this.newCell(t, this.construct(t, item.ctor ?? [], line).v, true, ty.isConst);
     }
+    if (t.n === 'string' && item.ctor && item.ctor.length !== 1) return this.newCell(t, this.construct(t, item.ctor, line).v, true, ty.isConst);
     if (item.init) { const r = this.eval(item.init); return this.newCell(t, convert(r, t, line), true, ty.isConst); }
     if (item.ctor && item.ctor.length === 1) { const r = this.eval(item.ctor[0]); return this.newCell(t, convert(r, t, line), true, ty.isConst); }
     if (ty.isConst) throw new RuntimeError('uninitialized const variable', line);

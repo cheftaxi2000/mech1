@@ -4,6 +4,7 @@ import { useTr } from '../../i18n';
 import { runAny, type Ev, type FrameView, type Snap } from '../../info/cpp/interp';
 import type { Prog } from '../../info/cpp/programs';
 import { StackView } from './FunctionFigures';
+import { CallTree } from './RecursionFigures';
 import { VecCells } from './VectorFigures';
 import { useInterval } from './InfoControls';
 import './info.css';
@@ -54,7 +55,7 @@ function VarTable({ frame, tr, top }: { frame: FrameView; tr: Tr; top: boolean }
  * marked), the console shows what has been printed. The trace is computed by the interpreter, never typed.
  * `inputs` offers alternative console inputs the student can switch between.
  */
-export function Tracer({ prog, inputs, label, stack }: { prog: Prog; inputs?: string[]; label?: string; /** draw the call stack as boxes of cells (notes Subsection 6.4) instead of tables */ stack?: boolean }) {
+export function Tracer({ prog, inputs, label, stack, tree }: { prog: Prog; inputs?: string[]; label?: string; /** draw the call stack as boxes of cells (notes Subsection 6.4) instead of tables */ stack?: boolean; /** draw the call tree of the run, in step with the stepper (recursion) */ tree?: boolean | 'same' }) {
   const tr = useTr();
   const [inp, setInp] = useState(prog.stdin ?? inputs?.[0] ?? '');
   const trace = useMemo(() => runAny(prog.code, { fragment: prog.fragment, stdin: inp }), [prog, inp]);
@@ -92,6 +93,7 @@ export function Tracer({ prog, inputs, label, stack }: { prog: Prog; inputs?: st
           </div>
         </div>
       </div>
+      {tree && <CallTree trace={trace} step={i} colorSame={tree === 'same'} />}
       <div className="bx-say" aria-live="polite">
         {evText(s.ev, tr) ?? (done ? tr('Das Programm ist zu Ende.', 'The program has finished.') : <>{tr('Als Nächstes läuft Zeile', 'Next to run: line')} <b>{shownLine}</b>.</>)}
         {trace.error && done && <b className="tr-warn"> {trace.error.msg}</b>}

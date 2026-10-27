@@ -152,7 +152,7 @@ class Parser {
       this.expect('}');
       return { k: 'initlist', items, src: this.slice(start), line };
     }
-    if (x.kind === 'id' && (x.text === 'vector' || (x.text === 'std' && this.toks[this.p + 2]?.text === 'vector'))) {
+    if (x.kind === 'id' && ((x.text === 'string' && this.at('(', 1)) || (x.text === 'std' && this.toks[this.p + 2]?.text === 'string' && this.at('(', 3)) || x.text === 'vector' || (x.text === 'std' && this.toks[this.p + 2]?.text === 'vector'))) {
       const ty = this.parseType(); this.expect('(');
       const args = this.parseArgs();
       return { k: 'ctor', ty, args, src: this.slice(start), line };

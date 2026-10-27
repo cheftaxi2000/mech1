@@ -139,3 +139,11 @@ Offen: Polybox-Links nicht erreichbar; Übungen 2–4 handschriftlich (nur Bild)
 | i-vektor-2d | infln05 pp. 103–106 | draft | Nested vectors, `MatrixLayout`, lower-triangle sum, jagged vectors, using/auto; I-010. |
 | i-referenz | infln05 pp. 107–109 | draft | swap by value/reference (stack view with aliases), T& rules (compile errors from g++), pass by value vs reference. |
 | i-rueckgabe | infln05 pp. 109–113 | draft | Return by reference (inc(inc(x)), wrap_at), dangling reference (-Wall warning tested), const references, parameter table. |
+| i-zeichen | infln06 pp. 114–116 | draft | char as integer, ASCII table (`AsciiTable`), digit/letter arithmetic, UTF-8 (`Utf8Figure`, `src/info/text.ts` tested against TextEncoder); I-013. |
+| i-caesar | infln06 pp. 115–117 | draft | Caesar wheel (`CaesarWheel`), mod with negative numbers, Code 9.1 (noskipws, EOF) in the interpreter and g++; ZEBRA both ciphers; I-012. |
+| i-text | infln06 pp. 116–118 | draft | std::string operations, at/[] , += vs + with literals (compile error from g++). |
+| i-rekursion | infln07 pp. 119–120 | draft | fac recursively with stack boxes and call tree (`CallTree`), base case/progress, stack overflow (SIGSEGV tested). |
+| i-stapel | infln07 pp. 120–123 | draft | Call stack with recursion, 13! overflow, gcd recursively (termination, 7 calls for gcd(21,13) tested). |
+| i-bitfolgen | infln07 pp. 123–127 | draft | All bit strings: decision tree drawn from the run, copy vs. single string by reference; bitset equality tested with g++. |
+| i-strategien | infln07 pp. 127–131 | draft | Decrease/divide and conquer for the sum, recursion depth `DepthCompare` (n+1 vs ⌈log₂ n⌉+1 tested with the interpreter). |
+| i-fibonacci | infln07 pp. 131–133 | draft | fib call counts (`FibGrowth`, coloured call tree), iterative version, int overflow at F47 (g++); I-014, I-015. |

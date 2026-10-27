@@ -181,3 +181,10 @@ Four implementer agents wrote 13 lessons from lectures 1–6 and the TA's exerci
 - New figures `viz/info/VectorFigures.tsx`: `SieveGrid`, `MemoryStrip`, `MatrixLayout`, `VecCells`.
 - Claims checked with g++: size_t wrap-around, `at` exception text, `-D_GLIBCXX_DEBUG` message, dangling-reference warning, row gap of vector<vector<int>>; compile errors for T& misuse, const-ness, auto indexing.
 - Source issues I-010, I-011.
+
+## 2026-10-27 — Informatik I, chapters 6 and 7 (course material complete)
+- Chapter 6 (3 lessons: `I6Zeichen`, `I6Caesar`, `I6Text`) and chapter 7 (5 lessons: `I7Rekursion`, `I7Stapel`, `I7Bitfolgen`, `I7Strategien`, `I7Fibonacci`) written from infln06/07: with this the notes infln01–07 are covered (7 chapters, 36 lessons).
+- Interpreter: strings (index read/write through proxy cells, `+=`, `+` with char, `std::string(n, c)`, `at`, `ssize`), `std::cin >> std::noskipws`, EOF/failbit for `while (std::cin >> c)`, `assert`-style aborts, brace lists as arguments, call/return flow events (`Snap.flow`) for the call tree.
+- New figures: `AsciiTable`, `CaesarWheel`, `Utf8Figure` (`TextFigures.tsx`); `CallTree` (a call tree drawn from the run, in step with the stepper, optional colouring of equal calls), `FibGrowth`, `DepthCompare` (`RecursionFigures.tsx`). Pure models `src/info/text.ts`, `src/info/recursion.ts` with tests.
+- Checked with g++: UTF-8 string size, stack overflow signal, 13!/Fibonacci overflow, bitset equality, sums with initializer lists; the notes' claims about F1 ≈ 10^9 calls and fib(50) with int are corrected (I-014, I-015); ZEBRA and the UTF-8 table (I-012, I-013).
+- Open: student's verdict on the Informatik lessons (all `draft`); optional: revisit tone of `i-algorithmus`; German command sheet `ThB_unknown_Info1.pdf` not yet used for terminology.

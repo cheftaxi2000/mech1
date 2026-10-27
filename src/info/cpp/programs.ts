@@ -1256,6 +1256,294 @@ const int& r = x;
 r = 5; // error: r promises not to change x`,
     compileError: "assignment of read-only reference 'r'",
   },
+
+  // ------------------------------------------------------------------ chapter I6
+  charBasics: {
+    fragment: true,
+    code: `char c = 'a';
+std::cout << c << " " << int(c) << " " << c + 1 << " " << char(c + 1);`,
+  },
+  lowerLoop: { fragment: true, code: `for (char c = 'a'; c <= 'z'; ++c)\n    std::cout << c; // abcdefghijklmnopqrstuvwxyz` },
+  asciiCodes: {
+    fragment: true,
+    code: `std::cout << int('A') << " " << int('Z') << " " << int('a') << " " << int('z') << " " << int('0') << " " << int('9') << " " << int(' ') << " " << int('~');`,
+  },
+  digitValue: {
+    fragment: true,
+    code: `char d = '7';
+int v = d - '0';          // the value of the digit
+char back = char(v + 1 + '0'); // the next digit as a character
+std::cout << v << " " << back << " " << 'a' / 'b' << " " << 'a' - 'A';`,
+  },
+  caesar: {
+    code: `#include <iostream>
+
+// PRE: divisor > 0
+// POST: returns the mathematically defined remainder of
+//       dividend / divisor with 0 <= result < divisor
+int mod(int dividend, int divisor) {
+    return (dividend % divisor + divisor) % divisor;
+}
+
+// POST: if c is one of the 95 printable ASCII characters, c is
+//       cyclically shifted s printable characters to the right
+char shift(char c, int s) {
+    if (c >= 32 && c <= 126) { // c is printable
+        c = 32 + mod(c - 32 + s, 95);
+    }
+    return c;
+}
+
+// POST: Each character read from std::cin was shifted cyclically
+//       by s characters and afterwards written to std::cout
+void caesar(int s) {
+    std::cin >> std::noskipws; // #include <ios>
+    char next;
+    while (std::cin >> next) {
+        std::cout << shift(next, s);
+    }
+}
+
+int main() {
+    int s;
+    std::cin >> s;
+    // Shift input by s
+    caesar(s);
+    return 0;
+}`,
+    stdin: '3\nHello, World!',
+  },
+  modDemo: {
+    fragment: true,
+    code: `std::cout << -3 % 5 << " " << ((-3 % 5 + 5) % 5) << " " << ((32 - 32 - 3 + 95) % 95 + 32);`,
+  },
+  zebra: {
+    code: `#include <iostream>
+#include <string>
+
+int mod(int dividend, int divisor) {
+    return (dividend % divisor + divisor) % divisor;
+}
+
+// cyclic shift over all 95 printable characters (Code 9.1)
+char shift(char c, int s) {
+    if (c >= 32 && c <= 126) c = 32 + mod(c - 32 + s, 95);
+    return c;
+}
+
+// cyclic shift over the 26 capital letters only
+char shift_letter(char c, int s) {
+    if (c >= 'A' && c <= 'Z') c = 'A' + mod(c - 'A' + s, 26);
+    return c;
+}
+
+int main() {
+    std::string word = "ZEBRA";
+    std::string a = word, b = word, c = word;
+    for (int i = 0; i < std::ssize(word); ++i) {
+        a[i] = shift(word[i], 1);
+        b[i] = shift_letter(word[i], 1);
+        c[i] = shift_letter(word[i], -1);
+    }
+    std::cout << a << " " << b << " " << c;
+    return 0;
+}`,
+  },
+  strOps: {
+    fragment: true,
+    code: `std::string text = "Essen ist fertig!";
+std::cout << text.size() << " " << text[0] << " ";
+text[0] = 'e';
+std::cout << text << "|";
+std::string smiley = ":-";
+smiley += ")";
+std::cout << (smiley == ":-)") << (smiley == ":-(") << std::string(3, 'a');
+for (int i = 0; i < std::ssize(smiley); ++i)
+    std::cout << "/" << smiley[i];`,
+  },
+  stringAt: { fragment: true, code: `std::string s = "abc";\nstd::cout << s.at(5);`, runtimeError: true },
+
+  strLiteralPlus: { fragment: true, includes: ['#include <string>'], code: `std::string s = "a" + "b"; // two string literals cannot be added`, compileError: "invalid operands of types 'const char [2]' and 'const char [2]' to binary 'operator+'" },
+  // ------------------------------------------------------------------ chapter I7
+  facRec: {
+    code: `#include <iostream>
+// POST: return value is n!
+int fac(int n) {
+    if (n <= 1) return 1;
+    else return fac(n-1) * n;
+}
+
+int main() {
+    std::cout << fac(4);
+    return 0;
+}`,
+  },
+  facTable: {
+    code: `#include <iostream>
+int fac(int n) {
+    if (n <= 1) return 1;
+    else return fac(n-1) * n;
+}
+
+int main() {
+    for (int n = 10; n <= 13; ++n)
+        std::cout << n << "! = " << fac(n) << "\\n";
+    return 0;
+}`,
+  },
+  infRec: { code: `void f() {\n    f();\n}\n\nint main() {\n    f();\n    return 0;\n}`, runtimeError: true },
+  gcdRec: {
+    code: `#include <iostream>
+int gcd(int a, int b) {
+    if (b == 0) return a;
+    else return gcd(b, a % b);
+}
+
+int main() {
+    std::cout << gcd(48, 18) << " " << gcd(7, 0);
+    return 0;
+}`,
+  },
+  bitStrings: {
+    code: `#include <iostream>
+#include <string>
+
+void all_bit_strings(int n, std::string prefix) {
+    if (std::ssize(prefix) == n) {
+        std::cout << prefix << "\\n";
+    } else {
+        all_bit_strings(n, prefix + "0");
+        all_bit_strings(n, prefix + "1");
+    }
+}
+
+int main() {
+    all_bit_strings(3, "");
+    return 0;
+}`,
+  },
+  bitStringsRef: {
+    code: `#include <iostream>
+#include <string>
+
+void all_bit_strings(std::string& bit_string, int i) {
+    if (i == std::ssize(bit_string)) {
+        std::cout << bit_string << "\\n";
+    }
+    else {
+        bit_string[i] = '0';
+        all_bit_strings(bit_string, i+1);
+        bit_string[i] = '1';
+        all_bit_strings(bit_string, i+1);
+    }
+}
+
+int main() {
+    std::string bit_string = std::string(3, '*');
+    all_bit_strings(bit_string, 0);
+    return 0;
+}`,
+  },
+  sumLoop: {
+    code: `#include <iostream>
+#include <vector>
+int sum(const std::vector<int>& v) {
+    int s = 0;
+    for (int i = 0; i < std::ssize(v); ++i) {
+        s += v[i];
+    }
+    return s;
+}
+
+int main() {
+    std::cout << sum({-1, 4, 6, 7});
+    return 0;
+}`,
+  },
+  sumDecrease: {
+    code: `#include <iostream>
+#include <vector>
+int sum(const std::vector<int>& v, int from) {
+    if (from >= std::ssize(v))
+        return 0;
+    else
+        return v[from] + sum(v, from + 1);
+}
+
+int main() {
+    std::cout << sum({-1, 4, 6, 7}, 0);
+    return 0;
+}`,
+  },
+  sumDivide: {
+    code: `#include <iostream>
+#include <vector>
+int sum(const std::vector<int>& v, int from, int to) {
+    if (from > to)
+        return 0;
+    else if (from == to)
+        return v.at(from);
+    else {
+        int middle = (from + to) / 2;
+        return sum(v, from, middle) + sum(v, middle + 1, to);
+    }
+}
+
+int main() {
+    std::cout << sum({-1, 4, 6, 7}, 0, 3);
+    return 0;
+}`,
+  },
+  fibRec: {
+    code: `#include <iostream>
+int fib(int n) {
+    if (n == 0) return 0;
+    if (n == 1) return 1;
+    return fib(n-1) + fib(n-2);
+}
+
+int main() {
+    std::cout << fib(4);
+    return 0;
+}`,
+  },
+  fibCount: {
+    code: `#include <iostream>
+int calls = 0; // counts how often fib is called
+int fib(int n) {
+    ++calls;
+    if (n == 0) return 0;
+    if (n == 1) return 1;
+    return fib(n-1) + fib(n-2);
+}
+
+int main() {
+    std::cout << fib(10) << " " << calls;
+    return 0;
+}`,
+  },
+  fibIter: {
+    code: `#include <iostream>
+int fibonacci(int n) {
+    if (n == 0) return 0;
+    if (n == 1) return 1;
+
+    int fib2 = 0; // value two before
+    int fib1 = 1; // value one before
+    int fib;      // current value
+    for (int i = 2; i <= n; ++i) {
+        fib = fib2 + fib1; // i-th Fibonacci number
+        fib2 = fib1;
+        fib1 = fib;
+    }
+    return fib;
+}
+
+int main() {
+    std::cout << fibonacci(10) << " " << fibonacci(46);
+    return 0;
+}`,
+  },
 } satisfies Record<string, Prog>;
 
 export type ProgId = keyof typeof P;
