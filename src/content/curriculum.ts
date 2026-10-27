@@ -165,4 +165,8 @@ export const TOPICS: Topic[] = [
   { id: 'ch-trends', chapter: 'CH6', title: ['Abschirmung, Atomgrösse und Ionisierungsenergie', 'Screening, atomic size and ionisation energy'], pages: 'V6/28–32', status: 'review', component: lazy(() => import('../lessons/CH6Trends')) },
   // Informatik I – one chapter per lecture-notes file (infln01 … infln07); `pages` are the printed pages of the notes.
   { id: 'i-algorithmus', chapter: 'I1', title: ['Algorithmus und Schachtel-Rechner', 'Algorithm and box computer'], pages: '8–12', status: 'review', component: lazy(() => import('../lessons/I1Algorithmus')) },
+  { id: 'i-rechner', chapter: 'I1', title: ['Vom Modell zum Rechner: Turing, von Neumann, Syntax', 'From model to computer: Turing, von Neumann, syntax'], pages: '12–17', status: 'draft', component: lazy(() => import('../lessons/I1Rechner')) },
+  { id: 'i-programm', chapter: 'I1', title: ['Das erste Programm: Aufbau und Ausgabe', 'The first program: structure and output'], pages: '18–21', status: 'draft', component: lazy(() => import('../lessons/I1Programm')) },
+  { id: 'i-variablen', chapter: 'I1', title: ['Variablen: Deklaration, Zuweisung, Initialisierung', 'Variables: declaration, assignment, initialization'], pages: '21–25', status: 'draft', component: lazy(() => import('../lessons/I1Variablen')) },
+  { id: 'i-ausdruecke', chapter: 'I1', title: ['Eingabe, Ausdrücke und Konstanten', 'Input, expressions and constants'], pages: '25–29', status: 'draft', component: lazy(() => import('../lessons/I1Ausdruecke')) },
 ];

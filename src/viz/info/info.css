@@ -28,7 +28,7 @@ pre.code .ct { white-space: pre; }
 pre.code .cm { margin-left: auto; padding-left: 18px; font-family: var(--sans, inherit); font-size: 0.82rem; color: var(--muted); white-space: nowrap; }
 .tk-kw { color: var(--code-kw); font-weight: 600; } .tk-num { color: var(--code-num); } .tk-str { color: var(--code-str); }
 .tk-com { color: var(--code-com); font-style: italic; } .tk-pre { color: var(--code-pre); }
-code.ic { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; padding: 1px 5px; border-radius: 5px; background: var(--code-bg); color: var(--code-fg); white-space: nowrap; }
+code.ic { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; padding: 1px 5px; border-radius: 5px; background: var(--code-bg); color: var(--code-fg); white-space: pre-wrap; overflow-wrap: anywhere; }
 
 /* ---- shared figure bits ---- */
 .in-fig { display: grid; gap: 12px; }
@@ -106,7 +106,64 @@ code.ic { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 .lv-arrow span:first-child { text-align: center; font-size: 1.2rem; line-height: 1; }
 @media (max-width: 640px) { .lv-row, .lv-arrow { grid-template-columns: 1fr; gap: 4px; } .lv-arrow span:first-child { text-align: left; } }
 
-table.plain { width: 100%; border-collapse: collapse; margin: 10px 0 4px; font-size: 0.95rem; }
+table.plain { display: block; max-width: 100% !important; overflow-x: auto; width: fit-content; border-collapse: collapse; margin: 10px 0 4px; font-size: 0.95rem; }
 table.plain th, table.plain td { text-align: left; padding: 4px 10px; border-bottom: 0.5px solid var(--line); vertical-align: top; }
 table.plain th { color: var(--muted); font-weight: 600; }
 table.plain td:first-child { width: 4.5rem; font-variant-numeric: tabular-nums; color: var(--muted); }
+
+/* ---- program tracer ---- */
+.tr-fig .tr-main { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 14px; align-items: start; }
+.tr-fig pre.code { margin: 0; }
+.tr-side { display: grid; gap: 10px; min-width: 0; }
+.tr-fn { font-size: 0.85rem; color: var(--muted); margin-bottom: 2px; }
+.tr-vars { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.tr-vars th { text-align: left; color: var(--muted); font-weight: 600; font-size: 0.78rem; padding: 2px 8px; }
+.tr-vars td { padding: 3px 8px; border-top: 0.5px solid var(--line); }
+.tr-vars td code { background: none; padding: 0; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+.tr-vars tr.chg td { background: color-mix(in srgb, var(--accent) 16%, transparent); font-weight: 600; }
+.tr-vars tr.shadow td { opacity: 0.45; }
+.tr-vars td.uninit code { color: var(--muted); font-style: italic; }
+.tr-vars:not(.top) { opacity: 0.8; }
+.tr-empty { color: var(--muted); font-style: italic; }
+.tr-badge { font-size: 0.72rem; color: var(--muted); font-weight: 500; }
+.tr-out { border-radius: 10px; background: var(--code-bg); overflow: hidden; }
+.tr-out-h { font-size: 0.78rem; color: var(--muted); padding: 5px 12px 0; }
+.tr-out pre code { font-family: inherit; background: none; padding: 0; }
+.tr-out pre { margin: 0; padding: 4px 12px 8px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9rem; white-space: pre-wrap; min-height: 1.6em; word-break: break-word; }
+.tr-t { color: var(--in-ok); } .tr-f { color: var(--bad); } .tr-warn { color: var(--bad); }
+.tr-inl { align-self: center; color: var(--muted); font-size: 0.9rem; }
+.lst-fig { display: grid; gap: 8px; }
+.lst-fig pre.code { margin: 0; }
+@media (max-width: 760px) { .tr-fig .tr-main { grid-template-columns: 1fr; } }
+
+/* ---- von Neumann architecture ---- */
+.vn-fig { display: grid; gap: 18px; }
+.vn-arch { display: grid; gap: 6px; max-width: 520px; margin-inline: auto; width: 100%; }
+.vn-cpu { border: 1.5px solid var(--in-data-bd); background: var(--in-data); border-radius: 12px; padding: 10px 14px; display: grid; gap: 8px; }
+.vn-cpu-parts { display: flex; flex-wrap: wrap; gap: 8px; }
+.vn-cpu-parts span { padding: 4px 10px; border-radius: 8px; background: var(--panel); border: 1px solid var(--in-data-bd); font-size: 0.88rem; }
+.vn-cpu-parts span.reg { background: var(--in-reg); border-color: var(--in-reg-bd); }
+.vn-bus { text-align: center; color: var(--muted); font-size: 0.9rem; padding: 2px 0; border-radius: 6px; background: var(--code-bg); }
+.vn-low { display: grid; grid-template-columns: 2fr 1fr; gap: 10px; }
+.vn-ram, .vn-io { display: grid; gap: 2px; padding: 10px 14px; border-radius: 12px; border: 1.5px solid var(--in-instr-bd); background: var(--in-instr); }
+.vn-io { background: var(--code-bg); border-color: var(--line-strong, var(--line)); }
+.vn-ram small, .vn-io small { color: var(--muted); font-size: 0.82rem; }
+.vn-mem { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0; border: 1.5px solid var(--in-instr-bd); border-radius: 8px; overflow: hidden; }
+.vn-cell { display: grid; gap: 2px; padding: 6px 4px; text-align: center; background: var(--in-instr); border-right: 1px solid var(--in-instr-bd); min-width: 0; }
+.vn-cell:last-child { border-right: 0; }
+.vn-adr { font-size: 0.7rem; color: var(--muted); }
+.vn-cell code { font-family: ui-monospace, Menlo, monospace; font-size: clamp(0.62rem, 1.8vw, 0.85rem); background: none; padding: 0; }
+@media (max-width: 520px) { .vn-mem { grid-template-columns: repeat(3, 1fr); } .vn-cell:nth-child(3n) { border-right: 0; } .vn-cell:nth-child(n+4) { border-top: 1px solid var(--in-instr-bd); } }
+pre.plain-code { margin: 10px 0; padding: 10px 14px; background: var(--code-bg); color: var(--code-fg); border-radius: 10px; overflow-x: auto; font-size: 0.9rem; line-height: 1.5; }
+pre.plain-code code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; background: none; padding: 0; }
+
+/* ---- variables as boxes in memory ---- */
+.vs-row { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
+.vs-var { display: grid; gap: 4px; justify-items: center; }
+.vs-name code { font-size: 1rem; font-weight: 600; background: none; padding: 0; font-family: ui-monospace, Menlo, monospace; }
+.vs-box { position: relative; min-width: 96px; padding: 14px 16px 18px; border-radius: 10px; border: 1.5px solid var(--in-data-bd); background: var(--in-data); display: grid; place-items: center; }
+.vs-val { font-size: 1.4rem; font-weight: 700; background: none; padding: 0; font-family: ui-monospace, Menlo, monospace; }
+.vs-type { position: absolute; right: 8px; bottom: 3px; font-size: 0.72rem; color: var(--muted); }
+.vs-type code { background: none; padding: 0; font-size: inherit; }
+.vs-addr { font-size: 0.78rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.vs-cap { text-align: center; color: var(--muted); font-size: 0.85rem; margin-top: 8px; }

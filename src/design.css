@@ -362,3 +362,6 @@ input[type="checkbox"] { accent-color: var(--accent); width: 18px; height: 18px;
 .fg-pc-mark { fill: var(--accent); font-size: 12px; text-anchor: middle; }
 .fg-reg { fill: var(--in-reg, #faf1bf); stroke: var(--in-reg-bd, #a88f12); stroke-width: 1.4; }
 .fg-reg-t { fill: var(--fg); font-size: 14px; font-weight: 600; text-anchor: middle; font-family: ui-monospace, Menlo, monospace; }
+
+/* practical tips (Informatik): in the subject's accent colour */
+.box-tip { --c: var(--accent); }

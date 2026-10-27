@@ -43,7 +43,7 @@ export function Src({ p, fig, u, slides, vis, lec, ex }: { p?: number | string; 
   );
 }
 
-type Kind = 'lecture' | 'uebung' | 'supplement' | 'misconception' | 'review' | 'key' | 'intuition';
+type Kind = 'lecture' | 'uebung' | 'supplement' | 'misconception' | 'review' | 'key' | 'intuition' | 'tip';
 const LABEL: Record<Kind, [string, string]> = {
   lecture: ['Aus der Vorlesung', 'From the lecture'],
   uebung: ['Aus der Übung', 'From the exercise class'],
@@ -52,6 +52,7 @@ const LABEL: Record<Kind, [string, string]> = {
   review: ['Prüfhinweis', 'Review flag'],
   key: ['Merke', 'Key point'],
   intuition: ['Intuition', 'Intuition'],
+  tip: ['Tipp', 'Tip'],
 };
 
 /** `keep`: this box stays in the short version although its kind is normally dropped there. */
