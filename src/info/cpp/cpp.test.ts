@@ -20,7 +20,7 @@ function gpp(p: Prog): { ok: boolean; err: string; out: string } {
   const dir = mkdtempSync(join(tmpdir(), 'cpp-'));
   const src = join(dir, 'a.cpp'), bin = join(dir, 'a.out');
   writeFileSync(src, wrap(p));
-  const c = spawnSync('g++', ['-std=c++17', '-O0', '-o', bin, src], { encoding: 'utf8', env: { ...process.env, LC_ALL: 'C' } });
+  const c = spawnSync('g++', ['-std=c++20', '-O0', '-o', bin, src], { encoding: 'utf8', env: { ...process.env, LC_ALL: 'C' } });
   if (c.status !== 0) return { ok: false, err: c.stderr, out: '' };
   const r = spawnSync(bin, [], { input: p.stdin ?? '', encoding: 'utf8', timeout: 5000 });
   return { ok: true, err: c.stderr, out: r.stdout };
@@ -118,7 +118,7 @@ describe('chapter 3 claims (notes pp. 49–70)', () => {
     const dir = mkdtempSync(join(tmpdir(), 'cpp-'));
     const src = join(dir, 'a.cpp');
     writeFileSync(src, wrap(P.switchNoBreak));
-    const c = spawnSync('g++', ['-std=c++17', '-Wextra', '-c', '-o', '/dev/null', src], { encoding: 'utf8', env: { ...process.env, LC_ALL: 'C' } });
+    const c = spawnSync('g++', ['-std=c++20', '-Wextra', '-c', '-o', '/dev/null', src], { encoding: 'utf8', env: { ...process.env, LC_ALL: 'C' } });
     expect(c.stderr).toContain('this statement may fall through');
   });
 });
@@ -176,20 +176,20 @@ describe('chapter 4 claims (notes pp. 71–96)', () => {
     const dir = mkdtempSync(join(tmpdir(), 'cpp-'));
     const src = join(dir, 'a.cpp'), bin = join(dir, 'a.out');
     writeFileSync(src, P.assertPow.code);
-    expect(spawnSync('g++', ['-std=c++17', '-DNDEBUG', '-o', bin, src]).status).toBe(0);
+    expect(spawnSync('g++', ['-std=c++20', '-DNDEBUG', '-o', bin, src]).status).toBe(0);
     expect(spawnSync(bin, [], { encoding: 'utf8' }).stdout).toBe('inf');
   });
   it.skipIf(!hasGpp)('g++ -Wall warns: control reaches end of non-void function (Example 6.9)', () => {
     const dir = mkdtempSync(join(tmpdir(), 'cpp-'));
     const src = join(dir, 'a.cpp');
     writeFileSync(src, P.compareBad.code);
-    const c = spawnSync('g++', ['-std=c++17', '-Wall', '-c', '-o', '/dev/null', src], { encoding: 'utf8', env: { ...process.env, LC_ALL: 'C' } });
+    const c = spawnSync('g++', ['-std=c++20', '-Wall', '-c', '-o', '/dev/null', src], { encoding: 'utf8', env: { ...process.env, LC_ALL: 'C' } });
     expect(c.stderr).toContain('control reaches end of non-void function');
   });
   it.skipIf(!hasGpp)('separate compilation: include, forward declaration + linker, header file (Codes 6.5–6.9)', () => {
     const dir = mkdtempSync(join(tmpdir(), 'cpp-'));
     for (const [name, text] of Object.entries(MULTIFILE)) writeFileSync(join(dir, name), text + '\n');
-    const sh = (args: string[]) => spawnSync('g++', ['-std=c++17', ...args], { cwd: dir, encoding: 'utf8', env: { ...process.env, LC_ALL: 'C' } });
+    const sh = (args: string[]) => spawnSync('g++', ['-std=c++20', ...args], { cwd: dir, encoding: 'utf8', env: { ...process.env, LC_ALL: 'C' } });
     const exe = (name: string) => spawnSync(join(dir, name), [], { encoding: 'utf8' }).stdout;
     // 1. include the source file
     expect(sh(['callpow2.cpp', '-o', 'callpow2']).status).toBe(0);
@@ -213,5 +213,68 @@ describe('chapter 4 claims (notes pp. 71–96)', () => {
     expect(sh(['-c', 'callpow4.cpp']).status).toBe(0);
     expect(sh(['mymath.o', 'callpow4.o', '-o', 'callpow4']).status).toBe(0);
     expect(exe('callpow4')).toBe('0.25\n2.25\n5\n-512\n');
+  });
+});
+
+describe('chapter 5 claims (notes pp. 97–113), checked with g++', () => {
+  const build = (code: string, flags: string[] = []) => {
+    const dir = mkdtempSync(join(tmpdir(), 'cpp-'));
+    const src = join(dir, 'a.cpp'), bin = join(dir, 'a.out');
+    writeFileSync(src, code);
+    const c = spawnSync('g++', ['-std=c++20', ...flags, '-o', bin, src], { encoding: 'utf8', env: { ...process.env, LC_ALL: 'C' } });
+    return { c, run: () => spawnSync(bin, [], { encoding: 'utf8' }) };
+  };
+  it.skipIf(!hasGpp)('a.size() - 4 wraps around to 2^64 - 1 (size_t is unsigned, 64 bit)', () => {
+    const b = build('#include <iostream>\n#include <vector>\nint main() { std::vector<int> a{1,2,3}; std::cout << a.size() - 4; }');
+    expect(b.c.status).toBe(0);
+    expect(b.run().stdout).toBe('18446744073709551615');
+  });
+  it.skipIf(!hasGpp)('v.at(10) throws std::out_of_range (the program aborts)', () => {
+    const b = build(`#include <iostream>\n#include <vector>\nint main() {\n${P.vecAt.code}\n}`);
+    const r = b.run();
+    expect(r.status).not.toBe(0);
+    expect(r.stderr).toContain('std::out_of_range');
+    expect(r.stderr).toContain('which is 10) >= this->size() (which is 10)');
+  });
+  it.skipIf(!hasGpp)('-D_GLIBCXX_DEBUG makes v[10] a detected error', () => {
+    const b = build(`#include <vector>\nint main() {\n${P.vecOutOfBounds.code}\n}`, ['-D_GLIBCXX_DEBUG', '-D_GLIBCXX_DEBUG_PEDANTIC']);
+    const r = b.run();
+    expect(r.status).not.toBe(0);
+    expect(r.stderr).toContain('attempt to subscript container with out-of-bounds index 10');
+  });
+  it.skipIf(!hasGpp)('g++ -Wall warns about returning a reference to a local variable', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'cpp-'));
+    const src = join(dir, 'a.cpp');
+    writeFileSync(src, P.dangling.code);
+    const c = spawnSync('g++', ['-std=c++20', '-Wall', '-c', '-o', '/dev/null', src], { encoding: 'utf8', env: { ...process.env, LC_ALL: 'C' } });
+    expect(c.stderr).toContain("reference to local variable 'i' returned");
+  });
+  it('the sieve prints exactly the primes below n (n up to 120)', () => {
+    for (const n of [2, 3, 24, 120]) {
+      const out = runProgram(P.sieve.code, { stdin: `${n}\n`, maxSnaps: 400000 }).stdout.split('\n')[1].trim();
+      const primes = Array.from({ length: Math.max(0, n - 2) }, (_, k) => k + 2).filter((m) => Array.from({ length: m - 2 }, (_, d) => d + 2).every((d) => m % d !== 0));
+      expect(out).toBe(primes.join(' '));
+    }
+  });
+  it('the three corrected loops print 012 each; the broken one runs on past the size', () => {
+    expect(runFragment(P.sizeFixed.code).stdout).toBe('012 012 012');
+    expect(runFragment(P.sizeUnsigned.code).stdout).toBe('012345');
+    expect(runFragment(P.sizeCompare.code).stdout).toBe('1 0');
+  });
+  it('a vector is copied when passed by value, shared when passed by reference', () => {
+    expect(runProgram(P.vecByValue.code).stdout).toBe('1 99');
+  });
+  it('lower triangle sum of 1..9 is 4 + 7 + 8 = 19; average of the temperatures is 9.7', () => {
+    expect(runProgram(P.lowerTriangle.code).stdout).toBe('19');
+    expect(runProgram(P.averageConstRef.code).stdout).toBe('9.7');
+    const t = [0.9, 1.3, 5.1, 9.1, 13.2, 17.1, 18.8, 18.6, 14.7, 10.6, 5.2, 1.8];
+    expect(t.reduce((a, b) => a + b, 0) / t.length).toBeCloseTo(9.7, 10);
+  });
+  it.skipIf(!hasGpp)('rows of a vector of vectors are separate blocks: &m[1][0] - &m[0][0] is not 3 (the notes draw the memory as one flat strip)', () => {
+    const b = build('#include <iostream>\n#include <vector>\nint main() { std::vector<std::vector<int>> m(2, std::vector<int>(3, 1)); std::cout << (&m[1][0] - &m[0][0]) << " " << (&m[0][1] - &m[0][0]); }');
+    expect(b.c.status).toBe(0);
+    const [rowGap, inRow] = b.run().stdout.split(' ');
+    expect(inRow).toBe('1'); // inside one row the elements are adjacent
+    expect(rowGap).not.toBe('3'); // between rows there is a gap (allocator bookkeeping)
   });
 });

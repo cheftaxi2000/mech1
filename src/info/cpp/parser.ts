@@ -1,12 +1,14 @@
 import type { DeclItem, Expr, FuncDef, Param, Program, Stmt, Ty } from './ast';
 import { CppSyntaxError, lex, type Token } from './lexer';
 
-const BASE_WORDS = new Set(['int', 'unsigned', 'double', 'float', 'bool', 'char', 'void']);
+const BASE_WORDS = new Set(['int', 'unsigned', 'double', 'float', 'bool', 'char', 'void', 'auto']);
 const ASSIGN_OPS = new Set(['=', '+=', '-=', '*=', '/=', '%=']);
 const LEVELS: string[][] = [['||'], ['&&'], ['==', '!='], ['<', '>', '<=', '>='], ['<<', '>>'], ['+', '-'], ['*', '/', '%']];
 
 class Parser {
   private p = 0;
+  /** `using name = type;` */
+  private aliases = new Map<string, Ty>();
   constructor(private toks: Token[], private src: string) {}
 
   private get t() { return this.toks[this.p]; }
@@ -25,23 +27,36 @@ class Parser {
   isTypeStart(off = 0): boolean {
     const x = this.toks[this.p + off];
     if (!x || x.kind !== 'id') return false;
-    if (x.text === 'const' || BASE_WORDS.has(x.text)) return true;
+    if (x.text === 'const' || BASE_WORDS.has(x.text) || this.aliases.has(x.text)) return true;
     if (x.text === 'std' && this.at('::', off + 1)) { const y = this.toks[this.p + off + 2]; return y?.text === 'string' || y?.text === 'vector'; }
     return x.text === 'string' || x.text === 'vector';
+  }
+
+  /** Consume the `>` that closes a template argument list; `>>` closes two lists at once. */
+  private closeAngle() {
+    if (this.at('>')) { this.p++; return; }
+    if (this.at('>>')) { this.toks[this.p] = { ...this.t, text: '>' }; return; }
+    throw new CppSyntaxError(`expected '>' but found '${this.t.text || 'end of file'}'`, this.t.line);
   }
 
   parseType(): Ty {
     let isConst = false;
     if (this.eat('const')) isConst = true;
     if (this.at('std') && this.at('::', 1)) { this.p += 2; }
-    let name = this.ident();
-    let args: Ty[] | undefined;
-    if (name === 'unsigned') { this.eat('int'); }
-    else if (name === 'vector') { this.expect('<'); args = [this.parseType()]; this.expect('>'); }
-    else if (!BASE_WORDS.has(name) && name !== 'string') throw new CppSyntaxError(`unknown type '${name}'`, this.toks[this.p - 1].line);
-    if (this.eat('const')) isConst = true;
-    const isRef = this.eat('&');
-    return { name, args, isConst, isRef };
+    const name = this.ident();
+    let ty: Ty;
+    if (this.aliases.has(name)) ty = { ...this.aliases.get(name)! };
+    else {
+      let args: Ty[] | undefined;
+      if (name === 'unsigned') { this.eat('int'); }
+      else if (name === 'vector') { this.expect('<'); args = [this.parseType()]; this.closeAngle(); }
+      else if (!BASE_WORDS.has(name) && name !== 'string') throw new CppSyntaxError(`unknown type '${name}'`, this.toks[this.p - 1].line);
+      ty = { name, args, isConst: false, isRef: false };
+    }
+    if (isConst) ty.isConst = true;
+    if (this.eat('const')) ty.isConst = true;
+    if (this.eat('&')) ty.isRef = true;
+    return ty;
   }
 
   // ---------------------------------------------------------------- expressions
@@ -90,9 +105,13 @@ class Parser {
       return { k: 'unary', op, e, src: this.slice(start), line };
     }
     if (this.at('(') && this.isTypeStart(1)) {
-      this.p++; const ty = this.parseType(); this.expect(')');
-      const e = this.parseUnary();
-      return { k: 'cast', ty, e, src: this.slice(start), line };
+      const save = this.p; this.p++;
+      const ty = this.parseType();
+      if (this.eat(')')) { // C-style cast; otherwise it was a parenthesized `int(x)`-style expression
+        const e = this.parseUnary();
+        return { k: 'cast', ty, e, src: this.slice(start), line };
+      }
+      this.p = save;
     }
     return this.parsePostfix();
   }
@@ -127,6 +146,17 @@ class Parser {
       return { k: 'str', v, src: this.slice(start), line };
     }
     if (x.kind === 'op' && x.text === '(') { this.p++; const e = this.parseExpr(); this.expect(')'); return { ...e, src: this.slice(start) }; }
+    if (x.kind === 'op' && x.text === '{') {
+      this.p++; const items: Expr[] = [];
+      if (!this.at('}')) { do items.push(this.parseAssign()); while (this.eat(',')); }
+      this.expect('}');
+      return { k: 'initlist', items, src: this.slice(start), line };
+    }
+    if (x.kind === 'id' && (x.text === 'vector' || (x.text === 'std' && this.toks[this.p + 2]?.text === 'vector'))) {
+      const ty = this.parseType(); this.expect('(');
+      const args = this.parseArgs();
+      return { k: 'ctor', ty, args, src: this.slice(start), line };
+    }
     if (x.kind === 'id') {
       if (x.text === 'true' || x.text === 'false') { this.p++; return { k: 'bool', v: x.text === 'true', src: x.text, line }; }
       if (x.text === 'static_cast') {
@@ -202,6 +232,7 @@ class Parser {
       const il = this.t.line; const name = this.ident();
       let init: Expr | undefined, ctor: Expr[] | undefined;
       if (this.eat('=')) init = this.parseAssign();
+      else if (this.at('{')) init = this.parsePrimary();
       else if (this.eat('(')) ctor = this.parseArgs();
       items.push({ name, init, ctor, line: il });
     } while (this.eat(','));
@@ -229,6 +260,9 @@ class Parser {
     while (this.t.kind !== 'eof') {
       if (inBraces && this.at('}')) return;
       if (this.t.kind === 'id' && this.t.text.startsWith('#')) { includes.push(this.t.text); this.p++; continue; }
+      if (this.at('using') && this.t.kind === 'id' && this.toks[this.p + 1]?.kind === 'id' && this.at('=', 2)) {
+        this.p++; const alias = this.ident(); this.expect('='); this.aliases.set(alias, this.parseType()); this.expect(';'); continue;
+      }
       if (this.at('using')) { while (!this.eat(';')) this.p++; continue; }
       if (this.at('namespace')) {
         this.p++;

@@ -900,6 +900,362 @@ int main() {
     return 0;
 }`,
   },
+
+  // ------------------------------------------------------------------ chapter I5
+  sieve: {
+    code: `#include <iostream>
+#include <vector> // standard containers with vector functionality
+int main() {
+    // input
+    std::cout << "Compute prime numbers in {2,...,n-1} for n =? ";
+    int n;
+    std::cin >> n;
+
+    // definition and initialization: provides us with Booleans
+    // crossed_out[0],..., crossed_out[n-1], initialized to false
+    std::vector<bool> crossed_out = std::vector<bool>(n, false);
+
+    // computation and output
+    std::cout << "Prime numbers in {2,...," << n-1 << "}:\\n";
+    for (int i = 2; i < n; ++i){
+        // the index operator [] used to access elements by index
+        if (!crossed_out[i]) { // i is prime
+            std::cout << i << " ";
+            // cross out all proper multiples of i
+            for (int m = 2*i; m < n; m += i){
+                crossed_out[m] = true;
+            }
+        }
+    }
+    std::cout << "\\n";
+    return 0;
+}`,
+    stdin: '24\n',
+  },
+  vecInit: {
+    fragment: true,
+    includes: ['#include <vector>'],
+    code: `std::vector<int> fivezeros = std::vector<int>(5);
+std::vector<int> fivetwos = std::vector<int>(5, 2);
+std::vector<int> countdown = {5, 4, 3, 2, 1};
+std::vector<int> empty;
+std::cout << fivezeros[2] << " " << fivetwos[2] << " " << countdown[2] << " " << empty.size();`,
+  },
+  vecWrite: {
+    fragment: true,
+    includes: ['#include <vector>'],
+    code: `std::vector<int> v = {10, 20, 30};
+v[1] = 25;
+v.push_back(-1);
+std::cout << v.size() << " " << v[1] << " " << v[3];`,
+  },
+  vecOutOfBounds: {
+    fragment: true,
+    includes: ['#include <vector>'],
+    code: `std::vector<int> vec = std::vector<int>(10);
+for (int i = 0; i <= 10; ++i)
+    vec[i] = 30; // Undefined behavior: accessing vec[10]`,
+    runtimeError: true,
+  },
+  vecAt: {
+    fragment: true,
+    includes: ['#include <vector>'],
+    code: `std::vector<int> v = std::vector<int>(10);
+std::cout << v.at(10);`,
+    runtimeError: true,
+  },
+  sizeUnsigned: {
+    fragment: true,
+    includes: ['#include <vector>'],
+    code: `std::vector<int> a {1,2,3};
+for (int x = 0; a.size()-x-1 >= 0; ++x){
+    std::cout << x;
+    if (x == 5) break; // safety exit: the original loop never ends
+}`,
+  },
+  sizeFixed: {
+    fragment: true,
+    includes: ['#include <vector>', '#include <iterator>'],
+    code: `std::vector<int> a {1,2,3};
+for (int x = 0; x < a.size(); ++x) {                 // problem solved (1)
+    std::cout << x;
+}
+std::cout << " ";
+for (int x = 0; int(a.size())-x-1 >= 0; ++x) {       // problem solved (2)
+    std::cout << x;
+}
+std::cout << " ";
+for (int x = 0; std::ssize(a)-x-1 >= 0; ++x) {       // problem solved (3), C++20
+    std::cout << x;
+}`,
+  },
+  sizeCompare: {
+    fragment: true,
+    includes: ['#include <vector>'],
+    code: `std::vector<int> a {1,2,3};
+std::cout << (a.size() - 4 >= 0) << " " << (int(a.size()) - 4 >= 0);`,
+  },
+  matrixInit: {
+    fragment: true,
+    includes: ['#include <vector>'],
+    code: `std::vector<std::vector<int>> matrix = {
+    {1, 0, 0, 0},
+    {0, 1, 0, 0},
+    {0, 0, 1, 0},
+    {0, 0, 0, 1}
+};
+std::cout << matrix.size() << " " << matrix[0].size() << " " << matrix[2][2] << matrix[2][3];`,
+  },
+  matrixFill: {
+    fragment: true,
+    includes: ['#include <vector>'],
+    code: `int rows = 2;
+int cols = 3;
+std::vector<std::vector<int>> m;
+m = std::vector<std::vector<int>>(rows, std::vector<int>(cols, 1));
+m[1][2] = 7;
+std::cout << m.size() << " " << m[0].size() << " " << m[0][2] << m[1][2];`,
+  },
+  lowerTriangle: {
+    code: `#include <iostream>
+#include <vector>
+
+int lower_triangle_sum(const std::vector<std::vector<int>>& matrix) {
+    int sum = 0;
+    for (int row = 0; row < matrix.size(); ++row) {
+        for (int column = 0; column < row; ++column) {
+            sum += matrix[row][column];
+        }
+    }
+    return sum;
+}
+
+int main() {
+    std::vector<std::vector<int>> m = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+    std::cout << lower_triangle_sum(m);
+    return 0;
+}`,
+  },
+  jagged: {
+    fragment: true,
+    includes: ['#include <vector>', '#include <string>'],
+    code: `std::vector<std::vector<std::string>> cantons = {
+    {"ZH", "BE", "SG", "GE", "LU", "SO", "NE", "ZG"},
+    {"FR", "VD", "VS", "JU"},
+    {"AI", "OW", "NW", "AR", "BS", "BL"}
+};
+std::cout << cantons[1][2] << " " << cantons[1].size() << " " << cantons[2].size();`,
+  },
+  aliasAuto: {
+    code: `#include <iostream>
+#include <vector>
+
+using imatrix = std::vector<std::vector<int>>;
+
+// POST: Matrix 'm' was output to standard output
+void print(const imatrix& m) {
+    for (int i = 0; i < m.size(); ++i) {
+        for (int j = 0; j < m[i].size(); ++j)
+            std::cout << m[i][j] << " ";
+        std::cout << "\\n";
+    }
+}
+
+int main() {
+    auto m = std::vector<std::vector<int>>(2, std::vector<int>(3, 1));
+    auto x = 2 + 3;
+    m[1][0] = x;
+    print(m);
+    return 0;
+}`,
+  },
+  autoIndexErr: { fragment: true, code: `auto x = 2 + 3;\nstd::cout << x[2];`, compileError: "invalid types 'int[int]' for array subscript" },
+  swapByValue: {
+    code: `#include <iostream>
+void swap(int x, int y) {
+    int t = x;
+    x = y;
+    y = t;
+}
+
+int main() {
+    int a = 2;
+    int b = 1;
+    swap(a, b);
+    std::cout << a << " " << b; // not swapped!
+    return 0;
+}`,
+  },
+  swapByRef: {
+    code: `#include <iostream>
+// POST: values of x and y are exchanged
+void swap(int& x, int& y) {
+    int t = x;
+    x = y;
+    y = t;
+}
+
+int main() {
+    int a = 2;
+    int b = 1;
+    swap(a, b);
+    std::cout << a << " " << b;
+    return 0;
+}`,
+  },
+  aliasRef: {
+    fragment: true,
+    code: `int anakin_skywalker = 9;
+int& darth_vader = anakin_skywalker; // Alias
+darth_vader = 22;
+std::cout << anakin_skywalker; // 22`,
+  },
+  refNoInit: { fragment: true, code: `int& j; // error: j must be an alias of something`, compileError: "'j' declared as reference but not initialized" },
+  refLiteral: { fragment: true, code: `int& k = 5; // error: literal 5 has no address.`, compileError: "cannot bind non-const lvalue reference of type 'int&' to an rvalue of type 'int'" },
+  incrementRef: {
+    code: `#include <iostream>
+void increment(int& i) {
+    ++i;
+}
+
+int main() {
+    int j = 5;
+    increment(j);
+    std::cout << j; // 6
+    return 0;
+}`,
+  },
+  incNested: {
+    code: `#include <iostream>
+int& inc(int& i) {
+    i = i + 1;
+    return i;
+}
+
+int main() {
+    int x = 0;
+    inc(inc(x));
+    std::cout << x; // 2: inc(x) is an L-value, so it can be the argument again
+    return 0;
+}`,
+  },
+  incByValueErr: {
+    code: `#include <iostream>
+int increment(int& i) {
+    ++i;
+    return i;
+}
+
+int main() {
+    int i = 0;
+    increment(increment(i));
+    return 0;
+}`,
+    compileError: "cannot bind non-const lvalue reference of type 'int&' to an rvalue of type 'int'",
+  },
+  wrapAt: {
+    code: `#include <iostream>
+#include <vector>
+
+int& wrap_at(std::vector<int>& vec, int index) {
+    return vec[index % vec.size()];
+}
+
+int main() {
+    std::vector<int> v = {0, 1, 2, 3};
+    std::cout << wrap_at(v, 2) << " "; // outputs 2
+    std::cout << wrap_at(v, 6) << " "; // outputs 2
+    wrap_at(v, 6) = 6;
+    std::cout << wrap_at(v, 2);        // outputs 6
+    return 0;
+}`,
+  },
+  wrapAtReadOnlyErr: {
+    code: `#include <iostream>
+#include <vector>
+
+int wrap_at(std::vector<int>& vec, int index) {
+    return vec[index % vec.size()];
+}
+
+int main() {
+    std::vector<int> v = {0, 1, 2, 3};
+    wrap_at(v, 6) = 6; // compiler error
+    return 0;
+}`,
+    compileError: 'lvalue required as left operand of assignment',
+  },
+  dangling: {
+    code: `int& foo(int i) {
+    return i;
+}`,
+    runtimeError: true,
+  },
+  vecByValue: {
+    code: `#include <iostream>
+#include <vector>
+
+void by_value(std::vector<int> v) { v[0] = 99; }
+void by_ref(std::vector<int>& v) { v[0] = 99; }
+
+int main() {
+    std::vector<int> v = {1, 2, 3};
+    by_value(v);
+    std::cout << v[0] << " ";
+    by_ref(v);
+    std::cout << v[0];
+    return 0;
+}`,
+  },
+  averageConstRef: {
+    code: `#include <iostream>
+#include <vector>
+
+double average(const std::vector<double>& values) {
+    double sum = 0;
+    for (int i = 0; i < values.size(); ++i)
+        sum += values[i];
+    return sum / values.size();
+}
+
+int main() {
+    const std::vector<double> temperatures =
+        {0.9,1.3,5.1,9.1,13.2,17.1,18.8,18.6,14.7,10.6,5.2,1.8};
+    std::cout << average(temperatures); // outputs 9.7
+    return 0;
+}`,
+  },
+  averageNonConstErr: {
+    code: `#include <iostream>
+#include <vector>
+
+double average(std::vector<double>& values) {
+    double sum = 0;
+    for (int i = 0; i < values.size(); ++i)
+        sum += values[i];
+    return sum / values.size();
+}
+
+int main() {
+    const std::vector<double> temperatures =
+        {0.9,1.3,5.1,9.1,13.2,17.1,18.8,18.6,14.7,10.6,5.2,1.8};
+    std::cout << average(temperatures); // compiler error
+    return 0;
+}`,
+    compileError: "discards qualifiers",
+  },
+  constRefTemp: {
+    fragment: true,
+    code: `const int& r = 2 + 3; // a temporary object with the value 5
+std::cout << r;`,
+  },
+  constRefWrite: {
+    fragment: true,
+    code: `int x = 1;
+const int& r = x;
+r = 5; // error: r promises not to change x`,
+    compileError: "assignment of read-only reference 'r'",
+  },
 } satisfies Record<string, Prog>;
 
 export type ProgId = keyof typeof P;

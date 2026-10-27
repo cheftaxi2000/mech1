@@ -16,7 +16,7 @@ Same as the other subjects: picture first, short sentences, one idea per step, a
 | I2 | infln02 | Arithmetische Ausdrücke, Vorrang, Ausdrucksbaum · Ganze Zahlen (Überlauf) · Fliesskommazahlen · Wahrheitswerte |
 | I3 | infln03 | Auswahl (if/switch) · Schleifen (while, do-while, for) · Blöcke und Sichtbarkeit · Sprünge, Kontrollflussdiagramme — **done (5 lessons, draft)** |
 | I4 | infln04 | Funktionen und Aufrufe (Pass by value) · Vor-/Nachbedingungen, schrittweise Verfeinerung · Gültigkeitsbereich · Bibliotheken, Namensräume — **done (6 lessons, draft)** |
-| I5 | infln05 | Vektoren (Speicherlayout) · Referenzen, Pass by reference · const-Referenzen |
+| I5 | infln05 | Vektoren (Speicherlayout) · Referenzen, Pass by reference · const-Referenzen — **done (5 lessons, draft)** |
 | I6 | infln06 | ASCII / UTF-8, Caesar-Chiffre |
 | I7 | infln07 | Rekursion: Aufrufstapel, Beispiele, Strategien |
 

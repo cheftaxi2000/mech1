@@ -290,3 +290,37 @@ pre.code.sc-code { margin: 0; border-radius: 0 0 12px 12px; }
 .bf-exe { fill: color-mix(in srgb, var(--c-z) 14%, var(--panel)); stroke: var(--c-z); stroke-width: 1.8; }
 .bf-t { font-size: 13px; fill: var(--fg); } .bf-b { font-weight: 700; font-family: ui-monospace, Menlo, Consolas, monospace; }
 .bf-ar { stroke: currentColor; stroke-width: 1.7; } .bf-lab { font-size: 12px; fill: currentColor; font-family: ui-monospace, Menlo, Consolas, monospace; }
+
+/* ---- vectors (chapter 5) ---- */
+.vc { display: inline-flex; flex-wrap: wrap; gap: 3px; vertical-align: top; }
+.vc-cell { display: inline-flex; flex-direction: column; align-items: center; }
+.vc-i { font-size: 0.68rem; color: var(--muted); line-height: 1.1; }
+.vc-v { border: 1.5px solid var(--in-data-bd); background: var(--in-data); border-radius: 5px; padding: 1px 7px; min-width: 28px; text-align: center; }
+.vc-v code { background: none; padding: 0; font-size: 0.85rem; }
+.vc-cell.chg .vc-v { background: color-mix(in srgb, var(--accent) 24%, var(--in-data)); border-color: var(--accent); font-weight: 700; }
+.vc-cell.vc-f .vc-v code { opacity: 0.55; } .vc-cell.vc-t .vc-v { background: color-mix(in srgb, var(--bad) 18%, var(--in-data)); border-color: var(--bad); }
+.vc-sub { display: block; border: 1.5px dashed var(--line); border-radius: 7px; padding: 3px 4px; }
+.vc-nested { gap: 2px; }
+.tr-vars td .vc { max-width: 100%; }
+.stk-cell.stk-vec { align-items: flex-start; }
+.ms-fig, .ml-fig, .sv-fig { padding: 10px 12px 12px; }
+.ms-svg { width: 100%; max-width: 560px; height: auto; display: block; }
+.ms-cell { fill: var(--in-data); stroke: var(--in-data-bd); stroke-width: 1.5; cursor: pointer; } .ms-cell.on { fill: color-mix(in srgb, var(--accent) 26%, var(--in-data)); stroke: var(--accent); stroke-width: 2.5; }
+.ms-t { font-size: 13px; fill: var(--fg); font-family: ui-monospace, Menlo, Consolas, monospace; } .ms-addr { font-size: 11px; fill: var(--muted); font-family: ui-monospace, Menlo, Consolas, monospace; }
+.ms-lab { font-size: 12px; fill: var(--muted); } .ms-hi { font-size: 13px; fill: var(--accent); font-weight: 700; font-family: ui-monospace, Menlo, Consolas, monospace; }
+.ms-say { margin: 8px 2px 0; }
+.ml-grid { border-collapse: collapse; margin: 4px 0 10px; } .ml-grid th { font-size: 0.78rem; color: var(--muted); padding: 2px 8px; }
+.ml-grid td { border: 1.5px solid var(--in-data-bd); background: var(--in-data); padding: 3px 8px; cursor: pointer; text-align: center; }
+.ml-grid td.on, .ml-c.on { background: color-mix(in srgb, var(--accent) 26%, var(--in-data)); border-color: var(--accent); font-weight: 700; }
+.ml-grid code, .ml-c code { background: none; padding: 0; font-size: 0.82rem; }
+.ml-lab { font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
+.ml-flat { display: flex; flex-wrap: wrap; margin: 4px 0 8px; } .ml-c { border: 1.5px solid var(--in-data-bd); background: var(--in-data); padding: 3px 7px; margin-right: -1.5px; }
+.ml-c.rowstart { margin-left: 10px; } .ml-sl { display: grid; gap: 2px; max-width: 420px; }
+.sv-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(34px, 1fr)); gap: 4px; max-width: 480px; margin: 4px 0 10px; }
+.sv-n { text-align: center; padding: 5px 0; border-radius: 6px; border: 1.5px solid var(--line); font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 0.9rem; }
+.sv-n.x { opacity: 0.38; text-decoration: line-through; } .sv-n.p { border-color: var(--ok); background: color-mix(in srgb, var(--ok) 20%, transparent); font-weight: 700; }
+.sv-n.cur { outline: 2.5px solid var(--accent); } .sv-n.x.cur { opacity: 0.9; background: color-mix(in srgb, var(--bad) 20%, transparent); }
+.sv-n-sl { flex: 1 1 200px; }
+.tr-vecrow td { border-top: none !important; padding: 0 8px 8px !important; }
+.tr-count { color: var(--muted); font-size: 0.85rem; }
+.ml-sl .slider { grid-template-columns: 6.5em 1fr 2.2em; }

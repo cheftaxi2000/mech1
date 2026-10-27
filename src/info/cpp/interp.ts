@@ -4,9 +4,13 @@ import { parseFragment, parseProgram } from './parser';
 /** Runtime types: `n` is the C++ type name, `e` the element type of a vector. */
 export interface TyV { n: 'int' | 'unsigned' | 'double' | 'float' | 'bool' | 'char' | 'string' | 'void' | 'vector' | 'ostream' | 'istream'; e?: TyV }
 
+/** An element of a vector as the figures draw it (vectors may be nested). */
+export interface ElemView { value: string; changed: boolean; sub?: ElemView[] }
 export interface VarView {
   id: number; name: string; type: string; value: string;
   uninit: boolean; isConst: boolean; isRef: boolean; changed: boolean; shadowed: boolean;
+  /** set for vectors: the elements, one box each */
+  vec?: ElemView[];
 }
 export interface FrameView { fn: string; line: number; vars: VarView[] }
 export type Ev =
@@ -136,7 +140,13 @@ class Interp {
 
   // ---- state capture
   private views(): FrameView[] {
-    const used = new Set<number>();
+    const nextPrev = new Map<number, string>();
+    const elems = (c: Cell): ElemView[] => (c.v as Cell[]).map((x) => {
+      const value = display(x);
+      nextPrev.set(x.id, value);
+      const changed = this.prev.has(x.id) ? this.prev.get(x.id) !== value : this.prev.has(c.id);
+      return { value, changed, sub: x.ty.n === 'vector' ? elems(x) : undefined };
+    });
     const result = this.frames.map((f, fi) => {
       const vars: VarView[] = [];
       const seen = new Map<string, number>();
@@ -146,15 +156,16 @@ class Interp {
       for (const b of list) {
         counts.set(b.name, (counts.get(b.name) ?? 0) + 1);
         const value = display(b.cell);
-        used.add(b.cell.id);
+        nextPrev.set(b.cell.id, value);
         vars.push({
           id: b.cell.id, name: b.name, type: tyName(b.cell.ty) + (b.isRef ? '&' : ''), value, uninit: !b.cell.init, isConst: b.cell.isConst, isRef: b.isRef,
           changed: this.prev.has(b.cell.id) ? this.prev.get(b.cell.id) !== value : false, shadowed: counts.get(b.name)! < seen.get(b.name)!,
+          vec: b.cell.ty.n === 'vector' && b.cell.init ? elems(b.cell) : undefined,
         });
       }
       return { fn: f.fn, line: f.line, vars };
     });
-    this.prev = new Map(result.flatMap((f) => f.vars.map((v) => [v.id, v.value] as const)));
+    this.prev = nextPrev;
     return result;
   }
 
@@ -174,7 +185,9 @@ class Interp {
     const scope = this.frame.scopes[this.frame.scopes.length - 1];
     scope.push({ name, cell, isRef });
   }
-  private newCell(ty: TyV, v: unknown, init: boolean, isConst = false): Cell { return { id: this.nextId++, ty, v, init, isConst }; }
+  private newCell(ty: TyV, v: unknown, init: boolean, isConst = false): Cell { return { id: this.nextId++, ty, v: ty.n === 'vector' && Array.isArray(v) ? this.cloneVec(v as Cell[]) : v, init, isConst }; }
+  /** Vectors have value semantics: copying a vector copies every element (also nested vectors). */
+  private cloneVec(a: Cell[]): Cell[] { return a.map((c) => ({ id: this.nextId++, ty: c.ty, v: c.ty.n === 'vector' ? this.cloneVec(c.v as Cell[]) : c.v, init: c.init, isConst: false })); }
   private lookup(name: string, line: number): Binding {
     const f = this.frame;
     for (let i = f.scopes.length - 1; i >= 0; i--) for (let j = f.scopes[i].length - 1; j >= 0; j--) if (f.scopes[i][j].name === name) return f.scopes[i][j];
@@ -212,6 +225,8 @@ class Interp {
         return this.read(this.lookup(e.name, e.line).cell, e.line);
       }
       case 'cast': return this.rv(toTy(e.ty), convert(this.eval(e.e), toTy(e.ty), e.line));
+      case 'ctor': return this.construct(toTy(e.ty), e.args, e.line);
+      case 'initlist': throw new RuntimeError('a braced list needs a declared type to initialize', e.line);
       case 'unary': return this.unary(e);
       case 'postfix': {
         const r = this.eval(e.e);
@@ -311,7 +326,8 @@ class Interp {
 
   private store(c: Cell, r: RV, line: number) {
     if (c.isConst) throw new RuntimeError('assignment of read-only variable', line);
-    c.v = convert(r, c.ty, line); c.init = true;
+    const v = convert(r, c.ty, line);
+    c.v = c.ty.n === 'vector' ? this.cloneVec(v as Cell[]) : v; c.init = true;
   }
 
   private print(r: RV) {
@@ -365,6 +381,8 @@ class Interp {
         if (!this.truthy(this.eval(e.args[0]))) throw new RuntimeError(`Assertion \`${e.args[0].src}' failed.`, e.line);
         return this.rv(VOID, undefined);
       }
+      if (bare === 'ssize') { const r = this.eval(e.args[0]); if (r.ty.n !== 'vector') throw new RuntimeError('std::ssize needs a vector', e.line); return this.rv(INT, (r.v as Cell[]).length); }
+      if (['int', 'unsigned', 'double', 'float', 'bool', 'char'].includes(bare)) { const to = { n: bare } as TyV; return this.rv(to, convert(this.eval(e.args[0]), to, e.line)); }
       if (bare === 'swap') {
         const a = this.lval(e.args[0]), b = this.lval(e.args[1]);
         if (!a.cell || !b.cell) throw new RuntimeError('swap needs two variables', e.line);
@@ -385,9 +403,10 @@ class Interp {
     for (const { r, p } of args) {
       const pt = toTy(p.ty);
       if (p.ty.isRef) {
-        if (!r.cell) { this.frames.pop(); throw new RuntimeError(`cannot bind a non-lvalue to the reference parameter '${p.name}'`, callerLine); }
-        if (p.ty.isConst === false && r.cell.isConst) { this.frames.pop(); throw new RuntimeError('binding a constant to a non-const reference', callerLine); }
-        this.declare(p.name, r.cell, true);
+        const same = !!r.cell && r.cell.ty.n === pt.n && (pt.n !== 'vector' || tyName(r.cell.ty) === tyName(pt));
+        if (r.cell && same && (p.ty.isConst || !r.cell.isConst)) this.declare(p.name, r.cell, true);
+        else if (p.ty.isConst) this.declare(p.name, this.newCell(pt, convert(r, pt, callerLine), true, true), true); // temporary object
+        else { this.frames.pop(); throw new RuntimeError(r.cell ? 'binding a constant to a non-const reference' : `cannot bind a non-lvalue to the reference parameter '${p.name}'`, callerLine); }
       } else this.declare(p.name, this.newCell(pt, convert(r, pt, callerLine), true, p.ty.isConst));
     }
     this.pending = { kind: 'call', name: fn.name, args: args.map((a) => this.show(a.r)) };
@@ -397,7 +416,11 @@ class Interp {
     let result = this.rv(VOID, undefined);
     if (fn.ret.name !== 'void') {
       const rt = toTy(fn.ret);
-      result = this.retVal ? this.rv(rt, convert(this.retVal, rt, callerLine)) : this.rv(rt, 0);
+      if (fn.ret.isRef) {
+        const rr = this.retVal as RV | undefined;
+        if (!rr?.cell) throw new RuntimeError('cannot bind a non-const reference return value to an rvalue', callerLine);
+        result = { ty: rr.cell.ty, v: rr.cell.v, cell: rr.cell };
+      } else result = this.retVal ? this.rv(rt, convert(this.retVal, rt, callerLine)) : this.rv(rt, 0);
     }
     this.signal = null; this.retVal = undefined;
     this.pending = { kind: 'returned', name: fn.name, value: fn.ret.name === 'void' ? undefined : this.showV(result) };
@@ -431,17 +454,39 @@ class Interp {
 
   private scoped(body: () => void) { this.frame.scopes.push([]); try { body(); } finally { this.frame.scopes.pop(); } }
 
+  private zero(t: TyV): unknown { return t.n === 'bool' ? false : t.n === 'string' ? '' : t.n === 'vector' ? [] : 0; }
+
+  /** `std::vector<T>(n)` and `std::vector<T>(n, e)`. */
+  private construct(t: TyV, args: Expr[], line: number): RV {
+    if (t.n !== 'vector') throw new RuntimeError('only vectors can be constructed here', line);
+    const et = t.e!;
+    const arr: Cell[] = [];
+    if (args.length) {
+      const n = this.num(this.eval(args[0]));
+      if (n < 0) throw new RuntimeError('vector::vector: negative size', line);
+      const fill = args[1] ? convert(this.eval(args[1]), et, line) : this.zero(et);
+      for (let i = 0; i < n; i++) arr.push(this.newCell(et, fill, true));
+    }
+    return this.rv(t, arr);
+  }
+
+  /** `{a, b, c}` for a vector (nested lists for nested vectors). */
+  private fromList(t: TyV, e: Expr, line: number): unknown {
+    if (e.k !== 'initlist') { const r = this.eval(e); return convert(r, t, line); }
+    if (t.n !== 'vector') throw new RuntimeError('a braced list can only initialize a vector here', line);
+    return e.items.map((x) => this.newCell(t.e!, this.fromList(t.e!, x, line), true));
+  }
+
   private makeCell(ty: Ty, item: { init?: Expr; ctor?: Expr[]; name: string }, line: number): Cell {
+    if (ty.name === 'auto') {
+      if (!item.init) throw new RuntimeError("declaration of 'auto' variable has no initializer", line);
+      const r = this.eval(item.init);
+      return this.newCell(r.ty, r.v, true, ty.isConst);
+    }
     const t = toTy(ty);
     if (t.n === 'vector') {
-      const et = t.e!;
-      const arr: Cell[] = [];
-      if (item.ctor && item.ctor.length) {
-        const n = this.num(this.eval(item.ctor[0]));
-        const fill = item.ctor[1] ? convert(this.eval(item.ctor[1]), et, line) : et.n === 'bool' ? false : et.n === 'string' ? '' : 0;
-        for (let i = 0; i < n; i++) arr.push(this.newCell(et, fill, true));
-      }
-      return this.newCell(t, arr, true, ty.isConst);
+      if (item.init) return this.newCell(t, this.fromList(t, item.init, line), true, ty.isConst);
+      return this.newCell(t, this.construct(t, item.ctor ?? [], line).v, true, ty.isConst);
     }
     if (item.init) { const r = this.eval(item.init); return this.newCell(t, convert(r, t, line), true, ty.isConst); }
     if (item.ctor && item.ctor.length === 1) { const r = this.eval(item.ctor[0]); return this.newCell(t, convert(r, t, line), true, ty.isConst); }
@@ -456,9 +501,11 @@ class Interp {
         this.snap(s.line);
         for (const it of s.items) {
           if (s.ty.isRef) {
-            const r = this.lval(it.init!);
-            if (!r.cell) throw new RuntimeError('cannot bind a reference to a non-lvalue', it.line);
-            this.declare(it.name, r.cell, true);
+            if (!it.init) throw new RuntimeError(`'${it.name}' declared as reference but not initialized`, it.line);
+            const r = this.lval(it.init);
+            if (r.cell && (s.ty.isConst || !r.cell.isConst)) this.declare(it.name, r.cell, true);
+            else if (s.ty.isConst) this.declare(it.name, this.newCell(r.ty, r.v, true, true), true); // a temporary object lives as long as the reference
+            else throw new RuntimeError("cannot bind non-const lvalue reference to an rvalue", it.line);
           } else this.declare(it.name, this.makeCell(s.ty, it, it.line));
         }
         return;

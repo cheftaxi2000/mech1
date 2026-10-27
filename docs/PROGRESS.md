@@ -134,3 +134,8 @@ Offen: Polybox-Links nicht erreichbar; Übungen 2–4 handschriftlich (nur Bild)
 | i-verfeinerung | infln04 pp. 83–89 | draft | Rectangle model `RectOverlap` (`src/info/overlap.ts` tested against the C++ program), refinement steps, intervals via the negated question, brute-force test; I-009. |
 | i-module | infln04 pp. 88–94 | draft | Scope/forward declaration, include vs separate compilation (build tested with g++), `BuildFigure`, headers; I-008. |
 | i-namensraeume | infln04 pp. 94–96 | draft | Namespaces (interpreter supports `namespace`), std library, prime test with sqrt bound (999 vs 1 000 002 divisions, tested). |
+| i-vektor | infln05 pp. 97–99 | draft | Sieve (`SieveGrid`, `src/info/sieve.ts` tested), vector basics, contiguous layout + `MemoryStrip` (p + s·i). |
+| i-vektor-umgang | infln05 pp. 99–102 | draft | Four initializations, push_back/size, out of bounds (at, _GLIBCXX_DEBUG tested with g++), unsigned size() trap (2^64−1 tested), std::ssize. |
+| i-vektor-2d | infln05 pp. 103–106 | draft | Nested vectors, `MatrixLayout`, lower-triangle sum, jagged vectors, using/auto; I-010. |
+| i-referenz | infln05 pp. 107–109 | draft | swap by value/reference (stack view with aliases), T& rules (compile errors from g++), pass by value vs reference. |
+| i-rueckgabe | infln05 pp. 109–113 | draft | Return by reference (inc(inc(x)), wrap_at), dangling reference (-Wall warning tested), const references, parameter table. |

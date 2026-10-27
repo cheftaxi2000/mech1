@@ -1,9 +1,10 @@
-import { useEffect, useMemo, useState, type ReactNode } from 'react';
+import { Fragment, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { Code } from '../../components/Code';
 import { useTr } from '../../i18n';
 import { runAny, type Ev, type FrameView, type Snap } from '../../info/cpp/interp';
 import type { Prog } from '../../info/cpp/programs';
 import { StackView } from './FunctionFigures';
+import { VecCells } from './VectorFigures';
 import { useInterval } from './InfoControls';
 import './info.css';
 
@@ -34,11 +35,14 @@ function VarTable({ frame, tr, top }: { frame: FrameView; tr: Tr; top: boolean }
       <tbody>
         {frame.vars.length === 0 && <tr><td colSpan={3} className="tr-empty">{tr('noch keine Variablen', 'no variables yet')}</td></tr>}
         {frame.vars.map((v) => (
-          <tr key={v.id + v.name} className={`${v.changed ? 'chg' : ''}${v.shadowed ? ' shadow' : ''}`}>
-            <td><code>{v.name}</code>{v.isConst && <span className="tr-badge" title="const"> const</span>}</td>
-            <td><code>{v.type}</code></td>
-            <td className={v.uninit ? 'uninit' : ''}><code>{v.value}</code>{v.isRef && <span className="tr-badge"> {tr('Alias', 'alias')}</span>}</td>
-          </tr>
+          <Fragment key={v.id + v.name}>
+            <tr className={`${v.changed ? 'chg' : ''}${v.shadowed ? ' shadow' : ''}`}>
+              <td><code>{v.name}</code>{v.isConst && <span className="tr-badge" title="const"> const</span>}</td>
+              <td><code>{v.type}</code></td>
+              <td className={v.uninit ? 'uninit' : ''}>{v.vec ? <span className="tr-count">{tr(`${v.vec.length} Elemente`, `${v.vec.length} elements`)}</span> : <code>{v.value}</code>}{v.isRef && <span className="tr-badge"> {tr('Alias', 'alias')}</span>}</td>
+            </tr>
+            {v.vec && <tr className={`tr-vecrow${v.shadowed ? ' shadow' : ''}`}><td colSpan={3}><VecCells elems={v.vec} /></td></tr>}
+          </Fragment>
         ))}
       </tbody>
     </table>

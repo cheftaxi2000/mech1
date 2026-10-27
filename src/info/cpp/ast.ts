@@ -20,7 +20,9 @@ export type Expr =
   | { k: 'call'; name: string; args: Expr[]; src: string; line: number }
   | { k: 'method'; obj: Expr; name: string; args: Expr[]; src: string; line: number }
   | { k: 'index'; base: Expr; idx: Expr; src: string; line: number }
-  | { k: 'cast'; ty: Ty; e: Expr; src: string; line: number };
+  | { k: 'cast'; ty: Ty; e: Expr; src: string; line: number }
+  | { k: 'initlist'; items: Expr[]; src: string; line: number }
+  | { k: 'ctor'; ty: Ty; args: Expr[]; src: string; line: number };
 
 export interface DeclItem { name: string; init?: Expr; /** constructor-style arguments: `vector<int> v(3, 0);` */ ctor?: Expr[]; line: number }
 

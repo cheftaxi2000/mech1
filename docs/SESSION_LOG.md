@@ -173,3 +173,11 @@ Four implementer agents wrote 13 lessons from lectures 1–6 and the TA's exerci
 - New figures in `viz/info/FunctionFigures.tsx`: call-stack boxes (`StackView`, `<Tracer stack>`), `SignatureFigure`, `RectOverlap` (x blue, y amber), `BuildFigure`. Multi-file example in `info/cpp/multifile.ts`, built with g++ in a test (include, linker error, `-c`, header, multiple definition).
 - Tests on the notes' claims: Code 6.1 output, Example 6.7, assert message, -DNDEBUG, -Wall warning, interval overlap vs. brute force (g++ and interpreter), prime test iteration counts.
 - Source issues I-007…I-009.
+
+## 2026-10-27 — Informatik I, chapter 5 «Vektoren und Referenzen»
+- Five lessons from infln05 (`I5Vektor`, `I5VektorUmgang`, `I5Vektor2D`, `I5Referenz`, `I5Rueckgabe`).
+- Interpreter: `std::vector<T>(n[, e])` expressions, `{…}` lists (nested), `auto`, `using` aliases, `>>` in templates, `std::ssize`, `int(x)` casts, return by reference, reference locals, `const T&` binding to temporaries, value semantics (deep copy) for vectors; vector contents are shown as boxes (`VarView.vec`, `VecCells`) in all tracers.
+- The g++ standard for the test programs is now C++20 (the notes use `std::ssize`).
+- New figures `viz/info/VectorFigures.tsx`: `SieveGrid`, `MemoryStrip`, `MatrixLayout`, `VecCells`.
+- Claims checked with g++: size_t wrap-around, `at` exception text, `-D_GLIBCXX_DEBUG` message, dangling-reference warning, row gap of vector<vector<int>>; compile errors for T& misuse, const-ness, auto indexing.
+- Source issues I-010, I-011.

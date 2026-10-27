@@ -65,6 +65,7 @@ export const CHAPTERS: Record<string, [string, string]> = {
   I2: ['2 · Ausdrücke und Grundtypen', '2 · Expressions and fundamental types'],
   I3: ['3 · Kontrollstrukturen', '3 · Control statements'],
   I4: ['4 · Funktionen', '4 · Functions'],
+  I5: ['5 · Vektoren und Referenzen', '5 · Vectors and references'],
 };
 
 export const chapterSubject = (ch: string): Subject => (/^I\d/.test(ch) ? 'info' : ch.startsWith('LA') ? 'la' : ch.startsWith('CH') ? 'chem' : ch.startsWith('A') ? 'ana' : 'mech');
@@ -188,4 +189,9 @@ export const TOPICS: Topic[] = [
   { id: 'i-verfeinerung', chapter: 'I4', title: ['Schrittweise Verfeinerung', 'Stepwise refinement'], pages: '83–89', status: 'draft', component: lazy(() => import('../lessons/I4Verfeinerung')) },
   { id: 'i-module', chapter: 'I4', title: ['Deklaration, Bibliotheken und Linker', 'Declaration, libraries and the linker'], pages: '88–94', status: 'draft', component: lazy(() => import('../lessons/I4Module')) },
   { id: 'i-namensraeume', chapter: 'I4', title: ['Namensräume und Standardbibliothek', 'Namespaces and the standard library'], pages: '94–96', status: 'draft', component: lazy(() => import('../lessons/I4Namensraeume')) },
+  { id: 'i-vektor', chapter: 'I5', title: ['Vektoren: Daten in Reihe', 'Vectors: data in a row'], pages: '97–99', status: 'draft', component: lazy(() => import('../lessons/I5Vektor')) },
+  { id: 'i-vektor-umgang', chapter: 'I5', title: ['Vektoren anlegen, prüfen, vermessen', 'Creating, checking and measuring vectors'], pages: '99–102', status: 'draft', component: lazy(() => import('../lessons/I5VektorUmgang')) },
+  { id: 'i-vektor-2d', chapter: 'I5', title: ['Vektoren von Vektoren', 'Vectors of vectors'], pages: '103–106', status: 'draft', component: lazy(() => import('../lessons/I5Vektor2D')) },
+  { id: 'i-referenz', chapter: 'I5', title: ['Referenzen: ein zweiter Name', 'References: a second name'], pages: '107–109', status: 'draft', component: lazy(() => import('../lessons/I5Referenz')) },
+  { id: 'i-rueckgabe', chapter: 'I5', title: ['Rückgabe per Referenz und const-Referenzen', 'Return by reference and const references'], pages: '109–113', status: 'draft', component: lazy(() => import('../lessons/I5Rueckgabe')) },
 ];

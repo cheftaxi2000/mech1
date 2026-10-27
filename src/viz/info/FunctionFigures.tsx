@@ -4,6 +4,7 @@ import type { FrameView } from '../../info/cpp/interp';
 import { intersect, rectanglesOverlap, xInterval, yInterval, type Rect } from '../../info/overlap';
 import { M } from '../../components/Tex';
 import { NumSlider } from './InfoControls';
+import { VecCells } from './VectorFigures';
 
 /** The call stack as in the notes (Subsection 6.4): one box per active function, its variables as cells; the running function on top. */
 export function StackView({ frames }: { frames: FrameView[] }) {
@@ -16,9 +17,9 @@ export function StackView({ frames }: { frames: FrameView[] }) {
           <div className="stk-cells">
             {f.vars.length === 0 && <span className="tr-empty">{tr('noch keine Variablen', 'no variables yet')}</span>}
             {f.vars.map((v) => (
-              <div key={v.id + v.name} className={`stk-cell${v.changed ? ' chg' : ''}${v.shadowed ? ' shadow' : ''}`} title={v.type}>
-                <span className="stk-name"><code>{v.name}</code></span>
-                <span className={`stk-val${v.uninit ? ' uninit' : ''}`}><code>{v.value}</code></span>
+              <div key={v.id + v.name} className={`stk-cell${v.changed ? ' chg' : ''}${v.shadowed ? ' shadow' : ''}${v.vec ? ' stk-vec' : ''}`} title={v.type}>
+                <span className="stk-name"><code>{v.name}</code>{v.isRef && <span className="tr-badge"> {tr('Alias', 'alias')}</span>}</span>
+                {v.vec ? <VecCells elems={v.vec} /> : <span className={`stk-val${v.uninit ? ' uninit' : ''}`}><code>{v.value}</code></span>}
                 <span className="stk-type"><code>{v.type}</code></span>
               </div>
             ))}
