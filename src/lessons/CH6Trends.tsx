@@ -55,8 +55,8 @@ export default function CH6Trends() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die Folie:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man die Folie:</b></p>
+            <ol className="keep">
               <li><M>Z</M> ist die Zahl der Protonen im Kern, also die wahre Kernladung. Ein Elektron weit aussen «sieht» aber nicht nur den Kern, sondern auch die Elektronen dazwischen.</li>
               <li>Jedes Rumpfelektron hebt rechnerisch ungefähr ein Proton auf. Als grobe Faustregel für Hauptgruppen-Elemente: <M p=".">{t`Z_{\mathrm{eff}} \approx Z - (\text{Rumpfelektronen})`}</M> Das ist nur eine Abschätzung (nicht auf den Folien); sie gibt gerade die Zahl der Valenzelektronen.</li>
               <li>Quer durch eine Periode: Jeder Schritt nach rechts fügt ein Proton hinzu. Das neue Elektron kommt aber in dieselbe Schale und schirmt kaum ab. Die Rumpfelektronen bleiben gleich viele, also wächst <M>{t`Z_{\mathrm{eff}}`}</M> Schritt für Schritt (Natrium <M p=",">1</M> Magnesium <M p=",">2</M> …, Chlor <M p=").">7</M></li>
@@ -65,8 +65,8 @@ export default function CH6Trends() {
             <p>Das Bild zeigt es: Rote Mitte ist der Kern, die grauen Punkte sind die Rumpfelektronen, die gelben mit Rand die Valenzelektronen. Der rote Pfeil ist die Anziehung, die ein Valenzelektron noch spürt. Schiebe <M>Z</M> von Natrium nach Chlor. Der Pfeil wird dicker, die Rumpfelektronen bleiben gleich.</p>
           </>}
           en={<>
-            <p><b>How to read the slide:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the slide:</b></p>
+            <ol className="keep">
               <li><M>Z</M> is the number of protons in the nucleus, the true nuclear charge. An electron far out does not only “see” the nucleus, but also the electrons in between.</li>
               <li>Each core electron roughly cancels one proton. As a rough rule of thumb for main-group elements: <M p=".">{t`Z_{\mathrm{eff}} \approx Z - (\text{core electrons})`}</M> This is only an estimate (not on the slides); it gives exactly the number of valence electrons.</li>
               <li>Across a period: each step to the right adds one proton. But the new electron goes into the same shell and hardly screens. The number of core electrons stays the same, so <M>{t`Z_{\mathrm{eff}}`}</M> grows step by step (sodium <M p=",">1</M> magnesium <M p=",">2</M> …, chlorine <M p=").">7</M></li>
@@ -123,8 +123,8 @@ export default function CH6Trends() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li>Ein Atom hat keinen scharfen Rand. Darum misst man zwei gleiche Atome, die miteinander gebunden sind, und halbiert den Abstand der Kerne: <M p=".">{t`r = d/2`}</M> Beim Wasserstoffmolekül ist <M p=",">{t`d = 74\ \mathrm{pm}`}</M> der Radius also <M p=".">{t`37\ \mathrm{pm}`}</M> Die Folie hat <M p=".">{t`31\ \mathrm{pm}`}</M> (der Unterschied liegt an der Definition, die Folie benutzt die Tabelle von Brown).</li>
               <li>Spalte hinab: eine Schale mehr, die Elektronen sitzen weiter aussen. Der Radius wächst. <M>{t`Z_{\mathrm{eff}}`}</M> ändert sich kaum, also gewinnt die grössere Schale.</li>
               <li>Zeile entlang: Dieselbe Schale, aber <M>{t`Z_{\mathrm{eff}}`}</M> wächst. Die Wolke wird zusammengezogen. Der Radius sinkt.</li>
@@ -132,8 +132,8 @@ export default function CH6Trends() {
             <p>Im Bild siehst du die Werte der Folie 30 als Heatmap (die Zahlen in den Feldern sind in pm). Wechsle auch zu den anderen Grössen: Alle drei Karten gehören zusammen.</p>
           </>}
           en={<>
-            <p><b>How to read this:</b></p>
-            <ol>
+            <p className="keep"><b>How to read this:</b></p>
+            <ol className="keep">
               <li>An atom has no sharp edge. So one takes two identical atoms bonded to each other and halves the distance of the nuclei: <M p=".">{t`r = d/2`}</M> For the hydrogen molecule <M p=",">{t`d = 74\ \mathrm{pm}`}</M> so the radius is <M p=".">{t`37\ \mathrm{pm}`}</M> The slide has <M p=".">{t`31\ \mathrm{pm}`}</M> (the difference is a matter of definition; the slide uses the table of Brown).</li>
               <li>Down a column: one more shell, the electrons sit farther out. The radius grows. <M>{t`Z_{\mathrm{eff}}`}</M> hardly changes, so the larger shell wins.</li>
               <li>Along a row: the same shell, but <M>{t`Z_{\mathrm{eff}}`}</M> grows. The cloud is pulled together. The radius falls.</li>
@@ -176,8 +176,8 @@ export default function CH6Trends() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li>Ein Kation hat weniger Elektronen als Protonen. Ein Teil der Abstossung unter den Elektronen fällt weg, und oft ist die äusserste Schale ganz leer. Die übrigen Elektronen werden vom Kern enger gezogen. Das Kation schrumpft.</li>
               <li>Ein Anion hat mehr Elektronen als Protonen. Die Elektronen stossen sich stärker ab, der Kern hält jedes weniger fest. Das Anion schwillt an.</li>
               <li>«Isoelektronisch» heisst «gleich viele Elektronen». Alle fünf Ionen der Reihe haben 10 Elektronen und dieselbe Anordnung. Nur die Zahl der Protonen unterscheidet sie: 8, 9, 11, 12, 13. Je mehr Protonen, desto stärker die Anziehung und desto kleiner das Ion.</li>
@@ -185,8 +185,8 @@ export default function CH6Trends() {
             <p>Im Bild wählst du ein Atom und schaltest zwischen Atom und Ion um. Der Kreis wächst oder schrumpft. Darunter steht die ganze Reihe: von links nach rechts nimmt die Ladung des Kerns zu, der Radius ab. (Atomradius und Ionenradius stammen aus zwei verschiedenen Tabellen der Folien; verglichen wird der Trend.)</p>
           </>}
           en={<>
-            <p><b>How to read this:</b></p>
-            <ol>
+            <p className="keep"><b>How to read this:</b></p>
+            <ol className="keep">
               <li>A cation has fewer electrons than protons. Part of the repulsion among the electrons disappears, and often the outermost shell is empty altogether. The remaining electrons are pulled in more tightly by the nucleus. The cation shrinks.</li>
               <li>An anion has more electrons than protons. The electrons repel each other more strongly, the nucleus holds each one less firmly. The anion swells.</li>
               <li>“Isoelectronic” means “same number of electrons”. All five ions of the series have 10 electrons and the same arrangement. Only the number of protons distinguishes them: 8, 9, 11, 12, 13. The more protons, the stronger the attraction and the smaller the ion.</li>
@@ -223,8 +223,8 @@ export default function CH6Trends() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li><M>{t`I_1`}</M> ist der Preis, das lockerste Elektron wegzunehmen. Du musst gegen die Anziehung des Kerns arbeiten, darum ist der Preis immer positiv.</li>
               <li>Nach rechts: <M>{t`Z_{\mathrm{eff}}`}</M> wächst, der Radius sinkt, das äusserste Elektron sitzt fester. Der Preis steigt. Bei Neon ist er am höchsten (volle Schale), bei Natrium (ein einzelnes Elektron in einer neuen Schale, weit weg) wieder tief.</li>
               <li>Nach unten: Das äusserste Elektron sitzt in einer weiter entfernten Schale. Der Preis sinkt. Darum geben Alkalimetalle ihr Elektron so leicht ab.</li>
@@ -232,8 +232,8 @@ export default function CH6Trends() {
             </ol>
           </>}
           en={<>
-            <p><b>How to read this:</b></p>
-            <ol>
+            <p className="keep"><b>How to read this:</b></p>
+            <ol className="keep">
               <li><M>{t`I_1`}</M> is the price of taking away the loosest electron. You have to work against the attraction of the nucleus, so the price is always positive.</li>
               <li>To the right: <M>{t`Z_{\mathrm{eff}}`}</M> grows, the radius falls, the outermost electron sits more firmly. The price rises. For neon it is highest (full shell), for sodium (a single electron in a new shell, far away) it is low again.</li>
               <li>Downwards: the outermost electron sits in a shell farther away. The price falls. This is why alkali metals give up their electron so easily.</li>
@@ -289,8 +289,8 @@ export default function CH6Trends() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li>Ionisierungsenergie fragt: Was kostet es, ein Elektron <em>wegzunehmen</em>? Die Elektronenaffinität fragt das Spiegelbild: Was bringt es, ein Elektron <em>hinzuzufügen</em>?</li>
               <li>Die Vorzeichen folgen der Regel dieses Kurses: Wird Energie frei, ist die Zahl negativ (<M p=").">{t`\mathrm{EA} < 0`}</M> Ein Chlor-Atom hat eine fast volle Schale, ein Elektron mehr passt gut hinein. Es wird Energie frei.</li>
               <li>Ein Neon-Atom hat eine volle Schale. Das zusätzliche Elektron müsste in eine neue Schale, und es wird vom Kern kaum gehalten. Man muss Energie hineinstecken: <M p=".">{t`\mathrm{EA} > 0`}</M></li>
@@ -298,8 +298,8 @@ export default function CH6Trends() {
             </ol>
           </>}
           en={<>
-            <p><b>How to read this:</b></p>
-            <ol>
+            <p className="keep"><b>How to read this:</b></p>
+            <ol className="keep">
               <li>Ionisation energy asks: what does it cost to <em>take away</em> an electron? Electron affinity asks the mirror question: what does it bring to <em>add</em> an electron?</li>
               <li>The signs follow the rule of this course: if energy is released, the number is negative (<M p=").">{t`\mathrm{EA} < 0`}</M> A chlorine atom has an almost full shell, one more electron fits in well. Energy is released.</li>
               <li>A neon atom has a full shell. The additional electron would have to go into a new shell, and the nucleus hardly holds it. You have to put energy in: <M p=".">{t`\mathrm{EA} > 0`}</M></li>

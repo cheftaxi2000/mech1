@@ -44,8 +44,8 @@ export default function CH2Kinetik() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das.</b> Die Folie macht aus dem Gasgesetz eine Geschichte über Teilchen. Drei Dinge sind neu:</p>
-            <ol>
+            <p className="keep"><b>So liest man das.</b> Die Folie macht aus dem Gasgesetz eine Geschichte über Teilchen. Drei Dinge sind neu:</p>
+            <ol className="keep">
               <li><M>{t`E_k=\tfrac12 mv^2`}</M> ist die Bewegungsenergie. Ein doppelt so schnelles Teilchen hat <em>viermal</em> so viel, weil <M>v</M> quadriert wird.</li>
               <li>«Die mittlere Energie hängt nur von <M>T</M> ab» ist der Kern: Temperatur <em>ist</em> ein Mass für die mittlere Bewegungsenergie. Ein heisses Gas hat schnelle Teilchen, ein kaltes langsame. Bei absolut null (<M p=")">{t`0\,\mathrm K`}</M> stünden sie praktisch still.</li>
               <li>Schwere und leichte Teilchen haben bei gleichem <M>T</M> dieselbe Energie. Weil <M>{t`\tfrac12 mv^2`}</M> gleich bleiben muss, sind die leichten schneller.</li>
@@ -53,8 +53,8 @@ export default function CH2Kinetik() {
             <p>Dass <M>{t`P\propto T`}</M> folgt, zeigt die Animation. Der Druck ist ein Produkt aus zwei Dingen, und beide wachsen mit dem Tempo.</p>
           </>}
           en={<>
-            <p><b>How to read this.</b> The slide turns the gas law into a story about particles. Three things are new:</p>
-            <ol>
+            <p className="keep"><b>How to read this.</b> The slide turns the gas law into a story about particles. Three things are new:</p>
+            <ol className="keep">
               <li><M>{t`E_k=\tfrac12 mv^2`}</M> is the energy of motion. A particle that is twice as fast has <em>four times</em> as much, because <M>v</M> is squared.</li>
               <li>“The average energy depends only on <M>T</M>” is the core: temperature <em>is</em> a measure of the average energy of motion. A hot gas has fast particles, a cold one slow ones. At absolute zero (<M p=")">{t`0\,\mathrm K`}</M> they would practically stand still.</li>
               <li>Heavy and light particles have the same energy at the same <M p=".">T</M> Because <M>{t`\tfrac12 mv^2`}</M> has to stay the same, the light ones are faster.</li>
@@ -120,11 +120,11 @@ export default function CH2Kinetik() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das Diagramm.</b> Die waagrechte Achse ist die Geschwindigkeit. Die Höhe der Kurve sagt, wie viele Moleküle ungefähr diese Geschwindigkeit haben. Entscheidend ist die <em>Fläche</em> unter der Kurve: Die Fläche zwischen zwei Geschwindigkeiten ist der Anteil der Moleküle in diesem Bereich. Die ganze Fläche ist 1, also alle Moleküle. Auf Folie 26 ist die Fläche rechts von <M>{t`500\,\mathrm{m/s}`}</M> gefärbt: Das sind die Moleküle, die schneller sind.</p>
+            <p className="keep"><b>So liest man das Diagramm.</b> Die waagrechte Achse ist die Geschwindigkeit. Die Höhe der Kurve sagt, wie viele Moleküle ungefähr diese Geschwindigkeit haben. Entscheidend ist die <em>Fläche</em> unter der Kurve: Die Fläche zwischen zwei Geschwindigkeiten ist der Anteil der Moleküle in diesem Bereich. Die ganze Fläche ist 1, also alle Moleküle. Auf Folie 26 ist die Fläche rechts von <M>{t`500\,\mathrm{m/s}`}</M> gefärbt: Das sind die Moleküle, die schneller sind.</p>
             <p>Unten kannst du das ausprobieren. Die gestrichelte graue Kurve ist festgehalten, die farbige bewegst du. Schiebe <M>T</M> hoch: Die Kurve wird breiter und flacher, aber die Fläche bleibt 1. Die Zahl unter dem Bild gibt den Anteil der Moleküle, die schneller als die Grenze <M>{t`v_0`}</M> sind. Bei Stickstoff sind es bei <M>{t`0\,^\circ\mathrm C`}</M> weniger als die Hälfte (38 %), bei <M>{t`100\,^\circ\mathrm C`}</M> mehr als die Hälfte (52 %); so steht es in der Beschriftung der Folie.</p>
           </>}
           en={<>
-            <p><b>How to read the diagram.</b> The horizontal axis is the speed. The height of the curve tells you roughly how many molecules have this speed. What counts is the <em>area</em> under the curve: the area between two speeds is the fraction of molecules in that range. The whole area is 1, that is all molecules. On slide 26 the area to the right of <M>{t`500\,\mathrm{m/s}`}</M> is coloured: those are the molecules that are faster.</p>
+            <p className="keep"><b>How to read the diagram.</b> The horizontal axis is the speed. The height of the curve tells you roughly how many molecules have this speed. What counts is the <em>area</em> under the curve: the area between two speeds is the fraction of molecules in that range. The whole area is 1, that is all molecules. On slide 26 the area to the right of <M>{t`500\,\mathrm{m/s}`}</M> is coloured: those are the molecules that are faster.</p>
             <p>Try it below. The dashed grey curve is pinned, the coloured one you move. Push <M>T</M> up: the curve gets broader and flatter, but the area stays 1. The number under the picture gives the fraction of molecules faster than the threshold <M p=".">{t`v_0`}</M> For nitrogen at <M>{t`0\,^\circ\mathrm C`}</M> it is less than half (38 %), at <M>{t`100\,^\circ\mathrm C`}</M> more than half (52 %); that is what the caption of the slide says.</p>
           </>}
         />
@@ -183,11 +183,11 @@ export default function CH2Kinetik() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das.</b> Warum riechst du ein Parfüm nicht sofort im ganzen Raum, obwohl die Moleküle mit <M>{t`500\,\mathrm{m/s}`}</M> fliegen? Weil sie alle <M>{t`60\,\mathrm{nm}`}</M> mit einem anderen Molekül zusammenstossen und danach in eine neue, zufällige Richtung fliegen. Der Weg ist ein Zickzack mit unzähligen Knicken. Die gesamte Strecke ist riesig, aber der <em>Abstand vom Start</em> wächst nur langsam, ungefähr mit der Wurzel der Zahl der Zusammenstösse.</p>
+            <p className="keep"><b>So liest man das.</b> Warum riechst du ein Parfüm nicht sofort im ganzen Raum, obwohl die Moleküle mit <M>{t`500\,\mathrm{m/s}`}</M> fliegen? Weil sie alle <M>{t`60\,\mathrm{nm}`}</M> mit einem anderen Molekül zusammenstossen und danach in eine neue, zufällige Richtung fliegen. Der Weg ist ein Zickzack mit unzähligen Knicken. Die gesamte Strecke ist riesig, aber der <em>Abstand vom Start</em> wächst nur langsam, ungefähr mit der Wurzel der Zahl der Zusammenstösse.</p>
             <p>Die Figur zeigt einen Ausschnitt, stark vergrössert. Rote Moleküle liegen fest; das blaue fliegt geradeaus, bis es eines trifft, und startet dann in eine neue Richtung. Ändere den Druck: Bei weniger Druck gibt es weniger rote Moleküle, die geraden Stücke werden länger und das blaue kommt weiter. Das gelbe Gestrichelte ist der Abstand vom Start; der Weg entlang der Linie ist viel länger. Genau das meint die Handschrift: «Wegen der Zusammenstösse kommt es nicht weit.»</p>
           </>}
           en={<>
-            <p><b>How to read this.</b> Why do you not smell a perfume at once in the whole room even though the molecules fly at <M p="?">{t`500\,\mathrm{m/s}`}</M> Because every <M>{t`60\,\mathrm{nm}`}</M> they collide with another molecule and then fly off in a new, random direction. The path is a zigzag with countless kinks. The total distance is huge, but the <em>distance from the start</em> grows only slowly, roughly like the square root of the number of collisions.</p>
+            <p className="keep"><b>How to read this.</b> Why do you not smell a perfume at once in the whole room even though the molecules fly at <M p="?">{t`500\,\mathrm{m/s}`}</M> Because every <M>{t`60\,\mathrm{nm}`}</M> they collide with another molecule and then fly off in a new, random direction. The path is a zigzag with countless kinks. The total distance is huge, but the <em>distance from the start</em> grows only slowly, roughly like the square root of the number of collisions.</p>
             <p>The figure shows a section, greatly enlarged. Red molecules stay in place; the blue one flies straight until it meets one, and then starts in a new direction. Change the pressure: at lower pressure there are fewer red molecules, the straight pieces get longer and the blue one gets further. The dashed yellow line is the distance from the start; the path along the line is much longer. This is what the handwriting means: “due to collisions it does not make it very far.”</p>
           </>}
         />
@@ -228,16 +228,16 @@ export default function CH2Kinetik() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das.</b> Das ideale Gasgesetz nimmt zwei Dinge an: Die Teilchen haben kein eigenes Volumen und ziehen sich nicht an. <span lang="de">Van der Waals</span> flickt genau diese beiden Annahmen, jede mit einer Zahl:</p>
-            <ol>
+            <p className="keep"><b>So liest man das.</b> Das ideale Gasgesetz nimmt zwei Dinge an: Die Teilchen haben kein eigenes Volumen und ziehen sich nicht an. <span lang="de">Van der Waals</span> flickt genau diese beiden Annahmen, jede mit einer Zahl:</p>
+            <ol className="keep">
               <li><b><M>a</M> für die Anziehung.</b> Jedes Molekül in der Mitte wird von allen Seiten gleich angezogen. Eines kurz vor der Wand wird nur nach innen gezogen und prallt schwächer auf. Darum misst man einen <em>kleineren</em> Druck <M>P</M> als <M p=".">{t`nRT/V`}</M> Damit die Rechnung wieder stimmt, addiert man den fehlenden Anteil: <M p=".">{t`P+n^2a/V^2`}</M> Der Anteil ist gross, wenn die Teilchen dicht gepackt sind (kleines <M p=")">V</M> denn er hängt von <M>{t`1/V^2`}</M> ab: Zahl der Paare nahe beieinander.</li>
               <li><b><M>b</M> für das Eigenvolumen.</b> Die Moleküle sind keine Punkte. Ein Teil des Behälters ist schon besetzt, und frei ist nur <M p=".">{t`V-nb`}</M> Pro Mol nimmt man das Volumen <M>b</M> weg.</li>
             </ol>
             <p>Die beiden Korrekturen wirken in entgegengesetzte Richtung. Bei mässigem Druck gewinnt die Anziehung (<M>{t`PV/RT<1`}</M> in der Folie 29 zuerst), bei sehr hohem Druck das Eigenvolumen (<M p=").">{t`PV/RT>1`}</M> Bei kleinem Druck sind beide klein, und das Gas ist ideal. Probiere es aus: Wähle ein Gas und verschiebe <M>T</M> und <M p=".">V</M></p>
           </>}
           en={<>
-            <p><b>How to read this.</b> The ideal gas law assumes two things: the particles have no volume of their own and do not attract each other. <span lang="de">Van der Waals</span> patches exactly these two assumptions, each with one number:</p>
-            <ol>
+            <p className="keep"><b>How to read this.</b> The ideal gas law assumes two things: the particles have no volume of their own and do not attract each other. <span lang="de">Van der Waals</span> patches exactly these two assumptions, each with one number:</p>
+            <ol className="keep">
               <li><b><M>a</M> for the attraction.</b> A molecule in the middle is pulled equally from all sides. One just before the wall is pulled only inwards and hits more weakly. So you measure a <em>smaller</em> pressure <M>P</M> than <M p=".">{t`nRT/V`}</M> To make the calculation right again, you add the missing part: <M p=".">{t`P+n^2a/V^2`}</M> The part is large when the particles are packed densely (small <M p=")">V</M> because it depends on <M p=":">{t`1/V^2`}</M> the number of pairs close together.</li>
               <li><b><M>b</M> for the own volume.</b> Molecules are not points. Part of the container is already taken, and only <M p=".">{t`V-nb`}</M> is free. Per mole you take away the volume <M p=".">b</M></li>
             </ol>

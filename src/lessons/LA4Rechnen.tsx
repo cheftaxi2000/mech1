@@ -29,8 +29,8 @@ export default function LA4Rechnen() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li><M>m</M> ist die Anzahl der <em>Zeilen</em> (waagrecht), <M>n</M> die Anzahl der <em>Spalten</em> (senkrecht).</li>
               <li><M>{t`A^{m\times n}`}</M> ist keine Potenz. Die kleine Zahl oben rechts nennt nur die Form der Tabelle, so wie «<M>{t`5\times 4`}</M>» die Grösse eines Zimmers nennt.</li>
               <li><M>{t`A_{ij}`}</M> ist das Feld in Zeile <M>i</M> und Spalte <M p=".">j</M> Bei <M>{t`A_{(3)(4)}`}</M> stehen die Klammern nur, damit man «3» und «4» nicht zu «34» zusammenliest.</li>
@@ -38,8 +38,8 @@ export default function LA4Rechnen() {
             <p>Stell <M>m</M> und <M>n</M> ein und tippe auf Einträge. Die Zeile wird blau, die Spalte rot, der Eintrag orange.</p>
           </>}
           en={<>
-            <p><b>How to read this:</b></p>
-            <ol>
+            <p className="keep"><b>How to read this:</b></p>
+            <ol className="keep">
               <li><M>m</M> is the number of <em>rows</em> (horizontal), <M>n</M> the number of <em>columns</em> (vertical).</li>
               <li><M>{t`A^{m\times n}`}</M> is not a power. The small number at the top right only names the shape of the table, just as “<M>{t`5\times 4`}</M>” names the size of a room.</li>
               <li><M>{t`A_{ij}`}</M> is the cell in row <M>i</M> and column <M p=".">j</M> In <M>{t`A_{(3)(4)}`}</M> the brackets are only there so that you do not read “3” and “4” as “34”.</li>
@@ -61,12 +61,12 @@ export default function LA4Rechnen() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b> Zwei Matrizen werden addiert, indem man Felder mit gleicher Adresse zusammenzählt. Das Feld oben links von <M>C</M> ist das Feld oben links von <M>A</M> plus das Feld oben links von <M p=".">B</M> In Formeln: <M p=".">{t`C_{ij} = A_{ij} + B_{ij}`}</M></p>
-            <p>Dafür braucht jedes Feld einen Partner. Darum müssen beide Matrizen gleich viele Zeilen und gleich viele Spalten haben. Probiere es aus: Ändere die Form von <M>B</M> und sieh, was mit der Summe passiert.</p>
+            <p className="keep"><b>So liest man das:</b> Zwei Matrizen werden addiert, indem man Felder mit gleicher Adresse zusammenzählt. Das Feld oben links von <M>C</M> ist das Feld oben links von <M>A</M> plus das Feld oben links von <M p=".">B</M> In Formeln: <M p=".">{t`C_{ij} = A_{ij} + B_{ij}`}</M></p>
+            <p className="keep">Dafür braucht jedes Feld einen Partner. Darum müssen beide Matrizen gleich viele Zeilen und gleich viele Spalten haben. Probiere es aus: Ändere die Form von <M>B</M> und sieh, was mit der Summe passiert.</p>
           </>}
           en={<>
-            <p><b>How to read this:</b> Two matrices are added by adding the cells with the same address. The top-left cell of <M>C</M> is the top-left cell of <M>A</M> plus the top-left cell of <M p=".">B</M> In a formula: <M p=".">{t`C_{ij} = A_{ij} + B_{ij}`}</M></p>
-            <p>For that, every cell needs a partner. So both matrices must have the same number of rows and the same number of columns. Try it: change the shape of <M>B</M> and see what happens to the sum.</p>
+            <p className="keep"><b>How to read this:</b> Two matrices are added by adding the cells with the same address. The top-left cell of <M>C</M> is the top-left cell of <M>A</M> plus the top-left cell of <M p=".">B</M> In a formula: <M p=".">{t`C_{ij} = A_{ij} + B_{ij}`}</M></p>
+            <p className="keep">For that, every cell needs a partner. So both matrices must have the same number of rows and the same number of columns. Try it: change the shape of <M>B</M> and see what happens to the sum.</p>
           </>}
         />
         <AddExplorer />
@@ -88,8 +88,8 @@ export default function LA4Rechnen() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li><M>Av</M> ist der Pfeil, auf den <M>v</M> unter <M>A</M> fällt (blau). <M>Bv</M> ist der Pfeil unter <M>B</M> (orange).</li>
               <li>Hänge <M>Bv</M> an die Spitze von <M p=".">Av</M> Das Ende ist <M>{t`Av + Bv`}</M> (grün).</li>
               <li>Die Matrix <M>{t`A+B`}</M> schickt <M>v</M> genau an dieses Ende. Der grüne Pfeil gehört also zu <M p=".">{t`(A+B)v`}</M></li>
@@ -97,8 +97,8 @@ export default function LA4Rechnen() {
             <p>Zieh <M>v</M> herum: Der grüne Pfeil bleibt immer die Diagonale. Ändere auch <M>A</M> und <M p=".">B</M></p>
           </>}
           en={<>
-            <p><b>How to read this:</b></p>
-            <ol>
+            <p className="keep"><b>How to read this:</b></p>
+            <ol className="keep">
               <li><M>Av</M> is the arrow onto which <M>v</M> falls under <M>A</M> (blue). <M>Bv</M> is the arrow under <M>B</M> (orange).</li>
               <li>Attach <M>Bv</M> to the tip of <M p=".">Av</M> The end is <M>{t`Av + Bv`}</M> (green).</li>
               <li>The matrix <M>{t`A+B`}</M> sends <M>v</M> to exactly this end. So the green arrow belongs to <M p=".">{t`(A+B)v`}</M></li>
@@ -133,16 +133,16 @@ export default function LA4Rechnen() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b> «Skalar» ist ein Wort für eine gewöhnliche Zahl (im Gegensatz zu einem Pfeil oder einer Tabelle). <M>{t`\lambda`}</M> (lies «Lambda») ist nur der Name dieser Zahl.</p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b> «Skalar» ist ein Wort für eine gewöhnliche Zahl (im Gegensatz zu einem Pfeil oder einer Tabelle). <M>{t`\lambda`}</M> (lies «Lambda») ist nur der Name dieser Zahl.</p>
+            <ol className="keep">
               <li>Links steht <M p=":">{t`\lambda A`}</M> Jedes der vier Felder wird mit <M>{t`\lambda`}</M> multipliziert, nicht nur eines.</li>
               <li>Unten läuft die Rechnung rückwärts: <M>5</M> steckt in jedem Eintrag, also darf man sie nach vorne ziehen («ausklammern»).</li>
               <li>Geometrisch: Jeder Pfeil <M>Av</M> wird <M>{t`\lambda`}</M>-mal so lang. Das ganze Gitter wird mit gestreckt.</li>
             </ol>
           </>}
           en={<>
-            <p><b>How to read this:</b> “Scalar” is a word for an ordinary number (as opposed to an arrow or a table). <M>{t`\lambda`}</M> (read “lambda”) is just the name of that number.</p>
-            <ol>
+            <p className="keep"><b>How to read this:</b> “Scalar” is a word for an ordinary number (as opposed to an arrow or a table). <M>{t`\lambda`}</M> (read “lambda”) is just the name of that number.</p>
+            <ol className="keep">
               <li>On the left is <M p=":">{t`\lambda A`}</M> every one of the four cells is multiplied by <M p=",">{t`\lambda`}</M> not just one.</li>
               <li>Below, the calculation runs backwards: <M>5</M> sits in every entry, so you may pull it to the front (“factor out”).</li>
               <li>Geometrically: every arrow <M>Av</M> becomes <M>{t`\lambda`}</M> times as long. The whole grid is stretched along.</li>

@@ -30,8 +30,8 @@ export default function A3Stetigkeit() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die Zeile:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man die Zeile:</b></p>
+            <ol className="keep">
               <li><M>{t`x\to a^-`}</M> heisst: <M>x</M> kommt von <b>links</b> an <M>a</M> heran, also immer <M p=".">{t`x < a`}</M> Das hochgestellte Minus ist kein Vorzeichen, sondern die Richtung.</li>
               <li><M>{t`x\to a^+`}</M> heisst: von <b>rechts</b>, also immer <M p=".">{t`x > a`}</M></li>
               <li>Stetig bei <M>a</M> heisst: Beide Grenzwerte existieren, sind gleich, und <M>f</M> hat bei <M>a</M> genau diesen Wert. Fehlt eines der drei, ist dort ein Loch, ein Pol oder ein Sprung.</li>
@@ -39,8 +39,8 @@ export default function A3Stetigkeit() {
             <p>Am Rand gibt es nur eine Seite: Auf <M>{t`[0, \infty)`}</M> ist <M>{t`\sqrt{x}`}</M> bei <M>0</M> stetig, weil man nur von rechts kommen kann.</p>
           </>}
           en={<>
-            <p><b>How to read the line:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the line:</b></p>
+            <ol className="keep">
               <li><M>{t`x\to a^-`}</M> means: <M>x</M> approaches <M>a</M> from the <b>left</b>, so always <M p=".">{t`x < a`}</M> The raised minus is not a sign but the direction.</li>
               <li><M>{t`x\to a^+`}</M> means: from the <b>right</b>, so always <M p=".">{t`x > a`}</M></li>
               <li>Continuous at <M>a</M> means: both limits exist, they are equal, and <M>f</M> has exactly this value at <M p=".">a</M> If one of the three is missing, there is a hole, a pole or a jump.</li>
@@ -91,8 +91,8 @@ export default function A3Stetigkeit() {
         />
         <LimitExplorer />
         <T
-          de={<p><b>Warum darf man nur für <M>{t`x \neq 1`}</M> kürzen?</b> Es ist <M p=".">{t`x^2 - 1 = (x-1)(x+1)`}</M> Kürzen heisst: <M>{t`\frac{x-1}{x-1} = 1`}</M> ersetzen. Das stimmt nur, wenn <M p=",">{t`x - 1 \neq 0`}</M> denn <M>{t`\frac00`}</M> ist nicht definiert. Darum bleibt bei <M>1</M> ein Loch, obwohl die Gerade <M>{t`x + 1`}</M> dort ohne Lücke weiterläuft.</p>}
-          en={<p><b>Why may we cancel only for <M p="?">{t`x \neq 1`}</M></b> We have <M p=".">{t`x^2 - 1 = (x-1)(x+1)`}</M> Cancelling means replacing <M>{t`\frac{x-1}{x-1}`}</M> by <M p=".">1</M> That is true only if <M p=",">{t`x - 1 \neq 0`}</M> because <M>{t`\frac00`}</M> is not defined. So a hole stays at <M p=",">1</M> although the line <M>{t`x + 1`}</M> continues there without a gap.</p>}
+          de={<p className="keep"><b>Warum darf man nur für <M>{t`x \neq 1`}</M> kürzen?</b> Es ist <M p=".">{t`x^2 - 1 = (x-1)(x+1)`}</M> Kürzen heisst: <M>{t`\frac{x-1}{x-1} = 1`}</M> ersetzen. Das stimmt nur, wenn <M p=",">{t`x - 1 \neq 0`}</M> denn <M>{t`\frac00`}</M> ist nicht definiert. Darum bleibt bei <M>1</M> ein Loch, obwohl die Gerade <M>{t`x + 1`}</M> dort ohne Lücke weiterläuft.</p>}
+          en={<p className="keep"><b>Why may we cancel only for <M p="?">{t`x \neq 1`}</M></b> We have <M p=".">{t`x^2 - 1 = (x-1)(x+1)`}</M> Cancelling means replacing <M>{t`\frac{x-1}{x-1}`}</M> by <M p=".">1</M> That is true only if <M p=",">{t`x - 1 \neq 0`}</M> because <M>{t`\frac00`}</M> is not defined. So a hole stays at <M p=",">1</M> although the line <M>{t`x + 1`}</M> continues there without a gap.</p>}
         />
         <Box kind="misconception" title={<T de={<>«<M>{t`\frac1x`}</M> ist unstetig»</>} en={<>“<M>{t`\frac1x`}</M> is discontinuous”</>} />}>
           <T
@@ -131,21 +131,21 @@ export default function A3Stetigkeit() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li>«Polynom <M>\to</M> stetig»: <M>x</M> ist stetig, und Summen und Produkte stetiger Funktionen sind stetig. Also darf man den ZWS auf <M>{t`[1, 2]`}</M> benutzen.</li>
               <li><M>{t`m = 0`}</M> liegt zwischen <M>{t`f(1) = -1`}</M> und <M p=".">{t`f(2) = 5`}</M> Also gibt es ein <M>c</M> mit <M p=".">{t`f(c) = 0`}</M></li>
             </ol>
           </>}
           en={<>
-            <p><b>How to read it:</b></p>
-            <ol>
+            <p className="keep"><b>How to read it:</b></p>
+            <ol className="keep">
               <li>“Polynomial <M>\to</M> continuous”: <M>x</M> is continuous, and sums and products of continuous functions are continuous. So the IVT may be used on <M p=".">{t`[1, 2]`}</M></li>
               <li><M>{t`m = 0`}</M> lies between <M>{t`f(1) = -1`}</M> and <M p=".">{t`f(2) = 5`}</M> So there is a <M>c</M> with <M p=".">{t`f(c) = 0`}</M></li>
             </ol>
           </>}
         />
-        <Box kind="supplement" title={<T de="Wie findet man die Nullstelle? Halbieren" en="How to find the zero? Halving" />}>
+        <Box keep kind="supplement" title={<T de="Wie findet man die Nullstelle? Halbieren" en="How to find the zero? Halving" />}>
           <T
             de={<p>Der ZWS sagt nur «irgendwo dazwischen». Man kann ihn aber immer wieder anwenden: Mitte nehmen, Vorzeichen prüfen, die Hälfte mit dem Vorzeichenwechsel behalten. Das heisst <b>Bisektion</b>.</p>}
             en={<p>The IVT only says “somewhere in between”. But one can apply it again and again: take the midpoint, check the sign, keep the half with the change of sign. This is called <b>bisection</b>.</p>}
@@ -177,8 +177,8 @@ export default function A3Stetigkeit() {
         </Box>
         <T
           de={<>
-            <p><b>Warum gilt jede Ungleichung?</b></p>
-            <ol>
+            <p className="keep"><b>Warum gilt jede Ungleichung?</b></p>
+            <ol className="keep">
               <li><M p=":">{t`h(-1) = -2-\sqrt{4-(-1)} = -2-\sqrt5 \approx -4{,}24`}</M> Für <M>{t`x = -1 \le 4`}</M> gilt die obere Zeile von <M p=".">h</M></li>
               <li><M p=",">{t`-4{,}24 < -3{,}14 < -2`}</M> also liegt <M>{t`-\pi \approx -3{,}14`}</M> dazwischen.</li>
               <li><M>{t`h(4) = -2`}</M> gehört noch zum linken Teil, weil dort <M>{t`x \le 4`}</M> steht. Der Sprung kommt erst <em>nach</em> <M p=".">4</M> Darum ist <M>h</M> auf dem geschlossenen Intervall <M>{t`[-1, 4]`}</M> stetig.</li>
@@ -186,8 +186,8 @@ export default function A3Stetigkeit() {
             <p>Hier kann man das <M>x</M> sogar ausrechnen (Ergänzung): <M>{t`-2-\sqrt{4-x} = -\pi`}</M> ergibt <M p=".">{t`x = 4 - (\pi-2)^2 \approx 2{,}70`}</M></p>
           </>}
           en={<>
-            <p><b>Why does each inequality hold?</b></p>
-            <ol>
+            <p className="keep"><b>Why does each inequality hold?</b></p>
+            <ol className="keep">
               <li><M p=".">{t`h(-1) = -2-\sqrt{4-(-1)} = -2-\sqrt5 \approx -4.24`}</M> For <M>{t`x = -1 \le 4`}</M> the upper line of <M>h</M> applies.</li>
               <li><M p=",">{t`-4.24 < -3.14 < -2`}</M> so <M>{t`-\pi \approx -3.14`}</M> lies in between.</li>
               <li><M>{t`h(4) = -2`}</M> still belongs to the left part, because it says <M>{t`x \le 4`}</M> there. The jump comes only <em>after</em> <M p=".">4</M> So <M>h</M> is continuous on the closed interval <M p=".">{t`[-1, 4]`}</M></li>

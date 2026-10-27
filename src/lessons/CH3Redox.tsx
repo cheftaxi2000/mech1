@@ -73,16 +73,16 @@ export default function CH3Redox() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die Zeilen:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man die Zeilen:</b></p>
+            <ol className="keep">
               <li>Der Pfeil in «<C>HCl</C> gibt <C>H^+</C> und <C>Cl^-</C>» heisst: Das <C>H</C> geht <em>ohne sein Elektron</em> weg, das Elektron bleibt beim <C p=".">Cl</C> Darum wird aus <C>Cl</C> ein <C p=",">Cl^-</C> und das <C>H</C> bleibt als nacktes <C p=".">H^+</C></li>
               <li>Bei <C>Ca(OH)2</C> steht die Zahl 2 vor <C p=",">OH^-</C> weil die Formel zwei <C>OH</C> enthält: ein <C>Ca^2+</C> braucht zwei <C p=".">OH^-</C> (Ladung ausgleichen, wie in Lektion 1).</li>
               <li>Bei <C>NH3</C> kommt kein <C>OH^-</C> in der Formel vor. Es entsteht trotzdem, weil <C>NH3</C> dem Wasser ein <C>H^+</C> wegnimmt: Aus <C>H2O</C> wird <C p=",">OH^-</C> aus <C>NH3</C> wird <C p=".">NH4^+</C> So «nimmt» die Base das Proton.</li>
             </ol>
           </>}
           en={<>
-            <p><b>How to read the lines:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the lines:</b></p>
+            <ol className="keep">
               <li>The arrow in “<C>HCl</C> gives <C>H^+</C> and <C>Cl^-</C>” means: the <C>H</C> leaves <em>without its electron</em>, the electron stays with the <C p=".">Cl</C> So <C>Cl</C> becomes <C p=",">Cl^-</C> and the <C>H</C> remains as a bare <C p=".">H^+</C></li>
               <li>For <C>Ca(OH)2</C> there is the number 2 in front of <C p=",">OH^-</C> because the formula contains two <C>OH</C>: one <C>Ca^2+</C> needs two <C p=".">OH^-</C> (balance the charge, as in lesson 1).</li>
               <li>For <C>NH3</C> no <C>OH^-</C> appears in the formula. It forms anyway, because <C>NH3</C> takes a <C>H^+</C> away from water: <C>H2O</C> becomes <C p=",">OH^-</C> and <C>NH3</C> becomes <C p=".">NH4^+</C> This is how the base “accepts” the proton.</li>
@@ -238,16 +238,16 @@ export default function CH3Redox() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das Beispiel:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das Beispiel:</b></p>
+            <ol className="keep">
               <li>Ein neutrales <C>Ca</C> hat gleich viele Protonen wie Elektronen. Es gibt zwei Elektronen ab und hat jetzt zwei <em>Plus</em> mehr als Minus: <C p=".">Ca^2+</C> Es hat Elektronen verloren: oxidiert.</li>
               <li>Ein <C>O2</C>-Molekül hat vier Elektronen aufgenommen, zwei für jedes seiner Atome: <C p=".">2 O^2-</C> Es hat Elektronen gewonnen: reduziert.</li>
               <li>Die Elektronen verschwinden nicht: Zwei <C>Ca</C> geben vier Elektronen ab, ein <C>O2</C> nimmt vier auf. Die Zahlen gehen auf.</li>
             </ol>
           </>}
           en={<>
-            <p><b>How to read the example:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the example:</b></p>
+            <ol className="keep">
               <li>A neutral <C>Ca</C> has as many protons as electrons. It gives away two electrons and now has two <em>plus</em> more than minus: <C p=".">Ca^2+</C> It lost electrons: oxidised.</li>
               <li>An <C>O2</C> molecule took up four electrons, two for each of its atoms: <C p=".">2 O^2-</C> It gained electrons: reduced.</li>
               <li>The electrons do not disappear: two <C>Ca</C> give away four electrons, one <C>O2</C> takes up four. The numbers add up.</li>
@@ -286,8 +286,8 @@ export default function CH3Redox() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die Regeln:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man die Regeln:</b></p>
+            <ol className="keep">
               <li>Man tut so, als wären alle Bindungen rein ionisch: Das <em>elektronegativere</em> Atom bekommt die gemeinsamen Elektronen ganz. Im Wasser <C>H2O</C> «gehört» das Elektronenpaar dem <C>O</C>. Darum <C>O</C> negativ, <C>H</C> positiv.</li>
               <li>Fluor ist immer <M p=",">{t`-1`}</M> Sauerstoff fast immer <M p=".">{t`-2`}</M> Das sind die sicheren «Anker».</li>
               <li>Für den Rest rechnet man: Summe der Zahlen gleich Gesamtladung. In <C>H2SO4</C> (neutral): <M>{t`2\cdot(+1) + x + 4\cdot(-2) = 0`}</M> gibt <M p=".">{t`x = +6`}</M> für <C p=".">S</C></li>
@@ -296,8 +296,8 @@ export default function CH3Redox() {
             <p>Im Rechner unten kannst du beliebige Formeln eingeben. Er wendet dieselben Regeln an und zeigt zu jedem Element, welche Regel gegriffen hat.</p>
           </>}
           en={<>
-            <p><b>How to read the rules:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the rules:</b></p>
+            <ol className="keep">
               <li>You pretend all bonds are purely ionic: the <em>more electronegative</em> atom gets the shared electrons entirely. In water <C>H2O</C> the electron pair “belongs” to <C>O</C>. So <C>O</C> is negative, <C>H</C> positive.</li>
               <li>Fluorine is always <M p=",">{t`-1`}</M> oxygen almost always <M p=".">{t`-2`}</M> These are the safe “anchors”.</li>
               <li>For the rest you compute: sum of the numbers equals the net charge. In <C>H2SO4</C> (neutral): <M>{t`2\cdot(+1) + x + 4\cdot(-2) = 0`}</M> gives <M p=".">{t`x = +6`}</M> for <C p=".">S</C></li>
@@ -365,8 +365,8 @@ export default function CH3Redox() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die Regel:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man die Regel:</b></p>
+            <ol className="keep">
               <li>Ein Metall weiter <em>oben</em> gibt seine Elektronen lieber ab. Ein Kation weiter <em>unten</em> nimmt Elektronen lieber auf (das Metall darunter hält seine Elektronen lieber fest).</li>
               <li>Taucht man Kupfer in eine Lösung mit <C>Ag^+</C> ein, nehmen zwei Silber-Ionen die zwei Elektronen eines Kupferatoms auf (eines pro Ion): <C>Cu</C> wird zu <C>Cu^2+</C> und löst sich auf, das Silber setzt sich als Metall auf dem Kupfer ab. Umgekehrt (Silber in <C>Cu^2+</C>) passiert nichts: Silber gibt seine Elektronen nicht her.</li>
               <li>Die Zahl der Elektronen muss aufgehen: Kupfer gibt zwei ab, jedes <C>Ag^+</C> nimmt eins auf. Darum die Koeffizienten <M>2</M> bei <C>Ag^+</C> und <C p=".">Ag</C></li>
@@ -375,8 +375,8 @@ export default function CH3Redox() {
             <p>Im Bild stellst du ein Metall in eine Lösung. Die Reihe zeigt, wer oben steht. Links ist der Zustand vorher, rechts nachher.</p>
           </>}
           en={<>
-            <p><b>How to read the rule:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the rule:</b></p>
+            <ol className="keep">
               <li>A metal further <em>up</em> gives away its electrons more readily. A cation further <em>down</em> takes up electrons more readily (the metal below holds on to its electrons more tightly).</li>
               <li>If you dip copper into a solution with <C>Ag^+</C>, two silver ions take up the two electrons of one copper atom (one per ion): <C>Cu</C> becomes <C>Cu^2+</C> and dissolves, and the silver deposits as metal on the copper. The other way round (silver in <C>Cu^2+</C>) nothing happens: silver does not give up its electrons.</li>
               <li>The number of electrons must add up: copper gives two, each <C>Ag^+</C> takes one. Hence the coefficients <M>2</M> at <C>Ag^+</C> and <C p=".">Ag</C></li>

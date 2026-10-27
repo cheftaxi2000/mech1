@@ -42,11 +42,11 @@ export default function CH2Gase() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die Folie.</b> «Extensiv» heisst: Schneidest du die Probe in zwei gleiche Hälften, halbieren sich <M>V</M> und <M p=".">n</M> «Intensiv» heisst: <M>T</M> und <M>P</M> bleiben in jeder Hälfte gleich, so wie die Dichte. Eine Tasse Tee ist so heiss wie die halbe Tasse.</p>
+            <p className="keep"><b>So liest man die Folie.</b> «Extensiv» heisst: Schneidest du die Probe in zwei gleiche Hälften, halbieren sich <M>V</M> und <M p=".">n</M> «Intensiv» heisst: <M>T</M> und <M>P</M> bleiben in jeder Hälfte gleich, so wie die Dichte. Eine Tasse Tee ist so heiss wie die halbe Tasse.</p>
             <p>Der Druck <M>{t`P=F/A`}</M> ist Kraft pro Fläche. Dieselbe Kraft auf eine kleine Fläche drückt stärker: Ein Stöckelschuh hinterlässt tiefere Spuren als ein Turnschuh. Ein Pascal ist winzig (ein Newton auf einen ganzen Quadratmeter), darum nimmt man oft <M p=",">{t`\mathrm{kPa}`}</M> <M>{t`\mathrm{bar}`}</M> oder <M p=".">{t`\mathrm{atm}`}</M></p>
           </>}
           en={<>
-            <p><b>How to read the slide.</b> “Extensive” means: cut the sample into two equal halves and <M>V</M> and <M>n</M> are halved. “Intensive” means: <M>T</M> and <M>P</M> stay the same in each half, like the density. A cup of tea is as hot as half a cup.</p>
+            <p className="keep"><b>How to read the slide.</b> “Extensive” means: cut the sample into two equal halves and <M>V</M> and <M>n</M> are halved. “Intensive” means: <M>T</M> and <M>P</M> stay the same in each half, like the density. A cup of tea is as hot as half a cup.</p>
             <p>The pressure <M>{t`P=F/A`}</M> is force per area. The same force on a small area presses harder: a stiletto heel leaves deeper marks than a trainer. One pascal is tiny (one newton on a whole square metre), so we often use <M p=",">{t`\mathrm{kPa}`}</M> <M>{t`\mathrm{bar}`}</M> or <M p=".">{t`\mathrm{atm}`}</M></p>
           </>}
         />
@@ -141,8 +141,8 @@ export default function CH2Gase() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die Zeilen.</b> Das Quecksilber im Rohr fällt nicht heraus, weil die Luft von aussen auf die Schale drückt und die Säule hochhält. Zwei Kräfte halten sich die Waage: unten drückt die Luft, oben zieht das Gewicht der Säule.</p>
-            <ol>
+            <p className="keep"><b>So liest man die Zeilen.</b> Das Quecksilber im Rohr fällt nicht heraus, weil die Luft von aussen auf die Schale drückt und die Säule hochhält. Zwei Kräfte halten sich die Waage: unten drückt die Luft, oben zieht das Gewicht der Säule.</p>
+            <ol className="keep">
               <li>Der Druck der Säule ist ihr Gewicht geteilt durch die Fläche <M p=".">{t`P=F/A`}</M></li>
               <li>Das Gewicht ist Masse mal <M p=",">g</M> also <M p=".">{t`F=mg`}</M></li>
               <li>Die Masse ist Dichte mal Volumen, <M p=",">{t`m=\rho V`}</M> und das Volumen eines Zylinders ist Fläche mal Höhe, <M p=".">{t`V=Ah`}</M></li>
@@ -151,8 +151,8 @@ export default function CH2Gase() {
             <p>Quecksilber nimmt man, weil es sehr dicht ist (<M p=")">{t`13{,}6`}</M> mal dichter als Wasser): Die Säule ist nur etwa <M>{t`76\,\mathrm{cm}`}</M> hoch. Mit Wasser wäre sie über zehn Meter hoch. Probiere es in der Figur aus.</p>
           </>}
           en={<>
-            <p><b>How to read the lines.</b> The mercury in the tube does not fall out because the air outside presses on the dish and holds the column up. Two forces balance: from below the air pushes, from above the weight of the column pulls.</p>
-            <ol>
+            <p className="keep"><b>How to read the lines.</b> The mercury in the tube does not fall out because the air outside presses on the dish and holds the column up. Two forces balance: from below the air pushes, from above the weight of the column pulls.</p>
+            <ol className="keep">
               <li>The pressure of the column is its weight divided by the area, <M p=".">{t`P=F/A`}</M></li>
               <li>The weight is mass times <M p=",">g</M> so <M p=".">{t`F=mg`}</M></li>
               <li>The mass is density times volume, <M p=",">{t`m=\rho V`}</M> and the volume of a cylinder is area times height, <M p=".">{t`V=Ah`}</M></li>
@@ -224,8 +224,8 @@ export default function CH2Gase() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das.</b> Jede Zeile hat dieselbe Form: «Halte zwei Grössen fest, bewege die dritte, die vierte folgt.» Die Folien zeigen jeweils zwei Diagramme desselben Gesetzes. Das erste zeigt die Messpunkte, das zweite macht daraus eine Gerade, an der man das Gesetz sofort erkennt:</p>
-            <ul>
+            <p className="keep"><b>So liest man das.</b> Jede Zeile hat dieselbe Form: «Halte zwei Grössen fest, bewege die dritte, die vierte folgt.» Die Folien zeigen jeweils zwei Diagramme desselben Gesetzes. Das erste zeigt die Messpunkte, das zweite macht daraus eine Gerade, an der man das Gesetz sofort erkennt:</p>
+            <ul className="keep">
               <li>Boyle: Gegen <M>V</M> aufgetragen ist <M>P</M> eine fallende Kurve (eine Hyperbel). Gegen <M>{t`1/V`}</M> aufgetragen ist es eine Gerade durch den Nullpunkt.</li>
               <li>Charles: In <M>{t`^\circ\mathrm{C}`}</M> ist <M>V(T)</M> eine Gerade, die nicht durch den Nullpunkt geht. Verlängert man sie, trifft sie die Achse bei <M p=".">{t`-273{,}15\,^\circ\mathrm{C}`}</M> In Kelvin geht sie durch den Nullpunkt. Dort ist das Volumen null (nur gedacht, denn echtes Gas wird vorher flüssig).</li>
               <li>Avogadro: Doppelt so viele Mol, doppelt so viel Volumen: eine Gerade durch den Nullpunkt.</li>
@@ -233,8 +233,8 @@ export default function CH2Gase() {
             <p>Die Figur unten zeigt das alles. Wähle ein Gesetz, bewege den obersten Regler (oder drücke «Abspielen») und beobachte den Punkt auf der Kurve. Die gestrichelten Kurven zeigen, was passiert, wenn man die festgehaltene Grösse ändert. Unter den Diagrammen steht die Konstante des Gesetzes: Sie bleibt beim Bewegen gleich. Das vierte Gesetz (<M>n</M> und <M>V</M> fest, <M>P</M> gegen <M p=")">T</M> ist das Beispiel 2 der Folie 19.</p>
           </>}
           en={<>
-            <p><b>How to read this.</b> Each line has the same form: “hold two quantities fixed, move the third, the fourth follows.” The slides show two diagrams of each law. The first shows the data points, the second turns them into a straight line, where you recognise the law at once:</p>
-            <ul>
+            <p className="keep"><b>How to read this.</b> Each line has the same form: “hold two quantities fixed, move the third, the fourth follows.” The slides show two diagrams of each law. The first shows the data points, the second turns them into a straight line, where you recognise the law at once:</p>
+            <ul className="keep">
               <li>Boyle: plotted against <M p=",">V</M> <M>P</M> is a falling curve (a hyperbola). Plotted against <M>{t`1/V`}</M> it is a straight line through the origin.</li>
               <li>Charles: in <M p=",">{t`^\circ\mathrm{C}`}</M> <M>V(T)</M> is a straight line that does not pass through the origin. Extend it and it meets the axis at <M p=".">{t`-273.15\,^\circ\mathrm{C}`}</M> In kelvin it passes through the origin. There the volume is zero (only imagined, because a real gas liquefies first).</li>
               <li>Avogadro: twice as many moles, twice the volume: a straight line through the origin.</li>
@@ -271,12 +271,12 @@ export default function CH2Gase() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die Folie.</b> Die drei Gesetze sagen, wie das Volumen von jeder Grösse einzeln abhängt. Drei «proportional zu»-Aussagen lassen sich in einer Zeile vereinen: <M>V</M> wächst mit <M>n</M> und <M>T</M> und schrumpft mit <M p=".">P</M> Das Zeichen <M>{t`\propto`}</M> verbirgt eine Konstante. Man gibt ihr einen Namen, <M p=",">R</M> und rechnet um: <M p=".">{t`PV=nRT`}</M></p>
+            <p className="keep"><b>So liest man die Folie.</b> Die drei Gesetze sagen, wie das Volumen von jeder Grösse einzeln abhängt. Drei «proportional zu»-Aussagen lassen sich in einer Zeile vereinen: <M>V</M> wächst mit <M>n</M> und <M>T</M> und schrumpft mit <M p=".">P</M> Das Zeichen <M>{t`\propto`}</M> verbirgt eine Konstante. Man gibt ihr einen Namen, <M p=",">R</M> und rechnet um: <M p=".">{t`PV=nRT`}</M></p>
             <p>Was bedeutet <M>R</M> für die Zahlen? Es hat je nach Einheit einen anderen Wert, aber es ist immer dieselbe Grösse. Setzt du <M>P</M> in Pa und <M>V</M> in <M>{t`\mathrm{m^3}`}</M> ein, nimmst du <M p=".">{t`8{,}314`}</M> Setzt du <M>P</M> in atm und <M>V</M> in L ein, nimmst du <M p=".">{t`0{,}08206`}</M> Der Rest der Einheiten (<M p=",">{t`\mathrm{mol}`}</M> <M p=")">{t`\mathrm{K}`}</M> bleibt gleich. Die Einheit muss zur Rechnung passen, sonst ist das Ergebnis falsch.</p>
             <p>Ein Test: Ein Mol bei STP nimmt <M>{t`V=nRT/P=0{,}08206\cdot 273{,}15/1=22{,}41\,\mathrm{L}`}</M> ein. Das ist die Zahl der Folie. Und weil in <M>{t`PV=nRT`}</M> keine Gasart vorkommt, gilt sie für <em>jedes</em> ideale Gas (Avogadro). Der Handschrift der Übung nach hängt das Verhalten nur von der Zahl der Teilchen ab, nicht davon, welches Atom oder Molekül es ist.</p>
           </>}
           en={<>
-            <p><b>How to read the slide.</b> The three laws say how the volume depends on each quantity separately. Three “proportional to” statements can be merged into one line: <M>V</M> grows with <M>n</M> and <M>T</M> and shrinks with <M p=".">P</M> The sign <M>{t`\propto`}</M> hides a constant. We give it a name, <M p=",">R</M> and rearrange: <M p=".">{t`PV=nRT`}</M></p>
+            <p className="keep"><b>How to read the slide.</b> The three laws say how the volume depends on each quantity separately. Three “proportional to” statements can be merged into one line: <M>V</M> grows with <M>n</M> and <M>T</M> and shrinks with <M p=".">P</M> The sign <M>{t`\propto`}</M> hides a constant. We give it a name, <M p=",">R</M> and rearrange: <M p=".">{t`PV=nRT`}</M></p>
             <p>What does <M>R</M> mean for the numbers? It has a different value for each choice of units, but it is always the same quantity. If you insert <M>P</M> in Pa and <M>V</M> in <M>{t`\mathrm{m^3}`}</M> you use <M p=".">{t`8.314`}</M> If you insert <M>P</M> in atm and <M>V</M> in L you use <M p=".">{t`0.08206`}</M> The rest of the units (<M p=",">{t`\mathrm{mol}`}</M> <M p=")">{t`\mathrm{K}`}</M> stays the same. The unit has to match the calculation, otherwise the result is wrong.</p>
             <p>A test: one mole at STP takes up <M>{t`V=nRT/P=0.08206\cdot 273.15/1=22.41\,\mathrm{L}`}</M> That is the number on the slide. And because no kind of gas appears in <M>{t`PV=nRT`}</M> it holds for <em>every</em> ideal gas (Avogadro). The handwriting of the exercise class says: the behaviour depends only on the number of particles, not on which atom or molecule it is.</p>
           </>}
@@ -337,11 +337,11 @@ export default function CH2Gase() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das.</b> Typ 1 ist reines Umstellen. Typ 2 und 3 haben ein «vorher» und ein «nachher». Der Trick: <M>R</M> ist immer gleich, und was konstant bleibt (zum Beispiel <M p=")">n</M> steht links und rechts. Dann kürzt es sich weg. Man schreibt <M>{t`PV/(nT)=R`}</M> für beide Zustände hin, streicht, was gleich bleibt, und löst nach der Unbekannten auf.</p>
+            <p className="keep"><b>So liest man das.</b> Typ 1 ist reines Umstellen. Typ 2 und 3 haben ein «vorher» und ein «nachher». Der Trick: <M>R</M> ist immer gleich, und was konstant bleibt (zum Beispiel <M p=")">n</M> steht links und rechts. Dann kürzt es sich weg. Man schreibt <M>{t`PV/(nT)=R`}</M> für beide Zustände hin, streicht, was gleich bleibt, und löst nach der Unbekannten auf.</p>
             <p>Merke dir eine Prüfung-Regel: Stoffmenge und alle Einheiten prüfen, <em>Temperaturen in Kelvin</em>. Bei Verhältnissen wie <M>{t`P_i/P_f`}</M> müssen nur beide Drücke dieselbe Einheit haben; dann kürzt sich die Einheit weg.</p>
           </>}
           en={<>
-            <p><b>How to read this.</b> Type 1 is pure rearranging. Types 2 and 3 have a “before” and an “after”. The trick: <M>R</M> is always the same, and whatever stays constant (for example <M p=")">n</M> stands on the left and right. Then it cancels. Write <M>{t`PV/(nT)=R`}</M> for both states, strike out what stays the same, and solve for the unknown.</p>
+            <p className="keep"><b>How to read this.</b> Type 1 is pure rearranging. Types 2 and 3 have a “before” and an “after”. The trick: <M>R</M> is always the same, and whatever stays constant (for example <M p=")">n</M> stands on the left and right. Then it cancels. Write <M>{t`PV/(nT)=R`}</M> for both states, strike out what stays the same, and solve for the unknown.</p>
             <p>Remember an exam rule: check the amount and all units, and <em>temperatures in kelvin</em>. For ratios like <M>{t`P_i/P_f`}</M> only the two pressures need the same unit; then the unit cancels.</p>
           </>}
         />
@@ -462,11 +462,11 @@ export default function CH2Gase() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das.</b> <M>{t`n/V`}</M> sind «Mol pro Liter»: wie dicht die <em>Teilchen</em> gepackt sind. Multipliziert man mit der Masse eines Mols, erhält man «Gramm pro Liter»: wie dicht die <em>Masse</em> gepackt ist. Das ist die Dichte. Die Teilchendichte <M>{t`P/(RT)`}</M> ist für alle idealen Gase gleich. Nur die Masse pro Teilchen unterscheidet sie.</p>
+            <p className="keep"><b>So liest man das.</b> <M>{t`n/V`}</M> sind «Mol pro Liter»: wie dicht die <em>Teilchen</em> gepackt sind. Multipliziert man mit der Masse eines Mols, erhält man «Gramm pro Liter»: wie dicht die <em>Masse</em> gepackt ist. Das ist die Dichte. Die Teilchendichte <M>{t`P/(RT)`}</M> ist für alle idealen Gase gleich. Nur die Masse pro Teilchen unterscheidet sie.</p>
             <p>In der Figur siehst du das: Drei Kästen mit gleichem Volumen, gleichem <M>P</M> und <M>T</M> enthalten gleich viele Teilchen (das ist Avogadros Hypothese). Die Dichte unterscheidet sich nur durch die molare Masse. Warme Luft hat bei gleichem Druck weniger Teilchen pro Liter und ist darum leichter: so steigt ein Heissluftballon.</p>
           </>}
           en={<>
-            <p><b>How to read this.</b> <M>{t`n/V`}</M> is “moles per litre”: how densely the <em>particles</em> are packed. Multiplied by the mass of one mole you get “grams per litre”: how densely the <em>mass</em> is packed. That is the density. The particle density <M>{t`P/(RT)`}</M> is the same for all ideal gases. Only the mass per particle tells them apart.</p>
+            <p className="keep"><b>How to read this.</b> <M>{t`n/V`}</M> is “moles per litre”: how densely the <em>particles</em> are packed. Multiplied by the mass of one mole you get “grams per litre”: how densely the <em>mass</em> is packed. That is the density. The particle density <M>{t`P/(RT)`}</M> is the same for all ideal gases. Only the mass per particle tells them apart.</p>
             <p>You can see this in the figure: three boxes with the same volume, the same <M>P</M> and <M>T</M> hold the same number of particles (that is Avogadro’s hypothesis). The density differs only by the molar mass. Warm air has fewer particles per litre at the same pressure and is therefore lighter: that is how a hot-air balloon rises.</p>
           </>}
         />
@@ -497,11 +497,11 @@ export default function CH2Gase() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das.</b> Die Teilchen verschiedener Gase im selben Kasten stören sich nicht (ideal heisst: keine Wechselwirkung). Jede Sorte prallt gegen die Wand, als wäre sie allein. Ihr Anteil am Druck ist der Druck, den <em>sie allein</em> im Kasten hätte: <M p=".">{t`P_i=n_iRT/V`}</M> Alle Anteile zusammen ergeben den Gesamtdruck.</p>
+            <p className="keep"><b>So liest man das.</b> Die Teilchen verschiedener Gase im selben Kasten stören sich nicht (ideal heisst: keine Wechselwirkung). Jede Sorte prallt gegen die Wand, als wäre sie allein. Ihr Anteil am Druck ist der Druck, den <em>sie allein</em> im Kasten hätte: <M p=".">{t`P_i=n_iRT/V`}</M> Alle Anteile zusammen ergeben den Gesamtdruck.</p>
             <p>Der Molenbruch <M>{t`X_i`}</M> ist eine Zahl zwischen 0 und 1. Alle <M>{t`X_i`}</M> zusammen ergeben 1. Hat die Sorte ein Viertel aller Mole, liefert sie ein Viertel des Drucks. Das ist alles, was <M>{t`P_i=X_iP_{\mathrm{tot}}`}</M> sagt. Die Übung zeigt das als Bild: zwei Kästen (je eine Sorte) ergeben zusammen einen Kasten mit beiden.</p>
           </>}
           en={<>
-            <p><b>How to read this.</b> The particles of different gases in the same box do not disturb each other (ideal means: no interaction). Each species bounces off the wall as if it were alone. Its share of the pressure is the pressure it would have <em>on its own</em> in the box: <M p=".">{t`P_i=n_iRT/V`}</M> All shares together make the total pressure.</p>
+            <p className="keep"><b>How to read this.</b> The particles of different gases in the same box do not disturb each other (ideal means: no interaction). Each species bounces off the wall as if it were alone. Its share of the pressure is the pressure it would have <em>on its own</em> in the box: <M p=".">{t`P_i=n_iRT/V`}</M> All shares together make the total pressure.</p>
             <p>The mole fraction <M>{t`X_i`}</M> is a number between 0 and 1. All <M>{t`X_i`}</M> together give 1. If a species has a quarter of all moles, it delivers a quarter of the pressure. That is all <M>{t`P_i=X_iP_{\mathrm{tot}}`}</M> says. The exercise class shows it as a picture: two boxes (one species each) together make one box with both.</p>
           </>}
         />

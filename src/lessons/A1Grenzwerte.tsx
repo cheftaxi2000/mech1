@@ -26,18 +26,18 @@ export default function A1Grenzwerte() {
         <T
           de={<>
             <p><b>Intuition.</b> Bei <M>{t`n = 1000`}</M> ist <M p=",">{t`7n^2 = 7\,000\,000`}</M> aber <M>{t`3n`}</M> nur <M p=".">3000</M> Für grosse <M>n</M> zählt nur noch die höchste Potenz. Der <b>Grad</b> ist der höchste Exponent von <M p=":">n</M> <M>{t`5n^3 + 3n + 7`}</M> hat Grad <M p=".">3</M></p>
-            <p><b>Die Methode.</b> Teile Zähler und Nenner durch die höchste Potenz des Nenners. Beim zweiten Beispiel durch <M p=":">{t`n^2`}</M></p>
+            <p className="keep"><b>Die Methode.</b> Teile Zähler und Nenner durch die höchste Potenz des Nenners. Beim zweiten Beispiel durch <M p=":">{t`n^2`}</M></p>
           </>}
           en={<>
             <p><b>Intuition.</b> At <M>{t`n = 1000`}</M> we have <M p=",">{t`7n^2 = 7\,000\,000`}</M> but <M>{t`3n`}</M> is only <M p=".">3000</M> For large <M>n</M> only the highest power counts. The <b>degree</b> (<span lang="de">Grad</span>) is the highest exponent of <M p=":">n</M> <M>{t`5n^3 + 3n + 7`}</M> has degree <M p=".">3</M></p>
-            <p><b>The method.</b> Divide numerator and denominator by the highest power of the denominator. In the second example by <M p=":">{t`n^2`}</M></p>
+            <p className="keep"><b>The method.</b> Divide numerator and denominator by the highest power of the denominator. In the second example by <M p=":">{t`n^2`}</M></p>
           </>}
         />
         <MD>{t`\frac{7n^2 + 3n}{4n^2} = \frac{7 + \frac3n}{4} \;\xrightarrow{\;n\to\infty\;}\; \frac{7 + 0}{4} = \frac74`}</MD>
         <T
           de={<>
-            <p><b>Warum darf man das?</b></p>
-            <ol>
+            <p className="keep"><b>Warum darf man das?</b></p>
+            <ol className="keep">
               <li>Zähler und Nenner durch dieselbe Zahl <M>{t`n^2 \neq 0`}</M> teilen ändert den Bruch nicht (Kürzen). Jedes <M>{t`a_n`}</M> bleibt genau gleich.</li>
               <li>Danach steht <M>n</M> nur noch <em>unten</em> in kleinen Brüchen wie <M p=".">{t`\frac3n`}</M> Das sind Nullfolgen: <M p=".">{t`\frac3n \to 0`}</M></li>
               <li>Grenzwerte darf man summandenweise und für Zähler und Nenner getrennt nehmen, solange der Nenner nicht gegen <M>0</M> geht. Hier geht er gegen <M p=".">4</M></li>
@@ -45,8 +45,8 @@ export default function A1Grenzwerte() {
             <p>Die beiden anderen Beispiele gehen gleich:</p>
           </>}
           en={<>
-            <p><b>Why is this allowed?</b></p>
-            <ol>
+            <p className="keep"><b>Why is this allowed?</b></p>
+            <ol className="keep">
               <li>Dividing numerator and denominator by the same number <M>{t`n^2 \neq 0`}</M> does not change the fraction (cancelling). Every <M>{t`a_n`}</M> stays exactly the same.</li>
               <li>Afterwards <M>n</M> stands only <em>below</em>, in small fractions like <M p=".">{t`\frac3n`}</M> These are null sequences: <M p=".">{t`\frac3n \to 0`}</M></li>
               <li>Limits may be taken term by term, and for numerator and denominator separately, as long as the denominator does not tend to <M p=".">0</M> Here it tends to <M p=".">4</M></li>
@@ -57,8 +57,8 @@ export default function A1Grenzwerte() {
         <MD>{t`\frac{5n^3 + 3n + 7}{n^2 - 2n} = \frac{5n + \frac3n + \frac7{n^2}}{1 - \frac2n} \;\to\; \frac{\infty}{1} = \infty`}</MD>
         <MD>{t`\frac{n^5 - 4n}{6n^6 - 2} = \frac{\frac1n - \frac4{n^5}}{6 - \frac2{n^6}} \;\to\; \frac{0}{6} = 0`}</MD>
         <T
-          de={<p>So liest man die Grad-Regel: Ist der Zählergrad grösser, bleibt oben ein <M>n</M> stehen – das wächst ohne Ende. Gleich gross: Es bleiben die Leitzahlen <M p=".">{t`\frac74`}</M> Kleiner: Oben bleibt nur <M>n</M> im Nenner – das geht gegen <M p=".">0</M> Bewege <M>n</M> im Bild und schau, wie die kleinen Brüche verschwinden.</p>}
-          en={<p>How to read the degree rule: if the numerator's degree is larger, an <M>n</M> stays on top – it grows without end. Equal: the leading coefficients remain, <M p=".">{t`\frac74`}</M> Smaller: on top only <M>n</M> in denominators is left – that tends to <M p=".">0</M> Move <M>n</M> in the figure and watch the small fractions vanish.</p>}
+          de={<p className="keep">So liest man die Grad-Regel: Ist der Zählergrad grösser, bleibt oben ein <M>n</M> stehen – das wächst ohne Ende. Gleich gross: Es bleiben die Leitzahlen <M p=".">{t`\frac74`}</M> Kleiner: Oben bleibt nur <M>n</M> im Nenner – das geht gegen <M p=".">0</M> Bewege <M>n</M> im Bild und schau, wie die kleinen Brüche verschwinden.</p>}
+          en={<p className="keep">How to read the degree rule: if the numerator's degree is larger, an <M>n</M> stays on top – it grows without end. Equal: the leading coefficients remain, <M p=".">{t`\frac74`}</M> Smaller: on top only <M>n</M> in denominators is left – that tends to <M p=".">0</M> Move <M>n</M> in the figure and watch the small fractions vanish.</p>}
         />
         <DegreeExplorer />
         <T
@@ -80,8 +80,8 @@ export default function A1Grenzwerte() {
         <T
           de={<>
             <p><b>Das Problem.</b> <M>n</M> wächst ohne Ende, die Klammer <M>{t`\sqrt{1+\frac1n} - 1`}</M> geht gegen <M p=".">0</M> «<M>{t`\infty\cdot 0`}</M>» ist unentschieden – je nachdem, wer schneller ist, kommt alles Mögliche heraus. Ausmultipliziert ist es sogar <M p=":">{t`\sqrt{n^2 + n} - n`}</M> «<M p="».">{t`\infty - \infty`}</M> Einsetzen geht nicht.</p>
-            <p><b>Der Trick.</b> Die 3. binomische Formel <M>{t`(a - b)(a + b) = a^2 - b^2`}</M> macht aus einer Differenz mit Wurzel eine Differenz <em>ohne</em> Wurzel. So liest man die Zeilen:</p>
-            <ol>
+            <p className="keep"><b>Der Trick.</b> Die 3. binomische Formel <M>{t`(a - b)(a + b) = a^2 - b^2`}</M> macht aus einer Differenz mit Wurzel eine Differenz <em>ohne</em> Wurzel. So liest man die Zeilen:</p>
+            <ol className="keep">
               <li>Mal <M p=".">{t`\frac{\sqrt{1+1/n} + 1}{\sqrt{1+1/n} + 1}`}</M> Das ist <M p=",">1</M> also ändert sich nichts.</li>
               <li>Oben steht jetzt <M>{t`(a - 1)(a + 1)`}</M> mit <M p=".">{t`a = \sqrt{1+\frac1n}`}</M> Das ist <M p=":">{t`a^2 - 1 = (1 + \frac1n) - 1 = \frac1n`}</M> die Wurzel ist weg.</li>
               <li><M p=":">{t`n\cdot\frac1n = 1`}</M> Das gefährliche <M>n</M> kürzt sich.</li>
@@ -91,8 +91,8 @@ export default function A1Grenzwerte() {
           </>}
           en={<>
             <p><b>The problem.</b> <M>n</M> grows without end, the bracket <M>{t`\sqrt{1+\frac1n} - 1`}</M> tends to <M p=".">0</M> “<M p="”">{t`\infty\cdot 0`}</M> is undecided – depending on who is faster, anything can come out. Multiplied out it is even <M p=":">{t`\sqrt{n^2 + n} - n`}</M> “<M p=".”">{t`\infty - \infty`}</M> Plugging in does not work.</p>
-            <p><b>The trick.</b> The third binomial formula <M>{t`(a - b)(a + b) = a^2 - b^2`}</M> turns a difference with a root into a difference <em>without</em> a root. How to read the lines:</p>
-            <ol>
+            <p className="keep"><b>The trick.</b> The third binomial formula <M>{t`(a - b)(a + b) = a^2 - b^2`}</M> turns a difference with a root into a difference <em>without</em> a root. How to read the lines:</p>
+            <ol className="keep">
               <li>Multiply by <M p=".">{t`\frac{\sqrt{1+1/n} + 1}{\sqrt{1+1/n} + 1}`}</M> That is <M p=",">1</M> so nothing changes.</li>
               <li>On top there is now <M>{t`(a - 1)(a + 1)`}</M> with <M p=".">{t`a = \sqrt{1+\frac1n}`}</M> That is <M p=":">{t`a^2 - 1 = (1 + \frac1n) - 1 = \frac1n`}</M> the root is gone.</li>
               <li><M p=":">{t`n\cdot\frac1n = 1`}</M> the dangerous <M>n</M> cancels.</li>

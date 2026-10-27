@@ -75,16 +75,16 @@ export default function A5Fehler() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li><M>{t`E_f`}</M> (E wie <i>error</i>) ist der <b>absolute Fehler</b>: um wie viel das Ergebnis danebenliegt, in derselben Einheit wie <M p=".">f</M> Die Betragsstriche stehen da, weil ein Fehler nach oben oder unten gehen kann – man interessiert sich nur für seine Grösse.</li>
               <li><M>{t`r_f`}</M> ist der <b>relative Fehler</b>: der absolute Fehler geteilt durch den Wert selbst. Er hat keine Einheit. Darum muss <M>{t`f(x) \neq 0`}</M> sein.</li>
             </ol>
             <p>Warum beides? 1 cm daneben ist bei einem 10 m langen Zimmer egal (<M p="),">{t`0{,}1\,\%`}</M> bei einer 5 cm langen Schraube ein Desaster (<M p=").">{t`20\,\%`}</M></p>
           </>}
           en={<>
-            <p><b>How to read it:</b></p>
-            <ol>
+            <p className="keep"><b>How to read it:</b></p>
+            <ol className="keep">
               <li><M>{t`E_f`}</M> (E for <i>error</i>) is the <b>absolute error</b>: by how much the result is off, in the same unit as <M p=".">f</M> The absolute-value bars are there because an error can go up or down – only its size matters.</li>
               <li><M>{t`r_f`}</M> is the <b>relative error</b>: the absolute error divided by the value itself. It has no unit. That is why <M>{t`f(x) \neq 0`}</M> is required.</li>
             </ol>
@@ -103,14 +103,14 @@ export default function A5Fehler() {
           <T de={<p>Skizze: magenta Rechteck <M p=",">{t`a \times b`}</M> rechts ein blauer Streifen der Breite <M p=".">{t`\Delta a`}</M></p>} en={<p>Sketch: magenta rectangle <M p=",">{t`a \times b`}</M> on the right a blue strip of width <M p=".">{t`\Delta a`}</M></p>} />
         </Box>
         <T
-          de={<p>Der Fehler der Fläche ist genau der blaue Streifen: Höhe <M p=",">b</M> Breite <M p=".">{t`\Delta a`}</M> Probiere es aus – mache <M>{t`|\Delta a|`}</M> gross, damit du den Streifen siehst:</p>}
-          en={<p>The error of the area is exactly the blue strip: height <M p=",">b</M> width <M p=".">{t`\Delta a`}</M> Try it – make <M>{t`|\Delta a|`}</M> large so you can see the strip:</p>}
+          de={<p className="keep">Der Fehler der Fläche ist genau der blaue Streifen: Höhe <M p=",">b</M> Breite <M p=".">{t`\Delta a`}</M> Probiere es aus – mache <M>{t`|\Delta a|`}</M> gross, damit du den Streifen siehst:</p>}
+          en={<p className="keep">The error of the area is exactly the blue strip: height <M p=",">b</M> width <M p=".">{t`\Delta a`}</M> Try it – make <M>{t`|\Delta a|`}</M> large so you can see the strip:</p>}
         />
         <RectErrorFig />
         <T
           de={<>
-            <p><b>So liest man die Rechnung:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man die Rechnung:</b></p>
+            <ol className="keep">
               <li><M p=":">{t`\Delta A = (a + \Delta a)\,b - a\,b`}</M> neue Fläche minus alte Fläche – genau die Definition <M p=".">{t`\Delta f = f(x + \Delta x) - f(x)`}</M></li>
               <li>Ausmultiplizieren: <M p=".">{t`a b + b\,\Delta a - a b = b\,\Delta a`}</M> Hier gibt es kein «ungefähr»: <M>A</M> hängt linear von <M>a</M> ab, der Graph ist selbst eine Gerade, also ist <M>{t`\Delta A = dA`}</M> exakt.</li>
               <li>Relativ: durch <M>{t`A = a b`}</M> teilen. <M>b</M> kürzt sich weg, es bleibt <M p=".">{t`|\Delta a|/a`}</M> <M>{t`a, b > 0`}</M> braucht man, damit <M>{t`|A| = a b`}</M> ist.</li>
@@ -118,8 +118,8 @@ export default function A5Fehler() {
             </ol>
           </>}
           en={<>
-            <p><b>How to read the calculation:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the calculation:</b></p>
+            <ol className="keep">
               <li><M p=":">{t`\Delta A = (a + \Delta a)\,b - a\,b`}</M> new area minus old area – exactly the definition <M p=".">{t`\Delta f = f(x + \Delta x) - f(x)`}</M></li>
               <li>Multiply out: <M p=".">{t`a b + b\,\Delta a - a b = b\,\Delta a`}</M> There is no “approximately” here: <M>A</M> depends linearly on <M p=",">a</M> the graph is itself a straight line, so <M>{t`\Delta A = dA`}</M> exactly.</li>
               <li>Relative: divide by <M p=".">{t`A = a b`}</M> <M>b</M> cancels, leaving <M p=".">{t`|\Delta a|/a`}</M> <M>{t`a, b > 0`}</M> is needed so that <M p=".">{t`|A| = a b`}</M></li>
@@ -138,14 +138,14 @@ export default function A5Fehler() {
           <T de={<p>Radius zum Quadrat ⇒ ungefähr doppelter relativer Fehler.</p>} en={<p>Radius squared ⇒ about twice the relative error.</p>} />
         </Box>
         <T
-          de={<p>Warum doppelt? Schau von oben auf den Zylinder: Die Grundfläche <M>{t`\pi r^2`}</M> bekommt einen dünnen Ring. Rollt man den Ring auf, ist er ein Streifen der Länge <M>{t`2\pi r`}</M> (Umfang) und der Breite <M p=".">{t`\Delta r`}</M> Seine Fläche <M>{t`2\pi r\,\Delta r`}</M> verglichen mit <M>{t`\pi r^2`}</M> ergibt <M p=":">{t`2\,\Delta r / r`}</M> der Radius «zählt zweimal».</p>}
-          en={<p>Why twice? Look at the cylinder from above: the base <M>{t`\pi r^2`}</M> gains a thin ring. Unrolled, the ring is a strip of length <M>{t`2\pi r`}</M> (circumference) and width <M p=".">{t`\Delta r`}</M> Its area <M>{t`2\pi r\,\Delta r`}</M> compared with <M>{t`\pi r^2`}</M> gives <M p=":">{t`2\,\Delta r / r`}</M> the radius “counts twice”.</p>}
+          de={<p className="keep">Warum doppelt? Schau von oben auf den Zylinder: Die Grundfläche <M>{t`\pi r^2`}</M> bekommt einen dünnen Ring. Rollt man den Ring auf, ist er ein Streifen der Länge <M>{t`2\pi r`}</M> (Umfang) und der Breite <M p=".">{t`\Delta r`}</M> Seine Fläche <M>{t`2\pi r\,\Delta r`}</M> verglichen mit <M>{t`\pi r^2`}</M> ergibt <M p=":">{t`2\,\Delta r / r`}</M> der Radius «zählt zweimal».</p>}
+          en={<p className="keep">Why twice? Look at the cylinder from above: the base <M>{t`\pi r^2`}</M> gains a thin ring. Unrolled, the ring is a strip of length <M>{t`2\pi r`}</M> (circumference) and width <M p=".">{t`\Delta r`}</M> Its area <M>{t`2\pi r\,\Delta r`}</M> compared with <M>{t`\pi r^2`}</M> gives <M p=":">{t`2\,\Delta r / r`}</M> the radius “counts twice”.</p>}
         />
         <RingFig />
         <T
           de={<>
-            <p><b>So liest man die Rechnung:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man die Rechnung:</b></p>
+            <ol className="keep">
               <li><M>h</M> ist fest, also hängt <M>V</M> nur von <M>r</M> ab. Ableiten wie <M p=":">{t`x^2`}</M> <M p=".">{t`V'(r) = 2\pi r h`}</M></li>
               <li>Absoluter Fehler: <M p=".">{t`|\Delta V| \approx V'(r)\,|\Delta r| = 2\pi r h\,|\Delta r|`}</M></li>
               <li>Relativ: durch <M>{t`V = \pi r^2 h`}</M> teilen. <M>\pi</M> und <M>h</M> kürzen sich, ein <M>r</M> auch – es bleibt <M p=".">{t`2\,|\Delta r|/r`}</M> Den Radius selbst muss man gar nicht kennen.</li>
@@ -153,8 +153,8 @@ export default function A5Fehler() {
             </ol>
           </>}
           en={<>
-            <p><b>How to read the calculation:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the calculation:</b></p>
+            <ol className="keep">
               <li><M>h</M> is fixed, so <M>V</M> depends on <M>r</M> only. Differentiate like <M p=":">{t`x^2`}</M> <M p=".">{t`V'(r) = 2\pi r h`}</M></li>
               <li>Absolute error: <M p=".">{t`|\Delta V| \approx V'(r)\,|\Delta r| = 2\pi r h\,|\Delta r|`}</M></li>
               <li>Relative: divide by <M p=".">{t`V = \pi r^2 h`}</M> <M>\pi</M> and <M>h</M> cancel, and so does one <M>r</M> – leaving <M p=".">{t`2\,|\Delta r|/r`}</M> You do not even need to know the radius.</li>
@@ -181,8 +181,8 @@ export default function A5Fehler() {
         <BoxDiagram />
         <T
           de={<>
-            <p><b>So liest man die Rechnung:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man die Rechnung:</b></p>
+            <ol className="keep">
               <li><M>d</M> ist die Raumdiagonale (zweimal Pythagoras). Nur <M>a</M> schwankt, <M>b</M> und <M>c</M> sind feste Zahlen.</li>
               <li>Ableiten nach <M>a</M> mit der Kettenregel: Die äussere Wurzel gibt <M p=",">{t`\frac{1}{2\sqrt{\cdots}}`}</M> das Innere <M p=".">{t`2a`}</M> Die 2 kürzt sich: <M p=".">{t`d'(a) = a/d`}</M></li>
               <li><M p=".">{t`E_d \approx d'(a)\,|\Delta a| = \tfrac{25}{59{,}37} \approx 0{,}421`}</M> Exakt: <M p=".">{t`\sqrt{26^2 + 20^2 + 50^2} - \sqrt{3525} \approx 0{,}428`}</M></li>
@@ -191,8 +191,8 @@ export default function A5Fehler() {
             <p>Bemerkenswert: <M>a</M> schwankt um <M p=",">{t`1/25 = 4\,\%`}</M> die Diagonale nur um <M p=".">{t`0{,}7\,\%`}</M> Die lange Seite <M>c</M> «verdünnt» den Fehler.</p>
           </>}
           en={<>
-            <p><b>How to read the calculation:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the calculation:</b></p>
+            <ol className="keep">
               <li><M>d</M> is the space diagonal (Pythagoras twice). Only <M>a</M> varies; <M>b</M> and <M>c</M> are fixed numbers.</li>
               <li>Differentiate with respect to <M>a</M> by the chain rule: the outer root gives <M p=",">{t`\frac{1}{2\sqrt{\cdots}}`}</M> the inside <M p=".">{t`2a`}</M> The 2 cancels: <M p=".">{t`d'(a) = a/d`}</M></li>
               <li><M p=".">{t`E_d \approx d'(a)\,|\Delta a| = \tfrac{25}{59.37} \approx 0.421`}</M> Exactly: <M p=".">{t`\sqrt{26^2 + 20^2 + 50^2} - \sqrt{3525} \approx 0.428`}</M></li>

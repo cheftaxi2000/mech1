@@ -57,8 +57,8 @@ export default function A3Asymptoten() {
           <MD>{t`\lim_{x\to\infty} \bigl(f(x) - g(x)\bigr) = 0`}</MD>
         </Box>
         <T
-          de={<p>In Worten: Der <b>Abstand</b> <M>{t`f(x) - g(x)`}</M> wird so klein, wie man will – wie zwei Eisenbahnschienen, die man von weit oben anschaut. Die Folie schreibt nur <M p=";">{t`x\to\infty`}</M> dasselbe gilt für <M>{t`x\to-\infty`}</M> (das braucht Bsp. 2 unten). Unten im Bild ist der Abstand selbst als Graph gezeichnet: Er läuft auf beiden Seiten gegen <M p=".">0</M></p>}
-          en={<p>In words: the <b>gap</b> <M>{t`f(x) - g(x)`}</M> becomes as small as you like – like two railway tracks seen from high above. The slide writes only <M p=";">{t`x\to\infty`}</M> the same holds for <M>{t`x\to-\infty`}</M> (Ex. 2 below needs that). At the bottom of the picture the gap itself is drawn as a graph: it runs to <M>0</M> on both sides.</p>}
+          de={<p className="keep">In Worten: Der <b>Abstand</b> <M>{t`f(x) - g(x)`}</M> wird so klein, wie man will – wie zwei Eisenbahnschienen, die man von weit oben anschaut. Die Folie schreibt nur <M p=";">{t`x\to\infty`}</M> dasselbe gilt für <M>{t`x\to-\infty`}</M> (das braucht Bsp. 2 unten). Unten im Bild ist der Abstand selbst als Graph gezeichnet: Er läuft auf beiden Seiten gegen <M p=".">0</M></p>}
+          en={<p className="keep">In words: the <b>gap</b> <M>{t`f(x) - g(x)`}</M> becomes as small as you like – like two railway tracks seen from high above. The slide writes only <M p=";">{t`x\to\infty`}</M> the same holds for <M>{t`x\to-\infty`}</M> (Ex. 2 below needs that). At the bottom of the picture the gap itself is drawn as a graph: it runs to <M>0</M> on both sides.</p>}
         />
         <GapFigure />
         <T
@@ -132,8 +132,8 @@ export default function A3Asymptoten() {
           <T de={<p>Bsp. 2: Auch eine Parabel geht. Rest <M>{t`= 3 \to`}</M> Restbruch geht gegen <M p=".">0</M></p>} en={<p>Ex. 2: a parabola works too. Remainder <M>{t`= 3 \to`}</M> the remainder fraction tends to <M p=".">0</M></p>} />
         </Box>
         <T
-          de={<p><De en="polynomial long division">Polynomdivision</De> geht wie schriftliches Dividieren in der Schule: höchste Potenz teilen, zurückmultiplizieren, abziehen, wiederholen – bis der Rest einen kleineren Grad hat als der Nenner.</p>}
-          en={<p><De en="polynomial long division">Polynomdivision</De> works like long division at school: divide the highest powers, multiply back, subtract, repeat – until the remainder has a lower degree than the denominator.</p>}
+          de={<p className="keep"><De en="polynomial long division">Polynomdivision</De> geht wie schriftliches Dividieren in der Schule: höchste Potenz teilen, zurückmultiplizieren, abziehen, wiederholen – bis der Rest einen kleineren Grad hat als der Nenner.</p>}
+          en={<p className="keep"><De en="polynomial long division">Polynomdivision</De> works like long division at school: divide the highest powers, multiply back, subtract, repeat – until the remainder has a lower degree than the denominator.</p>}
         />
         <DivisionPlayer />
         <T

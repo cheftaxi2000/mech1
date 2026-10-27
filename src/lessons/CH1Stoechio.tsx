@@ -102,8 +102,8 @@ export default function CH1Stoechio() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die Zeilen:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man die Zeilen:</b></p>
+            <ol className="keep">
               <li>Der Koeffizient <M>a</M> sagt, wie viele <C>H2</C>-Moleküle mitmachen. Jedes hat 2 Wasserstoffatome, also liefern <M>a</M> Moleküle <M>{t`2a`}</M> Atome <C p=".">H</C></li>
               <li>Rechts hat jedes <C>H2O</C> zwei <C p=",">H</C> also <M>{t`2c`}</M> Atome. Beide Seiten gleich: <M p=".">{t`2a = 2c`}</M> Das gibt <M p=".">{t`a = c`}</M></li>
               <li>Für <C>O</C> ist es anders: <C>O2</C> hat zwei Atome, <C>H2O</C> nur eines. Links <M p=",">{t`2b`}</M> rechts <M p=".">c</M> Aus <M>{t`2b = c`}</M> folgt <M p=".">{t`b = c/2`}</M></li>
@@ -112,8 +112,8 @@ export default function CH1Stoechio() {
             <p>Im Bild siehst du die vier Schritte. Unten steht die <b>Atombilanz</b>: je eine Zeile für <C>H</C> und <C p=",">O</C> links die Zahl der Atome im Edukt, rechts im Produkt. Stimmen beide Zeilen überein, ist die Gleichung ausgeglichen.</p>
           </>}
           en={<>
-            <p><b>How to read the lines:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the lines:</b></p>
+            <ol className="keep">
               <li>The coefficient <M>a</M> says how many <C>H2</C> molecules take part. Each has 2 hydrogen atoms, so <M>a</M> molecules supply <M>{t`2a`}</M> atoms <C p=".">H</C></li>
               <li>On the right each <C>H2O</C> has two <C p=",">H</C> so <M>{t`2c`}</M> atoms. Both sides equal: <M p=".">{t`2a = 2c`}</M> This gives <M p=".">{t`a = c`}</M></li>
               <li>For <C>O</C> it is different: <C>O2</C> has two atoms, <C>H2O</C> only one. On the left <M p=",">{t`2b`}</M> on the right <M p=".">c</M> From <M>{t`2b = c`}</M> follows <M p=".">{t`b = c/2`}</M></li>
@@ -187,10 +187,10 @@ export default function CH1Stoechio() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die Zeile:</b> Jedes Atom in der Formel trägt seine Masse bei. Der Index sagt, wie oft. <C>H2O</C> hat zwei <C>H</C> und ein <C p=".">O</C> Also zweimal <M>{t`1{,}0\,\mathrm{u}`}</M> plus einmal <M p=".">{t`16{,}0\,\mathrm{u}`}</M> Für <C>CaCl2</C> wären es ein <C>Ca</C> und zwei <C p=".">Cl</C> Mit genaueren Atomgewichten (<M>{t`1{,}008`}</M> und <M p=")">{t`15{,}999`}</M> gibt <C>H2O</C> übrigens <M p=".">{t`18{,}015\,\mathrm{u}`}</M></p>
+            <p className="keep"><b>So liest man die Zeile:</b> Jedes Atom in der Formel trägt seine Masse bei. Der Index sagt, wie oft. <C>H2O</C> hat zwei <C>H</C> und ein <C p=".">O</C> Also zweimal <M>{t`1{,}0\,\mathrm{u}`}</M> plus einmal <M p=".">{t`16{,}0\,\mathrm{u}`}</M> Für <C>CaCl2</C> wären es ein <C>Ca</C> und zwei <C p=".">Cl</C> Mit genaueren Atomgewichten (<M>{t`1{,}008`}</M> und <M p=")">{t`15{,}999`}</M> gibt <C>H2O</C> übrigens <M p=".">{t`18{,}015\,\mathrm{u}`}</M></p>
           </>}
           en={<>
-            <p><b>How to read the line:</b> Each atom in the formula contributes its mass. The subscript says how often. <C>H2O</C> has two <C>H</C> and one <C p=".">O</C> So twice <M>{t`1.0\,\mathrm{u}`}</M> plus once <M p=".">{t`16.0\,\mathrm{u}`}</M> For <C>CaCl2</C> it would be one <C>Ca</C> and two <C p=".">Cl</C> With more precise atomic weights (<M>{t`1.008`}</M> and <M p=")">{t`15.999`}</M> <C>H2O</C> gives <M p=".">{t`18.015\,\mathrm{u}`}</M></p>
+            <p className="keep"><b>How to read the line:</b> Each atom in the formula contributes its mass. The subscript says how often. <C>H2O</C> has two <C>H</C> and one <C p=".">O</C> So twice <M>{t`1.0\,\mathrm{u}`}</M> plus once <M p=".">{t`16.0\,\mathrm{u}`}</M> For <C>CaCl2</C> it would be one <C>Ca</C> and two <C p=".">Cl</C> With more precise atomic weights (<M>{t`1.008`}</M> and <M p=")">{t`15.999`}</M> <C>H2O</C> gives <M p=".">{t`18.015\,\mathrm{u}`}</M></p>
           </>}
         />
       </Section>
@@ -216,8 +216,8 @@ export default function CH1Stoechio() {
           />
         </Box>
         <T
-          de={<p><b>Warum ist das erlaubt?</b> Multipliziert man eine Zahl mit einem Bruch, der gleich 1 ist, ändert sich ihr Wert nicht, nur die Einheit. Die Einheiten verhalten sich wie Zahlen: Gleiche oben und unten kürzen sich weg. So erkennt man sofort, ob man den Faktor richtig herum eingesetzt hat: Die ungewollte Einheit muss verschwinden.</p>}
-          en={<p><b>Why is this allowed?</b> Multiplying a number by a fraction equal to 1 does not change its value, only its unit. Units behave like numbers: equal units on top and bottom cancel. So you see at once whether you put the factor the right way up: the unwanted unit must disappear.</p>}
+          de={<p className="keep"><b>Warum ist das erlaubt?</b> Multipliziert man eine Zahl mit einem Bruch, der gleich 1 ist, ändert sich ihr Wert nicht, nur die Einheit. Die Einheiten verhalten sich wie Zahlen: Gleiche oben und unten kürzen sich weg. So erkennt man sofort, ob man den Faktor richtig herum eingesetzt hat: Die ungewollte Einheit muss verschwinden.</p>}
+          en={<p className="keep"><b>Why is this allowed?</b> Multiplying a number by a fraction equal to 1 does not change its value, only its unit. Units behave like numbers: equal units on top and bottom cancel. So you see at once whether you put the factor the right way up: the unwanted unit must disappear.</p>}
         />
         <Box kind="uebung" src={<Src ex={1} p="8" />} title={<T de="Aufgabe 4: Ein Joghurt hat 78 kcal. Wie viele Joule?" en="Exercise 4: a yogurt contains 78 kcal. How many joules?" />}>
           <StepPlayer
@@ -275,8 +275,8 @@ export default function CH1Stoechio() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die lange Zeile:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man die lange Zeile:</b></p>
+            <ol className="keep">
               <li>Man startet mit <M p=".">{t`2\,\mathrm{g}`}</M> Jeder Bruch ist ein Umrechnungsfaktor gleich 1, wie im Joghurt-Beispiel.</li>
               <li>Die ersten beiden Brüche führen von Gramm über Kilogramm zu atomaren Masseneinheiten (<M p=").">{t`1\,\mathrm{u} = 1{,}66\times 10^{-27}\,\mathrm{kg}`}</M> Das sind etwa <M>{t`1{,}2\times 10^{24}\,\mathrm{u}`}</M></li>
               <li>Teilt man durch die Masse eines Moleküls (<M p=")">{t`2{,}00\,\mathrm{u}`}</M> kommt die <em>Anzahl</em> Moleküle heraus: <M p=".">{t`6{,}02\times 10^{23}`}</M></li>
@@ -286,8 +286,8 @@ export default function CH1Stoechio() {
             <p>Die Lehre B der Folie ist richtig: Die Zahl <M>{t`6{,}02\times 10^{23}`}</M> taucht auf, und die Faktoren <M>{t`1{,}66\times 10^{-27}`}</M> heben sich am Ende genau wieder weg. Ein besserer Weg lässt diese Zwischenschritte weg. Dafür dient das Mol.</p>
           </>}
           en={<>
-            <p><b>How to read the long line:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the long line:</b></p>
+            <ol className="keep">
               <li>You start with <M p=".">{t`2\,\mathrm{g}`}</M> Every fraction is a conversion factor equal to 1, as in the yogurt example.</li>
               <li>The first two fractions lead from grams via kilograms to atomic mass units (<M p=").">{t`1\,\mathrm{u} = 1.66\times 10^{-27}\,\mathrm{kg}`}</M> That is about <M>{t`1.2\times 10^{24}\,\mathrm{u}`}</M></li>
               <li>Dividing by the mass of one molecule (<M p=")">{t`2.00\,\mathrm{u}`}</M> gives the <em>number</em> of molecules: <M p=".">{t`6.02\times 10^{23}`}</M></li>
@@ -321,8 +321,8 @@ export default function CH1Stoechio() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li>Ein <C>K</C>-Atom wiegt <M p=".">{t`39{,}1\,\mathrm{u}`}</M> Es ist <M p=",">{t`1\,\mathrm{u} = 1{,}66\times 10^{-24}\,\mathrm{g}`}</M> also wiegt ein Atom <M p=".">{t`6{,}5\times 10^{-23}\,\mathrm{g}`}</M></li>
               <li>Davon braucht man <M>{t`N_\mathrm{A}`}</M> Stück: <M p=".">{t`6{,}022\times 10^{23}\cdot 6{,}5\times 10^{-23}\,\mathrm{g} \approx 39\,\mathrm{g}`}</M> Die kleine und die grosse Zahl heben sich gerade auf. Das ist <em>kein Zufall</em>: Das Mol ist so gewählt, dass <M p=".">{t`N_\mathrm{A}\cdot 1\,\mathrm{u} = 1\,\mathrm{g}`}</M></li>
               <li>Darum steht im Periodensystem eine Zahl, die zwei Dinge zugleich bedeutet: «u pro Atom» und «g pro mol».</li>
@@ -332,8 +332,8 @@ export default function CH1Stoechio() {
             <p>Im Bild rechnest du zwischen Gramm, Mol und Teilchen um. Die Balken unten zeigen: Ein Mol jedes Stoffes hat gleich viele Teilchen, aber sehr verschiedene Masse.</p>
           </>}
           en={<>
-            <p><b>How to read this:</b></p>
-            <ol>
+            <p className="keep"><b>How to read this:</b></p>
+            <ol className="keep">
               <li>One <C>K</C> atom weighs <M p=".">{t`39.1\,\mathrm{u}`}</M> With <M>{t`1\,\mathrm{u} = 1.66\times 10^{-24}\,\mathrm{g}`}</M> one atom weighs <M p=".">{t`6.5\times 10^{-23}\,\mathrm{g}`}</M></li>
               <li>You need <M>{t`N_\mathrm{A}`}</M> of them: <M p=".">{t`6.022\times 10^{23}\cdot 6.5\times 10^{-23}\,\mathrm{g} \approx 39\,\mathrm{g}`}</M> The small and the large number just cancel. This is <em>no accident</em>: the mole is chosen so that <M p=".">{t`N_\mathrm{A}\cdot 1\,\mathrm{u} = 1\,\mathrm{g}`}</M></li>
               <li>That is why the periodic table has one number that means two things at once: “u per atom” and “g per mol”.</li>
@@ -374,18 +374,18 @@ export default function CH1Stoechio() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die Tabelle:</b> Von links nach rechts steigt man ab. Die Gleichung zählt Moleküle (2 : 1 : 2). Multipliziert man jede Zahl mit <M p=",">{t`N_\mathrm{A}`}</M> hat man dasselbe Verhältnis in Mol. Multipliziert man die Mol mit der molaren Masse, hat man Gramm: <M p=",">{t`2\cdot 2{,}0 = 4{,}0`}</M> <M p=",">{t`1\cdot 32{,}0 = 32{,}0`}</M> <M p=".">{t`2\cdot 18{,}0 = 36{,}0`}</M> Und es gilt <M p=".">{t`4{,}0 + 32{,}0 = 36{,}0`}</M> Das Verhältnis der Gramm ist <em>nicht</em> 2 : 1 : 2, sondern 4 : 32 : 36.</p>
+            <p className="keep"><b>So liest man die Tabelle:</b> Von links nach rechts steigt man ab. Die Gleichung zählt Moleküle (2 : 1 : 2). Multipliziert man jede Zahl mit <M p=",">{t`N_\mathrm{A}`}</M> hat man dasselbe Verhältnis in Mol. Multipliziert man die Mol mit der molaren Masse, hat man Gramm: <M p=",">{t`2\cdot 2{,}0 = 4{,}0`}</M> <M p=",">{t`1\cdot 32{,}0 = 32{,}0`}</M> <M p=".">{t`2\cdot 18{,}0 = 36{,}0`}</M> Und es gilt <M p=".">{t`4{,}0 + 32{,}0 = 36{,}0`}</M> Das Verhältnis der Gramm ist <em>nicht</em> 2 : 1 : 2, sondern 4 : 32 : 36.</p>
             <p>Im Bild schiebst du die Zahl der Reaktionseinheiten von 1 (zwei <C>H2</C>-Moleküle, ein <C>O2</C>) bis zu einem Mol. Die Zahlen werden riesig, die Verhältnisse bleiben. Beim letzten Schritt stehen (gerundet) die Zahlen der Folie da: 4,0 g, 32,0 g und 36,0 g.</p>
           </>}
           en={<>
-            <p><b>How to read the table:</b> From top to bottom you step down. The equation counts molecules (2 : 1 : 2). Multiplying every number by <M>{t`N_\mathrm{A}`}</M> gives the same ratio in moles. Multiplying the moles by the molar mass gives grams: <M p=",">{t`2\cdot 2.0 = 4.0`}</M> <M p=",">{t`1\cdot 32.0 = 32.0`}</M> <M p=".">{t`2\cdot 18.0 = 36.0`}</M> And <M p=".">{t`4.0 + 32.0 = 36.0`}</M> The ratio of the grams is <em>not</em> 2 : 1 : 2 but 4 : 32 : 36.</p>
+            <p className="keep"><b>How to read the table:</b> From top to bottom you step down. The equation counts molecules (2 : 1 : 2). Multiplying every number by <M>{t`N_\mathrm{A}`}</M> gives the same ratio in moles. Multiplying the moles by the molar mass gives grams: <M p=",">{t`2\cdot 2.0 = 4.0`}</M> <M p=",">{t`1\cdot 32.0 = 32.0`}</M> <M p=".">{t`2\cdot 18.0 = 36.0`}</M> And <M p=".">{t`4.0 + 32.0 = 36.0`}</M> The ratio of the grams is <em>not</em> 2 : 1 : 2 but 4 : 32 : 36.</p>
             <p>In the figure you move the number of reaction units from 1 (two <C>H2</C> molecules, one <C>O2</C>) up to one mole. The numbers become huge, the ratios stay. At the last position the numbers of the slide appear (rounded): 4.0 g, 32.0 g and 36.0 g.</p>
           </>}
         />
         <ScaleTable />
         <T
-          de={<p>Jetzt der kurze Weg für die Beispielaufgabe. Er braucht nur drei Rechnungen und kein <M>{t`1{,}66\times 10^{-27}`}</M> mehr. Die Zahlen sind die der Folie (Atomgewichte <M>{t`1{,}00`}</M> und <M p=").">{t`16{,}0`}</M></p>}
-          en={<p>Now the short way for the sample problem. It needs only three calculations and no <M>{t`1.66\times 10^{-27}`}</M> any more. The numbers are those of the slide (atomic weights <M>{t`1.00`}</M> and <M p=").">{t`16.0`}</M></p>}
+          de={<p className="keep">Jetzt der kurze Weg für die Beispielaufgabe. Er braucht nur drei Rechnungen und kein <M>{t`1{,}66\times 10^{-27}`}</M> mehr. Die Zahlen sind die der Folie (Atomgewichte <M>{t`1{,}00`}</M> und <M p=").">{t`16{,}0`}</M></p>}
+          en={<p className="keep">Now the short way for the sample problem. It needs only three calculations and no <M>{t`1.66\times 10^{-27}`}</M> any more. The numbers are those of the slide (atomic weights <M>{t`1.00`}</M> and <M p=").">{t`16.0`}</M></p>}
         />
         <StepPlayer
           label="Wie viel O2 für 2 g H2"

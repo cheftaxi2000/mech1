@@ -43,12 +43,12 @@ export default function A1Folgen() {
         </Box>
         <T
           de={<>
-            <p><b>Beschränkt</b> heisst: Es gibt eine untere Zahl <M>s</M> und eine obere Zahl <M>S</M> mit <M>{t`s \le a_n \le S`}</M> für <em>alle</em> <M p=".">n</M> Das ist der Streifen zwischen den Höhen <M>s</M> und <M p=".">S</M> Kein einziges Glied darf herausragen.</p>
-            <p><b>Monoton wachsend</b> heisst: Jedes Glied ist mindestens so gross wie das vorige – die Folge geht nie nach unten, wie ein Kilometerzähler. «Strikt» heisst: Sie bleibt auch nie stehen.</p>
+            <p className="keep"><b>Beschränkt</b> heisst: Es gibt eine untere Zahl <M>s</M> und eine obere Zahl <M>S</M> mit <M>{t`s \le a_n \le S`}</M> für <em>alle</em> <M p=".">n</M> Das ist der Streifen zwischen den Höhen <M>s</M> und <M p=".">S</M> Kein einziges Glied darf herausragen.</p>
+            <p className="keep"><b>Monoton wachsend</b> heisst: Jedes Glied ist mindestens so gross wie das vorige – die Folge geht nie nach unten, wie ein Kilometerzähler. «Strikt» heisst: Sie bleibt auch nie stehen.</p>
           </>}
           en={<>
-            <p><b>Bounded</b> means: there is a lower number <M>s</M> and an upper number <M>S</M> with <M>{t`s \le a_n \le S`}</M> for <em>every</em> <M p=".">n</M> That is the strip between the heights <M>s</M> and <M p=".">S</M> Not a single term may stick out.</p>
-            <p><b>Monotonically increasing</b> means: every term is at least as large as the one before – the sequence never goes down, like an odometer. “Strictly” means: it never stands still either.</p>
+            <p className="keep"><b>Bounded</b> means: there is a lower number <M>s</M> and an upper number <M>S</M> with <M>{t`s \le a_n \le S`}</M> for <em>every</em> <M p=".">n</M> That is the strip between the heights <M>s</M> and <M p=".">S</M> Not a single term may stick out.</p>
+            <p className="keep"><b>Monotonically increasing</b> means: every term is at least as large as the one before – the sequence never goes down, like an odometer. “Strictly” means: it never stands still either.</p>
           </>}
         />
       </Section>
@@ -72,10 +72,10 @@ export default function A1Folgen() {
           />
         </Box>
         <T
-          de={<p>In Worten: Eine Folge <b>konvergiert</b> gegen den <b>Grenzwert</b> <M p=",">L</M> wenn ihre Glieder <M>L</M> beliebig nahe kommen und dort bleiben – wie ein Pendel, das ausschwingt. Man schreibt <M p=".">{t`\lim_{n\to\infty} a_n = L`}</M> Sonst heisst sie <b>divergent</b>. Eine <b>Nullfolge</b> hat den Grenzwert <M p=",">0</M> zum Beispiel <M p=".">{t`a_n = \frac1n`}</M></p>}
-          en={<p>In words: a sequence <b>converges</b> to the <b>limit</b> <M>L</M> if its terms come arbitrarily close to <M>L</M> and stay there – like a pendulum that dies out. One writes <M p=".">{t`\lim_{n\to\infty} a_n = L`}</M> Otherwise it is called <b>divergent</b>. A <b>null sequence</b> has the limit <M p=",">0</M> for example <M p=".">{t`a_n = \frac1n`}</M></p>}
+          de={<p className="keep">In Worten: Eine Folge <b>konvergiert</b> gegen den <b>Grenzwert</b> <M p=",">L</M> wenn ihre Glieder <M>L</M> beliebig nahe kommen und dort bleiben – wie ein Pendel, das ausschwingt. Man schreibt <M p=".">{t`\lim_{n\to\infty} a_n = L`}</M> Sonst heisst sie <b>divergent</b>. Eine <b>Nullfolge</b> hat den Grenzwert <M p=",">0</M> zum Beispiel <M p=".">{t`a_n = \frac1n`}</M></p>}
+          en={<p className="keep">In words: a sequence <b>converges</b> to the <b>limit</b> <M>L</M> if its terms come arbitrarily close to <M>L</M> and stay there – like a pendulum that dies out. One writes <M p=".">{t`\lim_{n\to\infty} a_n = L`}</M> Otherwise it is called <b>divergent</b>. A <b>null sequence</b> has the limit <M p=",">0</M> for example <M p=".">{t`a_n = \frac1n`}</M></p>}
         />
-        <Box kind="supplement" title={<T de={<>Der <M>\varepsilon</M>-Streifen</>} en={<>The <M>\varepsilon</M>-strip</>} />}>
+        <Box keep kind="supplement" title={<T de={<>Der <M>\varepsilon</M>-Streifen</>} en={<>The <M>\varepsilon</M>-strip</>} />}>
           <T
             de={<p>«Beliebig nahe und dort bleiben» heisst genau:</p>}
             en={<p>“Arbitrarily close and staying there” means precisely:</p>}
@@ -173,14 +173,14 @@ export default function A1Folgen() {
           en={<p>For decreasing sequences the same holds mirrored: they converge to their greatest lower bound. That the least upper bound <M>S</M> always exists is a basic property of the real numbers (<b>completeness</b>: the number line has no holes).</p>}
         />
 
-        <h3><T de="Divergent" en="Divergent" /></h3>
+        <h3 className="keep"><T de="Divergent" en="Divergent" /></h3>
         <T
-          de={<p>Divergent heisst einfach: nicht konvergent. «Nicht beschränkt» ist ein Sonderfall davon – wer unbeschränkt ist, kann nach «konvergent <M>{t`\Rightarrow`}</M> beschränkt» nicht konvergieren. Darum genügt die Zeile der Übung 2: «divergent falls nicht konvergent».</p>}
-          en={<p>Divergent simply means: not convergent. “Not bounded” is a special case of it – an unbounded sequence cannot converge, by “convergent <M>{t`\Rightarrow`}</M> bounded”. That is why the line of exercise class 2 is enough: “divergent if not convergent”.</p>}
+          de={<p className="keep">Divergent heisst einfach: nicht konvergent. «Nicht beschränkt» ist ein Sonderfall davon – wer unbeschränkt ist, kann nach «konvergent <M>{t`\Rightarrow`}</M> beschränkt» nicht konvergieren. Darum genügt die Zeile der Übung 2: «divergent falls nicht konvergent».</p>}
+          en={<p className="keep">Divergent simply means: not convergent. “Not bounded” is a special case of it – an unbounded sequence cannot converge, by “convergent <M>{t`\Rightarrow`}</M> bounded”. That is why the line of exercise class 2 is enough: “divergent if not convergent”.</p>}
         />
 
         <Box kind="misconception" title={<T de="«Beschränkt heisst konvergent»" en="“Bounded means convergent”" />}>
-          <T de={<p>Nein: <M>{t`(-1)^n`}</M> bleibt zwischen <M>-1</M> und <M p=",">1</M> hat aber keinen Grenzwert. Beschränkt <em>und monoton</em> reicht.</p>}
+          <T de={<p className="keep">Nein: <M>{t`(-1)^n`}</M> bleibt zwischen <M>-1</M> und <M p=",">1</M> hat aber keinen Grenzwert. Beschränkt <em>und monoton</em> reicht.</p>}
             en={<p>No: <M>{t`(-1)^n`}</M> stays between <M>-1</M> and <M p=",">1</M> but has no limit. Bounded <em>and monotonic</em> is enough.</p>} />
         </Box>
         <Box kind="misconception" title={<T de="«Monoton heisst konvergent»" en="“Monotonic means convergent”" />}>

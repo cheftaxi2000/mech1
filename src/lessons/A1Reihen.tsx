@@ -27,8 +27,8 @@ export default function A1Reihen() {
           <MD>{t`\sum_{n=1}^6 a_n = \frac62\,[4 + 24] = 3\cdot 28 = 84`}</MD>
         </Box>
         <T
-          de={<p>Arithmetisch heisst: Von Glied zu Glied kommt immer dieselbe Zahl <M>d</M> dazu (hier <M p=").">{t`d = 4`}</M> <b>Explizit</b> rechnet <M>{t`a_n`}</M> direkt aus <M>n</M> aus. <b>Rekursiv</b> sagt nur, wie man vom vorigen Glied zum nächsten kommt. Darum betont die Übung 2: «Für die rekursive Darstellung braucht es einen Ankerpunkt/Startwert!» <Src u={2} p={1} /> Ohne <M>{t`a_1 = 4`}</M> beschreibt <M>{t`a_n = a_{n-1} + 4`}</M> auch <M>{t`1, 5, 9, \dots`}</M></p>}
-          en={<p>Arithmetic means: from term to term the same number <M>d</M> is added (here <M p=").">{t`d = 4`}</M> The <b>explicit</b> form computes <M>{t`a_n`}</M> directly from <M p=".">n</M> The <b>recursive</b> form only says how to get from one term to the next. That is why exercise class 2 stresses: “<span lang="de">Für die rekursive Darstellung braucht es einen Ankerpunkt/Startwert!</span>” (the recursive form needs an anchor/starting value) <Src u={2} p={1} /> Without <M>{t`a_1 = 4`}</M> the rule <M>{t`a_n = a_{n-1} + 4`}</M> also describes <M p=".">{t`1, 5, 9, \dots`}</M></p>}
+          de={<p className="keep">Arithmetisch heisst: Von Glied zu Glied kommt immer dieselbe Zahl <M>d</M> dazu (hier <M p=").">{t`d = 4`}</M> <b>Explizit</b> rechnet <M>{t`a_n`}</M> direkt aus <M>n</M> aus. <b>Rekursiv</b> sagt nur, wie man vom vorigen Glied zum nächsten kommt. Darum betont die Übung 2: «Für die rekursive Darstellung braucht es einen Ankerpunkt/Startwert!» <Src u={2} p={1} /> Ohne <M>{t`a_1 = 4`}</M> beschreibt <M>{t`a_n = a_{n-1} + 4`}</M> auch <M>{t`1, 5, 9, \dots`}</M></p>}
+          en={<p className="keep">Arithmetic means: from term to term the same number <M>d</M> is added (here <M p=").">{t`d = 4`}</M> The <b>explicit</b> form computes <M>{t`a_n`}</M> directly from <M p=".">n</M> The <b>recursive</b> form only says how to get from one term to the next. That is why exercise class 2 stresses: “<span lang="de">Für die rekursive Darstellung braucht es einen Ankerpunkt/Startwert!</span>” (the recursive form needs an anchor/starting value) <Src u={2} p={1} /> Without <M>{t`a_1 = 4`}</M> the rule <M>{t`a_n = a_{n-1} + 4`}</M> also describes <M p=".">{t`1, 5, 9, \dots`}</M></p>}
         />
         <Derivation title={<T de="Warum die Summenformel stimmt (Gauss)" en="Why the sum formula holds (Gauss)" />}>
           <StepPlayer
@@ -64,16 +64,16 @@ export default function A1Reihen() {
           <MD>{t`a_1\cdot\frac{1 - q^n}{1 - q} = 3\cdot\frac{1 - 2^4}{1 - 2} = 3\cdot\frac{1 - 16}{-1} = 3\cdot 15 = 45`}</MD>
         </Box>
         <T
-          de={<p>Geometrisch heisst: Von Glied zu Glied wird mit derselben Zahl <M>q</M> multipliziert (auf dem Blatt die Bögen «<M p="»">{t`\cdot 2`}</M> zwischen <M p=").">{t`1, 2, 4, 8`}</M> <b>Ein Detail:</b> <M>n</M> Glieder sind <M p=",">{t`q^0, q^1, \dots, q^{n-1}`}</M> die Klammer endet also mit <M p=",">{t`q^{n-1}`}</M> nicht mit <M p=".">{t`q^n`}</M> Im Beispiel endet sie mit <M p=".">{t`8 = 2^3`}</M> Die Formel rechts stimmt.</p>}
-          en={<p>Geometric means: from term to term we multiply by the same number <M>q</M> (on the slide the arcs “<M p="”">{t`\cdot 2`}</M> between <M p=").">{t`1, 2, 4, 8`}</M> <b>A detail:</b> <M>n</M> terms are <M p=",">{t`q^0, q^1, \dots, q^{n-1}`}</M> so the bracket ends with <M p=",">{t`q^{n-1}`}</M> not with <M p=".">{t`q^n`}</M> In the example it ends with <M p=".">{t`8 = 2^3`}</M> The formula on the right is correct.</p>}
+          de={<p className="keep">Geometrisch heisst: Von Glied zu Glied wird mit derselben Zahl <M>q</M> multipliziert (auf dem Blatt die Bögen «<M p="»">{t`\cdot 2`}</M> zwischen <M p=").">{t`1, 2, 4, 8`}</M> <b>Ein Detail:</b> <M>n</M> Glieder sind <M p=",">{t`q^0, q^1, \dots, q^{n-1}`}</M> die Klammer endet also mit <M p=",">{t`q^{n-1}`}</M> nicht mit <M p=".">{t`q^n`}</M> Im Beispiel endet sie mit <M p=".">{t`8 = 2^3`}</M> Die Formel rechts stimmt.</p>}
+          en={<p className="keep">Geometric means: from term to term we multiply by the same number <M>q</M> (on the slide the arcs “<M p="”">{t`\cdot 2`}</M> between <M p=").">{t`1, 2, 4, 8`}</M> <b>A detail:</b> <M>n</M> terms are <M p=",">{t`q^0, q^1, \dots, q^{n-1}`}</M> so the bracket ends with <M p=",">{t`q^{n-1}`}</M> not with <M p=".">{t`q^n`}</M> In the example it ends with <M p=".">{t`8 = 2^3`}</M> The formula on the right is correct.</p>}
         />
         <Derivation title={<T de="Woher die Formel kommt" en="Where the formula comes from" />}>
           <MD>{t`S_n = a_1 + a_1q + a_1q^2 + \dots + a_1q^{n-1}`}</MD>
           <MD>{t`q\,S_n = \phantom{a_1 + {}} a_1q + a_1q^2 + \dots + a_1q^{n-1} + a_1q^n`}</MD>
           <MD>{t`S_n - q\,S_n = a_1 - a_1q^n \quad\Rightarrow\quad S_n = a_1\,\frac{1 - q^n}{1 - q}\qquad (q \neq 1)`}</MD>
           <T
-            de={<p>So liest man das: Mal <M>q</M> verschiebt jedes Glied um einen Platz nach rechts. Beim Abziehen fällt alles weg ausser dem ersten und dem letzten Glied. Dann durch <M>{t`1 - q`}</M> teilen – erlaubt, solange <M p=".">{t`q \neq 1`}</M></p>}
-            en={<p>Read it like this: multiplying by <M>q</M> shifts every term one place to the right. On subtracting, everything cancels except the first and the last term. Then divide by <M>{t`1 - q`}</M> – allowed as long as <M p=".">{t`q \neq 1`}</M></p>}
+            de={<p className="keep">So liest man das: Mal <M>q</M> verschiebt jedes Glied um einen Platz nach rechts. Beim Abziehen fällt alles weg ausser dem ersten und dem letzten Glied. Dann durch <M>{t`1 - q`}</M> teilen – erlaubt, solange <M p=".">{t`q \neq 1`}</M></p>}
+            en={<p className="keep">Read it like this: multiplying by <M>q</M> shifts every term one place to the right. On subtracting, everything cancels except the first and the last term. Then divide by <M>{t`1 - q`}</M> – allowed as long as <M p=".">{t`q \neq 1`}</M></p>}
           />
         </Derivation>
       </Section>

@@ -18,8 +18,8 @@ export default function A6Polarform() {
       {/* ------------------------------------------------------------------ 1 */}
       <Section id="neu-s1-4" title={<T de="1. Neu auf S. 1–4 (der Rest ist Woche 5)" en="1. New on pp. 1–4 (the rest is week 5)" />}>
         <T
-          de={<p>Die Seiten 1–4 wiederholen <a href="#ana-komplex-rechnen">Woche 5</a>: <M p=",">{t`i^2 = -1`}</M> <M p=",">{t`z = a + bi`}</M> Addieren, Ausmultiplizieren und Dividieren (dort mit dem Beispiel <M p=").">{t`\tfrac{3 + i}{1 + 2i} = 1 - i`}</M> Neu sind nur drei kleine Dinge.</p>}
-          en={<p>Pages 1–4 repeat <a href="#ana-komplex-rechnen">week 5</a>: <M p=",">{t`i^2 = -1`}</M> <M p=",">{t`z = a + bi`}</M> adding, multiplying out and dividing (there with the example <M p=").">{t`\tfrac{3 + i}{1 + 2i} = 1 - i`}</M> Only three small things are new.</p>}
+          de={<p className="keep">Die Seiten 1–4 wiederholen <a href="#ana-komplex-rechnen">Woche 5</a>: <M p=",">{t`i^2 = -1`}</M> <M p=",">{t`z = a + bi`}</M> Addieren, Ausmultiplizieren und Dividieren (dort mit dem Beispiel <M p=").">{t`\tfrac{3 + i}{1 + 2i} = 1 - i`}</M> Neu sind nur drei kleine Dinge.</p>}
+          en={<p className="keep">Pages 1–4 repeat <a href="#ana-komplex-rechnen">week 5</a>: <M p=",">{t`i^2 = -1`}</M> <M p=",">{t`z = a + bi`}</M> adding, multiplying out and dividing (there with the example <M p=").">{t`\tfrac{3 + i}{1 + 2i} = 1 - i`}</M> Only three small things are new.</p>}
         />
         <Box kind="uebung" src={<Src u={6} p={2} />} title={<T de={<>Potenzen von <M>i</M></>} en={<>Powers of <M>i</M> (<span lang="de">Potenzen von i</span>)</>} />}>
           <T de={<p>Nach vier Schritten beginnt alles wieder von vorne.</p>} en={<p>After four steps everything starts over again.</p>} />
@@ -28,8 +28,8 @@ export default function A6Polarform() {
           <T de={<p>Tipp: Den Exponenten durch <M>4</M> teilen. Nur der Rest zählt.</p>} en={<p>Tip: divide the exponent by <M p=".">4</M> Only the remainder counts.</p>} />
         </Box>
         <T
-          de={<p><b>Warum?</b> <M>{t`i^3 = i^2\cdot i = -i`}</M> und <M p=".">{t`i^4 = i^2\cdot i^2 = (-1)(-1) = 1`}</M> Jedes Viererpaket <M>{t`i^4`}</M> ist also einfach <M>1</M> und fällt weg. Im Bild: Jeder Faktor <M>i</M> ist eine Vierteldrehung um den Nullpunkt (warum, zeigt Abschnitt 5).</p>}
-          en={<p><b>Why?</b> <M>{t`i^3 = i^2\cdot i = -i`}</M> and <M p=".">{t`i^4 = i^2\cdot i^2 = (-1)(-1) = 1`}</M> So every package of four, <M p=",">{t`i^4`}</M> is just <M>1</M> and drops out. In the picture: every factor <M>i</M> is a quarter turn about the origin (why, see section 5).</p>}
+          de={<p className="keep"><b>Warum?</b> <M>{t`i^3 = i^2\cdot i = -i`}</M> und <M p=".">{t`i^4 = i^2\cdot i^2 = (-1)(-1) = 1`}</M> Jedes Viererpaket <M>{t`i^4`}</M> ist also einfach <M>1</M> und fällt weg. Im Bild: Jeder Faktor <M>i</M> ist eine Vierteldrehung um den Nullpunkt (warum, zeigt Abschnitt 5).</p>}
+          en={<p className="keep"><b>Why?</b> <M>{t`i^3 = i^2\cdot i = -i`}</M> and <M p=".">{t`i^4 = i^2\cdot i^2 = (-1)(-1) = 1`}</M> So every package of four, <M p=",">{t`i^4`}</M> is just <M>1</M> and drops out. In the picture: every factor <M>i</M> is a quarter turn about the origin (why, see section 5).</p>}
         />
         <IPowers />
         <Box kind="uebung" src={<Src u={6} p={3} />} title={<T de={<>Komplex konjugierte <M>{t`\bar z`}</M> und Betrag</>} en={<>Conjugate <M>{t`\bar z`}</M> and modulus (<span lang="de">Betrag</span>)</>} />}>
@@ -73,10 +73,10 @@ export default function A6Polarform() {
             en={<p>Picture: <M>{t`z = \sqrt3 + i`}</M> as a blue arrow with <M p=",">{t`r = 2`}</M> the angle <M>{t`\varphi = \pi/6`}</M> in magenta at the real axis.</p>} />
         </Box>
         <T
-          de={<p>Stell dir einen Uhrzeiger vor, der im Nullpunkt befestigt ist. Um seine Spitze zu beschreiben, sagst du: «so lang, und so weit gedreht». Genau das sind <M>r</M> und <M p=".">\varphi</M></p>}
-          en={<p>Picture a clock hand pinned at the origin. To describe its tip you say: “this long, and turned this far”. That is exactly <M>r</M> and <M p=".">\varphi</M></p>}
+          de={<p className="keep">Stell dir einen Uhrzeiger vor, der im Nullpunkt befestigt ist. Um seine Spitze zu beschreiben, sagst du: «so lang, und so weit gedreht». Genau das sind <M>r</M> und <M p=".">\varphi</M></p>}
+          en={<p className="keep">Picture a clock hand pinned at the origin. To describe its tip you say: “this long, and turned this far”. That is exactly <M>r</M> and <M p=".">\varphi</M></p>}
         />
-        <ul>
+        <ul className="keep">
           <T
             de={<>
               <li><M>r</M> <M>=</M> Länge des Pfeils <M>=</M> Betrag <M p=".">{t`|z|`}</M></li>
@@ -91,8 +91,8 @@ export default function A6Polarform() {
           />
         </ul>
         <T
-          de={<p><b>So liest man das Beispiel:</b> <M p=",">{t`a = \sqrt3`}</M> <M p=",">{t`b = 1`}</M> also <M p=".">{t`r = \sqrt{3 + 1} = 2`}</M> Dann <M>{t`\cos\varphi = \tfrac{\sqrt3}{2}`}</M> und <M p=":">{t`\sin\varphi = \tfrac12`}</M> Das ist der Winkel <M>{t`\tfrac{\pi}{6}`}</M> (30°) aus der Tabelle unten. Einsetzen in <M>{t`r(\cos\varphi + i\sin\varphi)`}</M> gibt die Polarform.</p>}
-          en={<p><b>How to read the example:</b> <M p=",">{t`a = \sqrt3`}</M> <M p=",">{t`b = 1`}</M> so <M p=".">{t`r = \sqrt{3 + 1} = 2`}</M> Then <M>{t`\cos\varphi = \tfrac{\sqrt3}{2}`}</M> and <M p=":">{t`\sin\varphi = \tfrac12`}</M> that is the angle <M>{t`\tfrac{\pi}{6}`}</M> (30°) from the table below. Substituting into <M>{t`r(\cos\varphi + i\sin\varphi)`}</M> gives the polar form.</p>}
+          de={<p className="keep"><b>So liest man das Beispiel:</b> <M p=",">{t`a = \sqrt3`}</M> <M p=",">{t`b = 1`}</M> also <M p=".">{t`r = \sqrt{3 + 1} = 2`}</M> Dann <M>{t`\cos\varphi = \tfrac{\sqrt3}{2}`}</M> und <M p=":">{t`\sin\varphi = \tfrac12`}</M> Das ist der Winkel <M>{t`\tfrac{\pi}{6}`}</M> (30°) aus der Tabelle unten. Einsetzen in <M>{t`r(\cos\varphi + i\sin\varphi)`}</M> gibt die Polarform.</p>}
+          en={<p className="keep"><b>How to read the example:</b> <M p=",">{t`a = \sqrt3`}</M> <M p=",">{t`b = 1`}</M> so <M p=".">{t`r = \sqrt{3 + 1} = 2`}</M> Then <M>{t`\cos\varphi = \tfrac{\sqrt3}{2}`}</M> and <M p=":">{t`\sin\varphi = \tfrac12`}</M> that is the angle <M>{t`\tfrac{\pi}{6}`}</M> (30°) from the table below. Substituting into <M>{t`r(\cos\varphi + i\sin\varphi)`}</M> gives the polar form.</p>}
         />
       </Section>
 
@@ -124,13 +124,13 @@ export default function A6Polarform() {
           en={<p>The table is high-school material – you only need to be able to read it. The real work is: <b>which corner is the point in?</b> For <M>{t`-\sqrt3 + i`}</M> <M>a</M> is negative and <M>b</M> positive: upper left. The magnitudes <M>{t`\tfrac{\sqrt3}{2}`}</M> and <M>{t`\tfrac12`}</M> belong to <M>{t`\tfrac{\pi}{6}`}</M> – but measured from the <i>negative</i> real axis. From the positive axis it is therefore <M p=".">{t`\pi - \tfrac{\pi}{6} = \tfrac{5\pi}{6}`}</M></p>}
         />
         <T
-          de={<p><b>Warum reicht <M>{t`\arctan(b/a)`}</M> nicht?</b> Der Quotient <M>{t`b/a`}</M> vergisst die Vorzeichen: <M>{t`-\sqrt3 + i`}</M> und <M>{t`\sqrt3 - i`}</M> haben dasselbe <M p=".">{t`b/a = -\tfrac{1}{\sqrt3}`}</M> Der Taschenrechner kennt nur Winkel zwischen <M>{t`-\tfrac{\pi}{2}`}</M> und <M>{t`\tfrac{\pi}{2}`}</M> (rechte Halbebene) und gibt <M p=".">{t`-\tfrac{\pi}{6}`}</M> Im Bild unten siehst du: Links zeigt dieser Strahl genau in die Gegenrichtung. Dann muss man <M>\pi</M> addieren.</p>}
-          en={<p><b>Why is <M>{t`\arctan(b/a)`}</M> not enough?</b> The quotient <M>{t`b/a`}</M> forgets the signs: <M>{t`-\sqrt3 + i`}</M> and <M>{t`\sqrt3 - i`}</M> have the same <M p=".">{t`b/a = -\tfrac{1}{\sqrt3}`}</M> The calculator only knows angles between <M>{t`-\tfrac{\pi}{2}`}</M> and <M>{t`\tfrac{\pi}{2}`}</M> (right half-plane) and returns <M p=".">{t`-\tfrac{\pi}{6}`}</M> In the figure below you see: on the left this ray points exactly the opposite way. Then you must add <M p=".">\pi</M></p>}
+          de={<p className="keep"><b>Warum reicht <M>{t`\arctan(b/a)`}</M> nicht?</b> Der Quotient <M>{t`b/a`}</M> vergisst die Vorzeichen: <M>{t`-\sqrt3 + i`}</M> und <M>{t`\sqrt3 - i`}</M> haben dasselbe <M p=".">{t`b/a = -\tfrac{1}{\sqrt3}`}</M> Der Taschenrechner kennt nur Winkel zwischen <M>{t`-\tfrac{\pi}{2}`}</M> und <M>{t`\tfrac{\pi}{2}`}</M> (rechte Halbebene) und gibt <M p=".">{t`-\tfrac{\pi}{6}`}</M> Im Bild unten siehst du: Links zeigt dieser Strahl genau in die Gegenrichtung. Dann muss man <M>\pi</M> addieren.</p>}
+          en={<p className="keep"><b>Why is <M>{t`\arctan(b/a)`}</M> not enough?</b> The quotient <M>{t`b/a`}</M> forgets the signs: <M>{t`-\sqrt3 + i`}</M> and <M>{t`\sqrt3 - i`}</M> have the same <M p=".">{t`b/a = -\tfrac{1}{\sqrt3}`}</M> The calculator only knows angles between <M>{t`-\tfrac{\pi}{2}`}</M> and <M>{t`\tfrac{\pi}{2}`}</M> (right half-plane) and returns <M p=".">{t`-\tfrac{\pi}{6}`}</M> In the figure below you see: on the left this ray points exactly the opposite way. Then you must add <M p=".">\pi</M></p>}
         />
         <AngleExplorer />
         <T
-          de={<p><b>Warum <M p="?">{t`\varphi + 2\pi k`}</M></b> Eine ganze Drehung (<M p=",">{t`2\pi`}</M> also 360°) bringt den Uhrzeiger an dieselbe Stelle. <M>{t`\tfrac{\pi}{6}`}</M> und <M>{t`\tfrac{\pi}{6} + 2\pi = \tfrac{13\pi}{6}`}</M> sind also derselbe Punkt. Damit die Antwort eindeutig ist, wählt die Übung <M p=".">{t`0 \leq \varphi < 2\pi`}</M></p>}
-          en={<p><b>Why <M p="?">{t`\varphi + 2\pi k`}</M></b> A full turn (<M p=",">{t`2\pi`}</M> i.e. 360°) brings the clock hand to the same place. So <M>{t`\tfrac{\pi}{6}`}</M> and <M>{t`\tfrac{\pi}{6} + 2\pi = \tfrac{13\pi}{6}`}</M> are the same point. To make the answer unique, the class chooses <M p=".">{t`0 \leq \varphi < 2\pi`}</M></p>}
+          de={<p className="keep"><b>Warum <M p="?">{t`\varphi + 2\pi k`}</M></b> Eine ganze Drehung (<M p=",">{t`2\pi`}</M> also 360°) bringt den Uhrzeiger an dieselbe Stelle. <M>{t`\tfrac{\pi}{6}`}</M> und <M>{t`\tfrac{\pi}{6} + 2\pi = \tfrac{13\pi}{6}`}</M> sind also derselbe Punkt. Damit die Antwort eindeutig ist, wählt die Übung <M p=".">{t`0 \leq \varphi < 2\pi`}</M></p>}
+          en={<p className="keep"><b>Why <M p="?">{t`\varphi + 2\pi k`}</M></b> A full turn (<M p=",">{t`2\pi`}</M> i.e. 360°) brings the clock hand to the same place. So <M>{t`\tfrac{\pi}{6}`}</M> and <M>{t`\tfrac{\pi}{6} + 2\pi = \tfrac{13\pi}{6}`}</M> are the same point. To make the answer unique, the class chooses <M p=".">{t`0 \leq \varphi < 2\pi`}</M></p>}
         />
       </Section>
 
@@ -141,8 +141,8 @@ export default function A6Polarform() {
           <MD>{t`e^{i\varphi} = \cos\varphi + i\sin\varphi, \qquad z = re^{i\varphi}`}</MD>
         </Box>
         <T
-          de={<p><M>{t`e^{i\varphi}`}</M> ist zunächst nur eine Abkürzung für <M p=":">{t`\cos\varphi + i\sin\varphi`}</M> der Punkt auf dem <b>Einheitskreis</b> (Radius 1) beim Winkel <M p=".">\varphi</M> Mal <M>r</M> gestreckt gibt <M p=".">z</M> Zum Beispiel <M p=".">{t`\sqrt3 + i = 2e^{i\pi/6}`}</M> Warum ausgerechnet «<M>e</M> hoch», zeigt der nächste Abschnitt.</p>}
-          en={<p><M>{t`e^{i\varphi}`}</M> is at first just shorthand for <M p=":">{t`\cos\varphi + i\sin\varphi`}</M> the point on the <b>unit circle</b> (radius 1) at angle <M p=".">\varphi</M> Stretched by <M>r</M> it gives <M p=".">z</M> For example <M p=".">{t`\sqrt3 + i = 2e^{i\pi/6}`}</M> Why it is “<M>e</M> to the power”, of all things, is shown in the next section.</p>}
+          de={<p className="keep"><M>{t`e^{i\varphi}`}</M> ist zunächst nur eine Abkürzung für <M p=":">{t`\cos\varphi + i\sin\varphi`}</M> der Punkt auf dem <b>Einheitskreis</b> (Radius 1) beim Winkel <M p=".">\varphi</M> Mal <M>r</M> gestreckt gibt <M p=".">z</M> Zum Beispiel <M p=".">{t`\sqrt3 + i = 2e^{i\pi/6}`}</M> Warum ausgerechnet «<M>e</M> hoch», zeigt der nächste Abschnitt.</p>}
+          en={<p className="keep"><M>{t`e^{i\varphi}`}</M> is at first just shorthand for <M p=":">{t`\cos\varphi + i\sin\varphi`}</M> the point on the <b>unit circle</b> (radius 1) at angle <M p=".">\varphi</M> Stretched by <M>r</M> it gives <M p=".">z</M> For example <M p=".">{t`\sqrt3 + i = 2e^{i\pi/6}`}</M> Why it is “<M>e</M> to the power”, of all things, is shown in the next section.</p>}
         />
       </Section>
 
@@ -157,8 +157,8 @@ export default function A6Polarform() {
             en={<p><b>Conjugating:</b> <M p=".">{t`\bar z = re^{-i\varphi}`}</M> Adding is usually easier in the form <M p=".">{t`a + bi`}</M></p>} />
         </Box>
         <T
-          de={<p>Mal <M>{t`r_2 e^{i\varphi_2}`}</M> heisst im Bild zwei Dinge: <b>strecken</b> mit <M>{t`r_2`}</M> und <b>drehen</b> um <M p=".">{t`\varphi_2`}</M> Die Animation macht das mit dem Beispiel der Übung.</p>}
-          en={<p>Times <M>{t`r_2 e^{i\varphi_2}`}</M> means two things in the picture: <b>stretch</b> by <M>{t`r_2`}</M> and <b>turn</b> by <M p=".">{t`\varphi_2`}</M> The animation does this with the class example.</p>}
+          de={<p className="keep">Mal <M>{t`r_2 e^{i\varphi_2}`}</M> heisst im Bild zwei Dinge: <b>strecken</b> mit <M>{t`r_2`}</M> und <b>drehen</b> um <M p=".">{t`\varphi_2`}</M> Die Animation macht das mit dem Beispiel der Übung.</p>}
+          en={<p className="keep">Times <M>{t`r_2 e^{i\varphi_2}`}</M> means two things in the picture: <b>stretch</b> by <M>{t`r_2`}</M> and <b>turn</b> by <M p=".">{t`\varphi_2`}</M> The animation does this with the class example.</p>}
         />
         <StepPlayer
           label={tr('Animation: 2e^{iπ/6} mal 3e^{iπ/3} – erst strecken, dann drehen', 'Animation: 2e^{iπ/6} times 3e^{iπ/3} – first stretch, then turn')}
@@ -189,7 +189,7 @@ export default function A6Polarform() {
           de={<p><b>Konjugieren:</b> <M>{t`\bar z = a - bi`}</M> ist das Spiegelbild an der reellen Achse: gleiche Länge, Winkel <M>{t`-\varphi`}</M> statt <M p=".">\varphi</M> Also <M p=".">{t`\bar z = re^{-i\varphi}`}</M> <b>Addieren</b> dagegen hat keine einfache Regel für Längen und Winkel (zwei Pfeile aneinanderhängen ändert beides kompliziert) – dafür nimmt man <M p=".">{t`a + bi`}</M></p>}
           en={<p><b>Conjugating:</b> <M>{t`\bar z = a - bi`}</M> is the mirror image in the real axis: same length, angle <M>{t`-\varphi`}</M> instead of <M p=".">\varphi</M> So <M p=".">{t`\bar z = re^{-i\varphi}`}</M> <b>Adding</b>, on the other hand, has no simple rule for lengths and angles (putting two arrows head to tail changes both in a complicated way) – for that you use <M p=".">{t`a + bi`}</M></p>}
         />
-        <Box kind="supplement" title={<T de={<>Warum addieren sich die Winkel – und warum <M p="?">{t`e^{i\varphi}`}</M></>} en={<>Why do the angles add – and why <M p="?">{t`e^{i\varphi}`}</M></>} />}>
+        <Box keep kind="supplement" title={<T de={<>Warum addieren sich die Winkel – und warum <M p="?">{t`e^{i\varphi}`}</M></>} en={<>Why do the angles add – and why <M p="?">{t`e^{i\varphi}`}</M></>} />}>
           <T
             de={<>
               <p>Ausmultiplizieren mit <M p=":">{t`i^2 = -1`}</M></p>

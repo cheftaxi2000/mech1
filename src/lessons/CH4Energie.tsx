@@ -103,8 +103,8 @@ export default function CH4Energie() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li>Zuerst die Frage: Was hat das System <em>bekommen</em>? Wärme und Arbeit, die hineinfliessen, zählen plus.</li>
               <li>Was es <em>abgegeben</em> hat, zählt minus. Ein Gas, das den Kolben hinausschiebt, gibt Arbeit ab: <M p=".">{t`w < 0`}</M></li>
               <li>Beides zusammenzählen gibt <M p=".">{t`\Delta E`}</M> Alles wird dabei aus der Sicht des Systems gezählt.</li>
@@ -112,8 +112,8 @@ export default function CH4Energie() {
             <p>Im Bild unten stellst du <M>q</M> und <M>w</M> selbst ein. Die Teilchen sind das System: bekommt es Energie, werden sie schneller. Rechts steht die Buchführung von Anfang zu Ende. Die Voreinstellungen sind die Folien und die Aufgabe 1 der Übung.</p>
           </>}
           en={<>
-            <p><b>How to read this:</b></p>
-            <ol>
+            <p className="keep"><b>How to read this:</b></p>
+            <ol className="keep">
               <li>First ask: what did the system <em>receive</em>? Heat and work that flow in count plus.</li>
               <li>What it <em>gave away</em> counts minus. A gas that pushes the piston out gives away work: <M p=".">{t`w < 0`}</M></li>
               <li>Adding both gives <M p=".">{t`\Delta E`}</M> Everything is counted from the point of view of the system.</li>
@@ -159,8 +159,8 @@ export default function CH4Energie() {
           />
         </Box>
         <T
-          de={<p>Merkhilfe: «endo» heisst «nach innen», «exo» heisst «nach aussen». Das Wort bezieht sich auf die Wärme, die das System aufnimmt oder abgibt. Aus Sicht der Umgebung ist es umgekehrt: Wo ein Eiswürfel Wärme aufnimmt, wird die Hand kälter.</p>}
-          en={<p>Memory aid: «endo» means «inward», «exo» means «outward». The word refers to the heat the system takes in or gives out. From the point of view of the surroundings it is the other way round: where an ice cube absorbs heat, the hand gets colder.</p>}
+          de={<p className="keep">Merkhilfe: «endo» heisst «nach innen», «exo» heisst «nach aussen». Das Wort bezieht sich auf die Wärme, die das System aufnimmt oder abgibt. Aus Sicht der Umgebung ist es umgekehrt: Wo ein Eiswürfel Wärme aufnimmt, wird die Hand kälter.</p>}
+          en={<p className="keep">Memory aid: «endo» means «inward», «exo» means «outward». The word refers to the heat the system takes in or gives out. From the point of view of the surroundings it is the other way round: where an ice cube absorbs heat, the hand gets colder.</p>}
         />
       </Section>
 
@@ -182,11 +182,11 @@ export default function CH4Energie() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b> Stell dir einen Berg vor. Die Höhe über dem Meer ist eine Zustandsfunktion: Wenn du von Zermatt zum Gornergrat gehst, hängt der Höhenunterschied nicht davon ab, welchen Weg du nimmst. Wie lange du gelaufen bist und wie viel du geschwitzt hast, hängt dagegen sehr wohl vom Weg ab. Die Höhe ist <M p=",">E</M> der Höhenunterschied ist <M p=",">{t`\Delta E`}</M> und die Mühe des Weges sind <M>q</M> und <M p=".">w</M></p>
+            <p className="keep"><b>So liest man das:</b> Stell dir einen Berg vor. Die Höhe über dem Meer ist eine Zustandsfunktion: Wenn du von Zermatt zum Gornergrat gehst, hängt der Höhenunterschied nicht davon ab, welchen Weg du nimmst. Wie lange du gelaufen bist und wie viel du geschwitzt hast, hängt dagegen sehr wohl vom Weg ab. Die Höhe ist <M p=",">E</M> der Höhenunterschied ist <M p=",">{t`\Delta E`}</M> und die Mühe des Weges sind <M>q</M> und <M p=".">w</M></p>
             <p>Unten siehst du das mit den Zahlen der Wasserstoff-Verbrennung (die Zahlen sind eine Ergänzung, sie stehen nicht auf der Folie). Methode 1 liefert alles als Wärme. Methode 2 lässt den Kolben Arbeit leisten; mit dem Regler wählst du, wie viel. Die grauen Balken <M>{t`\Delta E`}</M> sind immer gleich hoch.</p>
           </>}
           en={<>
-            <p><b>How to read this:</b> picture a mountain. The height above sea level is a state function: if you walk from Zermatt to the Gornergrat, the height difference does not depend on the path you take. How long you walked and how much you sweated do depend on the path. The height is <M p=",">E</M> the height difference is <M p=",">{t`\Delta E`}</M> and the effort of the way is <M>q</M> and <M p=".">w</M></p>
+            <p className="keep"><b>How to read this:</b> picture a mountain. The height above sea level is a state function: if you walk from Zermatt to the Gornergrat, the height difference does not depend on the path you take. How long you walked and how much you sweated do depend on the path. The height is <M p=",">E</M> the height difference is <M p=",">{t`\Delta E`}</M> and the effort of the way is <M>q</M> and <M p=".">w</M></p>
             <p>Below you see this with the numbers of hydrogen combustion (the numbers are a supplement, they are not on the slide). Method 1 delivers everything as heat. Method 2 lets the piston do work; with the slider you choose how much. The grey bars <M>{t`\Delta E`}</M> are always equally tall.</p>
           </>}
         />

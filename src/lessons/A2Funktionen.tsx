@@ -31,16 +31,16 @@ export default function A2Funktionen() {
         <FunctionAnatomy />
         <T
           de={<>
-            <p><b>So liest man die Zeile:</b> «<M>f</M> bildet die Zahlen von <M>-1</M> (ohne) bis <M>4</M> (mit) in die reellen Zahlen ab; dabei geht <M>x</M> auf <M p="».">{t`4x+3`}</M></p>
-            <ul>
+            <p className="keep"><b>So liest man die Zeile:</b> «<M>f</M> bildet die Zahlen von <M>-1</M> (ohne) bis <M>4</M> (mit) in die reellen Zahlen ab; dabei geht <M>x</M> auf <M p="».">{t`4x+3`}</M></p>
+            <ul className="keep">
               <li><M p=":">{t`(-1, 4]`}</M> Die runde Klammer heisst «<M>-1</M> gehört nicht dazu», die eckige «<M>4</M> gehört dazu». Also <M p=".">{t`-1 < x \le 4`}</M></li>
               <li><M>{t`\mathbb{R}`}</M> ist der <b>Zielbereich</b>: die Menge, in der die Werte liegen <em>dürfen</em>. Ob alle davon auch herauskommen, sagt er nicht.</li>
               <li>Zwei verschiedene Pfeile: <M>\to</M> steht zwischen zwei <em>Mengen</em>, <M>\mapsto</M> zwischen einer <em>Zahl</em> und ihrem Wert. Zum Beispiel <M p=".">{t`2 \mapsto 11`}</M></li>
             </ul>
           </>}
           en={<>
-            <p><b>How to read the line:</b> “<M>f</M> maps the numbers from <M>-1</M> (excluded) to <M>4</M> (included) into the real numbers; <M>x</M> goes to <M p="”.">{t`4x+3`}</M></p>
-            <ul>
+            <p className="keep"><b>How to read the line:</b> “<M>f</M> maps the numbers from <M>-1</M> (excluded) to <M>4</M> (included) into the real numbers; <M>x</M> goes to <M p="”.">{t`4x+3`}</M></p>
+            <ul className="keep">
               <li><M p=":">{t`(-1, 4]`}</M> the round bracket says “<M>-1</M> is not included”, the square one “<M>4</M> is included”. So <M p=".">{t`-1 < x \le 4`}</M></li>
               <li><M>{t`\mathbb{R}`}</M> is the <b>target set</b> (<De en="target set">Zielbereich</De>): the set in which the values <em>may</em> lie. It does not say whether all of them actually come out.</li>
               <li>Two different arrows: <M>\to</M> stands between two <em>sets</em>, <M>\mapsto</M> between a <em>number</em> and its value. For example <M p=".">{t`2 \mapsto 11`}</M></li>
@@ -71,8 +71,8 @@ export default function A2Funktionen() {
         <T
           de={<>
             <p><b>Das Überraschende:</b> <M>{t`\mathbb{D} = [2, 6)`}</M> ist rechts offen, das Bild <M>{t`[0, 4]`}</M> aber geschlossen. Der Wert <M>4</M> käme bei <M>{t`x = 6`}</M> heraus – das ist ausgeschlossen. Er kommt aber <em>schon</em> bei <M>{t`x = 2`}</M> heraus, und <M>2</M> gehört dazu. Ein Wert ist erreicht, sobald <em>ein</em> erlaubtes <M>x</M> ihn liefert.</p>
-            <p><b>So findet man das Bild</b> einer Funktion ohne Sprung auf einem Intervall:</p>
-            <ol>
+            <p className="keep"><b>So findet man das Bild</b> einer Funktion ohne Sprung auf einem Intervall:</p>
+            <ol className="keep">
               <li>Kleinsten und grössten Wert suchen: an den Enden oder am Scheitel (bei <M>{t`(x-4)^2`}</M> ist der Scheitel <M p=",">{t`x = 4`}</M> Wert <M p=").">0</M></li>
               <li>Für jedes Ende des Bildes prüfen: Liefert es ein <em>erlaubtes</em> <M p="?">x</M> Dann eckige Klammer, sonst runde.</li>
               <li>Alles dazwischen wird erreicht, weil der Graph keinen Sprung hat. Das ist der Zwischenwertsatz – er kommt in <a href="#ana-stetigkeit">Lücken, Sprünge und Zwischenwertsatz</a>.</li>
@@ -80,8 +80,8 @@ export default function A2Funktionen() {
           </>}
           en={<>
             <p><b>The surprise:</b> <M>{t`\mathbb{D} = [2, 6)`}</M> is open on the right, but the image <M>{t`[0, 4]`}</M> is closed. The value <M>4</M> would come out at <M>{t`x = 6`}</M> – which is excluded. But it <em>already</em> comes out at <M p=",">{t`x = 2`}</M> and <M>2</M> is included. A value is reached as soon as <em>one</em> allowed <M>x</M> gives it.</p>
-            <p><b>How to find the image</b> of a function without jumps on an interval:</p>
-            <ol>
+            <p className="keep"><b>How to find the image</b> of a function without jumps on an interval:</p>
+            <ol className="keep">
               <li>Find the smallest and largest value: at the ends or at the vertex (for <M>{t`(x-4)^2`}</M> the vertex is <M p=",">{t`x = 4`}</M> value <M p=").">0</M></li>
               <li>For each end of the image check: is it given by an <em>allowed</em> <M p="?">x</M> Then a square bracket, otherwise a round one.</li>
               <li>Everything in between is reached because the graph has no jump. That is the intermediate value theorem – it comes in <a href="#ana-stetigkeit">Gaps, jumps and the intermediate value theorem</a>.</li>
@@ -192,8 +192,8 @@ export default function A2Funktionen() {
           />
         </Box>
         <T
-          de={<p>In Worten: <b>gerade</b> heisst, bei <M>-x</M> kommt <em>derselbe</em> Wert heraus wie bei <M>x</M> – der Graph ist an der <M>y</M>-Achse gespiegelt. <b>Ungerade</b> heisst, bei <M>-x</M> kommt der <em>Gegenwert</em> heraus – der Graph ist am Ursprung gespiegelt.</p>}
-          en={<p>In words: <b>even</b> means at <M>-x</M> you get the <em>same</em> value as at <M>x</M> – the graph is mirrored at the <M>y</M>-axis. <b>Odd</b> means at <M>-x</M> you get the <em>opposite</em> value – the graph is mirrored through the origin.</p>}
+          de={<p className="keep">In Worten: <b>gerade</b> heisst, bei <M>-x</M> kommt <em>derselbe</em> Wert heraus wie bei <M>x</M> – der Graph ist an der <M>y</M>-Achse gespiegelt. <b>Ungerade</b> heisst, bei <M>-x</M> kommt der <em>Gegenwert</em> heraus – der Graph ist am Ursprung gespiegelt.</p>}
+          en={<p className="keep">In words: <b>even</b> means at <M>-x</M> you get the <em>same</em> value as at <M>x</M> – the graph is mirrored at the <M>y</M>-axis. <b>Odd</b> means at <M>-x</M> you get the <em>opposite</em> value – the graph is mirrored through the origin.</p>}
         />
         <EvenOdd />
         <Box kind="misconception" title={<T de="«Jede Funktion ist gerade oder ungerade»" en="“Every function is even or odd”" />}>
@@ -213,8 +213,8 @@ export default function A2Funktionen() {
           />
         </Box>
         <T
-          de={<p>«bzw.» heisst hier: Die Version in Klammern gehört zu «strikt». Monoton wachsend: Geht man nach rechts, geht es nie hinunter. Strikt: Es geht immer echt hinauf, kein flaches Stück.</p>}
-          en={<p>The version in brackets belongs to “strictly”. Increasing: walking to the right, you never go down. Strictly: you always go really up, no flat piece.</p>}
+          de={<p className="keep">«bzw.» heisst hier: Die Version in Klammern gehört zu «strikt». Monoton wachsend: Geht man nach rechts, geht es nie hinunter. Strikt: Es geht immer echt hinauf, kein flaches Stück.</p>}
+          en={<p className="keep">The version in brackets belongs to “strictly”. Increasing: walking to the right, you never go down. Strictly: you always go really up, no flat piece.</p>}
         />
         <MonotoneFig />
         <Box kind="misconception" title={<T de={<><M>{t`\frac1x`}</M> ist monoton fallend?</>} en={<>Is <M>{t`\frac1x`}</M> decreasing?</>} />}>

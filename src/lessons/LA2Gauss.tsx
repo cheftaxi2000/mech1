@@ -43,8 +43,8 @@ export default function LA2Gauss() {
           <MD>{t`\longrightarrow\quad \left(\begin{array}{ccc|c} 3 & 2 & -1 & 2\\ 1 & -2 & -2 & 0\\ -2 & 1 & 1 & 3 \end{array}\right)`}</MD>
         </Box>
         <T
-          de={<p><b>So liest man das:</b> Alle drei Schreibweisen enthalten dieselben zwölf Zahlen. In der Matrix <M>A</M> steht in Zeile <M>i</M> und Spalte <M>j</M> die Zahl vor <M>{t`x_j`}</M> in Gleichung <M p=".">i</M> Der Vektor <M>b</M> sammelt die rechten Seiten. Die erweiterte Matrix <M>{t`[A \mid b]`}</M> klebt <M>b</M> hinter einem Strich an <M p=".">A</M> Der Strich steht dort, wo vorher das Gleichheitszeichen war.</p>}
-          en={<p><b>How to read it:</b> all three forms contain the same twelve numbers. In row <M>i</M> and column <M>j</M> of the matrix <M>A</M> stands the number in front of <M>{t`x_j`}</M> in equation <M p=".">i</M> The vector <M>b</M> collects the right-hand sides. The augmented matrix <M>{t`[A \mid b]`}</M> glues <M>b</M> to <M>A</M> behind a bar. The bar is where the equals sign used to be.</p>}
+          de={<p className="keep"><b>So liest man das:</b> Alle drei Schreibweisen enthalten dieselben zwölf Zahlen. In der Matrix <M>A</M> steht in Zeile <M>i</M> und Spalte <M>j</M> die Zahl vor <M>{t`x_j`}</M> in Gleichung <M p=".">i</M> Der Vektor <M>b</M> sammelt die rechten Seiten. Die erweiterte Matrix <M>{t`[A \mid b]`}</M> klebt <M>b</M> hinter einem Strich an <M p=".">A</M> Der Strich steht dort, wo vorher das Gleichheitszeichen war.</p>}
+          en={<p className="keep"><b>How to read it:</b> all three forms contain the same twelve numbers. In row <M>i</M> and column <M>j</M> of the matrix <M>A</M> stands the number in front of <M>{t`x_j`}</M> in equation <M p=".">i</M> The vector <M>b</M> collects the right-hand sides. The augmented matrix <M>{t`[A \mid b]`}</M> glues <M>b</M> to <M>A</M> behind a bar. The bar is where the equals sign used to be.</p>}
         />
         <NotationMorph />
         <T
@@ -74,14 +74,14 @@ export default function LA2Gauss() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b> Die Zeilen heissen <M p=".">{t`\mathrm{I}, \mathrm{II}, \mathrm{III}`}</M> Die Notiz <M>{t`\mathrm{III} - 2\cdot\mathrm{I}`}</M> heisst: «Ersetze Zeile <M>{t`\mathrm{III}`}</M> durch Zeile <M>{t`\mathrm{III}`}</M> minus zweimal Zeile <M p=".»">{t`\mathrm{I}`}</M> Das rote <M>-2</M> sagt dasselbe kürzer: Man zählt <M>-2</M> mal Zeile <M>{t`\mathrm{I}`}</M> dazu.</p>
-            <p><b>Wie findet man das Vielfache?</b> Unter dem Pivot <M>1</M> steht in Zeile <M>{t`\mathrm{III}`}</M> eine <M p=".">2</M> Damit dort <M>0</M> entsteht, braucht man <M p=".">{t`2 - 2\cdot 1 = 0`}</M> Allgemein: Vielfaches <M p=".">{t`= -\frac{\text{Eintrag unter dem Pivot}}{\text{Pivot}}`}</M></p>
-            <p><b>Pivot</b> (das Wort heisst «Drehpunkt») ist der Eintrag, mit dem man die anderen wegrechnet. Er darf nicht <M>0</M> sein: Mit <M>0</M> kann man nichts wegrechnen. Steht dort <M p=",">0</M> tauscht man zuerst zwei Zeilen.</p>
+            <p className="keep"><b>So liest man das:</b> Die Zeilen heissen <M p=".">{t`\mathrm{I}, \mathrm{II}, \mathrm{III}`}</M> Die Notiz <M>{t`\mathrm{III} - 2\cdot\mathrm{I}`}</M> heisst: «Ersetze Zeile <M>{t`\mathrm{III}`}</M> durch Zeile <M>{t`\mathrm{III}`}</M> minus zweimal Zeile <M p=".»">{t`\mathrm{I}`}</M> Das rote <M>-2</M> sagt dasselbe kürzer: Man zählt <M>-2</M> mal Zeile <M>{t`\mathrm{I}`}</M> dazu.</p>
+            <p className="keep"><b>Wie findet man das Vielfache?</b> Unter dem Pivot <M>1</M> steht in Zeile <M>{t`\mathrm{III}`}</M> eine <M p=".">2</M> Damit dort <M>0</M> entsteht, braucht man <M p=".">{t`2 - 2\cdot 1 = 0`}</M> Allgemein: Vielfaches <M p=".">{t`= -\frac{\text{Eintrag unter dem Pivot}}{\text{Pivot}}`}</M></p>
+            <p className="keep"><b>Pivot</b> (das Wort heisst «Drehpunkt») ist der Eintrag, mit dem man die anderen wegrechnet. Er darf nicht <M>0</M> sein: Mit <M>0</M> kann man nichts wegrechnen. Steht dort <M p=",">0</M> tauscht man zuerst zwei Zeilen.</p>
           </>}
           en={<>
-            <p><b>How to read it:</b> the rows are called <M p=".">{t`\mathrm{I}, \mathrm{II}, \mathrm{III}`}</M> The note <M>{t`\mathrm{III} - 2\cdot\mathrm{I}`}</M> means: “replace row <M>{t`\mathrm{III}`}</M> by row <M>{t`\mathrm{III}`}</M> minus twice row <M p=".”">{t`\mathrm{I}`}</M> The red <M>-2</M> says the same in short: add <M>-2</M> times row <M p=".">{t`\mathrm{I}`}</M></p>
-            <p><b>How do you find the multiple?</b> Below the pivot <M>1</M> row <M>{t`\mathrm{III}`}</M> has a <M p=".">2</M> To get <M>0</M> there we need <M p=".">{t`2 - 2\cdot 1 = 0`}</M> In general: multiple <M p=".">{t`= -\frac{\text{entry below the pivot}}{\text{pivot}}`}</M></p>
-            <p>The <b>pivot</b> (the word means “turning point”) is the entry used to clear the others. It must not be <M p=":">0</M> with <M>0</M> you cannot clear anything. If there is a <M p=",">0</M> first swap two rows.</p>
+            <p className="keep"><b>How to read it:</b> the rows are called <M p=".">{t`\mathrm{I}, \mathrm{II}, \mathrm{III}`}</M> The note <M>{t`\mathrm{III} - 2\cdot\mathrm{I}`}</M> means: “replace row <M>{t`\mathrm{III}`}</M> by row <M>{t`\mathrm{III}`}</M> minus twice row <M p=".”">{t`\mathrm{I}`}</M> The red <M>-2</M> says the same in short: add <M>-2</M> times row <M p=".">{t`\mathrm{I}`}</M></p>
+            <p className="keep"><b>How do you find the multiple?</b> Below the pivot <M>1</M> row <M>{t`\mathrm{III}`}</M> has a <M p=".">2</M> To get <M>0</M> there we need <M p=".">{t`2 - 2\cdot 1 = 0`}</M> In general: multiple <M p=".">{t`= -\frac{\text{entry below the pivot}}{\text{pivot}}`}</M></p>
+            <p className="keep">The <b>pivot</b> (the word means “turning point”) is the entry used to clear the others. It must not be <M p=":">0</M> with <M>0</M> you cannot clear anything. If there is a <M p=",">0</M> first swap two rows.</p>
           </>}
         />
         <T
@@ -91,8 +91,8 @@ export default function LA2Gauss() {
         <GaussStepper aug={SLIDE26} upTo="echelon" />
         <h3><T de="Warum ändert eine Zeilenumformung die Lösung nicht?" en="Why does a row operation not change the solution?" /></h3>
         <T
-          de={<p>Das ist dieselbe Überlegung wie beim Kombinieren von Gleichungen (<a href="#la-lgs">Lineare Gleichungssysteme geometrisch</a>, <Src u={2} p={13} slides />): Erfüllt ein Punkt die Gleichungen <M>{t`\mathrm{I}`}</M> und <M p=",">{t`\mathrm{II}`}</M> dann erfüllt er auch <M p=".">{t`\mathrm{II} - \mathrm{I}`}</M> Denn links und rechts zieht man gleich viel ab.</p>}
-          en={<p>It is the same argument as for combining equations (<a href="#la-lgs">Linear systems, geometrically</a>, <Src u={2} p={13} slides />): if a point satisfies equations <M>{t`\mathrm{I}`}</M> and <M p=",">{t`\mathrm{II}`}</M> it also satisfies <M p=".">{t`\mathrm{II} - \mathrm{I}`}</M> You subtract the same amount on the left and on the right.</p>}
+          de={<p className="keep">Das ist dieselbe Überlegung wie beim Kombinieren von Gleichungen (<a href="#la-lgs">Lineare Gleichungssysteme geometrisch</a>, <Src u={2} p={13} slides />): Erfüllt ein Punkt die Gleichungen <M>{t`\mathrm{I}`}</M> und <M p=",">{t`\mathrm{II}`}</M> dann erfüllt er auch <M p=".">{t`\mathrm{II} - \mathrm{I}`}</M> Denn links und rechts zieht man gleich viel ab.</p>}
+          en={<p className="keep">It is the same argument as for combining equations (<a href="#la-lgs">Linear systems, geometrically</a>, <Src u={2} p={13} slides />): if a point satisfies equations <M>{t`\mathrm{I}`}</M> and <M p=",">{t`\mathrm{II}`}</M> it also satisfies <M p=".">{t`\mathrm{II} - \mathrm{I}`}</M> You subtract the same amount on the left and on the right.</p>}
         />
         <Box kind="supplement" title={<T de="Auch umgekehrt geht nichts verloren" en="Nothing is lost the other way round either" />}>
           <T
@@ -117,12 +117,12 @@ export default function LA2Gauss() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b> «Stufenform» heisst: Jede Zeile beginnt mindestens eine Spalte weiter rechts als die Zeile darüber. Die letzte Zeile enthält dann nur noch eine Unbekannte, <M p=".">{t`3x_3 = 9`}</M> Die löst man sofort. Mit <M>{t`x_3`}</M> geht man eine Zeile höher. Dort fehlt dann wieder nur eine Unbekannte. So geht es Zeile für Zeile nach oben.</p>
-            <p>In der <b>vereinfachten</b> Form steht in jeder Pivotspalte nur noch das Pivot, und es ist <M p=".">1</M> Links steht dann die Einheitsmatrix, und rechts kann man die Lösung direkt ablesen. Der Spieler setzt das Beispiel fort: zuerst rückwärts einsetzen (rechts neben den Zeilen), dann bis zur vereinfachten Form.</p>
+            <p className="keep"><b>So liest man das:</b> «Stufenform» heisst: Jede Zeile beginnt mindestens eine Spalte weiter rechts als die Zeile darüber. Die letzte Zeile enthält dann nur noch eine Unbekannte, <M p=".">{t`3x_3 = 9`}</M> Die löst man sofort. Mit <M>{t`x_3`}</M> geht man eine Zeile höher. Dort fehlt dann wieder nur eine Unbekannte. So geht es Zeile für Zeile nach oben.</p>
+            <p className="keep">In der <b>vereinfachten</b> Form steht in jeder Pivotspalte nur noch das Pivot, und es ist <M p=".">1</M> Links steht dann die Einheitsmatrix, und rechts kann man die Lösung direkt ablesen. Der Spieler setzt das Beispiel fort: zuerst rückwärts einsetzen (rechts neben den Zeilen), dann bis zur vereinfachten Form.</p>
           </>}
           en={<>
-            <p><b>How to read it:</b> “echelon” (staircase) means: every row starts at least one column further right than the row above. Then the last row contains only one unknown, <M p=".">{t`3x_3 = 9`}</M> You solve it at once. With <M>{t`x_3`}</M> you go one row up. There, again, only one unknown is missing. Row by row you work your way up.</p>
-            <p>In the <b>reduced</b> form every pivot column contains only the pivot, and it is <M p=".">1</M> Then the identity matrix stands on the left, and you read off the solution on the right. The player continues the example: first back substitution (next to the rows), then on to the reduced form.</p>
+            <p className="keep"><b>How to read it:</b> “echelon” (staircase) means: every row starts at least one column further right than the row above. Then the last row contains only one unknown, <M p=".">{t`3x_3 = 9`}</M> You solve it at once. With <M>{t`x_3`}</M> you go one row up. There, again, only one unknown is missing. Row by row you work your way up.</p>
+            <p className="keep">In the <b>reduced</b> form every pivot column contains only the pivot, and it is <M p=".">1</M> Then the identity matrix stands on the left, and you read off the solution on the right. The player continues the example: first back substitution (next to the rows), then on to the reduced form.</p>
           </>}
         />
         <GaussStepper aug={SLIDE26} from={5} />
@@ -156,11 +156,11 @@ export default function LA2Gauss() {
         <ResultStaircases />
         <T
           de={<>
-            <p><b>So liest man die drei Bilder:</b> Entscheidend ist nur die Treppe am Ende. Eine Zeile <M>{t`(0\ 0\ 0 \mid 0)`}</M> heisst <M p=":">{t`0 = 0`}</M> wahr, aber ohne Information. Eine Zeile <M>{t`(0\ 0\ 0 \mid 5)`}</M> heisst <M p=":">{t`0 = 5`}</M> falsch, egal was man für die <M>{t`x_j`}</M> einsetzt. Eine Spalte ohne Pivot gehört zu einer <b>freien Variablen</b>: Sie darf jeden Wert haben. Man gibt ihr einen Namen, etwa <M p=",">{t`\alpha`}</M> und rechnet die anderen damit aus.</p>
+            <p className="keep"><b>So liest man die drei Bilder:</b> Entscheidend ist nur die Treppe am Ende. Eine Zeile <M>{t`(0\ 0\ 0 \mid 0)`}</M> heisst <M p=":">{t`0 = 0`}</M> wahr, aber ohne Information. Eine Zeile <M>{t`(0\ 0\ 0 \mid 5)`}</M> heisst <M p=":">{t`0 = 5`}</M> falsch, egal was man für die <M>{t`x_j`}</M> einsetzt. Eine Spalte ohne Pivot gehört zu einer <b>freien Variablen</b>: Sie darf jeden Wert haben. Man gibt ihr einen Namen, etwa <M p=",">{t`\alpha`}</M> und rechnet die anderen damit aus.</p>
             <p>Bei Folie 32 ist <M>{t`x_2`}</M> frei. Mit <M>{t`x_2 = \alpha`}</M> folgt <M p=".">{t`x_1 = 1 - \alpha`}</M> Die Folien 32 und 36 geben die Lösungsmenge nicht an. Der Explorer rechnet sie aus (Ergänzung: die Parameter <M>{t`\alpha, \beta`}</M> sind unsere Namen).</p>
           </>}
           en={<>
-            <p><b>How to read the three pictures:</b> only the final staircase matters. A row <M>{t`(0\ 0\ 0 \mid 0)`}</M> says <M p=":">{t`0 = 0`}</M> true, but no information. A row <M>{t`(0\ 0\ 0 \mid 5)`}</M> says <M p=":">{t`0 = 5`}</M> false, whatever you insert for the <M p=".">{t`x_j`}</M> A column without a pivot belongs to a <b>free variable</b>: it may take any value. You give it a name, say <M p=",">{t`\alpha`}</M> and compute the others from it.</p>
+            <p className="keep"><b>How to read the three pictures:</b> only the final staircase matters. A row <M>{t`(0\ 0\ 0 \mid 0)`}</M> says <M p=":">{t`0 = 0`}</M> true, but no information. A row <M>{t`(0\ 0\ 0 \mid 5)`}</M> says <M p=":">{t`0 = 5`}</M> false, whatever you insert for the <M p=".">{t`x_j`}</M> A column without a pivot belongs to a <b>free variable</b>: it may take any value. You give it a name, say <M p=",">{t`\alpha`}</M> and compute the others from it.</p>
             <p>On slide 32, <M>{t`x_2`}</M> is free. With <M>{t`x_2 = \alpha`}</M> we get <M p=".">{t`x_1 = 1 - \alpha`}</M> Slides 32 and 36 do not give the solution set. The explorer computes it (supplement: the parameter names <M>{t`\alpha, \beta`}</M> are ours).</p>
           </>}
         />

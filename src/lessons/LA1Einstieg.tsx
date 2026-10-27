@@ -40,13 +40,13 @@ export default function LA1Einstieg() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das Bild:</b> Das Quadrat mit der gestrichelten Linie ist das Quadrat ohne Last. Das dunkle Viereck ist dasselbe Quadrat unter Last. Die kleinen grauen Pfeile am Rand sind die Last.</p>
-            <p>Die Matrix <M>F</M> hat vier Zahlen. Sie sagt, wohin jeder Punkt des Quadrats wandert. Das Wichtigste steht in den Spalten: Die erste Spalte ist der Ort, an dem der Pfeil <M>e_1</M> (ein Schritt nach rechts) landet. Die zweite Spalte ist der Ort, an dem <M>e_2</M> (ein Schritt nach oben) landet.</p>
+            <p className="keep"><b>So liest man das Bild:</b> Das Quadrat mit der gestrichelten Linie ist das Quadrat ohne Last. Das dunkle Viereck ist dasselbe Quadrat unter Last. Die kleinen grauen Pfeile am Rand sind die Last.</p>
+            <p className="keep">Die Matrix <M>F</M> hat vier Zahlen. Sie sagt, wohin jeder Punkt des Quadrats wandert. Das Wichtigste steht in den Spalten: Die erste Spalte ist der Ort, an dem der Pfeil <M>e_1</M> (ein Schritt nach rechts) landet. Die zweite Spalte ist der Ort, an dem <M>e_2</M> (ein Schritt nach oben) landet.</p>
             <p>Probiere es aus: Wähle einen Lastfall und schau, wie sich die grüne und die blaue Zahlenspalte und die beiden Pfeile gemeinsam ändern.</p>
           </>}
           en={<>
-            <p><b>How to read the picture:</b> The square with the dashed outline is the square without load. The dark quadrilateral is the same square under load. The small grey arrows at the edge are the load.</p>
-            <p>The matrix <M>F</M> has four numbers. It says where every point of the square goes. The most important part is in the columns: the first column is the place where the arrow <M>e_1</M> (one step to the right) lands. The second column is the place where <M>e_2</M> (one step up) lands.</p>
+            <p className="keep"><b>How to read the picture:</b> The square with the dashed outline is the square without load. The dark quadrilateral is the same square under load. The small grey arrows at the edge are the load.</p>
+            <p className="keep">The matrix <M>F</M> has four numbers. It says where every point of the square goes. The most important part is in the columns: the first column is the place where the arrow <M>e_1</M> (one step to the right) lands. The second column is the place where <M>e_2</M> (one step up) lands.</p>
             <p>Try it: choose a load case and watch how the green and the blue column of numbers and the two arrows change together.</p>
           </>}
         />
@@ -82,7 +82,7 @@ export default function LA1Einstieg() {
       <Section id="organisation" title={<T de="3. Organisation" en="3. Organisation" />}>
         <Box kind="uebung" src={<Src u={1} p="5–8" slides />} title={<T de="Kursübersicht, Tipps, Ablauf der Übung" en="Course overview, tips, class outline" />}>
           <T
-            de={<ul>
+            de={<ul className="keep">
               <li><b>Prüfung:</b> keine Winterprüfung. Es gibt eine gemeinsame Prüfung von Lineare Algebra I und II im Sommer. 6 ECTS. «Wahrscheinlich eine deiner leichteren Vorlesungen, aber die wichtigste für später.»</li>
               <li><b>Bonus:</b> 10 Bonusaufgaben und 2 Lernkontrollen, je ein Punkt. Wer 9 von 12 Punkten hat, bekommt <M>{t`+0{,}25`}</M> auf die Note. Es geht darum, das eigene Denken zu zeigen: alles versuchen ist wichtiger als alles richtig haben.</li>
               <li><b>Serien:</b> wöchentlich, nicht obligatorisch. Hochladen auf SamUpload für die KI-Korrektur.</li>
@@ -90,7 +90,7 @@ export default function LA1Einstieg() {
               <li><b>Ablauf der Übung:</b> 1. frischer Blick auf die Theorie für die Intuition, 2. meist kurze Fragen und einige Prüfungsfragen, 3. Empfehlungen für die Serie, 4. Schnellfragen. Die leeren Folien gibt es vor der Übung, die annotierten danach.</li>
               <li><b>Sprache:</b> Die Fachbegriffe sind meist auf Deutsch und Englisch gleich, sonst ist es markiert. Die meisten späteren Lineare-Algebra-Kurse sind auf Englisch.</li>
             </ul>}
-            en={<ul>
+            en={<ul className="keep">
               <li><b>Exam:</b> no winter exam. There is one joint exam for Linear Algebra I and II in the summer. 6 ECTS. “Likely one of your easier classes, yet also the most relevant for later studies.”</li>
               <li><b>Bonus:</b> 10 bonus problems and 2 <De en="learning checks">Lernkontrollen</De>, one point each. With 9 of 12 points you get <M>{t`+0.25`}</M> on your grade. The point is to show your thinking: trying everything is more important than being correct.</li>
               <li><b>Problem sets:</b> weekly, not mandatory. Upload on SamUpload for AI grading.</li>
@@ -121,7 +121,7 @@ export default function LA1Einstieg() {
               <p><b>Key commands:</b></p>
             </>}
           />
-          <ul className="l12-cmds">
+          <ul className="l12-cmds keep">
             <li><code>;</code><T de={<span>Zeile nicht ausgeben</span>} en={<span>don’t print the line</span>} /></li>
             <li><code>clc</code><T de={<span>Befehlsfenster leeren</span>} en={<span>clear the command window</span>} /></li>
             <li><code>clear</code><T de={<span>Variablen löschen</span>} en={<span>clear the variables</span>} /></li>
@@ -174,8 +174,8 @@ export default function LA1Einstieg() {
       </Box>
       <Box kind="misconception" title={<T de="«Ohne MATLAB kann ich die Prüfung nicht bestehen»" en="“Without MATLAB I cannot pass the exam”" />}>
         <T
-          de={<p>Die Folie sagt es deutlich: MATLAB kommt manchmal in den Serien vor, ist aber nicht prüfungsrelevant. Es ist ein Werkzeug zum Ausprobieren, nicht der Stoff.</p>}
-          en={<p>The slide says it clearly: MATLAB sometimes appears in the problem sets but is not exam-relevant. It is a tool for trying things out, not the subject.</p>}
+          de={<p className="keep">Die Folie sagt es deutlich: MATLAB kommt manchmal in den Serien vor, ist aber nicht prüfungsrelevant. Es ist ein Werkzeug zum Ausprobieren, nicht der Stoff.</p>}
+          en={<p className="keep">The slide says it clearly: MATLAB sometimes appears in the problem sets but is not exam-relevant. It is a tool for trying things out, not the subject.</p>}
         />
       </Box>
 

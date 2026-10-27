@@ -79,16 +79,16 @@ export default function CH3Loesungen() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das Bild:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das Bild:</b></p>
+            <ol className="keep">
               <li>Elektrolyt heisst: Es sind <em>geladene Teilchen</em> im Wasser, rote Kationen und blaue Anionen. Die Gesamtladung bleibt null, es gibt gleich viele Plus- wie Minusladungen.</li>
               <li>Strom im Draht sind wandernde Elektronen. Strom in der Lösung sind wandernde <em>Ionen</em>: Die Kationen wandern zur einen Elektrode, die Anionen zur anderen. Ohne bewegliche Ladungen fliesst nichts.</li>
               <li>Darum leuchtet die Lampe nur bei <C>NaCl</C>, <C>HCl</C> und <C>KOH</C> (alle ionisch). Bei Zucker und Ethanol schwimmen ungeladene Moleküle, bei reinem Wasser fast nur Wassermoleküle.</li>
             </ol>
           </>}
           en={<>
-            <p><b>How to read the picture:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the picture:</b></p>
+            <ol className="keep">
               <li>Electrolyte means: there are <em>charged particles</em> in the water, red cations and blue anions. The total charge stays zero, there are as many plus as minus charges.</li>
               <li>Current in a wire is moving electrons. Current in the solution is moving <em>ions</em>: the cations move to one electrode, the anions to the other. Without mobile charges nothing flows.</li>
               <li>That is why the lamp lights up only for <C>NaCl</C>, <C>HCl</C> and <C>KOH</C> (all ionic). For sugar and ethanol uncharged molecules float about, for pure water almost only water molecules.</li>
@@ -118,16 +118,16 @@ export default function CH3Loesungen() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das Bild:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das Bild:</b></p>
+            <ol className="keep">
               <li>Gegensätze ziehen sich an. Das negative Ende des Wassers (<C>O</C>) wird vom positiven Ion angezogen, das positive Ende (<C>H</C>) vom negativen Ion.</li>
               <li>Die Wassermoleküle drehen sich also passend. Darum zeigt am Kation die Sauerstoffseite zum Ion, am Anion die Wasserstoffseite.</li>
               <li>Ein Ion, das so von Wasser umhüllt ist, ist «zufrieden» und bleibt gelöst. Man sagt: Es ist <b>hydratisiert</b> (<En>hydrated</En>). Diese Wasserhülle ersetzt die Nachbarn im Kristall.</li>
             </ol>
           </>}
           en={<>
-            <p><b>How to read the picture:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the picture:</b></p>
+            <ol className="keep">
               <li>Opposites attract. The negative end of water (<C>O</C>) is attracted to the positive ion, the positive end (<C>H</C>) to the negative ion.</li>
               <li>So the water molecules turn to fit. That is why at a cation the oxygen side points to the ion, at an anion the hydrogen side.</li>
               <li>An ion wrapped in water like this is “content” and stays dissolved. One says it is <b>hydrated</b>. This water shell replaces the neighbours in the crystal.</li>
@@ -202,8 +202,8 @@ export default function CH3Loesungen() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die drei Gleichungen:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man die drei Gleichungen:</b></p>
+            <ol className="keep">
               <li><em>Molekular:</em> Man schreibt die Stoffe, wie man sie aus der Flasche kennt. Kurz, aber man sieht nicht, was im Wasser passiert.</li>
               <li><em>Vollständig ionisch:</em> Jeder gelöste Ionenstoff wird in seine Ionen zerlegt. Der Niederschlag bleibt ganz, denn er ist nicht gelöst. Das ist die ehrliche Beschreibung des Bechers.</li>
               <li><em>Netto:</em> Alles, was links und rechts gleich dasteht, streicht man (wie <M>{t`x`}</M> in <M p="">{t`x + 3 = x + 5 + 1`}</M> Es bleibt das, was wirklich passiert: Silber-Ionen und Chlorid-Ionen finden sich.</li>
@@ -211,8 +211,8 @@ export default function CH3Loesungen() {
             <p>Das Bild zeigt es als Film. Beachte die offenen Ringe am Schluss: Das sind die Zuschauer-Ionen.</p>
           </>}
           en={<>
-            <p><b>How to read the three equations:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the three equations:</b></p>
+            <ol className="keep">
               <li><em>Molecular:</em> you write the substances as you know them from the bottle. Short, but you do not see what happens in the water.</li>
               <li><em>Complete ionic:</em> every dissolved ionic substance is split into its ions. The precipitate stays whole, since it is not dissolved. This is the honest description of the beaker.</li>
               <li><em>Net:</em> whatever stands identically on the left and right is cancelled (like <M>{t`x`}</M> in <M p="">{t`x + 3 = x + 5 + 1`}</M> What remains is what really happens: silver ions and chloride ions find each other.</li>
@@ -279,11 +279,11 @@ export default function CH3Loesungen() {
         </Box>
         <T
           de={<>
-            <p><b>So benutzt man die Tabelle:</b> Man sucht zuerst das <em>Anion</em> der Verbindung in der linken Spalte. Das sagt die Regel («löst sich» oder «löst sich nicht»). Dann prüft man, ob das <em>Kation</em> in der Ausnahmeliste steht. Wenn ja, gilt das Gegenteil. Beispiel: <C>NaCl</C>: Chloride lösen sich, <C>Na^+</C> ist keine Ausnahme, also löslich. <C>AgCl</C>: Chloride lösen sich, aber <C>Ag^+</C> ist Ausnahme, also unlöslich.</p>
+            <p className="keep"><b>So benutzt man die Tabelle:</b> Man sucht zuerst das <em>Anion</em> der Verbindung in der linken Spalte. Das sagt die Regel («löst sich» oder «löst sich nicht»). Dann prüft man, ob das <em>Kation</em> in der Ausnahmeliste steht. Wenn ja, gilt das Gegenteil. Beispiel: <C>NaCl</C>: Chloride lösen sich, <C>Na^+</C> ist keine Ausnahme, also löslich. <C>AgCl</C>: Chloride lösen sich, aber <C>Ag^+</C> ist Ausnahme, also unlöslich.</p>
             <p>Unten ist die ganze Tabelle als Raster. Jedes Feld ist eine Verbindung: grün löslich, orange unlöslich. Ein doppelter Rand zeigt eine Ausnahme der Regel. Tippe ein Feld an, um die Begründung zu lesen.</p>
           </>}
           en={<>
-            <p><b>How to use the chart:</b> First look up the <em>anion</em> of the compound in the left column. It gives the rule (“dissolves” or “does not dissolve”). Then check whether the <em>cation</em> is in the exception list. If so, the opposite holds. Example: <C>NaCl</C>: chlorides dissolve, <C>Na^+</C> is no exception, so soluble. <C>AgCl</C>: chlorides dissolve, but <C>Ag^+</C> is an exception, so insoluble.</p>
+            <p className="keep"><b>How to use the chart:</b> First look up the <em>anion</em> of the compound in the left column. It gives the rule (“dissolves” or “does not dissolve”). Then check whether the <em>cation</em> is in the exception list. If so, the opposite holds. Example: <C>NaCl</C>: chlorides dissolve, <C>Na^+</C> is no exception, so soluble. <C>AgCl</C>: chlorides dissolve, but <C>Ag^+</C> is an exception, so insoluble.</p>
             <p>Below is the whole chart as a grid. Each box is a compound: green soluble, orange insoluble. A double rim marks an exception to the rule. Tap a box to read the reason.</p>
           </>}
         />
@@ -355,8 +355,8 @@ export default function CH3Loesungen() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li>Im Zähler steht die Stoffmenge <M>n</M> des gelösten Stoffs in Mol, im Nenner das Volumen <M>V</M> der <em>ganzen Lösung</em> (nicht nur des Wassers) in Litern.</li>
               <li>Das Zeichen <M>c</M> oder <M>M</M> steht für die Molarität. Als Einheit schreibt man <M p=",">{t`\mathrm{mol/L}`}</M> kurz <M p=".">{t`\mathrm{M}`}</M></li>
               <li>Eine einzige Gleichung, drei Grössen: <M p=",">{t`c = n/V`}</M> also <M>{t`n = cV`}</M> und <M p=".">{t`V = n/c`}</M></li>
@@ -364,8 +364,8 @@ export default function CH3Loesungen() {
             <p>Im Bild verschiebst du <M>n</M> und <M p=".">V</M> Die violetten Punkte sind das gelöste Teilchen. Mehr Punkte im gleichen Wasser: höhere Konzentration. Gleich viele Punkte in mehr Wasser: <em>verdünnt</em>. Die Stoffmenge ändert sich beim Verdünnen nicht, nur das Volumen.</p>
           </>}
           en={<>
-            <p><b>How to read this:</b></p>
-            <ol>
+            <p className="keep"><b>How to read this:</b></p>
+            <ol className="keep">
               <li>The numerator is the amount <M>n</M> of the dissolved substance in moles, the denominator the volume <M>V</M> of the <em>whole solution</em> (not just of the water) in litres.</li>
               <li>The symbol <M>c</M> or <M>M</M> stands for the molarity. As unit one writes <M p=",">{t`\mathrm{mol/L}`}</M> in short <M p=".">{t`\mathrm{M}`}</M></li>
               <li>One equation, three quantities: <M p=",">{t`c = n/V`}</M> so <M>{t`n = cV`}</M> and <M p=".">{t`V = n/c`}</M></li>

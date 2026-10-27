@@ -60,8 +60,8 @@ export default function A3Umkehr() {
         </Box>
         <ArrowDiagrams />
         <T
-          de={<p>Die Pfeilbilder lesen: Jeder Punkt links (<M p=")">D</M> schickt genau einen Pfeil – das macht jede Funktion. <b>Injektiv</b> heisst: rechts kommen nie zwei Pfeile am selben Punkt an. <b>Surjektiv</b> heisst: rechts bleibt kein Punkt ohne Pfeil.</p>}
-          en={<p>Reading the arrow pictures: every point on the left (<M p=")">D</M> sends exactly one arrow – every function does that. <b>Injective</b> means: on the right, two arrows never arrive at the same point. <b>Surjective</b> means: on the right, no point is left without an arrow.</p>}
+          de={<p className="keep">Die Pfeilbilder lesen: Jeder Punkt links (<M p=")">D</M> schickt genau einen Pfeil – das macht jede Funktion. <b>Injektiv</b> heisst: rechts kommen nie zwei Pfeile am selben Punkt an. <b>Surjektiv</b> heisst: rechts bleibt kein Punkt ohne Pfeil.</p>}
+          en={<p className="keep">Reading the arrow pictures: every point on the left (<M p=")">D</M> sends exactly one arrow – every function does that. <b>Injective</b> means: on the right, two arrows never arrive at the same point. <b>Surjective</b> means: on the right, no point is left without an arrow.</p>}
         />
         <T
           de={<p><b>Ein Satz zum Graph-Test für surjektiv:</b> Auf der Folie steht «senkrechte Linie». Gemeint ist die <b>waagerechte</b>: Jede Linie <M>{t`y = c`}</M> mit <M>c</M> im Zielbereich muss den Graphen mindestens einmal treffen. (Senkrechte Linien prüfen nur, ob überhaupt eine Funktion vorliegt.) Probier es:</p>}
@@ -70,8 +70,8 @@ export default function A3Umkehr() {
         <HorizontalLineTest />
         <T
           de={<>
-            <p><b>Was die Linie zählt:</b></p>
-            <ol>
+            <p className="keep"><b>Was die Linie zählt:</b></p>
+            <ol className="keep">
               <li>Jeder Schnittpunkt mit <M>{t`y = c`}</M> ist ein <M>x</M> mit <M p=".">{t`f(x) = c`}</M> Zwei Schnittpunkte heissen also: zwei <M>x</M> liefern denselben Wert – nicht injektiv.</li>
               <li>Kein Schnittpunkt, obwohl <M>c</M> im Zielbereich liegt: Dieser Zielwert wird nie erreicht – nicht surjektiv. So bei <M>{t`e^x`}</M> für <M p=".">{t`c \le 0`}</M></li>
               <li>Bei <M>{t`x^2`}</M> hängt alles an den Bereichen. Auf <M>{t`[0, \infty)\to[0, \infty)`}</M> bleibt nur der rechte Ast (blau), und jede Linie im Zielbereich trifft genau einmal: bijektiv.</li>
@@ -79,8 +79,8 @@ export default function A3Umkehr() {
             <p>Tipp zur Serie 3 (<Src u={3} p={12} />): «Bei injektiv und surjektiv die Bereiche immer mitlesen.» Bild <M>=</M> tatsächlich erreichte Werte. Zielbereich <M>=</M> die Menge rechts vom Pfeil. Surjektiv heisst also: Bild <M>=</M> Zielbereich.</p>
           </>}
           en={<>
-            <p><b>What the line counts:</b></p>
-            <ol>
+            <p className="keep"><b>What the line counts:</b></p>
+            <ol className="keep">
               <li>Every intersection with <M>{t`y = c`}</M> is an <M>x</M> with <M p=".">{t`f(x) = c`}</M> Two intersections mean: two values of <M>x</M> give the same value – not injective.</li>
               <li>No intersection although <M>c</M> is in the target set: this target value is never reached – not surjective. As with <M>{t`e^x`}</M> for <M p=".">{t`c \le 0`}</M></li>
               <li>For <M>{t`x^2`}</M> everything depends on the sets. On <M>{t`[0, \infty)\to[0, \infty)`}</M> only the right branch remains (blue), and every line in the target set meets exactly once: bijective.</li>
@@ -89,8 +89,8 @@ export default function A3Umkehr() {
           </>}
         />
         <T
-          de={<p><b>«Zum Rechnen» vorgelesen</b>, für <M p=":">{t`f(x) = 2x+1`}</M> Nimm an, <M p=".">{t`f(x_1) = f(x_2)`}</M> Dann ist <M p=".">{t`2x_1 + 1 = 2x_2 + 1`}</M> Minus <M p=",">1</M> durch <M p=":">2</M> <M p=".">{t`x_1 = x_2`}</M> Gleicher Wert erzwingt gleiches <M p=":">x</M> injektiv. Bei <M>{t`x^2`}</M> scheitert das: aus <M>{t`x_1^2 = x_2^2`}</M> folgt nur <M p=".">{t`x_1 = \pm x_2`}</M></p>}
-          en={<p><b>“For computing” read aloud</b>, for <M p=":">{t`f(x) = 2x+1`}</M> assume <M p=".">{t`f(x_1) = f(x_2)`}</M> Then <M p=".">{t`2x_1 + 1 = 2x_2 + 1`}</M> Subtract <M p=",">1</M> divide by <M p=":">2</M> <M p=".">{t`x_1 = x_2`}</M> Equal values force equal <M p=":">x</M> injective. For <M>{t`x^2`}</M> this fails: <M>{t`x_1^2 = x_2^2`}</M> only gives <M p=".">{t`x_1 = \pm x_2`}</M></p>}
+          de={<p className="keep"><b>«Zum Rechnen» vorgelesen</b>, für <M p=":">{t`f(x) = 2x+1`}</M> Nimm an, <M p=".">{t`f(x_1) = f(x_2)`}</M> Dann ist <M p=".">{t`2x_1 + 1 = 2x_2 + 1`}</M> Minus <M p=",">1</M> durch <M p=":">2</M> <M p=".">{t`x_1 = x_2`}</M> Gleicher Wert erzwingt gleiches <M p=":">x</M> injektiv. Bei <M>{t`x^2`}</M> scheitert das: aus <M>{t`x_1^2 = x_2^2`}</M> folgt nur <M p=".">{t`x_1 = \pm x_2`}</M></p>}
+          en={<p className="keep"><b>“For computing” read aloud</b>, for <M p=":">{t`f(x) = 2x+1`}</M> assume <M p=".">{t`f(x_1) = f(x_2)`}</M> Then <M p=".">{t`2x_1 + 1 = 2x_2 + 1`}</M> Subtract <M p=",">1</M> divide by <M p=":">2</M> <M p=".">{t`x_1 = x_2`}</M> Equal values force equal <M p=":">x</M> injective. For <M>{t`x^2`}</M> this fails: <M>{t`x_1^2 = x_2^2`}</M> only gives <M p=".">{t`x_1 = \pm x_2`}</M></p>}
         />
       </Section>
 
@@ -107,8 +107,8 @@ export default function A3Umkehr() {
           <MD>{t`y = e^x \ \Rightarrow\ x = \ln(y), \qquad h^{-1}(x) = \ln(x),\ x > 0, \qquad h^{-1}\colon(0, \infty)\to\mathbb R`}</MD>
         </Box>
         <T
-          de={<p><b>Warum «<M p=",">x</M> <M>y</M> tauschen»?</b> Nach dem Auflösen steht die Rückrechnung schon da: <M>{t`x = \frac{y-3}{2}`}</M> sagt, welches <M>x</M> zum Wert <M>y</M> gehört. Man nennt die Eingabe aber gewohnheitsmässig <M p=",">x</M> darum benennt man um. Im Bild heisst Tauschen: Jeder Punkt <M>{t`(a, b)`}</M> wird zu <M p="">{t`(b, a)`}</M> – eine Spiegelung an der Geraden <M p=".">{t`y = x`}</M></p>}
-          en={<p><b>Why “swap <M>x</M> and <M p="”?">y</M></b> After solving, the way back is already there: <M>{t`x = \frac{y-3}{2}`}</M> says which <M>x</M> belongs to the value <M p=".">y</M> But we habitually call the input <M p=",">x</M> so we rename. In the picture, swapping means: every point <M>{t`(a, b)`}</M> becomes <M p="">{t`(b, a)`}</M> – a reflection in the line <M p=".">{t`y = x`}</M></p>}
+          de={<p className="keep"><b>Warum «<M p=",">x</M> <M>y</M> tauschen»?</b> Nach dem Auflösen steht die Rückrechnung schon da: <M>{t`x = \frac{y-3}{2}`}</M> sagt, welches <M>x</M> zum Wert <M>y</M> gehört. Man nennt die Eingabe aber gewohnheitsmässig <M p=",">x</M> darum benennt man um. Im Bild heisst Tauschen: Jeder Punkt <M>{t`(a, b)`}</M> wird zu <M p="">{t`(b, a)`}</M> – eine Spiegelung an der Geraden <M p=".">{t`y = x`}</M></p>}
+          en={<p className="keep"><b>Why “swap <M>x</M> and <M p="”?">y</M></b> After solving, the way back is already there: <M>{t`x = \frac{y-3}{2}`}</M> says which <M>x</M> belongs to the value <M p=".">y</M> But we habitually call the input <M p=",">x</M> so we rename. In the picture, swapping means: every point <M>{t`(a, b)`}</M> becomes <M p="">{t`(b, a)`}</M> – a reflection in the line <M p=".">{t`y = x`}</M></p>}
         />
         <MirrorPlayer steps={mirrorSteps} />
         <Box kind="uebung" src={<Src u={3} p={8} />} title={<T de="Bsp. 4: Bruchfunktion" en={<>Ex. 4: rational function (<span lang="de">Bruchfunktion</span>)</>} />}>
@@ -118,8 +118,8 @@ export default function A3Umkehr() {
         </Box>
         <T
           de={<>
-            <p><b>Warum ist jeder Schritt erlaubt?</b></p>
-            <ol>
+            <p className="keep"><b>Warum ist jeder Schritt erlaubt?</b></p>
+            <ol className="keep">
               <li><M p=":">{t`\times(x+2)`}</M> erlaubt, weil <M>{t`x \neq -2`}</M> (das steht im Definitionsbereich). Mit <M>0</M> zu multiplizieren würde Information zerstören.</li>
               <li>Ausmultiplizieren, dann alle Terme mit <M>x</M> nach links, den Rest nach rechts: <M>{t`x`}</M> abziehen, <M>{t`2y`}</M> abziehen.</li>
               <li><M p=":">{t`yx - x = (y-1)x`}</M> Jetzt kommt <M>x</M> nur noch einmal vor.</li>
@@ -128,8 +128,8 @@ export default function A3Umkehr() {
             <p>Das Skript nennt die Funktion selbst <M>y</M> (sonst schreibt man <M p=").">{t`f`}</M> Gemeint ist dasselbe: <M p=".">{t`y^{-1} = f^{-1}`}</M></p>
           </>}
           en={<>
-            <p><b>Why is each step allowed?</b></p>
-            <ol>
+            <p className="keep"><b>Why is each step allowed?</b></p>
+            <ol className="keep">
               <li><M p=":">{t`\times(x+2)`}</M> allowed because <M>{t`x \neq -2`}</M> (that is in the domain). Multiplying by <M>0</M> would destroy information.</li>
               <li>Expand, then all terms with <M>x</M> to the left, the rest to the right: subtract <M p=",">{t`x`}</M> subtract <M p=".">{t`2y`}</M></li>
               <li><M p=":">{t`yx - x = (y-1)x`}</M> now <M>x</M> appears only once.</li>

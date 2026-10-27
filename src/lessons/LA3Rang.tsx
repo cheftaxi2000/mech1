@@ -34,9 +34,9 @@ export default function LA3Rang() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b> In jeder Zeile ist der erste Eintrag ungleich null das Pivot. Die Pivots stehen in den Spalten von <M p=",">{t`x_1`}</M> <M>{t`x_2`}</M> und <M p=".">{t`x_4`}</M> Die Spalte von <M>{t`x_3`}</M> hat kein Pivot. Keine Zeile «beginnt» mit <M p=",">{t`x_3`}</M> also legt keine Gleichung <M>{t`x_3`}</M> fest. <M>{t`x_3`}</M> ist frei und bekommt den Namen <M p=".">{t`\alpha`}</M></p>
-            <p>Dann von unten rückwärts einsetzen, wie beim Gauss-Verfahren:</p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b> In jeder Zeile ist der erste Eintrag ungleich null das Pivot. Die Pivots stehen in den Spalten von <M p=",">{t`x_1`}</M> <M>{t`x_2`}</M> und <M p=".">{t`x_4`}</M> Die Spalte von <M>{t`x_3`}</M> hat kein Pivot. Keine Zeile «beginnt» mit <M p=",">{t`x_3`}</M> also legt keine Gleichung <M>{t`x_3`}</M> fest. <M>{t`x_3`}</M> ist frei und bekommt den Namen <M p=".">{t`\alpha`}</M></p>
+            <p className="keep">Dann von unten rückwärts einsetzen, wie beim Gauss-Verfahren:</p>
+            <ol className="keep">
               <li>Zeile <M p=":">{t`\mathrm{III}`}</M> <M p=".">{t`x_4 = 5`}</M></li>
               <li>Zeile <M p=":">{t`\mathrm{II}`}</M> <M p=",">{t`2x_2 + \alpha + 5 = 3`}</M> also <M p=".">{t`x_2 = \frac{-2-\alpha}{2} = -\frac{2+\alpha}{2}`}</M></li>
               <li>Zeile <M p=":">{t`\mathrm{I}`}</M> <M p=",">{t`x_1 + 3\alpha + 2\cdot 5 = 1`}</M> also <M p=".">{t`x_1 = -9 - 3\alpha`}</M></li>
@@ -45,9 +45,9 @@ export default function LA3Rang() {
             <p><b>So liest man <M p=":">L</M></b> «<M>L</M> ist die Menge aller Vektoren im <M p=",">{t`\mathbb{R}^4`}</M> die so aussehen, wobei <M>{t`\alpha`}</M> jede reelle Zahl sein darf.» Der senkrechte Strich heisst «wobei». Jedes <M>{t`\alpha`}</M> gibt eine andere Lösung. Schieb <M>{t`\alpha`}</M> und schau: Alle vier Gleichungen bleiben erfüllt.</p>
           </>}
           en={<>
-            <p><b>How to read it:</b> in every row the first non-zero entry is the pivot. The pivots stand in the columns of <M p=",">{t`x_1`}</M> <M>{t`x_2`}</M> and <M p=".">{t`x_4`}</M> The column of <M>{t`x_3`}</M> has no pivot. No row “starts” with <M p=",">{t`x_3`}</M> so no equation fixes <M p=".">{t`x_3`}</M> <M>{t`x_3`}</M> is free and gets the name <M p=".">{t`\alpha`}</M></p>
-            <p>Then back substitution from the bottom, as in Gaussian elimination:</p>
-            <ol>
+            <p className="keep"><b>How to read it:</b> in every row the first non-zero entry is the pivot. The pivots stand in the columns of <M p=",">{t`x_1`}</M> <M>{t`x_2`}</M> and <M p=".">{t`x_4`}</M> The column of <M>{t`x_3`}</M> has no pivot. No row “starts” with <M p=",">{t`x_3`}</M> so no equation fixes <M p=".">{t`x_3`}</M> <M>{t`x_3`}</M> is free and gets the name <M p=".">{t`\alpha`}</M></p>
+            <p className="keep">Then back substitution from the bottom, as in Gaussian elimination:</p>
+            <ol className="keep">
               <li>Row <M p=":">{t`\mathrm{III}`}</M> <M p=".">{t`x_4 = 5`}</M></li>
               <li>Row <M p=":">{t`\mathrm{II}`}</M> <M p=",">{t`2x_2 + \alpha + 5 = 3`}</M> so <M p=".">{t`x_2 = \frac{-2-\alpha}{2} = -\frac{2+\alpha}{2}`}</M></li>
               <li>Row <M p=":">{t`\mathrm{I}`}</M> <M p=",">{t`x_1 + 3\alpha + 2\cdot 5 = 1`}</M> so <M p=".">{t`x_1 = -9 - 3\alpha`}</M></li>
@@ -69,8 +69,8 @@ export default function LA3Rang() {
         </Box>
         <GenericRank />
         <T
-          de={<p><b>So liest man das:</b> Der <b>Rang</b> <M>r</M> ist die Anzahl Pivots in der Stufenform. «Linear unabhängig» heisst hier: Die Gleichung lässt sich nicht aus den anderen zusammensetzen. Eine abhängige Gleichung ist eine Kombination der anderen, zum Beispiel <M p=".">{t`\mathrm{III} = \mathrm{I} + \mathrm{II}`}</M> Gauss zieht genau diese Kombination ab, und übrig bleibt eine Nullzeile. Unten passiert das Schritt für Schritt mit <M p=":">{t`\mathrm{III} = \mathrm{I} + \mathrm{II}`}</M></p>}
-          en={<p><b>How to read it:</b> the <b>rank</b> <M>r</M> is the number of pivots in the echelon form. “Linearly independent” here means: the equation cannot be put together from the others. A dependent equation is a combination of the others, for example <M p=".">{t`\mathrm{III} = \mathrm{I} + \mathrm{II}`}</M> Gauss subtracts exactly this combination, and a zero row remains. Below this happens step by step with <M p=":">{t`\mathrm{III} = \mathrm{I} + \mathrm{II}`}</M></p>}
+          de={<p className="keep"><b>So liest man das:</b> Der <b>Rang</b> <M>r</M> ist die Anzahl Pivots in der Stufenform. «Linear unabhängig» heisst hier: Die Gleichung lässt sich nicht aus den anderen zusammensetzen. Eine abhängige Gleichung ist eine Kombination der anderen, zum Beispiel <M p=".">{t`\mathrm{III} = \mathrm{I} + \mathrm{II}`}</M> Gauss zieht genau diese Kombination ab, und übrig bleibt eine Nullzeile. Unten passiert das Schritt für Schritt mit <M p=":">{t`\mathrm{III} = \mathrm{I} + \mathrm{II}`}</M></p>}
+          en={<p className="keep"><b>How to read it:</b> the <b>rank</b> <M>r</M> is the number of pivots in the echelon form. “Linearly independent” here means: the equation cannot be put together from the others. A dependent equation is a combination of the others, for example <M p=".">{t`\mathrm{III} = \mathrm{I} + \mathrm{II}`}</M> Gauss subtracts exactly this combination, and a zero row remains. Below this happens step by step with <M p=":">{t`\mathrm{III} = \mathrm{I} + \mathrm{II}`}</M></p>}
         />
         <GaussStepper aug={CANCEL_EXAMPLE} upTo="echelon" />
         <T
@@ -104,21 +104,21 @@ export default function LA3Rang() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die Tabelle:</b> <M>{t`b_i`}</M> mit <M>{t`i > r`}</M> sind die rechten Seiten der Nullzeilen, <em>nach</em> dem Gauss-Verfahren. Eine Nullzeile mit <M>{t`b_i \neq 0`}</M> heisst <M p=":">{t`0 = b_i`}</M> Widerspruch. Gibt es keinen Widerspruch, entscheidet die Anzahl Pivots: <M>{t`r = n`}</M> heisst, jede Unbekannte hat ein Pivot. <M>{t`r < n`}</M> heisst, <M>{t`n - r`}</M> Unbekannte sind frei.</p>
-            <p>Zwei Zeilen der Tabelle sind zu eng formuliert (LA-002). «Keine Lösung» gilt schon, wenn <em>eine</em> Nullzeile rechts <M>{t`b_i \neq 0`}</M> hat (nicht alle). Und «eindeutig» braucht nur <M p=":">{t`r = n`}</M> <M>{t`m = n`}</M> ist bloss der quadratische Fall. Richtig für jedes <M p=":">{t`m \times n`}</M></p>
+            <p className="keep"><b>So liest man die Tabelle:</b> <M>{t`b_i`}</M> mit <M>{t`i > r`}</M> sind die rechten Seiten der Nullzeilen, <em>nach</em> dem Gauss-Verfahren. Eine Nullzeile mit <M>{t`b_i \neq 0`}</M> heisst <M p=":">{t`0 = b_i`}</M> Widerspruch. Gibt es keinen Widerspruch, entscheidet die Anzahl Pivots: <M>{t`r = n`}</M> heisst, jede Unbekannte hat ein Pivot. <M>{t`r < n`}</M> heisst, <M>{t`n - r`}</M> Unbekannte sind frei.</p>
+            <p className="keep">Zwei Zeilen der Tabelle sind zu eng formuliert (LA-002). «Keine Lösung» gilt schon, wenn <em>eine</em> Nullzeile rechts <M>{t`b_i \neq 0`}</M> hat (nicht alle). Und «eindeutig» braucht nur <M p=":">{t`r = n`}</M> <M>{t`m = n`}</M> ist bloss der quadratische Fall. Richtig für jedes <M p=":">{t`m \times n`}</M></p>
           </>}
           en={<>
-            <p><b>How to read the table:</b> <M>{t`b_i`}</M> with <M>{t`i > r`}</M> are the right-hand sides of the zero rows, <em>after</em> elimination. A zero row with <M>{t`b_i \neq 0`}</M> says <M p=":">{t`0 = b_i`}</M> a contradiction. If there is no contradiction, the number of pivots decides: <M>{t`r = n`}</M> means every unknown has a pivot. <M>{t`r < n`}</M> means <M>{t`n - r`}</M> unknowns are free.</p>
-            <p>Two lines of the table are stated too narrowly (LA-002). “No solution” already holds if <em>one</em> zero row has <M>{t`b_i \neq 0`}</M> on the right (not all of them). And “unique” only needs <M p=":">{t`r = n`}</M> <M>{t`m = n`}</M> is just the square case. Correct for every <M p=":">{t`m \times n`}</M></p>
+            <p className="keep"><b>How to read the table:</b> <M>{t`b_i`}</M> with <M>{t`i > r`}</M> are the right-hand sides of the zero rows, <em>after</em> elimination. A zero row with <M>{t`b_i \neq 0`}</M> says <M p=":">{t`0 = b_i`}</M> a contradiction. If there is no contradiction, the number of pivots decides: <M>{t`r = n`}</M> means every unknown has a pivot. <M>{t`r < n`}</M> means <M>{t`n - r`}</M> unknowns are free.</p>
+            <p className="keep">Two lines of the table are stated too narrowly (LA-002). “No solution” already holds if <em>one</em> zero row has <M>{t`b_i \neq 0`}</M> on the right (not all of them). And “unique” only needs <M p=":">{t`r = n`}</M> <M>{t`m = n`}</M> is just the square case. Correct for every <M p=":">{t`m \times n`}</M></p>
           </>}
         />
         <T
-          de={<ul className="ge-rules">
+          de={<ul className="ge-rules keep">
             <li><b>Keine Lösung</b> <M p=":">{t`\Leftrightarrow\ \operatorname{rang}[A \mid b] > r`}</M> eine Zeile lautet <M p=".">{t`0 = b_i \neq 0`}</M></li>
             <li><b>Genau eine Lösung</b> <M p=":">{t`\Leftrightarrow`}</M> lösbar und <M p=".">{t`r = n`}</M></li>
             <li><b>Unendlich viele</b> <M p=":">{t`\Leftrightarrow`}</M> lösbar und <M p=";">{t`r < n`}</M> dann <M>{t`n - r`}</M> freie Parameter.</li>
           </ul>}
-          en={<ul className="ge-rules">
+          en={<ul className="ge-rules keep">
             <li><b>No solution</b> <M p=":">{t`\Leftrightarrow\ \operatorname{rank}[A \mid b] > r`}</M> one row reads <M p=".">{t`0 = b_i \neq 0`}</M></li>
             <li><b>Exactly one solution</b> <M p=":">{t`\Leftrightarrow`}</M> consistent and <M p=".">{t`r = n`}</M></li>
             <li><b>Infinitely many</b> <M p=":">{t`\Leftrightarrow`}</M> consistent and <M p=";">{t`r < n`}</M> then <M>{t`n - r`}</M> free parameters.</li>
@@ -156,11 +156,11 @@ export default function LA3Rang() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b> Die Elimination geht für alle <M>a</M> und <M>b</M> gleich. Danach schaut man, welche Einträge null sein <em>können</em>. Die zweite Zeile <M>{t`(0\ {-2b}\ 0 \mid 0)`}</M> hat nur dann ein Pivot, wenn <M p=".">{t`b \neq 0`}</M> Die dritte Zeile <M>{t`(0\ 0\ 3a \mid b)`}</M> hat nur dann ein Pivot, wenn <M p=".">{t`a \neq 0`}</M> Ist <M>{t`a = 0`}</M> aber <M p=",">{t`b \neq 0`}</M> lautet sie <M p=":">{t`0 = b`}</M> Widerspruch.</p>
+            <p className="keep"><b>So liest man das:</b> Die Elimination geht für alle <M>a</M> und <M>b</M> gleich. Danach schaut man, welche Einträge null sein <em>können</em>. Die zweite Zeile <M>{t`(0\ {-2b}\ 0 \mid 0)`}</M> hat nur dann ein Pivot, wenn <M p=".">{t`b \neq 0`}</M> Die dritte Zeile <M>{t`(0\ 0\ 3a \mid b)`}</M> hat nur dann ein Pivot, wenn <M p=".">{t`a \neq 0`}</M> Ist <M>{t`a = 0`}</M> aber <M p=",">{t`b \neq 0`}</M> lautet sie <M p=":">{t`0 = b`}</M> Widerspruch.</p>
             <p>Bei (a) sieht man auf der Folie eine kleine Abweichung von der Stufenform: Für <M>{t`b = 0`}</M> rutscht das Pivot der zweiten Zeile weg. Dann zählt man die Pivots neu: Nur die erste Zeile hat eines, <M p=",">{t`r = 1`}</M> also <M>{t`n - r = 2`}</M> freie Parameter.</p>
           </>}
           en={<>
-            <p><b>How to read it:</b> the elimination is the same for all <M>a</M> and <M p=".">b</M> Afterwards you look at which entries <em>can</em> be zero. The second row <M>{t`(0\ {-2b}\ 0 \mid 0)`}</M> has a pivot only if <M p=".">{t`b \neq 0`}</M> The third row <M>{t`(0\ 0\ 3a \mid b)`}</M> has a pivot only if <M p=".">{t`a \neq 0`}</M> If <M>{t`a = 0`}</M> but <M p=",">{t`b \neq 0`}</M> it reads <M p=":">{t`0 = b`}</M> a contradiction.</p>
+            <p className="keep"><b>How to read it:</b> the elimination is the same for all <M>a</M> and <M p=".">b</M> Afterwards you look at which entries <em>can</em> be zero. The second row <M>{t`(0\ {-2b}\ 0 \mid 0)`}</M> has a pivot only if <M p=".">{t`b \neq 0`}</M> The third row <M>{t`(0\ 0\ 3a \mid b)`}</M> has a pivot only if <M p=".">{t`a \neq 0`}</M> If <M>{t`a = 0`}</M> but <M p=",">{t`b \neq 0`}</M> it reads <M p=":">{t`0 = b`}</M> a contradiction.</p>
             <p>In (a) the slide shows a small deviation from the echelon form: for <M>{t`b = 0`}</M> the pivot of the second row slips away. Then you count the pivots again: only the first row has one, <M p=",">{t`r = 1`}</M> so <M>{t`n - r = 2`}</M> free parameters.</p>
           </>}
         />
