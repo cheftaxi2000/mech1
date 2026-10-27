@@ -1,13 +1,13 @@
 import { CHAPTERS, SUBJECTS, TOPICS, chapterSubject, sourceLabel, topicSubject, type Subject } from '../content/curriculum';
 import { useTr } from '../i18n';
-import { AnaFigure, ChemFigure, LaFigure, MechFigure } from './Figures';
+import { AnaFigure, ChemFigure, InfoFigure, LaFigure, MechFigure } from './Figures';
 
 const LAST_KEY = 'mech1.lastTopic';
 const readLast = () => { try { return localStorage.getItem(LAST_KEY); } catch { return null; } };
 
-export const SUBJECT_ROUTE: Record<Subject, string> = { mech: 'mechanik', ana: 'analysis', la: 'algebra', chem: 'chemie' };
+export const SUBJECT_ROUTE: Record<Subject, string> = { mech: 'mechanik', ana: 'analysis', la: 'algebra', chem: 'chemie', info: 'informatik' };
 export const routeSubject = (route: string): Subject | null =>
-  route === 'mechanik' ? 'mech' : route === 'analysis' ? 'ana' : route === 'algebra' ? 'la' : route === 'chemie' ? 'chem' : null;
+  route === 'mechanik' ? 'mech' : route === 'analysis' ? 'ana' : route === 'algebra' ? 'la' : route === 'chemie' ? 'chem' : route === 'informatik' ? 'info' : null;
 
 const lessons = (s: Subject) => TOPICS.filter((t) => topicSubject(t) === s);
 
@@ -18,6 +18,7 @@ export function Landing() {
   const mechN = lessons('mech').length;
   const laN = lessons('la').length, laWeeks = Object.keys(CHAPTERS).filter((c) => chapterSubject(c) === 'la').length;
   const chN = lessons('chem').length, chWeeks = Object.keys(CHAPTERS).filter((c) => chapterSubject(c) === 'chem').length;
+  const infN = lessons('info').length, infWeeks = Object.keys(CHAPTERS).filter((c) => chapterSubject(c) === 'info').length;
   const anaN = lessons('ana').length, weeks = Object.keys(CHAPTERS).filter((c) => chapterSubject(c) === 'ana').length;
   return (
     <div className="landing">
@@ -59,6 +60,14 @@ export function Landing() {
             <div className="tile-foot"><span>{tr(`${chWeeks} Wochen · ${chN} Lektionen`, `${chWeeks} weeks · ${chN} lessons`)}</span><span className="tile-go">{tr('Öffnen', 'Open')}<i aria-hidden="true">›</i></span></div>
           </div>
         </a>
+        <a className="tile tile-info" href={`#${SUBJECT_ROUTE.info}`}>
+          <div className="tile-fig"><InfoFigure /></div>
+          <div className="tile-body">
+            <h2>{tr(...SUBJECTS.info)}</h2>
+            <p>{tr('C++ und was der Rechner dabei wirklich tut: Schritt für Schritt, mit Speicher und Ablauf vor Augen.', 'C++ and what the computer really does: step by step, with memory and execution in front of your eyes.')}</p>
+            <div className="tile-foot"><span>{tr(`${infWeeks} Kapitel · ${infN} Lektionen`, `${infWeeks} chapters · ${infN} lessons`)}</span><span className="tile-go">{tr('Öffnen', 'Open')}<i aria-hidden="true">›</i></span></div>
+          </div>
+        </a>
       </nav>
       {last && (
         <a className="resume" href={`#${last.id}`}>
@@ -90,6 +99,9 @@ export function SubjectPage({ subject }: { subject: Subject }) {
           : subject === 'la'
           ? tr('Ein Kapitel pro Übungsstunde, nach den Folien von Mårten Olofsson und seinen interaktiven Visualisierungen. Das Ziel der Übung gilt hier auch: erst das Bild und die Intuition, dann die Rechnung.',
               'One chapter per exercise class, following the slides of Mårten Olofsson and his interactive visualisations. His aim is ours too: the picture and the intuition first, then the calculation.')
+          : subject === 'info'
+          ? tr('Ein Kapitel pro Skript-Datei, nach dem Skript der ETH-Vorlesung Informatik. Nicht nur Code, der läuft: Zu jedem Konzept siehst du, was der Rechner dabei tut, und kannst es selbst vorhersagen.',
+              'One chapter per file of the lecture notes of the ETH informatics course. Not just code that runs: for every concept you see what the computer does, and you can predict it yourself.')
           : subject === 'chem'
           ? tr('Ein Kapitel pro Vorlesung, nach den Folien von Prof. David Norris, ergänzt durch die ausgefüllten Folien der Übungen. Erst das Bild im Kopf, dann die Formel: Teilchen, die du fliegen siehst, Energie, die du fliessen siehst.',
               'One chapter per lecture, following the slides of Prof. David Norris, completed with the filled-in slides of the exercise classes. The picture in your head first, then the formula: particles you watch fly, energy you watch flow.')

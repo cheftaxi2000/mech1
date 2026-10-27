@@ -59,7 +59,7 @@ export function Box({ kind, title, children, src, keep }: { kind: Kind; title?: 
   const tr = useTr();
   // In the exercise-class subjects a supplement is "not in the slides / summary", not "not in the lecture notes".
   const topic = typeof window !== 'undefined' ? TOPICS.find((t) => t.id === window.location.hash.replace(/^#\/?/, '')) : undefined;
-  const label: [string, string] = kind === 'supplement' && topic && topicSubject(topic) !== 'mech'
+  const label: [string, string] = kind === 'supplement' && topic && topicSubject(topic) !== 'mech' && topicSubject(topic) !== 'info'
     ? (topicSubject(topic) === 'la' || topicSubject(topic) === 'chem' ? ['Ergänzung – nicht in den Folien', 'Supplement – not in the slides'] : ['Ergänzung – nicht im Resümee', 'Supplement – not in the summary'])
     : LABEL[kind];
   return (

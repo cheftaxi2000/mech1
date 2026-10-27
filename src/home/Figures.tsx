@@ -149,3 +149,35 @@ export function ChemFigure() {
     </svg>
   );
 }
+
+/** Informatik tile: a row of memory boxes, the instruction pointer hops from box to box, a register fills up. */
+export function InfoFigure() {
+  const still = useReducedMotion();
+  const N = 7, W = 34, G = 7, X0 = (320 - (N * W + (N - 1) * G)) / 2;
+  const x = (k: number) => X0 + k * (W + G);
+  const path = [0, 1, 2, 3, 6, 7, 0]; // the hops of the box computer on the way through one subtraction
+  const dur = 5.6;
+  const keyTimes = path.map((_, i) => (i / (path.length - 1)).toFixed(3)).join(';');
+  return (
+    <svg className="fig fig-info" viewBox="0 0 320 200" aria-hidden="true" focusable="false">
+      {Array.from({ length: N }, (_, k) => (
+        <g key={k}>
+          <rect className={k < 5 ? 'fg-box fg-box-i' : 'fg-box fg-box-d'} x={x(k)} y={62} width={W} height={W} rx="6" style={{ ['--i' as string]: k }} />
+          <rect className="fg-box-line" x={x(k) + 8} y={74} width={W - 16} height="3" rx="1.5" />
+          <rect className="fg-box-line" x={x(k) + 8} y={83} width={(W - 16) * (k % 2 ? 0.6 : 0.9)} height="3" rx="1.5" />
+          <text className="fg-addr" x={x(k) + W / 2} y={112}>{k}</text>
+        </g>
+      ))}
+      <rect className="fg-pc" x={x(path[0]) - 3} y={59} width={W + 6} height={W + 6} rx="8">
+        {!still && <animate attributeName="x" dur={`${dur}s`} repeatCount="indefinite" calcMode="discrete" keyTimes={keyTimes} values={path.map((k) => x(k) - 3).join(';')} />}
+      </rect>
+      <text className="fg-pc-mark" x={x(path[0]) + W / 2} y={50}>▼
+        {!still && <animate attributeName="x" dur={`${dur}s`} repeatCount="indefinite" calcMode="discrete" keyTimes={keyTimes} values={path.map((k) => x(k) + W / 2).join(';')} />}
+      </text>
+      <rect className="fg-reg" x={110} y={138} width={44} height={34} rx="6" />
+      <rect className="fg-reg" x={166} y={138} width={44} height={34} rx="6" />
+      <text className="fg-reg-t" x={132} y={160}>L</text>
+      <text className="fg-reg-t" x={188} y={160}>R</text>
+    </svg>
+  );
+}
