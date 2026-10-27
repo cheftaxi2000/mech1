@@ -166,3 +166,10 @@ Four implementer agents wrote 13 lessons from lectures 1–6 and the TA's exerci
 - I3 adds `viz/info/ControlFigures.tsx` (`CompileFail`, `ScopeFigure`, `FlowViewer`) and 16 tests on the notes' claims (Collatz 27, odd-number loops, prime loop, fall-through warning).
 - Source issues I-001…I-006 are logged and handled in one sentence each.
 - Open: lesson tone of `i-algorithmus` (informal) could be revisited; chapters 4–7 (functions, vectors, ASCII/Caesar, recursion) are next.
+
+## 2026-10-27 — Informatik I, chapter 4 «Funktionen»
+- Six lessons from infln04 (`I4Funktion`, `I4Aufruf`, `I4Vertrag`, `I4Verfeinerung`, `I4Module`, `I4Namensraeume`).
+- Interpreter: `assert` (aborts with g++'s message), `namespace X { … }` with `X::f` calls; programs for the chapter are compared with g++ output.
+- New figures in `viz/info/FunctionFigures.tsx`: call-stack boxes (`StackView`, `<Tracer stack>`), `SignatureFigure`, `RectOverlap` (x blue, y amber), `BuildFigure`. Multi-file example in `info/cpp/multifile.ts`, built with g++ in a test (include, linker error, `-c`, header, multiple definition).
+- Tests on the notes' claims: Code 6.1 output, Example 6.7, assert message, -DNDEBUG, -Wall warning, interval overlap vs. brute force (g++ and interpreter), prime test iteration counts.
+- Source issues I-007…I-009.

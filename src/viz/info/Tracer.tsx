@@ -3,6 +3,7 @@ import { Code } from '../../components/Code';
 import { useTr } from '../../i18n';
 import { runAny, type Ev, type FrameView, type Snap } from '../../info/cpp/interp';
 import type { Prog } from '../../info/cpp/programs';
+import { StackView } from './FunctionFigures';
 import { useInterval } from './InfoControls';
 import './info.css';
 
@@ -49,7 +50,7 @@ function VarTable({ frame, tr, top }: { frame: FrameView; tr: Tr; top: boolean }
  * marked), the console shows what has been printed. The trace is computed by the interpreter, never typed.
  * `inputs` offers alternative console inputs the student can switch between.
  */
-export function Tracer({ prog, inputs, label }: { prog: Prog; inputs?: string[]; label?: string }) {
+export function Tracer({ prog, inputs, label, stack }: { prog: Prog; inputs?: string[]; label?: string; /** draw the call stack as boxes of cells (notes Subsection 6.4) instead of tables */ stack?: boolean }) {
   const tr = useTr();
   const [inp, setInp] = useState(prog.stdin ?? inputs?.[0] ?? '');
   const trace = useMemo(() => runAny(prog.code, { fragment: prog.fragment, stdin: inp }), [prog, inp]);
@@ -74,7 +75,8 @@ export function Tracer({ prog, inputs, label }: { prog: Prog; inputs?: string[];
       <div className="tr-main">
         <Code code={prog.code} active={shownLine ? [shownLine - 1] : []} label={label ?? tr('Programm', 'Program')} />
         <div className="tr-side">
-          {frames.map((f, k) => (
+          {stack && <StackView frames={frames} />}
+          {!stack && frames.map((f, k) => (
             <div key={k} className="tr-frame">
               {(frames.length > 1 || f.fn !== 'main') && <div className="tr-fn"><code>{f.fn}</code>{k === 0 && frames.length > 1 && <span className="tr-badge"> {tr('aktiv', 'active')}</span>}</div>}
               <VarTable frame={f} tr={tr} top={k === 0} />

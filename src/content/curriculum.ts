@@ -64,6 +64,7 @@ export const CHAPTERS: Record<string, [string, string]> = {
   CH6: ['Woche 6 · Elektronenstruktur', 'Week 6 · Electronic structure'],  I1: ['1 · Algorithmen, Rechner und erstes C++', '1 · Algorithms, computers and first C++'],
   I2: ['2 · Ausdrücke und Grundtypen', '2 · Expressions and fundamental types'],
   I3: ['3 · Kontrollstrukturen', '3 · Control statements'],
+  I4: ['4 · Funktionen', '4 · Functions'],
 };
 
 export const chapterSubject = (ch: string): Subject => (/^I\d/.test(ch) ? 'info' : ch.startsWith('LA') ? 'la' : ch.startsWith('CH') ? 'chem' : ch.startsWith('A') ? 'ana' : 'mech');
@@ -181,4 +182,10 @@ export const TOPICS: Topic[] = [
   { id: 'i-bloecke', chapter: 'I3', title: ['Blöcke und Sichtbarkeit', 'Blocks and visibility'], pages: '53–57', status: 'draft', component: lazy(() => import('../lessons/I3Bloecke')) },
   { id: 'i-while', chapter: 'I3', title: ['while, do-while, break und continue', 'while, do-while, break and continue'], pages: '57–64', status: 'draft', component: lazy(() => import('../lessons/I3While')) },
   { id: 'i-kontrollfluss', chapter: 'I3', title: ['Kontrollfluss und switch', 'Control flow and switch'], pages: '64–70', status: 'draft', component: lazy(() => import('../lessons/I3Kontrollfluss')) },
+  { id: 'i-funktion', chapter: 'I4', title: ['Funktionen definieren und aufrufen', 'Defining and calling functions'], pages: '71–74', status: 'draft', component: lazy(() => import('../lessons/I4Funktion')) },
+  { id: 'i-aufruf', chapter: 'I4', title: ['Was bei einem Aufruf passiert', 'What happens at a call'], pages: '74–78', status: 'draft', component: lazy(() => import('../lessons/I4Aufruf')) },
+  { id: 'i-vertrag', chapter: 'I4', title: ['void, return und Verträge', 'void, return and contracts'], pages: '78–83', status: 'draft', component: lazy(() => import('../lessons/I4Vertrag')) },
+  { id: 'i-verfeinerung', chapter: 'I4', title: ['Schrittweise Verfeinerung', 'Stepwise refinement'], pages: '83–89', status: 'draft', component: lazy(() => import('../lessons/I4Verfeinerung')) },
+  { id: 'i-module', chapter: 'I4', title: ['Deklaration, Bibliotheken und Linker', 'Declaration, libraries and the linker'], pages: '88–94', status: 'draft', component: lazy(() => import('../lessons/I4Module')) },
+  { id: 'i-namensraeume', chapter: 'I4', title: ['Namensräume und Standardbibliothek', 'Namespaces and the standard library'], pages: '94–96', status: 'draft', component: lazy(() => import('../lessons/I4Namensraeume')) },
 ];

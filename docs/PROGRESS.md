@@ -128,3 +128,9 @@ Offen: Polybox-Links nicht erreichbar; Übungen 2–4 handschriftlich (nur Bild)
 | i-bloecke | infln03 pp. 53–57 | draft | Blocks, dangling body, scope bars (`ScopeFigure`), shadowing, recreated locals (output 61718191101 from g++); I-006. |
 | i-while | infln03 pp. 57–64 | draft | while, Collatz (27: 111 steps, peak 9232, int overflow at 113383 — tested), do-while, break/continue calculators. |
 | i-kontrollfluss | infln03 pp. 64–70 | draft | Flow diagrams 5.4–5.8 (`FlowViewer`), choosing a structure (3 odd-number loops equal, tested), switch + fall-through (g++ -Wextra warning tested). |
+| i-funktion | infln04 pp. 71–74 | draft | Why functions, SignatureFigure, definition/call, Examples 6.2–6.4 (output from g++); I-007. |
+| i-aufruf | infln04 pp. 74–78 | draft | Five steps of a call, parameters are copies, call stack (`StackView`, Tracer `stack`), nested calls. |
+| i-vertrag | infln04 pp. 78–83 | draft | void, missing return (-Wall warning tested), weak/strong contracts, pow limits (inf/0), assert (+ -DNDEBUG tested). |
+| i-verfeinerung | infln04 pp. 83–89 | draft | Rectangle model `RectOverlap` (`src/info/overlap.ts` tested against the C++ program), refinement steps, intervals via the negated question, brute-force test; I-009. |
+| i-module | infln04 pp. 88–94 | draft | Scope/forward declaration, include vs separate compilation (build tested with g++), `BuildFigure`, headers; I-008. |
+| i-namensraeume | infln04 pp. 94–96 | draft | Namespaces (interpreter supports `namespace`), std library, prime test with sqrt bound (999 vs 1 000 002 divisions, tested). |

@@ -361,6 +361,10 @@ class Interp {
         const x = convert(a, t, e.line) as number, y = convert(b, t, e.line) as number;
         return this.rv(t, bare === 'min' ? Math.min(x, y) : Math.max(x, y));
       }
+      if (bare === 'assert') {
+        if (!this.truthy(this.eval(e.args[0]))) throw new RuntimeError(`Assertion \`${e.args[0].src}' failed.`, e.line);
+        return this.rv(VOID, undefined);
+      }
       if (bare === 'swap') {
         const a = this.lval(e.args[0]), b = this.lval(e.args[1]);
         if (!a.cell || !b.cell) throw new RuntimeError('swap needs two variables', e.line);

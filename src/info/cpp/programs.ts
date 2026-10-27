@@ -538,6 +538,368 @@ else if (x == 0)
 else
     std::cout << "positive";`,
   },
+
+  // ------------------------------------------------------------------ chapter I4
+  powInline: {
+    fragment: true,
+    stdin: '2 -2\n',
+    code: `double a;
+int n;
+std::cin >> a; // input a
+std::cin >> n; // input n
+double result = 1.0;
+if (n < 0) { // a^n = (1/a)^(-n)
+    a = 1.0/a;
+    n = -n;
+}
+for (int i = 0; i < n; ++i)
+    result *= a;
+std::cout << result;`,
+  },
+  powFn: {
+    code: `#include <iostream>
+// assumes e >= 0 || b != 0.0
+// returns the value b^e
+double pow(double b, int e) {
+    double result = 1.0;
+    if (e < 0) { // b^e = (1/b)^(-e)
+        b = 1.0/b;
+        e = -e;
+    }
+    for (int i = 0; i < e; ++i) {
+        result *= b;
+    }
+    return result;
+}
+
+int main() {
+    std::cout << pow( 2.0, -2) << "\\n"; // outputs 0.25
+    std::cout << pow( 1.5, 2) << "\\n"; // outputs 2.25
+    std::cout << pow(-2.0, 9) << "\\n"; // outputs -512
+    return 0;
+}`,
+  },
+  fnExamples: {
+    code: `#include <iostream>
+
+// returns l XOR r
+bool Xor(bool l, bool r) {
+    return l != r;
+}
+
+// assumes n >= 0
+// returns nth harmonic number computed with the backward sum
+float Harmonic(int n) {
+    float res = 0;
+    for (int i = n; i >= 1; --i)
+        res += 1.0f / i;
+    return res;
+}
+
+// returns the minimum of a and b
+int min(int a, int b) {
+    if (a<b)
+        return a;
+    else
+        return b;
+}
+
+int main() {
+    std::cout << Xor(true, false) << Xor(true, true) << "\\n";
+    std::cout << Harmonic(4) << "\\n";
+    std::cout << min(7, 3) << "\\n";
+    return 0;
+}`,
+  },
+  scopeParams: {
+    code: `#include <iostream>
+double pow(double b, int e) {
+    double r = 1.0;
+    if (e < 0) {
+        b = 1.0/b;
+        e = -e;
+    }
+    for (int i = 0; i < e; ++i)
+        r *= b;
+    return r;
+}
+
+int main() {
+    double b = 2.0;
+    int e = -2;
+    double z = pow(b, e);
+
+    std::cout << z << " "; // 0.25
+    std::cout << b << " "; // 2
+    std::cout << e;        // -2
+    return 0;
+}`,
+  },
+  voidPair: {
+    code: `#include <iostream>
+// writes a pair of numbers "(i, j)" to standard output
+void print_pair(int i, int j) {
+    std::cout << "(" << i << ", " << j << ")\\n";
+}
+
+int main() {
+    print_pair(3,4); // outputs (3, 4)
+    return 0;
+}`,
+  },
+  compareBad: {
+    includes: [],
+    code: `bool compare(float x, float y) {
+    float delta = x - y;
+    if (delta*delta < 0.001f) return true;
+}`,
+    // only compiled with -Wall in the tests (behavior undefined: never run)
+    runtimeError: true,
+  },
+  compareFull: {
+    code: `#include <iostream>
+bool compare(float x, float y) {
+    float delta = x - y;
+    if (delta*delta < 0.001f)
+        return true;
+    else
+        return false;
+}
+
+int main() {
+    std::cout << compare(10, 20) << compare(1.0f, 1.01f);
+    return 0;
+}`,
+  },
+  compareShort: {
+    code: `#include <iostream>
+bool compare(float x, float y) {
+    float delta = x - y;
+    return delta*delta < 0.001f;
+}
+
+int main() {
+    std::cout << compare(10, 20) << compare(1.0f, 1.01f);
+    return 0;
+}`,
+  },
+  assertPow: {
+    code: `#include <iostream>
+#include <cassert>
+// PRE: e >= 0 || b != 0.0
+// POST: return value is b^e
+double pow(double b, int e) {
+    assert(e >= 0 || b != 0.0);
+    double result = 1.0;
+    if (e < 0) { // b^e = (1/b)^(-e)
+        b = 1.0/b;
+        e = -e;
+    }
+    for (int i = 0; i < e; ++i)
+        result *= b;
+    return result;
+}
+
+int main() {
+    std::cout << pow(0.0, -1);
+    return 0;
+}`,
+    runtimeError: true,
+  },
+  rectStage1: { code: `#include <iostream>\nint main() {\n    // input two rectangles\n    // is there an overlap?\n    // output the result\n    return 0;\n}` },
+  rectStage2: {
+    code: `#include <iostream>
+int main() {
+    std::cout << "Enter two rectangles [x y w h each] \\n";
+    int x1, y1, w1, h1;
+    std::cin >> x1 >> y1 >> w1 >> h1;
+    int x2, y2, w2, h2;
+    std::cin >> x2 >> y2 >> w2 >> h2;
+
+    // overlap?
+    // output solution
+    return 0;
+}`,
+    stdin: '0 0 2 2 1 1 2 2\n',
+  },
+  rectStage3: {
+    code: `#include <iostream>
+bool rectangles_overlap(int x1, int y1, int w1, int h1,
+                        int x2, int y2, int w2, int h2) {
+    return false; // todo
+}
+
+int main() {
+    std::cout << "Enter two rectangles [x y w h each] \\n";
+    int x1, y1, w1, h1;
+    std::cin >> x1 >> y1 >> w1 >> h1;
+    int x2, y2, w2, h2;
+    std::cin >> x2 >> y2 >> w2 >> h2;
+
+    bool overlap = rectangles_overlap(x1,y1,w1,h1,x2,y2,w2,h2);
+    if (overlap)
+        std::cout << "overlap!\\n";
+    else
+        std::cout << "no overlap!\\n";
+    return 0;
+}`,
+    stdin: '0 0 2 2 1 1 2 2\n',
+  },
+  rectFinal: {
+    code: `#include <iostream>
+#include <algorithm>
+
+// PRE: [a1, b1], [a2, b2] are (generalized) intervals,
+//      with [a,b] := [b,a] if a>b
+// POST: returns true if [a1, b1],[a2, b2] overlap
+bool intervals_overlap(int a1, int b1, int a2, int b2) {
+    return std::max(a1, b1) >= std::min(a2, b2)
+        && std::min(a1, b1) <= std::max(a2, b2);
+}
+
+// PRE: (x1, y1, w1, h1), (x2, y2, w2, h2) are rectangles, where
+//      w1, h1, w2, h2 may be negative.
+// POST: returns true if (x1, y1, w1, h1),(x2, y2, w2, h2) overlap
+bool rectangles_overlap(int x1, int y1, int w1, int h1,
+                        int x2, int y2, int w2, int h2) {
+    return intervals_overlap(x1, x1 + w1, x2, x2 + w2)
+        && intervals_overlap(y1, y1 + h1, y2, y2 + h2);
+}
+
+int main() {
+    std::cout << "Enter two rectangles [x y w h] each\\n";
+    int x1, y1, w1, h1;
+    std::cin >> x1 >> y1 >> w1 >> h1;
+    int x2, y2, w2, h2;
+    std::cin >> x2 >> y2 >> w2 >> h2;
+    bool clash = rectangles_overlap(x1,y1,w1,h1,x2,y2,w2,h2);
+    if (clash)
+        std::cout << "overlap!\\n";
+    else
+        std::cout << "no overlap!\\n";
+    return 0;
+}`,
+    stdin: '0 0 2 2 1 1 2 2\n',
+  },
+  fnNotDeclared: {
+    code: `#include <iostream>
+int main() {
+    std::cout << f(1); // Error: f undeclared
+    return 0;
+}
+int f(int i) { // Scope of f starts here
+    return i;
+}`,
+    compileError: "'f' was not declared in this scope",
+  },
+  fnForward: {
+    code: `#include <iostream>
+bool is_odd(int n); // forward declaration
+
+bool is_even(int n) { // is_even valid from here
+    if (n == 0) return true;
+    return is_odd(n - 1); // ok
+}
+
+bool is_odd(int n) {
+    if (n == 0) return false;
+    return is_even(n - 1); // ok
+}
+
+int main() {
+    std::cout << is_even(10) << is_odd(10) << is_even(7);
+    return 0;
+}`,
+  },
+  paramClash: { code: `double pow(double e, int e);`, compileError: "conflicting declaration 'int e'" },
+  namespaces: {
+    code: `#include <iostream>
+#include <cmath>
+
+namespace informatik {
+    // our own pow: repeated multiplication
+    double pow(double b, int e) {
+        double result = 1.0;
+        if (e < 0) { b = 1.0/b; e = -e; }
+        for (int i = 0; i < e; ++i) result *= b;
+        return result;
+    }
+}
+
+int main() {
+    double x = std::pow(2.0, -2); // <cmath>
+    double y = informatik::pow(2.0, -2); // our own
+    std::cout << x << " " << y;
+    return 0;
+}`,
+  },
+  isPrimeSimple: {
+    code: `#include <iostream>
+#include <cassert>
+bool is_prime(int n) {
+    assert( n>1 );
+    int d=2;
+    for (; n % d != 0; ++d);
+    return d == n;
+}
+
+int main() {
+    for (int n = 2; n <= 30; ++n)
+        if (is_prime(n)) std::cout << n << " ";
+    return 0;
+}`,
+  },
+  isPrimeSqrt: {
+    code: `#include <iostream>
+#include <cassert>
+#include <cmath>
+bool is_prime(int n) {
+    assert( n>1 );
+    int d=2;
+    int bound = std::sqrt(n);
+    for (; d <= bound && n % d != 0; ++d);
+    return d > bound;
+}
+
+int main() {
+    for (int n = 2; n <= 30; ++n)
+        if (is_prime(n)) std::cout << n << " ";
+    return 0;
+}`,
+  },
+
+  nestedCalls: {
+    code: `#include <iostream>
+int square(int x) {
+    return x * x;
+}
+
+int sum_of_squares(int a, int b) {
+    return square(a) + square(b);
+}
+
+int main() {
+    int r = sum_of_squares(3, 4);
+    std::cout << r;
+    return 0;
+}`,
+  },
+
+  powLimits: {
+    code: `#include <iostream>
+double pow(double b, int e) {
+    double result = 1.0;
+    if (e < 0) { b = 1.0/b; e = -e; }
+    for (int i = 0; i < e; ++i)
+        result *= b;
+    return result;
+}
+
+int main() {
+    std::cout << pow(10.0, 400) << " " << pow(10.0, -400) << " " << pow(10.0, 15) << " " << pow(1.1, 10);
+    return 0;
+}`,
+  },
 } satisfies Record<string, Prog>;
 
 export type ProgId = keyof typeof P;

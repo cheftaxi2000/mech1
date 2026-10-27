@@ -220,9 +220,24 @@ class Parser {
   // ---------------------------------------------------------------- program
   parseProgram(): Program {
     const funcs: FuncDef[] = [], globals: (Stmt & { k: 'decl' })[] = [], includes: string[] = [];
+    this.parseTopLevel('', funcs, globals, includes, false);
+    return { funcs, globals, includes };
+  }
+
+  /** Functions, globals and `namespace X { … }` blocks; functions inside a namespace are registered as `X::f`. */
+  private parseTopLevel(prefix: string, funcs: FuncDef[], globals: (Stmt & { k: 'decl' })[], includes: string[], inBraces: boolean) {
     while (this.t.kind !== 'eof') {
+      if (inBraces && this.at('}')) return;
       if (this.t.kind === 'id' && this.t.text.startsWith('#')) { includes.push(this.t.text); this.p++; continue; }
       if (this.at('using')) { while (!this.eat(';')) this.p++; continue; }
+      if (this.at('namespace')) {
+        this.p++;
+        const ns = this.ident();
+        this.expect('{');
+        this.parseTopLevel(prefix + ns + '::', funcs, globals, includes, true);
+        this.expect('}');
+        continue;
+      }
       const line = this.t.line;
       const save = this.p;
       const ty = this.parseType();
@@ -234,10 +249,10 @@ class Parser {
           this.expect(')');
         }
         if (this.eat(';')) continue; // forward declaration
-        funcs.push({ name, ret: ty, params, body: this.parseBlock(), line });
+        funcs.push({ name: prefix + name, ret: ty, params, body: this.parseBlock(), line });
       } else { this.p = save; globals.push(this.parseDecl()); }
     }
-    return { funcs, globals, includes };
+    if (inBraces) throw new CppSyntaxError("expected '}' at end of input", this.t.line);
   }
 
   parseFragment(): Stmt[] {
