@@ -114,3 +114,17 @@ Offen: Polybox-Links nicht erreichbar; Übungen 2–4 handschriftlich (nur Bild)
 | Topic | Notes pages | Status | Notes |
 |---|---|---|---|
 | i-algorithmus | infln01 pp. 8–12 | review | Euclid demo + invariant chips, three abstraction levels, box computer simulator (`src/info/boxcomputer.ts`, 8 tests), Predict/Choice checks, I-001. **Awaiting the student's verdict on the template.** |
+| i-rechner | infln01 pp. 12–17 | draft | Turing/von Neumann, syntax vs semantics, first C++ program view; I-002. |
+| i-programm | infln01 pp. 18–21 | draft | Trace table, compile/run errors recorded from g++. |
+| i-variablen | infln01 pp. 21–25 | draft | Declaration, assignment, swap, lvalue/rvalue; computed traces. |
+| i-ausdruecke | infln01 pp. 25–29 | draft | Expressions, evaluation, types. |
+| i-vorrang | infln02 pp. 30–34 | draft | Expression tree with all valid evaluation orders; I-004. |
+| i-operatoren | infln02 pp. 34–36 | draft | Division/modulo, ++/--, compound assignment. |
+| i-ganzzahlen | infln02 pp. 37–40 | draft | B-bit wrap ring; I-003 is in the Fahrenheit example. |
+| i-fliesskomma | infln02 pp. 40–43 | draft | Exact decimal expansion inspector. |
+| i-wahrheitswerte | infln02 pp. 43–48 | draft | Truth tables, De Morgan, short-circuit. |
+| i-verzweigung | infln03 pp. 49–50 | draft | if / if-else / else-if chain; semicolon and `=` pitfalls (computed). |
+| i-for | infln03 pp. 50–53 | draft | Four stations of for, trace n = 2 (I-005), termination, halting problem, prime test (tested for 2 ≤ n ≤ 60). |
+| i-bloecke | infln03 pp. 53–57 | draft | Blocks, dangling body, scope bars (`ScopeFigure`), shadowing, recreated locals (output 61718191101 from g++); I-006. |
+| i-while | infln03 pp. 57–64 | draft | while, Collatz (27: 111 steps, peak 9232, int overflow at 113383 — tested), do-while, break/continue calculators. |
+| i-kontrollfluss | infln03 pp. 64–70 | draft | Flow diagrams 5.4–5.8 (`FlowViewer`), choosing a structure (3 odd-number loops equal, tested), switch + fall-through (g++ -Wextra warning tested). |

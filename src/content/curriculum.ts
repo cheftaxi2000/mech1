@@ -63,6 +63,7 @@ export const CHAPTERS: Record<string, [string, string]> = {
   CH5: ['Woche 5 · Entropie und freie Enthalpie', 'Week 5 · Entropy and free energy'],
   CH6: ['Woche 6 · Elektronenstruktur', 'Week 6 · Electronic structure'],  I1: ['1 · Algorithmen, Rechner und erstes C++', '1 · Algorithms, computers and first C++'],
   I2: ['2 · Ausdrücke und Grundtypen', '2 · Expressions and fundamental types'],
+  I3: ['3 · Kontrollstrukturen', '3 · Control statements'],
 };
 
 export const chapterSubject = (ch: string): Subject => (/^I\d/.test(ch) ? 'info' : ch.startsWith('LA') ? 'la' : ch.startsWith('CH') ? 'chem' : ch.startsWith('A') ? 'ana' : 'mech');
@@ -175,4 +176,9 @@ export const TOPICS: Topic[] = [
   { id: 'i-ganzzahlen', chapter: 'I2', title: ['Ganze Zahlen: Wertebereich und Überlauf', 'Integers: range and overflow'], pages: '37–40', status: 'draft', component: lazy(() => import('../lessons/I2Ganzzahlen')) },
   { id: 'i-fliesskomma', chapter: 'I2', title: ['Kommazahlen: float und double', 'Floating point numbers: float and double'], pages: '40–43', status: 'draft', component: lazy(() => import('../lessons/I2Fliesskomma')) },
   { id: 'i-wahrheitswerte', chapter: 'I2', title: ['Wahrheitswerte und logische Operatoren', 'Truth values and logical operators'], pages: '43–48', status: 'draft', component: lazy(() => import('../lessons/I2Wahrheitswerte')) },
+  { id: 'i-verzweigung', chapter: 'I3', title: ['Verzweigung: if und else', 'Selection: if and else'], pages: '49–50', status: 'draft', component: lazy(() => import('../lessons/I3Verzweigung')) },
+  { id: 'i-for', chapter: 'I3', title: ['Die for-Schleife', 'The for loop'], pages: '50–53', status: 'draft', component: lazy(() => import('../lessons/I3For')) },
+  { id: 'i-bloecke', chapter: 'I3', title: ['Blöcke und Sichtbarkeit', 'Blocks and visibility'], pages: '53–57', status: 'draft', component: lazy(() => import('../lessons/I3Bloecke')) },
+  { id: 'i-while', chapter: 'I3', title: ['while, do-while, break und continue', 'while, do-while, break and continue'], pages: '57–64', status: 'draft', component: lazy(() => import('../lessons/I3While')) },
+  { id: 'i-kontrollfluss', chapter: 'I3', title: ['Kontrollfluss und switch', 'Control flow and switch'], pages: '64–70', status: 'draft', component: lazy(() => import('../lessons/I3Kontrollfluss')) },
 ];

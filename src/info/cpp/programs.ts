@@ -243,6 +243,301 @@ else
   intDivDouble: { fragment: true, code: `double d = 5 / 2;\ndouble e = 5 / 2.0;\nstd::cout << d << " " << e;` },
 
   chainedCompare: { fragment: true, code: `int x = 50;\nstd::cout << (0 < x < 10) << (0 < x && x < 10);` },
+
+  // ------------------------------------------------------------------ chapter I3
+  ifOnly: { fragment: true, stdin: '7\n', code: `int a;\nstd::cin >> a;\nif (a % 2 == 0)\n    std::cout << "even";` },
+  ifElseBlocks: {
+    fragment: true,
+    stdin: '7\n',
+    code: `int a;
+std::cin >> a;
+if (a % 2 == 0) {
+    std::cout << "even";
+} else {
+    std::cout << "odd";
+}`,
+  },
+  oneLine: { fragment: true, stdin: '7\n', code: `int a; std::cin >> a; if (a % 2 == 0) std::cout << "even"; else std::cout << "odd";` },
+  forSum: {
+    code: `#include <iostream>
+int main() {
+    // input
+    std::cout << "Compute the sum 1+...+n for n=? ";
+    int n;
+    std::cin >> n;
+    // computation of the sum
+    int s = 0;
+    for (int i = 1; i <= n; ++i)
+        s += i;
+    // output
+    std::cout << "1+...+" << n << " = " << s << ".\\n";
+    return 0;
+}`,
+    stdin: '4\n',
+  },
+  forSumN2: { fragment: true, code: `int n = 2;\nint s = 0;\nfor (int i = 1; i <= n; ++i)\n    s += i;` },
+  forSumBlock: {
+    fragment: true,
+    stdin: '3\n',
+    code: `int n;
+std::cin >> n;
+int s = 0;
+for (int i = 1; i <= n; ++i) {
+    s += i;
+    std::cout << "partial sum is " << s << "\\n";
+}`,
+  },
+  forSumDangling: {
+    fragment: true,
+    stdin: '3\n',
+    code: `int n;
+std::cin >> n;
+int s = 0;
+for (int i = 1; i <= n; ++i)
+    s += i;
+    std::cout << "partial sum is " << s << "\\n";`,
+  },
+  primeTest: {
+    fragment: true,
+    stdin: '7\n',
+    code: `int n;
+std::cin >> n;
+// pre-condition: n >= 2
+int d;
+for (d = 2; n % d != 0; ++d);
+if (n == d)
+    std::cout << n << " is prime";
+else
+    std::cout << n << " is divided by " << d;`,
+  },
+  primeTestBlocks: {
+    fragment: true,
+    stdin: '12\n',
+    code: `int n;
+std::cin >> n;
+int d;
+for (d = 2; n % d != 0; ++d);
+if (d < n) {
+    std::cout << n << " = " << d << " * " << n / d << ".\\n";
+} else {
+    std::cout << n << " is prime.\\n";
+}`,
+  },
+  nullBody: { fragment: true, code: `for (int i = 0; i < 3; ++i);\n    std::cout << "hello ";` },
+  scopeUndeclared: {
+    code: `#include <iostream>
+int main() {
+    int s = 0;
+    for (int i = 0; i < 10; ++i)
+        s += i;
+    std::cout << i;
+    return 0;
+}`,
+    compileError: "'i' was not declared in this scope",
+  },
+  scopeBlockErr: {
+    code: `#include <iostream>
+int main() {
+    {
+        int i = 2;
+    }
+    std::cout << i;
+    return 0;
+}`,
+    compileError: "'i' was not declared in this scope",
+  },
+  shadow: {
+    code: `#include <iostream>
+int main() {
+    int i = 2;
+    for (int i = 0; i < 5; ++i)
+        std::cout << i; // outputs 0,1,2,3,4
+    std::cout << i; // outputs 2
+    return 0;
+}`,
+  },
+  redeclSame: { fragment: true, code: `int i;\nint i;`, compileError: "redeclaration of 'int i'" },
+  redeclOther: { fragment: true, code: `int i;\ndouble i;`, compileError: "conflicting declaration 'double i'" },
+  innerOuter: {
+    fragment: true,
+    code: `int x = 1;
+{
+    int y = 2;
+    std::cout << x + y; // inner sees outer
+}
+std::cout << " " << x;`,
+  },
+  localRecreated: {
+    fragment: true,
+    code: `int i = 5;
+for (int j = 0; j < 5; ++j) {
+    std::cout << ++i;
+    int k = 2;
+    std::cout << --k;
+}`,
+  },
+  whileSum: { fragment: true, stdin: '4\n', code: `int n;\nstd::cin >> n;\nint s = 0;\nint i = 1;\nwhile (i <= n) {\n    s += i;\n    ++i;\n}\nstd::cout << s;` },
+  collatz: {
+    fragment: true,
+    stdin: '5\n',
+    code: `int n;
+std::cin >> n; // read in n
+
+// iteration
+while (n != 1) { // stop when 1 reached
+    if (n % 2 == 0) n = n / 2; // n is even
+    else n = 3 * n + 1; // n is odd
+    std::cout << n << " ";
+}`,
+  },
+  collatzFor: {
+    fragment: true,
+    stdin: '5\n',
+    code: `int n;
+std::cin >> n; // read in n
+
+// iteration
+for (; n != 1;) { // stop when 1 reached
+    if (n % 2 == 0) n = n / 2; // n is even
+    else n = 3 * n + 1; // n is odd
+    std::cout << n << " ";
+}`,
+  },
+  doWhileCalc: {
+    fragment: true,
+    stdin: '3\n4\n0\n',
+    code: `int summand; // next summand
+int sum = 0; // current sum
+do {
+    std::cout << "next number = ? ";
+    std::cin >> summand;
+    sum += summand;
+    std::cout << "sum = " << sum << "\\n";
+} while (summand != 0);`,
+  },
+  whileCalc: {
+    fragment: true,
+    stdin: '3\n4\n0\n',
+    code: `int summand = 1; // next summand
+int sum = -summand; // current sum
+while (summand != 0) {
+    sum += summand;
+    std::cout << "sum = " << sum << "\\n";
+    std::cout << "next number = ? ";
+    std::cin >> summand;
+}`,
+  },
+  breakCalc: {
+    fragment: true,
+    stdin: '3\n4\n0\n',
+    code: `int summand;
+int sum = 0;
+while (true) {
+    std::cout << "next number = ? ";
+    std::cin >> summand;
+    if (summand == 0) break; // exit loop in the middle
+    sum += summand;
+    std::cout << "sum = " << sum << "\\n";
+}`,
+  },
+  continueCalc: {
+    fragment: true,
+    stdin: '3\n-2\n4\n0\n',
+    code: `int summand;
+int sum = 0;
+while (true) {
+    std::cout << "next number = ? ";
+    std::cin >> summand;
+    if (summand < 0) continue; // jump to }
+    if (summand == 0) break;
+    sum += summand;
+    std::cout << "sum = " << sum << "\\n";
+}`,
+  },
+  oddContinue: { fragment: true, code: `for (int i = 0; i < 100; ++i) {\n    if (i % 2 == 0) {\n        continue;\n    }\n    std::cout << i << "\\n";\n}` },
+  oddNegated: { fragment: true, code: `for (int i = 0; i < 100; ++i) {\n    if (i % 2 != 0) {\n        std::cout << i << "\\n";\n    }\n}` },
+  oddStep: { fragment: true, code: `for (int i = 1; i < 100; i += 2) {\n    std::cout << i << "\\n";\n}` },
+  gradesIf: {
+    fragment: true,
+    stdin: '6\n',
+    code: `int grade;
+std::cin >> grade;
+if (grade == 6) std::cout << "Excellent ... ";
+if (4 <= grade && grade <= 6) {
+    std::cout << "You passed!";
+} else if (1 <= grade && grade < 4) {
+    if (grade == 3) std::cout << "Close, but ... ";
+    std::cout << "You failed!";
+} else std::cout << "Error!";`,
+  },
+  gradesSwitch: {
+    fragment: true,
+    stdin: '6\n',
+    code: `int grade;
+std::cin >> grade;
+switch (grade) {
+  case 6: std::cout << "Excellent ... ";
+  case 5:
+  case 4: std::cout << "You passed!";
+    break;
+  case 3: std::cout << "Close, but ... ";
+  case 2:
+  case 1: std::cout << "You failed!";
+    break;
+  default: std::cout << "Error!";
+}`,
+  },
+  switchNoBreak: {
+    fragment: true,
+    stdin: '1\n',
+    code: `int x;
+std::cin >> x;
+switch (x) {
+  case 1: std::cout << "one ";
+  case 2: std::cout << "two ";
+  case 3: std::cout << "three ";
+  default: std::cout << "other";
+}`,
+  },
+
+  ifDangling: {
+    fragment: true,
+    stdin: '7\n',
+    code: `int a;
+std::cin >> a;
+if (a % 2 == 0)
+    std::cout << "even";
+    std::cout << " number";`,
+  },
+  ifSemicolon: {
+    fragment: true,
+    stdin: '7\n',
+    code: `int a;
+std::cin >> a;
+if (a % 2 == 0);
+    std::cout << "even";`,
+  },
+  ifAssign: {
+    fragment: true,
+    code: `int a = 7;
+if (a = 0)
+    std::cout << "zero";
+else
+    std::cout << "not zero";
+std::cout << " " << a;`,
+  },
+  elseIf: {
+    fragment: true,
+    stdin: '-4\n',
+    code: `int x;
+std::cin >> x;
+if (x < 0)
+    std::cout << "negative";
+else if (x == 0)
+    std::cout << "zero";
+else
+    std::cout << "positive";`,
+  },
 } satisfies Record<string, Prog>;
 
 export type ProgId = keyof typeof P;

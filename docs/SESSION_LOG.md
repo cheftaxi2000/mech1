@@ -159,3 +159,10 @@ Four implementer agents wrote 13 lessons from lectures 1–6 and the TA's exerci
 - Infrastructure: subject `info` (curriculum, route, tile, accent, e2e subject loop); `<Code>`/`<K>`; `src/info/euclid.ts` + `boxcomputer.ts` with tests (gcd for all pairs, steps = 6k+3, data boxes change only via store).
 - Lesson `i-algorithmus` (pp. 8–12): Euclid demo (bars, trace table, common-divisor chips = the invariant), three abstraction levels, box computer simulator with pseudo-code line sync, 1 Choice + 2 Predict, 3 misconceptions. I-001 logged (Fig. 1.7 `b = a-b`). Checked on iPad, phone, dark.
 - Not yet: pp. 12–17 (Turing, von Neumann, syntax/semantics) and everything after; waiting for the student's verdict on the template before scaling.
+
+## 2026-10-27 — Informatik I, chapters 1–3
+- Interpreter (`src/info/cpp/`): subset of C++ with 32-bit int/unsigned, float/double, bool, char, strings, all control statements (incl. `switch`, `break`, `continue`), functions, cin/cout; every program in `programs.ts` is run in the interpreter and compared with recorded g++ output (`fixtures.json`, re-checked when g++ exists).
+- Chapters I1 (5 lessons), I2 (5 lessons), I3 (5 lessons: `I3Verzweigung`, `I3For`, `I3Bloecke`, `I3While`, `I3Kontrollfluss`) written to the student's brief: few animations (a stepping tracer instead), explain the code and what the machine does, «Tipp» boxes against typical mistakes, university-level tone, attempt-first checks.
+- I3 adds `viz/info/ControlFigures.tsx` (`CompileFail`, `ScopeFigure`, `FlowViewer`) and 16 tests on the notes' claims (Collatz 27, odd-number loops, prime loop, fall-through warning).
+- Source issues I-001…I-006 are logged and handled in one sentence each.
+- Open: lesson tone of `i-algorithmus` (informal) could be revisited; chapters 4–7 (functions, vectors, ASCII/Caesar, recursion) are next.

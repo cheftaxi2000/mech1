@@ -78,3 +78,46 @@ describe.skipIf(!hasGpp)('fixtures are still what g++ prints', () => {
     }
   }
 });
+
+describe('chapter 3 claims (notes pp. 49–70)', () => {
+  const out = (code: string, stdin = '') => runFragment(code, { stdin }).stdout;
+  it('the three ways to print the odd numbers print the same (p. 67–68)', () => {
+    const a = out(P.oddContinue.code), b = out(P.oddNegated.code), c = out(P.oddStep.code);
+    expect(a).toBe(b); expect(b).toBe(c);
+    expect(a.trim().split('\n').length).toBe(50);
+  });
+  it('Collatz from 27: 111 steps, maximum 9232, the list printed in the notes (p. 59)', () => {
+    const seq = out(P.collatz.code, '27\n').trim().split(' ').map(Number);
+    expect(seq.length).toBe(111);
+    expect(seq.slice(0, 4)).toEqual([82, 41, 124, 62]);
+    expect(Math.max(...seq)).toBe(9232);
+    expect(seq.at(-1)).toBe(1);
+    expect(out(P.collatzFor.code, '27\n')).toBe(out(P.collatz.code, '27\n'));
+  });
+  it('Collatz overflows int for 113383 (peak 2 482 111 348 > 2^31 - 1)', () => {
+    let n = 113383n, peak = n;
+    while (n !== 1n) { n = n % 2n === 0n ? n / 2n : 3n * n + 1n; if (n > peak) peak = n; }
+    expect(peak).toBe(2482111348n);
+    expect(peak > 2147483647n).toBe(true);
+  });
+  it('for-loop with n = 2 visits i = 1, 2, 3 and ends with s = 3 (the table on p. 52 prints i=2, s=1 in its last row)', () => {
+    const t = runFragment(P.forSumN2.code);
+    const last = t.snaps[t.snaps.length - 1];
+    expect(last).toBeDefined();
+    expect(runFragment(`${P.forSumN2.code}\nstd::cout << s;`).stdout).toBe('3');
+  });
+  it('the prime-test loop ends with d == n exactly for primes (2 ≤ n ≤ 60)', () => {
+    for (let n = 2; n <= 60; n++) {
+      const o = out(P.primeTest.code, `${n}\n`);
+      const prime = Array.from({ length: n - 2 }, (_, k) => k + 2).every((d) => n % d !== 0);
+      expect(o.endsWith('is prime')).toBe(prime);
+    }
+  });
+  it.skipIf(!hasGpp)('g++ warns about the missing break with -Wimplicit-fallthrough', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'cpp-'));
+    const src = join(dir, 'a.cpp');
+    writeFileSync(src, wrap(P.switchNoBreak));
+    const c = spawnSync('g++', ['-std=c++17', '-Wextra', '-c', '-o', '/dev/null', src], { encoding: 'utf8', env: { ...process.env, LC_ALL: 'C' } });
+    expect(c.stderr).toContain('this statement may fall through');
+  });
+});

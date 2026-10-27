@@ -224,3 +224,28 @@ pre.plain-code code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas
 .sn-lit .p1, .sn-labels .p1 { color: var(--in-a); } .sn-lit .p2, .sn-labels .p2 { color: var(--in-b); }
 .sn-lit .p3, .sn-labels .p3 { color: var(--in-ok); } .sn-lit .p4, .sn-labels .p4 { color: var(--code-pre); }
 .sn-labels { display: flex; flex-wrap: wrap; gap: 4px 18px; justify-content: center; font-size: 0.85rem; }
+
+/* ---- control statements (chapter 3) ---- */
+.cf-out pre { color: var(--fg); }
+.sc-fig { padding: 10px 0 0; }
+.sc-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; padding: 0 14px 4px; font-size: 0.9rem; }
+.sc-key { display: inline-flex; align-items: center; gap: 6px; }
+.sc-sw { width: 14px; height: 14px; border-radius: 3px; display: inline-block; }
+.sc-t1 { background: var(--c-x); } .sc-t2 { background: var(--c-point); } .sc-t3 { background: var(--c-z); }
+pre.code.sc-code { margin: 0; border-radius: 0 0 12px 12px; }
+.sc-row { gap: 8px; }
+.sc-bars { display: inline-flex; gap: 3px; align-self: stretch; flex: none; }
+.sc-b { width: 7px; display: block; border-radius: 0; }
+.sc-b.on { opacity: 0.85; }
+.sc-row { align-items: stretch !important; }
+.sc-row .cn, .sc-row .ct { align-self: center; }
+.sc-b.top { border-top-left-radius: 4px; border-top-right-radius: 4px; }
+.sc-b.bot { border-bottom-left-radius: 4px; border-bottom-right-radius: 4px; }
+.flow-fig { padding: 12px; }
+.flow-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: center; color: var(--fg); }
+.flow-svg { width: 100%; max-width: 360px; height: auto; flex: 1 1 240px; }
+.flow-cond { fill: color-mix(in srgb, var(--c-angle) 14%, var(--panel)); stroke: var(--c-angle); stroke-width: 1.6; }
+.flow-stmt { fill: color-mix(in srgb, var(--c-x) 12%, var(--panel)); stroke: var(--c-x); stroke-width: 1.6; }
+.flow-t { font-size: 13px; fill: var(--fg); font-family: inherit; }
+.flow-lab { font-size: 12px; font-family: ui-monospace, Menlo, Consolas, monospace; }
+.flow-row pre.code { flex: 1 1 220px; max-width: 100%; margin: 0; font-size: 0.8rem; }
