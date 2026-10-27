@@ -344,6 +344,15 @@ class Interp {
   private call(e: Expr & { k: 'call' }): RV {
     const bare = e.name.replace(/^std::/, '');
     const user = this.funcs.get(e.name);
+    if (e.name.startsWith('limits:')) {
+      const [, ty, fn] = e.name.split(':');
+      const table: Record<string, [TyV, number, number]> = {
+        int: [INT, -2147483648, 2147483647], unsigned: [{ n: 'unsigned' }, 0, 4294967295], double: [DBL, 2.2250738585072014e-308, Number.MAX_VALUE],
+        float: [{ n: 'float' }, 1.1754943508222875e-38, 3.4028234663852886e38], char: [{ n: 'char' }, -128, 127],
+      };
+      const row = table[ty]; if (!row) throw new RuntimeError(`numeric_limits<${ty}> is not supported`, e.line);
+      return this.rv(row[0], fn === 'min' ? row[1] : row[2]);
+    }
     if (!user) {
       if (BUILTIN[bare]) { const a = e.args.map((x) => this.num(this.eval(x))); return this.rv(DBL, BUILTIN[bare](a)); }
       if (bare === 'abs') { const r = this.eval(e.args[0]); return this.rv(r.ty.n === 'double' || r.ty.n === 'float' ? r.ty : INT, Math.abs(this.num(r))); }

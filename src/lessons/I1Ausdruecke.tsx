@@ -32,13 +32,13 @@ export default function I1Ausdruecke() {
         </Box>
         <Tracer prog={P.power8Vars} inputs={['2\n', '3\n']} label={tr('Eingabe, drei Zwischenergebnisse', 'Input, three intermediate results')} />
         <T
-          de={<p className="keep">Zwei Beobachtungen. Beim Schritt auf <K>std::cin &gt;&gt; x;</K> hält das echte Programm an und <em>wartet auf dich</em>; die Tabelle zeigt unmittelbar danach den eingegebenen Wert. Und anders als in Code 2.1 hat jedes Zwischenergebnis seine eigene Schachtel (<K>x_squared</K>, <K>x_to_the_four</K>): Man sieht die ganze Rechnung in der Tabelle, aber es werden mehr Schachteln belegt.</p>}
-          en={<p className="keep">Two observations. At the step on <K>std::cin &gt;&gt; x;</K> the real program stops and <em>waits for you</em>; right afterwards the table shows the entered value. And unlike in Code 2.1 every intermediate result has its own box (<K>x_squared</K>, <K>x_to_the_four</K>): the whole computation is visible in the table, but more boxes are occupied.</p>}
+          de={<p>Zwei Beobachtungen. Beim Schritt auf <K>std::cin &gt;&gt; x;</K> hält das echte Programm an und <em>wartet auf dich</em>; die Tabelle zeigt unmittelbar danach den eingegebenen Wert. Und anders als in Code 2.1 hat jedes Zwischenergebnis seine eigene Schachtel (<K>x_squared</K>, <K>x_to_the_four</K>): Man sieht die ganze Rechnung in der Tabelle, aber es werden mehr Schachteln belegt.</p>}
+          en={<p>Two observations. At the step on <K>std::cin &gt;&gt; x;</K> the real program stops and <em>waits for you</em>; right afterwards the table shows the entered value. And unlike in Code 2.1 every intermediate result has its own box (<K>x_squared</K>, <K>x_to_the_four</K>): the whole computation is visible in the table, but more boxes are occupied.</p>}
         />
         <Tracer prog={P.sumProduct} inputs={['12 7\n', '3 4\n']} label={tr('Mehrere Eingaben hintereinander', 'Several inputs in a row')} />
         <T
-          de={<p className="keep"><K>std::cin &gt;&gt; a &gt;&gt; b</K> liest zwei Werte hintereinander. Eingaben werden an Leerzeichen und Zeilenumbrüchen getrennt, es ist also egal, ob du <K>12 7</K> in einer Zeile oder in zwei Zeilen tippst.</p>}
-          en={<p className="keep"><K>std::cin &gt;&gt; a &gt;&gt; b</K> reads two values in a row. Input is separated at spaces and line breaks, so it does not matter whether you type <K>12 7</K> on one line or on two lines.</p>}
+          de={<p><K>std::cin &gt;&gt; a &gt;&gt; b</K> liest zwei Werte hintereinander. Eingaben werden an Leerzeichen und Zeilenumbrüchen getrennt, es ist also egal, ob du <K>12 7</K> in einer Zeile oder in zwei Zeilen tippst.</p>}
+          en={<p><K>std::cin &gt;&gt; a &gt;&gt; b</K> reads two values in a row. Input is separated at spaces and line breaks, so it does not matter whether you type <K>12 7</K> on one line or on two lines.</p>}
         />
         <Box kind="tip" title={<T de="Vor der Eingabe sagen, was erwartet wird" en="Say what is expected before reading" />}>
           <T
@@ -75,8 +75,8 @@ export default function I1Ausdruecke() {
           />
         </Box>
         <T
-          de={<p className="keep">Der Gedanke dahinter: In der Mathematik hat ein Term einen Wert und sonst nichts. In C++ hat ein Ausdruck <b>drei Seiten</b>, und die dritte, die Nebenwirkung, ist das, was ein Programm überhaupt erst etwas <em>tun</em> lässt:</p>}
-          en={<p className="keep">The thought behind it: in mathematics a term has a value and nothing else. In C++ an expression has <b>three sides</b>, and the third, the side effect, is what lets a program <em>do</em> anything at all:</p>}
+          de={<p>Der Gedanke dahinter: In der Mathematik hat ein Term einen Wert und sonst nichts. In C++ hat ein Ausdruck <b>drei Seiten</b>, und die dritte, die Nebenwirkung, ist das, was ein Programm überhaupt erst etwas <em>tun</em> lässt:</p>}
+          en={<p>The thought behind it: in mathematics a term has a value and nothing else. In C++ an expression has <b>three sides</b>, and the third, the side effect, is what lets a program <em>do</em> anything at all:</p>}
         />
         <table className="plain exprs">
           <thead><tr><th>{tr('Ausdruck', 'Expression')}</th><th>{tr('Typ (Compiler)', 'type (compiler)')}</th><th>{tr('Wert (Laufzeit)', 'value (run time)')}</th><th>{tr('Nebenwirkung', 'side effect')}</th></tr></thead>
@@ -89,14 +89,14 @@ export default function I1Ausdruecke() {
           </tbody>
         </table>
         <T
-          de={<p className="keep">Dass <K>&lt;&lt;</K> den Strom als Wert zurückgibt, ist der Grund, warum <K>std::cout &lt;&lt; a &lt;&lt; b</K> funktioniert: Es wird wie <K>(std::cout &lt;&lt; a) &lt;&lt; b</K> gelesen, und der Klammerausdruck ist wieder der Strom.</p>}
-          en={<p className="keep">That <K>&lt;&lt;</K> returns the stream as its value is why <K>std::cout &lt;&lt; a &lt;&lt; b</K> works: it is read as <K>(std::cout &lt;&lt; a) &lt;&lt; b</K>, and the parenthesized expression is the stream again.</p>}
+          de={<p>Dass <K>&lt;&lt;</K> den Strom als Wert zurückgibt, ist der Grund, warum <K>std::cout &lt;&lt; a &lt;&lt; b</K> funktioniert: Es wird wie <K>(std::cout &lt;&lt; a) &lt;&lt; b</K> gelesen, und der Klammerausdruck ist wieder der Strom.</p>}
+          en={<p>That <K>&lt;&lt;</K> returns the stream as its value is why <K>std::cout &lt;&lt; a &lt;&lt; b</K> works: it is read as <K>(std::cout &lt;&lt; a) &lt;&lt; b</K>, and the parenthesized expression is the stream again.</p>}
         />
         <Listing prog={P.assignValue} label={tr('Die Zuweisung hat einen Wert', 'The assignment has a value')} />
         <Tracer prog={P.chainAssign} label={tr('x = (y = 3)', 'x = (y = 3)')} />
         <T
-          de={<p className="keep">Zum Verfolgen: Der <em>innere</em> Ausdruck <K>y = 3</K> wird zuerst ausgewertet (Nebenwirkung: <K>y</K> wird 3), und sein Wert 3 wandert nach <K>x</K>. Beide Zuweisungen geschehen in einer einzigen Anweisung, deshalb zeigt die Tabelle sie im selben Schritt.</p>}
-          en={<p className="keep">To follow it: the <em>inner</em> expression <K>y = 3</K> is evaluated first (side effect: <K>y</K> becomes 3), and its value 3 moves on to <K>x</K>. Both assignments happen in a single statement, which is why the table shows them in the same step.</p>}
+          de={<p>Zum Verfolgen: Der <em>innere</em> Ausdruck <K>y = 3</K> wird zuerst ausgewertet (Nebenwirkung: <K>y</K> wird 3), und sein Wert 3 wandert nach <K>x</K>. Beide Zuweisungen geschehen in einer einzigen Anweisung, deshalb zeigt die Tabelle sie im selben Schritt.</p>}
+          en={<p>To follow it: the <em>inner</em> expression <K>y = 3</K> is evaluated first (side effect: <K>y</K> becomes 3), and its value 3 moves on to <K>x</K>. Both assignments happen in a single statement, which is why the table shows them in the same step.</p>}
         />
         <Predict
           prompt={<T de={<>Welche Ausgabe entsteht bei <K>int x; int y = 2; std::cout &lt;&lt; (x = y); std::cout &lt;&lt; x;</K>, und welchen Wert hat <K>x</K> vor der Ausgabe?</>} en={<>What is printed by <K>int x; int y = 2; std::cout &lt;&lt; (x = y); std::cout &lt;&lt; x;</K>, and what is the value of <K>x</K> before the output?</>} />}
@@ -147,8 +147,8 @@ export default function I1Ausdruecke() {
           />
         </Box>
         <T
-          de={<p className="keep">Der Gewinn ist ein <em>Fehler zur Übersetzungszeit statt eines falschen Ergebnisses zur Laufzeit</em>. Ein Kommentar «ändere das nie» prüft niemand; <K>const</K> prüft der Compiler bei jedem Übersetzen. Die Meldung sieht so aus (g++ 13):</p>}
-          en={<p className="keep">The gain is an <em>error at compile time instead of a wrong result at run time</em>. A comment “never change this” is checked by nobody; <K>const</K> is checked by the compiler on every compilation. The message looks like this (g++ 13):</p>}
+          de={<p>Der Gewinn ist ein <em>Fehler zur Übersetzungszeit statt eines falschen Ergebnisses zur Laufzeit</em>. Ein Kommentar «ändere das nie» prüft niemand; <K>const</K> prüft der Compiler bei jedem Übersetzen. Die Meldung sieht so aus (g++ 13):</p>}
+          en={<p>The gain is an <em>error at compile time instead of a wrong result at run time</em>. A comment “never change this” is checked by nobody; <K>const</K> is checked by the compiler on every compilation. The message looks like this (g++ 13):</p>}
         />
         <pre className="plain-code"><code>{`const int speed_of_light = 299792458;
 speed_of_light = 300000;   // error: assignment of read-only variable 'speed_of_light'`}</code></pre>

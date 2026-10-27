@@ -45,8 +45,8 @@ export default function I1Algorithmus() {
           />
         </Box>
         <T
-          de={<p className="keep">Ein Kochrezept ist ein Algorithmus für Menschen. Bei Euklid sind die Schritte noch einfacher, denn ein Rechner ist «dumm»: Er kann nur vergleichen und abziehen. Das Klügste an einem Algorithmus steckt in der <em>Idee</em>, nicht in der Ausführung.</p>}
-          en={<p className="keep">A cooking recipe is an algorithm for humans. Euclid's steps are even simpler, because a computer is “stupid”: it can only compare and subtract. The clever part of an algorithm lies in the <em>idea</em>, not in carrying it out.</p>}
+          de={<p>Ein Kochrezept ist ein Algorithmus für Menschen. Bei Euklid sind die Schritte noch einfacher, denn ein Rechner ist «dumm»: Er kann nur vergleichen und abziehen. Das Klügste an einem Algorithmus steckt in der <em>Idee</em>, nicht in der Ausführung.</p>}
+          en={<p>A cooking recipe is an algorithm for humans. Euclid's steps are even simpler, because a computer is “stupid”: it can only compare and subtract. The clever part of an algorithm lies in the <em>idea</em>, not in carrying it out.</p>}
         />
       </Section>
 
@@ -70,16 +70,16 @@ export default function I1Algorithmus() {
 
         <T
           de={<>
-            <p className="keep"><b>Hört er immer auf?</b> Ja. Bei jedem Schritt wird <M>a</M> oder <M>b</M> kleiner, aber beide bleiben ganze Zahlen mindestens <M p=".">1</M> Eine ganze Zahl kann nicht ewig kleiner werden.</p>
-            <p className="keep"><b>Ist das Ergebnis richtig?</b> Teilt eine Zahl <M>c</M> sowohl <M>a</M> als auch <M p=",">b</M> dann teilt sie auch <M p=",">{t`a-b`}</M> denn</p>
+            <p><b>Hört er immer auf?</b> Ja. Bei jedem Schritt wird <M>a</M> oder <M>b</M> kleiner, aber beide bleiben ganze Zahlen mindestens <M p=".">1</M> Eine ganze Zahl kann nicht ewig kleiner werden.</p>
+            <p><b>Ist das Ergebnis richtig?</b> Teilt eine Zahl <M>c</M> sowohl <M>a</M> als auch <M p=",">b</M> dann teilt sie auch <M p=",">{t`a-b`}</M> denn</p>
             <MD>{t`a = (a-b) + b.`}</MD>
-            <p className="keep">Umgekehrt gilt dasselbe: Teilt <M>c</M> die Zahlen <M>{t`a-b`}</M> und <M p=",">b</M> dann teilt es auch <M p=".">a</M> Die <em>Menge der gemeinsamen Teiler</em> ändert sich also nie. Am Schluss ist <M p=",">{t`a = b`}</M> und der grösste gemeinsame Teiler von <M>a</M> und <M>a</M> ist <M>a</M> selbst. Das Skript führt genau diese Überlegung vor (S. 9).</p>
+            <p>Umgekehrt gilt dasselbe: Teilt <M>c</M> die Zahlen <M>{t`a-b`}</M> und <M p=",">b</M> dann teilt es auch <M p=".">a</M> Die <em>Menge der gemeinsamen Teiler</em> ändert sich also nie. Am Schluss ist <M p=",">{t`a = b`}</M> und der grösste gemeinsame Teiler von <M>a</M> und <M>a</M> ist <M>a</M> selbst. Das Skript führt genau diese Überlegung vor (S. 9).</p>
           </>}
           en={<>
-            <p className="keep"><b>Does it always stop?</b> Yes. In every step <M>a</M> or <M>b</M> gets smaller, but both stay whole numbers of at least <M p=".">1</M> A whole number cannot keep shrinking forever.</p>
-            <p className="keep"><b>Is the result correct?</b> If a number <M>c</M> divides both <M>a</M> and <M p=",">b</M> then it also divides <M p=",">{t`a-b`}</M> because</p>
+            <p><b>Does it always stop?</b> Yes. In every step <M>a</M> or <M>b</M> gets smaller, but both stay whole numbers of at least <M p=".">1</M> A whole number cannot keep shrinking forever.</p>
+            <p><b>Is the result correct?</b> If a number <M>c</M> divides both <M>a</M> and <M p=",">b</M> then it also divides <M p=",">{t`a-b`}</M> because</p>
             <MD>{t`a = (a-b) + b.`}</MD>
-            <p className="keep">The reverse holds too: if <M>c</M> divides <M>{t`a-b`}</M> and <M p=",">b</M> then it also divides <M p=".">a</M> So the <em>set of common divisors</em> never changes. At the end <M p=",">{t`a = b`}</M> and the greatest common divisor of <M>a</M> and <M>a</M> is <M>a</M> itself. The notes give exactly this argument (p. 9).</p>
+            <p>The reverse holds too: if <M>c</M> divides <M>{t`a-b`}</M> and <M p=",">b</M> then it also divides <M p=".">a</M> So the <em>set of common divisors</em> never changes. At the end <M p=",">{t`a = b`}</M> and the greatest common divisor of <M>a</M> and <M>a</M> is <M>a</M> itself. The notes give exactly this argument (p. 9).</p>
           </>}
         />
         <Box kind="key" title={<T de="Eine Variable ist ein Platz, keine Zahl" en="A variable is a place, not a number" />}>
@@ -108,8 +108,8 @@ export default function I1Algorithmus() {
         </Box>
         <LevelsFigure />
         <T
-          de={<p className="keep">Nur die unterste Stufe kann ein Rechner ausführen. Der <b>Compiler</b> übersetzt das C++-Programm in Maschinencode, die Sprache der Maschine. Die Abbildung 1.7 im Skript zeigt das C++-Programm nur angeschnitten, und dort steht <K>b = a-b</K>, wo es zum Pseudocode passend <K>a = a - b</K> heissen müsste (I-001). Oben steht die vollständige, korrekte Fassung.</p>}
-          en={<p className="keep">Only the lowest level can be executed by a computer. The <b>compiler</b> translates the C++ program into machine code, the language of the machine. Figure 1.7 of the notes shows the C++ program only partly, and there it says <K>b = a-b</K> where, to match the pseudo-code, it should say <K>a = a - b</K> (I-001). The complete, correct version is shown above.</p>}
+          de={<p>Nur die unterste Stufe kann ein Rechner ausführen. Der <b>Compiler</b> übersetzt das C++-Programm in Maschinencode, die Sprache der Maschine. Die Abbildung 1.7 im Skript zeigt das C++-Programm nur angeschnitten, und dort steht <K>b = a-b</K>, wo es zum Pseudocode passend <K>a = a - b</K> heissen müsste (I-001). Oben steht die vollständige, korrekte Fassung.</p>}
+          en={<p>Only the lowest level can be executed by a computer. The <b>compiler</b> translates the C++ program into machine code, the language of the machine. Figure 1.7 of the notes shows the C++ program only partly, and there it says <K>b = a-b</K> where, to match the pseudo-code, it should say <K>a = a - b</K> (I-001). The complete, correct version is shown above.</p>}
         />
       </Section>
 
@@ -154,17 +154,17 @@ export default function I1Algorithmus() {
           />
         </Box>
         <T
-          de={<p className="keep">Box 9 enthält <M p=",">a</M> Box 8 enthält <M p=".">b</M> Jetzt bist du der Rechner: Ein Klick führt <em>einen</em> Befehl aus. Das Feld mit dem Rahmen und dem Pfeil ▼ ist der Befehl, der als Nächstes drankommt; rechts leuchtet die Zeile des Pseudocodes, zu der er gehört.</p>}
-          en={<p className="keep">Box 9 holds <M p=",">a</M> box 8 holds <M p=".">b</M> Now you are the computer: one click executes <em>one</em> instruction. The box with the frame and the arrow ▼ is the instruction that runs next; on the right the line of the pseudo-code it belongs to lights up.</p>}
+          de={<p>Box 9 enthält <M p=",">a</M> Box 8 enthält <M p=".">b</M> Jetzt bist du der Rechner: Ein Klick führt <em>einen</em> Befehl aus. Das Feld mit dem Rahmen und dem Pfeil ▼ ist der Befehl, der als Nächstes drankommt; rechts leuchtet die Zeile des Pseudocodes, zu der er gehört.</p>}
+          en={<p>Box 9 holds <M p=",">a</M> box 8 holds <M p=".">b</M> Now you are the computer: one click executes <em>one</em> instruction. The box with the frame and the arrow ▼ is the instruction that runs next; on the right the line of the pseudo-code it belongs to lights up.</p>}
         />
         <BoxComputer />
         <T
-          de={<ul className="keep">
+          de={<ul>
             <li><b>Die Maschine kennt Euklid nicht.</b> Sie macht nur den Befehl in der Box, auf die der Zähler zeigt. Dass dabei der grösste gemeinsame Teiler herauskommt, steckt in der Idee des Programms, nicht in der Maschine.</li>
             <li><b>Befehle und Daten liegen in gleichen Schachteln.</b> Die Befehle in Box 0–7 ändern sich nie, nur die Datenboxen 8 und 9. Die «Variable» <M>a</M> ist hier einfach Box 9.</li>
             <li><b>Eine Schleife ist ein Sprung zurück.</b> Der Befehl «jump to 0» schickt die Maschine zum Anfang, bis der Stopp-Befehl greift. Jede Subtraktion kostet genau 6 Befehle.</li>
           </ul>}
-          en={<ul className="keep">
+          en={<ul>
             <li><b>The machine does not know Euclid.</b> It only executes the instruction in the box the counter points to. That the greatest common divisor comes out is in the idea of the program, not in the machine.</li>
             <li><b>Instructions and data sit in the same kind of boxes.</b> The instructions in boxes 0–7 never change, only the data boxes 8 and 9. The “variable” <M>a</M> is simply box 9 here.</li>
             <li><b>A loop is a jump back.</b> The instruction “jump to 0” sends the machine back to the start until the stop instruction applies. Every subtraction costs exactly 6 instructions.</li>

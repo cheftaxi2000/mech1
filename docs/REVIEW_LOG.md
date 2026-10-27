@@ -89,3 +89,6 @@ Page = «Ü n / PDF page». Same rules: handled briefly in the lesson where it m
 | ID | Page | Issue | Status |
 |---|---|---|---|
 | I-001 | infln01 p. 15 (Fig. 1.7) | The C++ excerpt of the figure reads `if (a > b){ b = a-b;`, but for a > b the pseudo-code (Fig. 1.2) and the algorithm do `a ← a − b`. The listing is also cut off after that line. | handled in i-algorithmus (one sentence; the lesson shows the complete, correct `gcd`) |
+| I-002 | infln01 p. 14 (Fig. 1.6) | The memory cells are said to hold 8 bits each, but the addresses count 0, 2, 4, …; the second cell shows only seven digits (1101101). | handled in i-rechner (one sentence; the figure there counts 0, 1, 2, …) |
+| I-003 | infln02 p. 40 | «If we type 15 degrees Celsius we would expect 60.8; however the output is 60.» For 15 °C both programs print 59 (9·15/5 + 32); 60.8 and 60 belong to 16 °C. | handled in i-fliesskomma (the lesson uses 16) |
+| I-004 | infln02 p. 30–31 | Caption of Code 3.1 reads «Computing the eigth power» (copied from Code 2.1; it is the Fahrenheit program). The old-school-calculator remark gives «150 corresponding to ((32+9)·15)/5)+27», but ((32+9)·15)/5 = 123. | handled in i-vorrang (the lesson shows the value from left-to-right evaluation, 123, computed) |

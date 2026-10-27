@@ -37,8 +37,8 @@ export default function I1Rechner() {
           />
         </Box>
         <T
-          de={<p className="keep">Beim Schachtel-Rechner hast du genau die Rolle des fest verdrahteten Rechners gespielt: Befehl lesen, ausführen, zum nächsten weitergehen. Drei Namen für dieselbe Idee:</p>}
-          en={<p className="keep">With the box computer you played exactly the role of the fixed-program computer: read an instruction, execute it, move on to the next. Three names for the same idea:</p>}
+          de={<p>Beim Schachtel-Rechner hast du genau die Rolle des fest verdrahteten Rechners gespielt: Befehl lesen, ausführen, zum nächsten weitergehen. Drei Namen für dieselbe Idee:</p>}
+          en={<p>With the box computer you played exactly the role of the fixed-program computer: read an instruction, execute it, move on to the next. Three names for the same idea:</p>}
         />
         <table className="plain map">
           <thead><tr><th>{tr('Turing-Maschine', 'Turing machine')}</th><th>{tr('Schachtel-Rechner', 'Box computer')}</th><th>{tr('Echter Rechner', 'Real computer')}</th></tr></thead>
@@ -76,8 +76,8 @@ export default function I1Rechner() {
         </Box>
         <ArchFigure />
         <T
-          de={<p className="keep">Für dieses Fach reicht ein Gedanke: <b>Speicher ist eine lange Reihe nummerierter Zellen</b>, und alles, was ein Programm kennt (Zahlen, Buchstaben, Befehle), ist am Ende ein Muster aus Bits in diesen Zellen. Wenn wir später von «Variablen», «Adressen» und «Referenzen» sprechen, meinen wir Stellen in dieser Reihe. Ein Hinweis zur Abbildung: Im Skript zählen die Adressen in Zweierschritten (0, 2, 4, …) obwohl jede Zelle 8 Bit hat; hier ist durchgezählt, wie bei üblichen Rechnern (I-002).</p>}
-          en={<p className="keep">One thought is enough for this course: <b>memory is a long row of numbered cells</b>, and everything a program knows (numbers, letters, instructions) is in the end a pattern of bits in these cells. When we later speak of “variables”, “addresses” and “references”, we mean places in this row. A remark on the figure: in the notes the addresses count in steps of two (0, 2, 4, …) although every cell holds 8 bits; here they are counted consecutively, as on common computers (I-002).</p>}
+          de={<p>Für dieses Fach reicht ein Gedanke: <b>Speicher ist eine lange Reihe nummerierter Zellen</b>, und alles, was ein Programm kennt (Zahlen, Buchstaben, Befehle), ist am Ende ein Muster aus Bits in diesen Zellen. Wenn wir später von «Variablen», «Adressen» und «Referenzen» sprechen, meinen wir Stellen in dieser Reihe. Ein Hinweis zur Abbildung: Im Skript zählen die Adressen in Zweierschritten (0, 2, 4, …) obwohl jede Zelle 8 Bit hat; hier ist durchgezählt, wie bei üblichen Rechnern (I-002).</p>}
+          en={<p>One thought is enough for this course: <b>memory is a long row of numbered cells</b>, and everything a program knows (numbers, letters, instructions) is in the end a pattern of bits in these cells. When we later speak of “variables”, “addresses” and “references”, we mean places in this row. A remark on the figure: in the notes the addresses count in steps of two (0, 2, 4, …) although every cell holds 8 bits; here they are counted consecutively, as on common computers (I-002).</p>}
         />
       </Section>
 
@@ -118,8 +118,8 @@ export default function I1Rechner() {
           />
         </Box>
         <T
-          de={<p className="keep">Das deutsche Beispiel ist mehrdeutig, und doch ist der Satz syntaktisch einwandfrei: «<span lang="de">Rasen</span>» kann der Untergrund oder das Schnellfahren sein. Syntax garantiert also nicht einmal, dass der Text <em>eine</em> Bedeutung hat. Für Programme macht der Standard die Bedeutung eindeutig, aber ob sie dem entspricht, was <em>du</em> wolltest, kann kein Compiler wissen.</p>}
-          en={<p className="keep">The German example is ambiguous, and yet the sentence is syntactically flawless: “<span lang="de">Rasen</span>” can be the lawn or racing. So syntax does not even guarantee that the text has <em>one</em> meaning. For programs the standard makes the meaning unambiguous, but whether it matches what <em>you</em> wanted is something no compiler can know.</p>}
+          de={<p>Das deutsche Beispiel ist mehrdeutig, und doch ist der Satz syntaktisch einwandfrei: «<span lang="de">Rasen</span>» kann der Untergrund oder das Schnellfahren sein. Syntax garantiert also nicht einmal, dass der Text <em>eine</em> Bedeutung hat. Für Programme macht der Standard die Bedeutung eindeutig, aber ob sie dem entspricht, was <em>du</em> wolltest, kann kein Compiler wissen.</p>}
+          en={<p>The German example is ambiguous, and yet the sentence is syntactically flawless: “<span lang="de">Rasen</span>” can be the lawn or racing. So syntax does not even guarantee that the text has <em>one</em> meaning. For programs the standard makes the meaning unambiguous, but whether it matches what <em>you</em> wanted is something no compiler can know.</p>}
         />
         <Box kind="lecture" src={<Src p="17" />} title={<T de="Verhalten eines Programms" en="Behavior of a program" />}>
           <T
@@ -128,8 +128,8 @@ export default function I1Rechner() {
           />
         </Box>
         <T
-          de={<p className="keep">Fünf Schicksale eines Programms, jeweils mit einem Beispiel aus dem Alltag der Vorlesung:</p>}
-          en={<p className="keep">Five fates of a program, each with an example in the style of the course:</p>}
+          de={<p>Fünf Schicksale eines Programms, jeweils mit einem Beispiel aus dem Alltag der Vorlesung:</p>}
+          en={<p>Five fates of a program, each with an example in the style of the course:</p>}
         />
         <table className="plain fates">
           <thead><tr><th>{tr('Schicksal', 'Fate')}</th><th>{tr('Beispiel', 'Example')}</th><th>{tr('Wer merkt es, wann?', 'Who notices, when?')}</th></tr></thead>
@@ -143,8 +143,8 @@ export default function I1Rechner() {
         </table>
         <Listing prog={P.wrongResult} label={tr('Kompiliert, läuft, ist aber falsch', 'Compiles, runs, but is wrong')} />
         <T
-          de={<p className="keep">Das Programm oben ist syntaktisch und «technisch» fehlerfrei und liefert trotzdem <K>9</K> statt <K>81</K>, denn <K>b</K> wurde nur einmal quadriert. Genau solche Fehler sind die gefährlichen: Es gibt keine Meldung, nur ein falsches Ergebnis.</p>}
-          en={<p className="keep">The program above is syntactically and “technically” flawless and still prints <K>9</K> instead of <K>81</K>, because <K>b</K> was squared only once. Exactly such errors are the dangerous ones: there is no message, only a wrong result.</p>}
+          de={<p>Das Programm oben ist syntaktisch und «technisch» fehlerfrei und liefert trotzdem <K>9</K> statt <K>81</K>, denn <K>b</K> wurde nur einmal quadriert. Genau solche Fehler sind die gefährlichen: Es gibt keine Meldung, nur ein falsches Ergebnis.</p>}
+          en={<p>The program above is syntactically and “technically” flawless and still prints <K>9</K> instead of <K>81</K>, because <K>b</K> was squared only once. Exactly such errors are the dangerous ones: there is no message, only a wrong result.</p>}
         />
         <Box kind="tip" title={<T de="Compilerfehler lesen" en="Reading compiler errors" />}>
           <T

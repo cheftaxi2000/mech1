@@ -40,8 +40,8 @@ export default function I1Variablen() {
         </Box>
         <VarStrip vars={[{ name: 'x', type: 'int', value: '2', addr: 1000 }, { name: 'y', type: 'int', value: '4', addr: 1004 }]} />
         <T
-          de={<p className="keep">Aus dem Schachtel-Rechner kennst du das schon: Dort war die Variable <M>a</M> einfach die Box mit der Adresse 9. Der Name ist für <em>dich</em>, der Rechner kennt nur die Adresse. Der Compiler übersetzt jeden Namen in eine Adresse. Ein <K>int</K> belegt auf üblichen Rechnern vier Speicherzellen (Bytes), deshalb liegen die Adressen im Bild vier auseinander.</p>}
-          en={<p className="keep">You already know this from the box computer: there the variable <M>a</M> was simply the box with address 9. The name is for <em>you</em>, the computer knows only the address. The compiler translates every name into an address. An <K>int</K> occupies four memory cells (bytes) on common computers, which is why the addresses in the figure are four apart.</p>}
+          de={<p>Aus dem Schachtel-Rechner kennst du das schon: Dort war die Variable <M>a</M> einfach die Box mit der Adresse 9. Der Name ist für <em>dich</em>, der Rechner kennt nur die Adresse. Der Compiler übersetzt jeden Namen in eine Adresse. Ein <K>int</K> belegt auf üblichen Rechnern vier Speicherzellen (Bytes), deshalb liegen die Adressen im Bild vier auseinander.</p>}
+          en={<p>You already know this from the box computer: there the variable <M>a</M> was simply the box with address 9. The name is for <em>you</em>, the computer knows only the address. The compiler translates every name into an address. An <K>int</K> occupies four memory cells (bytes) on common computers, which is why the addresses in the figure are four apart.</p>}
         />
       </Section>
 
@@ -63,13 +63,13 @@ export default function I1Variablen() {
         </Box>
         <Tracer prog={P.declAssign} label={tr('Deklaration und Zuweisung', 'Declaration and assignment')} />
         <T
-          de={<p className="keep">Achte auf die Spalte <em>Wert</em> in der Tabelle. Nach <K>int x;</K> steht dort ein Fragezeichen: Die Schachtel existiert, ihr Inhalt ist nicht festgelegt. Erst <K>x = 2;</K> füllt sie. Die nächste Zuweisung <em>überschreibt</em> den alten Wert; er ist danach weg.</p>}
-          en={<p className="keep">Watch the column <em>Value</em> in the table. After <K>int x;</K> there is a question mark: the box exists, its content is not defined. Only <K>x = 2;</K> fills it. The next assignment <em>overwrites</em> the old value; it is gone afterwards.</p>}
+          de={<p>Achte auf die Spalte <em>Wert</em> in der Tabelle. Nach <K>int x;</K> steht dort ein Fragezeichen: Die Schachtel existiert, ihr Inhalt ist nicht festgelegt. Erst <K>x = 2;</K> füllt sie. Die nächste Zuweisung <em>überschreibt</em> den alten Wert; er ist danach weg.</p>}
+          en={<p>Watch the column <em>Value</em> in the table. After <K>int x;</K> there is a question mark: the box exists, its content is not defined. Only <K>x = 2;</K> fills it. The next assignment <em>overwrites</em> the old value; it is gone afterwards.</p>}
         />
         <Listing prog={P.varsRead} label={tr('Lesen einer Variablen', 'Reading a variable')} />
         <T
-          de={<p className="keep">In <K>int y = x + 2;</K> wird zuerst <K>x</K> gelesen (also 2 eingesetzt), dann <K>2 + 2</K> berechnet, und erst am Ende das Ergebnis in <K>y</K> abgelegt. Diese Reihenfolge, <b>erst rechts auswerten, dann links speichern</b>, ist die wichtigste Regel dieses Abschnitts.</p>}
-          en={<p className="keep">In <K>int y = x + 2;</K> first <K>x</K> is read (so 2 is substituted), then <K>2 + 2</K> is computed, and only at the end the result is stored in <K>y</K>. This order, <b>evaluate on the right first, then store on the left</b>, is the most important rule of this section.</p>}
+          de={<p>In <K>int y = x + 2;</K> wird zuerst <K>x</K> gelesen (also 2 eingesetzt), dann <K>2 + 2</K> berechnet, und erst am Ende das Ergebnis in <K>y</K> abgelegt. Diese Reihenfolge, <b>erst rechts auswerten, dann links speichern</b>, ist die wichtigste Regel dieses Abschnitts.</p>}
+          en={<p>In <K>int y = x + 2;</K> first <K>x</K> is read (so 2 is substituted), then <K>2 + 2</K> is computed, and only at the end the result is stored in <K>y</K>. This order, <b>evaluate on the right first, then store on the left</b>, is the most important rule of this section.</p>}
         />
       </Section>
 
@@ -83,8 +83,8 @@ export default function I1Variablen() {
         </Box>
         <Tracer prog={P.incr} label={tr('x = x + 1', 'x = x + 1')} />
         <T
-          de={<p className="keep">Lies <K>x = x + 1</K> deshalb nie als Gleichung, sondern als Befehl: «<em>Nimm den Wert von <K>x</K>, addiere 1, lege das Ergebnis in <K>x</K>.</em>» Ein <K>x</K> steht dabei zweimal da, aber in zwei verschiedenen Rollen: rechts bedeutet es «den Wert in der Schachtel», links «die Schachtel selbst».</p>}
-          en={<p className="keep">So never read <K>x = x + 1</K> as an equation but as a command: “<em>take the value of <K>x</K>, add 1, put the result into <K>x</K>.</em>” An <K>x</K> appears twice, but in two different roles: on the right it means “the value in the box”, on the left “the box itself”.</p>}
+          de={<p>Lies <K>x = x + 1</K> deshalb nie als Gleichung, sondern als Befehl: «<em>Nimm den Wert von <K>x</K>, addiere 1, lege das Ergebnis in <K>x</K>.</em>» Ein <K>x</K> steht dabei zweimal da, aber in zwei verschiedenen Rollen: rechts bedeutet es «den Wert in der Schachtel», links «die Schachtel selbst».</p>}
+          en={<p>So never read <K>x = x + 1</K> as an equation but as a command: “<em>take the value of <K>x</K>, add 1, put the result into <K>x</K>.</em>” An <K>x</K> appears twice, but in two different roles: on the right it means “the value in the box”, on the left “the box itself”.</p>}
         />
         <Predict
           prompt={<T de={<>Zwei Variablen sollen ihre Werte tauschen. Der Versuch: <K>a = b; b = a;</K> mit <K>a = 1</K> und <K>b = 2</K>. Was steht danach in <K>a</K> und <K>b</K>?</>} en={<>Two variables are to exchange their values. The attempt: <K>a = b; b = a;</K> with <K>a = 1</K> and <K>b = 2</K>. What is in <K>a</K> and <K>b</K> afterwards?</>} />}
@@ -118,8 +118,8 @@ export default function I1Variablen() {
           />
         </Box>
         <T
-          de={<p className="keep">Der Unterschied zwischen den ersten drei und dem vierten Punkt ist der wichtigste: Die ersten drei fängt der <b>Compiler</b> ab, du bekommst eine Meldung und kein Programm. Das Lesen einer nicht initialisierten Variablen fängt <em>niemand</em> ab. Hier das Verhalten Schritt für Schritt (der Interpreter dieser Seite setzt den Wert willkürlich auf 0 und warnt; ein echter Rechner liest, was zufällig in der Schachtel steht):</p>}
-          en={<p className="keep">The difference between the first three and the fourth point is the most important: the first three are caught by the <b>compiler</b>, you get a message and no program. Reading an uninitialized variable is caught by <em>nobody</em>. Here is the behavior step by step (the interpreter on this page arbitrarily sets the value to 0 and warns; a real computer reads whatever happens to be in the box):</p>}
+          de={<p>Der Unterschied zwischen den ersten drei und dem vierten Punkt ist der wichtigste: Die ersten drei fängt der <b>Compiler</b> ab, du bekommst eine Meldung und kein Programm. Das Lesen einer nicht initialisierten Variablen fängt <em>niemand</em> ab. Hier das Verhalten Schritt für Schritt (der Interpreter dieser Seite setzt den Wert willkürlich auf 0 und warnt; ein echter Rechner liest, was zufällig in der Schachtel steht):</p>}
+          en={<p>The difference between the first three and the fourth point is the most important: the first three are caught by the <b>compiler</b>, you get a message and no program. Reading an uninitialized variable is caught by <em>nobody</em>. Here is the behavior step by step (the interpreter on this page arbitrarily sets the value to 0 and warns; a real computer reads whatever happens to be in the box):</p>}
         />
         <Tracer prog={P.uninit} label={tr('Nicht initialisiert gelesen', 'Read uninitialized')} />
         <table className="plain errs">

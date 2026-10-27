@@ -34,6 +34,12 @@ describe('recording fixtures', () => {
 });
 
 describe('lesson programs behave as their prose says', () => {
+  it('Div-Mod identity and (-a)/b = -(a/b) hold for all signs (notes p. 35)', () => {
+    for (let a = -9; a <= 9; a++) for (const b of [-5, -3, -2, -1, 1, 2, 3, 5]) {
+      const t = runFragment(`int a = ${a}; int b = ${b}; std::cout << (a / b) * b + a % b << " " << ((-a) / b == -(a / b));`);
+      expect(t.stdout).toBe(`${a} 1`);
+    }
+  });
   it('the messy and the tidy version of the first program do the same (notes p. 19)', () => {
     expect(interpret(P.power8Messy).stdout).toBe(interpret(P.power8).stdout);
   });

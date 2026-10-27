@@ -32,8 +32,8 @@ export default function I1Programm() {
         </Box>
         <Tracer prog={P.power8} inputs={['2\n', '3\n', '100\n']} label="Code 2.1" />
         <T
-          de={<p className="keep">Klicke dich einmal durch und beobachte zwei Dinge: Die Zeile, die als Nächstes läuft, und die Tabelle rechts. Die Anweisungen laufen <b>von oben nach unten, eine nach der anderen</b>, und jede verändert höchstens den Speicher (die Tabelle) oder die Konsole. Mehr braucht es zum Verstehen des Programms nicht. Ob <K>b</K> ein Name, ein Typ oder eine Adresse hat, klären wir in den nächsten Abschnitten.</p>}
-          en={<p className="keep">Click through once and watch two things: the line that runs next, and the table on the right. The statements run <b>from top to bottom, one after the other</b>, and each changes at most the memory (the table) or the console. That is all you need to understand the program. What a name, a type or an address of <K>b</K> means is covered in the next sections.</p>}
+          de={<p>Klicke dich einmal durch und beobachte zwei Dinge: Die Zeile, die als Nächstes läuft, und die Tabelle rechts. Die Anweisungen laufen <b>von oben nach unten, eine nach der anderen</b>, und jede verändert höchstens den Speicher (die Tabelle) oder die Konsole. Mehr braucht es zum Verstehen des Programms nicht. Ob <K>b</K> ein Name, ein Typ oder eine Adresse hat, klären wir in den nächsten Abschnitten.</p>}
+          en={<p>Click through once and watch two things: the line that runs next, and the table on the right. The statements run <b>from top to bottom, one after the other</b>, and each changes at most the memory (the table) or the console. That is all you need to understand the program. What a name, a type or an address of <K>b</K> means is covered in the next sections.</p>}
         />
         <Box kind="tip" title={<T de="Probiere die Eingabe 100" en="Try the input 100" />}>
           <T
@@ -78,8 +78,8 @@ int main() {
           />
         </Box>
         <T
-          de={<p className="keep">Der Beweis, dass dem Compiler die Form egal ist: Das folgende Programm ist <em>derselbe</em> Code 2.1, nur unleserlich gesetzt. Es übersetzt und verhält sich identisch.</p>}
-          en={<p className="keep">Proof that the compiler does not care about form: the following program is <em>the same</em> Code 2.1, just set illegibly. It compiles and behaves identically.</p>}
+          de={<p>Der Beweis, dass dem Compiler die Form egal ist: Das folgende Programm ist <em>derselbe</em> Code 2.1, nur unleserlich gesetzt. Es übersetzt und verhält sich identisch.</p>}
+          en={<p>Proof that the compiler does not care about form: the following program is <em>the same</em> Code 2.1, just set illegibly. It compiles and behaves identically.</p>}
         />
         <Listing prog={P.power8Messy} label={tr('Gleiches Programm, unleserlich', 'Same program, illegible')} />
         <Box kind="tip" title={<T de="Formatieren ist keine Kosmetik" en="Formatting is not cosmetics" />}>
@@ -118,13 +118,13 @@ int main() {
         </Box>
         <Listing prog={P.hardcoded} label={tr('Berechnung in der Ausgabe', 'Computation inside the output')} />
         <T
-          de={<p className="keep">Zwei Dinge fallen auf. Erstens steht der Zeilenumbruch nur dort, wo du <K>\n</K> schreibst; die Ausgabe nach der zweiten Zeile endet <em>ohne</em> Umbruch. Zweitens wird die Rechnung <K>2 * 2 * … * 2</K> erst <em>zur Laufzeit</em> ausgewertet. Im Programmtext steht keine 256.</p>}
-          en={<p className="keep">Two things stand out. First, a line break appears only where you write <K>\n</K>; the output after the second line ends <em>without</em> a break. Second, the computation <K>2 * 2 * … * 2</K> is evaluated only <em>at run time</em>. The program text contains no 256.</p>}
+          de={<p>Zwei Dinge fallen auf. Erstens steht der Zeilenumbruch nur dort, wo du <K>\n</K> schreibst; die Ausgabe nach der zweiten Zeile endet <em>ohne</em> Umbruch. Zweitens wird die Rechnung <K>2 * 2 * … * 2</K> erst <em>zur Laufzeit</em> ausgewertet. Im Programmtext steht keine 256.</p>}
+          en={<p>Two things stand out. First, a line break appears only where you write <K>\n</K>; the output after the second line ends <em>without</em> a break. Second, the computation <K>2 * 2 * … * 2</K> is evaluated only <em>at run time</em>. The program text contains no 256.</p>}
         />
         <Listing prog={P.coutNoSpace} label={tr('cout fügt nichts von selbst ein', 'cout inserts nothing by itself')} />
         <T
-          de={<p className="keep">Minimalbeispiel für die häufigste Anfängerüberraschung: <K>std::cout</K> fügt <em>nie</em> Leerzeichen oder Zeilenumbrüche ein. Aus <K>1 &lt;&lt; 2</K> wird <K>12</K>. Willst du <K>1 2</K>, schreibst du <K>&lt;&lt; " " &lt;&lt;</K> selbst dazwischen.</p>}
-          en={<p className="keep">A minimal example of the most common beginner surprise: <K>std::cout</K> <em>never</em> inserts spaces or line breaks. <K>1 &lt;&lt; 2</K> becomes <K>12</K>. If you want <K>1 2</K> you write <K>&lt;&lt; " " &lt;&lt;</K> in between yourself.</p>}
+          de={<p>Minimalbeispiel für die häufigste Anfängerüberraschung: <K>std::cout</K> fügt <em>nie</em> Leerzeichen oder Zeilenumbrüche ein. Aus <K>1 &lt;&lt; 2</K> wird <K>12</K>. Willst du <K>1 2</K>, schreibst du <K>&lt;&lt; " " &lt;&lt;</K> selbst dazwischen.</p>}
+          en={<p>A minimal example of the most common beginner surprise: <K>std::cout</K> <em>never</em> inserts spaces or line breaks. <K>1 &lt;&lt; 2</K> becomes <K>12</K>. If you want <K>1 2</K> you write <K>&lt;&lt; " " &lt;&lt;</K> in between yourself.</p>}
         />
         <Listing prog={P.escapes} label={tr('Sonderzeichen im Text', 'Special characters in text')} />
         <table className="plain esc">
@@ -137,8 +137,8 @@ int main() {
           </tbody>
         </table>
         <T
-          de={<p className="keep">Warum so? Das Anführungszeichen beendet normalerweise den Text, und der Backslash leitet eine Sonderzeichenfolge ein. Wer beides im Text haben will, muss es «entschärfen»: ein Backslash davor.</p>}
-          en={<p className="keep">Why? A quotation mark normally ends the text, and the backslash starts a special sequence. Whoever wants either in the text has to “defuse” it: a backslash in front.</p>}
+          de={<p>Warum so? Das Anführungszeichen beendet normalerweise den Text, und der Backslash leitet eine Sonderzeichenfolge ein. Wer beides im Text haben will, muss es «entschärfen»: ein Backslash davor.</p>}
+          en={<p>Why? A quotation mark normally ends the text, and the backslash starts a special sequence. Whoever wants either in the text has to “defuse” it: a backslash in front.</p>}
         />
         <Box kind="tip" title={<T de="Fehlendes #include" en="A missing #include" />}>
           <T

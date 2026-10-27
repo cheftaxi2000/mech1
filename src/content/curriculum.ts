@@ -62,6 +62,7 @@ export const CHAPTERS: Record<string, [string, string]> = {
   CH4: ['Woche 4 · Energie und Enthalpie', 'Week 4 · Energy and enthalpy'],
   CH5: ['Woche 5 · Entropie und freie Enthalpie', 'Week 5 · Entropy and free energy'],
   CH6: ['Woche 6 · Elektronenstruktur', 'Week 6 · Electronic structure'],  I1: ['1 · Algorithmen, Rechner und erstes C++', '1 · Algorithms, computers and first C++'],
+  I2: ['2 · Ausdrücke und Grundtypen', '2 · Expressions and fundamental types'],
 };
 
 export const chapterSubject = (ch: string): Subject => (/^I\d/.test(ch) ? 'info' : ch.startsWith('LA') ? 'la' : ch.startsWith('CH') ? 'chem' : ch.startsWith('A') ? 'ana' : 'mech');
@@ -169,4 +170,9 @@ export const TOPICS: Topic[] = [
   { id: 'i-programm', chapter: 'I1', title: ['Das erste Programm: Aufbau und Ausgabe', 'The first program: structure and output'], pages: '18–21', status: 'draft', component: lazy(() => import('../lessons/I1Programm')) },
   { id: 'i-variablen', chapter: 'I1', title: ['Variablen: Deklaration, Zuweisung, Initialisierung', 'Variables: declaration, assignment, initialization'], pages: '21–25', status: 'draft', component: lazy(() => import('../lessons/I1Variablen')) },
   { id: 'i-ausdruecke', chapter: 'I1', title: ['Eingabe, Ausdrücke und Konstanten', 'Input, expressions and constants'], pages: '25–29', status: 'draft', component: lazy(() => import('../lessons/I1Ausdruecke')) },
+  { id: 'i-vorrang', chapter: 'I2', title: ['Vorrang und Ausdrucksbäume', 'Precedence and expression trees'], pages: '30–34', status: 'draft', component: lazy(() => import('../lessons/I2Vorrang')) },
+  { id: 'i-operatoren', chapter: 'I2', title: ['Operatoren: Zuweisung, Division, ++ und +=', 'Operators: assignment, division, ++ and +='], pages: '34–36', status: 'draft', component: lazy(() => import('../lessons/I2Operatoren')) },
+  { id: 'i-ganzzahlen', chapter: 'I2', title: ['Ganze Zahlen: Wertebereich und Überlauf', 'Integers: range and overflow'], pages: '37–40', status: 'draft', component: lazy(() => import('../lessons/I2Ganzzahlen')) },
+  { id: 'i-fliesskomma', chapter: 'I2', title: ['Kommazahlen: float und double', 'Floating point numbers: float and double'], pages: '40–43', status: 'draft', component: lazy(() => import('../lessons/I2Fliesskomma')) },
+  { id: 'i-wahrheitswerte', chapter: 'I2', title: ['Wahrheitswerte und logische Operatoren', 'Truth values and logical operators'], pages: '43–48', status: 'draft', component: lazy(() => import('../lessons/I2Wahrheitswerte')) },
 ];

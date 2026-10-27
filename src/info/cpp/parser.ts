@@ -135,6 +135,10 @@ class Parser {
       }
       let name = this.ident();
       while (this.at('::')) { this.p++; name += '::' + this.ident(); }
+      if (name === 'std::numeric_limits' && this.at('<')) { // std::numeric_limits<T>::min() / max()
+        this.p++; const ty = this.parseType(); this.expect('>'); this.expect('::'); const fn = this.ident(); this.expect('('); this.expect(')');
+        return { k: 'call', name: `limits:${ty.name}:${fn}`, args: [], src: this.slice(start), line };
+      }
       if (this.eat('(')) { const args = this.parseArgs(); return { k: 'call', name, args, src: this.slice(start), line }; }
       return { k: 'id', name, src: this.slice(start), line };
     }
@@ -248,3 +252,10 @@ class Parser {
 
 export function parseProgram(src: string): Program { return new Parser(lex(src), src).parseProgram(); }
 export function parseFragment(src: string): Stmt[] { return new Parser(lex(src), src).parseFragment(); }
+
+/** Parse a single expression (used by the expression-tree figures). */
+export function parseExpression(src: string): Expr {
+  const p = new Parser(lex(src), src);
+  const e = p.parseExpr();
+  return e;
+}

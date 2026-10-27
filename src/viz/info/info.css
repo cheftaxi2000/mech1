@@ -167,3 +167,60 @@ pre.plain-code code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas
 .vs-type code { background: none; padding: 0; font-size: inherit; }
 .vs-addr { font-size: 0.78rem; color: var(--muted); font-variant-numeric: tabular-nums; }
 .vs-cap { text-align: center; color: var(--muted); font-size: 0.85rem; margin-top: 8px; }
+
+/* ---- expression tree ---- */
+.et-paren { font-size: 0.95rem; color: var(--muted); }
+.et-svg { width: 100%; height: auto; display: block; margin-inline: auto; overflow: visible; }
+.et-edge { stroke: var(--line-strong, var(--line)); stroke-width: 1.5; }
+.et-node circle { fill: var(--panel); stroke: var(--line-strong, var(--line)); stroke-width: 1.5; }
+.et-node text { fill: var(--fg); font-size: 15px; text-anchor: middle; font-family: ui-monospace, Menlo, monospace; pointer-events: none; }
+.et-node.op circle { fill: var(--in-data); stroke: var(--in-data-bd); }
+.et-node.var circle, .et-node.lvalue circle { fill: var(--in-reg); stroke: var(--in-reg-bd); }
+.et-node.num circle { fill: var(--code-bg); }
+.et-node.done circle { opacity: 0.55; }
+.et-node.ready circle { stroke: var(--accent); stroke-width: 3; opacity: 1; }
+.et-node.ready { cursor: pointer; }
+.et-node.ready:focus-visible circle { outline: 2px solid var(--accent); }
+.et-node .et-val { fill: var(--in-ok); font-weight: 700; font-size: 13px; }
+.et-node .et-ord { fill: var(--accent); font-size: 11px; font-weight: 700; }
+
+/* ---- ring of bit patterns ---- */
+.wr-svg { width: 100%; max-width: 340px; height: auto; margin-inline: auto; display: block; }
+.wr-ring { fill: none; stroke: var(--line-strong, var(--line)); stroke-width: 1.5; }
+.wr-dot { fill: var(--muted); } .wr-dot.on { fill: var(--accent); }
+.wr-ptr { fill: none; stroke: var(--accent); stroke-width: 3; }
+.wr-un, .wr-sg { font-size: 11px; text-anchor: middle; font-family: ui-monospace, Menlo, monospace; font-variant-numeric: tabular-nums; }
+.wr-un { fill: var(--in-b); } .wr-sg { fill: var(--in-a); }
+.wr-seam { stroke-width: 3; stroke-dasharray: 4 3; } .wr-seam.un { stroke: var(--in-b); } .wr-seam.sg { stroke: var(--in-a); }
+.wr-mid { text-anchor: middle; font-family: ui-monospace, Menlo, monospace; font-size: 20px; fill: var(--fg); font-weight: 600; } .wr-mid.sm { font-size: 11px; font-weight: 400; fill: var(--muted); }
+.wr-legend { display: flex; flex-wrap: wrap; gap: 4px 18px; justify-content: center; font-size: 0.85rem; }
+.wr-legend .un { color: var(--in-b); } .wr-legend .sg { color: var(--in-a); }
+
+/* ---- float inspector ---- */
+.fi-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.fi-table th { text-align: left; color: var(--muted); font-weight: 600; font-size: 0.78rem; padding: 3px 8px; }
+.fi-table td { padding: 6px 8px; border-top: 0.5px solid var(--line); overflow-wrap: anywhere; }
+.fi-table td code { background: none; padding: 0; font-family: ui-monospace, Menlo, monospace; }
+.fi-badge { font-size: 0.72rem; padding: 1px 7px; border-radius: 999px; margin-left: 6px; white-space: nowrap; }
+.fi-badge.ok { background: color-mix(in srgb, var(--in-ok) 18%, transparent); color: var(--in-ok); }
+.fi-badge.no { background: color-mix(in srgb, var(--bad) 16%, transparent); color: var(--bad); }
+.in-text { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.in-text input { font: ui-monospace, Menlo, monospace; font-size: 1.05rem; padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--fg); width: 12em; max-width: 100%; min-height: 40px; }
+.in-text input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+/* ---- truth tables ---- */
+.tt-inputs { display: grid; gap: 8px; }
+.tt-inputs .in-text input { flex: 1; width: auto; min-width: 12em; }
+.tt-table { border-collapse: collapse; font-variant-numeric: tabular-nums; margin-inline: auto; }
+.tt-table th, .tt-table td { padding: 5px 16px; text-align: center; border-bottom: 0.5px solid var(--line); }
+.tt-table tr.diff td { background: color-mix(in srgb, var(--bad) 14%, transparent); font-weight: 700; }
+.tt-bit { font: ui-monospace, Menlo, monospace; min-width: 44px; min-height: 36px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); cursor: pointer; font-size: 1.1rem; }
+.tt-bit[aria-pressed="true"] { background: color-mix(in srgb, var(--accent) 16%, var(--bg)); border-color: var(--accent); font-weight: 700; }
+.tt-f-code { white-space: pre-wrap; }
+
+/* ---- scientific notation anatomy ---- */
+.sn-fig { display: grid; gap: 8px; justify-items: center; }
+.sn-lit code { font-size: 2rem; font-family: ui-monospace, Menlo, monospace; background: none; letter-spacing: 0.02em; }
+.sn-lit .p1, .sn-labels .p1 { color: var(--in-a); } .sn-lit .p2, .sn-labels .p2 { color: var(--in-b); }
+.sn-lit .p3, .sn-labels .p3 { color: var(--in-ok); } .sn-lit .p4, .sn-labels .p4 { color: var(--code-pre); }
+.sn-labels { display: flex; flex-wrap: wrap; gap: 4px 18px; justify-content: center; font-size: 0.85rem; }

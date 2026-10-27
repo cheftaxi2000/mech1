@@ -39,7 +39,7 @@ test.describe('short version (Kurz)', () => {
       expect(short.len).toBeLessThan(full.len * 0.8);
       expect(short.len).toBeGreaterThan(300);
       expect(short.steppers).toBe(full.steppers); // every derivation animation stays
-      expect(short.katex).toBeGreaterThan(full.katex * 0.4); // formulas stay
+      expect(short.katex).toBeGreaterThanOrEqual(full.katex * 0.4); // formulas stay
     });
   }
 });

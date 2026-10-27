@@ -833,6 +833,7 @@ span.w6-key.w6-c1 { border-color: var(--a-g); background: color-mix(in srgb, var
 .topbar .detail-toggle { margin-left: auto; flex: none; }
 .topbar .detail-toggle + .lang-toggle { margin-left: 0; }
 html[data-detail="short"] .lesson .lede,
+html[data-detail="short"] .lesson .quiz,
 html[data-detail="short"] .lesson .connections,
 html[data-detail="short"] .lesson .observe,
 html[data-detail="short"] .lesson .vdemo-note,

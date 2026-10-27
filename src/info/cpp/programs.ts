@@ -114,6 +114,135 @@ int main() {
 
   errModDouble: { fragment: true, code: `int a = 3 % 2.5;`, compileError: "invalid operands of types 'int' and 'double' to binary 'operator%'" },
   sumProduct: { fragment: true, stdin: '12 7\n', code: `int a, b;\nstd::cin >> a >> b;\nstd::cout << a + b << " " << a * b;` },
+
+  // ------------------------------------------------------------------ chapter I2
+  fahrenheit: {
+    code: `#include <iostream>
+int main() {
+    // Input
+    std::cout << "Temperature in degrees Celsius =? ";
+    int celsius;
+    std::cin >> celsius;
+
+    // Computation and output
+    std::cout << celsius << " degrees Celsius are "
+              << 32 + 9 * celsius / 5 << " degrees Fahrenheit.\\n";
+    return 0;
+}`,
+    stdin: '15\n',
+  },
+  fahrenheitBad: {
+    code: `#include <iostream>
+int main() {
+    int celsius;
+    std::cin >> celsius;
+    std::cout << celsius << " degrees Celsius are "
+              << 32 + 9 / 5 * celsius << " degrees Fahrenheit.\\n";
+    return 0;
+}`,
+    stdin: '15\n',
+  },
+  fahrenheitInt: {
+    code: `#include <iostream>
+int main() {
+    std::cout << "Temperature in degrees Celsius = ? ";
+    int celsius;
+    std::cin >> celsius;
+    std::cout << celsius << " degrees Celsius are "
+              << 9 * celsius / 5 + 32 << " degrees Fahrenheit.\\n";
+    return 0;
+}`,
+    stdin: '15\n',
+  },
+  fahrenheitFloat: {
+    code: `#include <iostream>
+int main() {
+    std::cout << "Temperature in degrees Celsius = ? ";
+    float celsius; // enable fractional numbers
+    std::cin >> celsius;
+    std::cout << celsius << " degrees Celsius are "
+              << 9 * celsius / 5 + 32 << " degrees Fahrenheit.\\n";
+    return 0;
+}`,
+    stdin: '15\n',
+  },
+  divMod: { fragment: true, code: `std::cout << 5 / 2 << " " << 5 % 2 << "\\n";\nstd::cout << -3 / 5 << " " << -3 % 5 << "\\n";\nstd::cout << -7 / 2 << " " << -7 % 2 << "\\n";\nstd::cout << 7 / -2 << " " << 7 % -2;` },
+  modPositive: { fragment: true, code: `int a = -3;\nint m = 5;\nstd::cout << a % m << " " << (a % m + m) % m;` },
+  incDecEx: { fragment: true, code: `int a = 7;\nstd::cout << ++a << "\\n"; // 8\nstd::cout << a++ << "\\n"; // 8\nstd::cout << a << "\\n";   // 9` },
+  arithAssign: { fragment: true, code: `int a = 10;\na += 5;\na -= 3;\na *= 2;\na /= 5;\na %= 3;\nstd::cout << a;` },
+  rangeInt: {
+    code: `// Output the smallest and the largest value of type int.
+#include <iostream>
+#include <limits>
+
+int main() {
+    std::cout << "Minimum int value is "
+              << std::numeric_limits<int>::min() << ".\\n"
+              << "Maximum int value is "
+              << std::numeric_limits<int>::max() << ".\\n";
+    return 0;
+}`,
+  },
+  intWrapEx: { fragment: true, code: `int big = 2147483647;\nbig = big + 1;\nstd::cout << big;`, runtimeError: true },
+  unsignedConv: { fragment: true, code: `unsigned int u = -1;\nint a = 3u;\nstd::cout << u << " " << a << " " << 17 + 17u;` },
+  unsignedSurprise: { fragment: true, code: `unsigned int a = 10;\nint b = -110;\nint c = (a + b) / 10;\nstd::cout << "c=" << c;` },
+  floatDiff: {
+    code: `#include <iostream>
+int main() {
+    float n1;
+    std::cout << "First number = ? ";
+    std::cin >> n1;
+
+    float n2;
+    std::cout << "Second number = ? ";
+    std::cin >> n2;
+
+    float d;
+    std::cout << "Their difference = ? ";
+    std::cin >> d;
+
+    std::cout << "Computed difference - input difference = ";
+    std::cout << n1 - n2 - d << "\\n";
+    return 0;
+}`,
+    stdin: '1.1 1.0 0.1\n',
+  },
+  floatLiterals: { fragment: true, code: `std::cout << 1.0 << "\\n";\nstd::cout << 1.27f << "\\n";\nstd::cout << 1e3 << "\\n";\nstd::cout << 1.23e-7 << "\\n";\nstd::cout << 1.23e-7f;` },
+  sumPoint: { fragment: true, code: `double a = 0.1;\ndouble b = 0.2;\ndouble s = a + b;\nstd::cout << (s == 0.3) << " " << (s - 0.3);` },
+  relational: { fragment: true, code: `int a = 4;\nbool p = (a % 3 == 1);\nbool q = (a != 2 * a - 1);\nbool r = (a < 3);\nstd::cout << p << q << r;` },
+  logicalOps: { fragment: true, code: `int n = -1;\nint p = 3;\nbool b = (n < 0) && (0 < p);\nbool c = !(n < 0);\nstd::cout << b << c;` },
+  boolConv: { fragment: true, code: `int a = true;\nbool b = 3;\nbool c = 0;\nstd::cout << a << b << c;` },
+  shortCircuit: {
+    fragment: true,
+    stdin: '6 1 12\n',
+    code: `int x, y, z;
+std::cin >> x >> y >> z;
+bool b = (x != 0) && z / x > y;
+std::cout << b;`,
+  },
+  noShortCircuit: {
+    fragment: true,
+    stdin: '0 1 12\n',
+    code: `int x, y, z;
+std::cin >> x >> y >> z;
+bool b = z / x > y && (x != 0);
+std::cout << b;`,
+    runtimeError: true,
+  },
+  evenOdd: {
+    fragment: true,
+    stdin: '7\n',
+    code: `int a;
+std::cin >> a;
+if (a % 2 == 0)
+    std::cout << "even";
+else
+    std::cout << "odd";`,
+  },
+
+  intDivDouble: { fragment: true, code: `double d = 5 / 2;\ndouble e = 5 / 2.0;\nstd::cout << d << " " << e;` },
+
+  chainedCompare: { fragment: true, code: `int x = 50;\nstd::cout << (0 < x < 10) << (0 < x && x < 10);` },
 } satisfies Record<string, Prog>;
 
 export type ProgId = keyof typeof P;
