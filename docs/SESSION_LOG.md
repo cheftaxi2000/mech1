@@ -153,3 +153,9 @@ Four implementer agents wrote 13 lessons from lectures 1–6 and the TA's exerci
 - Removed Quiz 1–5 from Mechanik; the home tile now says «Kurzfassung» instead of the quiz count.
 - The app opens at the home menu (hash cleared on load unless reload).
 - Open: the student reviews which prose should stay or go; rotation (74 %) and zentralachse (68 %) keep the most because their proofs live in lecture boxes. Figures that sit inside hidden boxes (e.g. K5 «EverydayPower», «WattScale») are hidden in Short.
+
+## 2026-10-27 — Informatik I started
+- Read infln01 (pp. 8–17) page by page, headings of infln02–07 and the ThB sheet from the text layer. Plan in `docs/info/PLAN.md`.
+- Infrastructure: subject `info` (curriculum, route, tile, accent, e2e subject loop); `<Code>`/`<K>`; `src/info/euclid.ts` + `boxcomputer.ts` with tests (gcd for all pairs, steps = 6k+3, data boxes change only via store).
+- Lesson `i-algorithmus` (pp. 8–12): Euclid demo (bars, trace table, common-divisor chips = the invariant), three abstraction levels, box computer simulator with pseudo-code line sync, 1 Choice + 2 Predict, 3 misconceptions. I-001 logged (Fig. 1.7 `b = a-b`). Checked on iPad, phone, dark.
+- Not yet: pp. 12–17 (Turing, von Neumann, syntax/semantics) and everything after; waiting for the student's verdict on the template before scaling.

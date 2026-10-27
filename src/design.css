@@ -169,6 +169,9 @@ input[type="checkbox"] { accent-color: var(--accent); width: 18px; height: 18px;
 :root[data-subject="la"] { --accent: #0a7f62; --link: #08705a; }
 :root[data-subject="la"][data-theme="dark"] { --accent: #12906f; --link: #4fd1ae; }
 @media (prefers-color-scheme: dark) { :root[data-subject="la"]:not([data-theme="light"]) { --accent: #12906f; --link: #4fd1ae; } }
+:root[data-subject="info"] { --accent: #a3267a; --link: #8f1f6b; }
+:root[data-subject="info"][data-theme="dark"] { --accent: #d4569f; --link: #f08cc6; }
+@media (prefers-color-scheme: dark) { :root[data-subject="info"]:not([data-theme="light"]) { --accent: #d4569f; --link: #f08cc6; } }
 :root[data-subject="chem"] { --accent: #c4510c; --link: #b5460a; }
 :root[data-subject="chem"][data-theme="dark"] { --accent: #e2691f; --link: #ff9a5c; }
 @media (prefers-color-scheme: dark) { :root[data-subject="chem"]:not([data-theme="light"]) { --accent: #e2691f; --link: #ff9a5c; } }
@@ -184,6 +187,9 @@ input[type="checkbox"] { accent-color: var(--accent); width: 18px; height: 18px;
 .tile { --accent: #0071e3; --link: #0066cc; display: flex; flex-direction: column; background: var(--fill); border-radius: 22px; overflow: hidden; color: var(--fg); text-decoration: none; transition: transform 0.35s var(--ease), background 0.2s; }
 .tile-ana { --accent: #5856d6; --link: #4b49c8; }
 .tile-la { --accent: #0a7f62; --link: #08705a; }
+.tile-info { --accent: #a3267a; --link: #8f1f6b; }
+:root[data-theme="dark"] .tile-info { --accent: #d4569f; --link: #f08cc6; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tile-info { --accent: #d4569f; --link: #f08cc6; } }
 .tile-chem { --accent: #c4510c; --link: #b5460a; }
 :root[data-theme="dark"] .tile-chem { --accent: #e2691f; --link: #ff9a5c; }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .tile-chem { --accent: #e2691f; --link: #ff9a5c; } }
@@ -238,7 +244,7 @@ input[type="checkbox"] { accent-color: var(--accent); width: 18px; height: 18px;
 .landing-head > *, .tile, .landing .resume { animation: rise 0.7s var(--ease) backwards; }
 .landing-head h1 { animation: rise 0.8s var(--ease) 0.05s backwards; }
 .landing-sub { animation: rise 0.8s var(--ease) 0.15s backwards; }
-.tile-mech { animation-delay: 0.25s; } .tile-ana { animation-delay: 0.38s; } .tile-la { animation-delay: 0.51s; } .tile-chem { animation-delay: 0.64s; } .landing .resume { animation-delay: 0.75s; }
+.tile-mech { animation-delay: 0.25s; } .tile-ana { animation-delay: 0.38s; } .tile-la { animation-delay: 0.51s; } .tile-chem { animation-delay: 0.64s; } .tile-info { animation-delay: 0.77s; } .landing .resume { animation-delay: 0.75s; }
 @keyframes rise { from { opacity: 0; transform: translateY(14px); } }
 @media (prefers-reduced-motion: reduce) { .landing *, .fig * { animation: none !important; } }
 
@@ -345,3 +351,14 @@ input[type="checkbox"] { accent-color: var(--accent); width: 18px; height: 18px;
 .pl-cp { stroke: var(--ch-p); fill: var(--ch-p); } .pl-cv { stroke: var(--ch-v); fill: var(--ch-v); } .pl-ct { stroke: var(--ch-t); fill: var(--ch-t); } .pl-cn { stroke: var(--ch-n); fill: var(--ch-n); } .pl-ce { stroke: var(--ch-e); fill: var(--ch-e); } .pl-cs { stroke: var(--ch-s); fill: var(--ch-s); } .pl-cg { stroke: var(--ch-g); fill: var(--ch-g); } 
 .pl-curve.pl-cp, .pl-curve.pl-cv, .pl-curve.pl-ct, .pl-curve.pl-cn, .pl-curve.pl-ce, .pl-curve.pl-cs, .pl-curve.pl-cg { fill: none; }
 .pl-curve.filled.pl-cp { fill: var(--ch-p); } .pl-curve.filled.pl-cv { fill: var(--ch-v); } .pl-curve.filled.pl-ct { fill: var(--ch-t); } .pl-curve.filled.pl-cn { fill: var(--ch-n); } .pl-curve.filled.pl-ce { fill: var(--ch-e); } .pl-curve.filled.pl-cs { fill: var(--ch-s); } .pl-curve.filled.pl-cg { fill: var(--ch-g); }
+
+/* informatics tile: memory boxes with a hopping instruction pointer */
+.fg-box { stroke-width: 1.4; animation: fg-fade 0.8s ease calc(0.3s + var(--i, 0) * 0.08s) backwards; }
+.fg-box-i { fill: var(--in-instr, #fbe0e3); stroke: var(--in-instr-bd, #c9505f); }
+.fg-box-d { fill: var(--in-data, #dcdcfb); stroke: var(--in-data-bd, #5e5ed8); }
+.fg-box-line { fill: var(--line-strong); opacity: 0.8; }
+.fg-addr { fill: var(--muted); font-size: 11px; text-anchor: middle; font-family: ui-monospace, Menlo, monospace; }
+.fg-pc { fill: none; stroke: var(--accent); stroke-width: 3; }
+.fg-pc-mark { fill: var(--accent); font-size: 12px; text-anchor: middle; }
+.fg-reg { fill: var(--in-reg, #faf1bf); stroke: var(--in-reg-bd, #a88f12); stroke-width: 1.4; }
+.fg-reg-t { fill: var(--fg); font-size: 14px; font-weight: 600; text-anchor: middle; font-family: ui-monospace, Menlo, monospace; }

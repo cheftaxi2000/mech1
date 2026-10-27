@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { SUBJECTS, TOPICS } from '../src/content/curriculum';
+import { SUBJECTS, TOPICS, topicSubject } from '../src/content/curriculum';
 
 type Lang = 'de' | 'en';
 const LANGS: Lang[] = ['de', 'en'];
@@ -94,9 +94,9 @@ for (const lang of LANGS) {
     await open(page, lang);
     await expect(page.getByRole('heading', { level: 1 })).toContainText('Learning Lab');
     const tiles = page.locator('a.tile');
-    await expect(tiles).toHaveCount(4);
+    await expect(tiles).toHaveCount(5);
     const i = lang === 'de' ? 0 : 1;
-    for (const [route, subject, ch] of [['mechanik', 'mech', (c: string) => !c.startsWith('A') && !c.startsWith('LA') && !c.startsWith('CH')], ['analysis', 'ana', (c: string) => c.startsWith('A') && !c.startsWith('LA')], ['algebra', 'la', (c: string) => c.startsWith('LA')], ['chemie', 'chem', (c: string) => c.startsWith('CH')]] as const) {
+    for (const [route, subject, ch] of [['mechanik', 'mech', (c: string) => !c.startsWith('A') && !c.startsWith('LA') && !c.startsWith('CH') && !/^I\d/.test(c)], ['analysis', 'ana', (c: string) => c.startsWith('A') && !c.startsWith('LA')], ['algebra', 'la', (c: string) => c.startsWith('LA')], ['chemie', 'chem', (c: string) => c.startsWith('CH')], ['informatik', 'info', (c: string) => /^I\d/.test(c)]] as const) {
       await page.goto(`/#${route}`);
       await expect(page.getByRole('heading', { level: 1 })).toContainText(SUBJECTS[subject][i]);
       const main = page.locator('.toc');
@@ -112,7 +112,8 @@ for (const lang of LANGS) {
       await open(page, lang, `#${topic.id}`);
       await expect(page.locator('article.lesson h2').first()).toBeVisible();
       await expect(page.locator('.tex-error')).toHaveCount(0);
-      expect(await page.locator('.katex').count()).toBeGreaterThan(20);
+      // code-centred subjects (Informatik) carry fewer formulas than the maths-heavy ones
+      expect(await page.locator('.katex').count()).toBeGreaterThan(topicSubject(topic) === 'info' ? 5 : 20);
       await page.screenshot({ path: `test-results/screens/${topic.id}-${lang}.png`, fullPage: true });
       expect(errors).toEqual([]);
     });

@@ -84,3 +84,8 @@ Page = «Ü n / PDF page». Same rules: handled briefly in the lesson where it m
 | R-033 | 34 | The identity is written «M_z = M_z′» in the lecture box and once as «M′_z»; underlining of ω in `P = M_z·ω = M_z′·ω` is not legible in the scan. | handled in leistung-rotation (lesson makes no claim about it) |
 | R-034 | 35 | The point of application is called A on this page instead of P. | handled in leistung-rotation (one sentence) |
 | R-035 | 35–36 | Circled I/II on p. 35 were transcribed in the wrong order in SOURCE_MAP: I = right column (each force with its point's velocity, drawn as III on p. 36), II = left column (R, M_A in A, drawn as IV). | corrected in SOURCE_MAP, force.ts, leistung-kraeftegruppe |
+
+## Informatik I (lecture notes infln01–07)
+| ID | Page | Issue | Status |
+|---|---|---|---|
+| I-001 | infln01 p. 15 (Fig. 1.7) | The C++ excerpt of the figure reads `if (a > b){ b = a-b;`, but for a > b the pseudo-code (Fig. 1.2) and the algorithm do `a ← a − b`. The listing is also cut off after that line. | handled in i-algorithmus (one sentence; the lesson shows the complete, correct `gcd`) |

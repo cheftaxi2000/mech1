@@ -11,12 +11,13 @@ import { lazy, type ComponentType, type LazyExoticComponent } from 'react';
 export type Status = 'planned' | 'draft' | 'review' | 'complete';
 
 /** The two courses ("Rubriken"). Each chapter belongs to one; navigation and prev/next stay inside a subject. */
-export type Subject = 'mech' | 'ana' | 'la' | 'chem';
+export type Subject = 'mech' | 'ana' | 'la' | 'chem' | 'info';
 export const SUBJECTS: Record<Subject, [string, string]> = {
   mech: ['Mechanik I', 'Mechanics 1'],
   ana: ['Analysis 1', 'Analysis 1'],
   la: ['Lineare Algebra I', 'Linear Algebra 1'],
   chem: ['Chemie', 'Chemistry'],
+  info: ['Informatik I', 'Computer Science 1'],
 };
 /** Short names for narrow places (drawer switch). */
 export const SUBJECT_SHORT: Record<Subject, [string, string]> = {
@@ -24,6 +25,7 @@ export const SUBJECT_SHORT: Record<Subject, [string, string]> = {
   ana: ['Analysis', 'Analysis'],
   la: ['Lin. Algebra', 'Lin. Algebra'],
   chem: ['Chemie', 'Chemistry'],
+  info: ['Informatik', 'Comp. Science'],
 };
 
 export interface Topic {
@@ -59,15 +61,15 @@ export const CHAPTERS: Record<string, [string, string]> = {
   CH3: ['Woche 3 · Lösungen, Säuren und Redox', 'Week 3 · Solutions, acids and redox'],
   CH4: ['Woche 4 · Energie und Enthalpie', 'Week 4 · Energy and enthalpy'],
   CH5: ['Woche 5 · Entropie und freie Enthalpie', 'Week 5 · Entropy and free energy'],
-  CH6: ['Woche 6 · Elektronenstruktur', 'Week 6 · Electronic structure'],
+  CH6: ['Woche 6 · Elektronenstruktur', 'Week 6 · Electronic structure'],  I1: ['1 · Algorithmen, Rechner und erstes C++', '1 · Algorithms, computers and first C++'],
 };
 
-export const chapterSubject = (ch: string): Subject => (ch.startsWith('LA') ? 'la' : ch.startsWith('CH') ? 'chem' : ch.startsWith('A') ? 'ana' : 'mech');
+export const chapterSubject = (ch: string): Subject => (/^I\d/.test(ch) ? 'info' : ch.startsWith('LA') ? 'la' : ch.startsWith('CH') ? 'chem' : ch.startsWith('A') ? 'ana' : 'mech');
 export const topicSubject = (t: Topic): Subject => chapterSubject(t.chapter);
 
 /** Where a topic comes from, for the crumbs and lists: [long German, long English, short German, short English]. */
 export function sourceLabel(t: Topic): [string, string, string, string] {
-  if (topicSubject(t) === 'mech') {
+  if (topicSubject(t) === 'mech' || topicSubject(t) === 'info') {
     return [`Vorlesung S. ${t.pages}`, `Lecture notes ${t.pages.includes('–') ? 'pp.' : 'p.'} ${t.pages}`, `S. ${t.pages}`, `p. ${t.pages}`];
   }
   if (topicSubject(t) === 'chem') {
@@ -161,4 +163,6 @@ export const TOPICS: Topic[] = [
   { id: 'ch-licht', chapter: 'CH6', title: ['Licht, Spektren und das Bohr-Modell', 'Light, spectra and the Bohr model'], pages: 'V6/6–12', status: 'review', component: lazy(() => import('../lessons/CH6Licht')) },
   { id: 'ch-orbitale', chapter: 'CH6', title: ['Orbitale, Quantenzahlen und Elektronenkonfiguration', 'Orbitals, quantum numbers and electron configuration'], pages: 'V6/13–27', status: 'review', component: lazy(() => import('../lessons/CH6Orbitale')) },
   { id: 'ch-trends', chapter: 'CH6', title: ['Abschirmung, Atomgrösse und Ionisierungsenergie', 'Screening, atomic size and ionisation energy'], pages: 'V6/28–32', status: 'review', component: lazy(() => import('../lessons/CH6Trends')) },
+  // Informatik I – one chapter per lecture-notes file (infln01 … infln07); `pages` are the printed pages of the notes.
+  { id: 'i-algorithmus', chapter: 'I1', title: ['Algorithmus und Schachtel-Rechner', 'Algorithm and box computer'], pages: '8–12', status: 'review', component: lazy(() => import('../lessons/I1Algorithmus')) },
 ];

@@ -109,3 +109,8 @@ Offen: Polybox-Links nicht erreichbar; Übungen 2–4 handschriftlich (nur Bild)
 | leistung | 33 | review |
 | leistung-rotation | 33–35 | review |
 | leistung-kraeftegruppe | 34–36 | review |
+
+## Informatik I (D-030)
+| Topic | Notes pages | Status | Notes |
+|---|---|---|---|
+| i-algorithmus | infln01 pp. 8–12 | review | Euclid demo + invariant chips, three abstraction levels, box computer simulator (`src/info/boxcomputer.ts`, 8 tests), Predict/Choice checks, I-001. **Awaiting the student's verdict on the template.** |
