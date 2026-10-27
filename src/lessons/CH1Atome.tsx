@@ -71,8 +71,8 @@ export default function CH1Atome() {
           />
           <MixtureBoxes />
           <T
-            de={<p><b>So liest man die Bilder:</b> Zuerst zählt man die Teilchensorten. Gibt es nur eine Sorte, ist es ein Reinstoff (Bild 1 und 4). Gibt es mehrere Sorten, ist es ein Gemisch. Dann fragt man, ob die Teilchen Atome oder Moleküle aus nur einer Atomsorte sind (Element) oder aus beiden Sorten bestehen (Verbindung). Bild 5 und 6 enthalten nur einzelne Atome, die nicht verbunden sind: Gemisch aus zwei Elementen. Bild 2 und 3 mischen ein Element (A) mit einer Verbindung (AB).</p>}
-            en={<p><b>How to read the pictures:</b> First count the kinds of particles. If there is only one kind, it is a pure substance (pictures 1 and 4). If there are several kinds, it is a mixture. Then ask whether the particles are atoms or molecules of a single kind of atom (element) or consist of both kinds (compound). Pictures 5 and 6 contain only separate atoms that are not joined: a mixture of two elements. Pictures 2 and 3 mix an element (A) with a compound (AB).</p>}
+            de={<p className="keep"><b>So liest man die Bilder:</b> Zuerst zählt man die Teilchensorten. Gibt es nur eine Sorte, ist es ein Reinstoff (Bild 1 und 4). Gibt es mehrere Sorten, ist es ein Gemisch. Dann fragt man, ob die Teilchen Atome oder Moleküle aus nur einer Atomsorte sind (Element) oder aus beiden Sorten bestehen (Verbindung). Bild 5 und 6 enthalten nur einzelne Atome, die nicht verbunden sind: Gemisch aus zwei Elementen. Bild 2 und 3 mischen ein Element (A) mit einer Verbindung (AB).</p>}
+            en={<p className="keep"><b>How to read the pictures:</b> First count the kinds of particles. If there is only one kind, it is a pure substance (pictures 1 and 4). If there are several kinds, it is a mixture. Then ask whether the particles are atoms or molecules of a single kind of atom (element) or consist of both kinds (compound). Pictures 5 and 6 contain only separate atoms that are not joined: a mixture of two elements. Pictures 2 and 3 mix an element (A) with a compound (AB).</p>}
           />
         </Box>
       </Section>
@@ -176,8 +176,8 @@ export default function CH1Atome() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das Symbol</b> <M p=":">{t`{}^{A}_{Z}\mathrm{X}^{q}`}</M></p>
-            <ol>
+            <p className="keep"><b>So liest man das Symbol</b> <M p=":">{t`{}^{A}_{Z}\mathrm{X}^{q}`}</M></p>
+            <ol className="keep">
               <li>Das Buchstabensymbol <M>{t`\mathrm{X}`}</M> sagt, welches Element es ist.</li>
               <li>Unten links steht <M p=",">Z</M> die Zahl der Protonen.</li>
               <li>Oben links steht <M p=",">A</M> die Zahl der Protonen und Neutronen zusammen.</li>
@@ -187,8 +187,8 @@ export default function CH1Atome() {
             <p>Im Bild unten stellst du Protonen, Neutronen und Ladung selbst ein. Jedes Teilchen ist ein Punkt: rot die Protonen, grau die Neutronen, gold die Elektronen.</p>
           </>}
           en={<>
-            <p><b>How to read the symbol</b> <M p=":">{t`{}^{A}_{Z}\mathrm{X}^{q}`}</M></p>
-            <ol>
+            <p className="keep"><b>How to read the symbol</b> <M p=":">{t`{}^{A}_{Z}\mathrm{X}^{q}`}</M></p>
+            <ol className="keep">
               <li>The letter symbol <M>{t`\mathrm{X}`}</M> says which element it is.</li>
               <li>Bottom left is <M p=",">Z</M> the number of protons.</li>
               <li>Top left is <M p=",">A</M> the number of protons and neutrons together.</li>
@@ -229,8 +229,8 @@ export default function CH1Atome() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die Zeile:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man die Zeile:</b></p>
+            <ol className="keep">
               <li>Von 100 Kohlenstoffatomen sind etwa 99 leicht (<M p=")">{t`12\,\mathrm{u}`}</M> und etwa eines schwerer (<M p=").">{t`13{,}0035\,\mathrm{u}`}</M></li>
               <li>Der Mittelwert ist die Summe «Anteil mal Masse». Die Anteile schreibt man als Dezimalzahl: 98,93 % wird <M p=".">{'0{,}9893'}</M></li>
               <li>Weil fast alles <M>{t`{}^{12}\mathrm{C}`}</M> ist, liegt der Mittelwert nur wenig über 12.</li>
@@ -238,8 +238,8 @@ export default function CH1Atome() {
             <p>Das Atomgewicht ist der Wert im Periodensystem. Darum steht dort bei Chlor <M>{t`35{,}45`}</M> und nicht eine ganze Zahl: Chlor ist ein Gemisch aus <M>{t`{}^{35}\mathrm{Cl}`}</M> und <M p=".">{t`{}^{37}\mathrm{Cl}`}</M> Im Bild kannst du den Anteil des schweren Isotops verschieben und siehst, wie der Mittelwert wandert. Er liegt immer zwischen den beiden Massen, und zwar näher bei dem häufigeren Isotop.</p>
           </>}
           en={<>
-            <p><b>How to read the line:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the line:</b></p>
+            <ol className="keep">
               <li>Of 100 carbon atoms, about 99 are light (<M p=")">{t`12\,\mathrm{u}`}</M> and about one is heavier (<M p=").">{t`13.0035\,\mathrm{u}`}</M></li>
               <li>The average is the sum of “share times mass”. The shares are written as decimals: 98.93 % becomes <M p=".">{'0.9893'}</M></li>
               <li>Because almost everything is <M p=",">{t`{}^{12}\mathrm{C}`}</M> the average is only slightly above 12.</li>
@@ -281,8 +281,8 @@ export default function CH1Atome() {
           />
         </Box>
         <T
-          de={<p><b>So liest man ein Feld:</b> Die grosse Zahl ist <M p=",">Z</M> also die Zahl der Protonen. Das Symbol nennt das Element. Die Zahl darunter ist das Atomgewicht, der Mittelwert der Isotope aus Abschnitt 5. Fahre mit der Maus oder dem Finger über die Tabelle: Rechts erscheinen Name, Gruppe, Periode und die Teilchen des neutralen Atoms. Mit dem Schalter oben wechselt die Färbung zwischen Metall und Nichtmetall und den Gruppennamen.</p>}
-          en={<p><b>How to read a box:</b> The big number is <M p=",">Z</M> the number of protons. The symbol names the element. The number below is the atomic weight, the average over the isotopes from section 5. Move the mouse or finger over the table: name, group, period and the particles of the neutral atom appear. The switch at the top changes the colouring between metal / nonmetal and the family names.</p>}
+          de={<p className="keep"><b>So liest man ein Feld:</b> Die grosse Zahl ist <M p=",">Z</M> also die Zahl der Protonen. Das Symbol nennt das Element. Die Zahl darunter ist das Atomgewicht, der Mittelwert der Isotope aus Abschnitt 5. Fahre mit der Maus oder dem Finger über die Tabelle: Rechts erscheinen Name, Gruppe, Periode und die Teilchen des neutralen Atoms. Mit dem Schalter oben wechselt die Färbung zwischen Metall und Nichtmetall und den Gruppennamen.</p>}
+          en={<p className="keep"><b>How to read a box:</b> The big number is <M p=",">Z</M> the number of protons. The symbol names the element. The number below is the atomic weight, the average over the isotopes from section 5. Move the mouse or finger over the table: name, group, period and the particles of the neutral atom appear. The switch at the top changes the colouring between metal / nonmetal and the family names.</p>}
         />
         <PeriodicTable />
         <Box kind="uebung" src={<Src ex={1} p="12" />} title={<T de="Hinweis der Übung" en="Note from the exercise class" />}>
@@ -372,10 +372,10 @@ export default function CH1Atome() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man <C>Mg3N2</C>:</b> Die Folie kreuzt die Ladungszahlen. Die 2 von <C>Mg^2+</C> wird zur Tiefzahl bei <C p=",">N</C> die 3 von <C>N^3-</C> zur Tiefzahl bei <C p=".">Mg</C> Warum? Es müssen gleich viele Plus- wie Minusladungen da sein. Drei Magnesium-Ionen bringen <M p=",">{t`3\cdot(+2) = +6`}</M> zwei Nitrid-Ionen <M p=".">{t`2\cdot(-3) = -6`}</M> Die Summe ist null: neutral. Im Bild wählst du Kation und Anion aus den Tabellen der Folien 23 und 24 und siehst, wie viele von jedem nötig sind.</p>
+            <p className="keep"><b>So liest man <C>Mg3N2</C>:</b> Die Folie kreuzt die Ladungszahlen. Die 2 von <C>Mg^2+</C> wird zur Tiefzahl bei <C p=",">N</C> die 3 von <C>N^3-</C> zur Tiefzahl bei <C p=".">Mg</C> Warum? Es müssen gleich viele Plus- wie Minusladungen da sein. Drei Magnesium-Ionen bringen <M p=",">{t`3\cdot(+2) = +6`}</M> zwei Nitrid-Ionen <M p=".">{t`2\cdot(-3) = -6`}</M> Die Summe ist null: neutral. Im Bild wählst du Kation und Anion aus den Tabellen der Folien 23 und 24 und siehst, wie viele von jedem nötig sind.</p>
           </>}
           en={<>
-            <p><b>How to read <C>Mg3N2</C>:</b> The slide crosses the charge numbers. The 2 of <C>Mg^2+</C> becomes the subscript of <C p=",">N</C> the 3 of <C>N^3-</C> the subscript of <C p=".">Mg</C> Why? There must be as many plus as minus charges. Three magnesium ions bring <M p=",">{t`3\cdot(+2) = +6`}</M> two nitride ions <M p=".">{t`2\cdot(-3) = -6`}</M> The sum is zero: neutral. In the picture you choose a cation and an anion from the tables of slides 23 and 24 and see how many of each are needed.</p>
+            <p className="keep"><b>How to read <C>Mg3N2</C>:</b> The slide crosses the charge numbers. The 2 of <C>Mg^2+</C> becomes the subscript of <C p=",">N</C> the 3 of <C>N^3-</C> the subscript of <C p=".">Mg</C> Why? There must be as many plus as minus charges. Three magnesium ions bring <M p=",">{t`3\cdot(+2) = +6`}</M> two nitride ions <M p=".">{t`2\cdot(-3) = -6`}</M> The sum is zero: neutral. In the picture you choose a cation and an anion from the tables of slides 23 and 24 and see how many of each are needed.</p>
           </>}
         />
         <IonicBuilder />

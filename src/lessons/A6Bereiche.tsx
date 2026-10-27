@@ -23,10 +23,10 @@ export default function A6Bereiche() {
           <MD>{t`|z - z_0| < R: \quad \text{${tr('innen, ohne Rand', 'inside, without boundary')}} \qquad (R > 0)`}</MD>
         </Box>
         <T
-          de={<p>Warum ist <M>{t`|z - z_0|`}</M> ein Abstand? <M>{t`z - z_0`}</M> ist der Pfeil von <M>{t`z_0`}</M> nach <M>z</M> (wie beim Subtrahieren in Woche 5). Sein Betrag ist seine Länge. Also: <M>{t`|z - z_0|`}</M> <M>=</M> Abstand zwischen den Punkten <M>z</M> und <M p=".">{t`z_0`}</M> Auf der Zahlengerade kennst du das schon: <M>{t`|x - 3|`}</M> ist der Abstand von <M>x</M> zu <M p=".">3</M></p>}
-          en={<p>Why is <M>{t`|z - z_0|`}</M> a distance? <M>{t`z - z_0`}</M> is the arrow from <M>{t`z_0`}</M> to <M>z</M> (as with subtracting in week 5). Its modulus is its length. So: <M>{t`|z - z_0|`}</M> <M>=</M> distance between the points <M>z</M> and <M p=".">{t`z_0`}</M> You know this from the number line: <M>{t`|x - 3|`}</M> is the distance from <M>x</M> to <M p=".">3</M></p>}
+          de={<p className="keep">Warum ist <M>{t`|z - z_0|`}</M> ein Abstand? <M>{t`z - z_0`}</M> ist der Pfeil von <M>{t`z_0`}</M> nach <M>z</M> (wie beim Subtrahieren in Woche 5). Sein Betrag ist seine Länge. Also: <M>{t`|z - z_0|`}</M> <M>=</M> Abstand zwischen den Punkten <M>z</M> und <M p=".">{t`z_0`}</M> Auf der Zahlengerade kennst du das schon: <M>{t`|x - 3|`}</M> ist der Abstand von <M>x</M> zu <M p=".">3</M></p>}
+          en={<p className="keep">Why is <M>{t`|z - z_0|`}</M> a distance? <M>{t`z - z_0`}</M> is the arrow from <M>{t`z_0`}</M> to <M>z</M> (as with subtracting in week 5). Its modulus is its length. So: <M>{t`|z - z_0|`}</M> <M>=</M> distance between the points <M>z</M> and <M p=".">{t`z_0`}</M> You know this from the number line: <M>{t`|x - 3|`}</M> is the distance from <M>x</M> to <M p=".">3</M></p>}
         />
-        <ul>
+        <ul className="keep">
           <T
             de={<>
               <li><M p=":">{t`|z - z_0| = R`}</M> alle Punkte mit Abstand genau <M>R</M> – die Kreislinie.</li>
@@ -55,12 +55,12 @@ export default function A6Bereiche() {
             en={<p>Picture: left the blue disc with a solid boundary (“boundary included”), right the magenta half-plane below the dashed line <M>{t`b = -1`}</M> (“boundary not included”).</p>} />
         </Box>
         <T
-          de={<p><b>Die Scheibe:</b> <M>{t`|z - (1 + i)|`}</M> ist der Abstand von <M>z</M> zum Punkt <M p=".">{t`1 + i`}</M> «Höchstens 2» heisst: die Kreisscheibe um <M>{t`1 + i`}</M> mit Radius 2. Wegen <M>{t`\leq`}</M> gehört der Rand dazu – zum Beispiel <M p=",">{t`3 + i`}</M> genau 2 rechts vom Mittelpunkt.</p>}
-          en={<p><b>The disc:</b> <M>{t`|z - (1 + i)|`}</M> is the distance from <M>z</M> to the point <M p=".">{t`1 + i`}</M> “At most 2” means: the disc around <M>{t`1 + i`}</M> with radius 2. Because of <M>{t`\leq`}</M> the boundary belongs to it – for example <M p=",">{t`3 + i`}</M> exactly 2 to the right of the centre.</p>}
+          de={<p className="keep"><b>Die Scheibe:</b> <M>{t`|z - (1 + i)|`}</M> ist der Abstand von <M>z</M> zum Punkt <M p=".">{t`1 + i`}</M> «Höchstens 2» heisst: die Kreisscheibe um <M>{t`1 + i`}</M> mit Radius 2. Wegen <M>{t`\leq`}</M> gehört der Rand dazu – zum Beispiel <M p=",">{t`3 + i`}</M> genau 2 rechts vom Mittelpunkt.</p>}
+          en={<p className="keep"><b>The disc:</b> <M>{t`|z - (1 + i)|`}</M> is the distance from <M>z</M> to the point <M p=".">{t`1 + i`}</M> “At most 2” means: the disc around <M>{t`1 + i`}</M> with radius 2. Because of <M>{t`\leq`}</M> the boundary belongs to it – for example <M p=",">{t`3 + i`}</M> exactly 2 to the right of the centre.</p>}
         />
         <T
-          de={<p><b>Die Halbebene:</b> Hier steht kein Betrag, sondern ein Realteil von <M p=".">iz</M> Den rechnet man aus. Die Animation zeigt jeden Schritt auch im Bild.</p>}
-          en={<p><b>The half-plane:</b> here there is no modulus but a real part of <M p=".">iz</M> You compute it. The animation shows each step in the picture too.</p>}
+          de={<p className="keep"><b>Die Halbebene:</b> Hier steht kein Betrag, sondern ein Realteil von <M p=".">iz</M> Den rechnet man aus. Die Animation zeigt jeden Schritt auch im Bild.</p>}
+          en={<p className="keep"><b>The half-plane:</b> here there is no modulus but a real part of <M p=".">iz</M> You compute it. The animation shows each step in the picture too.</p>}
         />
         <StepPlayer
           label={tr('Animation: Re(iz) > 1 heisst b < −1', 'Animation: Re(iz) > 1 means b < −1')}
@@ -92,15 +92,15 @@ export default function A6Bereiche() {
           <T de={<p>Beträge als Abstände lesen. Bei mehreren Bedingungen zählt nur die gemeinsame Menge. (S. 12)</p>} en={<p>Read moduli as distances. With several conditions only the common set counts. (p. 12)</p>} />
         </Box>
         <T
-          de={<p>Ob der Rand dazugehört, sagt das Zeichen: Bei <M>{t`\leq`}</M> und <M>{t`\geq`}</M> erfüllen die Randpunkte die Bedingung mit Gleichheit – sie gehören dazu. Bei <M>{t`<`}</M> und <M>{t`>`}</M> nicht. Im Bild unten kannst du das prüfen: Setze den roten Testpunkt genau auf einen Rand und schau, welche Bedingungen erfüllt sind.</p>}
-          en={<p>Whether the boundary belongs is decided by the sign: with <M>{t`\leq`}</M> and <M>{t`\geq`}</M> the boundary points satisfy the condition with equality – they belong. With <M>{t`<`}</M> and <M>{t`>`}</M> they do not. You can check this in the figure below: put the red test point exactly on a boundary and see which conditions hold.</p>}
+          de={<p className="keep">Ob der Rand dazugehört, sagt das Zeichen: Bei <M>{t`\leq`}</M> und <M>{t`\geq`}</M> erfüllen die Randpunkte die Bedingung mit Gleichheit – sie gehören dazu. Bei <M>{t`<`}</M> und <M>{t`>`}</M> nicht. Im Bild unten kannst du das prüfen: Setze den roten Testpunkt genau auf einen Rand und schau, welche Bedingungen erfüllt sind.</p>}
+          en={<p className="keep">Whether the boundary belongs is decided by the sign: with <M>{t`\leq`}</M> and <M>{t`\geq`}</M> the boundary points satisfy the condition with equality – they belong. With <M>{t`<`}</M> and <M>{t`>`}</M> they do not. You can check this in the figure below: put the red test point exactly on a boundary and see which conditions hold.</p>}
         />
         <RegionExplorer />
         <T
           de={<p>Die Knöpfe zeigen die beiden Beispiele der Übung und drei weitere: den <b>Kreisring</b> <M>{t`1 \leq |z| < 2`}</M> (innerer Rand dabei, äusserer nicht), die <b>Halbebene</b> <M>{t`\mathrm{Re}\,z \geq \mathrm{Im}\,z`}</M> (mit <M>{t`z = a + bi`}</M> heisst das <M p=":">{t`a \geq b`}</M> alles rechts unterhalb der Geraden <M p=")">{t`b = a`}</M> und die <b>Schnittmenge</b> aus Scheibe und dieser Halbebene: Hell siehst du jede Bedingung einzeln, kräftig nur das, was beide erfüllt. Beim Schnitt ist nur der Teil der Ränder kräftig, der wirklich die neue Menge begrenzt.</p>}
           en={<p>The buttons show the two class examples and three more: the <b>annulus</b> <M>{t`1 \leq |z| < 2`}</M> (inner boundary included, outer not), the <b>half-plane</b> <M>{t`\mathrm{Re}\,z \geq \mathrm{Im}\,z`}</M> (with <M>{t`z = a + bi`}</M> this means <M p=":">{t`a \geq b`}</M> everything to the lower right of the line <M p=")">{t`b = a`}</M> and the <b>intersection</b> of the disc and this half-plane: light shows each condition alone, strong only what satisfies both. In the intersection only the part of the boundaries that really bounds the new set is drawn strongly.</p>}
         />
-        <Box kind="supplement" title={<T de={<>Gleich weit weg: <M>{t`|z - a| = |z - b|`}</M></>} en={<>Equally far: <M>{t`|z - a| = |z - b|`}</M></>} />}>
+        <Box keep kind="supplement" title={<T de={<>Gleich weit weg: <M>{t`|z - a| = |z - b|`}</M></>} en={<>Equally far: <M>{t`|z - a| = |z - b|`}</M></>} />}>
           <T
             de={<p>Liest man die Beträge als Abstände, heisst diese Gleichung: <M>z</M> ist gleich weit von <M>a</M> und von <M>b</M> entfernt. Das sind genau die Punkte der <b>Mittelsenkrechten</b> der Strecke von <M>a</M> nach <M p=".">b</M> Rechnerisch: Beide Seiten quadrieren und mit <M>{t`z = x + iy`}</M> ausschreiben. Die Terme <M>{t`x^2`}</M> und <M>{t`y^2`}</M> stehen auf beiden Seiten und fallen weg. Übrig bleibt eine lineare Gleichung – eine Gerade. Mit <M>{t`<`}</M> statt <M>=</M> bekommt man die Halbebene auf der Seite von <M p=".">a</M></p>}
             en={<p>Reading the moduli as distances, this equation says: <M>z</M> is equally far from <M>a</M> and from <M p=".">b</M> These are exactly the points of the <b>perpendicular bisector</b> of the segment from <M>a</M> to <M p=".">b</M> By calculation: square both sides and write them out with <M p=".">{t`z = x + iy`}</M> The terms <M>{t`x^2`}</M> and <M>{t`y^2`}</M> appear on both sides and cancel. What remains is a linear equation – a straight line. With <M>{t`<`}</M> instead of <M>=</M> you get the half-plane on the side of <M p=".">a</M></p>}

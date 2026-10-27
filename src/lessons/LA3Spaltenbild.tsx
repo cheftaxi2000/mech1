@@ -46,8 +46,8 @@ export default function LA3Spaltenbild() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die Folie:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man die Folie:</b></p>
+            <ol className="keep">
               <li><M>A</M> ist die <De en="matrix">Matrix</De>: die Zahlen vor den Unbekannten, als Tabelle. Zeile 1 gehört zur Gleichung 1, Zeile 2 zur Gleichung 2.</li>
               <li><M>x</M> sind die beiden Unbekannten <M>{'x_1'}</M> und <M p=",">{'x_2'}</M> untereinander geschrieben. <M>b</M> ist die rechte Seite.</li>
               <li><M>{t`A\cdot x = b`}</M> ist nur eine Kurzschrift für beide Gleichungen. Man rechnet «Zeile mal Spalte»: <M p=".">{t`2\cdot x_1 + 3\cdot x_2 = -1`}</M></li>
@@ -57,8 +57,8 @@ export default function LA3Spaltenbild() {
             <p>Die Spalten bekommen Namen: <M>{t`a_1 = (2, 1)^T`}</M> und <M p=".">{t`a_2 = (3, -2)^T`}</M> Dann lautet die Frage in einem Satz: Welche Mengen <M>{'x_1'}</M> und <M>{'x_2'}</M> machen <M p="?">{t`x_1 a_1 + x_2 a_2 = b`}</M> Das Bild zeigt es in vier Schritten, so wie die Visualisierung der Übung.</p>
           </>}
           en={<>
-            <p><b>How to read the slide:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the slide:</b></p>
+            <ol className="keep">
               <li><M>A</M> is the <De en="matrix">Matrix</De>: the numbers in front of the unknowns, as a table. Row 1 belongs to equation 1, row 2 to equation 2.</li>
               <li><M>x</M> are the two unknowns <M>{'x_1'}</M> and <M p=",">{'x_2'}</M> written one below the other. <M>b</M> is the right-hand side.</li>
               <li><M>{t`A\cdot x = b`}</M> is just shorthand for both equations. You compute “row times column”: <M p=".">{t`2\cdot x_1 + 3\cdot x_2 = -1`}</M></li>
@@ -104,13 +104,13 @@ export default function LA3Spaltenbild() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b> Die zweite Spalte ist <M>-2</M> mal die erste: <M p=".">{t`(-2, -4)^T = -2\cdot(1, 2)^T`}</M> Beide Pfeile zeigen also in dieselbe Richtung (oder genau entgegen). Man sagt: Sie sind <De en="linearly dependent">linear abhängig</De>.</p>
-            <p>Was folgt daraus? Jede Mischung <M>{t`x_1 a_1 + x_2 a_2`}</M> ist ein Vielfaches von <M p=".">{t`(1, 2)^T`}</M> Sie bleibt immer auf der Geraden durch <M p=".">{t`(1, 2)^T`}</M> «Lösungen» meint auf der Folie genau das: alles, was <M>{'Ax'}</M> erreichen kann, liegt auf dieser Geraden.</p>
+            <p className="keep"><b>So liest man das:</b> Die zweite Spalte ist <M>-2</M> mal die erste: <M p=".">{t`(-2, -4)^T = -2\cdot(1, 2)^T`}</M> Beide Pfeile zeigen also in dieselbe Richtung (oder genau entgegen). Man sagt: Sie sind <De en="linearly dependent">linear abhängig</De>.</p>
+            <p className="keep">Was folgt daraus? Jede Mischung <M>{t`x_1 a_1 + x_2 a_2`}</M> ist ein Vielfaches von <M p=".">{t`(1, 2)^T`}</M> Sie bleibt immer auf der Geraden durch <M p=".">{t`(1, 2)^T`}</M> «Lösungen» meint auf der Folie genau das: alles, was <M>{'Ax'}</M> erreichen kann, liegt auf dieser Geraden.</p>
             <p>Liegt <M>b</M> darauf? Auf der Geraden ist der zweite Eintrag immer das Doppelte des ersten. Bei <M>{t`b = (1, 4)^T`}</M> ist <M p=".">{t`4 \neq 2\cdot 1`}</M> Also liegt <M>b</M> daneben, und es gibt <b>keine Lösung</b>.</p>
           </>}
           en={<>
-            <p><b>How to read it:</b> the second column is <M>-2</M> times the first: <M p=".">{t`(-2, -4)^T = -2\cdot(1, 2)^T`}</M> So both arrows point in the same direction (or exactly opposite). They are called <De en="linearly dependent">linear abhängig</De>.</p>
-            <p>What follows? Every mix <M>{t`x_1 a_1 + x_2 a_2`}</M> is a multiple of <M p=".">{t`(1, 2)^T`}</M> It always stays on the line through <M p=".">{t`(1, 2)^T`}</M> “Solutions” on the slide means exactly this: everything <M>{'Ax'}</M> can reach lies on this line.</p>
+            <p className="keep"><b>How to read it:</b> the second column is <M>-2</M> times the first: <M p=".">{t`(-2, -4)^T = -2\cdot(1, 2)^T`}</M> So both arrows point in the same direction (or exactly opposite). They are called <De en="linearly dependent">linear abhängig</De>.</p>
+            <p className="keep">What follows? Every mix <M>{t`x_1 a_1 + x_2 a_2`}</M> is a multiple of <M p=".">{t`(1, 2)^T`}</M> It always stays on the line through <M p=".">{t`(1, 2)^T`}</M> “Solutions” on the slide means exactly this: everything <M>{'Ax'}</M> can reach lies on this line.</p>
             <p>Does <M>b</M> lie on it? On the line, the second entry is always twice the first. For <M>{t`b = (1, 4)^T`}</M> we have <M p=".">{t`4 \neq 2\cdot 1`}</M> So <M>b</M> lies beside the line, and there is <b>no solution</b>.</p>
           </>}
         />
@@ -134,8 +134,8 @@ export default function LA3Spaltenbild() {
       {/* ------------------------------------------------------------------ 3 */}
       <Section id="faelle" title={<T de="3. Die Fälle auf einen Blick" en="3. The cases at a glance" />}>
         <T
-          de={<p>Im Spaltenbild entscheidet eine einzige Frage: <em>Kann die Kette aus <M>{t`x_1 a_1`}</M> und <M>{t`x_2 a_2`}</M> die Spitze von <M>b</M> erreichen?</em></p>}
-          en={<p>In the column picture, a single question decides: <em>can the chain of <M>{t`x_1 a_1`}</M> and <M>{t`x_2 a_2`}</M> reach the tip of <M p="?">b</M></em></p>}
+          de={<p className="keep">Im Spaltenbild entscheidet eine einzige Frage: <em>Kann die Kette aus <M>{t`x_1 a_1`}</M> und <M>{t`x_2 a_2`}</M> die Spitze von <M>b</M> erreichen?</em></p>}
+          en={<p className="keep">In the column picture, a single question decides: <em>can the chain of <M>{t`x_1 a_1`}</M> and <M>{t`x_2 a_2`}</M> reach the tip of <M p="?">b</M></em></p>}
         />
         <div className="la-cases-wrap">
           <table className="la-cases">

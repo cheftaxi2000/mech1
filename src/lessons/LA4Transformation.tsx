@@ -52,8 +52,8 @@ export default function LA4Transformation() {
           />
         </Box>
         <T
-          de={<p><b>So liest man das:</b> <M>x</M> ist das, was man in die Maschine hineingibt. <M>A</M> bewegt es. <M>b</M> ist das, was herauskommen soll. Ein LGS zu lösen heisst also: die Eingabe finden, die auf <M>b</M> landet. Die Zahlen in <M>A</M> sagen, wie die Maschine arbeitet. Wie man das sieht, zeigt der nächste Abschnitt.</p>}
-          en={<p><b>How to read it:</b> <M>x</M> is what you feed into the machine. <M>A</M> moves it. <M>b</M> is what should come out. So solving a linear system means: find the input that lands on <M p=".">b</M> The numbers in <M>A</M> say how the machine works. The next section shows how to see that.</p>}
+          de={<p className="keep"><b>So liest man das:</b> <M>x</M> ist das, was man in die Maschine hineingibt. <M>A</M> bewegt es. <M>b</M> ist das, was herauskommen soll. Ein LGS zu lösen heisst also: die Eingabe finden, die auf <M>b</M> landet. Die Zahlen in <M>A</M> sagen, wie die Maschine arbeitet. Wie man das sieht, zeigt der nächste Abschnitt.</p>}
+          en={<p className="keep"><b>How to read it:</b> <M>x</M> is what you feed into the machine. <M>A</M> moves it. <M>b</M> is what should come out. So solving a linear system means: find the input that lands on <M p=".">b</M> The numbers in <M>A</M> say how the machine works. The next section shows how to see that.</p>}
         />
       </Section>
 
@@ -74,24 +74,24 @@ export default function LA4Transformation() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die Folien:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man die Folien:</b></p>
+            <ol className="keep">
               <li>Die <De en="basis vectors">Basisvektoren</De> sind <M>{t`e_1 = ${v(1, 0)}`}</M> (ein Schritt nach rechts) und <M>{t`e_2 = ${v(0, 1)}`}</M> (ein Schritt nach oben). Jeder Vektor ist ein Rezept aus ihnen: <M p=",">{t`x = ${v(-1, 2)} = -1\cdot e_1 + 2\cdot e_2`}</M> also einen Schritt nach links und zwei nach oben.</li>
               <li>Wohin geht <M p="?">{'e_1'}</M> Ausrechnen: <M p=".">{t`\begin{pmatrix}3 & 1\\1 & 2\end{pmatrix}\binom{1}{0} = \binom{3\cdot 1 + 1\cdot 0}{1\cdot 1 + 2\cdot 0} = \binom{3}{1}`}</M> Das ist genau die erste Spalte. Ebenso landet <M>{'e_2'}</M> auf der zweiten Spalte <M p=".">{v(1, 2)}</M> Das meint «neue Basis-Vektoren».</li>
               <li>Das Rezept bleibt gleich, nur die Zutaten sind neu: Statt <M>{t`-1\cdot e_1 + 2\cdot e_2`}</M> rechnet man <M p=".">{t`-1\cdot a_1 + 2\cdot a_2`}</M> Das ist die Zeile auf der Folie: <M p=".">{t`${v(3, 1)}(-1) + ${v(1, 2)}(2) = ${v(-1, 3)}`}</M></li>
               <li>Also landet <M>{v(-1, 2)}</M> auf <M p=".">{v(-1, 3)}</M> Das ist dieselbe Rechnung wie im Spaltenbild, nur anders angeschaut: Dort war <M>x</M> eine Menge, hier ist <M>x</M> ein Punkt, der sich bewegt.</li>
             </ol>
-            <p>Warum darf man das Rezept behalten? Weil die Matrix Summen und Vielfache respektiert: Aus <M>{t`-1\cdot e_1 + 2\cdot e_2`}</M> wird <M p=".">{t`-1\cdot Ae_1 + 2\cdot Ae_2`}</M> Das ist genau die Spaltenform von <M>{'Ax'}</M> aus der letzten Lektion.</p>
+            <p className="keep">Warum darf man das Rezept behalten? Weil die Matrix Summen und Vielfache respektiert: Aus <M>{t`-1\cdot e_1 + 2\cdot e_2`}</M> wird <M p=".">{t`-1\cdot Ae_1 + 2\cdot Ae_2`}</M> Das ist genau die Spaltenform von <M>{'Ax'}</M> aus der letzten Lektion.</p>
           </>}
           en={<>
-            <p><b>How to read the slides:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the slides:</b></p>
+            <ol className="keep">
               <li>The <De en="basis vectors">Basisvektoren</De> are <M>{t`e_1 = ${v(1, 0)}`}</M> (one step to the right) and <M>{t`e_2 = ${v(0, 1)}`}</M> (one step up). Every vector is a recipe made of them: <M p=",">{t`x = ${v(-1, 2)} = -1\cdot e_1 + 2\cdot e_2`}</M> so one step left and two up.</li>
               <li>Where does <M>{'e_1'}</M> go? Compute: <M p=".">{t`\begin{pmatrix}3 & 1\\1 & 2\end{pmatrix}\binom{1}{0} = \binom{3\cdot 1 + 1\cdot 0}{1\cdot 1 + 2\cdot 0} = \binom{3}{1}`}</M> That is exactly the first column. Likewise <M>{'e_2'}</M> lands on the second column <M p=".">{v(1, 2)}</M> This is what “new basis vectors” means.</li>
               <li>The recipe stays the same, only the ingredients are new: instead of <M>{t`-1\cdot e_1 + 2\cdot e_2`}</M> you compute <M p=".">{t`-1\cdot a_1 + 2\cdot a_2`}</M> That is the line on the slide: <M p=".">{t`${v(3, 1)}(-1) + ${v(1, 2)}(2) = ${v(-1, 3)}`}</M></li>
               <li>So <M>{v(-1, 2)}</M> lands on <M p=".">{v(-1, 3)}</M> This is the same computation as in the column picture, seen differently: there <M>x</M> was an amount, here <M>x</M> is a point that moves.</li>
             </ol>
-            <p>Why may you keep the recipe? Because the matrix respects sums and multiples: <M>{t`-1\cdot e_1 + 2\cdot e_2`}</M> becomes <M p=".">{t`-1\cdot Ae_1 + 2\cdot Ae_2`}</M> That is exactly the column form of <M>{'Ax'}</M> from the last lesson.</p>
+            <p className="keep">Why may you keep the recipe? Because the matrix respects sums and multiples: <M>{t`-1\cdot e_1 + 2\cdot e_2`}</M> becomes <M p=".">{t`-1\cdot Ae_1 + 2\cdot Ae_2`}</M> That is exactly the column form of <M>{'Ax'}</M> from the last lesson.</p>
           </>}
         />
         <Box kind="uebung" src={<Src u={4} vis="Matrix as a Transformation" />} title={<T de="Die Ebene unter der Matrix" en="The plane under the matrix" />}>
@@ -140,8 +140,8 @@ export default function LA4Transformation() {
           />
         </Box>
         <T
-          de={<p><b>So liest man das:</b> Die zweite Spalte ist <M>-2</M> mal die erste. <M>{'e_1'}</M> und <M>{'e_2'}</M> landen also auf derselben Geraden durch <M p=".">{v(1, 2)}</M> Jede Eingabe ist ein Rezept aus <M>{'e_1'}</M> und <M p=",">{'e_2'}</M> ihr Bild also ein Rezept aus zwei Pfeilen auf dieser Geraden. Darum bleibt das Bild auf der Geraden: Die ganze Ebene wird flachgedrückt.</p>}
-          en={<p><b>How to read it:</b> the second column is <M>-2</M> times the first. So <M>{'e_1'}</M> and <M>{'e_2'}</M> land on the same line through <M p=".">{v(1, 2)}</M> Every input is a recipe of <M>{'e_1'}</M> and <M p=",">{'e_2'}</M> so its image is a recipe of two arrows on this line. That is why the image stays on the line: the whole plane is flattened.</p>}
+          de={<p className="keep"><b>So liest man das:</b> Die zweite Spalte ist <M>-2</M> mal die erste. <M>{'e_1'}</M> und <M>{'e_2'}</M> landen also auf derselben Geraden durch <M p=".">{v(1, 2)}</M> Jede Eingabe ist ein Rezept aus <M>{'e_1'}</M> und <M p=",">{'e_2'}</M> ihr Bild also ein Rezept aus zwei Pfeilen auf dieser Geraden. Darum bleibt das Bild auf der Geraden: Die ganze Ebene wird flachgedrückt.</p>}
+          en={<p className="keep"><b>How to read it:</b> the second column is <M>-2</M> times the first. So <M>{'e_1'}</M> and <M>{'e_2'}</M> land on the same line through <M p=".">{v(1, 2)}</M> Every input is a recipe of <M>{'e_1'}</M> and <M p=",">{'e_2'}</M> so its image is a recipe of two arrows on this line. That is why the image stays on the line: the whole plane is flattened.</p>}
         />
         <CollapseAnim />
         <T
@@ -149,8 +149,8 @@ export default function LA4Transformation() {
           en={<p>On slide 20 the second example has the factor <M>3</M> instead of <M>1</M> and the result <M p=";">{v(-1, -2)}</M> correct is <M p=".">{t`${v(1, 2)}\cdot 1 + ${v(-2, -4)}\cdot(-2) = ${v(5, 10)}`}</M> The point of the slide stays the same: <M>{v(5, 10)}</M> lies on the line too.</p>}
         />
         <T
-          de={<p><b>Was heisst das für <M p="?">{t`Ax = b`}</M></b> Nach der Verwandlung liegt alles auf der Geraden. Liegt <M>b</M> daneben, kann kein <M>x</M> dort landen: keine Lösung. Liegt <M>b</M> darauf, landet eine ganze Gerade von Eingaben auf <M p=":">b</M> unendlich viele Lösungen. Das ist dasselbe Ergebnis wie im Spaltenbild. Im Bild oben: Beispiel «Rang 1», dann «Eingabe zu <M>b</M> finden», und <M>b</M> von der Geraden wegziehen.</p>}
-          en={<p><b>What does this mean for <M p="?">{t`Ax = b`}</M></b> After the transformation everything lies on the line. If <M>b</M> lies beside it, no <M>x</M> can land there: no solution. If <M>b</M> lies on it, a whole line of inputs lands on <M p=":">b</M> infinitely many solutions. This is the same result as in the column picture. In the figure above: example “Rank 1”, then “Find the input for <M p="”,">b</M> and drag <M>b</M> off the line.</p>}
+          de={<p className="keep"><b>Was heisst das für <M p="?">{t`Ax = b`}</M></b> Nach der Verwandlung liegt alles auf der Geraden. Liegt <M>b</M> daneben, kann kein <M>x</M> dort landen: keine Lösung. Liegt <M>b</M> darauf, landet eine ganze Gerade von Eingaben auf <M p=":">b</M> unendlich viele Lösungen. Das ist dasselbe Ergebnis wie im Spaltenbild. Im Bild oben: Beispiel «Rang 1», dann «Eingabe zu <M>b</M> finden», und <M>b</M> von der Geraden wegziehen.</p>}
+          en={<p className="keep"><b>What does this mean for <M p="?">{t`Ax = b`}</M></b> After the transformation everything lies on the line. If <M>b</M> lies beside it, no <M>x</M> can land there: no solution. If <M>b</M> lies on it, a whole line of inputs lands on <M p=":">b</M> infinitely many solutions. This is the same result as in the column picture. In the figure above: example “Rank 1”, then “Find the input for <M p="”,">b</M> and drag <M>b</M> off the line.</p>}
         />
       </Section>
 

@@ -67,8 +67,8 @@ export default function CH5Gibbs() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die Formel:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man die Formel:</b></p>
+            <ol className="keep">
               <li>Schau ins ausgeglichene Reaktionsschema. Die Zahl vor einem Stoff ist sein Koeffizient (<M>{t`a_i`}</M> bei den Edukten, <M>{t`b_j`}</M> bei den Produkten). Steht keine Zahl, ist er <M p=".">1</M></li>
               <li><M>{t`S^\circ`}</M> ist die Entropie von einem Mol des Stoffs. Sie steht in der Tabelle. Bei <M>{t`3\,\mathrm{H_2}`}</M> brauchst du drei Mol, also <M p=".">{t`3\cdot S^\circ(\mathrm{H_2})`}</M></li>
               <li>Addiere alles auf der Produktseite. Addiere alles auf der Eduktseite.</li>
@@ -77,8 +77,8 @@ export default function CH5Gibbs() {
             <p>Zur Einheit: <M>{t`S^\circ`}</M> und <M>{t`\Delta S^\circ`}</M> haben die Einheit <M p=",">{t`\mathrm{J\,mol^{-1}K^{-1}}`}</M> Joule, nicht Kilojoule. Das wird gleich wichtig.</p>
           </>}
           en={<>
-            <p><b>How to read the formula:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the formula:</b></p>
+            <ol className="keep">
               <li>Look at the balanced reaction. The number in front of a substance is its coefficient (<M>{t`a_i`}</M> for reactants, <M>{t`b_j`}</M> for products). If there is no number, it is <M p=".">1</M></li>
               <li><M>{t`S^\circ`}</M> is the entropy of one mole of the substance. It is in the table. For <M>{t`3\,\mathrm{H_2}`}</M> you need three moles, so <M p=".">{t`3\cdot S^\circ(\mathrm{H_2})`}</M></li>
               <li>Add up everything on the product side. Add up everything on the reactant side.</li>
@@ -121,8 +121,8 @@ export default function CH5Gibbs() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die Rechnung:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man die Rechnung:</b></p>
+            <ol className="keep">
               <li><b>Das System</b> ist die Reaktion selbst: <M p=".">{t`\Delta S_{\mathrm{sys}} = -199\ \mathrm{J\,mol^{-1}K^{-1}}`}</M> Das System wird ordentlicher, seine Entropie sinkt.</li>
               <li><b>Die Umgebung</b> ist alles drumherum (Luft, Gefäss). Die Reaktion gibt Wärme ab: <M p=".">{t`\Delta H^\circ_{\mathrm{rxn}} = -92{,}4\ \mathrm{kJ\,mol^{-1}}`}</M> Diese Wärme geht in die Umgebung: <M p=".">{t`q_{\mathrm{surr}} = -q_{\mathrm{sys}}`}</M></li>
               <li>Wärme in der Umgebung bringt Entropie: <M p=".">{t`\Delta S_{\mathrm{surr}} = q_{\mathrm{surr}}/T`}</M> Bei konstantem Druck ist <M>{t`q_{\mathrm{sys}}`}</M> gleich <M p=",">{t`\Delta H_{\mathrm{sys}}`}</M> also <M p=".">{t`\Delta S_{\mathrm{surr}} = -\Delta H_{\mathrm{sys}}/T`}</M></li>
@@ -132,8 +132,8 @@ export default function CH5Gibbs() {
             <p>Die Reaktion macht das System also ordentlicher und bezahlt dafür mit Wärme, die die Umgebung unordentlicher macht. Die Umgebung gewinnt mehr, als das System verliert.</p>
           </>}
           en={<>
-            <p><b>How to read the calculation:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the calculation:</b></p>
+            <ol className="keep">
               <li><b>The system</b> is the reaction itself: <M p=".">{t`\Delta S_{\mathrm{sys}} = -199\ \mathrm{J\,mol^{-1}K^{-1}}`}</M> The system becomes more ordered, its entropy falls.</li>
               <li><b>The surroundings</b> are everything around it (air, vessel). The reaction gives off heat: <M p=".">{t`\Delta H^\circ_{\mathrm{rxn}} = -92.4\ \mathrm{kJ\,mol^{-1}}`}</M> This heat goes into the surroundings: <M p=".">{t`q_{\mathrm{surr}} = -q_{\mathrm{sys}}`}</M></li>
               <li>Heat in the surroundings brings entropy: <M p=".">{t`\Delta S_{\mathrm{surr}} = q_{\mathrm{surr}}/T`}</M> At constant pressure <M>{t`q_{\mathrm{sys}}`}</M> equals <M p=",">{t`\Delta H_{\mathrm{sys}}`}</M> so <M p=".">{t`\Delta S_{\mathrm{surr}} = -\Delta H_{\mathrm{sys}}/T`}</M></li>
@@ -183,8 +183,8 @@ export default function CH5Gibbs() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die Herleitung:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man die Herleitung:</b></p>
+            <ol className="keep">
               <li>Ausgangspunkt ist das alte Kriterium aus Abschnitt 2: <M p=".">{t`\Delta S_{\mathrm{univ}} = \Delta S_{\mathrm{sys}} + \Delta S_{\mathrm{surr}}`}</M></li>
               <li>Für die Umgebung setzen wir <M>{t`-\Delta H_{\mathrm{sys}}/T`}</M> ein. «Bei konstantem <M>T</M> und <M>P</M>» heisst: Die Reaktion läuft bei fester Temperatur und festem Druck, wie in einem offenen Reagenzglas.</li>
               <li>Jetzt kommt ein einfacher Trick: alles mal <M p=".">{t`-T`}</M> Das ist erlaubt, denn man darf beide Seiten einer Gleichung mit derselben Zahl malnehmen. Links steht dann <M p=",">{t`-T\,\Delta S_{\mathrm{univ}}`}</M> rechts <M p=".">{t`\Delta H_{\mathrm{sys}} - T\,\Delta S_{\mathrm{sys}}`}</M> Es steht nur noch das System da, die Umgebung ist verschwunden.</li>
@@ -194,8 +194,8 @@ export default function CH5Gibbs() {
             <p>Die Animation zeigt dieselben Schritte mit den Zahlen der Ammoniak-Synthese bei 298 K. Jeder Schritt zeigt am Ende genau das, was seine Beschriftung sagt.</p>
           </>}
           en={<>
-            <p><b>How to read the derivation:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the derivation:</b></p>
+            <ol className="keep">
               <li>The starting point is the old criterion of section 2: <M p=".">{t`\Delta S_{\mathrm{univ}} = \Delta S_{\mathrm{sys}} + \Delta S_{\mathrm{surr}}`}</M></li>
               <li>For the surroundings we insert <M p=".">{t`-\Delta H_{\mathrm{sys}}/T`}</M> “At constant <M>T</M> and <M>P</M>” means: the reaction runs at fixed temperature and fixed pressure, like in an open test tube.</li>
               <li>Now comes a simple trick: multiply everything by <M p=".">{t`-T`}</M> That is allowed, because you may multiply both sides of an equation by the same number. On the left we then have <M p=",">{t`-T\,\Delta S_{\mathrm{univ}}`}</M> on the right <M p=".">{t`\Delta H_{\mathrm{sys}} - T\,\Delta S_{\mathrm{sys}}`}</M> Only the system is left, the surroundings have disappeared.</li>
@@ -219,8 +219,8 @@ export default function CH5Gibbs() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die Regeln:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man die Regeln:</b></p>
+            <ol className="keep">
               <li><M p=":">{t`\Delta G < 0`}</M> Die Reaktion läuft von selbst. Wie ein Ball, der bergab rollt. Aus dem Gefälle kann man sogar Arbeit holen, höchstens <M p=".">{t`-\Delta G`}</M></li>
               <li><M p=":">{t`\Delta G = 0`}</M> Gleichgewicht. Es geht in beide Richtungen gleich leicht, die Reaktion ist umkehrbar. Der Ball liegt auf der Ebene.</li>
               <li><M p=":">{t`\Delta G > 0`}</M> Von selbst läuft nichts. Wie bei einem Ball, den man bergauf schiebt, geht es nur, wenn man Arbeit hineinsteckt. Die Rückreaktion läuft aber von selbst.</li>
@@ -228,8 +228,8 @@ export default function CH5Gibbs() {
             <p>«Frei» heisst: frei verfügbar. Das ist der Teil der Reaktionsenergie, den man als Arbeit nutzen kann, etwa in einer Batterie. Der Rest geht an die Unordnung.</p>
           </>}
           en={<>
-            <p><b>How to read the rules:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the rules:</b></p>
+            <ol className="keep">
               <li><M p=":">{t`\Delta G < 0`}</M> the reaction runs by itself. Like a ball rolling downhill. You can even get work out of the slope, at most <M p=".">{t`-\Delta G`}</M></li>
               <li><M p=":">{t`\Delta G = 0`}</M> equilibrium. It goes both ways equally easily, the reaction is reversible. The ball lies on level ground.</li>
               <li><M p=":">{t`\Delta G > 0`}</M> nothing runs by itself. Like pushing a ball uphill, it only works if you put in work. The reverse reaction, however, runs by itself.</li>
@@ -281,11 +281,11 @@ export default function CH5Gibbs() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b> <M>{t`\Delta G^\circ_{\mathrm{f}}`}</M> ist die «Bildungsenergie» von einem Mol eines Stoffs aus den Elementen. Die Elemente selbst sind der Nullpunkt, genau wie bei <M p=".">{t`\Delta H^\circ_{\mathrm{f}}`}</M> Die kleine <M>{t`^\circ`}</M> heisst «Standardbedingungen». Das Rezept für <M>{t`\Delta G^\circ_{\mathrm{rxn}}`}</M> ist dasselbe wie für <M p=",">{t`\Delta H^\circ_{\mathrm{rxn}}`}</M> und fast dasselbe wie für <M p=":">{t`\Delta S^\circ`}</M> Produkte minus Edukte, jeder Stoff mal seinen Koeffizienten. Drei Grössen, ein Rezept, drei Tabellenspalten.</p>
+            <p className="keep"><b>So liest man das:</b> <M>{t`\Delta G^\circ_{\mathrm{f}}`}</M> ist die «Bildungsenergie» von einem Mol eines Stoffs aus den Elementen. Die Elemente selbst sind der Nullpunkt, genau wie bei <M p=".">{t`\Delta H^\circ_{\mathrm{f}}`}</M> Die kleine <M>{t`^\circ`}</M> heisst «Standardbedingungen». Das Rezept für <M>{t`\Delta G^\circ_{\mathrm{rxn}}`}</M> ist dasselbe wie für <M p=",">{t`\Delta H^\circ_{\mathrm{rxn}}`}</M> und fast dasselbe wie für <M p=":">{t`\Delta S^\circ`}</M> Produkte minus Edukte, jeder Stoff mal seinen Koeffizienten. Drei Grössen, ein Rezept, drei Tabellenspalten.</p>
             <p>Probiere es im Bild aus. Oben links schaltest du zwischen den drei Grössen um. Dieselbe Reaktion, dasselbe Rezept:</p>
           </>}
           en={<>
-            <p><b>How to read this:</b> <M>{t`\Delta G^\circ_{\mathrm{f}}`}</M> is the “formation energy” of one mole of a substance from the elements. The elements themselves are the zero point, just as for <M p=".">{t`\Delta H^\circ_{\mathrm{f}}`}</M> The small <M>{t`^\circ`}</M> means “standard conditions”. The recipe for <M>{t`\Delta G^\circ_{\mathrm{rxn}}`}</M> is the same as for <M p=",">{t`\Delta H^\circ_{\mathrm{rxn}}`}</M> and almost the same as for <M p=":">{t`\Delta S^\circ`}</M> products minus reactants, each substance times its coefficient. Three quantities, one recipe, three table columns.</p>
+            <p className="keep"><b>How to read this:</b> <M>{t`\Delta G^\circ_{\mathrm{f}}`}</M> is the “formation energy” of one mole of a substance from the elements. The elements themselves are the zero point, just as for <M p=".">{t`\Delta H^\circ_{\mathrm{f}}`}</M> The small <M>{t`^\circ`}</M> means “standard conditions”. The recipe for <M>{t`\Delta G^\circ_{\mathrm{rxn}}`}</M> is the same as for <M p=",">{t`\Delta H^\circ_{\mathrm{rxn}}`}</M> and almost the same as for <M p=":">{t`\Delta S^\circ`}</M> products minus reactants, each substance times its coefficient. Three quantities, one recipe, three table columns.</p>
             <p>Try it in the figure. At the top you switch between the three quantities. The same reaction, the same recipe:</p>
           </>}
         />
@@ -360,8 +360,8 @@ export default function CH5Gibbs() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die Tabelle:</b> Zwei Dinge treiben <M p=":">{t`\Delta G`}</M> <M>{t`\Delta H`}</M> und <M p=".">{t`-T\,\Delta S`}</M> Beide wollen negativ sein.</p>
-            <ol>
+            <p className="keep"><b>So liest man die Tabelle:</b> Zwei Dinge treiben <M p=":">{t`\Delta G`}</M> <M>{t`\Delta H`}</M> und <M p=".">{t`-T\,\Delta S`}</M> Beide wollen negativ sein.</p>
+            <ol className="keep">
               <li><M>{t`\Delta H < 0`}</M> (Wärme wird frei) hilft. <M>{t`\Delta S > 0`}</M> (mehr Unordnung) macht <M>{t`-T\,\Delta S`}</M> negativ und hilft auch.</li>
               <li>Zeile 1: beide helfen, also <M>{t`\Delta G < 0`}</M> bei jeder Temperatur. Zeile 2: beide stören, <M>{t`\Delta G > 0`}</M> bei jeder Temperatur.</li>
               <li>Zeilen 3 und 4: Einer hilft, einer stört. Dann gewinnt, wer mehr Gewicht hat. Der Entropie-Term <M>{t`-T\,\Delta S`}</M> hat den Faktor <M p=",">T</M> er wird bei hoher Temperatur wichtiger. Tief gewinnt die Enthalpie, hoch die Entropie.</li>
@@ -369,8 +369,8 @@ export default function CH5Gibbs() {
             <p>Das Bild zeigt <M>{t`\Delta G`}</M> als Funktion von <M p=".">T</M> Es ist eine gerade Linie: Sie startet bei <M>{t`T = 0`}</M> auf der Höhe <M>{t`\Delta H`}</M> und hat die Steigung <M p=".">{t`-\Delta S`}</M> Wo die Linie unter der Nulllinie liegt (das Feld ist getönt), ist die Reaktion spontan. Probier alle vier Zeilen der Tabelle aus: Die Knöpfe haben die Beispiele der Folie, und die Zahl am Knopf ist die Zeile.</p>
           </>}
           en={<>
-            <p><b>How to read the table:</b> Two things drive <M p=":">{t`\Delta G`}</M> <M>{t`\Delta H`}</M> and <M p=".">{t`-T\,\Delta S`}</M> Both want to be negative.</p>
-            <ol>
+            <p className="keep"><b>How to read the table:</b> Two things drive <M p=":">{t`\Delta G`}</M> <M>{t`\Delta H`}</M> and <M p=".">{t`-T\,\Delta S`}</M> Both want to be negative.</p>
+            <ol className="keep">
               <li><M>{t`\Delta H < 0`}</M> (heat is released) helps. <M>{t`\Delta S > 0`}</M> (more disorder) makes <M>{t`-T\,\Delta S`}</M> negative and helps too.</li>
               <li>Row 1: both help, so <M>{t`\Delta G < 0`}</M> at every temperature. Row 2: both hurt, <M>{t`\Delta G > 0`}</M> at every temperature.</li>
               <li>Rows 3 and 4: one helps, one hurts. Then the one with more weight wins. The entropy term <M>{t`-T\,\Delta S`}</M> has the factor <M p=",">T</M> so it matters more at high temperature. Low: enthalpy wins. High: entropy wins.</li>

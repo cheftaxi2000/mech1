@@ -76,16 +76,16 @@ export default function CH6Orbitale() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li>Ort <M>x</M> und Impuls <M>p</M> (Masse mal Geschwindigkeit) kann man nicht beide beliebig genau kennen. Das Produkt der Unschärfen <M>{t`\Delta x`}</M> und <M>{t`\Delta p`}</M> ist mindestens <M p=".">{t`h/4\pi`}</M> Wer den Ort genauer festlegt, verliert Wissen über die Geschwindigkeit. Darum gibt es keine scharfe Bahn.</li>
               <li>Was man angeben kann, ist die Wahrscheinlichkeit, das Elektron in einem Gebiet zu finden. Die Wellenfunktion <M>{t`\psi`}</M> liefert sie: Das Quadrat <M>{t`\psi^2`}</M> ist die Dichte der Karte.</li>
               <li>Die gezeichnete Fläche ist eine Konvention: Sie umschliesst 90&nbsp;% der Karte. Das Elektron ist <em>innerhalb</em> dieser Fläche, nicht <em>auf</em> ihr.</li>
             </ol>
           </>}
           en={<>
-            <p><b>How to read this:</b></p>
-            <ol>
+            <p className="keep"><b>How to read this:</b></p>
+            <ol className="keep">
               <li>Position <M>x</M> and momentum <M>p</M> (mass times velocity) cannot both be known arbitrarily well. The product of the uncertainties <M>{t`\Delta x`}</M> and <M>{t`\Delta p`}</M> is at least <M p=".">{t`h/4\pi`}</M> If you pin down the position more precisely, you lose knowledge of the velocity. This is why there is no sharp path.</li>
               <li>What you can state is the probability of finding the electron in a region. The wave function <M>{t`\psi`}</M> provides it: the square <M>{t`\psi^2`}</M> is the density of the map.</li>
               <li>The drawn surface is a convention: it encloses 90&nbsp;% of the map. The electron is <em>inside</em> this surface, not <em>on</em> it.</li>
@@ -115,8 +115,8 @@ export default function CH6Orbitale() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die Regeln:</b> Stell dir ein Hochhaus vor.</p>
-            <ol>
+            <p className="keep"><b>So liest man die Regeln:</b> Stell dir ein Hochhaus vor.</p>
+            <ol className="keep">
               <li><M>n</M> ist das Stockwerk (Schale). Je höher, desto grösser die Wohnungen (Orbitale).</li>
               <li><M>{t`\ell`}</M> ist die Art der Wohnung auf dem Stockwerk (Unterschale). Im Stockwerk <M>n</M> gibt es genau <M>n</M> Arten: <M>{t`\ell = 0`}</M> bis <M p=".">{t`n-1`}</M> Im ersten Stock nur s, im zweiten s und p, im dritten s, p und d.</li>
               <li><M p=",">{t`m_\ell`}</M> nummeriert die Zimmer einer Art: von <M p=",">{t`-\ell`}</M> bis <M p=",">{t`+\ell`}</M> also <M>{t`2\ell+1`}</M> Stück. s hat <M>1</M> Orbital, p hat <M>3</M> d hat <M>5</M> f hat <M p=".">7</M></li>
@@ -125,8 +125,8 @@ export default function CH6Orbitale() {
             <p>Die Tabelle von Folie 15:</p>
           </>}
           en={<>
-            <p><b>How to read the rules:</b> Imagine a tall building.</p>
-            <ol>
+            <p className="keep"><b>How to read the rules:</b> Imagine a tall building.</p>
+            <ol className="keep">
               <li><M>n</M> is the floor (shell). The higher up, the bigger the flats (orbitals).</li>
               <li><M>{t`\ell`}</M> is the kind of flat on that floor (subshell). Floor <M>n</M> has exactly <M>n</M> kinds: <M>{t`\ell = 0`}</M> to <M p=".">{t`n-1`}</M> The first floor has only s, the second s and p, the third s, p and d.</li>
               <li><M p=",">{t`m_\ell`}</M> numbers the rooms of one kind: from <M p=",">{t`-\ell`}</M> to <M p=",">{t`+\ell`}</M> so <M>{t`2\ell+1`}</M> of them. s has <M>1</M> orbital, p has <M>3</M> d has <M>5</M> f has <M p=".">7</M></li>
@@ -139,8 +139,8 @@ export default function CH6Orbitale() {
           <Table62 />
         </Box>
         <T
-          de={<p>Jetzt zu den Formen (Folien 16–18). Wähle im Bild oben die Schale <M>n</M> und klicke auf ein Kästchen: Jedes Kästchen ist ein Orbital, die Zahl darin ist <M p=".">{t`m_\ell`}</M> Rechts siehst du den Schnitt durch das Orbital. Dunkel heisst: Hier ist das Elektron wahrscheinlich. Die Linie umschliesst 90&nbsp;% der Karte. Die zwei Pfeile im Kästchen erinnern an den Spin (Abschnitt 3).</p>}
-          en={<p>Now the shapes (slides 16–18). In the figure choose the shell <M>n</M> and click a box: each box is one orbital, the number inside is <M p=".">{t`m_\ell`}</M> On the right you see a cross-section of the orbital. Dark means: the electron is likely here. The line encloses 90&nbsp;% of the map. The two arrows in the box remind you of the spin (section 3).</p>}
+          de={<p className="keep">Jetzt zu den Formen (Folien 16–18). Wähle im Bild oben die Schale <M>n</M> und klicke auf ein Kästchen: Jedes Kästchen ist ein Orbital, die Zahl darin ist <M p=".">{t`m_\ell`}</M> Rechts siehst du den Schnitt durch das Orbital. Dunkel heisst: Hier ist das Elektron wahrscheinlich. Die Linie umschliesst 90&nbsp;% der Karte. Die zwei Pfeile im Kästchen erinnern an den Spin (Abschnitt 3).</p>}
+          en={<p className="keep">Now the shapes (slides 16–18). In the figure choose the shell <M>n</M> and click a box: each box is one orbital, the number inside is <M p=".">{t`m_\ell`}</M> On the right you see a cross-section of the orbital. Dark means: the electron is likely here. The line encloses 90&nbsp;% of the map. The two arrows in the box remind you of the spin (section 3).</p>}
         />
         <QuantumBuilder />
         <Box kind="lecture" src={<Src lec={6} p="16–18" />} title={<T de="Orbitale sichtbar gemacht" en="Visualizing atomic orbitals" />}>
@@ -203,8 +203,8 @@ export default function CH6Orbitale() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li>Der Spin ist wie ein winziger Stabmagnet am Elektron. Er kann nur nach oben oder nach unten zeigen. Mehr gibt es nicht. Das Bild links zeigt die zwei Fälle.</li>
               <li>Ein Orbital (ein Kästchen) legt <M p=",">n</M> <M>{t`\ell`}</M> und <M>{t`m_\ell`}</M> fest. Bleibt für das Elektron nur noch <M p=".">{t`m_s`}</M> Zwei Werte, also höchstens zwei Elektronen pro Kästchen.</li>
               <li>Zwei Elektronen im selben Kästchen müssen deshalb entgegengesetzten Spin haben (<M p=").">{t`\uparrow\downarrow`}</M> Zwei mit gleichem Spin (<M p=")">{t`\uparrow\uparrow`}</M> hätten denselben Satz von vier Zahlen. Das verbietet das Pauli-Prinzip.</li>
@@ -212,8 +212,8 @@ export default function CH6Orbitale() {
             <p>Daraus folgt die Platzrechnung: s hat 1 Kästchen und fasst 2 Elektronen, p hat 3 und fasst 6, d hat 5 und fasst 10, f hat 7 und fasst 14. Eine ganze Schale <M>n</M> fasst <M p=".">{t`2n^2`}</M> Das steht im Bild oben unter den Kästchen.</p>
           </>}
           en={<>
-            <p><b>How to read this:</b></p>
-            <ol>
+            <p className="keep"><b>How to read this:</b></p>
+            <ol className="keep">
               <li>The spin is like a tiny bar magnet on the electron. It can only point up or down. There is nothing else. The figure on the left shows the two cases.</li>
               <li>An orbital (one box) fixes <M p=",">n</M> <M p=".">{t`\ell`}</M> and <M>{t`m_\ell`}</M> For the electron only <M>{t`m_s`}</M> remains. Two values, so at most two electrons per box.</li>
               <li>Two electrons in the same box must therefore have opposite spin (<M p=").">{t`\uparrow\downarrow`}</M> Two with the same spin (<M p=")">{t`\uparrow\uparrow`}</M> would have the same set of four numbers. The Pauli principle forbids that.</li>
@@ -246,16 +246,16 @@ export default function CH6Orbitale() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das Bild:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das Bild:</b></p>
+            <ol className="keep">
               <li>Wasserstoff: Nur ein Elektron, es spürt nur den Kern. Dann zählt allein, wie weit weg es ist, also <M p=".">n</M> Alle Kästchen einer Schale liegen gleich hoch. Die Formel dazu aus der Übung: <M p=".">{t`E_n = -R_H/n^2`}</M></li>
               <li>Mehrelektronenatom: Die anderen Elektronen stossen ab. Wie stark, hängt davon ab, wie nah ein Elektron dem Kern kommt. Ein s-Elektron dringt im Mittel am nächsten heran, ein p-Elektron weniger, ein d-Elektron noch weniger. Die Übung sagt es so (genauer ist es die «Durchdringung», siehe die Lektion zur Abschirmung, CH-601): Der mittlere Abstand wächst, <M p=",">{t`\Delta x_s < \Delta x_p < \Delta x_d < \Delta x_f`}</M> und damit steigt die Energie, <M p=".">{t`E_s < E_p < E_d < E_f`}</M></li>
               <li>Darum liegt 4s <em>unter</em> 3d. Das Bild schaltet zwischen beiden Fällen um. Auf der nächsten Lektion (Abschirmung) wird dieser Grund genauer erklärt.</li>
             </ol>
           </>}
           en={<>
-            <p><b>How to read the figure:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the figure:</b></p>
+            <ol className="keep">
               <li>Hydrogen: only one electron, it feels only the nucleus. Then only its distance counts, that is, <M p=".">n</M> All boxes of a shell lie at the same height. The formula from the exercise class: <M p=".">{t`E_n = -R_H/n^2`}</M></li>
               <li>Multielectron atom: the other electrons repel. How strongly depends on how close an electron comes to the nucleus. An s electron comes closest on average, a p electron less, a d electron even less. The exercise class says it this way (more precisely it is “penetration”, see the lesson on screening, CH-601): the average distance grows, <M p=",">{t`\Delta x_s < \Delta x_p < \Delta x_d < \Delta x_f`}</M> and so the energy rises, <M p=".">{t`E_s < E_p < E_d < E_f`}</M></li>
               <li>This is why 4s lies <em>below</em> 3d. The figure switches between the two cases. The next lesson (screening) explains this reason in more detail.</li>
@@ -305,8 +305,8 @@ export default function CH6Orbitale() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b> Du füllst das Periodensystem wie einen Bücherschrank, Regal für Regal von links nach rechts.</p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b> Du füllst das Periodensystem wie einen Bücherschrank, Regal für Regal von links nach rechts.</p>
+            <ol className="keep">
               <li>Jedes Element ist ein Feld. Jedes Feld bekommt ein Elektron mehr als das vorige. Die Blöcke im Periodensystem sind die Unterschalen: Die zwei linken Spalten sind der s-Block (2 Plätze pro Zeile), rechts der p-Block (6), in der Mitte der d-Block (10).</li>
               <li>Wenn du ein Element suchst, zähle von Wasserstoff aus Feld für Feld. Die Zeile sagt dir die Schale, der Block die Unterschale. So ist Selen (Zeile 4, p-Block, viertes Feld im p-Block) bei <M p=".">{t`4p^4`}</M></li>
               <li>In jeder Unterschale gilt Hund: Zuerst bekommt jedes Kästchen ein Elektron mit Spin up, erst dann kommen die Spin-down-Elektronen dazu. Beim Sauerstoff: <M p=".">{t`2p^4`}</M> heisst: drei Kästchen je ein Pfeil nach oben, dann ein Pfeil nach unten im ersten. Zwei Elektronen bleiben ungepaart.</li>
@@ -315,8 +315,8 @@ export default function CH6Orbitale() {
             <p>Im Bild wählst du ein Element im Periodensystem (oder die Pfeile). Die Elemente bis dahin sind kräftig gefärbt. «Elektronen einfüllen» setzt sie nacheinander in die Kästchen. Das ist die Leiter der Folie 22, von unten nach oben.</p>
           </>}
           en={<>
-            <p><b>How to read this:</b> You fill the periodic table like a bookcase, shelf by shelf from left to right.</p>
-            <ol>
+            <p className="keep"><b>How to read this:</b> You fill the periodic table like a bookcase, shelf by shelf from left to right.</p>
+            <ol className="keep">
               <li>Every element is a cell. Each cell gets one electron more than the previous one. The blocks of the periodic table are the subshells: the two left columns are the s block (2 places per row), on the right the p block (6), in the middle the d block (10).</li>
               <li>If you look for an element, count from hydrogen cell by cell. The row tells you the shell, the block the subshell. So selenium (row 4, p block, fourth cell of the p block) is at <M p=".">{t`4p^4`}</M></li>
               <li>In every subshell Hund applies: first every box gets one electron with spin up, only then the spin-down electrons join. For oxygen: <M>{t`2p^4`}</M> means: three boxes with one arrow up each, then one arrow down in the first. Two electrons stay unpaired.</li>

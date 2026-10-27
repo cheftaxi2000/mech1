@@ -160,7 +160,7 @@ export function App() {
         <a href="#" className="brand">Learning Lab</a>
         {subject && <a href={`#${SUBJECT_ROUTE[subject]}`} className="topbar-subject">{tr(...SUBJECTS[subject])}</a>}
         {topic && <span className="topbar-topic">{tr(...topic.title)}</span>}
-        {subject === 'mech' && <DetailToggle />}
+        {subject && <DetailToggle />}
         <LangToggle />
         <ReadProgress route={route} />
       </header>

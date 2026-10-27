@@ -34,8 +34,8 @@ export default function A4Regeln() {
           <MD>{t`(u \pm v)' = u' \pm v', \qquad (3x^5 + 2x - 7)' = 15x^4 + 2`}</MD>
         </Box>
         <T
-          de={<p>Zwei Hinweise. <M>{t`\frac{1}{x^2}`}</M> schreibt man zuerst als Potenz <M p=",">{t`x^{-2}`}</M> dann gilt dieselbe Regel. Und «reelle Exponenten nur für <M p="»:">{t`x > 0`}</M> <M>{t`x^{1/2} = \sqrt x`}</M> ist für negative <M>x</M> gar nicht definiert. Die Konstante <M>-7</M> fällt weg, weil eine waagrechte Gerade die Steigung <M>0</M> hat.</p>}
-          en={<p>Two remarks. First write <M>{t`\frac{1}{x^2}`}</M> as a power <M p=",">{t`x^{-2}`}</M> then the same rule applies. And “real exponents only for <M p="”:">{t`x > 0`}</M> <M>{t`x^{1/2} = \sqrt x`}</M> is not even defined for negative <M p=".">x</M> The constant <M>-7</M> drops out because a horizontal line has slope <M p=".">0</M></p>}
+          de={<p className="keep">Zwei Hinweise. <M>{t`\frac{1}{x^2}`}</M> schreibt man zuerst als Potenz <M p=",">{t`x^{-2}`}</M> dann gilt dieselbe Regel. Und «reelle Exponenten nur für <M p="»:">{t`x > 0`}</M> <M>{t`x^{1/2} = \sqrt x`}</M> ist für negative <M>x</M> gar nicht definiert. Die Konstante <M>-7</M> fällt weg, weil eine waagrechte Gerade die Steigung <M>0</M> hat.</p>}
+          en={<p className="keep">Two remarks. First write <M>{t`\frac{1}{x^2}`}</M> as a power <M p=",">{t`x^{-2}`}</M> then the same rule applies. And “real exponents only for <M p="”:">{t`x > 0`}</M> <M>{t`x^{1/2} = \sqrt x`}</M> is not even defined for negative <M p=".">x</M> The constant <M>-7</M> drops out because a horizontal line has slope <M p=".">0</M></p>}
         />
       </Section>
 
@@ -46,8 +46,8 @@ export default function A4Regeln() {
           <MD>{t`f(x) = 4x^5(x^7 - x^2), \qquad f'(x) = 20x^4(x^7 - x^2) + 4x^5(7x^6 - 2x)`}</MD>
         </Box>
         <T
-          de={<p><b>So liest man das Beispiel:</b> <M>{t`u = 4x^5`}</M> und <M p=".">{t`v = x^7 - x^2`}</M> Abgeleitet: <M>{t`u' = 20x^4`}</M> und <M p=".">{t`v' = 7x^6 - 2x`}</M> Dann «erster abgeleitet mal zweiter» plus «erster mal zweiter abgeleitet». Ausmultiplizieren muss man nicht.</p>}
-          en={<p><b>How to read the example:</b> <M>{t`u = 4x^5`}</M> and <M p=".">{t`v = x^7 - x^2`}</M> Differentiated: <M>{t`u' = 20x^4`}</M> and <M p=".">{t`v' = 7x^6 - 2x`}</M> Then “first differentiated times second” plus “first times second differentiated”. No need to multiply out.</p>}
+          de={<p className="keep"><b>So liest man das Beispiel:</b> <M>{t`u = 4x^5`}</M> und <M p=".">{t`v = x^7 - x^2`}</M> Abgeleitet: <M>{t`u' = 20x^4`}</M> und <M p=".">{t`v' = 7x^6 - 2x`}</M> Dann «erster abgeleitet mal zweiter» plus «erster mal zweiter abgeleitet». Ausmultiplizieren muss man nicht.</p>}
+          en={<p className="keep"><b>How to read the example:</b> <M>{t`u = 4x^5`}</M> and <M p=".">{t`v = x^7 - x^2`}</M> Differentiated: <M>{t`u' = 20x^4`}</M> and <M p=".">{t`v' = 7x^6 - 2x`}</M> Then “first differentiated times second” plus “first times second differentiated”. No need to multiply out.</p>}
         />
         <Box kind="supplement" title={<T de={<>Warum <M>{t`u'v + uv'`}</M> und nicht <M p="?">{t`u'v'`}</M></>} en={<>Why <M>{t`u'v + uv'`}</M> and not <M p="?">{t`u'v'`}</M></>} />}>
           <T
@@ -70,8 +70,8 @@ export default function A4Regeln() {
           <MD>{t`f'(x) = \frac{2x(x+1) - x^2}{(x+1)^2} = \frac{x^2 + 2x}{(x+1)^2}`}</MD>
         </Box>
         <T
-          de={<p><b>So liest man das:</b> Oben fast die Produktregel, aber mit Minus – darum zählt die Reihenfolge: zuerst <M p=",">{t`u'v`}</M> dann <M>{t`uv'`}</M> abziehen. Vertauscht man sie, stimmt das Vorzeichen nicht mehr. Unten das Quadrat des Nenners. Im Beispiel: <M p=",">{t`u = x^2`}</M> <M p=",">{t`u' = 2x`}</M> <M p=",">{t`v = x + 1`}</M> <M p=".">{t`v' = 1`}</M> Im Zähler <M>{t`2x^2 + 2x - x^2 = x^2 + 2x`}</M> zusammenfassen. <M>{t`x \neq -1`}</M> weil dort der Nenner <M>0</M> wäre.</p>}
-          en={<p><b>How to read it:</b> on top almost the product rule, but with a minus – so the order matters: first <M p=",">{t`u'v`}</M> then subtract <M p=".">{t`uv'`}</M> Swap them and the sign is wrong. Below, the square of the denominator. In the example: <M p=",">{t`u = x^2`}</M> <M p=",">{t`u' = 2x`}</M> <M p=",">{t`v = x + 1`}</M> <M p=".">{t`v' = 1`}</M> Combine the numerator: <M p=".">{t`2x^2 + 2x - x^2 = x^2 + 2x`}</M> <M>{t`x \neq -1`}</M> because there the denominator would be <M p=".">0</M></p>}
+          de={<p className="keep"><b>So liest man das:</b> Oben fast die Produktregel, aber mit Minus – darum zählt die Reihenfolge: zuerst <M p=",">{t`u'v`}</M> dann <M>{t`uv'`}</M> abziehen. Vertauscht man sie, stimmt das Vorzeichen nicht mehr. Unten das Quadrat des Nenners. Im Beispiel: <M p=",">{t`u = x^2`}</M> <M p=",">{t`u' = 2x`}</M> <M p=",">{t`v = x + 1`}</M> <M p=".">{t`v' = 1`}</M> Im Zähler <M>{t`2x^2 + 2x - x^2 = x^2 + 2x`}</M> zusammenfassen. <M>{t`x \neq -1`}</M> weil dort der Nenner <M>0</M> wäre.</p>}
+          en={<p className="keep"><b>How to read it:</b> on top almost the product rule, but with a minus – so the order matters: first <M p=",">{t`u'v`}</M> then subtract <M p=".">{t`uv'`}</M> Swap them and the sign is wrong. Below, the square of the denominator. In the example: <M p=",">{t`u = x^2`}</M> <M p=",">{t`u' = 2x`}</M> <M p=",">{t`v = x + 1`}</M> <M p=".">{t`v' = 1`}</M> Combine the numerator: <M p=".">{t`2x^2 + 2x - x^2 = x^2 + 2x`}</M> <M>{t`x \neq -1`}</M> because there the denominator would be <M p=".">0</M></p>}
         />
       </Section>
 
@@ -111,16 +111,16 @@ export default function A4Regeln() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das Beispiel <M p=":">{t`(3x^2+5)^3`}</M></b></p>
-            <ol>
+            <p className="keep"><b>So liest man das Beispiel <M p=":">{t`(3x^2+5)^3`}</M></b></p>
+            <ol className="keep">
               <li>Innen steht <M p=",">{t`u = 3x^2 + 5`}</M> aussen «hoch drei»: <M p=".">{t`g(u) = u^3`}</M></li>
               <li>Aussen ableiten, innen stehen lassen: <M p=".">{t`g'(u) = 3u^2 = 3(3x^2+5)^2`}</M></li>
               <li>Mal innere Ableitung <M p=".">{t`u' = 6x`}</M> Zusammen <M p=".">{t`3\cdot 6x = 18x`}</M></li>
             </ol>
           </>}
           en={<>
-            <p><b>How to read the example <M p=":">{t`(3x^2+5)^3`}</M></b></p>
-            <ol>
+            <p className="keep"><b>How to read the example <M p=":">{t`(3x^2+5)^3`}</M></b></p>
+            <ol className="keep">
               <li>Inside is <M p=",">{t`u = 3x^2 + 5`}</M> outside “cubed”: <M p=".">{t`g(u) = u^3`}</M></li>
               <li>Differentiate the outside, leave the inside: <M p=".">{t`g'(u) = 3u^2 = 3(3x^2+5)^2`}</M></li>
               <li>Times the inner derivative <M p=".">{t`u' = 6x`}</M> Together <M p=".">{t`3\cdot 6x = 18x`}</M></li>
@@ -203,14 +203,14 @@ export default function A4Regeln() {
           />
         </Box>
         <T
-          de={<p><b>Die Idee:</b> Den Graphen von <M>{t`f^{-1}`}</M> bekommt man durch Spiegeln an der Geraden <M>{t`y = x`}</M> (Lektion <a href="#ana-umkehr">Umkehrfunktion</a>). Beim Spiegeln tauschen <M>x</M> und <M>y</M> ihre Plätze – also auch die beiden Seiten des Steigungsdreiecks. Aus «<M>{t`\Delta y`}</M> durch <M p="»">{t`\Delta x`}</M> wird «<M>{t`\Delta x`}</M> durch <M p="»:">{t`\Delta y`}</M> der Kehrwert. Schieb den Regler «spiegeln»:</p>}
-          en={<p><b>The idea:</b> the graph of <M>{t`f^{-1}`}</M> is obtained by mirroring at the line <M>{t`y = x`}</M> (lesson <a href="#ana-umkehr">Inverse function</a>). Mirroring swaps <M>x</M> and <M>y</M> – and so the two legs of the slope triangle. “<M>{t`\Delta y`}</M> over <M p="”">{t`\Delta x`}</M> becomes “<M>{t`\Delta x`}</M> over <M p="”:">{t`\Delta y`}</M> the reciprocal. Move the slider “mirror”:</p>}
+          de={<p className="keep"><b>Die Idee:</b> Den Graphen von <M>{t`f^{-1}`}</M> bekommt man durch Spiegeln an der Geraden <M>{t`y = x`}</M> (Lektion <a href="#ana-umkehr">Umkehrfunktion</a>). Beim Spiegeln tauschen <M>x</M> und <M>y</M> ihre Plätze – also auch die beiden Seiten des Steigungsdreiecks. Aus «<M>{t`\Delta y`}</M> durch <M p="»">{t`\Delta x`}</M> wird «<M>{t`\Delta x`}</M> durch <M p="»:">{t`\Delta y`}</M> der Kehrwert. Schieb den Regler «spiegeln»:</p>}
+          en={<p className="keep"><b>The idea:</b> the graph of <M>{t`f^{-1}`}</M> is obtained by mirroring at the line <M>{t`y = x`}</M> (lesson <a href="#ana-umkehr">Inverse function</a>). Mirroring swaps <M>x</M> and <M>y</M> – and so the two legs of the slope triangle. “<M>{t`\Delta y`}</M> over <M p="”">{t`\Delta x`}</M> becomes “<M>{t`\Delta x`}</M> over <M p="”:">{t`\Delta y`}</M> the reciprocal. Move the slider “mirror”:</p>}
         />
         <InverseMirror />
         <T
           de={<>
-            <p><b>So liest man die Formel:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man die Formel:</b></p>
+            <ol className="keep">
               <li>Gegeben ist ein Wert <M>y</M> der Umkehrfunktion. Zuerst zurück zum passenden <M p=":">x</M> <M p=".">{t`x = f^{-1}(y)`}</M></li>
               <li>Dort die Steigung von <M>f</M> nehmen: <M p=".">{t`f'(x)`}</M></li>
               <li>Kehrwert: <M p=".">{t`\frac{1}{f'(x)}`}</M> Das ist die Steigung von <M>{t`f^{-1}`}</M> bei <M p=".">y</M></li>
@@ -219,8 +219,8 @@ export default function A4Regeln() {
             <p><b>Beispiel <M p=":">\arctan</M></b> Hier ist <M p=",">{t`f = \tan`}</M> also <M>{t`f' = 1 + \tan^2`}</M> (zweite Form aus Abschnitt 5). An der Stelle <M>{t`\arctan(y)`}</M> eingesetzt: <M p=".">{t`1 + \tan^2(\arctan(y))`}</M> Und <M>{t`\tan(\arctan(y)) = y`}</M> – Umkehrfunktion und Funktion heben sich auf. Es bleibt <M p=".">{t`\frac{1}{1+y^2}`}</M></p>
           </>}
           en={<>
-            <p><b>How to read the formula:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the formula:</b></p>
+            <ol className="keep">
               <li>Given a value <M>y</M> of the inverse function. First go back to the matching <M p=":">x</M> <M p=".">{t`x = f^{-1}(y)`}</M></li>
               <li>Take the slope of <M>f</M> there: <M p=".">{t`f'(x)`}</M></li>
               <li>Reciprocal: <M p=".">{t`\frac{1}{f'(x)}`}</M> That is the slope of <M>{t`f^{-1}`}</M> at <M p=".">y</M></li>

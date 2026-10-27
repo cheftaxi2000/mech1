@@ -31,13 +31,13 @@ export default function LA4Spezial() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b> <M>{t`\operatorname{diag}(1, 2, 6, 4)`}</M> ist eine Kurzschrift: Die vier Zahlen kommen der Reihe nach auf die Diagonale, überall sonst steht <M p=".">0</M></p>
-            <p><b>Warum «jeden Basisvektor skalieren»?</b> Die erste Spalte einer Matrix ist das Bild von <M>{t`e_1`}</M> (Lektion <a href="#la-transformation">Transformation</a>). Bei einer Diagonalmatrix ist die erste Spalte <M p=",">{t`(d_1, 0, \dots, 0)^T`}</M> also <M p=".">{t`d_1 e_1`}</M> Der Pfeil <M>{t`e_1`}</M> wird nur länger oder kürzer, er dreht sich nicht. Dasselbe gilt für jede Spalte.</p>
+            <p className="keep"><b>So liest man das:</b> <M>{t`\operatorname{diag}(1, 2, 6, 4)`}</M> ist eine Kurzschrift: Die vier Zahlen kommen der Reihe nach auf die Diagonale, überall sonst steht <M p=".">0</M></p>
+            <p className="keep"><b>Warum «jeden Basisvektor skalieren»?</b> Die erste Spalte einer Matrix ist das Bild von <M>{t`e_1`}</M> (Lektion <a href="#la-transformation">Transformation</a>). Bei einer Diagonalmatrix ist die erste Spalte <M p=",">{t`(d_1, 0, \dots, 0)^T`}</M> also <M p=".">{t`d_1 e_1`}</M> Der Pfeil <M>{t`e_1`}</M> wird nur länger oder kürzer, er dreht sich nicht. Dasselbe gilt für jede Spalte.</p>
             <p>Bei <M>{t`\mathbb{I}`}</M> sind alle Faktoren <M p=",">1</M> also bleibt jeder Pfeil, wie er ist: <M p=".">{t`\mathbb{I}v = v`}</M> Darum die Freude – mit <M>{t`\mathbb{I}`}</M> muss man nichts rechnen. Probier im Bild die Knöpfe aus, auch <M p=".">{t`\mathbb{I}`}</M></p>
           </>}
           en={<>
-            <p><b>How to read this:</b> <M>{t`\operatorname{diag}(1, 2, 6, 4)`}</M> is shorthand: the four numbers go onto the diagonal in order, everywhere else there is <M p=".">0</M></p>
-            <p><b>Why “scaling each basis vector”?</b> The first column of a matrix is the image of <M>{t`e_1`}</M> (lesson <a href="#la-transformation">transformation</a>). For a diagonal matrix the first column is <M p=",">{t`(d_1, 0, \dots, 0)^T`}</M> i.e. <M p=".">{t`d_1 e_1`}</M> The arrow <M>{t`e_1`}</M> only gets longer or shorter; it does not turn. The same holds for every column.</p>
+            <p className="keep"><b>How to read this:</b> <M>{t`\operatorname{diag}(1, 2, 6, 4)`}</M> is shorthand: the four numbers go onto the diagonal in order, everywhere else there is <M p=".">0</M></p>
+            <p className="keep"><b>Why “scaling each basis vector”?</b> The first column of a matrix is the image of <M>{t`e_1`}</M> (lesson <a href="#la-transformation">transformation</a>). For a diagonal matrix the first column is <M p=",">{t`(d_1, 0, \dots, 0)^T`}</M> i.e. <M p=".">{t`d_1 e_1`}</M> The arrow <M>{t`e_1`}</M> only gets longer or shorter; it does not turn. The same holds for every column.</p>
             <p>For <M>{t`\mathbb{I}`}</M> all factors are <M p=",">1</M> so every arrow stays as it is: <M p=".">{t`\mathbb{I}v = v`}</M> Hence the joy – with <M>{t`\mathbb{I}`}</M> there is nothing to compute. Try the buttons in the figure, including <M p=".">{t`\mathbb{I}`}</M></p>
           </>}
         />
@@ -55,11 +55,11 @@ export default function LA4Spezial() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b> Das Sternchen <M>{t`\ast`}</M> heisst «hier darf irgendeine Zahl stehen». Der Name sagt, wo das Dreieck mit den Zahlen liegt: bei <M>L</M> links unten, bei <M>R</M> rechts oben. Das «R» kennst du schon: die Zeilen-Stufen-Form aus dem <a href="#la-gauss">Gauss-Verfahren</a> ist eine Rechts-Dreiecksmatrix.</p>
+            <p className="keep"><b>So liest man das:</b> Das Sternchen <M>{t`\ast`}</M> heisst «hier darf irgendeine Zahl stehen». Der Name sagt, wo das Dreieck mit den Zahlen liegt: bei <M>L</M> links unten, bei <M>R</M> rechts oben. Das «R» kennst du schon: die Zeilen-Stufen-Form aus dem <a href="#la-gauss">Gauss-Verfahren</a> ist eine Rechts-Dreiecksmatrix.</p>
             <p>Alle vier Muster dieser Lektion im Vergleich (wähle die Art und die Grösse):</p>
           </>}
           en={<>
-            <p><b>How to read this:</b> The star <M>{t`\ast`}</M> means “any number may stand here”. The name says where the triangle with the numbers sits: for <M>L</M> at the bottom left, for <M>R</M> at the top right. You already know “R”: the row echelon form from <a href="#la-gauss">Gaussian elimination</a> is an upper triangular matrix.</p>
+            <p className="keep"><b>How to read this:</b> The star <M>{t`\ast`}</M> means “any number may stand here”. The name says where the triangle with the numbers sits: for <M>L</M> at the bottom left, for <M>R</M> at the top right. You already know “R”: the row echelon form from <a href="#la-gauss">Gaussian elimination</a> is an upper triangular matrix.</p>
             <p>All four patterns of this lesson side by side (pick the kind and the size):</p>
           </>}
         />
@@ -88,11 +88,11 @@ export default function LA4Spezial() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b> Das hochgestellte <M>T</M> heisst «transponiert». <M>{t`A^{m\times n}`}</M> wird zu einer <M>{t`n\times m`}</M>-Matrix: Die Zahl der Zeilen und die Zahl der Spalten tauschen. Ein Eintrag wandert von Zeile <M p=",">i</M> Spalte <M>j</M> nach Zeile <M p=",">j</M> Spalte <M p=".">i</M> Kurz: <M p=".">{t`(A^T)_{ji} = A_{ij}`}</M></p>
+            <p className="keep"><b>So liest man das:</b> Das hochgestellte <M>T</M> heisst «transponiert». <M>{t`A^{m\times n}`}</M> wird zu einer <M>{t`n\times m`}</M>-Matrix: Die Zahl der Zeilen und die Zahl der Spalten tauschen. Ein Eintrag wandert von Zeile <M p=",">i</M> Spalte <M>j</M> nach Zeile <M p=",">j</M> Spalte <M p=".">i</M> Kurz: <M p=".">{t`(A^T)_{ji} = A_{ij}`}</M></p>
             <p>Bei einer quadratischen Matrix sieht das aus wie ein Spiegel, der auf der Diagonalen steht. Schau zu, wie die Zahlen ihre Plätze tauschen:</p>
           </>}
           en={<>
-            <p><b>How to read this:</b> The superscript <M>T</M> means “transposed”. <M>{t`A^{m\times n}`}</M> becomes an <M>{t`n\times m`}</M> matrix: the number of rows and the number of columns swap. An entry moves from row <M p=",">i</M> column <M>j</M> to row <M p=",">j</M> column <M p=".">i</M> In short: <M p=".">{t`(A^T)_{ji} = A_{ij}`}</M></p>
+            <p className="keep"><b>How to read this:</b> The superscript <M>T</M> means “transposed”. <M>{t`A^{m\times n}`}</M> becomes an <M>{t`n\times m`}</M> matrix: the number of rows and the number of columns swap. An entry moves from row <M p=",">i</M> column <M>j</M> to row <M p=",">j</M> column <M p=".">i</M> In short: <M p=".">{t`(A^T)_{ji} = A_{ij}`}</M></p>
             <p>For a square matrix this looks like a mirror standing on the diagonal. Watch the numbers swap places:</p>
           </>}
         />
@@ -104,8 +104,8 @@ export default function LA4Spezial() {
         <TransposeExplorer />
         <T
           de={<>
-            <p><b>Die Rechenregeln in Worten.</b></p>
-            <ul>
+            <p className="keep"><b>Die Rechenregeln in Worten.</b></p>
+            <ul className="keep">
               <li><M>{t`(A+B)^T = A^T + B^T`}</M> und <M p=":">{t`(cA)^T = cA^T`}</M> Es ist egal, ob man zuerst addiert (oder mit <M>c</M> streckt) und dann spiegelt, oder umgekehrt – beides geht Feld für Feld.</li>
               <li><M p=":">{t`(A^T)^T = A`}</M> Zweimal spiegeln bringt alles zurück.</li>
               <li><M p=":">{t`(AB)^T = B^T A^T`}</M> Beim Produkt dreht sich die Reihenfolge um. Das prüfen wir mit Zahlen in der Lektion <a href="#la-produkt">Das Matrixprodukt</a>.</li>
@@ -113,8 +113,8 @@ export default function LA4Spezial() {
             </ul>
           </>}
           en={<>
-            <p><b>The rules in words.</b></p>
-            <ul>
+            <p className="keep"><b>The rules in words.</b></p>
+            <ul className="keep">
               <li><M>{t`(A+B)^T = A^T + B^T`}</M> and <M p=":">{t`(cA)^T = cA^T`}</M> it does not matter whether you first add (or stretch by <M p=")">c</M> and then mirror, or the other way round – both go cell by cell.</li>
               <li><M p=":">{t`(A^T)^T = A`}</M> mirroring twice brings everything back.</li>
               <li><M p=":">{t`(AB)^T = B^T A^T`}</M> for a product the order turns around. We check this with numbers in the lesson <a href="#la-produkt">The matrix product</a>.</li>
@@ -159,13 +159,13 @@ export default function LA4Spezial() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b> <M>{t`A^T = A`}</M> heisst: Spiegeln an der Diagonalen ändert nichts. Jeder Eintrag ist gleich seinem Spiegelpartner, <M p=".">{t`A_{ij} = A_{ji}`}</M> Im Beispiel: <M>{t`A_{13} = -2`}</M> und <M p=".">{t`A_{31} = -2`}</M></p>
-            <p><b>Warum quadratisch?</b> <M>{t`A^T`}</M> hat die Form <M>{t`n\times m`}</M> statt <M p=".">{t`m\times n`}</M> Gleich sein können die beiden nur, wenn sie dieselbe Form haben, also wenn <M p=".">{t`m = n`}</M></p>
+            <p className="keep"><b>So liest man das:</b> <M>{t`A^T = A`}</M> heisst: Spiegeln an der Diagonalen ändert nichts. Jeder Eintrag ist gleich seinem Spiegelpartner, <M p=".">{t`A_{ij} = A_{ji}`}</M> Im Beispiel: <M>{t`A_{13} = -2`}</M> und <M p=".">{t`A_{31} = -2`}</M></p>
+            <p className="keep"><b>Warum quadratisch?</b> <M>{t`A^T`}</M> hat die Form <M>{t`n\times m`}</M> statt <M p=".">{t`m\times n`}</M> Gleich sein können die beiden nur, wenn sie dieselbe Form haben, also wenn <M p=".">{t`m = n`}</M></p>
             <p>Tippe im Bild auf ein Feld: rot ist das Feld, blau sein Spiegelpartner. Die zwei Prüfungen unten zeigen sofort, welches Paar die Symmetrie bricht.</p>
           </>}
           en={<>
-            <p><b>How to read this:</b> <M>{t`A^T = A`}</M> means: mirroring across the diagonal changes nothing. Every entry equals its mirror partner, <M p=".">{t`A_{ij} = A_{ji}`}</M> In the example: <M>{t`A_{13} = -2`}</M> and <M p=".">{t`A_{31} = -2`}</M></p>
-            <p><b>Why square?</b> <M>{t`A^T`}</M> has the shape <M>{t`n\times m`}</M> instead of <M p=".">{t`m\times n`}</M> The two can only be equal if they have the same shape, i.e. if <M p=".">{t`m = n`}</M></p>
+            <p className="keep"><b>How to read this:</b> <M>{t`A^T = A`}</M> means: mirroring across the diagonal changes nothing. Every entry equals its mirror partner, <M p=".">{t`A_{ij} = A_{ji}`}</M> In the example: <M>{t`A_{13} = -2`}</M> and <M p=".">{t`A_{31} = -2`}</M></p>
+            <p className="keep"><b>Why square?</b> <M>{t`A^T`}</M> has the shape <M>{t`n\times m`}</M> instead of <M p=".">{t`m\times n`}</M> The two can only be equal if they have the same shape, i.e. if <M p=".">{t`m = n`}</M></p>
             <p>Tap a cell in the figure: red is the cell, blue its mirror partner. The two checks below show at once which pair breaks the symmetry.</p>
           </>}
         />
@@ -193,8 +193,8 @@ export default function LA4Spezial() {
           />
         </Box>
         <T
-          de={<p><b>So liest man das:</b> <M>{t`A = -A^T`}</M> heisst: Jeder Eintrag ist das <em>Negative</em> seines Spiegelpartners, <M p=".">{t`A_{ij} = -A_{ji}`}</M> Im Beispiel: <M>{t`A_{12} = 1`}</M> und <M p=".">{t`A_{21} = -1`}</M> Warum muss dann die Diagonale null sein? Schritt für Schritt:</p>}
-          en={<p><b>How to read this:</b> <M>{t`A = -A^T`}</M> means: every entry is the <em>negative</em> of its mirror partner, <M p=".">{t`A_{ij} = -A_{ji}`}</M> In the example: <M>{t`A_{12} = 1`}</M> and <M p=".">{t`A_{21} = -1`}</M> Why must the diagonal then be zero? Step by step:</p>}
+          de={<p className="keep"><b>So liest man das:</b> <M>{t`A = -A^T`}</M> heisst: Jeder Eintrag ist das <em>Negative</em> seines Spiegelpartners, <M p=".">{t`A_{ij} = -A_{ji}`}</M> Im Beispiel: <M>{t`A_{12} = 1`}</M> und <M p=".">{t`A_{21} = -1`}</M> Warum muss dann die Diagonale null sein? Schritt für Schritt:</p>}
+          en={<p className="keep"><b>How to read this:</b> <M>{t`A = -A^T`}</M> means: every entry is the <em>negative</em> of its mirror partner, <M p=".">{t`A_{ij} = -A_{ji}`}</M> In the example: <M>{t`A_{12} = 1`}</M> and <M p=".">{t`A_{21} = -1`}</M> Why must the diagonal then be zero? Step by step:</p>}
         />
         <AntiDiagAnim />
         <T

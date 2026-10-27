@@ -25,13 +25,13 @@ export default function A6Potenzen() {
           <T de={<p>Wichtig: <M>{t`r^n`}</M> für die Länge, <M>{t`n\varphi`}</M> für den Winkel.</p>} en={<p>Important: <M>{t`r^n`}</M> for the length, <M>{t`n\varphi`}</M> for the angle.</p>} />
         </Box>
         <T
-          de={<p><b>Warum?</b> <M>{t`z^n = z\cdot z\cdots z`}</M> (<M>n</M> Faktoren). Jeder Faktor multipliziert die Länge mit <M>r</M> und dreht um <M p=".">\varphi</M> Nach <M>n</M> Faktoren: Länge <M>{t`r\cdot r\cdots r = r^n`}</M> und Winkel <M p=".">{t`\varphi + \dots + \varphi = n\varphi`}</M> Die Punkte <M>{t`z, z^2, z^3, \dots`}</M> laufen darum auf einer <b>Spirale</b>: gleich grosse Drehschritte, die Länge wächst (oder schrumpft) jedes Mal um den Faktor <M p=".">r</M></p>}
-          en={<p><b>Why?</b> <M>{t`z^n = z\cdot z\cdots z`}</M> (<M>n</M> factors). Every factor multiplies the length by <M>r</M> and turns by <M p=".">\varphi</M> After <M>n</M> factors: length <M>{t`r\cdot r\cdots r = r^n`}</M> and angle <M p=".">{t`\varphi + \dots + \varphi = n\varphi`}</M> That is why the points <M>{t`z, z^2, z^3, \dots`}</M> run along a <b>spiral</b>: equal turning steps, and the length grows (or shrinks) by the factor <M>r</M> each time.</p>}
+          de={<p className="keep"><b>Warum?</b> <M>{t`z^n = z\cdot z\cdots z`}</M> (<M>n</M> Faktoren). Jeder Faktor multipliziert die Länge mit <M>r</M> und dreht um <M p=".">\varphi</M> Nach <M>n</M> Faktoren: Länge <M>{t`r\cdot r\cdots r = r^n`}</M> und Winkel <M p=".">{t`\varphi + \dots + \varphi = n\varphi`}</M> Die Punkte <M>{t`z, z^2, z^3, \dots`}</M> laufen darum auf einer <b>Spirale</b>: gleich grosse Drehschritte, die Länge wächst (oder schrumpft) jedes Mal um den Faktor <M p=".">r</M></p>}
+          en={<p className="keep"><b>Why?</b> <M>{t`z^n = z\cdot z\cdots z`}</M> (<M>n</M> factors). Every factor multiplies the length by <M>r</M> and turns by <M p=".">\varphi</M> After <M>n</M> factors: length <M>{t`r\cdot r\cdots r = r^n`}</M> and angle <M p=".">{t`\varphi + \dots + \varphi = n\varphi`}</M> That is why the points <M>{t`z, z^2, z^3, \dots`}</M> run along a <b>spiral</b>: equal turning steps, and the length grows (or shrinks) by the factor <M>r</M> each time.</p>}
         />
         <PowerSpiral />
         <T
-          de={<p><b>So liest man das Beispiel:</b> <M>{t`1 + i`}</M> liegt rechts oben, <M>{t`r = \sqrt{1 + 1} = \sqrt2`}</M> und <M>{t`\cos\varphi = \sin\varphi = \tfrac{1}{\sqrt2} = \tfrac{\sqrt2}{2}`}</M> – also <M p=".">{t`\varphi = \tfrac{\pi}{4}`}</M> Hoch 4: Länge <M p=",">{t`(\sqrt2)^4 = 2^2 = 4`}</M> Winkel <M p=".">{t`4\cdot\tfrac{\pi}{4} = \pi`}</M> Und <M>{t`e^{i\pi} = \cos\pi + i\sin\pi = -1`}</M> (halbe Drehung). Also <M p=",">{t`(1 + i)^4 = -4`}</M> und der Kehrwert ist <M p=".">{t`-\tfrac14`}</M> Im Bild (Knopf <M p="»):">{t`(1 + i)^4`}</M> vier Viertel-pi-Schritte bis auf die negative reelle Achse.</p>}
-          en={<p><b>How to read the example:</b> <M>{t`1 + i`}</M> lies upper right, <M>{t`r = \sqrt{1 + 1} = \sqrt2`}</M> and <M>{t`\cos\varphi = \sin\varphi = \tfrac{1}{\sqrt2} = \tfrac{\sqrt2}{2}`}</M> – so <M p=".">{t`\varphi = \tfrac{\pi}{4}`}</M> To the 4th: length <M p=",">{t`(\sqrt2)^4 = 2^2 = 4`}</M> angle <M p=".">{t`4\cdot\tfrac{\pi}{4} = \pi`}</M> And <M>{t`e^{i\pi} = \cos\pi + i\sin\pi = -1`}</M> (half turn). So <M p=",">{t`(1 + i)^4 = -4`}</M> and its reciprocal is <M p=".">{t`-\tfrac14`}</M> In the figure (button <M p="”):">{t`(1 + i)^4`}</M> four quarter-pi steps down to the negative real axis.</p>}
+          de={<p className="keep"><b>So liest man das Beispiel:</b> <M>{t`1 + i`}</M> liegt rechts oben, <M>{t`r = \sqrt{1 + 1} = \sqrt2`}</M> und <M>{t`\cos\varphi = \sin\varphi = \tfrac{1}{\sqrt2} = \tfrac{\sqrt2}{2}`}</M> – also <M p=".">{t`\varphi = \tfrac{\pi}{4}`}</M> Hoch 4: Länge <M p=",">{t`(\sqrt2)^4 = 2^2 = 4`}</M> Winkel <M p=".">{t`4\cdot\tfrac{\pi}{4} = \pi`}</M> Und <M>{t`e^{i\pi} = \cos\pi + i\sin\pi = -1`}</M> (halbe Drehung). Also <M p=",">{t`(1 + i)^4 = -4`}</M> und der Kehrwert ist <M p=".">{t`-\tfrac14`}</M> Im Bild (Knopf <M p="»):">{t`(1 + i)^4`}</M> vier Viertel-pi-Schritte bis auf die negative reelle Achse.</p>}
+          en={<p className="keep"><b>How to read the example:</b> <M>{t`1 + i`}</M> lies upper right, <M>{t`r = \sqrt{1 + 1} = \sqrt2`}</M> and <M>{t`\cos\varphi = \sin\varphi = \tfrac{1}{\sqrt2} = \tfrac{\sqrt2}{2}`}</M> – so <M p=".">{t`\varphi = \tfrac{\pi}{4}`}</M> To the 4th: length <M p=",">{t`(\sqrt2)^4 = 2^2 = 4`}</M> angle <M p=".">{t`4\cdot\tfrac{\pi}{4} = \pi`}</M> And <M>{t`e^{i\pi} = \cos\pi + i\sin\pi = -1`}</M> (half turn). So <M p=",">{t`(1 + i)^4 = -4`}</M> and its reciprocal is <M p=".">{t`-\tfrac14`}</M> In the figure (button <M p="”):">{t`(1 + i)^4`}</M> four quarter-pi steps down to the negative real axis.</p>}
         />
         <T
           de={<p>Zum Vergleich der Weg ohne Polarform: <M>{t`(1 + i)^2 = 1 + 2i + i^2 = 2i`}</M> und <M p=".">{t`(2i)^2 = 4i^2 = -4`}</M> Hier geht beides. Bei <M>{t`(1 + i)^{20}`}</M> gewinnt die Polarform klar: <M p=".">{t`(\sqrt2)^{20} e^{i\cdot 5\pi} = 1024\cdot(-1)`}</M></p>}
@@ -47,8 +47,8 @@ export default function A6Potenzen() {
           <MD>{t`z = 6 + 7i \;\Rightarrow\; iz = 6i + 7i^2 = -7 + 6i`}</MD>
         </Box>
         <T
-          de={<p><M>i</M> hat Länge <M>1</M> und Winkel <M p=".">{t`\tfrac{\pi}{2}`}</M> Mal <M>1</M> ändert die Länge nicht, plus <M>{t`\tfrac{\pi}{2}`}</M> ist eine Vierteldrehung. In Koordinaten: Aus <M>{t`(a; b)`}</M> wird <M p=".">{t`(-b; a)`}</M> Bei <M p=":">{t`6 + 7i`}</M> Der alte Imaginärteil <M>7</M> wird mit Minus zum neuen Realteil, der alte Realteil <M>6</M> zum neuen Imaginärteil.</p>}
-          en={<p><M>i</M> has length <M>1</M> and angle <M p=".">{t`\tfrac{\pi}{2}`}</M> Times <M>1</M> does not change the length; plus <M>{t`\tfrac{\pi}{2}`}</M> is a quarter turn. In coordinates: <M>{t`(a, b)`}</M> becomes <M p=".">{t`(-b, a)`}</M> For <M p=":">{t`6 + 7i`}</M> the old imaginary part <M>7</M> becomes the new real part with a minus, the old real part <M>6</M> the new imaginary part.</p>}
+          de={<p className="keep"><M>i</M> hat Länge <M>1</M> und Winkel <M p=".">{t`\tfrac{\pi}{2}`}</M> Mal <M>1</M> ändert die Länge nicht, plus <M>{t`\tfrac{\pi}{2}`}</M> ist eine Vierteldrehung. In Koordinaten: Aus <M>{t`(a; b)`}</M> wird <M p=".">{t`(-b; a)`}</M> Bei <M p=":">{t`6 + 7i`}</M> Der alte Imaginärteil <M>7</M> wird mit Minus zum neuen Realteil, der alte Realteil <M>6</M> zum neuen Imaginärteil.</p>}
+          en={<p className="keep"><M>i</M> has length <M>1</M> and angle <M p=".">{t`\tfrac{\pi}{2}`}</M> Times <M>1</M> does not change the length; plus <M>{t`\tfrac{\pi}{2}`}</M> is a quarter turn. In coordinates: <M>{t`(a, b)`}</M> becomes <M p=".">{t`(-b, a)`}</M> For <M p=":">{t`6 + 7i`}</M> the old imaginary part <M>7</M> becomes the new real part with a minus, the old real part <M>6</M> the new imaginary part.</p>}
         />
         <RotateI />
       </Section>
@@ -66,10 +66,10 @@ export default function A6Potenzen() {
           <T de={<p>Bild: Kreis mit Radius 2, die vier Lösungen als Ecken eines Quadrats; <M>{t`z_0`}</M> magenta beim Winkel <M p=".">{t`\pi/4`}</M></p>} en={<p>Picture: circle of radius 2, the four solutions as corners of a square; <M>{t`z_0`}</M> in magenta at angle <M p=".">{t`\pi/4`}</M></p>} />
         </Box>
         <T
-          de={<p><b>Woher kommt die Formel?</b> Schreibe die gesuchte Zahl als <M p=".">{t`z = re^{i\varphi}`}</M> Dann ist <M p=".">{t`z^n = r^n e^{in\varphi}`}</M> Das soll <M>{t`Re^{i\theta}`}</M> sein. Zwei Bedingungen:</p>}
-          en={<p><b>Where does the formula come from?</b> Write the unknown number as <M p=".">{t`z = re^{i\varphi}`}</M> Then <M p=".">{t`z^n = r^n e^{in\varphi}`}</M> This should be <M p=".">{t`Re^{i\theta}`}</M> Two conditions:</p>}
+          de={<p className="keep"><b>Woher kommt die Formel?</b> Schreibe die gesuchte Zahl als <M p=".">{t`z = re^{i\varphi}`}</M> Dann ist <M p=".">{t`z^n = r^n e^{in\varphi}`}</M> Das soll <M>{t`Re^{i\theta}`}</M> sein. Zwei Bedingungen:</p>}
+          en={<p className="keep"><b>Where does the formula come from?</b> Write the unknown number as <M p=".">{t`z = re^{i\varphi}`}</M> Then <M p=".">{t`z^n = r^n e^{in\varphi}`}</M> This should be <M p=".">{t`Re^{i\theta}`}</M> Two conditions:</p>}
         />
-        <ul>
+        <ul className="keep">
           <T
             de={<>
               <li><b>Länge:</b> <M p=",">{t`r^n = R`}</M> also <M p=".">{t`r = \sqrt[n]{R}`}</M> Eine einzige Möglichkeit, denn <M>r</M> ist positiv.</li>
@@ -115,8 +115,8 @@ export default function A6Potenzen() {
         />
         <RootsExplorer />
         <T
-          de={<p><b>Und <M p="?">{t`w = 0`}</M></b> Dann ist <M p=",">{t`R = 0`}</M> also <M p=":">{t`r^n = 0`}</M> Nur <M>{t`r = 0`}</M> geht, und das ist der eine Punkt <M p=".">{t`z = 0`}</M> Einen Winkel gibt es dort nicht, also auch kein Vieleck. Darum verlangt die Formel <M p=".">{t`R > 0`}</M></p>}
-          en={<p><b>And <M p="?">{t`w = 0`}</M></b> Then <M p=",">{t`R = 0`}</M> so <M p=".">{t`r^n = 0`}</M> Only <M>{t`r = 0`}</M> works, and that is the single point <M p=".">{t`z = 0`}</M> There is no angle there, hence no polygon. That is why the formula requires <M p=".">{t`R > 0`}</M></p>}
+          de={<p className="keep"><b>Und <M p="?">{t`w = 0`}</M></b> Dann ist <M p=",">{t`R = 0`}</M> also <M p=":">{t`r^n = 0`}</M> Nur <M>{t`r = 0`}</M> geht, und das ist der eine Punkt <M p=".">{t`z = 0`}</M> Einen Winkel gibt es dort nicht, also auch kein Vieleck. Darum verlangt die Formel <M p=".">{t`R > 0`}</M></p>}
+          en={<p className="keep"><b>And <M p="?">{t`w = 0`}</M></b> Then <M p=",">{t`R = 0`}</M> so <M p=".">{t`r^n = 0`}</M> Only <M>{t`r = 0`}</M> works, and that is the single point <M p=".">{t`z = 0`}</M> There is no angle there, hence no polygon. That is why the formula requires <M p=".">{t`R > 0`}</M></p>}
         />
       </Section>
 

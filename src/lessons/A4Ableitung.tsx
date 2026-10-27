@@ -47,9 +47,9 @@ export default function A4Ableitung() {
         </Box>
         <T
           de={<>
-            <p><b>Die Zeichen:</b> <M>{t`x_0`}</M> ist die Stelle, die uns interessiert, hier <M p=".">{t`x_0 = 1`}</M> <M>h</M> ist ein kleiner Schritt nach rechts (oder nach links, wenn <M p=").">{t`h < 0`}</M> Der zweite Punkt <M>Q</M> liegt bei <M p=".">{t`x_0 + h`}</M> Dann ist <M>{t`\Delta x = h`}</M> der Weg nach rechts und <M>{t`\Delta y = f(x_0+h) - f(x_0)`}</M> der Weg nach oben. Ihr Verhältnis ist die Steigung der Sekante. <M>{t`h \neq 0`}</M> muss sein, sonst teilt man durch null.</p>
-            <p><b>So liest man das Beispiel:</b></p>
-            <ol>
+            <p className="keep"><b>Die Zeichen:</b> <M>{t`x_0`}</M> ist die Stelle, die uns interessiert, hier <M p=".">{t`x_0 = 1`}</M> <M>h</M> ist ein kleiner Schritt nach rechts (oder nach links, wenn <M p=").">{t`h < 0`}</M> Der zweite Punkt <M>Q</M> liegt bei <M p=".">{t`x_0 + h`}</M> Dann ist <M>{t`\Delta x = h`}</M> der Weg nach rechts und <M>{t`\Delta y = f(x_0+h) - f(x_0)`}</M> der Weg nach oben. Ihr Verhältnis ist die Steigung der Sekante. <M>{t`h \neq 0`}</M> muss sein, sonst teilt man durch null.</p>
+            <p className="keep"><b>So liest man das Beispiel:</b></p>
+            <ol className="keep">
               <li>Ausmultiplizieren: <M p=".">{t`(1+h)^2 = 1 + 2h + h^2`}</M></li>
               <li>Minus <M p=":">{t`f(1) = 1`}</M> Im Zähler bleibt <M p=".">{t`2h + h^2`}</M></li>
               <li>Durch <M>h</M> kürzen – erlaubt, weil <M p=".">{t`h \neq 0`}</M> Es bleibt <M p=".">{t`2 + h`}</M></li>
@@ -58,9 +58,9 @@ export default function A4Ableitung() {
             <p>Die Animation spielt genau diese Tabelle ab:</p>
           </>}
           en={<>
-            <p><b>The symbols:</b> <M>{t`x_0`}</M> is the point we care about, here <M p=".">{t`x_0 = 1`}</M> <M>h</M> is a small step to the right (or to the left if <M p=").">{t`h < 0`}</M> The second point <M>Q</M> sits at <M p=".">{t`x_0 + h`}</M> Then <M>{t`\Delta x = h`}</M> is the way to the right and <M>{t`\Delta y = f(x_0+h) - f(x_0)`}</M> the way up. Their ratio is the slope of the secant. <M>{t`h \neq 0`}</M> is needed, otherwise we divide by zero.</p>
-            <p><b>How to read the example:</b></p>
-            <ol>
+            <p className="keep"><b>The symbols:</b> <M>{t`x_0`}</M> is the point we care about, here <M p=".">{t`x_0 = 1`}</M> <M>h</M> is a small step to the right (or to the left if <M p=").">{t`h < 0`}</M> The second point <M>Q</M> sits at <M p=".">{t`x_0 + h`}</M> Then <M>{t`\Delta x = h`}</M> is the way to the right and <M>{t`\Delta y = f(x_0+h) - f(x_0)`}</M> the way up. Their ratio is the slope of the secant. <M>{t`h \neq 0`}</M> is needed, otherwise we divide by zero.</p>
+            <p className="keep"><b>How to read the example:</b></p>
+            <ol className="keep">
               <li>Multiply out: <M p=".">{t`(1+h)^2 = 1 + 2h + h^2`}</M></li>
               <li>Subtract <M p=":">{t`f(1) = 1`}</M> the numerator is <M p=".">{t`2h + h^2`}</M></li>
               <li>Cancel <M>h</M> – allowed because <M p=".">{t`h \neq 0`}</M> What remains is <M p=".">{t`2 + h`}</M></li>
@@ -106,15 +106,15 @@ export default function A4Ableitung() {
         </Box>
         <T
           de={<>
-            <p><b>Was heisst <M p="?">\lim</M></b> <M>{t`\lim_{h\to0}`}</M> ist der Wert, dem der Differenzenquotient immer näher kommt, wenn <M>h</M> immer kleiner wird. Man setzt <M>{t`h = 0`}</M> <em>nicht</em> einfach ein – das gäbe <M p=".">{t`\frac{0}{0}`}</M> Man kürzt zuerst, dann darf <M>h</M> verschwinden.</p>
+            <p className="keep"><b>Was heisst <M p="?">\lim</M></b> <M>{t`\lim_{h\to0}`}</M> ist der Wert, dem der Differenzenquotient immer näher kommt, wenn <M>h</M> immer kleiner wird. Man setzt <M>{t`h = 0`}</M> <em>nicht</em> einfach ein – das gäbe <M p=".">{t`\frac{0}{0}`}</M> Man kürzt zuerst, dann darf <M>h</M> verschwinden.</p>
             <p>Auf der Folie steht «in <M>h</M> differenzierbar». Gemeint ist die <b>Stelle <M>{t`x_0`}</M></b>: <M>h</M> ist nur der Schritt, der gegen <M>0</M> geht.</p>
-            <p><b>So liest man das Beispiel:</b> Statt <M>1</M> steht jetzt ein beliebiges <M p=".">x</M> Gleich wie oben: ausmultiplizieren, <M>{t`x^2`}</M> fällt weg, durch <M>h</M> kürzen. Übrig bleibt <M p=".">{t`2x + h`}</M> Jetzt geht <M>h</M> gegen <M p=",">0</M> und es bleibt <M p=".">{t`f'(x) = 2x`}</M> Bei <M>{t`x = 1`}</M> ist das die <M>2</M> aus der Tabelle.</p>
+            <p className="keep"><b>So liest man das Beispiel:</b> Statt <M>1</M> steht jetzt ein beliebiges <M p=".">x</M> Gleich wie oben: ausmultiplizieren, <M>{t`x^2`}</M> fällt weg, durch <M>h</M> kürzen. Übrig bleibt <M p=".">{t`2x + h`}</M> Jetzt geht <M>h</M> gegen <M p=",">0</M> und es bleibt <M p=".">{t`f'(x) = 2x`}</M> Bei <M>{t`x = 1`}</M> ist das die <M>2</M> aus der Tabelle.</p>
             <p><b>«Der rechte und linke Grenzwert stimmen überein»:</b> <M>h</M> darf auch negativ sein. Dann liegt <M>Q</M> links von <M p=".">P</M> Beide Wege müssen zur selben Zahl führen. Das zeigt das Bild im nächsten Abschnitt.</p>
           </>}
           en={<>
-            <p><b>What does <M>\lim</M> mean?</b> <M>{t`\lim_{h\to0}`}</M> is the value the difference quotient gets closer and closer to as <M>h</M> gets smaller and smaller. You do <em>not</em> simply insert <M>{t`h = 0`}</M> – that would give <M p=".">{t`\frac{0}{0}`}</M> You cancel first, then <M>h</M> may disappear.</p>
+            <p className="keep"><b>What does <M>\lim</M> mean?</b> <M>{t`\lim_{h\to0}`}</M> is the value the difference quotient gets closer and closer to as <M>h</M> gets smaller and smaller. You do <em>not</em> simply insert <M>{t`h = 0`}</M> – that would give <M p=".">{t`\frac{0}{0}`}</M> You cancel first, then <M>h</M> may disappear.</p>
             <p>The slide says “differentiable in <M p="”.">h</M> What is meant is the <b>point <M>{t`x_0`}</M></b>: <M>h</M> is only the step that goes to <M p=".">0</M></p>
-            <p><b>How to read the example:</b> instead of <M>1</M> there is now any <M p=".">x</M> Same as above: multiply out, <M>{t`x^2`}</M> cancels, divide by <M p=".">h</M> What remains is <M p=".">{t`2x + h`}</M> Now <M>h</M> goes to <M p=",">0</M> and <M>{t`f'(x) = 2x`}</M> remains. At <M>{t`x = 1`}</M> this is the <M>2</M> of the table.</p>
+            <p className="keep"><b>How to read the example:</b> instead of <M>1</M> there is now any <M p=".">x</M> Same as above: multiply out, <M>{t`x^2`}</M> cancels, divide by <M p=".">h</M> What remains is <M p=".">{t`2x + h`}</M> Now <M>h</M> goes to <M p=",">0</M> and <M>{t`f'(x) = 2x`}</M> remains. At <M>{t`x = 1`}</M> this is the <M>2</M> of the table.</p>
             <p><b>“The right and the left limit agree”:</b> <M>h</M> may also be negative. Then <M>Q</M> lies to the left of <M p=".">P</M> Both ways must lead to the same number. The figure in the next section shows this.</p>
           </>}
         />
@@ -141,8 +141,8 @@ export default function A4Ableitung() {
         <SidesFigure />
         <T
           de={<>
-            <p><b>So liest man die Rechnung für <M p=":">{t`|x|`}</M></b></p>
-            <ol>
+            <p className="keep"><b>So liest man die Rechnung für <M p=":">{t`|x|`}</M></b></p>
+            <ol className="keep">
               <li>Bei <M>{t`x_0 = 0`}</M> ist <M p=",">{t`f(0) = 0`}</M> also ist der Differenzenquotient <M p=".">{t`\frac{|h|}{h}`}</M></li>
               <li>Von rechts (<M p="):">{t`h > 0`}</M> <M p=",">{t`|h| = h`}</M> also <M p="">{t`\frac{h}{h} = 1`}</M> – für jedes noch so kleine <M p=".">h</M></li>
               <li>Von links (<M p="):">{t`h < 0`}</M> <M p=",">{t`|h| = -h`}</M> also <M p=".">{t`\frac{-h}{h} = -1`}</M></li>
@@ -151,8 +151,8 @@ export default function A4Ableitung() {
             <p>Bei der Parabel dagegen ist links <M>{t`m = 2 - h`}</M> und rechts <M>{t`m = 2 + h`}</M> (die Zahlen unter dem Bild). Beide gehen gegen <M p=".">2</M></p>
           </>}
           en={<>
-            <p><b>How to read the calculation for <M p=":">{t`|x|`}</M></b></p>
-            <ol>
+            <p className="keep"><b>How to read the calculation for <M p=":">{t`|x|`}</M></b></p>
+            <ol className="keep">
               <li>At <M>{t`x_0 = 0`}</M> we have <M p=",">{t`f(0) = 0`}</M> so the difference quotient is <M p=".">{t`\frac{|h|}{h}`}</M></li>
               <li>From the right (<M p="):">{t`h > 0`}</M> <M p=",">{t`|h| = h`}</M> so <M p="">{t`\frac{h}{h} = 1`}</M> – for every <M p=",">h</M> however small.</li>
               <li>From the left (<M p="):">{t`h < 0`}</M> <M p=",">{t`|h| = -h`}</M> so <M p=".">{t`\frac{-h}{h} = -1`}</M></li>
@@ -161,7 +161,7 @@ export default function A4Ableitung() {
             <p>For the parabola, in contrast, the left slope is <M>{t`m = 2 - h`}</M> and the right one <M>{t`m = 2 + h`}</M> (the numbers below the figure). Both tend to <M p=".">2</M></p>
           </>}
         />
-        <Box kind="supplement" title={<T de={<>Warum differenzierbar <M>\Rightarrow</M> stetig</>} en={<>Why differentiable <M>\Rightarrow</M> continuous</>} />}>
+        <Box keep kind="supplement" title={<T de={<>Warum differenzierbar <M>\Rightarrow</M> stetig</>} en={<>Why differentiable <M>\Rightarrow</M> continuous</>} />}>
           <T
             de={<>
               <p>Stetig in <M>{t`x_0`}</M> heisst: <M>{t`f(x_0 + h)`}</M> kommt <M>{t`f(x_0)`}</M> beliebig nahe, wenn <M>h</M> gegen <M>0</M> geht. Schreib den Unterschied als Produkt:</p>

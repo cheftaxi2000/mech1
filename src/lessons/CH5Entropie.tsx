@@ -84,16 +84,16 @@ export default function CH5Entropie() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li>Ein Film läuft rückwärts. Sieht das aus wie etwas Mögliches? Ein Ball, der von selbst hochspringt, nicht. Das ist das Merkmal eines irreversiblen (spontanen) Vorgangs.</li>
               <li>Reversibel ist der Grenzfall, in dem alles so langsam und so fein abgestimmt geschieht, dass der Film vorwärts und rückwärts gleich möglich aussieht. Dafür darf die treibende Kraft (<M>{t`\delta T`}</M> oder <M p=")">{t`\delta P`}</M> nur unendlich klein sein.</li>
               <li>Ausprobieren: Unten fliesst Wärme zwischen zwei Blöcken. Ziehe <M>{t`\Delta T`}</M> gegen null, und die Kurve rechts wird flach: Dann kostet das Hin- und Herschieben von Wärme keine Entropie mehr.</li>
             </ol>
           </>}
           en={<>
-            <p><b>How to read this:</b></p>
-            <ol>
+            <p className="keep"><b>How to read this:</b></p>
+            <ol className="keep">
               <li>A film runs backwards. Does it look like something possible? A ball that jumps up by itself does not. That is the mark of an irreversible (spontaneous) process.</li>
               <li>Reversible is the limit in which everything happens so slowly and so finely balanced that the film looks equally possible forwards and backwards. For that the driving force (<M>{t`\delta T`}</M> or <M p=")">{t`\delta P`}</M> may only be infinitesimal.</li>
               <li>Try it: below, heat flows between two blocks. Pull <M>{t`\Delta T`}</M> towards zero and the curve on the right becomes flat: moving heat back and forth then costs no entropy any more.</li>
@@ -129,16 +129,16 @@ export default function CH5Entropie() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li><M>{t`q_\mathrm{rev}`}</M> ist die Wärme, die ein Vorgang <em>im reversiblen Idealfall</em> aufnimmt. Beim Schmelzen von Eis ist das einfach <M p=":">{t`\Delta H_\mathrm{fus}`}</M> Die Wärme geht in das Auseinanderlösen des Eisgitters, nicht in eine Temperaturerhöhung. Darum bleibt <M>T</M> während des Schmelzens konstant, und die Formel <M>{t`q/T`}</M> darf direkt benutzt werden.</li>
               <li>Durch <M>T</M> teilen heisst: Dieselbe Wärme macht bei <em>tiefer</em> Temperatur mehr Entropie als bei hoher. Ein Tropfen Tinte in einem ruhigen Glas verändert die Lage stärker als in einem schon aufgewühlten.</li>
               <li><M>{t`+22\,\mathrm{J\,mol^{-1}\,K^{-1}}`}</M> heisst: Pro Mol Eis, das schmilzt, nimmt die Entropie des Wassers um 22 Joule pro Kelvin zu. Das System wird «unordentlicher»: Moleküle, die im Gitter festsitzen, können sich nun frei bewegen.</li>
             </ol>
           </>}
           en={<>
-            <p><b>How to read this:</b></p>
-            <ol>
+            <p className="keep"><b>How to read this:</b></p>
+            <ol className="keep">
               <li><M>{t`q_\mathrm{rev}`}</M> is the heat a process takes up <em>in the reversible ideal case</em>. When ice melts that is simply <M p=":">{t`\Delta H_\mathrm{fus}`}</M> the heat goes into loosening the ice lattice, not into raising the temperature. That is why <M>T</M> stays constant during melting, and the formula <M>{t`q/T`}</M> may be used directly.</li>
               <li>Dividing by <M>T</M> means: the same heat creates more entropy at <em>low</em> temperature than at high. A drop of ink in a calm glass changes the picture more than in one that is already stirred up.</li>
               <li><M>{t`+22\,\mathrm{J\,mol^{-1}\,K^{-1}}`}</M> means: for every mole of ice that melts, the entropy of the water rises by 22 joules per kelvin. The system becomes «messier»: molecules that sat fixed in the lattice can now move freely.</li>
@@ -180,8 +180,8 @@ export default function CH5Entropie() {
         <T
           de={<>
             <p>Zur Zahl <M p=":">{t`+3{,}0`}</M> Die Folie zieht die auf ganze Zahlen gerundeten Werte <M>22</M> und <M>19</M> ab. Rechnet man genau, ist <M>{t`6000/273 = 21{,}98`}</M> und <M p=",">{t`6000/310 = 19{,}35`}</M> also <M>{t`\Delta S_\mathrm{univ} = +2{,}6\,\mathrm{J\,mol^{-1}\,K^{-1}}`}</M> (CH-003). Die Aussage bleibt: positiv.</p>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li>Betrachte immer <em>beide</em> Konten: das System (Eis) und die Umgebung (Hand). Das Eis gewinnt Entropie (<M>{t`q`}</M> fliesst hinein, geteilt durch die tiefe Temperatur <M p=").">{t`273\,\mathrm{K}`}</M> Die Hand verliert Entropie (dieselbe Wärme fliesst hinaus, geteilt durch die höhere <M p=").">{t`310\,\mathrm{K}`}</M></li>
               <li>Dieselbe Wärme zählt bei tiefer Temperatur mehr. Darum gewinnt das kalte Eis mehr, als die warme Hand verliert, und die Summe ist positiv.</li>
               <li>Schiebe unten die Temperatur der Umgebung nach unten: Bei <M>{t`273\,\mathrm{K}`}</M> wird die Summe null (reversibel), darunter negativ – dann schmilzt das Eis nicht mehr von selbst (Folie 8: «bei <M>{t`-1\,^\circ\mathrm{C}`}</M> nicht»).</li>
@@ -189,8 +189,8 @@ export default function CH5Entropie() {
           </>}
           en={<>
             <p>On the number <M p=":">{t`+3.0`}</M> the slide subtracts the values <M>22</M> and <M>19</M> rounded to whole numbers. Calculated exactly, <M>{t`6000/273 = 21.98`}</M> and <M p=",">{t`6000/310 = 19.35`}</M> so <M>{t`\Delta S_\mathrm{univ} = +2.6\,\mathrm{J\,mol^{-1}\,K^{-1}}`}</M> (CH-003). The statement stays: positive.</p>
-            <p><b>How to read this:</b></p>
-            <ol>
+            <p className="keep"><b>How to read this:</b></p>
+            <ol className="keep">
               <li>Always look at <em>both</em> accounts: the system (ice) and the surroundings (hand). The ice gains entropy (<M>{t`q`}</M> flows in, divided by the low temperature <M p=").">{t`273\,\mathrm{K}`}</M> The hand loses entropy (the same heat flows out, divided by the higher <M p=").">{t`310\,\mathrm{K}`}</M></li>
               <li>The same heat counts more at low temperature. So the cold ice gains more than the warm hand loses, and the sum is positive.</li>
               <li>Below, push the temperature of the surroundings down: at <M>{t`273\,\mathrm{K}`}</M> the sum becomes zero (reversible), below it negative – then the ice no longer melts by itself (slide 8: «not at <M>{t`-1\,^\circ\mathrm{C}`}</M>»).</li>
@@ -257,8 +257,8 @@ export default function CH5Entropie() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li>Ein <em>Makrozustand</em> ist das, was man von aussen sieht (Druck, Volumen, «alle Teilchen links»). Ein <em>Mikrozustand</em> ist, welches Teilchen genau wo sitzt. <M>W</M> zählt, wie viele Mikrozustände zum selben Makrozustand gehören.</li>
               <li>Der Logarithmus macht aus dem Produkt «Möglichkeiten mal Möglichkeiten» eine Summe «Entropie plus Entropie». Darum addieren sich die Entropien zweier unabhängiger Systeme, während sich ihre <M>W</M> multiplizieren.</li>
               <li><M p=":">{t`\Delta S = k_\mathrm{B}\ln(W_\mathrm{final}/W_\mathrm{initial})`}</M> Entscheidend ist, um welchen <em>Faktor</em> die Zahl der Anordnungen wächst.</li>
@@ -266,8 +266,8 @@ export default function CH5Entropie() {
             <p>Im Bild unten kannst du <M>W</M> wirklich abzählen. Die Plätze sind Kästchen, die Teilchen violett. Mit geschlossener Trennwand sitzen alle <M>N</M> Teilchen links: <M>{t`W = \binom{10}{N}`}</M> Anordnungen. Öffnest du, dürfen sie überall sitzen: <M p=".">{t`W = \binom{20}{N}`}</M> Die Teilchen springen laufend in zufällige der erlaubten Anordnungen. Die Säulen darunter zählen, wie viele Anordnungen zu «<M>k</M> Teilchen links» gehören. «Fast alle links» gibt es nur selten; «halb–halb» fast immer. Darum geht das Gas von selbst auseinander und nie von selbst zurück. Ein Kristall bei <M>{t`T = 0`}</M> hat nur eine Anordnung: Knopf «Kristall».</p>
           </>}
           en={<>
-            <p><b>How to read this:</b></p>
-            <ol>
+            <p className="keep"><b>How to read this:</b></p>
+            <ol className="keep">
               <li>A <em>macrostate</em> is what you see from outside (pressure, volume, «all particles on the left»). A <em>microstate</em> is which particle sits exactly where. <M>W</M> counts how many microstates belong to the same macrostate.</li>
               <li>The logarithm turns the product «possibilities times possibilities» into a sum «entropy plus entropy». That is why the entropies of two independent systems add, while their <M>W</M> multiply.</li>
               <li><M p=":">{t`\Delta S = k_\mathrm{B}\ln(W_\mathrm{final}/W_\mathrm{initial})`}</M> what matters is by which <em>factor</em> the number of arrangements grows.</li>
@@ -300,11 +300,11 @@ export default function CH5Entropie() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b> Jede Stelle der Liste ist dasselbe Prinzip: mehr Platz (<M p="),">V</M> mehr Bewegungsenergie (<M p="),">T</M> mehr Teilchen oder mehr Bewegungsformen schaffen mehr Möglichkeiten. Beim Schmelzen und Verdampfen können sich die Teilchen freier bewegen. Am absoluten Nullpunkt ist nichts mehr in Bewegung, es bleibt eine einzige Anordnung: <M>{t`S = k_\mathrm{B}\ln 1 = 0`}</M> (Aufgabe 1 der Übung).</p>
+            <p className="keep"><b>So liest man das:</b> Jede Stelle der Liste ist dasselbe Prinzip: mehr Platz (<M p="),">V</M> mehr Bewegungsenergie (<M p="),">T</M> mehr Teilchen oder mehr Bewegungsformen schaffen mehr Möglichkeiten. Beim Schmelzen und Verdampfen können sich die Teilchen freier bewegen. Am absoluten Nullpunkt ist nichts mehr in Bewegung, es bleibt eine einzige Anordnung: <M>{t`S = k_\mathrm{B}\ln 1 = 0`}</M> (Aufgabe 1 der Übung).</p>
             <p>Das Bild zeigt die Entropie von Wasser gegen die Temperatur (die Zahlen sind eine Ergänzung): Sie steigt mit <M p=",">T</M> und sie springt beim Schmelzen und stärker beim Sieden. Genau das hat die Tutorin skizziert.</p>
           </>}
           en={<>
-            <p><b>How to read this:</b> every item of the list is the same principle: more room (<M p="),">V</M> more motional energy (<M p="),">T</M> more particles or more forms of motion create more possibilities. When melting and boiling, the particles can move more freely. At absolute zero nothing is moving any more, a single arrangement remains: <M>{t`S = k_\mathrm{B}\ln 1 = 0`}</M> (exercise 1 of the class).</p>
+            <p className="keep"><b>How to read this:</b> every item of the list is the same principle: more room (<M p="),">V</M> more motional energy (<M p="),">T</M> more particles or more forms of motion create more possibilities. When melting and boiling, the particles can move more freely. At absolute zero nothing is moving any more, a single arrangement remains: <M>{t`S = k_\mathrm{B}\ln 1 = 0`}</M> (exercise 1 of the class).</p>
             <p>The figure shows the entropy of water against temperature (the numbers are a supplement): it rises with <M p=",">T</M> and it jumps at melting and more strongly at boiling. That is exactly what the teaching assistant sketched.</p>
           </>}
         />

@@ -53,7 +53,7 @@ export default function LA2Lgs() {
       {/* ------------------------------------------------------------------ 1 */}
       <Section id="linear" title={<T de="1. Linear oder nicht?" en="1. Linear or not?" />}>
         <Box kind="uebung" src={<Src u={2} p={4} slides />} title={<T de="«Warm up: Welche Gleichungen sind linear?»" en="“Warm up: which eqs. are linear?”" />}>
-          <ul className="l12-warm">
+          <ul className="l12-warm keep">
             <li><span className="tick yes" aria-label="linear">✓</span><M>{t`x_1 + 18x_2 - 3x_3 + 5x_4 = 6`}</M>
               <T de={<span className="why">Jede Unbekannte steht allein, nur mit einer Zahl davor. Das ist linear, egal wie viele Unbekannte.</span>} en={<span className="why">Every unknown stands alone, with only a number in front. That is linear, no matter how many unknowns.</span>} /></li>
             <li><span className="tick no" aria-label="not linear">✗</span><M>{t`x_1 + x_2 + x_3 = \cos(x_1)`}</M>
@@ -83,13 +83,13 @@ export default function LA2Lgs() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b> Eine <em>Lösung</em> ist ein Zahlenpaar <M p=",">{t`(x, y)`}</M> das die Gleichung wahr macht. Zum Beispiel <M p=":">{t`(1, 1)`}</M> <M p=".">{t`4\cdot 1 + 6\cdot 1 = 10`}</M> Es gibt aber unendlich viele solche Paare.</p>
-            <p>Warum bilden sie eine Gerade? Löse nach <M>y</M> auf: <M p=".">{t`y = \tfrac{5}{3} - \tfrac{2}{3}x`}</M> Das ist eine Gerade mit Steigung <M p=",">{t`-\tfrac23`}</M> wie in der Analysis. Jeder Punkt darauf ist eine Lösung, jeder andere Punkt nicht.</p>
+            <p className="keep"><b>So liest man das:</b> Eine <em>Lösung</em> ist ein Zahlenpaar <M p=",">{t`(x, y)`}</M> das die Gleichung wahr macht. Zum Beispiel <M p=":">{t`(1, 1)`}</M> <M p=".">{t`4\cdot 1 + 6\cdot 1 = 10`}</M> Es gibt aber unendlich viele solche Paare.</p>
+            <p className="keep">Warum bilden sie eine Gerade? Löse nach <M>y</M> auf: <M p=".">{t`y = \tfrac{5}{3} - \tfrac{2}{3}x`}</M> Das ist eine Gerade mit Steigung <M p=",">{t`-\tfrac23`}</M> wie in der Analysis. Jeder Punkt darauf ist eine Lösung, jeder andere Punkt nicht.</p>
             <p>Im Bild kannst du den roten Punkt entlang der Geraden ziehen. Unten wird die Gleichung mit seinen Koordinaten nachgerechnet, exakt mit Brüchen. Mit <M>a</M> und <M>b</M> kippt die Gerade, mit <M>c</M> verschiebt sie sich parallel.</p>
           </>}
           en={<>
-            <p><b>How to read it:</b> a <em>solution</em> is a pair of numbers <M>{t`(x, y)`}</M> that makes the equation true. For example <M p=":">{t`(1, 1)`}</M> <M p=".">{t`4\cdot 1 + 6\cdot 1 = 10`}</M> But there are infinitely many such pairs.</p>
-            <p>Why do they form a line? Solve for <M p=":">y</M> <M p=".">{t`y = \tfrac{5}{3} - \tfrac{2}{3}x`}</M> That is a line with slope <M p=",">{t`-\tfrac23`}</M> as in analysis. Every point on it is a solution, every other point is not.</p>
+            <p className="keep"><b>How to read it:</b> a <em>solution</em> is a pair of numbers <M>{t`(x, y)`}</M> that makes the equation true. For example <M p=":">{t`(1, 1)`}</M> <M p=".">{t`4\cdot 1 + 6\cdot 1 = 10`}</M> But there are infinitely many such pairs.</p>
+            <p className="keep">Why do they form a line? Solve for <M p=":">y</M> <M p=".">{t`y = \tfrac{5}{3} - \tfrac{2}{3}x`}</M> That is a line with slope <M p=",">{t`-\tfrac23`}</M> as in analysis. Every point on it is a solution, every other point is not.</p>
             <p>In the figure you can drag the red point along the line. Below, the equation is checked with its coordinates, exactly with fractions. With <M>a</M> and <M>b</M> the line tilts, with <M>c</M> it shifts parallel.</p>
           </>}
         />
@@ -119,8 +119,8 @@ export default function LA2Lgs() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b> Eine Lösung des Systems muss <em>beide</em> Gleichungen erfüllen. Sie liegt also auf beiden Geraden. Zwei Geraden in der Ebene können nur drei Dinge tun:</p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b> Eine Lösung des Systems muss <em>beide</em> Gleichungen erfüllen. Sie liegt also auf beiden Geraden. Zwei Geraden in der Ebene können nur drei Dinge tun:</p>
+            <ol className="keep">
               <li>sich in genau einem Punkt schneiden: <b>genau eine Lösung</b>;</li>
               <li>aufeinander liegen: <b>unendlich viele Lösungen</b> (jeder Punkt der Geraden);</li>
               <li>parallel nebeneinander laufen: <b>keine Lösung</b>.</li>
@@ -128,8 +128,8 @@ export default function LA2Lgs() {
             <p>Mehr Möglichkeiten gibt es nicht. Wähle ein Beispiel der Folien oder stelle mit den Reglern eigene Gleichungen ein. Die Lösung wird exakt ausgerechnet.</p>
           </>}
           en={<>
-            <p><b>How to read it:</b> a solution of the system must satisfy <em>both</em> equations. So it lies on both lines. Two lines in the plane can only do three things:</p>
-            <ol>
+            <p className="keep"><b>How to read it:</b> a solution of the system must satisfy <em>both</em> equations. So it lies on both lines. Two lines in the plane can only do three things:</p>
+            <ol className="keep">
               <li>meet in exactly one point: <b>exactly one solution</b>;</li>
               <li>lie on top of each other: <b>infinitely many solutions</b> (every point of the line);</li>
               <li>run side by side in parallel: <b>no solution</b>.</li>
@@ -157,8 +157,8 @@ export default function LA2Lgs() {
           />
         </Box>
         <T
-          de={<p><b>So liest man das:</b> <M>{t`E_1 + E_2`}</M> heisst: linke Seiten addieren, rechte Seiten addieren. Aus <M>{t`(2x + 3y) + (x - 2y) = 5 + (-1)`}</M> wird <M p=".">{t`3x + y = 4`}</M> Allgemein darf man jede Gleichung mit einer Zahl <M>{t`\alpha`}</M> oder <M>{t`\beta`}</M> malnehmen und dann addieren. Der gemeinsame Punkt der beiden Geraden ist <M p=".">{t`(1, 1)`}</M> Dreh an den Reglern:</p>}
-          en={<p><b>How to read it:</b> <M>{t`E_1 + E_2`}</M> means: add the left sides, add the right sides. <M>{t`(2x + 3y) + (x - 2y) = 5 + (-1)`}</M> becomes <M p=".">{t`3x + y = 4`}</M> In general you may multiply each equation by a number <M>{t`\alpha`}</M> or <M>{t`\beta`}</M> and then add. The common point of the two lines is <M p=".">{t`(1, 1)`}</M> Turn the sliders:</p>}
+          de={<p className="keep"><b>So liest man das:</b> <M>{t`E_1 + E_2`}</M> heisst: linke Seiten addieren, rechte Seiten addieren. Aus <M>{t`(2x + 3y) + (x - 2y) = 5 + (-1)`}</M> wird <M p=".">{t`3x + y = 4`}</M> Allgemein darf man jede Gleichung mit einer Zahl <M>{t`\alpha`}</M> oder <M>{t`\beta`}</M> malnehmen und dann addieren. Der gemeinsame Punkt der beiden Geraden ist <M p=".">{t`(1, 1)`}</M> Dreh an den Reglern:</p>}
+          en={<p className="keep"><b>How to read it:</b> <M>{t`E_1 + E_2`}</M> means: add the left sides, add the right sides. <M>{t`(2x + 3y) + (x - 2y) = 5 + (-1)`}</M> becomes <M p=".">{t`3x + y = 4`}</M> In general you may multiply each equation by a number <M>{t`\alpha`}</M> or <M>{t`\beta`}</M> and then add. The common point of the two lines is <M p=".">{t`(1, 1)`}</M> Turn the sliders:</p>}
         />
         <CombineExplorer />
         <Box kind="uebung" src={<Src u={2} p={13} slides />} title={<T de="«Gleichungen kombinieren – algebraisch»" en="“Combining Equations – Algebraically”" />}>
@@ -178,8 +178,8 @@ export default function LA2Lgs() {
           <T de={<p>Der Schnittpunkt bleibt derselbe.</p>} en={<p>The intersection stays the same.</p>} />
         </Box>
         <T
-          de={<p><b>Warum das hilft:</b> Man wählt die Zahlen so, dass eine Unbekannte wegfällt. Dann ist die neue Gerade waagrecht oder senkrecht, und man kann die Lösung direkt ablesen. Genau diese Idee macht das Gauss-Verfahren systematisch.</p>}
-          en={<p><b>Why this helps:</b> you choose the numbers so that one unknown drops out. Then the new line is horizontal or vertical, and you can read off the solution directly. Gaussian elimination makes exactly this idea systematic.</p>}
+          de={<p className="keep"><b>Warum das hilft:</b> Man wählt die Zahlen so, dass eine Unbekannte wegfällt. Dann ist die neue Gerade waagrecht oder senkrecht, und man kann die Lösung direkt ablesen. Genau diese Idee macht das Gauss-Verfahren systematisch.</p>}
+          en={<p className="keep"><b>Why this helps:</b> you choose the numbers so that one unknown drops out. Then the new line is horizontal or vertical, and you can read off the solution directly. Gaussian elimination makes exactly this idea systematic.</p>}
         />
         <SimplifyAnimation />
         <Box kind="supplement">
@@ -212,18 +212,18 @@ export default function LA2Lgs() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b> Mit drei Unbekannten ist eine Lösung ein Punkt <M>{t`(x, y, z)`}</M> im Raum. Eine Gleichung wie <M>{t`x + y + z = 3`}</M> legt nur eine Bedingung fest. Zwei Richtungen bleiben frei, und das ist eine <b>Ebene</b>. Drei Gleichungen sind drei Ebenen. Die Lösung ist das, was alle drei gemeinsam haben: ein Punkt, eine Gerade, eine ganze Ebene oder nichts.</p>
+            <p className="keep"><b>So liest man das:</b> Mit drei Unbekannten ist eine Lösung ein Punkt <M>{t`(x, y, z)`}</M> im Raum. Eine Gleichung wie <M>{t`x + y + z = 3`}</M> legt nur eine Bedingung fest. Zwei Richtungen bleiben frei, und das ist eine <b>Ebene</b>. Drei Gleichungen sind drei Ebenen. Die Lösung ist das, was alle drei gemeinsam haben: ein Punkt, eine Gerade, eine ganze Ebene oder nichts.</p>
             <p>Im Bild ist jede Ebene nur im Würfel <M>{t`|x|, |y|, |z| \le 5`}</M> gezeichnet. Wähle oben ein Beispiel der Folien. Die Antwort rechts wird exakt mit der Elimination ausgerechnet, nicht aus dem Bild geraten. Bei «Vereinfachen» führen drei Knöpfe durch die Folien 22 bis 24: Die Ebene <M>{'E_3'}</M> dreht sich in die waagrechte Ebene <M>{t`E_4 = E_3 - E_2`}</M> und der rote Punkt bleibt stehen. In <M>{'E_4'}</M> ist <M>x</M> und <M>y</M> verschwunden, darum ist sie waagrecht.</p>
           </>}
           en={<>
-            <p><b>How to read it:</b> with three unknowns a solution is a point <M>{t`(x, y, z)`}</M> in space. An equation like <M>{t`x + y + z = 3`}</M> fixes only one condition. Two directions stay free, and that is a <b>plane</b>. Three equations are three planes. The solution is what all three have in common: a point, a line, a whole plane or nothing.</p>
+            <p className="keep"><b>How to read it:</b> with three unknowns a solution is a point <M>{t`(x, y, z)`}</M> in space. An equation like <M>{t`x + y + z = 3`}</M> fixes only one condition. Two directions stay free, and that is a <b>plane</b>. Three equations are three planes. The solution is what all three have in common: a point, a line, a whole plane or nothing.</p>
             <p>In the figure each plane is drawn only inside the cube <M p=".">{t`|x|, |y|, |z| \le 5`}</M> Choose an example of the slides at the top. The answer on the right is computed exactly by elimination, not guessed from the picture. With “Simplify”, three buttons lead through slides 22 to 24: the plane <M>{'E_3'}</M> turns into the horizontal plane <M>{t`E_4 = E_3 - E_2`}</M> and the red point stays where it is. In <M>{'E_4'}</M> both <M>x</M> and <M>y</M> have dropped out, so it is horizontal.</p>
           </>}
         />
         <PlanesExplorer />
         <T
-          de={<p><b>Das Beispiel nachgerechnet:</b> <M>{t`E_3 - E_2 = (x + y - z) - (x + y + 2z) = -3z`}</M> und <M p=",">{t`1 - 5 = -4`}</M> also <M p=".">{t`z = \tfrac43`}</M> Die Summe <M>{t`E_1 + E_2`}</M> ist <M p=";">{t`2y + 3z = 8`}</M> mit <M>{t`z = \tfrac43`}</M> gibt das <M p=".">{t`y = 2`}</M> Aus <M>{'E_2'}</M> folgt <M p=".">{t`x = 5 - 2 - \tfrac83 = \tfrac13`}</M> Der Schnittpunkt ist <M p=".">{t`(\tfrac13, 2, \tfrac43)`}</M></p>}
-          en={<p><b>The example recalculated:</b> <M>{t`E_3 - E_2 = (x + y - z) - (x + y + 2z) = -3z`}</M> and <M p=",">{t`1 - 5 = -4`}</M> so <M p=".">{t`z = \tfrac43`}</M> The sum <M>{t`E_1 + E_2`}</M> is <M p=";">{t`2y + 3z = 8`}</M> with <M>{t`z = \tfrac43`}</M> this gives <M p=".">{t`y = 2`}</M> From <M>{'E_2'}</M> follows <M p=".">{t`x = 5 - 2 - \tfrac83 = \tfrac13`}</M> The intersection is <M p=".">{t`(\tfrac13, 2, \tfrac43)`}</M></p>}
+          de={<p className="keep"><b>Das Beispiel nachgerechnet:</b> <M>{t`E_3 - E_2 = (x + y - z) - (x + y + 2z) = -3z`}</M> und <M p=",">{t`1 - 5 = -4`}</M> also <M p=".">{t`z = \tfrac43`}</M> Die Summe <M>{t`E_1 + E_2`}</M> ist <M p=";">{t`2y + 3z = 8`}</M> mit <M>{t`z = \tfrac43`}</M> gibt das <M p=".">{t`y = 2`}</M> Aus <M>{'E_2'}</M> folgt <M p=".">{t`x = 5 - 2 - \tfrac83 = \tfrac13`}</M> Der Schnittpunkt ist <M p=".">{t`(\tfrac13, 2, \tfrac43)`}</M></p>}
+          en={<p className="keep"><b>The example recalculated:</b> <M>{t`E_3 - E_2 = (x + y - z) - (x + y + 2z) = -3z`}</M> and <M p=",">{t`1 - 5 = -4`}</M> so <M p=".">{t`z = \tfrac43`}</M> The sum <M>{t`E_1 + E_2`}</M> is <M p=";">{t`2y + 3z = 8`}</M> with <M>{t`z = \tfrac43`}</M> this gives <M p=".">{t`y = 2`}</M> From <M>{'E_2'}</M> follows <M p=".">{t`x = 5 - 2 - \tfrac83 = \tfrac13`}</M> The intersection is <M p=".">{t`(\tfrac13, 2, \tfrac43)`}</M></p>}
         />
         <Box kind="supplement">
           <T

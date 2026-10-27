@@ -29,8 +29,8 @@ export default function A5Mittelwertsatz() {
           />
         </Box>
         <T
-          de={<p><b>So liest man den Satz:</b> <M>{t`\exists\, c\in(a, b)`}</M> heisst «es gibt (mindestens) ein <M>c</M> zwischen <M>a</M> und <M p="».">b</M> Der Bruch rechts ist die Steigung der Sekante durch <M>{t`(a, f(a))`}</M> und <M p=".">{t`(b, f(b))`}</M> Also: Irgendwo dazwischen ist die Tangente parallel zur Sekante. Die Animation zeigt, warum – mit dem Beispiel der Übung.</p>}
-          en={<p><b>How to read the theorem:</b> <M>{t`\exists\, c\in(a, b)`}</M> means “there is (at least) one <M>c</M> between <M>a</M> and <M p="”.">b</M> The fraction on the right is the slope of the secant through <M>{t`(a, f(a))`}</M> and <M p=".">{t`(b, f(b))`}</M> So: somewhere in between the tangent is parallel to the secant. The animation shows why – with the example from the class.</p>}
+          de={<p className="keep"><b>So liest man den Satz:</b> <M>{t`\exists\, c\in(a, b)`}</M> heisst «es gibt (mindestens) ein <M>c</M> zwischen <M>a</M> und <M p="».">b</M> Der Bruch rechts ist die Steigung der Sekante durch <M>{t`(a, f(a))`}</M> und <M p=".">{t`(b, f(b))`}</M> Also: Irgendwo dazwischen ist die Tangente parallel zur Sekante. Die Animation zeigt, warum – mit dem Beispiel der Übung.</p>}
+          en={<p className="keep"><b>How to read the theorem:</b> <M>{t`\exists\, c\in(a, b)`}</M> means “there is (at least) one <M>c</M> between <M>a</M> and <M p="”.">b</M> The fraction on the right is the slope of the secant through <M>{t`(a, f(a))`}</M> and <M p=".">{t`(b, f(b))`}</M> So: somewhere in between the tangent is parallel to the secant. The animation shows why – with the example from the class.</p>}
         />
         <StepPlayer
           label={tr('Animation: Sekante parallel verschieben, bis sie die Parabel berührt', 'Animation: shift the secant parallel until it touches the parabola')}
@@ -73,8 +73,8 @@ export default function A5Mittelwertsatz() {
           <MD>{t`f(a) = f(b) \;\Rightarrow\; \exists\, c\in(a, b):\; f'(c) = 0`}</MD>
         </Box>
         <T
-          de={<p>Das ist der Mittelwertsatz mit <M p=":">{t`f(a) = f(b)`}</M> Dann ist der Zähler <M>{t`f(b) - f(a) = 0`}</M> und die Sekante waagerecht. Bild: Ein Ball wird hochgeworfen und auf derselben Höhe gefangen – im höchsten Punkt fliegt er kurz waagerecht. Im Bild oben: Knopf «Rolle». Beim Knopf «Knick» mit <M>{t`|x|`}</M> sind die Höhen gleich, aber es gibt keine waagerechte Tangente – weil <M>{t`|x|`}</M> bei <M>0</M> nicht differenzierbar ist.</p>}
-          en={<p>This is the mean value theorem with <M p=".">{t`f(a) = f(b)`}</M> Then the numerator is <M>{t`f(b) - f(a) = 0`}</M> and the secant is horizontal. Picture: a ball is thrown up and caught at the same height – at the top it flies horizontally for an instant. In the figure above: button “Rolle”. With the “kink” button, <M p=",">{t`|x|`}</M> the heights are equal, but there is no horizontal tangent – because <M>{t`|x|`}</M> is not differentiable at <M p=".">0</M></p>}
+          de={<p className="keep">Das ist der Mittelwertsatz mit <M p=":">{t`f(a) = f(b)`}</M> Dann ist der Zähler <M>{t`f(b) - f(a) = 0`}</M> und die Sekante waagerecht. Bild: Ein Ball wird hochgeworfen und auf derselben Höhe gefangen – im höchsten Punkt fliegt er kurz waagerecht. Im Bild oben: Knopf «Rolle». Beim Knopf «Knick» mit <M>{t`|x|`}</M> sind die Höhen gleich, aber es gibt keine waagerechte Tangente – weil <M>{t`|x|`}</M> bei <M>0</M> nicht differenzierbar ist.</p>}
+          en={<p className="keep">This is the mean value theorem with <M p=".">{t`f(a) = f(b)`}</M> Then the numerator is <M>{t`f(b) - f(a) = 0`}</M> and the secant is horizontal. Picture: a ball is thrown up and caught at the same height – at the top it flies horizontally for an instant. In the figure above: button “Rolle”. With the “kink” button, <M p=",">{t`|x|`}</M> the heights are equal, but there is no horizontal tangent – because <M>{t`|x|`}</M> is not differentiable at <M p=".">0</M></p>}
         />
       </Section>
 
@@ -89,8 +89,8 @@ export default function A5Mittelwertsatz() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li><M>{t`f' > 0`}</M> heisst: Die Tangente steigt, der Graph geht bergauf. <M>{t`f' < 0`}</M> bergab.</li>
               <li>Ganz oben auf einem Hügel und ganz unten in einem Tal ist die Tangente waagerecht: <M p=".">{t`f'(x_0) = 0`}</M> Aber umgekehrt gilt das nicht – auch eine flache Stufe hat eine waagerechte Tangente (<M>{t`x^3`}</M> bei <M p=").">0</M> Darum «erst ein Kandidat».</li>
               <li><M>{t`f''`}</M> ist die Steigung der Steigung. <M>{t`f'' > 0`}</M> heisst: Die Steigung nimmt zu, der Graph biegt nach oben wie ein Tal – also Minimum. <M>{t`f'' < 0`}</M> biegt nach unten: Maximum.</li>
@@ -99,8 +99,8 @@ export default function A5Mittelwertsatz() {
             </ol>
           </>}
           en={<>
-            <p><b>How to read it:</b></p>
-            <ol>
+            <p className="keep"><b>How to read it:</b></p>
+            <ol className="keep">
               <li><M>{t`f' > 0`}</M> means: the tangent rises, the graph goes uphill. <M>{t`f' < 0`}</M> downhill.</li>
               <li>At the very top of a hill and at the very bottom of a valley the tangent is horizontal: <M p=".">{t`f'(x_0) = 0`}</M> But not the other way round – a flat step has a horizontal tangent as well (<M>{t`x^3`}</M> at <M p=").">0</M> Hence “only a candidate”.</li>
               <li><M>{t`f''`}</M> is the slope of the slope. <M>{t`f'' > 0`}</M> means: the slope increases, the graph bends upwards like a valley – so a minimum. <M>{t`f'' < 0`}</M> bends downwards: maximum.</li>
@@ -129,8 +129,8 @@ export default function A5Mittelwertsatz() {
         />
         <MD>{t`\begin{array}{c|c|l} f(x) & f''(x) & \text{${tr('bei', 'at')} } x = 0 \\ \hline x^3 & 6x:\ - \to + & \text{${tr('Sattelpunkt', 'saddle point')}} \\ x^4 & 12x^2:\ + \to + & \text{${tr('kein Wendepunkt', 'no inflection point')}} \\ x^3 + x & 6x:\ - \to + & \text{${tr('Wendepunkt', 'inflection point')}},\ f'(0) = 1 \end{array}`}</MD>
         <T
-          de={<p><b>So liest man die Tabelle:</b> Wechselt <M>{t`f''`}</M> das Vorzeichen, wechselt die Krümmung – ein Wendepunkt. Ist die Tangente dort zusätzlich waagerecht, heisst er Sattelpunkt (<M p=").">{t`x^3`}</M> Bei <M>{t`x^4`}</M> ist zwar <M p=",">{t`f''(0) = 0`}</M> aber <M>{t`12x^2`}</M> bleibt positiv: kein Wechsel, kein Wendepunkt – sondern ein Minimum.</p>}
-          en={<p><b>How to read the table:</b> if <M>{t`f''`}</M> changes sign, the curvature changes – an inflection point. If the tangent there is also horizontal, it is called a saddle point (<M p=").">{t`x^3`}</M> For <M>{t`x^4`}</M> we do have <M p=",">{t`f''(0) = 0`}</M> but <M>{t`12x^2`}</M> stays positive: no change, no inflection point – a minimum instead.</p>}
+          de={<p className="keep"><b>So liest man die Tabelle:</b> Wechselt <M>{t`f''`}</M> das Vorzeichen, wechselt die Krümmung – ein Wendepunkt. Ist die Tangente dort zusätzlich waagerecht, heisst er Sattelpunkt (<M p=").">{t`x^3`}</M> Bei <M>{t`x^4`}</M> ist zwar <M p=",">{t`f''(0) = 0`}</M> aber <M>{t`12x^2`}</M> bleibt positiv: kein Wechsel, kein Wendepunkt – sondern ein Minimum.</p>}
+          en={<p className="keep"><b>How to read the table:</b> if <M>{t`f''`}</M> changes sign, the curvature changes – an inflection point. If the tangent there is also horizontal, it is called a saddle point (<M p=").">{t`x^3`}</M> For <M>{t`x^4`}</M> we do have <M p=",">{t`f''(0) = 0`}</M> but <M>{t`12x^2`}</M> stays positive: no change, no inflection point – a minimum instead.</p>}
         />
       </Section>
 
@@ -141,8 +141,8 @@ export default function A5Mittelwertsatz() {
             en={<p>Continuous <M>f</M> on <M p=":">{t`[a, b]`}</M> check the ends, the points where <M>f</M> is not differentiable and <M p=".">{t`f' = 0`}</M> Then compare the values.</p>} />
         </Box>
         <T
-          de={<p>Warum genau diese Stellen? Der grösste Wert liegt entweder am Rand – oder innen. Liegt er innen und ist <M>f</M> dort ableitbar, muss die Tangente waagerecht sein (sonst ginge es daneben noch höher). Also bleiben nur: Ränder, Knicke, <M p=".">{t`f' = 0`}</M> Eine kurze Liste – man vergleicht einfach die Werte.</p>}
-          en={<p>Why exactly these points? The largest value is either at an end – or inside. If it is inside and <M>f</M> is differentiable there, the tangent must be horizontal (otherwise it would go higher right next to it). So only these remain: ends, kinks, <M p=".">{t`f' = 0`}</M> A short list – you simply compare the values.</p>}
+          de={<p className="keep">Warum genau diese Stellen? Der grösste Wert liegt entweder am Rand – oder innen. Liegt er innen und ist <M>f</M> dort ableitbar, muss die Tangente waagerecht sein (sonst ginge es daneben noch höher). Also bleiben nur: Ränder, Knicke, <M p=".">{t`f' = 0`}</M> Eine kurze Liste – man vergleicht einfach die Werte.</p>}
+          en={<p className="keep">Why exactly these points? The largest value is either at an end – or inside. If it is inside and <M>f</M> is differentiable there, the tangent must be horizontal (otherwise it would go higher right next to it). So only these remain: ends, kinks, <M p=".">{t`f' = 0`}</M> A short list – you simply compare the values.</p>}
         />
         <Box kind="uebung" src={<Src u={5} p={5} />} title={<T de="Bsp. 1" en={<>Example 1 (<span lang="de">Bsp. 1</span>)</>} />}>
           <MD>{t`f(x) = x^3 - x, \qquad D_f = [-\tfrac12, 1]`}</MD>

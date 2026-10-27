@@ -39,12 +39,12 @@ export default function A3Transformationen() {
         </Box>
         <T
           de={<>
-            <p><b>Warum geht <M>{t`f(x-a)`}</M> nach rechts, obwohl dort ein Minus steht?</b> Stell dir einen Zug vor, der denselben Fahrplan fährt, aber <M>a</M> Minuten später abfährt. Er ist überall <M>a</M> Minuten <em>später</em> – auf der Zeitachse also weiter rechts.</p>
+            <p className="keep"><b>Warum geht <M>{t`f(x-a)`}</M> nach rechts, obwohl dort ein Minus steht?</b> Stell dir einen Zug vor, der denselben Fahrplan fährt, aber <M>a</M> Minuten später abfährt. Er ist überall <M>a</M> Minuten <em>später</em> – auf der Zeitachse also weiter rechts.</p>
             <p>Genauso hier. Der alte Graph hat bei <M>{t`x_0`}</M> den Wert <M p=".">{t`p(x_0)`}</M> Der neue Graph <M>{t`p(x-a)`}</M> hat diesen Wert dort, wo <M>{t`x - a = x_0`}</M> ist, also bei <M p=".">{t`x = x_0 + a`}</M> Jeder Wert kommt <M>a</M> später: Verschiebung nach rechts.</p>
             <p>Bei <M>{t`p(cx)`}</M> ebenso: Der Wert <M>{t`p(x_0)`}</M> kommt bei <M p=",">{t`cx = x_0`}</M> also bei <M p=".">{t`x = x_0/c`}</M> Für <M>{t`c = 2`}</M> ist alles halb so weit von der <M>y</M>-Achse weg: halb so breit.</p>
           </>}
           en={<>
-            <p><b>Why does <M>{t`f(x-a)`}</M> move to the right, although there is a minus?</b> Think of a train that runs the same timetable but leaves <M>a</M> minutes later. It is <M>a</M> minutes <em>later</em> everywhere – further right on the time axis.</p>
+            <p className="keep"><b>Why does <M>{t`f(x-a)`}</M> move to the right, although there is a minus?</b> Think of a train that runs the same timetable but leaves <M>a</M> minutes later. It is <M>a</M> minutes <em>later</em> everywhere – further right on the time axis.</p>
             <p>The same here. The old graph has the value <M>{t`p(x_0)`}</M> at <M p=".">{t`x_0`}</M> The new graph <M>{t`p(x-a)`}</M> has this value where <M p=",">{t`x - a = x_0`}</M> so at <M p=".">{t`x = x_0 + a`}</M> Every value comes <M>a</M> later: a shift to the right.</p>
             <p>Likewise for <M p=":">{t`p(cx)`}</M> the value <M>{t`p(x_0)`}</M> comes where <M p=",">{t`cx = x_0`}</M> at <M p=".">{t`x = x_0/c`}</M> For <M>{t`c = 2`}</M> everything is half as far from the <M>y</M>-axis: half as wide.</p>
           </>}
@@ -86,15 +86,15 @@ export default function A3Transformationen() {
         <ReciprocalFigure />
         <T
           de={<>
-            <p><b>Was man im Bild sieht:</b></p>
-            <ol>
+            <p className="keep"><b>Was man im Bild sieht:</b></p>
+            <ol className="keep">
               <li><M p=":">{t`1/p`}</M> Wo <M>p</M> null ist (bei etwa <M p="),">{t`-1{,}6;\ 0{,}85;\ 2{,}25`}</M> wird der Kehrwert riesig: drei Polstellen. Wo <M>p</M> gross ist, ist <M>{t`1/p`}</M> fast <M p=".">0</M> Das Vorzeichen bleibt.</li>
               <li><M p=":">{t`p(1/x)`}</M> Für grosse <M>{t`|x|`}</M> ist <M>{t`1/x`}</M> fast <M p=",">0</M> also <M p=".">{t`p(1/x) \to p(0) = 6`}</M> Bei <M>{t`x = 0`}</M> ist nichts definiert.</li>
             </ol>
           </>}
           en={<>
-            <p><b>What you see in the picture:</b></p>
-            <ol>
+            <p className="keep"><b>What you see in the picture:</b></p>
+            <ol className="keep">
               <li><M p=":">{t`1/p`}</M> where <M>p</M> is zero (at about <M p="),">{t`-1.6,\ 0.85,\ 2.25`}</M> the reciprocal becomes huge: three poles. Where <M>p</M> is large, <M>{t`1/p`}</M> is almost <M p=".">0</M> The sign stays.</li>
               <li><M p=":">{t`p(1/x)`}</M> for large <M>{t`|x|`}</M> the value <M>{t`1/x`}</M> is almost <M p=",">0</M> so <M p=".">{t`p(1/x) \to p(0) = 6`}</M> At <M>{t`x = 0`}</M> nothing is defined.</li>
             </ol>
@@ -121,16 +121,16 @@ export default function A3Transformationen() {
         </StepPlayer>
         <T
           de={<>
-            <p><b>So liest man das Argument:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das Argument:</b></p>
+            <ol className="keep">
               <li>Nahe bei <M>{t`-\frac12`}</M> ist <M>{t`f_5(t)`}</M> nirgends grösser als am Maximum. Weil <M>{t`f_5`}</M> dort stetig und positiv ist, bleibt sie in der Nähe positiv.</li>
               <li>Bei positiven Zahlen gilt: je grösser der Nenner, desto kleiner der Bruch (<M p=",">{t`2 < 4`}</M> aber <M p=").">{t`\frac12 > \frac14`}</M> Darum dreht sich das <M>\le</M> zu <M p=".">\ge</M> Der Kehrwert ist genau dort am kleinsten.</li>
               <li>Ist <M>x</M> nahe bei <M p=",">-2</M> dann ist <M>{t`\frac1x`}</M> nahe bei <M p=".">{t`-\frac12`}</M> Also gilt <M>{t`\tilde f_5(x) \ge \tilde f_5(-2) > 0`}</M> für alle <M>x</M> in der Nähe: ein positives lokales Minimum.</li>
             </ol>
           </>}
           en={<>
-            <p><b>How to read the argument:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the argument:</b></p>
+            <ol className="keep">
               <li>Near <M>{t`-\frac12`}</M> the value <M>{t`f_5(t)`}</M> is nowhere larger than at the maximum. Since <M>{t`f_5`}</M> is continuous and positive there, it stays positive nearby.</li>
               <li>For positive numbers: the larger the denominator, the smaller the fraction (<M p=",">{t`2 < 4`}</M> but <M p=").">{t`\frac12 > \frac14`}</M> That is why <M>\le</M> turns into <M p=".">\ge</M> The reciprocal is smallest exactly there.</li>
               <li>If <M>x</M> is near <M p=",">-2</M> then <M>{t`\frac1x`}</M> is near <M p=".">{t`-\frac12`}</M> So <M>{t`\tilde f_5(x) \ge \tilde f_5(-2) > 0`}</M> for all <M>x</M> nearby: a positive local minimum.</li>

@@ -1,9 +1,9 @@
 import { expect, test } from '@playwright/test';
-import { TOPICS, topicSubject } from '../src/content/curriculum';
+import { TOPICS } from '../src/content/curriculum';
 
-const mech = TOPICS.filter((t) => topicSubject(t) === 'mech');
+const mech = TOPICS;
 
-test('Mechanik has no quiz pages any more', () => {
+test('no quiz pages in the curriculum', () => {
   expect(mech.some((t) => t.id.startsWith('quiz-'))).toBe(false);
 });
 

@@ -29,8 +29,8 @@ export default function LA5Produkt() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li><M>{t`AB`}</M> spricht man «A mal B». Gemeint ist: zuerst <M p=",">B</M> danach <M p=".">A</M></li>
               <li>Warum «rückwärts»? Weil der Vektor rechts steht. In <M>{t`A(Bx)`}</M> kommt <M>x</M> zuerst bei <M>B</M> an, das direkt daneben steht. Erst das Ergebnis <M>Bx</M> geht dann weiter zu <M p=".">A</M></li>
               <li><M>{t`C = AB`}</M> ist die eine Matrix, die beides auf einmal tut: <M p=".">{t`Cx = (AB)x = A(Bx)`}</M></li>
@@ -38,8 +38,8 @@ export default function LA5Produkt() {
             <p>Das Bild ist eine Umsetzung der Visualisierung «Composing Transformations» der Übung. Wähle ein Beispiel (oder tippe eigene Zahlen ein) und spiel die sechs Schritte ab.</p>
           </>}
           en={<>
-            <p><b>How to read this:</b></p>
-            <ol>
+            <p className="keep"><b>How to read this:</b></p>
+            <ol className="keep">
               <li><M>{t`AB`}</M> is read “A times B”. It means: first <M p=",">B</M> then <M p=".">A</M></li>
               <li>Why “backwards”? Because the vector stands on the right. In <M>{t`A(Bx)`}</M> the <M>x</M> reaches <M>B</M> first, which stands right next to it. Only the result <M>Bx</M> then moves on to <M p=".">A</M></li>
               <li><M>{t`C = AB`}</M> is the one matrix that does both at once: <M p=".">{t`Cx = (AB)x = A(Bx)`}</M></li>
@@ -70,12 +70,12 @@ export default function LA5Produkt() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b> Jede Spalte von <M>A</M> bekommt einen Faktor aus dem Vektor. Hat <M>A</M> drei Spalten, braucht es genau drei Faktoren – nicht zwei, nicht vier. Darum: Spaltenzahl von <M>A</M> gleich Zeilenzahl von <M p=".">B</M></p>
-            <p>Merkhilfe: Schreib die Formen nebeneinander, <M p=".">{t`(m\times n)(n\times p)`}</M> Die zwei inneren Zahlen müssen gleich sein und «fallen weg»; die zwei äusseren bleiben übrig und sind die Form von <M p=".">C</M> Ein Vektor ist der Spezialfall <M p=".">{t`p = 1`}</M></p>
+            <p className="keep"><b>So liest man das:</b> Jede Spalte von <M>A</M> bekommt einen Faktor aus dem Vektor. Hat <M>A</M> drei Spalten, braucht es genau drei Faktoren – nicht zwei, nicht vier. Darum: Spaltenzahl von <M>A</M> gleich Zeilenzahl von <M p=".">B</M></p>
+            <p className="keep">Merkhilfe: Schreib die Formen nebeneinander, <M p=".">{t`(m\times n)(n\times p)`}</M> Die zwei inneren Zahlen müssen gleich sein und «fallen weg»; die zwei äusseren bleiben übrig und sind die Form von <M p=".">C</M> Ein Vektor ist der Spezialfall <M p=".">{t`p = 1`}</M></p>
           </>}
           en={<>
-            <p><b>How to read this:</b> every column of <M>A</M> gets one factor from the vector. If <M>A</M> has three columns it needs exactly three factors – not two, not four. Hence: number of columns of <M>A</M> equals number of rows of <M p=".">B</M></p>
-            <p>Memory aid: write the shapes side by side, <M p=".">{t`(m\times n)(n\times p)`}</M> The two inner numbers must agree and “drop out”; the two outer ones remain and are the shape of <M p=".">C</M> A vector is the special case <M p=".">{t`p = 1`}</M></p>
+            <p className="keep"><b>How to read this:</b> every column of <M>A</M> gets one factor from the vector. If <M>A</M> has three columns it needs exactly three factors – not two, not four. Hence: number of columns of <M>A</M> equals number of rows of <M p=".">B</M></p>
+            <p className="keep">Memory aid: write the shapes side by side, <M p=".">{t`(m\times n)(n\times p)`}</M> The two inner numbers must agree and “drop out”; the two outer ones remain and are the shape of <M p=".">C</M> A vector is the special case <M p=".">{t`p = 1`}</M></p>
           </>}
         />
         <ShapeChecker />
@@ -92,16 +92,16 @@ export default function LA5Produkt() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das – zwei Wege zum selben Ergebnis:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das – zwei Wege zum selben Ergebnis:</b></p>
+            <ol className="keep">
               <li><b>Ein Eintrag:</b> Für das Feld in Zeile <M>i</M> und Spalte <M>j</M> fährst du mit dem linken Finger die Zeile <M>i</M> von <M>A</M> entlang und mit dem rechten Finger die Spalte <M>j</M> von <M p=".">B</M> Die Zahlen unter den Fingern multiplizierst du paarweise und zählst alles zusammen.</li>
               <li><b>Eine Spalte:</b> Die Spalte <M>j</M> von <M>C</M> ist <M>A</M> angewendet auf die Spalte <M>j</M> von <M p=".">B</M> Das ist das Bild aus Abschnitt 1: <M>A</M> verformt die Pfeile, die <M>B</M> schon gebaut hat.</li>
             </ol>
             <p>Probiere beide Arten im Bild aus. Die Beispiele von Folie 30 sind auch dabei.</p>
           </>}
           en={<>
-            <p><b>How to read this – two ways to the same result:</b></p>
-            <ol>
+            <p className="keep"><b>How to read this – two ways to the same result:</b></p>
+            <ol className="keep">
               <li><b>One entry:</b> for the cell in row <M>i</M> and column <M>j</M> run your left finger along row <M>i</M> of <M>A</M> and your right finger down column <M>j</M> of <M p=".">B</M> Multiply the numbers under your fingers pairwise and add everything up.</li>
               <li><b>One column:</b> column <M>j</M> of <M>C</M> is <M>A</M> applied to column <M>j</M> of <M p=".">B</M> This is the picture from section 1: <M>A</M> deforms the arrows that <M>B</M> has already built.</li>
             </ol>
@@ -130,8 +130,8 @@ export default function LA5Produkt() {
           />
         </Box>
         <T
-          de={<p><b>Aufgabe 1 gelesen:</b> <M>{t`4\times 1`}</M> mal <M>{t`1\times 2`}</M> – innen <M p=",">{t`1 = 1`}</M> also existiert das Produkt und ist <M p=".">{t`4\times 2`}</M> Jede «Summe» hat nur einen Summanden. Die erste Spalte ist der Vektor mal <M p=",">1</M> die zweite der Vektor mal <M p=".">0</M></p>}
-          en={<p><b>Exercise 1 read aloud:</b> <M>{t`4\times 1`}</M> times <M>{t`1\times 2`}</M> – inside <M p=",">{t`1 = 1`}</M> so the product exists and is <M p=".">{t`4\times 2`}</M> Every “sum” has a single term. The first column is the vector times <M p=",">1</M> the second the vector times <M p=".">0</M></p>}
+          de={<p className="keep"><b>Aufgabe 1 gelesen:</b> <M>{t`4\times 1`}</M> mal <M>{t`1\times 2`}</M> – innen <M p=",">{t`1 = 1`}</M> also existiert das Produkt und ist <M p=".">{t`4\times 2`}</M> Jede «Summe» hat nur einen Summanden. Die erste Spalte ist der Vektor mal <M p=",">1</M> die zweite der Vektor mal <M p=".">0</M></p>}
+          en={<p className="keep"><b>Exercise 1 read aloud:</b> <M>{t`4\times 1`}</M> times <M>{t`1\times 2`}</M> – inside <M p=",">{t`1 = 1`}</M> so the product exists and is <M p=".">{t`4\times 2`}</M> Every “sum” has a single term. The first column is the vector times <M p=",">1</M> the second the vector times <M p=".">0</M></p>}
         />
         <Box kind="supplement" title={<T de="Lösungen zu den Aufgaben 2 und 3 (von uns gerechnet)" en="Solutions to exercises 2 and 3 (computed by us)" />}>
           <T

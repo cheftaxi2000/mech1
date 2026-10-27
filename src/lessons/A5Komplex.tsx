@@ -37,8 +37,8 @@ export default function A5Komplex() {
         </Box>
         <NumberSets />
         <T
-          de={<p>Jede Menge stopft ein Loch der vorigen: <M>{t`3 - 5`}</M> braucht <M p=",">{t`\mathbb Z`}</M> <M>{t`1 : 2`}</M> braucht <M p=",">{t`\mathbb Q`}</M> <M>{t`\sqrt2`}</M> braucht <M p=",">{t`\mathbb R`}</M> <M>{t`x^2 = -1`}</M> braucht <M p=".">{t`\mathbb C`}</M> Die «(0)» heisst: Ob <M>0</M> zu <M>{t`\mathbb N`}</M> gehört, ist Abmachung; <M>{t`\mathbb N^+`}</M> schliesst sie sicher aus. Zwei kleine Unschärfen in der letzten Zeile: Gemeint ist die Standardform <M>{t`z = a + bi`}</M> (die nächste Seite schreibt sie so). Und <M>{t`i = \sqrt{-1}`}</M> ist nur eine Kurzschrift – die eigentliche Definition ist <M>{t`i^2 = -1`}</M> (warum, steht unten bei den Missverständnissen).</p>}
-          en={<p>Each set fills a gap of the previous one: <M>{t`3 - 5`}</M> needs <M p=",">{t`\mathbb Z`}</M> <M>{t`1 : 2`}</M> needs <M p=",">{t`\mathbb Q`}</M> <M>{t`\sqrt2`}</M> needs <M p=",">{t`\mathbb R`}</M> <M>{t`x^2 = -1`}</M> needs <M p=".">{t`\mathbb C`}</M> The “(0)” means: whether <M>0</M> belongs to <M>{t`\mathbb N`}</M> is a convention; <M>{t`\mathbb N^+`}</M> certainly excludes it. Two small imprecisions in the last line: the standard form meant is <M>{t`z = a + bi`}</M> (the next page writes it that way). And <M>{t`i = \sqrt{-1}`}</M> is only shorthand – the actual definition is <M>{t`i^2 = -1`}</M> (why, see the misconceptions below).</p>}
+          de={<p className="keep">Jede Menge stopft ein Loch der vorigen: <M>{t`3 - 5`}</M> braucht <M p=",">{t`\mathbb Z`}</M> <M>{t`1 : 2`}</M> braucht <M p=",">{t`\mathbb Q`}</M> <M>{t`\sqrt2`}</M> braucht <M p=",">{t`\mathbb R`}</M> <M>{t`x^2 = -1`}</M> braucht <M p=".">{t`\mathbb C`}</M> Die «(0)» heisst: Ob <M>0</M> zu <M>{t`\mathbb N`}</M> gehört, ist Abmachung; <M>{t`\mathbb N^+`}</M> schliesst sie sicher aus. Zwei kleine Unschärfen in der letzten Zeile: Gemeint ist die Standardform <M>{t`z = a + bi`}</M> (die nächste Seite schreibt sie so). Und <M>{t`i = \sqrt{-1}`}</M> ist nur eine Kurzschrift – die eigentliche Definition ist <M>{t`i^2 = -1`}</M> (warum, steht unten bei den Missverständnissen).</p>}
+          en={<p className="keep">Each set fills a gap of the previous one: <M>{t`3 - 5`}</M> needs <M p=",">{t`\mathbb Z`}</M> <M>{t`1 : 2`}</M> needs <M p=",">{t`\mathbb Q`}</M> <M>{t`\sqrt2`}</M> needs <M p=",">{t`\mathbb R`}</M> <M>{t`x^2 = -1`}</M> needs <M p=".">{t`\mathbb C`}</M> The “(0)” means: whether <M>0</M> belongs to <M>{t`\mathbb N`}</M> is a convention; <M>{t`\mathbb N^+`}</M> certainly excludes it. Two small imprecisions in the last line: the standard form meant is <M>{t`z = a + bi`}</M> (the next page writes it that way). And <M>{t`i = \sqrt{-1}`}</M> is only shorthand – the actual definition is <M>{t`i^2 = -1`}</M> (why, see the misconceptions below).</p>}
         />
       </Section>
 
@@ -52,8 +52,8 @@ export default function A5Komplex() {
             en={<p>Picture: <M>{t`z = 3 + 4i`}</M> as a blue arrow with <M p=";">{t`|z| = 5`}</M> <M>{t`\bar z = 3 - 4i`}</M> magenta. Real part: right/left. Imaginary part: up/down.</p>} />
         </Box>
         <T
-          de={<p>Eine komplexe Zahl ist ein Paar aus zwei reellen Zahlen: <M>a</M> (Realteil) und <M>b</M> (Imaginärteil). Darum passt sie nicht auf die Zahlengerade, sondern in eine Ebene – wie ein Punkt auf einer Landkarte: <M>a</M> Schritte nach rechts, <M>b</M> Schritte nach oben. Der Abstand vom Nullpunkt heisst Betrag <M p=":">{t`|z|`}</M> bei <M>{t`3 + 4i`}</M> nach Pythagoras <M p=".">{t`\sqrt{3^2 + 4^2} = 5`}</M></p>}
-          en={<p>A complex number is a pair of two real numbers: <M>a</M> (real part) and <M>b</M> (imaginary part). That is why it does not fit on the number line but in a plane – like a point on a map: <M>a</M> steps to the right, <M>b</M> steps up. The distance from the origin is the modulus <M p=":">{t`|z|`}</M> for <M>{t`3 + 4i`}</M> by Pythagoras <M p=".">{t`\sqrt{3^2 + 4^2} = 5`}</M></p>}
+          de={<p className="keep">Eine komplexe Zahl ist ein Paar aus zwei reellen Zahlen: <M>a</M> (Realteil) und <M>b</M> (Imaginärteil). Darum passt sie nicht auf die Zahlengerade, sondern in eine Ebene – wie ein Punkt auf einer Landkarte: <M>a</M> Schritte nach rechts, <M>b</M> Schritte nach oben. Der Abstand vom Nullpunkt heisst Betrag <M p=":">{t`|z|`}</M> bei <M>{t`3 + 4i`}</M> nach Pythagoras <M p=".">{t`\sqrt{3^2 + 4^2} = 5`}</M></p>}
+          en={<p className="keep">A complex number is a pair of two real numbers: <M>a</M> (real part) and <M>b</M> (imaginary part). That is why it does not fit on the number line but in a plane – like a point on a map: <M>a</M> steps to the right, <M>b</M> steps up. The distance from the origin is the modulus <M p=":">{t`|z|`}</M> for <M>{t`3 + 4i`}</M> by Pythagoras <M p=".">{t`\sqrt{3^2 + 4^2} = 5`}</M></p>}
         />
         <ComplexExplorer />
         <T
@@ -71,8 +71,8 @@ export default function A5Komplex() {
           <MD>{t`z_1 + z_2 = (3 + 1) + (1 + 2)\,i = 4 + 3i, \qquad z_1 - z_2 = (3 - 1) + (1 - 2)\,i = 2 - i`}</MD>
         </Box>
         <T
-          de={<p>«Gleiches zu Gleichem» heisst: Realteile zusammen, Imaginärteile zusammen – wie Äpfel und Birnen. In der Ebene ist das genau die Addition von Pfeilen: <M>{t`z_2`}</M> an die Spitze von <M>{t`z_1`}</M> hängen (Knopf <M p="»">{t`z_1 + z_2`}</M> im Bild oben). Subtrahieren heisst <M>{t`-z_2`}</M> addieren; <M>{t`-z_2`}</M> ist der umgedrehte Pfeil (Knopf <M p="»).">{t`z_1 - z_2`}</M></p>}
-          en={<p>“Like to like” means: real parts together, imaginary parts together – like apples and pears. In the plane this is exactly the addition of arrows: attach <M>{t`z_2`}</M> to the tip of <M>{t`z_1`}</M> (button <M p="”">{t`z_1 + z_2`}</M> in the figure above). Subtracting means adding <M p=";">{t`-z_2`}</M> <M>{t`-z_2`}</M> is the reversed arrow (button <M p="”).">{t`z_1 - z_2`}</M></p>}
+          de={<p className="keep">«Gleiches zu Gleichem» heisst: Realteile zusammen, Imaginärteile zusammen – wie Äpfel und Birnen. In der Ebene ist das genau die Addition von Pfeilen: <M>{t`z_2`}</M> an die Spitze von <M>{t`z_1`}</M> hängen (Knopf <M p="»">{t`z_1 + z_2`}</M> im Bild oben). Subtrahieren heisst <M>{t`-z_2`}</M> addieren; <M>{t`-z_2`}</M> ist der umgedrehte Pfeil (Knopf <M p="»).">{t`z_1 - z_2`}</M></p>}
+          en={<p className="keep">“Like to like” means: real parts together, imaginary parts together – like apples and pears. In the plane this is exactly the addition of arrows: attach <M>{t`z_2`}</M> to the tip of <M>{t`z_1`}</M> (button <M p="”">{t`z_1 + z_2`}</M> in the figure above). Subtracting means adding <M p=";">{t`-z_2`}</M> <M>{t`-z_2`}</M> is the reversed arrow (button <M p="”).">{t`z_1 - z_2`}</M></p>}
         />
       </Section>
 
@@ -113,8 +113,8 @@ export default function A5Komplex() {
           <MD>{t`(a + bi)(a - bi) = a^2 + b^2 \in \mathbb R`}</MD>
         </Box>
         <T
-          de={<p><b>So liest man die zweite Zeile:</b> Das ist die dritte binomische Formel <M p=",">{t`(p + q)(p - q) = p^2 - q^2`}</M> mit <M>{t`p = a`}</M> und <M p=".">{t`q = bi`}</M> Also <M p=".">{t`a^2 - b^2 i^2 = a^2 + b^2`}</M> Das <M>i</M> ist verschwunden: <M>{t`z\,\bar z`}</M> ist immer reell und gleich <M p=".">{t`|z|^2`}</M> Bei <M p=":">{t`3 + 4i`}</M> <M p=".">{t`9 + 16 = 25 = 5^2`}</M> Genau diesen Trick braucht man beim Dividieren.</p>}
-          en={<p><b>How to read the second line:</b> it is the difference of squares <M p=",">{t`(p + q)(p - q) = p^2 - q^2`}</M> with <M>{t`p = a`}</M> and <M p=".">{t`q = bi`}</M> So <M p=".">{t`a^2 - b^2 i^2 = a^2 + b^2`}</M> The <M>i</M> has disappeared: <M>{t`z\,\bar z`}</M> is always real and equal to <M p=".">{t`|z|^2`}</M> For <M p=":">{t`3 + 4i`}</M> <M p=".">{t`9 + 16 = 25 = 5^2`}</M> Exactly this trick is needed for dividing.</p>}
+          de={<p className="keep"><b>So liest man die zweite Zeile:</b> Das ist die dritte binomische Formel <M p=",">{t`(p + q)(p - q) = p^2 - q^2`}</M> mit <M>{t`p = a`}</M> und <M p=".">{t`q = bi`}</M> Also <M p=".">{t`a^2 - b^2 i^2 = a^2 + b^2`}</M> Das <M>i</M> ist verschwunden: <M>{t`z\,\bar z`}</M> ist immer reell und gleich <M p=".">{t`|z|^2`}</M> Bei <M p=":">{t`3 + 4i`}</M> <M p=".">{t`9 + 16 = 25 = 5^2`}</M> Genau diesen Trick braucht man beim Dividieren.</p>}
+          en={<p className="keep"><b>How to read the second line:</b> it is the difference of squares <M p=",">{t`(p + q)(p - q) = p^2 - q^2`}</M> with <M>{t`p = a`}</M> and <M p=".">{t`q = bi`}</M> So <M p=".">{t`a^2 - b^2 i^2 = a^2 + b^2`}</M> The <M>i</M> has disappeared: <M>{t`z\,\bar z`}</M> is always real and equal to <M p=".">{t`|z|^2`}</M> For <M p=":">{t`3 + 4i`}</M> <M p=".">{t`9 + 16 = 25 = 5^2`}</M> Exactly this trick is needed for dividing.</p>}
         />
       </Section>
 
@@ -126,8 +126,8 @@ export default function A5Komplex() {
           <MD>{t`\frac{a + bi}{c + di} = \frac{ac + bd}{c^2 + d^2} + \frac{bc - ad}{c^2 + d^2}\,i`}</MD>
         </Box>
         <T
-          de={<p>Das Problem: Durch <M>{t`1 + 2i`}</M> kann man nicht direkt teilen – man weiss nicht, was «ein Fünftel von <M p="»">i</M> sein soll, wenn <M>i</M> unten steht. Die Lösung: Den Nenner reell machen. Mit <M>{t`z\,\bar z = |z|^2`}</M> aus Abschnitt 5 geht das immer. Die Übung rechnet:</p>}
-          en={<p>The problem: you cannot divide by <M>{t`1 + 2i`}</M> directly – an <M>i</M> in the denominator is awkward. The solution: make the denominator real. With <M>{t`z\,\bar z = |z|^2`}</M> from section 5 this always works. The class calculates:</p>}
+          de={<p className="keep">Das Problem: Durch <M>{t`1 + 2i`}</M> kann man nicht direkt teilen – man weiss nicht, was «ein Fünftel von <M p="»">i</M> sein soll, wenn <M>i</M> unten steht. Die Lösung: Den Nenner reell machen. Mit <M>{t`z\,\bar z = |z|^2`}</M> aus Abschnitt 5 geht das immer. Die Übung rechnet:</p>}
+          en={<p className="keep">The problem: you cannot divide by <M>{t`1 + 2i`}</M> directly – an <M>i</M> in the denominator is awkward. The solution: make the denominator real. With <M>{t`z\,\bar z = |z|^2`}</M> from section 5 this always works. The class calculates:</p>}
         />
         <StepPlayer
           label={tr('Animation: Division Schritt für Schritt', 'Animation: division step by step')}

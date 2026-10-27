@@ -52,8 +52,8 @@ export default function CH4Enthalpie() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li>Ein Gas schiebt den Kolben nach oben. Es muss gegen den Druck der Luft arbeiten und gibt dabei Energie ab: <M p=".">{t`w < 0`}</M></li>
               <li>Wie gross ist <M p="?">w</M> Kraft mal Weg. Die Kraft ist Druck mal Fläche, der Weg ist <M p=".">{t`\Delta x`}</M> Fläche mal Weg ist ein Volumen, darum <M p=".">{t`w = -P\,\Delta V`}</M></li>
               <li>Die Energiebuchführung: <M p=".">{t`\Delta E = q_p + w`}</M> Nun kommt der Trick der Definition <M p=":">{t`H = E + PV`}</M> Bei konstantem <M>P</M> addiert <M>{t`P\,\Delta V`}</M> genau die Arbeit wieder, die vorher abgezogen wurde. Übrig bleibt nur die Wärme.</li>
@@ -61,8 +61,8 @@ export default function CH4Enthalpie() {
             <p>Genau das zeigt die Animation. Die Zahlen darin (<M>{t`+10`}</M> und <M p=")">{t`-4`}</M> sind ein Beispiel; sie stehen nicht auf der Folie.</p>
           </>}
           en={<>
-            <p><b>How to read this:</b></p>
-            <ol>
+            <p className="keep"><b>How to read this:</b></p>
+            <ol className="keep">
               <li>A gas pushes the piston up. It has to work against the pressure of the air and gives away energy: <M p=".">{t`w < 0`}</M></li>
               <li>How big is <M p="?">w</M> Force times distance. The force is pressure times area, the distance is <M p=".">{t`\Delta x`}</M> Area times distance is a volume, so <M p=".">{t`w = -P\,\Delta V`}</M></li>
               <li>The energy bookkeeping: <M p=".">{t`\Delta E = q_p + w`}</M> Now comes the trick of the definition <M p=":">{t`H = E + PV`}</M> at constant <M p=",">P</M> <M>{t`P\,\Delta V`}</M> adds back exactly the work that was subtracted before. Only the heat remains.</li>
@@ -129,8 +129,8 @@ export default function CH4Enthalpie() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li>Heizt du <M>m</M> Gramm Wasser um <M p=",">{t`\Delta T`}</M> brauchst du <M p=".">{t`q = m\,C_\mathrm{s}\,\Delta T`}</M> Mit <M>{t`C_\mathrm{s}`}</M> kannst du das als «Preis pro Gramm und Kelvin» lesen: 4,18 Joule.</li>
               <li>Im Becher steckt die Reaktion <em>im</em> Wasser. Was die Reaktion abgibt, nimmt das Wasser auf, und umgekehrt: <M p=".">{t`q_\mathrm{rxn} = -q_{${cx('H2O')}}`}</M></li>
               <li>Also rückwärts: aus der gemessenen Temperaturänderung folgt <M p=",">{t`q_{${cx('H2O')}}`}</M> daraus <M p=",">{t`q_\mathrm{rxn}`}</M> und im Becher ist das <M p=".">{t`\Delta H_\mathrm{rxn}`}</M></li>
@@ -138,8 +138,8 @@ export default function CH4Enthalpie() {
             <p>Probiere es aus: Der Regler <M>{t`q_\mathrm{rxn}`}</M> bestimmt, wie viel Wärme die Reaktion liefert (negativ) oder braucht (positiv). Die Zahlen sind unsere Wahl, nicht aus den Folien. Der Wechsel zur Bombe ändert nur die Bezeichnung: dort liest man <M>{t`\Delta E`}</M> statt <M p=".">{t`\Delta H`}</M></p>
           </>}
           en={<>
-            <p><b>How to read this:</b></p>
-            <ol>
+            <p className="keep"><b>How to read this:</b></p>
+            <ol className="keep">
               <li>If you heat <M>m</M> grams of water by <M p=",">{t`\Delta T`}</M> you need <M p=".">{t`q = m\,C_\mathrm{s}\,\Delta T`}</M> You can read <M>{t`C_\mathrm{s}`}</M> as a «price per gram and kelvin»: 4.18 joules.</li>
               <li>In the cup the reaction takes place <em>in</em> the water. What the reaction gives off, the water takes up, and vice versa: <M p=".">{t`q_\mathrm{rxn} = -q_{${cx('H2O')}}`}</M></li>
               <li>So backwards: from the measured temperature change you get <M p=",">{t`q_{${cx('H2O')}}`}</M> from that <M p=",">{t`q_\mathrm{rxn}`}</M> and in the cup that is <M p=".">{t`\Delta H_\mathrm{rxn}`}</M></li>
@@ -217,8 +217,8 @@ export default function CH4Enthalpie() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die Summenformel:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man die Summenformel:</b></p>
+            <ol className="keep">
               <li>Jede Substanz hat ihre «Meereshöhe» <M p=",">{t`\Delta H^\circ_\mathrm{f}`}</M> gemessen von den Elementen aus. Die Elemente selbst liegen auf Höhe 0.</li>
               <li>Eine Reaktion führt von den Ausgangsstoffen zu den Produkten. Du kannst sie dir als Umweg über die Elemente vorstellen: erst alle Ausgangsstoffe zu den Elementen «zerlegen», dann die Produkte aufbauen.</li>
               <li>Das Zerlegen kostet das Negative der Bildungsenthalpie, also das Minus vor der zweiten Summe. Das Aufbauen kostet die Bildungsenthalpie, also das Plus vor der ersten. Jeder Posten wird mit seinem Koeffizienten multipliziert, weil <M>{t`\Delta H`}</M> extensiv ist.</li>
@@ -226,8 +226,8 @@ export default function CH4Enthalpie() {
             <p>Im Bild unten spielst du das Ganze durch: Wähle eine Reaktion und drücke «Abspielen». Jeder Pfeil ist ein Posten der Summe. Der lange dunkle Pfeil am Schluss ist <M p=".">{t`\Delta H_\mathrm{rxn}`}</M> Die Pfeillängen sind nur grob proportional, damit die Beschriftungen lesbar bleiben; die Zahlen stimmen genau. Die Tabelle darunter ist die Rechnung der Summenformel.</p>
           </>}
           en={<>
-            <p><b>How to read the summation formula:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the summation formula:</b></p>
+            <ol className="keep">
               <li>Every substance has its «altitude» <M p=",">{t`\Delta H^\circ_\mathrm{f}`}</M> measured from the elements. The elements themselves lie at height 0.</li>
               <li>A reaction leads from the reactants to the products. You can imagine it as a detour via the elements: first «take apart» all reactants down to the elements, then build the products.</li>
               <li>Taking apart costs the negative of the enthalpy of formation, hence the minus before the second sum. Building costs the enthalpy of formation, hence the plus before the first. Each item is multiplied by its coefficient because <M>{t`\Delta H`}</M> is extensive.</li>

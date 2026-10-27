@@ -46,8 +46,8 @@ export default function A2Grenzwerte() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die Zeichen:</b></p>
-            <ul>
+            <p className="keep"><b>So liest man die Zeichen:</b></p>
+            <ul className="keep">
               <li><M>{t`\lim_{x\to a^-} g(x)`}</M> («Grenzwert von links»): <M>x</M> kommt von <em>links</em> an <M>a</M> heran, also nur mit <M p=".">{t`x < a`}</M> Gemeint ist der Wert, dem <M>{t`g(x)`}</M> dabei immer näher kommt.</li>
               <li><M>{t`\lim_{x\to a^+} g(x)`}</M> («von rechts»): genauso mit <M p=".">{t`x > a`}</M></li>
               <li>Der Wert <M>{t`g(a)`}</M> selbst spielt bei beiden keine Rolle – man schaut nur <em>in die Nähe</em> von <M p=".">a</M></li>
@@ -55,8 +55,8 @@ export default function A2Grenzwerte() {
             <p>Im Bild unten laufen zwei Punkte im Abstand <M>h</M> von links und von rechts auf die Stelle zu.</p>
           </>}
           en={<>
-            <p><b>How to read the symbols:</b></p>
-            <ul>
+            <p className="keep"><b>How to read the symbols:</b></p>
+            <ul className="keep">
               <li><M>{t`\lim_{x\to a^-} g(x)`}</M> (“limit from the left”): <M>x</M> approaches <M>a</M> from the <em>left</em>, i.e. only with <M p=".">{t`x < a`}</M> It means the value that <M>{t`g(x)`}</M> gets closer and closer to.</li>
               <li><M>{t`\lim_{x\to a^+} g(x)`}</M> (“from the right”): the same with <M p=".">{t`x > a`}</M></li>
               <li>The value <M>{t`g(a)`}</M> itself plays no role in either – you only look <em>near</em> <M p=".">a</M></li>
@@ -86,8 +86,8 @@ export default function A2Grenzwerte() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die Rechnung:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man die Rechnung:</b></p>
+            <ol className="keep">
               <li>Der Betrag macht eine Zahl positiv: <M>{t`|x-1| = x-1`}</M> für <M p=",">{t`x > 1`}</M> aber <M>{t`|x-1| = -(x-1)`}</M> für <M p=".">{t`x < 1`}</M> Darum muss man die zwei Seiten getrennt rechnen.</li>
               <li>Von rechts: Zähler und Nenner haben denselben Faktor <M p=".">{t`x-1`}</M> Man darf ihn kürzen, weil <M>{t`x \neq 1`}</M> ist (siehe Abschnitt 3). Übrig bleibt <M p=".">{t`\frac12`}</M></li>
               <li>Von links: im Nenner steht ein zusätzliches <M p=".">{t`(-1)`}</M> Übrig bleibt <M p=".">{t`-\frac12`}</M></li>
@@ -95,8 +95,8 @@ export default function A2Grenzwerte() {
             <p>Die Funktion ist also einfach <M>{t`-\frac12`}</M> links von <M>1</M> und <M>{t`\frac12`}</M> rechts davon – wähle im Bild oben den letzten Knopf. Genau genommen ist sie bei <M>{t`x = 1`}</M> gar nicht definiert (Nenner <M p=").">0</M> «Unstetig» meint hier: Die einseitigen Grenzwerte sind verschieden, also könnte <em>kein</em> Wert <M>{t`f(1)`}</M> die Lücke schliessen – ein Sprung.</p>
           </>}
           en={<>
-            <p><b>How to read the calculation:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the calculation:</b></p>
+            <ol className="keep">
               <li>The absolute value makes a number positive: <M>{t`|x-1| = x-1`}</M> for <M p=",">{t`x > 1`}</M> but <M>{t`|x-1| = -(x-1)`}</M> for <M p=".">{t`x < 1`}</M> That is why the two sides have to be computed separately.</li>
               <li>From the right: numerator and denominator have the same factor <M p=".">{t`x-1`}</M> You may cancel it because <M>{t`x \neq 1`}</M> (see section 3). What remains is <M p=".">{t`\frac12`}</M></li>
               <li>From the left: the denominator has an extra <M p=".">{t`(-1)`}</M> What remains is <M p=".">{t`-\frac12`}</M></li>
@@ -129,8 +129,8 @@ export default function A2Grenzwerte() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die Zeile:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man die Zeile:</b></p>
+            <ol className="keep">
               <li>Einsetzen gibt <M p=":">{t`\frac{4-4}{4+2-6} = \frac00`}</M> Also eine andere Methode.</li>
               <li>Zähler: <M>{t`x^2-4 = (x-2)(x+2)`}</M> (der Kasten mit <M p=").">{t`a = x,\ b = 2`}</M> Nenner: <M>{t`x^2+x-6 = (x+3)(x-2)`}</M> – ausmultiplizieren zeigt es.</li>
               <li><M>{t`(x-2)`}</M> kürzen. <b>Warum erlaubt?</b> Kürzen heisst durch <M>{t`x-2`}</M> teilen. Das geht für jedes <M p=".">{t`x \neq 2`}</M> Und der Grenzwert fragt nie nach <M>{t`x = 2`}</M> selbst, nur nach der Nähe.</li>
@@ -138,8 +138,8 @@ export default function A2Grenzwerte() {
             </ol>
           </>}
           en={<>
-            <p><b>How to read the line:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the line:</b></p>
+            <ol className="keep">
               <li>Substituting gives <M p=":">{t`\frac{4-4}{4+2-6} = \frac00`}</M> so another method is needed.</li>
               <li>Numerator: <M>{t`x^2-4 = (x-2)(x+2)`}</M> (the box with <M p=").">{t`a = x,\ b = 2`}</M> Denominator: <M>{t`x^2+x-6 = (x+3)(x-2)`}</M> – multiplying out shows it.</li>
               <li>Cancel <M p=".">{t`(x-2)`}</M> <b>Why is this allowed?</b> Cancelling means dividing by <M p=".">{t`x-2`}</M> That works for every <M p=".">{t`x \neq 2`}</M> And the limit never asks about <M>{t`x = 2`}</M> itself, only about its neighbourhood.</li>
@@ -190,13 +190,13 @@ export default function A2Grenzwerte() {
           <T de={<p>Pink über der ersten Zeile: <M>a</M> über <M p=",">{t`\sqrt{x+4}`}</M> <M>b</M> über <M p=";">2</M> im Kasten <M p=".">{t`(a-b)(a+b) = a^2-b^2`}</M></p>} en={<p>Pink above the first line: <M>a</M> above <M p=",">{t`\sqrt{x+4}`}</M> <M>b</M> above <M p=";">2</M> in the box <M p=".">{t`(a-b)(a+b) = a^2-b^2`}</M></p>} />
         </Box>
         <T
-          de={<ol>
+          de={<ol className="keep">
             <li>Einsetzen gibt <M p=".">{t`\frac{2-2}{0} = \frac00`}</M></li>
             <li>Mit <M>{t`\frac{\sqrt{x+4}+2}{\sqrt{x+4}+2}`}</M> multiplizieren. Das ist <M p=",">1</M> also ändert sich nichts – erlaubt, weil dieser Nenner nie <M>0</M> ist (er ist mindestens <M p=").">2</M></li>
             <li>Oben steht jetzt <M p=":">{t`(a-b)(a+b) = a^2-b^2 = (x+4)-4 = x`}</M> Die Wurzel ist weg.</li>
             <li><M>x</M> kürzen (erlaubt für <M p=",">{t`x \neq 0`}</M> wie oben) und dann <M>{t`x = 0`}</M> einsetzen: <M p=".">{t`\frac{1}{2+2} = \frac14`}</M></li>
           </ol>}
-          en={<ol>
+          en={<ol className="keep">
             <li>Substituting gives <M p=".">{t`\frac{2-2}{0} = \frac00`}</M></li>
             <li>Multiply by <M p=".">{t`\frac{\sqrt{x+4}+2}{\sqrt{x+4}+2}`}</M> That is <M p=",">1</M> so nothing changes – allowed because this denominator is never <M>0</M> (it is at least <M p=").">2</M></li>
             <li>The top is now <M p=":">{t`(a-b)(a+b) = a^2-b^2 = (x+4)-4 = x`}</M> the root is gone.</li>
@@ -245,12 +245,12 @@ export default function A2Grenzwerte() {
           <MD>{t`= \lim_{n\to 0}\frac{\sin(n)}{\frac n5\cdot\cos(n)} = \lim_{n\to 0}\frac{5\sin(n)}{n\cdot\cos(n)} = \lim_{n\to 0} 5\cdot\underbrace{\frac{\sin(n)}{n}}_{1}\cdot\underbrace{\frac{1}{\cos(n)}}_{1} = 5`}</MD>
         </Box>
         <T
-          de={<ol>
+          de={<ol className="keep">
             <li><M p=".">{t`\tan = \frac{\sin}{\cos}`}</M></li>
             <li>Substitution <M p=":">{t`n = 5x`}</M> ein neuer Name für <M p=".">{t`5x`}</M> <b>Warum erlaubt?</b> <M>{t`x \to 0`}</M> heisst genau dasselbe wie <M p=".">{t`n \to 0`}</M> Und <M>{t`x = \frac n5`}</M> ersetzt das <M>x</M> im Nenner.</li>
             <li>Umordnen, bis die bekannte Form <M>{t`\frac{\sin n}{n}`}</M> dasteht. Sie geht gegen <M p=",">1</M> und <M>{t`\frac{1}{\cos n} \to \frac11 = 1`}</M> (einsetzen geht, <M p=").">{t`\cos 0 = 1 \neq 0`}</M> Ergebnis <M p=".">{t`5\cdot1\cdot1 = 5`}</M></li>
           </ol>}
-          en={<ol>
+          en={<ol className="keep">
             <li><M p=".">{t`\tan = \frac{\sin}{\cos}`}</M></li>
             <li>Substitution <M p=":">{t`n = 5x`}</M> a new name for <M p=".">{t`5x`}</M> <b>Why is this allowed?</b> <M>{t`x \to 0`}</M> means exactly the same as <M p=".">{t`n \to 0`}</M> And <M>{t`x = \frac n5`}</M> replaces the <M>x</M> in the denominator.</li>
             <li>Rearrange until the known form <M>{t`\frac{\sin n}{n}`}</M> appears. It tends to <M p=",">1</M> and <M>{t`\frac{1}{\cos n} \to \frac11 = 1`}</M> (substituting works, <M p=").">{t`\cos 0 = 1 \neq 0`}</M> Result <M p=".">{t`5\cdot1\cdot1 = 5`}</M></li>
@@ -262,7 +262,7 @@ export default function A2Grenzwerte() {
         </Box>
         <T
           de={<>
-            <ol>
+            <ol className="keep">
               <li><M>{t`x^2`}</M> in <M>{t`x\cdot x`}</M> aufteilen: ein Faktor bildet mit <M>{t`\sin x`}</M> die bekannte Form <M p=",">{t`\frac{x}{\sin x} \to 1`}</M> der andere bleibt bei <M p=".">{t`\sin(\frac1x)`}</M></li>
               <li>Ein Grenzwert eines Produkts ist das Produkt der Grenzwerte – <b>wenn beide existieren</b>. Darum muss man <M>A</M> noch ausrechnen.</li>
               <li><M p=":">{t`u = \frac1x`}</M> Geht <M>x</M> gegen <M p=",">0</M> wird <M>u</M> riesig. <M>{t`\sin u`}</M> bleibt zwischen <M>-1</M> und <M p=",">1</M> geteilt durch ein riesiges <M>u</M> gibt das fast <M p=".">0</M></li>
@@ -270,7 +270,7 @@ export default function A2Grenzwerte() {
             <p>Ein kleines Detail: Kommt <M>x</M> von links (<M p="),">{t`x < 0`}</M> geht <M>{t`u \to -\infty`}</M> und nicht <M p=".">{t`+\infty`}</M> Das Ergebnis ist dasselbe, <M p=".">{t`\frac{\sin u}{u} \to 0`}</M> Ohne Substitution sieht man es im Bild:</p>
           </>}
           en={<>
-            <ol>
+            <ol className="keep">
               <li>Split <M>{t`x^2`}</M> into <M p=":">{t`x\cdot x`}</M> one factor forms the known <M>{t`\frac{x}{\sin x} \to 1`}</M> with <M p=",">{t`\sin x`}</M> the other stays with <M p=".">{t`\sin(\frac1x)`}</M></li>
               <li>The limit of a product is the product of the limits – <b>if both exist</b>. That is why <M>A</M> still has to be computed.</li>
               <li><M p=":">{t`u = \frac1x`}</M> as <M>x</M> goes to <M p=",">0</M> <M>u</M> becomes huge. <M>{t`\sin u`}</M> stays between <M>-1</M> and <M p=";">1</M> divided by a huge <M>u</M> that gives almost <M p=".">0</M></li>
@@ -289,8 +289,8 @@ export default function A2Grenzwerte() {
           <MD>{t`\lim_{x\to a} f(x) = 0 \ \text{${tr('und', 'and')}}\ \lim_{x\to a} g(x) = 0 \qquad \text{${tr('oder', 'or')}} \qquad \lim_{x\to a} f(x) = \pm\infty \ \text{${tr('und', 'and')}}\ \lim_{x\to a} g(x) = \pm\infty`}</MD>
         </Box>
         <T
-          de={<p>In Worten: Steht ein «<M p="»">{t`\frac00`}</M> oder «<M p="»,">{t`\frac\infty\infty`}</M> darf man Zähler und Nenner <em>einzeln</em> ableiten und den neuen Bruch untersuchen. <M>{t`f'(a)`}</M> ist die Steigung der Tangente an den Graphen bei <M>a</M> (genau kommt das in <a href="#ana-ableitung">Woche 4</a>). Auf der Folie steht «BH» über dem Gleichheitszeichen, wo die Regel benutzt wird.</p>}
-          en={<p>In words: if you face a “<M p="”">{t`\frac00`}</M> or a “<M p="”,">{t`\frac\infty\infty`}</M> you may differentiate numerator and denominator <em>separately</em> and study the new fraction. <M>{t`f'(a)`}</M> is the slope of the tangent to the graph at <M>a</M> (precisely in <a href="#ana-ableitung">week 4</a>). On the slide “BH” stands above the equals sign where the rule is used.</p>}
+          de={<p className="keep">In Worten: Steht ein «<M p="»">{t`\frac00`}</M> oder «<M p="»,">{t`\frac\infty\infty`}</M> darf man Zähler und Nenner <em>einzeln</em> ableiten und den neuen Bruch untersuchen. <M>{t`f'(a)`}</M> ist die Steigung der Tangente an den Graphen bei <M>a</M> (genau kommt das in <a href="#ana-ableitung">Woche 4</a>). Auf der Folie steht «BH» über dem Gleichheitszeichen, wo die Regel benutzt wird.</p>}
+          en={<p className="keep">In words: if you face a “<M p="”">{t`\frac00`}</M> or a “<M p="”,">{t`\frac\infty\infty`}</M> you may differentiate numerator and denominator <em>separately</em> and study the new fraction. <M>{t`f'(a)`}</M> is the slope of the tangent to the graph at <M>a</M> (precisely in <a href="#ana-ableitung">week 4</a>). On the slide “BH” stands above the equals sign where the rule is used.</p>}
         />
         <T
           de={<p><b>Warum stimmt das? Das Bild.</b> Sind <M>f</M> und <M>g</M> beide <M>0</M> bei <M p=",">a</M> sehen ihre Graphen nahe bei <M>a</M> fast wie ihre Tangenten aus: <M>{t`f(x) \approx f'(a)\,(x-a)`}</M> und <M p=".">{t`g(x) \approx g'(a)\,(x-a)`}</M> Im Bruch kürzt sich <M>{t`(x-a)`}</M> weg, und übrig bleibt <M p=":">{t`\frac{f'(a)}{g'(a)}`}</M> das Verhältnis der Steigungen. Zoome hinein:</p>}
@@ -309,12 +309,12 @@ export default function A2Grenzwerte() {
             en={<p>Pink above numerator and denominator a <M>0</M> each (for <M>{t`\cos(x) - 1`}</M> first <M p=",">1</M> then <M p=").">0</M> Box: <M p=".">{t`\tan(x)' = \frac{1}{\cos^2(x)}`}</M></p>} />
         </Box>
         <T
-          de={<p><b>So geht man vor:</b> 1. Prüfen, ob wirklich <M>{t`\frac00`}</M> oder <M>{t`\frac\infty\infty`}</M> dasteht – das sind die pinken Nullen. 2. Zähler und Nenner einzeln ableiten. 3. Den neuen Bruch untersuchen, meist durch Einsetzen. Beim dritten Beispiel gibt die Kettenregel den Faktor <M p=":">5</M> <M p=".">{t`(\tan(5x))' = \frac{1}{\cos^2(5x)}\cdot 5`}</M> Es kommt dasselbe heraus wie mit der Substitution oben.</p>}
-          en={<p><b>How to proceed:</b> 1. Check that you really have <M>{t`\frac00`}</M> or <M>{t`\frac\infty\infty`}</M> – these are the pink zeros. 2. Differentiate numerator and denominator separately. 3. Study the new fraction, usually by substituting. In the third example the chain rule gives the factor <M p=":">5</M> <M p=".">{t`(\tan(5x))' = \frac{1}{\cos^2(5x)}\cdot 5`}</M> The result is the same as with the substitution above.</p>}
+          de={<p className="keep"><b>So geht man vor:</b> 1. Prüfen, ob wirklich <M>{t`\frac00`}</M> oder <M>{t`\frac\infty\infty`}</M> dasteht – das sind die pinken Nullen. 2. Zähler und Nenner einzeln ableiten. 3. Den neuen Bruch untersuchen, meist durch Einsetzen. Beim dritten Beispiel gibt die Kettenregel den Faktor <M p=":">5</M> <M p=".">{t`(\tan(5x))' = \frac{1}{\cos^2(5x)}\cdot 5`}</M> Es kommt dasselbe heraus wie mit der Substitution oben.</p>}
+          en={<p className="keep"><b>How to proceed:</b> 1. Check that you really have <M>{t`\frac00`}</M> or <M>{t`\frac\infty\infty`}</M> – these are the pink zeros. 2. Differentiate numerator and denominator separately. 3. Study the new fraction, usually by substituting. In the third example the chain rule gives the factor <M p=":">5</M> <M p=".">{t`(\tan(5x))' = \frac{1}{\cos^2(5x)}\cdot 5`}</M> The result is the same as with the substitution above.</p>}
         />
         <T
-          de={<p><b>Was auf der Folie fehlt:</b> Die Regel gilt nur, wenn der neue Grenzwert <M>{t`\lim \frac{f'(x)}{g'(x)}`}</M> existiert (oder <M>{t`\pm\infty`}</M> ist) und <M>{t`g'(x) \neq 0`}</M> nahe bei <M>a</M> ist. Hat <M>{t`\frac{f'}{g'}`}</M> keinen Grenzwert, sagt die Regel <em>nichts</em> – der ursprüngliche Grenzwert kann trotzdem existieren:</p>}
-          en={<p><b>What the slide leaves out:</b> the rule only holds if the new limit <M>{t`\lim \frac{f'(x)}{g'(x)}`}</M> exists (or is <M p=")">{t`\pm\infty`}</M> and <M>{t`g'(x) \neq 0`}</M> near <M p=".">a</M> If <M>{t`\frac{f'}{g'}`}</M> has no limit, the rule says <em>nothing</em> – the original limit may still exist:</p>}
+          de={<p className="keep"><b>Was auf der Folie fehlt:</b> Die Regel gilt nur, wenn der neue Grenzwert <M>{t`\lim \frac{f'(x)}{g'(x)}`}</M> existiert (oder <M>{t`\pm\infty`}</M> ist) und <M>{t`g'(x) \neq 0`}</M> nahe bei <M>a</M> ist. Hat <M>{t`\frac{f'}{g'}`}</M> keinen Grenzwert, sagt die Regel <em>nichts</em> – der ursprüngliche Grenzwert kann trotzdem existieren:</p>}
+          en={<p className="keep"><b>What the slide leaves out:</b> the rule only holds if the new limit <M>{t`\lim \frac{f'(x)}{g'(x)}`}</M> exists (or is <M p=")">{t`\pm\infty`}</M> and <M>{t`g'(x) \neq 0`}</M> near <M p=".">a</M> If <M>{t`\frac{f'}{g'}`}</M> has no limit, the rule says <em>nothing</em> – the original limit may still exist:</p>}
         />
         <MD>{t`\lim_{x\to\infty}\frac{x+\sin x}{x} = \lim_{x\to\infty}\Big(1 + \frac{\sin x}{x}\Big) = 1, \qquad \text{${tr('aber', 'but')}}\quad \frac{(x+\sin x)'}{(x)'} = 1+\cos x`}</MD>
         <CexFig />

@@ -46,8 +46,8 @@ export default function CH6Licht() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das.</b> Stell dir eine Welle auf einem Seil vor. Der Abstand von Wellenberg zu Wellenberg ist die Wellenlänge <M p=".">\lambda</M> Die Frequenz <M>\nu</M> sagt, wie viele Wellenberge pro Sekunde an dir vorbeiziehen. Die Welle läuft mit der Geschwindigkeit <M p=",">c</M> also kommen in einer Sekunde so viele Berge vorbei, wie in die Strecke <M>c</M> passen: <M p=".">{t`\nu=c/\lambda`}</M> Kurze Wellen ziehen darum viel schneller «im Takt» vorbei als lange.</p>
-            <ol>
+            <p className="keep"><b>So liest man das.</b> Stell dir eine Welle auf einem Seil vor. Der Abstand von Wellenberg zu Wellenberg ist die Wellenlänge <M p=".">\lambda</M> Die Frequenz <M>\nu</M> sagt, wie viele Wellenberge pro Sekunde an dir vorbeiziehen. Die Welle läuft mit der Geschwindigkeit <M p=",">c</M> also kommen in einer Sekunde so viele Berge vorbei, wie in die Strecke <M>c</M> passen: <M p=".">{t`\nu=c/\lambda`}</M> Kurze Wellen ziehen darum viel schneller «im Takt» vorbei als lange.</p>
+            <ol className="keep">
               <li><M p=":">{t`\nu=c/\lambda`}</M> kleines <M p=",">\lambda</M> grosses <M p=".">\nu</M> Die Einheit von <M>\nu</M> ist <M p=",">{t`1/\mathrm s=\mathrm{Hz}`}</M> Hertz.</li>
               <li><M p=":">{t`E=h\nu`}</M> Jedes Photon hat eine feste Energie, die nur von der Frequenz abhängt. Mehr Licht heisst nicht stärkere Photonen, sondern <em>mehr</em> Photonen.</li>
               <li>Zusammen: <M p=".">{t`E=hc/\lambda`}</M> Kleine Wellenlänge, grosse Energie. Ein UV-Photon trägt mehr als ein sichtbares, ein sichtbares mehr als ein Infrarot-Photon.</li>
@@ -55,8 +55,8 @@ export default function CH6Licht() {
             <p>Probiere es in der Figur: Schiebe <M>\lambda</M> und beobachte, wie sich die Welle staucht und streckt, während <M>\nu</M> und <M>E</M> sich gegenläufig ändern. Die Zahl der Wellen im Bild ist 2000 nm geteilt durch <M p=".">\lambda</M></p>
           </>}
           en={<>
-            <p><b>How to read this.</b> Picture a wave on a rope. The distance from crest to crest is the wavelength <M p=".">\lambda</M> The frequency <M>\nu</M> says how many crests pass you per second. The wave travels at the speed <M p=",">c</M> so in one second as many crests pass as fit into the length <M p=":">c</M> <M p=".">{t`\nu=c/\lambda`}</M> Short waves therefore pass “in rhythm” much faster than long ones.</p>
-            <ol>
+            <p className="keep"><b>How to read this.</b> Picture a wave on a rope. The distance from crest to crest is the wavelength <M p=".">\lambda</M> The frequency <M>\nu</M> says how many crests pass you per second. The wave travels at the speed <M p=",">c</M> so in one second as many crests pass as fit into the length <M p=":">c</M> <M p=".">{t`\nu=c/\lambda`}</M> Short waves therefore pass “in rhythm” much faster than long ones.</p>
+            <ol className="keep">
               <li><M p=":">{t`\nu=c/\lambda`}</M> small <M p=",">\lambda</M> large <M p=".">\nu</M> The unit of <M>\nu</M> is <M p=",">{t`1/\mathrm s=\mathrm{Hz}`}</M> hertz.</li>
               <li><M p=":">{t`E=h\nu`}</M> each photon has a fixed energy that depends only on the frequency. More light does not mean stronger photons but <em>more</em> photons.</li>
               <li>Together: <M p=".">{t`E=hc/\lambda`}</M> Small wavelength, large energy. A UV photon carries more than a visible one, a visible one more than an infrared photon.</li>
@@ -66,8 +66,8 @@ export default function CH6Licht() {
         />
         <LightWave />
         <T
-          de={<p><b>Zahlenbeispiel.</b> Grünes Licht, <M p=":">{t`\lambda=530\,\mathrm{nm}=5{,}30\cdot10^{-7}\,\mathrm m`}</M> <M p=",">{t`\nu=\dfrac{2{,}998\cdot10^{8}}{5{,}30\cdot10^{-7}}\,\mathrm{Hz}\approx 5{,}66\cdot10^{14}\,\mathrm{Hz}`}</M> <M p=".">{t`E=h\nu\approx 6{,}626\cdot10^{-34}\cdot 5{,}66\cdot10^{14}\,\mathrm J\approx 3{,}75\cdot10^{-19}\,\mathrm J`}</M> Das ist winzig, aber ein Mol solcher Photonen trägt rund <M p=".">{t`226\,\mathrm{kJ}`}</M> Zum Vergleich: ein blaues Photon (<M>{t`430\,\mathrm{nm}`}</M> hat das Verhältnis <M>{t`530/430\approx 1{,}23`}</M> mal mehr Energie. (Die Rechnung ist nicht auf den Folien; sie ist im Code geprüft.)</p>}
-          en={<p><b>Worked numbers.</b> Green light, <M p=":">{t`\lambda=530\,\mathrm{nm}=5.30\cdot10^{-7}\,\mathrm m`}</M> <M p=",">{t`\nu=\dfrac{2.998\cdot10^{8}}{5.30\cdot10^{-7}}\,\mathrm{Hz}\approx 5.66\cdot10^{14}\,\mathrm{Hz}`}</M> <M p=".">{t`E=h\nu\approx 6.626\cdot10^{-34}\cdot 5.66\cdot10^{14}\,\mathrm J\approx 3.75\cdot10^{-19}\,\mathrm J`}</M> That is tiny, but a mole of such photons carries about <M p=".">{t`226\,\mathrm{kJ}`}</M> For comparison: a blue photon (<M>{t`430\,\mathrm{nm}`}</M> has <M>{t`530/430\approx 1.23`}</M> times more energy. (The calculation is not on the slides; it is checked in the code.)</p>}
+          de={<p className="keep"><b>Zahlenbeispiel.</b> Grünes Licht, <M p=":">{t`\lambda=530\,\mathrm{nm}=5{,}30\cdot10^{-7}\,\mathrm m`}</M> <M p=",">{t`\nu=\dfrac{2{,}998\cdot10^{8}}{5{,}30\cdot10^{-7}}\,\mathrm{Hz}\approx 5{,}66\cdot10^{14}\,\mathrm{Hz}`}</M> <M p=".">{t`E=h\nu\approx 6{,}626\cdot10^{-34}\cdot 5{,}66\cdot10^{14}\,\mathrm J\approx 3{,}75\cdot10^{-19}\,\mathrm J`}</M> Das ist winzig, aber ein Mol solcher Photonen trägt rund <M p=".">{t`226\,\mathrm{kJ}`}</M> Zum Vergleich: ein blaues Photon (<M>{t`430\,\mathrm{nm}`}</M> hat das Verhältnis <M>{t`530/430\approx 1{,}23`}</M> mal mehr Energie. (Die Rechnung ist nicht auf den Folien; sie ist im Code geprüft.)</p>}
+          en={<p className="keep"><b>Worked numbers.</b> Green light, <M p=":">{t`\lambda=530\,\mathrm{nm}=5.30\cdot10^{-7}\,\mathrm m`}</M> <M p=",">{t`\nu=\dfrac{2.998\cdot10^{8}}{5.30\cdot10^{-7}}\,\mathrm{Hz}\approx 5.66\cdot10^{14}\,\mathrm{Hz}`}</M> <M p=".">{t`E=h\nu\approx 6.626\cdot10^{-34}\cdot 5.66\cdot10^{14}\,\mathrm J\approx 3.75\cdot10^{-19}\,\mathrm J`}</M> That is tiny, but a mole of such photons carries about <M p=".">{t`226\,\mathrm{kJ}`}</M> For comparison: a blue photon (<M>{t`430\,\mathrm{nm}`}</M> has <M>{t`530/430\approx 1.23`}</M> times more energy. (The calculation is not on the slides; it is checked in the code.)</p>}
         />
         <Box kind="supplement" title={<T de="Wo das sichtbare Licht im Spektrum liegt" en="Where visible light sits in the spectrum" />}>
           <T
@@ -109,11 +109,11 @@ export default function CH6Licht() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die Gleichung.</b> Man wählt zwei ganze Zahlen, die kleinere <M>{t`n_1`}</M> und die grössere <M p=".">{t`n_2`}</M> Dann rechnet man <M p=".">{t`1/n_1^2-1/n_2^2`}</M> Das gibt eine Zahl zwischen 0 und 1, die mit <M>{t`hcR_{\mathrm H}`}</M> multipliziert die Energie eines Photons liefert. Für jedes Paar <M>{t`(n_1,n_2)`}</M> gibt es genau eine Linie, und die Wellenlänge folgt aus <M p=".">{t`1/\lambda=R_{\mathrm H}(1/n_1^2-1/n_2^2)`}</M></p>
+            <p className="keep"><b>So liest man die Gleichung.</b> Man wählt zwei ganze Zahlen, die kleinere <M>{t`n_1`}</M> und die grössere <M p=".">{t`n_2`}</M> Dann rechnet man <M p=".">{t`1/n_1^2-1/n_2^2`}</M> Das gibt eine Zahl zwischen 0 und 1, die mit <M>{t`hcR_{\mathrm H}`}</M> multipliziert die Energie eines Photons liefert. Für jedes Paar <M>{t`(n_1,n_2)`}</M> gibt es genau eine Linie, und die Wellenlänge folgt aus <M p=".">{t`1/\lambda=R_{\mathrm H}(1/n_1^2-1/n_2^2)`}</M></p>
             <p>Beispiel für <M p=":">{t`n_1=2`}</M> <M>{t`n_2=3`}</M> gibt <M p=",">{t`1/\lambda=1{,}097\cdot10^{7}\cdot(1/4-1/9)\,\mathrm{m^{-1}}=1{,}524\cdot10^{6}\,\mathrm{m^{-1}}`}</M> also <M p=".">{t`\lambda=656\,\mathrm{nm}`}</M> Das ist die rote Linie der Folie 8. Mit <M>{t`n_2=4,5,6`}</M> folgen die drei anderen:</p>
           </>}
           en={<>
-            <p><b>How to read the equation.</b> You choose two integers, the smaller <M>{t`n_1`}</M> and the larger <M p=".">{t`n_2`}</M> Then you compute <M p=".">{t`1/n_1^2-1/n_2^2`}</M> That gives a number between 0 and 1 which, multiplied by <M p=",">{t`hcR_{\mathrm H}`}</M> delivers the energy of a photon. Each pair <M>{t`(n_1,n_2)`}</M> gives exactly one line, and the wavelength follows from <M p=".">{t`1/\lambda=R_{\mathrm H}(1/n_1^2-1/n_2^2)`}</M></p>
+            <p className="keep"><b>How to read the equation.</b> You choose two integers, the smaller <M>{t`n_1`}</M> and the larger <M p=".">{t`n_2`}</M> Then you compute <M p=".">{t`1/n_1^2-1/n_2^2`}</M> That gives a number between 0 and 1 which, multiplied by <M p=",">{t`hcR_{\mathrm H}`}</M> delivers the energy of a photon. Each pair <M>{t`(n_1,n_2)`}</M> gives exactly one line, and the wavelength follows from <M p=".">{t`1/\lambda=R_{\mathrm H}(1/n_1^2-1/n_2^2)`}</M></p>
             <p>Example for <M p=":">{t`n_1=2`}</M> <M>{t`n_2=3`}</M> gives <M p=",">{t`1/\lambda=1.097\cdot10^{7}\cdot(1/4-1/9)\,\mathrm{m^{-1}}=1.524\cdot10^{6}\,\mathrm{m^{-1}}`}</M> so <M p=".">{t`\lambda=656\,\mathrm{nm}`}</M> That is the red line of slide 8. With <M>{t`n_2=4,5,6`}</M> the three others follow:</p>
           </>}
         />
@@ -156,8 +156,8 @@ export default function CH6Licht() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die Zeilen.</b> Stell dir ein Haus mit Stockwerken vor, nur ohne Treppenabsätze: Das Elektron kann in Stock 1, 2, 3 … stehen, nie dazwischen. Jedes Stockwerk hat eine feste Energie <M p=".">{t`E_n`}</M></p>
-            <ol>
+            <p className="keep"><b>So liest man die Zeilen.</b> Stell dir ein Haus mit Stockwerken vor, nur ohne Treppenabsätze: Das Elektron kann in Stock 1, 2, 3 … stehen, nie dazwischen. Jedes Stockwerk hat eine feste Energie <M p=".">{t`E_n`}</M></p>
+            <ol className="keep">
               <li><b>Warum negativ?</b> Die Null der Energie liegt «ganz weit weg» (<M p=")">{t`n=\infty`}</M> dort ist das Elektron frei. Je näher am Kern, desto stärker ist es gebunden, also liegt seine Energie <em>unter</em> null. <M>{t`n=1`}</M> ist am tiefsten: <M p=".">{t`E_1=-2{,}18\cdot10^{-18}\,\mathrm J`}</M></li>
               <li><b>Warum <M p="?">{t`1/n^2`}</M></b> Die Energie wächst nach oben, aber die Stufen werden immer enger. <M>{t`E_2=E_1/4`}</M> <M p=",">{t`E_3=E_1/9`}</M> und bei <M>{t`n\to\infty`}</M> läuft sie gegen null. Das zeigt das Bild der Niveaus.</li>
               <li><b>Was ist <M p="?">{t`\Delta E`}</M></b> <M>{t`\Delta E=E_f-E_i`}</M> ist «Ende minus Anfang». Fällt das Elektron nach unten (<M p=")">{t`n_f<n_i`}</M> ist <M>{t`\Delta E`}</M> negativ: Es gibt Energie ab, und die geht als Photon weg. Das Photon hat die Energie <M>{t`|\Delta E|`}</M> und die Wellenlänge <M p=".">{t`\lambda=hc/|\Delta E|`}</M> Springt es nach oben, muss ein Photon genau dieser Energie <em>aufgenommen</em> werden.</li>
@@ -166,8 +166,8 @@ export default function CH6Licht() {
             <p>Die Figur zeigt dasselbe Springen dreimal: in den Bahnen, in den Energieniveaus und im Spektrum. Wähle Start und Ziel. Bei den Übergängen nach <M>{t`n=2`}</M> (Balmer-Serie) liegt das Photon im Streifen von 400 bis 700 nm, und sein Ort fällt auf eine der vier Linien.</p>
           </>}
           en={<>
-            <p><b>How to read the lines.</b> Picture a building with floors but no landings: the electron can stand on floor 1, 2, 3 … never in between. Each floor has a fixed energy <M p=".">{t`E_n`}</M></p>
-            <ol>
+            <p className="keep"><b>How to read the lines.</b> Picture a building with floors but no landings: the electron can stand on floor 1, 2, 3 … never in between. Each floor has a fixed energy <M p=".">{t`E_n`}</M></p>
+            <ol className="keep">
               <li><b>Why negative?</b> The zero of energy lies “very far away” (<M p=")">{t`n=\infty`}</M> where the electron is free. The closer to the nucleus, the more strongly it is bound, so its energy lies <em>below</em> zero. <M>{t`n=1`}</M> is lowest: <M p=".">{t`E_1=-2.18\cdot10^{-18}\,\mathrm J`}</M></li>
               <li><b>Why <M p="?">{t`1/n^2`}</M></b> The energy rises upwards, but the steps get closer and closer. <M>{t`E_2=E_1/4`}</M> <M p=",">{t`E_3=E_1/9`}</M> and for <M>{t`n\to\infty`}</M> it approaches zero. The picture of the levels shows this.</li>
               <li><b>What is <M p="?">{t`\Delta E`}</M></b> <M>{t`\Delta E=E_f-E_i`}</M> is “end minus start”. If the electron falls down (<M p=")">{t`n_f<n_i`}</M> <M>{t`\Delta E`}</M> is negative: it gives off energy, and that leaves as a photon. The photon has the energy <M>{t`|\Delta E|`}</M> and the wavelength <M p=".">{t`\lambda=hc/|\Delta E|`}</M> If it jumps up, a photon of exactly this energy must be <em>absorbed</em>.</li>
@@ -240,11 +240,11 @@ export default function CH6Licht() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das.</b> Der Impuls <M>{t`p=mv`}</M> ist Masse mal Geschwindigkeit. Die Unschärferelation sagt: Je genauer man weiss, wo das Elektron ist (kleines <M p=")">{t`\Delta x`}</M> desto ungenauer weiss man, wie schnell es ist (grosses <M p=")">{t`\Delta p`}</M> und umgekehrt. Das Produkt kann nie kleiner als <M>{t`h/(4\pi)`}</M> werden. Weil <M>h</M> winzig ist, spürt man das bei einem Auto nie. Beim Elektron im Atom ist es entscheidend.</p>
+            <p className="keep"><b>So liest man das.</b> Der Impuls <M>{t`p=mv`}</M> ist Masse mal Geschwindigkeit. Die Unschärferelation sagt: Je genauer man weiss, wo das Elektron ist (kleines <M p=")">{t`\Delta x`}</M> desto ungenauer weiss man, wie schnell es ist (grosses <M p=")">{t`\Delta p`}</M> und umgekehrt. Das Produkt kann nie kleiner als <M>{t`h/(4\pi)`}</M> werden. Weil <M>h</M> winzig ist, spürt man das bei einem Auto nie. Beim Elektron im Atom ist es entscheidend.</p>
             <p>Darum zeichnet man nicht mehr eine Bahn, sondern eine <em>Wolke</em>. Jede «Momentaufnahme» des Elektrons liefert einen Punkt; sehr viele Punkte zeichnen die Wolke. Die Übung zeigt es so: Das Elektron ist mit 90 % Wahrscheinlichkeit innerhalb der gestrichelten Linie, und diese Region nennt man <em>Orbital</em>. Zieh den Regler.</p>
           </>}
           en={<>
-            <p><b>How to read this.</b> The momentum <M>{t`p=mv`}</M> is mass times velocity. The uncertainty principle says: the better you know where the electron is (small <M p=")">{t`\Delta x`}</M> the worse you know how fast it is (large <M p=")">{t`\Delta p`}</M> and vice versa. The product can never be smaller than <M p=".">{t`h/(4\pi)`}</M> Because <M>h</M> is tiny, you never notice this with a car. For the electron in the atom it is decisive.</p>
+            <p className="keep"><b>How to read this.</b> The momentum <M>{t`p=mv`}</M> is mass times velocity. The uncertainty principle says: the better you know where the electron is (small <M p=")">{t`\Delta x`}</M> the worse you know how fast it is (large <M p=")">{t`\Delta p`}</M> and vice versa. The product can never be smaller than <M p=".">{t`h/(4\pi)`}</M> Because <M>h</M> is tiny, you never notice this with a car. For the electron in the atom it is decisive.</p>
             <p>So one no longer draws an orbit but a <em>cloud</em>. Each “snapshot” of the electron gives a dot; very many dots draw the cloud. The exercise class shows it like this: the electron is within the dashed line with 90 % probability, and this region is called an <em>orbital</em>. Drag the slider.</p>
           </>}
         />
