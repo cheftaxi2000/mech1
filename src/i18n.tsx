@@ -64,3 +64,42 @@ export function LangToggle() {
     </div>
   );
 }
+
+/**
+ * Reading depth. `full` is the complete lesson; `short` keeps lecture boxes, formulas, key points and all figures/animations
+ * and drops the explanatory prose (the CSS rules under `html[data-detail="short"]` do the generic part, `<Long>` the rest).
+ */
+export type Detail = 'full' | 'short';
+const DETAIL_KEY = 'mech1.detail';
+const DetailContext = createContext<{ detail: Detail; setDetail: (d: Detail) => void }>({ detail: 'full', setDetail: () => {} });
+
+export function DetailProvider({ children }: { children: ReactNode }) {
+  const [detail, setDetailState] = useState<Detail>(() => {
+    try { return localStorage.getItem(DETAIL_KEY) === 'short' ? 'short' : 'full'; } catch { return 'full'; }
+  });
+  useEffect(() => { document.documentElement.dataset.detail = detail; }, [detail]);
+  const setDetail = (d: Detail) => {
+    setDetailState(d);
+    try { localStorage.setItem(DETAIL_KEY, d); } catch { /* not persisted; fine */ }
+  };
+  return <DetailContext.Provider value={{ detail, setDetail }}>{children}</DetailContext.Provider>;
+}
+
+export const useDetail = () => useContext(DetailContext).detail;
+
+/** Content that exists only in the full version (explanations, side remarks). */
+export function Long({ children }: { children: ReactNode }) {
+  return useDetail() === 'full' ? <>{children}</> : null;
+}
+
+export function DetailToggle() {
+  const { detail, setDetail } = useContext(DetailContext);
+  const tr = useTr();
+  return (
+    <div className="lang-toggle detail-toggle" role="group" aria-label={tr('Umfang', 'Level of detail')}>
+      {([['full', 'Ausführlich', 'Full'], ['short', 'Kurz', 'Short']] as const).map(([d, de, en]) => (
+        <button key={d} aria-pressed={detail === d} className={detail === d ? 'active' : ''} onClick={() => setDetail(d)}>{tr(de, en)}</button>
+      ))}
+    </div>
+  );
+}

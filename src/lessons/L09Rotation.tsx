@@ -43,8 +43,8 @@ export default function L09Rotation() {
           />
         </Box>
         <T
-          de={<p><b>So liest man das:</b> Zwei Punkte festhalten genügt – dann ist die Bewegung schon eine Rotation. Die Gerade durch diese zwei Punkte heisst Rotationsachse <M p=".">\mu</M> Die drei Eigenschaften sagen, wie sich dann alle anderen Punkte bewegen. «Winkelschnelligkeit» heisst: wie schnell sich der Winkel ändert, also <M p=".">{t`\dot\varphi`}</M> Das Skript beweist die drei Eigenschaften eine nach der anderen (Abschnitte 2 bis 4).</p>}
-          en={<p><b>How to read this:</b> holding two points fixed is enough – then the motion is already a rotation. The line through these two points is called the axis of rotation <M p=".">\mu</M> The three properties say how all the other points then move. “Angular speed” means how fast the angle changes, that is <M p=".">{t`\dot\varphi`}</M> The notes prove the three properties one after the other (sections 2 to 4).</p>}
+          de={<p className="keep"><b>So liest man das:</b> Zwei Punkte festhalten genügt – dann ist die Bewegung schon eine Rotation. Die Gerade durch diese zwei Punkte heisst Rotationsachse <M p=".">\mu</M> Die drei Eigenschaften sagen, wie sich dann alle anderen Punkte bewegen. «Winkelschnelligkeit» heisst: wie schnell sich der Winkel ändert, also <M p=".">{t`\dot\varphi`}</M> Das Skript beweist die drei Eigenschaften eine nach der anderen (Abschnitte 2 bis 4).</p>}
+          en={<p className="keep"><b>How to read this:</b> holding two points fixed is enough – then the motion is already a rotation. The line through these two points is called the axis of rotation <M p=".">\mu</M> The three properties say how all the other points then move. “Angular speed” means how fast the angle changes, that is <M p=".">{t`\dot\varphi`}</M> The notes prove the three properties one after the other (sections 2 to 4).</p>}
         />
         <RotationExplorer />
         <T
@@ -60,8 +60,8 @@ export default function L09Rotation() {
           <MD>{t`\v v_C \parallel \mu = 0 \ \text{aus SdpG}; \qquad \v v_C \perp \mu = 0 \ \text{sonst Winkeländerung}`}</MD>
         </Box>
         <T
-          de={<p><b>So liest man die Zeile:</b> Man zerlegt eine mögliche Geschwindigkeit von <M>C</M> in zwei Teile: einen Teil längs der Achse und einen Teil quer dazu. «<M>{t`\v v_C \parallel \mu = 0`}</M>» ist Kurzschrift für: Der Teil längs <M>\mu</M> ist null. Ebenso heisst «<M>{t`\v v_C \perp \mu = 0`}</M>»: Der Teil quer zu <M>\mu</M> ist null. Dahinter stehen zwei verschiedene Gründe.</p>}
-          en={<p><b>How to read the line:</b> split a possible velocity of <M>C</M> into two parts: one along the axis and one across it. “<M>{t`\v v_C \parallel \mu = 0`}</M>” is shorthand for: the part along <M>\mu</M> is zero. Likewise “<M>{t`\v v_C \perp \mu = 0`}</M>” means: the part across <M>\mu</M> is zero. Behind them are two different reasons (“<span lang="de">aus SdpG</span>” – from the SdpG; “<span lang="de">sonst Winkeländerung</span>” – otherwise an angle would change).</p>}
+          de={<p className="keep"><b>So liest man die Zeile:</b> Man zerlegt eine mögliche Geschwindigkeit von <M>C</M> in zwei Teile: einen Teil längs der Achse und einen Teil quer dazu. «<M>{t`\v v_C \parallel \mu = 0`}</M>» ist Kurzschrift für: Der Teil längs <M>\mu</M> ist null. Ebenso heisst «<M>{t`\v v_C \perp \mu = 0`}</M>»: Der Teil quer zu <M>\mu</M> ist null. Dahinter stehen zwei verschiedene Gründe.</p>}
+          en={<p className="keep"><b>How to read the line:</b> split a possible velocity of <M>C</M> into two parts: one along the axis and one across it. “<M>{t`\v v_C \parallel \mu = 0`}</M>” is shorthand for: the part along <M>\mu</M> is zero. Likewise “<M>{t`\v v_C \perp \mu = 0`}</M>” means: the part across <M>\mu</M> is zero. Behind them are two different reasons (“<span lang="de">aus SdpG</span>” – from the SdpG; “<span lang="de">sonst Winkeländerung</span>” – otherwise an angle would change).</p>}
         />
         <Derivation title={<T de="Eigenschaft 1 Schritt für Schritt" en="Property 1 step by step" />}>
           <StepPlayer
@@ -105,8 +105,8 @@ export default function L09Rotation() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man den Beweis:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man den Beweis:</b></p>
+            <ol className="keep">
               <li><M>D</M> ist der <b>Fusspunkt</b>: der Punkt auf <M p=",">\mu</M> der <M>P</M> am nächsten ist. Darum steht <M>{t`\v{DP}`}</M> senkrecht auf <M p=".">\mu</M></li>
               <li>Für einen Kreis um <M>\mu</M> darf sich <M>P</M> weder von der Achse entfernen (Richtung <M p=")">{t`\v{DP}`}</M> noch längs der Achse wandern (Richtung <M p=")">\mu</M> Das sind die zwei Bedingungen der ersten Zeile.</li>
               <li><M>D</M> liegt auf der Achse, also ruht <M>D</M> (Eigenschaft 1). Der SdpG für <M>P</M> und <M>D</M> gibt dann <M p=":">{t`\v v_P\cdot\v{DP} = 0`}</M> <M>{t`\v v_P`}</M> steht senkrecht auf <M p=".">{t`\v{DP}`}</M></li>
@@ -115,8 +115,8 @@ export default function L09Rotation() {
             </ol>
           </>}
           en={<>
-            <p><b>How to read the proof:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the proof:</b></p>
+            <ol className="keep">
               <li><M>D</M> is the <b>foot</b> of the perpendicular: the point on <M>\mu</M> closest to <M p=".">P</M> That is why <M>{t`\v{DP}`}</M> is perpendicular to <M p=".">\mu</M></li>
               <li>For a circle about <M p=",">\mu</M> <M>P</M> may neither move away from the axis (direction <M p=")">{t`\v{DP}`}</M> nor travel along the axis (direction <M p=")">\mu</M> These are the two conditions of the first line.</li>
               <li><M>D</M> lies on the axis, so <M>D</M> is at rest (property 1). The SdpG for <M>P</M> and <M>D</M> then gives <M p=":">{t`\v v_P\cdot\v{DP} = 0`}</M> <M>{t`\v v_P`}</M> is perpendicular to <M p=".">{t`\v{DP}`}</M></li>
@@ -169,21 +169,21 @@ export default function L09Rotation() {
           <MD>{t`(3)\qquad \v v = \v\omega\times\v r = \dot\varphi\,\v e_z\times\v r \quad (\text{mit } O \text{ auf } \mu)`}</MD>
         </Box>
         <T
-          de={<p>Achtung, Tippfehler: Im mittleren Term der dritten Zeile steht im Skript <M>{t`\dot\varphi_P`}</M> (rot markiert). Richtig ist <M p=",">{t`\dot\varphi_Q`}</M> sonst passt die Zeile nicht zur Zeile darüber.</p>}
-          en={<p>Careful, a typo: in the middle term of the third line the notes have <M>{t`\dot\varphi_P`}</M> (marked red). It should be <M p=",">{t`\dot\varphi_Q`}</M> otherwise the line does not follow from the one above.</p>}
+          de={<p className="keep">Achtung, Tippfehler: Im mittleren Term der dritten Zeile steht im Skript <M>{t`\dot\varphi_P`}</M> (rot markiert). Richtig ist <M p=",">{t`\dot\varphi_Q`}</M> sonst passt die Zeile nicht zur Zeile darüber.</p>}
+          en={<p className="keep">Careful, a typo: in the middle term of the third line the notes have <M>{t`\dot\varphi_P`}</M> (marked red). It should be <M p=",">{t`\dot\varphi_Q`}</M> otherwise the line does not follow from the one above.</p>}
         />
         <T
           de={<>
-            <p><b>So liest man die Rechnung:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man die Rechnung:</b></p>
+            <ol className="keep">
               <li>Nach Beweis 2 fahren <M>P</M> und <M>Q</M> Kreise um <M p=".">\mu</M> Legt man die <M>z</M>-Achse auf <M p=",">\mu</M> haben ihre Geschwindigkeiten die Form aus der Kreisbewegung (<a href="#kreisbewegung">S. 11</a>): <M p=".">{t`\v v = \dot\varphi\,\v e_z\times\v r`}</M> Jeder Punkt hat dabei zunächst seine eigene Winkelschnelligkeit, <M>{t`\dot\varphi_P`}</M> bzw. <M p=".">{t`\dot\varphi_Q`}</M> Ob die beiden gleich sind, ist noch offen.</li>
               <li>Der SdpG für <M>P</M> und <M>Q</M> mit <M p=".">{t`\v{PQ} = \v r_Q - \v r_P`}</M></li>
               <li><M>{t`\v e_z\times\v r_P`}</M> steht senkrecht auf <M p=",">{t`\v r_P`}</M> also ist <M p=".">{t`(\v e_z\times\v r_P)\cdot\v r_P = 0`}</M> Links bleibt nur der Term mit <M p=",">{t`\v r_Q`}</M> rechts aus demselben Grund nur der mit <M p=".">{t`\v r_P`}</M> Das Minus verschwindet mit <M p=".">{t`-(\v e_z\times\v r_Q) = \v r_Q\times\v e_z`}</M> Zuletzt das <b>Spatprodukt</b> <M p=":">{t`(\v a\times\v b)\cdot\v c`}</M> erst Kreuz-, dann Skalarprodukt. Es ist das Volumen des schiefen Quaders («Spat») aus den drei Pfeilen, mit Vorzeichen. Schiebt man die Pfeile im Kreis weiter <M p=",">{t`(\v a\to\v b\to\v c\to\v a)`}</M> bleibt das Volumen gleich; so wird <M>{t`(\v r_Q\times\v e_z)\cdot\v r_P`}</M> zu <M p=".">{t`(\v e_z\times\v r_P)\cdot\v r_Q`}</M></li>
               <li>Am Ende steht auf beiden Seiten dieselbe Zahl <M p=",">{t`X = (\v e_z\times\v r_P)\cdot\v r_Q`}</M> einmal mal <M>{t`\dot\varphi_P`}</M> und einmal mal <M p=".">{t`\dot\varphi_Q`}</M> Ist <M p=",">{t`X \ne 0`}</M> darf man durch <M>X</M> teilen: <M p=".">{t`\dot\varphi_P = \dot\varphi_Q`}</M></li>
             </ol>
-            <p><M>X</M> hat ein Bild: Von oben gesehen ist es die Fläche des Parallelogramms aus <M>{t`\v r_P`}</M> und <M>{t`\v r_Q`}</M> (mit Vorzeichen).</p>
-            <p><b>So liest man die Schlusszeilen im Skript:</b></p>
-            <ol>
+            <p className="keep"><M>X</M> hat ein Bild: Von oben gesehen ist es die Fläche des Parallelogramms aus <M>{t`\v r_P`}</M> und <M>{t`\v r_Q`}</M> (mit Vorzeichen).</p>
+            <p className="keep"><b>So liest man die Schlusszeilen im Skript:</b></p>
+            <ol className="keep">
               <li>Alle Punkte fahren Kreise um <M p=",">\mu</M> alle mit demselben <M p=".">{t`\dot\varphi`}</M></li>
               <li>Daraus macht das Skript einen Vektor, die <b>Winkelgeschwindigkeit</b> <M p=".">{t`\v\omega = \dot\varphi\,\v e_\mu`}</M> Dabei ist <M>{t`\v e_\mu`}</M> der Einheitsvektor (Länge 1) längs der Achse <M p=".">\mu</M></li>
               <li><M>{t`\mu = z'Oz`}</M> heisst: Die Achse ist die <M>z</M>-Achse (von <M>{t`z'`}</M> unten über <M>O</M> nach <M>z</M> oben). Dann ist <M>{t`\v e_\mu = \v e_z`}</M> und <M p=".">{t`\v\omega = \dot\varphi\,\v e_z`}</M></li>
@@ -191,16 +191,16 @@ export default function L09Rotation() {
             </ol>
           </>}
           en={<>
-            <p><b>How to read the calculation:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the calculation:</b></p>
+            <ol className="keep">
               <li>By proof 2, <M>P</M> and <M>Q</M> travel on circles about <M p=".">\mu</M> With the <M>z</M>-axis along <M p=",">\mu</M> their velocities have the form from circular motion (<a href="#kreisbewegung">p. 11</a>): <M p=".">{t`\v v = \dot\varphi\,\v e_z\times\v r`}</M> At first each point has its own angular speed, <M>{t`\dot\varphi_P`}</M> and <M p=".">{t`\dot\varphi_Q`}</M> Whether the two are equal is still open.</li>
               <li>The SdpG for <M>P</M> and <M>Q</M> with <M p=".">{t`\v{PQ} = \v r_Q - \v r_P`}</M></li>
               <li><M>{t`\v e_z\times\v r_P`}</M> is perpendicular to <M p=",">{t`\v r_P`}</M> so <M p=".">{t`(\v e_z\times\v r_P)\cdot\v r_P = 0`}</M> On the left only the term with <M>{t`\v r_Q`}</M> is left; on the right, for the same reason, only the one with <M p=".">{t`\v r_P`}</M> The minus disappears with <M p=".">{t`-(\v e_z\times\v r_Q) = \v r_Q\times\v e_z`}</M> Last comes the <b>scalar triple product</b> (<span lang="de">Spatprodukt</span>) <M p=":">{t`(\v a\times\v b)\cdot\v c`}</M> first the cross product, then the dot product. It is the volume of the slanted box (“Spat”, a parallelepiped) spanned by the three arrows, with a sign. Moving the arrows round in a circle <M p=",">{t`(\v a\to\v b\to\v c\to\v a)`}</M> keeps the volume; that is how <M>{t`(\v r_Q\times\v e_z)\cdot\v r_P`}</M> becomes <M p=".">{t`(\v e_z\times\v r_P)\cdot\v r_Q`}</M></li>
               <li>In the end both sides contain the same number <M p=",">{t`X = (\v e_z\times\v r_P)\cdot\v r_Q`}</M> once times <M>{t`\dot\varphi_P`}</M> and once times <M p=".">{t`\dot\varphi_Q`}</M> If <M p=",">{t`X \ne 0`}</M> we may divide by <M p=":">X</M> <M p=".">{t`\dot\varphi_P = \dot\varphi_Q`}</M></li>
             </ol>
-            <p><M>X</M> has a picture: seen from above it is the area of the parallelogram of <M>{t`\v r_P`}</M> and <M>{t`\v r_Q`}</M> (with a sign).</p>
-            <p><b>How to read the closing lines in the notes:</b></p>
-            <ol>
+            <p className="keep"><M>X</M> has a picture: seen from above it is the area of the parallelogram of <M>{t`\v r_P`}</M> and <M>{t`\v r_Q`}</M> (with a sign).</p>
+            <p className="keep"><b>How to read the closing lines in the notes:</b></p>
+            <ol className="keep">
               <li>All points travel on circles about <M p=",">\mu</M> all with the same <M p=".">{t`\dot\varphi`}</M></li>
               <li>The notes turn this into a vector, the <b>angular velocity</b> <M p=".">{t`\v\omega = \dot\varphi\,\v e_\mu`}</M> Here <M>{t`\v e_\mu`}</M> is the unit vector (length 1) along the axis <M p=".">\mu</M></li>
               <li><M>{t`\mu = z'Oz`}</M> means: the axis is the <M>z</M>-axis (from <M>{t`z'`}</M> below through <M>O</M> to <M>z</M> above). Then <M>{t`\v e_\mu = \v e_z`}</M> and <M p=".">{t`\v\omega = \dot\varphi\,\v e_z`}</M></li>
@@ -251,13 +251,13 @@ export default function L09Rotation() {
           />
         </Box>
         <T
-          de={<p><b>So liest man das:</b> <M>A</M> ist hier der Fusspunkt von <M>M</M> auf der Achse (nicht das <M>A</M> von S. 15). <M>{t`|\v{AM}|`}</M> ist also der Abstand von <M>M</M> zur Achse. Warum gilt die Formel? Der Betrag eines Kreuzprodukts ist Länge mal Länge mal Sinus des Winkels <M>\alpha</M> zwischen <M>{t`\v\omega`}</M> und <M p=":">{t`\v{OM}`}</M> <M p=".">{t`|\v\omega\times\v{OM}| = |\v\omega|\,|\v{OM}|\sin\alpha`}</M> Im rechtwinkligen Dreieck <M p=",">O</M> <M p=",">A</M> <M>M</M> ist <M>{t`|\v{OM}|\sin\alpha`}</M> genau die Seite <M p=".">{t`|\v{AM}|`}</M> Wo <M>O</M> auf der Achse liegt, spielt also keine Rolle.</p>}
-          en={<p><b>How to read this:</b> here <M>A</M> is the foot of <M>M</M> on the axis (not the <M>A</M> of p. 15). So <M>{t`|\v{AM}|`}</M> is the distance of <M>M</M> from the axis. Why does the formula hold? The magnitude of a cross product is length times length times the sine of the angle <M>\alpha</M> between <M>{t`\v\omega`}</M> and <M p=":">{t`\v{OM}`}</M> <M p=".">{t`|\v\omega\times\v{OM}| = |\v\omega|\,|\v{OM}|\sin\alpha`}</M> In the right triangle <M p=",">O</M> <M p=",">A</M> <M>M</M> the quantity <M>{t`|\v{OM}|\sin\alpha`}</M> is exactly the side <M p=".">{t`|\v{AM}|`}</M> So where <M>O</M> lies on the axis does not matter.</p>}
+          de={<p className="keep"><b>So liest man das:</b> <M>A</M> ist hier der Fusspunkt von <M>M</M> auf der Achse (nicht das <M>A</M> von S. 15). <M>{t`|\v{AM}|`}</M> ist also der Abstand von <M>M</M> zur Achse. Warum gilt die Formel? Der Betrag eines Kreuzprodukts ist Länge mal Länge mal Sinus des Winkels <M>\alpha</M> zwischen <M>{t`\v\omega`}</M> und <M p=":">{t`\v{OM}`}</M> <M p=".">{t`|\v\omega\times\v{OM}| = |\v\omega|\,|\v{OM}|\sin\alpha`}</M> Im rechtwinkligen Dreieck <M p=",">O</M> <M p=",">A</M> <M>M</M> ist <M>{t`|\v{OM}|\sin\alpha`}</M> genau die Seite <M p=".">{t`|\v{AM}|`}</M> Wo <M>O</M> auf der Achse liegt, spielt also keine Rolle.</p>}
+          en={<p className="keep"><b>How to read this:</b> here <M>A</M> is the foot of <M>M</M> on the axis (not the <M>A</M> of p. 15). So <M>{t`|\v{AM}|`}</M> is the distance of <M>M</M> from the axis. Why does the formula hold? The magnitude of a cross product is length times length times the sine of the angle <M>\alpha</M> between <M>{t`\v\omega`}</M> and <M p=":">{t`\v{OM}`}</M> <M p=".">{t`|\v\omega\times\v{OM}| = |\v\omega|\,|\v{OM}|\sin\alpha`}</M> In the right triangle <M p=",">O</M> <M p=",">A</M> <M>M</M> the quantity <M>{t`|\v{OM}|\sin\alpha`}</M> is exactly the side <M p=".">{t`|\v{AM}|`}</M> So where <M>O</M> lies on the axis does not matter.</p>}
         />
         <FootDemo />
         <T
-          de={<p>Daraus folgt das Bild der <b>Geschwindigkeitsverteilung</b> (Fig. 3.8): Auf der Achse ist <M p=",">{t`\v v = \v 0`}</M> und nach aussen wächst <M>{t`|\v v|`}</M> gleichmässig mit dem Abstand – doppelt so weit heisst doppelt so schnell. Die Pfeile stehen senkrecht auf der Achse und senkrecht auf dem Weg zur Achse. Im Bild in Abschnitt 1 zeigt «Geschwindigkeiten» genau das, auch bei geneigter Achse.</p>}
-          en={<p>From this follows the picture of the <b>velocity distribution</b> (Fig. 3.8): on the axis <M p=",">{t`\v v = \v 0`}</M> and outwards <M>{t`|\v v|`}</M> grows evenly with the distance – twice as far means twice as fast. The arrows are perpendicular to the axis and perpendicular to the way to the axis. In the figure of section 1, “velocities” shows exactly this, also with a tilted axis.</p>}
+          de={<p className="keep">Daraus folgt das Bild der <b>Geschwindigkeitsverteilung</b> (Fig. 3.8): Auf der Achse ist <M p=",">{t`\v v = \v 0`}</M> und nach aussen wächst <M>{t`|\v v|`}</M> gleichmässig mit dem Abstand – doppelt so weit heisst doppelt so schnell. Die Pfeile stehen senkrecht auf der Achse und senkrecht auf dem Weg zur Achse. Im Bild in Abschnitt 1 zeigt «Geschwindigkeiten» genau das, auch bei geneigter Achse.</p>}
+          en={<p className="keep">From this follows the picture of the <b>velocity distribution</b> (Fig. 3.8): on the axis <M p=",">{t`\v v = \v 0`}</M> and outwards <M>{t`|\v v|`}</M> grows evenly with the distance – twice as far means twice as fast. The arrows are perpendicular to the axis and perpendicular to the way to the axis. In the figure of section 1, “velocities” shows exactly this, also with a tilted axis.</p>}
         />
       </Section>
 
@@ -275,13 +275,13 @@ export default function L09Rotation() {
           <MD>{t`\v\omega = \Big(\frac{v}{a}, 0, \frac{v}{a}\Big), \qquad \mu\colon\ (0, a, 0) + \lambda\,(a, 0, a)`}</MD>
         </Box>
         <T
-          de={<p><b>Achtung:</b> Die Aufgabe nennt <M p=",">{t`\v v_A = (v, 0, v)`}</M> die Lösung rechnet mit <M p=".">{t`\v v_A = (v, 0, -v)`}</M> Nur mit dem Minus geht die Achse durch <M>C</M> – so wie die Figur sie rot einzeichnet. Vermutlich ist das Plus ein Tippfehler; wir rechnen wie die Lösung.</p>}
-          en={<p><b>Careful:</b> the problem states <M p=",">{t`\v v_A = (v, 0, v)`}</M> the solution uses <M p=".">{t`\v v_A = (v, 0, -v)`}</M> Only with the minus does the axis pass through <M>C</M> – as the figure draws it in red. The plus is probably a typo; we calculate as the solution does.</p>}
+          de={<p className="keep"><b>Achtung:</b> Die Aufgabe nennt <M p=",">{t`\v v_A = (v, 0, v)`}</M> die Lösung rechnet mit <M p=".">{t`\v v_A = (v, 0, -v)`}</M> Nur mit dem Minus geht die Achse durch <M>C</M> – so wie die Figur sie rot einzeichnet. Vermutlich ist das Plus ein Tippfehler; wir rechnen wie die Lösung.</p>}
+          en={<p className="keep"><b>Careful:</b> the problem states <M p=",">{t`\v v_A = (v, 0, v)`}</M> the solution uses <M p=".">{t`\v v_A = (v, 0, -v)`}</M> Only with the minus does the axis pass through <M>C</M> – as the figure draws it in red. The plus is probably a typo; we calculate as the solution does.</p>}
         />
         <T
           de={<>
-            <p><b>So liest man die Lösung:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man die Lösung:</b></p>
+            <ol className="keep">
               <li><M>{t`v_{Bx}`}</M> kommt aus dem SdpG. <M>{t`\v{AB} = (a, 0, 0)`}</M> zeigt in <M>x</M>-Richtung, also vergleicht der SdpG nur die <M>x</M>-Anteile.</li>
               <li><M>E</M> ruht, also liegt <M>E</M> auf der Achse. Darum darf man <M>{t`\v r`}</M> von <M>E</M> aus messen: <M p=".">{t`\v v_A = \v\omega\times\v{EA}`}</M> Das Kreuzprodukt ausrechnen und Zeile für Zeile vergleichen gibt <M>{t`\omega_x`}</M> und <M p=".">{t`\omega_z`}</M></li>
               <li>Dasselbe mit <M>B</M> liefert die letzte Unbekannte <M p=".">{t`\omega_y`}</M></li>
@@ -289,8 +289,8 @@ export default function L09Rotation() {
             </ol>
           </>}
           en={<>
-            <p><b>How to read the solution:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the solution:</b></p>
+            <ol className="keep">
               <li><M>{t`v_{Bx}`}</M> comes from the SdpG. <M>{t`\v{AB} = (a, 0, 0)`}</M> points in the <M>x</M>-direction, so the SdpG compares only the <M>x</M>-parts.</li>
               <li><M>E</M> is at rest, so <M>E</M> lies on the axis. That is why <M>{t`\v r`}</M> may be measured from <M p=":">E</M> <M p=".">{t`\v v_A = \v\omega\times\v{EA}`}</M> Working out the cross product and comparing line by line gives <M>{t`\omega_x`}</M> and <M p=".">{t`\omega_z`}</M></li>
               <li>The same with <M>B</M> gives the last unknown <M p=".">{t`\omega_y`}</M></li>
@@ -335,7 +335,7 @@ export default function L09Rotation() {
       </Section>
 
       {/* ------------------------------------------------------------------ 7 */}
-      <Section id="missverstaendnisse" title={<T de="7. Häufige Missverständnisse" en="7. Common misconceptions" />}>
+      <Section long id="missverstaendnisse" title={<T de="7. Häufige Missverständnisse" en="7. Common misconceptions" />}>
         <Box kind="misconception" title={<T de="«Aussen dreht sich der Körper schneller.»" en="“Further out the body turns faster.”" />}>
           <T de={<>Nein. Alle Punkte drehen sich gleich schnell – <M>{t`\dot\varphi`}</M> ist überall gleich (Eigenschaft 3). Aussen ist nur die Schnelligkeit <M>{t`|\v v|`}</M> grösser, weil der Kreis grösser ist: <M p=".">{t`|\v v| = |\v\omega|\cdot\text{Abstand zur Achse}`}</M></>} en={<>No. All points turn equally fast – <M>{t`\dot\varphi`}</M> is the same everywhere (property 3). Further out only the speed <M>{t`|\v v|`}</M> is larger, because the circle is larger: <M p=".">{t`|\v v| = |\v\omega|\cdot\text{distance from the axis}`}</M></>} />
         </Box>

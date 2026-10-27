@@ -68,8 +68,8 @@ export default function K3System() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li>Jede Kraft hat eine Reaktion (<a href="#reaktionsprinzip">Reaktionsprinzip</a>). Zu <M>{t`\{A_2 \mid \v F\}`}</M> gehört <M p=".">{t`\{A_1 \mid -\v F\}`}</M> Die Reaktion greift am <em>anderen</em> Körper an, im Punkt <M p=".">{t`A_1`}</M></li>
               <li>Das System ist ein Stück des Raumes, das wir mit einer geschlossenen Grenze abstecken. Was darin liegt, gehört dazu – oft sind es mehrere Körper.</li>
               <li>Nimm eine Kraft, die an einem Punkt <em>im System</em> angreift. Frage: Wo greift ihre Reaktion an? Liegt dieser Punkt auch im System, ist es eine <b>innere</b> Kraft. Liegt er draussen, ist es eine <b>äussere</b> Kraft.</li>
@@ -77,8 +77,8 @@ export default function K3System() {
             </ol>
           </>}
           en={<>
-            <p><b>How to read this:</b></p>
-            <ol>
+            <p className="keep"><b>How to read this:</b></p>
+            <ol className="keep">
               <li>Every force has a reaction (<a href="#reaktionsprinzip">reaction principle</a>). To <M>{t`\{A_2 \mid \v F\}`}</M> belongs <M p=".">{t`\{A_1 \mid -\v F\}`}</M> The reaction acts on the <em>other</em> body, at the point <M p=".">{t`A_1`}</M></li>
               <li>The system is a piece of space that we mark off with a closed boundary. Whatever lies inside belongs to it – often several bodies.</li>
               <li>Take a force that acts at a point <em>in the system</em>. Ask: where does its reaction act? If that point is in the system too, it is an <b>inner</b> force. If it is outside, it is an <b>outer</b> force.</li>
@@ -145,7 +145,7 @@ export default function K3System() {
         </Box>
         <T
           de={<>
-            <p><b>Wer zieht an wem?</b> Bevor wir die Pfeile einfärben, schreiben wir zu jeder Kraft die Reaktion dazu. Das ist die Frage aus «So liest man das», Punkt 3.</p>
+            <p className="keep"><b>Wer zieht an wem?</b> Bevor wir die Pfeile einfärben, schreiben wir zu jeder Kraft die Reaktion dazu. Das ist die Frage aus «So liest man das», Punkt 3.</p>
             <div className="kf-table-wrap">
               <table className="kf-table">
                 <thead><tr><th>Kraft</th><th>wirkt auf</th><th>ihre Reaktion</th><th>wirkt auf</th></tr></thead>
@@ -162,7 +162,7 @@ export default function K3System() {
             <p className="vdemo-note"><b>Was du sehen sollst:</b> Wähle Körper aus. Die gestrichelte Linie legt sich um sie. Äussere Kräfte werden zinnoberrot, innere grau. Kräfte, die an Körpern <em>ausserhalb</em> der Grenze angreifen, bleiben blass: Sie gehören nicht zum System. Tippe auf einen Pfeil, und seine Reaktion leuchtet auf.</p>
           </>}
           en={<>
-            <p><b>Who pulls on whom?</b> Before we colour the arrows, we write down the reaction of every force. This is the question from “How to read this”, point 3.</p>
+            <p className="keep"><b>Who pulls on whom?</b> Before we colour the arrows, we write down the reaction of every force. This is the question from “How to read this”, point 3.</p>
             <div className="kf-table-wrap">
               <table className="kf-table">
                 <thead><tr><th>force</th><th>acts on</th><th>its reaction</th><th>acts on</th></tr></thead>
@@ -251,7 +251,7 @@ export default function K3System() {
       <Section id="ziel" title={<T de="5. Welches System für welche Frage?" en="5. Which system for which question?" />}>
         <T
           de={<>
-            <p>«Abgrenzung: je nach Ziel der Analyse» – das ist der praktische Satz der Seite. Man wählt das System so, dass die Kraft, die man sucht, <em>äussere</em> Kraft ist, und die, die man nicht kennt und nicht braucht, <em>innere</em> Kraft.</p>
+            <p className="keep">«Abgrenzung: je nach Ziel der Analyse» – das ist der praktische Satz der Seite. Man wählt das System so, dass die Kraft, die man sucht, <em>äussere</em> Kraft ist, und die, die man nicht kennt und nicht braucht, <em>innere</em> Kraft.</p>
             <div className="kf-table-wrap">
               <table className="kf-table">
                 <thead><tr><th>Ich will wissen …</th><th>Ich wähle als System …</th><th>Dann ist das …</th></tr></thead>
@@ -262,10 +262,10 @@ export default function K3System() {
                 </tbody>
               </table>
             </div>
-            <p>Man kann es sich merken: <b>Soll eine Kraft in die Rechnung, schneide so, dass sie die Grenze kreuzt.</b> Wie man aus den äusseren Kräften dann Zahlen bekommt, lernst du in der Statik. Hier geht es nur um die Auswahl.</p>
+            <p className="keep">Man kann es sich merken: <b>Soll eine Kraft in die Rechnung, schneide so, dass sie die Grenze kreuzt.</b> Wie man aus den äusseren Kräften dann Zahlen bekommt, lernst du in der Statik. Hier geht es nur um die Auswahl.</p>
           </>}
           en={<>
-            <p>“Boundary: depending on the aim of the analysis” – this is the practical sentence of the page. You choose the system so that the force you are looking for is an <em>outer</em> force, and the ones you neither know nor need are <em>inner</em> forces.</p>
+            <p className="keep">“Boundary: depending on the aim of the analysis” – this is the practical sentence of the page. You choose the system so that the force you are looking for is an <em>outer</em> force, and the ones you neither know nor need are <em>inner</em> forces.</p>
             <div className="kf-table-wrap">
               <table className="kf-table">
                 <thead><tr><th>I want to know …</th><th>I choose as the system …</th><th>Then …</th></tr></thead>
@@ -276,7 +276,7 @@ export default function K3System() {
                 </tbody>
               </table>
             </div>
-            <p>A rule to remember: <b>if a force is to enter the calculation, cut so that it crosses the boundary.</b> How to get numbers from the outer forces is learned in statics. Here it is only about the choice.</p>
+            <p className="keep">A rule to remember: <b>if a force is to enter the calculation, cut so that it crosses the boundary.</b> How to get numbers from the outer forces is learned in statics. Here it is only about the choice.</p>
           </>}
         />
         <Box kind="supplement" title={<T de="Warum ist die Summe der inneren Kräfte null?" en="Why do the inner forces add up to zero?" />}>
@@ -298,7 +298,7 @@ export default function K3System() {
       </Section>
 
       {/* ------------------------------------------------------------------ 6 */}
-      <Section id="missverstaendnisse" title={<T de="6. Häufige Missverständnisse" en="6. Common misconceptions" />}>
+      <Section long id="missverstaendnisse" title={<T de="6. Häufige Missverständnisse" en="6. Common misconceptions" />}>
         <Box kind="misconception" title={<T de="«Innere Kräfte gibt es gar nicht.»" en="“Inner forces do not exist.”" />}>
           <T de={<>Doch, es gibt sie. Wagen 1 schiebt Wagen 2 wirklich mit <M p=".">{t`\v P`}</M> «Innere Kraft» heisst nur: Die Reaktion liegt im selben System. Darum taucht das Paar in der Liste der äusseren Kräfte nicht auf und hebt sich in der Summe weg. Wähle nur Wagen 1, und <M>{t`-\v P`}</M> ist wieder da.</>} en={<>They do. Cart 1 really does push cart 2 with <M p=".">{t`\v P`}</M> “Inner force” only means: the reaction lies in the same system. That is why the pair does not show up in the list of outer forces and cancels in the sum. Choose just cart 1, and <M>{t`-\v P`}</M> is back.</>} />
         </Box>

@@ -35,26 +35,26 @@ export default function K2Reaktion() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li>Ein «Postulat» ist eine Grundregel, die man nicht beweist, sondern annimmt, weil sie sich in der Erfahrung immer bewährt.</li>
               <li>Ein «materieller Punkt» ist ein Körper, den man als einen Punkt mit Masse behandelt (<a href="#koordinaten">Lektion 1</a>). <M>{t`A_1`}</M> und <M>{t`A_2`}</M> sind zwei solche Körper.</li>
               <li><M>{t`\{A_2\,|\,\v F\}`}</M> ist eine Kraft im Sinn von <a href="#kraft">Seite 29</a>: Der Punkt links vom Strich sagt, <em>wo</em> sie angreift, nämlich in <M p=".">{t`A_2`}</M> Der Körper <M>{t`A_1`}</M> ist ihr Absender, <M>{t`A_2`}</M> der Empfänger.</li>
               <li>Die Antwort, <M p=",">{t`\{A_1\,|\,-\v F\}`}</M> hat den Vektor <M p=",">{t`-\v F`}</M> also dieselbe Länge, aber die umgekehrte Richtung. Und sie greift in <M>{t`A_1`}</M> an: Jetzt ist <M>{t`A_1`}</M> der Empfänger.</li>
               <li>«Actio» und «Reactio» sind lateinisch: Handlung und Rückhandlung. Welche der beiden man «Actio» nennt, hängt nur davon ab, mit welchem Körper man anfängt – das ist unsere Lesart.</li>
             </ol>
-            <p><b>Das Entscheidende:</b> Die beiden Kräfte haben <em>verschiedene Angriffspunkte</em>, <M>{t`A_2`}</M> und <M p=".">{t`A_1`}</M> Sie wirken auf zwei verschiedene Körper. Die Animation zeigt, warum das wichtig ist.</p>
+            <p className="keep"><b>Das Entscheidende:</b> Die beiden Kräfte haben <em>verschiedene Angriffspunkte</em>, <M>{t`A_2`}</M> und <M p=".">{t`A_1`}</M> Sie wirken auf zwei verschiedene Körper. Die Animation zeigt, warum das wichtig ist.</p>
           </>}
           en={<>
-            <p><b>How to read this:</b></p>
-            <ol>
+            <p className="keep"><b>How to read this:</b></p>
+            <ol className="keep">
               <li>A “postulate” is a basic rule that is not proved but assumed, because it has always held up in experience.</li>
               <li>A “material point” (<span lang="de">materieller Punkt</span>) is a body that is treated as a point with mass (<a href="#koordinaten">lesson 1</a>). <M>{t`A_1`}</M> and <M>{t`A_2`}</M> are two such bodies.</li>
               <li><M>{t`\{A_2\,|\,\v F\}`}</M> is a force in the sense of <a href="#kraft">page 29</a>: the point to the left of the bar says <em>where</em> it acts, namely at <M p=".">{t`A_2`}</M> The body <M>{t`A_1`}</M> is its sender, <M>{t`A_2`}</M> the receiver.</li>
               <li>The reply, <M p=",">{t`\{A_1\,|\,-\v F\}`}</M> has the vector <M p=",">{t`-\v F`}</M> so the same length but the opposite direction. And it acts at <M p=":">{t`A_1`}</M> now <M>{t`A_1`}</M> is the receiver.</li>
               <li>“Actio” and “Reactio” are Latin: action and counter-action. Which of the two is called “Actio” depends only on which body you start with – that is our reading.</li>
             </ol>
-            <p><b>The decisive point:</b> the two forces have <em>different points of application</em>, <M>{t`A_2`}</M> and <M p=".">{t`A_1`}</M> They act on two different bodies. The animation shows why this matters.</p>
+            <p className="keep"><b>The decisive point:</b> the two forces have <em>different points of application</em>, <M>{t`A_2`}</M> and <M p=".">{t`A_1`}</M> They act on two different bodies. The animation shows why this matters.</p>
           </>}
         />
         <ForceAnim
@@ -108,8 +108,8 @@ export default function K2Reaktion() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li>«Fernkräfte» sind Kräfte ohne Berührung (<a href="#kraft">Seite 29</a>): zum Beispiel die Anziehung zwischen zwei Magneten oder die der Erde auf den Mond.</li>
               <li>Die «Wirkungslinie» einer Kraft ist die Gerade durch ihren Angriffspunkt, in Richtung des Vektors. Auf ihr liegt der Pfeil, wenn man ihn verlängert.</li>
               <li>Die «Verbindungsgerade» ist die Gerade durch die beiden Punkte <M>{t`A_1`}</M> und <M p=".">{t`A_2`}</M></li>
@@ -119,8 +119,8 @@ export default function K2Reaktion() {
             <p>Warum man das Zusatzpostulat braucht, sagt die Seite nicht: Sie fordert es einfach. Eine Begründung braucht das Moment (<a href="#leistung-rotation">Seite 34</a>; das ist unsere Ergänzung). Für Kontaktkräfte verlangt das Skript keine Richtung; wie eine Kontaktkraft wirkt, wenn sich die Körper auf einer Fläche berühren, behandelt erst die <a href="#verteilte-kraefte">nächste Seite</a> (Fig. 4.8).</p>
           </>}
           en={<>
-            <p><b>How to read this:</b></p>
-            <ol>
+            <p className="keep"><b>How to read this:</b></p>
+            <ol className="keep">
               <li>“Forces at a distance” are forces without touching (<a href="#kraft">page 29</a>): for example the attraction between two magnets or that of the Earth on the Moon.</li>
               <li>The “line of action” of a force is the straight line through its point of application, in the direction of the vector. The arrow lies on it if you extend it.</li>
               <li>The “connecting line” is the straight line through the two points <M>{t`A_1`}</M> and <M p=".">{t`A_2`}</M></li>
@@ -152,8 +152,8 @@ export default function K2Reaktion() {
           />
         </Box>
         <T
-          de={<p>Das ist der Satz zum Merken: Jede Kraft, die du zeichnest, hat eine Gegenkraft – auch wenn niemand sie zeichnet. Wenn die Erde am Buch zieht, zieht das Buch an der Erde. Zum Finden der Gegenkraft gibt es eine Faustregel: Dreh den Satz um. «Der Tisch drückt das Buch» wird zu «das Buch drückt den Tisch». Die Gegenkraft greift immer am <em>anderen</em> Körper an. (Die zwei letzten Zeilen der Seite, «innere und äussere Kräfte», sind das Thema der <a href="#systemabgrenzung">nächsten Lektion</a>.)</p>}
-          en={<p>This is the sentence to remember: every force you draw has a counter-force – even if nobody draws it. When the Earth pulls on the book, the book pulls on the Earth. There is a rule of thumb for finding the counter-force: turn the sentence around. “The table pushes the book” becomes “the book pushes the table”. The counter-force always acts on the <em>other</em> body. (The last two lines of the page, “inner and outer forces”, are the topic of the <a href="#systemabgrenzung">next lesson</a>.)</p>}
+          de={<p className="keep">Das ist der Satz zum Merken: Jede Kraft, die du zeichnest, hat eine Gegenkraft – auch wenn niemand sie zeichnet. Wenn die Erde am Buch zieht, zieht das Buch an der Erde. Zum Finden der Gegenkraft gibt es eine Faustregel: Dreh den Satz um. «Der Tisch drückt das Buch» wird zu «das Buch drückt den Tisch». Die Gegenkraft greift immer am <em>anderen</em> Körper an. (Die zwei letzten Zeilen der Seite, «innere und äussere Kräfte», sind das Thema der <a href="#systemabgrenzung">nächsten Lektion</a>.)</p>}
+          en={<p className="keep">This is the sentence to remember: every force you draw has a counter-force – even if nobody draws it. When the Earth pulls on the book, the book pulls on the Earth. There is a rule of thumb for finding the counter-force: turn the sentence around. “The table pushes the book” becomes “the book pushes the table”. The counter-force always acts on the <em>other</em> body. (The last two lines of the page, “inner and outer forces”, are the topic of the <a href="#systemabgrenzung">next lesson</a>.)</p>}
         />
         <See>
           <T
@@ -165,7 +165,7 @@ export default function K2Reaktion() {
       </Section>
 
       {/* ------------------------------------------------------------------ 4 */}
-      <Section id="missverstaendnisse" title={<T de="4. Häufige Missverständnisse" en="4. Common misconceptions" />}>
+      <Section long id="missverstaendnisse" title={<T de="4. Häufige Missverständnisse" en="4. Common misconceptions" />}>
         <Box kind="misconception" title={<T de="«Actio und Reactio heben sich auf – also kann sich nichts bewegen.»" en="“Actio and Reactio cancel – so nothing could ever move.”" />}>
           <T
             de={<>Aufheben können sich nur Kräfte am <em>selben</em> Körper. Actio und Reactio greifen an verschiedenen Körpern an (<M>{t`A_2`}</M> und <M p=")">{t`A_1`}</M> Das Pferd zieht den Wagen nach vorn (Kraft am Wagen); der Wagen zieht das Pferd nach hinten (Kraft am Pferd). Was der Wagen tut, hängt nur von den Kräften <em>am Wagen</em> ab – dort steht das Gegenstück der Pferdekraft nicht. Die Rollschuhe zeigen es: Beide Pfeile sind gleich lang, und trotzdem rollen beide weg.</>}

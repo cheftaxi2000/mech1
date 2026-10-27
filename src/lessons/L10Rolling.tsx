@@ -32,8 +32,8 @@ export default function L10Rolling() {
           />
         </Box>
         <T
-          de={<p><b>So liest man das:</b> «Momentan» heisst wieder: nur in diesem Augenblick (wie bei der momentanen Translation). Der Zylinder berührt den Boden entlang der Linie <M p=".">{t`AB`}</M> Rollt er, ohne zu rutschen, ruhen die Punkte auf <M>{t`AB`}</M> in diesem Augenblick. Zwei ruhende Punkte – das ist nach S. 15 eine Rotation, mit der Achse <M p=".">{t`\mu = AB`}</M> Also nicht die eigene Achse <M p=":">{t`CD`}</M> Die bewegt sich ja mit dem Zylinder mit.</p>}
-          en={<p><b>How to read this:</b> “momentary” again means: only at this instant (as with momentary translation). The cylinder touches the ground along the line <M p=".">{t`AB`}</M> If it rolls without sliding, the points on <M>{t`AB`}</M> are at rest at this instant. Two points at rest – by p. 15 that is a rotation, with the axis <M p=".">{t`\mu = AB`}</M> So not its own axis <M p=":">{t`CD`}</M> that one moves along with the cylinder.</p>}
+          de={<p className="keep"><b>So liest man das:</b> «Momentan» heisst wieder: nur in diesem Augenblick (wie bei der momentanen Translation). Der Zylinder berührt den Boden entlang der Linie <M p=".">{t`AB`}</M> Rollt er, ohne zu rutschen, ruhen die Punkte auf <M>{t`AB`}</M> in diesem Augenblick. Zwei ruhende Punkte – das ist nach S. 15 eine Rotation, mit der Achse <M p=".">{t`\mu = AB`}</M> Also nicht die eigene Achse <M p=":">{t`CD`}</M> Die bewegt sich ja mit dem Zylinder mit.</p>}
+          en={<p className="keep"><b>How to read this:</b> “momentary” again means: only at this instant (as with momentary translation). The cylinder touches the ground along the line <M p=".">{t`AB`}</M> If it rolls without sliding, the points on <M>{t`AB`}</M> are at rest at this instant. Two points at rest – by p. 15 that is a rotation, with the axis <M p=".">{t`\mu = AB`}</M> So not its own axis <M p=":">{t`CD`}</M> that one moves along with the cylinder.</p>}
         />
         <T
           de={<p><b>Warum darf man das, wenn <M>A</M> und <M>B</M> nur einen Augenblick ruhen?</b> (Erklärung, nicht aus dem Skript) Die Beweise der Rotation auf S. 15–17 benutzen nur die Geschwindigkeiten in <em>einem</em> Augenblick: die SdpG und <M>{t`\v v = \v 0`}</M> auf der Achse. Ruhen <M>A</M> und <M>B</M> in diesem Augenblick, sind alle Geschwindigkeiten in diesem Augenblick genau die einer Rotation um <M p=".">{t`AB`}</M> Erst im nächsten Augenblick ist es eine andere Achse.</p>}
@@ -100,8 +100,8 @@ export default function L10Rolling() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li>Zwei Körper berühren sich in einem Punkt. <M>E</M> ist dort die gemeinsame Tangentialebene – beim Rad auf dem Band die Oberfläche des Bandes. <M>{t`\v n`}</M> steht senkrecht auf <M p=",">E</M> <M>{t`\v t`}</M> liegt in <M p=".">E</M></li>
               <li>Man zerlegt die Geschwindigkeit jedes Körpers im Kontaktpunkt in einen <b>Normalteil</b> <M>{t`\v v_n`}</M> (entlang <M p=")">{t`\v n`}</M> und einen <b>Tangentialteil</b> <M>{t`\v v_t`}</M> (in <M p=").">E</M></li>
               <li>«Kontakt ohne Eindringen» heisst: Die Normalteile sind gleich. Sonst würde ein Körper in den anderen eindringen oder sich von ihm lösen.</li>
@@ -110,8 +110,8 @@ export default function L10Rolling() {
             </ol>
           </>}
           en={<>
-            <p><b>How to read this:</b></p>
-            <ol>
+            <p className="keep"><b>How to read this:</b></p>
+            <ol className="keep">
               <li>Two bodies touch at a point. <M>E</M> is the common tangent plane there – for the wheel on the belt, the surface of the belt. <M>{t`\v n`}</M> is perpendicular to <M p=",">E</M> <M>{t`\v t`}</M> lies in <M p=".">E</M></li>
               <li>Split the velocity of each body at the contact point into a <b>normal part</b> <M>{t`\v v_n`}</M> (along <M p=")">{t`\v n`}</M> and a <b>tangential part</b> <M>{t`\v v_t`}</M> (in <M p=").">E</M></li>
               <li>“Contact without penetration” means: the normal parts are equal. Otherwise one body would penetrate the other or come off it.</li>
@@ -148,7 +148,7 @@ export default function L10Rolling() {
       </Section>
 
       {/* ------------------------------------------------------------------ 3 */}
-      <Section id="missverstaendnisse" title={<T de="3. Häufige Missverständnisse" en="3. Common misconceptions" />}>
+      <Section long id="missverstaendnisse" title={<T de="3. Häufige Missverständnisse" en="3. Common misconceptions" />}>
         <Box kind="misconception" title={<T de="«Der unterste Punkt bewegt sich mit dem Rad mit.»" en="“The bottom point moves along with the wheel.”" />}>
           <T de={<>Die <em>Stelle</em> des Kontakts wandert mit, aber der Punkt des Rades, der gerade unten ist, ruht. Im nächsten Augenblick ist es ein anderer Punkt. Darum hat die Bahn eines Randpunkts unten eine Spitze.</>} en={<>The <em>place</em> of contact moves along, but the point of the wheel that is at the bottom right now is at rest. At the next instant it is a different point. That is why the path of a rim point has a sharp tip at the bottom.</>} />
         </Box>

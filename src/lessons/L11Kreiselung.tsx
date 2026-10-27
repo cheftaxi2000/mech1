@@ -33,16 +33,16 @@ export default function L11Kreiselung() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li>Genau ein Punkt des Körpers ruht die ganze Zeit. Man nennt ihn <M>O</M> und misst alle Ortsvektoren <M>{t`\v r`}</M> von <M>O</M> aus.</li>
               <li>Der Körper ist starr, also bleibt der Abstand <M>{t`|\v r|`}</M> jedes Punktes von <M>O</M> gleich. Ein Punkt, der immer gleich weit von <M>O</M> entfernt ist, läuft auf einer Kugel um <M p=".">O</M></li>
               <li>Die Behauptung: In jedem Augenblick ruht nicht nur <M p=",">O</M> sondern eine ganze Gerade durch <M p=".">O</M> Im nächsten Augenblick ist es eine andere Gerade – darum «momentan».</li>
             </ol>
           </>}
           en={<>
-            <p><b>How to read this:</b></p>
-            <ol>
+            <p className="keep"><b>How to read this:</b></p>
+            <ol className="keep">
               <li>Exactly one point of the body is at rest all the time. Call it <M>O</M> and measure all position vectors <M>{t`\v r`}</M> from <M p=".">O</M></li>
               <li>The body is rigid, so the distance <M>{t`|\v r|`}</M> of every point from <M>O</M> stays the same. A point that always stays at the same distance from <M>O</M> moves on a sphere about <M p=".">O</M></li>
               <li>The claim: at each instant not only <M>O</M> is at rest, but a whole straight line through <M p=".">O</M> At the next instant it is another line – hence “momentarily”.</li>
@@ -92,9 +92,9 @@ export default function L11Kreiselung() {
         </Box>
         <T
           de={<>
-            <p>Ein Verschreiber in der Handschrift: Dort steht <M p=";">{t`E_M \perp \v r_M`}</M> gemeint ist <M p=",">{t`E_M \perp \v v_M`}</M> wie in der gedruckten Zeile darunter. <M>{t`\v r_M`}</M> liegt ja <em>in</em> <M p=".">{t`E_M`}</M></p>
-            <p><b>So liest man den Beweis:</b></p>
-            <ol>
+            <p className="keep">Ein Verschreiber in der Handschrift: Dort steht <M p=";">{t`E_M \perp \v r_M`}</M> gemeint ist <M p=",">{t`E_M \perp \v v_M`}</M> wie in der gedruckten Zeile darunter. <M>{t`\v r_M`}</M> liegt ja <em>in</em> <M p=".">{t`E_M`}</M></p>
+            <p className="keep"><b>So liest man den Beweis:</b></p>
+            <ol className="keep">
               <li>Nimm zwei Punkte <M>M</M> und <M p=",">N</M> die sich bewegen. <M>M</M> bleibt gleich weit von <M>O</M> entfernt. Darum steht <M>{t`\v v_M`}</M> senkrecht auf <M>{t`\v r_M`}</M> – die Geschwindigkeit zeigt entlang der Kugel, nie nach aussen.</li>
               <li><M>{t`E_M`}</M> ist die Ebene durch <M>M</M> senkrecht zu <M p=".">{t`\v v_M`}</M> Weil <M>{t`\v r_M`}</M> senkrecht auf <M>{t`\v v_M`}</M> steht, liegt <M>{t`\v r_M`}</M> in dieser Ebene – und mit ihm <M p=".">O</M> Ebenso liegt <M>O</M> in <M p=".">{t`E_N`}</M></li>
               <li>Zwei Ebenen durch <M>O</M> schneiden sich in einer Geraden durch <M p=".">O</M> Das ist <M p=".">\mu</M> <M>A</M> ist irgendein Punkt auf <M p=".">\mu</M></li>
@@ -103,9 +103,9 @@ export default function L11Kreiselung() {
             </ol>
           </>}
           en={<>
-            <p>A slip in the handwriting: it says <M p=";">{t`E_M \perp \v r_M`}</M> what is meant is <M p=",">{t`E_M \perp \v v_M`}</M> as in the printed line below. After all, <M>{t`\v r_M`}</M> lies <em>in</em> <M p=".">{t`E_M`}</M></p>
-            <p><b>How to read the proof:</b></p>
-            <ol>
+            <p className="keep">A slip in the handwriting: it says <M p=";">{t`E_M \perp \v r_M`}</M> what is meant is <M p=",">{t`E_M \perp \v v_M`}</M> as in the printed line below. After all, <M>{t`\v r_M`}</M> lies <em>in</em> <M p=".">{t`E_M`}</M></p>
+            <p className="keep"><b>How to read the proof:</b></p>
+            <ol className="keep">
               <li>Take two points <M>M</M> and <M>N</M> that move. <M>M</M> stays at the same distance from <M p=".">O</M> Hence <M>{t`\v v_M`}</M> is perpendicular to <M>{t`\v r_M`}</M> – the velocity points along the sphere, never outward.</li>
               <li><M>{t`E_M`}</M> is the plane through <M>M</M> perpendicular to <M p=".">{t`\v v_M`}</M> Because <M>{t`\v r_M`}</M> is perpendicular to <M p=",">{t`\v v_M`}</M> <M>{t`\v r_M`}</M> lies in this plane – and with it <M p=".">O</M> Likewise <M>O</M> lies in <M p=".">{t`E_N`}</M></li>
               <li>Two planes through <M>O</M> intersect in a line through <M p=".">O</M> That is <M p=".">\mu</M> <M>A</M> is any point on <M p=".">\mu</M></li>
@@ -172,21 +172,21 @@ export default function L11Kreiselung() {
         </Box>
         <T
           de={<>
-            <p>Weil in jedem Augenblick eine Achse <M>\mu</M> durch <M>O</M> ruht, ist die Kreiselung in jedem Augenblick eine Rotation um <M p=".">\mu</M> Darum gilt die Formel der Rotation, mit <M>O</M> auf der Achse:</p>
+            <p className="keep">Weil in jedem Augenblick eine Achse <M>\mu</M> durch <M>O</M> ruht, ist die Kreiselung in jedem Augenblick eine Rotation um <M p=".">\mu</M> Darum gilt die Formel der Rotation, mit <M>O</M> auf der Achse:</p>
             <MD>{t`\v v = \v\omega\times\v r, \qquad \v r \text{ von } O \text{ aus gemessen.}`}</MD>
             <p><b>Warum gilt die Formel der Rotation, obwohl die Achse nur einen Augenblick ruht?</b> (Erklärung, nicht aus dem Skript) Die Beweise auf S. 15–17 benutzen nur Geschwindigkeiten in <em>einem</em> Augenblick: die SdpG und <M>{t`\v v = \v 0`}</M> auf der Achse. Ruht in diesem Augenblick eine Achse, sind die Geschwindigkeiten in diesem Augenblick genau die einer Rotation. Weil <M>O</M> immer auf <M>\mu</M> liegt, darf man <M>{t`\v r`}</M> von <M>O</M> aus messen (S. 18).</p>
-            <p>Neu gegenüber der Rotation ist nur eines: <M>{t`\v\omega`}</M> darf mit der Zeit seine Richtung ändern. Bei der Rotation bleibt die Achse fest; bei der Kreiselung wandert sie – aber immer durch <M p=".">O</M> Im Explorer siehst du das beim Abrollen: Die türkise Achse dreht sich mit der Berührlinie um <M p=".">O</M></p>
+            <p className="keep">Neu gegenüber der Rotation ist nur eines: <M>{t`\v\omega`}</M> darf mit der Zeit seine Richtung ändern. Bei der Rotation bleibt die Achse fest; bei der Kreiselung wandert sie – aber immer durch <M p=".">O</M> Im Explorer siehst du das beim Abrollen: Die türkise Achse dreht sich mit der Berührlinie um <M p=".">O</M></p>
             <p>Der letzte Satz im Kasten ist der Ausblick auf das nächste Kapitel: Lässt man auch <M>O</M> sich bewegen, kommt eine Translation dazu. Das ergibt die allgemeinste Bewegung eines starren Körpers.</p>
           </>}
           en={<>
-            <p>Because at each instant an axis <M>\mu</M> through <M>O</M> is at rest, spinning motion is at each instant a rotation about <M p=".">\mu</M> So the formula of the rotation holds, with <M>O</M> on the axis:</p>
+            <p className="keep">Because at each instant an axis <M>\mu</M> through <M>O</M> is at rest, spinning motion is at each instant a rotation about <M p=".">\mu</M> So the formula of the rotation holds, with <M>O</M> on the axis:</p>
             <MD>{t`\v v = \v\omega\times\v r, \qquad \v r \text{ measured from } O.`}</MD>
             <p><b>Why does the rotation formula hold although the axis is at rest only for an instant?</b> (Explanation, not from the notes) The proofs on pp. 15–17 use only velocities at <em>one</em> instant: the SdpG and <M>{t`\v v = \v 0`}</M> on the axis. If an axis is at rest at this instant, the velocities at this instant are exactly those of a rotation. Because <M>O</M> always lies on <M p=",">\mu</M> <M>{t`\v r`}</M> may be measured from <M>O</M> (p. 18).</p>
-            <p>Only one thing is new compared with rotation: <M>{t`\v\omega`}</M> may change its direction over time. In a rotation the axis stays fixed; in spinning motion it wanders – but always through <M p=".">O</M> You can see this in the explorer while the cone rolls: the teal axis turns about <M>O</M> together with the line of contact.</p>
+            <p className="keep">Only one thing is new compared with rotation: <M>{t`\v\omega`}</M> may change its direction over time. In a rotation the axis stays fixed; in spinning motion it wanders – but always through <M p=".">O</M> You can see this in the explorer while the cone rolls: the teal axis turns about <M>O</M> together with the line of contact.</p>
             <p>The last sentence in the box is a preview of the next chapter: if <M>O</M> may move too, a translation is added. This gives the most general motion of a rigid body.</p>
           </>}
         />
-        <Box kind="supplement" title={<T de="Beispiel: der rollende Kegel" en="Example: the rolling cone" />}>
+        <Box keep kind="supplement" title={<T de="Beispiel: der rollende Kegel" en="Example: the rolling cone" />}>
           <T
             de={<>
               <p>Der Kegel im Explorer hat den halben Öffnungswinkel <M>{t`\gamma = 25^\circ`}</M> und Mantellinien der Länge <M>L</M> (von der Spitze <M>O</M> zum Rand). <M>{t`\dot\varphi`}</M> sagt, wie schnell die Berührlinie um <M>O</M> herumläuft (Winkel pro Sekunde). Achtung: Anders als bei der Kreisbewegung ist <M>{t`\dot\varphi`}</M> hier <em>nicht</em> <M p=",">{t`|\v\omega|`}</M> denn der Kegel dreht sich zusätzlich um seine eigene Achse. Wie schnell sind die Punkte beim Rollen?</p>
@@ -217,7 +217,7 @@ export default function L11Kreiselung() {
       </Section>
 
       {/* ------------------------------------------------------------------ 4 */}
-      <Section id="missverstaendnisse" title={<T de="4. Häufige Missverständnisse" en="4. Common misconceptions" />}>
+      <Section long id="missverstaendnisse" title={<T de="4. Häufige Missverständnisse" en="4. Common misconceptions" />}>
         <Box kind="misconception" title={<T de="«Wenn nur ein Punkt ruht, gibt es keine Drehachse.»" en="“If only one point is at rest, there is no axis of rotation.”" />}>
           <T de={<>Doch – in jedem Augenblick ruht eine ganze Achse durch <M p=".">O</M> Sie bleibt nur nicht dieselbe. «Nur ein Punkt in Ruhe» heisst: nur <M>O</M> ruht <em>die ganze Zeit</em>.</>} en={<>There is – at each instant a whole axis through <M>O</M> is at rest. It just does not stay the same. “Only one point at rest” means: only <M>O</M> is at rest <em>all the time</em>.</>} />
         </Box>

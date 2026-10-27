@@ -50,8 +50,8 @@ export default function K1Kraft() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li>«Wechselwirkung»: Zwei Körper wirken aufeinander ein, wie bei einem Händedruck – beide spüren etwas. Wie genau, regelt die <a href="#reaktionsprinzip">nächste Lektion</a>.</li>
               <li>«Veränderung von <M>{t`\v v`}</M>»: <M>{t`\v v`}</M> ist die Geschwindigkeit (Kapitel 2). Eine Kraft kann einen Körper schneller, langsamer oder in eine andere Richtung bringen.</li>
               <li>«Veränderung der Gestalt»: Der Körper verformt sich – ein Schwamm wird kleiner, eine Feder wird länger.</li>
@@ -59,8 +59,8 @@ export default function K1Kraft() {
             </ol>
           </>}
           en={<>
-            <p><b>How to read this:</b></p>
-            <ol>
+            <p className="keep"><b>How to read this:</b></p>
+            <ol className="keep">
               <li>“Interaction”: two bodies act on each other, like a handshake – both feel something. How exactly is settled in the <a href="#reaktionsprinzip">next lesson</a>.</li>
               <li>“Change of <M>{t`\v v`}</M>”: <M>{t`\v v`}</M> is the velocity (chapter 2). A force can make a body faster, slower, or send it in another direction.</li>
               <li>“Change of shape”: the body deforms – a sponge gets smaller, a spring gets longer.</li>
@@ -220,11 +220,11 @@ export default function K1Kraft() {
         </Box>
         <T
           de={<>
-            <p>Das ist der erste Blick auf mehrere Kräfte an einem Körper: Jede Kraft hat ihr eigenes Paar <M p=".">{t`\{A_i\,|\,\v F_i\}`}</M> Der Index <M>i</M> zählt einfach durch: <M p=".">{t`i = 1, 2, \dots, 5`}</M></p>
+            <p className="keep">Das ist der erste Blick auf mehrere Kräfte an einem Körper: Jede Kraft hat ihr eigenes Paar <M p=".">{t`\{A_i\,|\,\v F_i\}`}</M> Der Index <M>i</M> zählt einfach durch: <M p=".">{t`i = 1, 2, \dots, 5`}</M></p>
             <p>Beachte die Pfeile: Bei <M p=",">{t`\v F_1`}</M> <M>{t`\v F_4`}</M> und <M>{t`\v F_5`}</M> beginnt der Pfeil im Punkt, bei <M>{t`\v F_2`}</M> und <M>{t`\v F_3`}</M> endet er dort. Das Skript sagt dazu nichts. Wir lesen es so: Gemeint ist immer, dass <M>{t`\v F_i`}</M> in <M>{t`A_i`}</M> angreift, und die Pfeilspitze zeigt in die Richtung von <M p=".">{t`\v F_i`}</M> Am Anfang oder am Ende des Pfeils zu stehen, ist nur eine Frage des Zeichnens.</p>
           </>}
           en={<>
-            <p>This is the first look at several forces on one body: each force has its own pair <M p=".">{t`\{A_i\,|\,\v F_i\}`}</M> The index <M>i</M> simply counts: <M p=".">{t`i = 1, 2, \dots, 5`}</M></p>
+            <p className="keep">This is the first look at several forces on one body: each force has its own pair <M p=".">{t`\{A_i\,|\,\v F_i\}`}</M> The index <M>i</M> simply counts: <M p=".">{t`i = 1, 2, \dots, 5`}</M></p>
             <p>Note the arrows: for <M p=",">{t`\v F_1`}</M> <M>{t`\v F_4`}</M> and <M>{t`\v F_5`}</M> the arrow starts at the point, for <M>{t`\v F_2`}</M> and <M>{t`\v F_3`}</M> it ends there. The notes say nothing about this. We read it like this: what is always meant is that <M>{t`\v F_i`}</M> acts at <M p=",">{t`A_i`}</M> and the arrow head points in the direction of <M p=".">{t`\v F_i`}</M> Standing at the start or at the end of the arrow is only a matter of drawing.</p>
           </>}
         />
@@ -259,8 +259,8 @@ export default function K1Kraft() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die Zeilen:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man die Zeilen:</b></p>
+            <ol className="keep">
               <li>Eine <em>Kräftegruppe</em> ist einfach eine Sammlung von Kräften an einem System. Mit <M>{t`i = 1, 2, 3, \dots`}</M> wird sie durchnummeriert.</li>
               <li>Der Pfeil <M>{t`\to`}</M> in der ersten Zeile verbindet zwei Schreibweisen derselben Gruppe: links kurz mit dem Laufindex <M p=",">i</M> rechts ausgeschrieben, Kraft für Kraft. «Äquivalente Darstellung» heisst: gleiche Bedeutung, anders hingeschrieben.</li>
               <li>Die zweite Zeile ist der Spezialfall: <em>alle</em> Kräfte greifen im selben Punkt <M>A</M> an. Dort steht kein Index am <M p=",">A</M> denn es gibt nur einen Punkt.</li>
@@ -269,8 +269,8 @@ export default function K1Kraft() {
             <p>Fig. 4.2 ist genau dieser Fall: fünf Pfeile in <M p=",">A</M> und der graue Pfeil <M p=",">{t`\v R`}</M> der alle zusammenfasst. Wie ein Pfeil aus fünf wird, zeigt die Animation. (Das Skript zeichnet <M>{t`\v R`}</M> grau; bei uns ist es der dicke, dunkle Pfeil.)</p>
           </>}
           en={<>
-            <p><b>How to read the lines:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the lines:</b></p>
+            <ol className="keep">
               <li>A <em><span lang="de">Kräftegruppe</span></em> is simply a collection of forces on a system. With <M>{t`i = 1, 2, 3, \dots`}</M> it is numbered.</li>
               <li>The arrow <M>{t`\to`}</M> in the first line connects two ways of writing the same group: on the left short, with the running index <M p=",">i</M> on the right written out, force by force. “<span lang="de">Äquivalente Darstellung</span>” means: same meaning, written differently.</li>
               <li>The second line is the special case: <em>all</em> forces act at the same point <M p=".">A</M> There is no index on <M p=",">A</M> because there is only one point.</li>
@@ -327,7 +327,7 @@ export default function K1Kraft() {
       </Section>
 
       {/* ------------------------------------------------------------------ 7 */}
-      <Section id="missverstaendnisse" title={<T de="7. Häufige Missverständnisse" en="7. Common misconceptions" />}>
+      <Section long id="missverstaendnisse" title={<T de="7. Häufige Missverständnisse" en="7. Common misconceptions" />}>
         <Box kind="misconception" title={<T de="«Eine Kraft ist ein freier Pfeil, den man beliebig verschieben darf.»" en="“A force is a free arrow that may be moved anywhere.”" />}>
           <T
             de={<>Nicht in diesem Skript: Eine Kraft ist ein <em>punktgebundener</em> Vektor <M p=".">{t`\{A\,|\,\v F\}`}</M> Derselbe Vektor <M>{t`\v F`}</M> an einem anderen Punkt ist eine andere Kraft. Der Versuch auf dem Tisch zeigt es: Der Körper dreht sich anders. Nur beim <em>Addieren</em> der Vektoren (der Kette in der Animation) schiebt man Kopien herum, und auch dort bleiben die echten Kräfte am Punkt <M p=".">A</M></>}

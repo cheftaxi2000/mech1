@@ -77,8 +77,8 @@ export default function L04Velocity() {
           />
         </Box>
         <T
-          de={<p>In Worten: Wir kennen die Bahn, also <M>{t`\v r(t)`}</M> für jede Zeit. Daraus wollen wir <M>{t`\v v`}</M> bekommen. Die Vorlesung behauptet zweierlei: <M>{t`\v v`}</M> zeigt immer entlang der Bahn («tangential»), und rechnen kann man es ganz einfach – jede Koordinate nach der Zeit ableiten. Beides zeigen wir jetzt.</p>}
-          en={<p>In words: we know the path, i.e. <M>{t`\v r(t)`}</M> for every time. From it we want <M p=".">{t`\v v`}</M> The lecture claims two things: <M>{t`\v v`}</M> always points along the path (“tangent”), and computing it is easy – differentiate each coordinate with respect to time. We show both now.</p>}
+          de={<p className="keep">In Worten: Wir kennen die Bahn, also <M>{t`\v r(t)`}</M> für jede Zeit. Daraus wollen wir <M>{t`\v v`}</M> bekommen. Die Vorlesung behauptet zweierlei: <M>{t`\v v`}</M> zeigt immer entlang der Bahn («tangential»), und rechnen kann man es ganz einfach – jede Koordinate nach der Zeit ableiten. Beides zeigen wir jetzt.</p>}
+          en={<p className="keep">In words: we know the path, i.e. <M>{t`\v r(t)`}</M> for every time. From it we want <M p=".">{t`\v v`}</M> The lecture claims two things: <M>{t`\v v`}</M> always points along the path (“tangent”), and computing it is easy – differentiate each coordinate with respect to time. We show both now.</p>}
         />
       </Section>
 
@@ -90,8 +90,8 @@ export default function L04Velocity() {
           <T de={<><M p=":">{t`\dot s`}</M> Wie schnell? <M p=":">{t`\v\tau`}</M> In welche Richtung? (<M>{t`\v\tau`}</M> tangentialer Einheitsvektor, <M>s</M> Bogenlänge.)</>} en={<><M p=":">{t`\dot s`}</M> how fast? <M p=":">{t`\v\tau`}</M> in which direction? (<M>{t`\v\tau`}</M> tangent unit vector, <M>s</M> arc length, <em lang="de">Bogenlänge</em>.)</>} />
         </Box>
         <T
-          de={<p>Die <b>Bogenlänge</b> <M>{t`s(t)`}</M> ist der Kilometerzähler: wie viel Weg der Punkt <em>entlang der Kurve</em> schon zurückgelegt hat. Dann ist <M>{t`\dot s`}</M> genau wie auf der Geraden «Weg pro Zeit» – die Schnelligkeit, die der Tacho zeigt. Die Animation zeigt Schritt für Schritt, warum der Geschwindigkeitspfeil an der Kurve anliegt.</p>}
-          en={<p>The <b>arc length</b> <M>{t`s(t)`}</M> is the odometer: how much distance the point has already covered <em>along the curve</em>. Then <M>{t`\dot s`}</M> is, just like on the straight line, “distance per time” – the speed the speedometer shows. The animation shows step by step why the velocity arrow lies along the curve.</p>}
+          de={<p className="keep">Die <b>Bogenlänge</b> <M>{t`s(t)`}</M> ist der Kilometerzähler: wie viel Weg der Punkt <em>entlang der Kurve</em> schon zurückgelegt hat. Dann ist <M>{t`\dot s`}</M> genau wie auf der Geraden «Weg pro Zeit» – die Schnelligkeit, die der Tacho zeigt. Die Animation zeigt Schritt für Schritt, warum der Geschwindigkeitspfeil an der Kurve anliegt.</p>}
+          en={<p className="keep">The <b>arc length</b> <M>{t`s(t)`}</M> is the odometer: how much distance the point has already covered <em>along the curve</em>. Then <M>{t`\dot s`}</M> is, just like on the straight line, “distance per time” – the speed the speedometer shows. The animation shows step by step why the velocity arrow lies along the curve.</p>}
         />
         <Derivation title={<T de={<><M>{t`\v v = \dot s\,\v\tau`}</M> Schritt für Schritt (S. 8–9)</>} en={<><M>{t`\v v = \dot s\,\v\tau`}</M> step by step (pp. 8–9)</>} />}>
           <StepPlayer
@@ -157,22 +157,22 @@ export default function L04Velocity() {
         </Box>
         <T
           de={<>
-            <p>So liest man die Zeile im Skript:</p>
-            <ol>
+            <p className="keep">So liest man die Zeile im Skript:</p>
+            <ol className="keep">
               <li><M>{t`\v r`}</M> besteht aus drei Teilen wie <M p=":">{t`x\,\v e_x`}</M> eine Zahl mal ein Basisvektor.</li>
               <li>Beim Ableiten eines Produkts gilt die Produktregel: <M p=".">{t`\tfrac{\dd}{\dd t}(x\,\v e_x) = \dot x\,\v e_x + x\,\dot{\v e}_x`}</M></li>
               <li><M>{t`\v e_x`}</M> ändert sich nie – überall und immer derselbe Pfeil (<a href="#basen">Basen</a>). Also <M>{t`\dot{\v e}_x = \v 0`}</M> und der zweite Teil fällt weg. Das sind die drei durchgestrichenen Terme.</li>
             </ol>
-            <p><b>Ergebnis:</b> Man leitet einfach jede Koordinate nach der Zeit ab. Genau das wollte S. 8 «zeigen». (Die Überschrift im Skript lautet «Darstellung von <M p=",">{t`\v r = \dot{\v r}`}</M>» gemeint ist <M p=".)">{t`\v v = \dot{\v r}`}</M></p>
+            <p className="keep"><b>Ergebnis:</b> Man leitet einfach jede Koordinate nach der Zeit ab. Genau das wollte S. 8 «zeigen». (Die Überschrift im Skript lautet «Darstellung von <M p=",">{t`\v r = \dot{\v r}`}</M>» gemeint ist <M p=".)">{t`\v v = \dot{\v r}`}</M></p>
           </>}
           en={<>
-            <p>How to read the line in the notes:</p>
-            <ol>
+            <p className="keep">How to read the line in the notes:</p>
+            <ol className="keep">
               <li><M>{t`\v r`}</M> consists of three parts like <M p=":">{t`x\,\v e_x`}</M> a number times a basis vector.</li>
               <li>Differentiating a product uses the product rule: <M p=".">{t`\tfrac{\dd}{\dd t}(x\,\v e_x) = \dot x\,\v e_x + x\,\dot{\v e}_x`}</M></li>
               <li><M>{t`\v e_x`}</M> never changes – the same arrow everywhere and always (<a href="#basen">Bases</a>). So <M>{t`\dot{\v e}_x = \v 0`}</M> and the second part drops out. These are the three struck-out terms.</li>
             </ol>
-            <p><b>Result:</b> just differentiate each coordinate with respect to time. That is exactly what p. 8 set out to “show”. (The notes' heading reads “Darstellung von <M p=",">{t`\v r = \dot{\v r}`}</M>” meaning <M p=".)">{t`\v v = \dot{\v r}`}</M></p>
+            <p className="keep"><b>Result:</b> just differentiate each coordinate with respect to time. That is exactly what p. 8 set out to “show”. (The notes' heading reads “Darstellung von <M p=",">{t`\v r = \dot{\v r}`}</M>” meaning <M p=".)">{t`\v v = \dot{\v r}`}</M></p>
           </>}
         />
         <HelixVelocity />
@@ -190,7 +190,7 @@ export default function L04Velocity() {
       </Section>
 
       {/* ------------------------------------------------------------------ 5 */}
-      <Section id="missverstaendnisse" title={<T de="5. Häufige Missverständnisse" en="5. Common misconceptions" />}>
+      <Section long id="missverstaendnisse" title={<T de="5. Häufige Missverständnisse" en="5. Common misconceptions" />}>
         <Box kind="misconception" title={<T de="«Geschwindigkeit und Schnelligkeit sind dasselbe.»" en="“Velocity and speed are the same thing.”" />}>
           <T de={<>Nein. Die Schnelligkeit <M>{t`\dot s`}</M> ist eine Zahl – der Tacho. Die Geschwindigkeit <M>{t`\v v`}</M> ist ein Pfeil – Tacho <em>und</em> Fahrtrichtung.</>} en={<>No. The speed <M>{t`\dot s`}</M> is a number – the speedometer. The velocity <M>{t`\v v`}</M> is an arrow – speedometer <em>and</em> direction of travel.</>} />
         </Box>

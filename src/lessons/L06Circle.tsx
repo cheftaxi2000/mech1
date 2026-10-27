@@ -33,13 +33,13 @@ export default function L06Circle() {
         <T
           de={<>
             <p><b>Warum steht im Skript «Falsch!»?</b> Die Spalte rechts sind die <em>Komponenten</em> von <M>{t`\v r`}</M> in der Basis <M p=",">{t`\v e_\rho, \v e_\varphi, \v e_z`}</M> also «wie viel von jedem Basisvektor». <M>{t`\v r`}</M> enthält <M>R</M> mal <M>{t`\v e_\rho`}</M> und <M>{t`z_0`}</M> mal <M p=",">{t`\v e_z`}</M> aber <em>nichts</em> von <M p=".">{t`\v e_\varphi`}</M> Der Winkel steckt nicht in einer Komponente, sondern in der Richtung von <M>{t`\v e_\rho`}</M> (<a href="#basen">Basen</a>).</p>
-            <p><b>Die Geschwindigkeit</b> folgt direkt aus S. 10: <M>R</M> ist fest, also <M p=";">{t`\dot\rho = 0`}</M> <M>{t`z_0`}</M> ist fest, also <M p=".">{t`\dot z = 0`}</M> Übrig bleibt nur der Dreh-Term: <M p=".">{t`\v v = R\dot\varphi\,\v e_\varphi`}</M> Der Pfeil zeigt entlang des Kreises, die Schnelligkeit ist <M p=".">{t`\dot s = R\dot\varphi`}</M></p>
-            <p><b><M>{t`\dot\varphi`}</M> heisst Winkelschnelligkeit</b> und wird in rad/s gemessen (Bogenmass pro Sekunde). Eine Umdrehung ist <M p=",">{t`2\pi`}</M> also ist eine Umdrehung pro Sekunde <M p=".">{t`\dot\varphi = 2\pi\ \text{rad/s} \approx 6{,}28\ \text{rad/s}`}</M></p>
+            <p className="keep"><b>Die Geschwindigkeit</b> folgt direkt aus S. 10: <M>R</M> ist fest, also <M p=";">{t`\dot\rho = 0`}</M> <M>{t`z_0`}</M> ist fest, also <M p=".">{t`\dot z = 0`}</M> Übrig bleibt nur der Dreh-Term: <M p=".">{t`\v v = R\dot\varphi\,\v e_\varphi`}</M> Der Pfeil zeigt entlang des Kreises, die Schnelligkeit ist <M p=".">{t`\dot s = R\dot\varphi`}</M></p>
+            <p className="keep"><b><M>{t`\dot\varphi`}</M> heisst Winkelschnelligkeit</b> und wird in rad/s gemessen (Bogenmass pro Sekunde). Eine Umdrehung ist <M p=",">{t`2\pi`}</M> also ist eine Umdrehung pro Sekunde <M p=".">{t`\dot\varphi = 2\pi\ \text{rad/s} \approx 6{,}28\ \text{rad/s}`}</M></p>
           </>}
           en={<>
             <p><b>Why do the notes say “Falsch!”?</b> The column on the right holds the <em>components</em> of <M>{t`\v r`}</M> in the basis <M p=",">{t`\v e_\rho, \v e_\varphi, \v e_z`}</M> i.e. “how much of each basis vector”. <M>{t`\v r`}</M> contains <M>R</M> times <M>{t`\v e_\rho`}</M> and <M>{t`z_0`}</M> times <M p=",">{t`\v e_z`}</M> but <em>nothing</em> of <M p=".">{t`\v e_\varphi`}</M> The angle is not in a component but in the direction of <M>{t`\v e_\rho`}</M> (<a href="#basen">Bases</a>).</p>
-            <p><b>The velocity</b> follows directly from p. 10: <M>R</M> is fixed, so <M p=";">{t`\dot\rho = 0`}</M> <M>{t`z_0`}</M> is fixed, so <M p=".">{t`\dot z = 0`}</M> Only the turning term remains: <M p=".">{t`\v v = R\dot\varphi\,\v e_\varphi`}</M> The arrow points along the circle; the speed is <M p=".">{t`\dot s = R\dot\varphi`}</M></p>
-            <p><b><M>{t`\dot\varphi`}</M> is called angular speed</b> (<em lang="de">Winkelschnelligkeit</em>) and is measured in rad/s (radians per second). One turn is <M p=",">{t`2\pi`}</M> so one turn per second is <M p=".">{t`\dot\varphi = 2\pi\ \text{rad/s} \approx 6.28\ \text{rad/s}`}</M></p>
+            <p className="keep"><b>The velocity</b> follows directly from p. 10: <M>R</M> is fixed, so <M p=";">{t`\dot\rho = 0`}</M> <M>{t`z_0`}</M> is fixed, so <M p=".">{t`\dot z = 0`}</M> Only the turning term remains: <M p=".">{t`\v v = R\dot\varphi\,\v e_\varphi`}</M> The arrow points along the circle; the speed is <M p=".">{t`\dot s = R\dot\varphi`}</M></p>
+            <p className="keep"><b><M>{t`\dot\varphi`}</M> is called angular speed</b> (<em lang="de">Winkelschnelligkeit</em>) and is measured in rad/s (radians per second). One turn is <M p=",">{t`2\pi`}</M> so one turn per second is <M p=".">{t`\dot\varphi = 2\pi\ \text{rad/s} \approx 6.28\ \text{rad/s}`}</M></p>
           </>}
         />
       </Section>
@@ -124,8 +124,8 @@ export default function L06Circle() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die Rechnung:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man die Rechnung:</b></p>
+            <ol className="keep">
               <li>Kreuzprodukt mit der Komponentenformel aus <a href="#vektoren">Vektoren</a>: erste Komponente <M p=",">{t`0\cdot z_0 - \dot\varphi\cdot R\sin\varphi`}</M> zweite <M p=",">{t`\dot\varphi\cdot R\cos\varphi - 0\cdot z_0`}</M> dritte <M p=".">{t`0\cdot R\sin\varphi - 0\cdot R\cos\varphi = 0`}</M></li>
               <li>Die Höhe <M>{t`z_0`}</M> fällt dabei heraus – genau wie in der Umformung oben.</li>
               <li>Das Ergebnis ist <M>{t`\dot\varphi R`}</M> mal <M p=",">{t`(-\sin\varphi, \cos\varphi, 0)`}</M> und das ist <M>{t`\v e_\varphi`}</M> (S. 10, <a href="#v-krummlinig">Zylinder- und Kugelkoordinaten</a>). Beide Wege geben also dasselbe.</li>
@@ -133,8 +133,8 @@ export default function L06Circle() {
             <p>Auf der Folie der Vorlesung (L5) steht dieselbe Rechnung in der zylindrischen Basis: <M p=".">{t`(0, 0, \dot\varphi)\times(R, 0, z_0) = (0, \dot\varphi R, 0) = \dot\varphi R\,\v e_\varphi`}</M> Das darf man, weil <M>{t`\v e_\rho, \v e_\varphi, \v e_z`}</M> ebenfalls ein Rechtssystem aus Einheitsvektoren ist.</p>
           </>}
           en={<>
-            <p><b>How to read the calculation:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the calculation:</b></p>
+            <ol className="keep">
               <li>Cross product with the component formula from <a href="#vektoren">Vectors</a>: first component <M p=",">{t`0\cdot z_0 - \dot\varphi\cdot R\sin\varphi`}</M> second <M p=",">{t`\dot\varphi\cdot R\cos\varphi - 0\cdot z_0`}</M> third <M p=".">{t`0\cdot R\sin\varphi - 0\cdot R\cos\varphi = 0`}</M></li>
               <li>The height <M>{t`z_0`}</M> drops out – just as in the rearrangement above.</li>
               <li>The result is <M>{t`\dot\varphi R`}</M> times <M p=",">{t`(-\sin\varphi, \cos\varphi, 0)`}</M> which is <M>{t`\v e_\varphi`}</M> (p. 10, <a href="#v-krummlinig">cylindrical and spherical coordinates</a>). Both ways give the same.</li>
@@ -145,7 +145,7 @@ export default function L06Circle() {
       </Section>
 
       {/* ------------------------------------------------------------------ 5 */}
-      <Section id="missverstaendnisse" title={<T de="5. Häufige Missverständnisse" en="5. Common misconceptions" />}>
+      <Section long id="missverstaendnisse" title={<T de="5. Häufige Missverständnisse" en="5. Common misconceptions" />}>
         <Box kind="misconception" title={<T de={<>«<M>{t`\v\omega`}</M> zeigt in Bewegungsrichtung.»</>} en={<>“<M>{t`\v\omega`}</M> points in the direction of motion.”</>} />}>
           <T de={<>Nein. In Bewegungsrichtung zeigt <M p=".">{t`\v v`}</M> <M>{t`\v\omega`}</M> liegt auf der <em>Drehachse</em> und steht senkrecht auf der Kreisebene.</>} en={<>No. <M>{t`\v v`}</M> points in the direction of motion. <M>{t`\v\omega`}</M> lies on the <em>axis of rotation</em>, perpendicular to the plane of the circle.</>} />
         </Box>

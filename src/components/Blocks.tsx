@@ -54,7 +54,8 @@ const LABEL: Record<Kind, [string, string]> = {
   intuition: ['Intuition', 'Intuition'],
 };
 
-export function Box({ kind, title, children, src }: { kind: Kind; title?: ReactNode; children: ReactNode; src?: ReactNode }) {
+/** `keep`: this box stays in the short version although its kind is normally dropped there. */
+export function Box({ kind, title, children, src, keep }: { kind: Kind; title?: ReactNode; children: ReactNode; src?: ReactNode; keep?: boolean }) {
   const tr = useTr();
   // In the exercise-class subjects a supplement is "not in the slides / summary", not "not in the lecture notes".
   const topic = typeof window !== 'undefined' ? TOPICS.find((t) => t.id === window.location.hash.replace(/^#\/?/, '')) : undefined;
@@ -62,7 +63,7 @@ export function Box({ kind, title, children, src }: { kind: Kind; title?: ReactN
     ? (topicSubject(topic) === 'la' || topicSubject(topic) === 'chem' ? ['Ergänzung – nicht in den Folien', 'Supplement – not in the slides'] : ['Ergänzung – nicht im Resümee', 'Supplement – not in the summary'])
     : LABEL[kind];
   return (
-    <aside className={`box box-${kind}`}>
+    <aside className={`box box-${kind}${keep ? ' keep' : ''}`}>
       <header>
         <span className="box-kind">{tr(...label)}</span>
         {title && <span className="box-title">{title}</span>}
@@ -84,9 +85,10 @@ export function Derivation({ title, children, open = true }: { title: ReactNode;
   );
 }
 
-export function Section({ id, title, children }: { id: string; title: ReactNode; children: ReactNode }) {
+/** `long`: the whole section exists only in the full version. */
+export function Section({ id, title, children, long }: { id: string; title: ReactNode; children: ReactNode; long?: boolean }) {
   return (
-    <section id={id} className="section">
+    <section id={id} className={`section${long ? ' long-only' : ''}`}>
       <h2>{title}</h2>
       {children}
     </section>

@@ -100,8 +100,8 @@ export default function K6Moment() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li>Der Körper <M>K</M> dreht sich um die feste Gerade <M p=",">\mu</M> die <a href="#rotation">Drehachse</a>. Der Pfeil <M>{t`\v\omega`}</M> liegt auf der Achse: Seine Länge ist das Drehtempo (in rad/s), seine Richtung gibt die Rechte-Hand-Regel.</li>
               <li><M>O</M> ist irgendein fester Punkt <em>auf der Achse</em> (die Figur zeichnet es so; im Text steht es nicht ausdrücklich). <M>{t`P\notin\mu`}</M> heisst: <M>P</M> liegt nicht auf der Achse. Sonst stünde <M>P</M> still, <M>{t`\v v_P = \v 0`}</M> und die Leistung wäre null.</li>
               <li><M>{t`\v v_P = \v\omega\times\v{OP}`}</M> kennst du aus der <a href="#rotation">Rotation</a> (S. 15): <M>P</M> läuft auf einem Kreis um die Achse, die Geschwindigkeit ist tangential.</li>
@@ -111,8 +111,8 @@ export default function K6Moment() {
             </ol>
           </>}
           en={<>
-            <p><b>How to read this:</b></p>
-            <ol>
+            <p className="keep"><b>How to read this:</b></p>
+            <ol className="keep">
               <li>The body <M>K</M> turns about the fixed line <M p=",">\mu</M> the <a href="#rotation">axis of rotation</a>. The arrow <M>{t`\v\omega`}</M> lies on the axis: its length is the turning rate (in rad/s), its direction comes from the right-hand rule.</li>
               <li><M>O</M> is some fixed point <em>on the axis</em> (the figure draws it so; the text does not say it explicitly). <M>{t`P\notin\mu`}</M> means: <M>P</M> is not on the axis. Otherwise <M>P</M> would stand still, <M>{t`\v v_P = \v 0`}</M> and the power would be zero.</li>
               <li><M>{t`\v v_P = \v\omega\times\v{OP}`}</M> you know from <a href="#rotation">rotation</a> (p. 15): <M>P</M> runs on a circle about the axis, the velocity is tangent.</li>
@@ -181,27 +181,27 @@ export default function K6Moment() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li>Das Moment <M>{t`\v M_O`}</M> ist ein <em>Pfeil</em>. Er gehört zur Kraft <em>und</em> zum Punkt <M p=",">O</M> von dem aus man misst. Ändert man <M p=",">O</M> ändert sich <M p=".">{t`\v M_O`}</M></li>
               <li>Es ist das Kreuzprodukt aus «Arm» <M>{t`\v{OP}`}</M> und Kraft <M p=".">\v F</M> in dieser Reihenfolge.</li>
               <li><b>Länge:</b> <M p=".">{t`|\v M_O| = |\v{OP}|\,|\v F|\sin\varphi`}</M> Gross, wenn der Arm lang ist, die Kraft gross und beide quer zueinander stehen (<M>{t`\varphi = 90^\circ`}</M> gibt den grössten Wert). Null, wenn <M>\v F</M> längs des Arms zeigt.</li>
               <li><b>Richtung:</b> senkrecht auf <M>{t`\v{OP}`}</M> und auf <M p=",">\v F</M> und zwar nach der <b>Rechte-Hand-Regel</b>: Krümme die Finger der rechten Hand von <M>{t`\v{OP}`}</M> nach <M>\v F</M> (den kurzen Weg), dann zeigt der Daumen in Richtung <M p=".">{t`\v M_O`}</M> Kurz gesagt: Dreht die Kraft gegen den Uhrzeigersinn um <M p=",">O</M> zeigt <M>{t`\v M_O`}</M> zu dir hin.</li>
               <li><M>{t`\v F\times\v{PO}`}</M> ist derselbe Pfeil: <M>{t`\v{PO} = -\v{OP}`}</M> ändert ein Vorzeichen, und die Reihenfolge zu vertauschen ändert noch eines. Der Winkel zwischen <M>\v F</M> und <M>{t`\v{PO}`}</M> ist <M p=",">{t`\pi-\varphi`}</M> aber <M>{t`\sin(\pi-\varphi) = \sin\varphi`}</M> gibt dieselbe Länge.</li>
             </ol>
-            <p><b>Der Hebelarm.</b> Auf der Wirkungslinie (der Geraden, auf der der Kraftpfeil liegt) gibt es einen Punkt, der <M>O</M> am nächsten ist. Seine Entfernung zu <M>O</M> heisst <b>Hebelarm</b> <M p=".">d</M> Im rechtwinkligen Dreieck ist <M>{t`d = |\v{OP}|\sin\varphi`}</M> und deshalb gilt <M p=".">{t`|\v M_O| = |\v F|\,d`}</M> Kraft mal Hebelarm – die Tür aus dem Anfang: weit weg und quer heisst grosser Hebelarm.</p>
+            <p className="keep"><b>Der Hebelarm.</b> Auf der Wirkungslinie (der Geraden, auf der der Kraftpfeil liegt) gibt es einen Punkt, der <M>O</M> am nächsten ist. Seine Entfernung zu <M>O</M> heisst <b>Hebelarm</b> <M p=".">d</M> Im rechtwinkligen Dreieck ist <M>{t`d = |\v{OP}|\sin\varphi`}</M> und deshalb gilt <M p=".">{t`|\v M_O| = |\v F|\,d`}</M> Kraft mal Hebelarm – die Tür aus dem Anfang: weit weg und quer heisst grosser Hebelarm.</p>
             <p className="lp-see"><b>Was du sehen sollst:</b> Der Hebelarm <M>d</M> (gestrichelt, mit Winkelzeichen) ist <em>nicht</em> der Abstand <M>{t`|\v{OP}|`}</M> Schiebst du <M>P</M> entlang der Wirkungslinie, ändert sich <M>{t`|\v{OP}|`}</M> aber nicht <M>d</M> und nicht <M p=".">{t`\v M_O`}</M> Mit dem Umschalter siehst du beide Schreibweisen des Skripts: Winkel <M>\varphi</M> bei <M>{t`\v{OP}\times\v F`}</M> und <M>{t`\pi-\varphi`}</M> bei <M p=".">{t`\v F\times\v{PO}`}</M></p>
           </>}
           en={<>
-            <p><b>How to read this:</b></p>
-            <ol>
+            <p className="keep"><b>How to read this:</b></p>
+            <ol className="keep">
               <li>The moment <M>{t`\v M_O`}</M> is an <em>arrow</em>. It belongs to the force <em>and</em> to the point <M p=",">O</M> from which you measure. If you change <M p=",">O</M> then <M>{t`\v M_O`}</M> changes.</li>
               <li>It is the cross product of the «arm» <M>{t`\v{OP}`}</M> and the force <M p=",">\v F</M> in this order.</li>
               <li><b>Length:</b> <M p=".">{t`|\v M_O| = |\v{OP}|\,|\v F|\sin\varphi`}</M> Large when the arm is long, the force is large and the two are across each other (<M>{t`\varphi = 90^\circ`}</M> gives the largest value). Zero when <M>\v F</M> points along the arm.</li>
               <li><b>Direction:</b> perpendicular to <M>{t`\v{OP}`}</M> and to <M p=",">\v F</M> by the <b>right-hand rule</b>: curl the fingers of your right hand from <M>{t`\v{OP}`}</M> toward <M>\v F</M> (the short way), then the thumb points along <M p=".">{t`\v M_O`}</M> In short: if the force turns counter-clockwise about <M p=",">O</M> then <M>{t`\v M_O`}</M> points toward you.</li>
               <li><M>{t`\v F\times\v{PO}`}</M> is the same arrow: <M>{t`\v{PO} = -\v{OP}`}</M> changes one sign, and swapping the order changes another. The angle between <M>\v F</M> and <M>{t`\v{PO}`}</M> is <M p=",">{t`\pi-\varphi`}</M> but <M>{t`\sin(\pi-\varphi) = \sin\varphi`}</M> gives the same length.</li>
             </ol>
-            <p><b>The lever arm.</b> On the line of action (the line the force arrow lies on) there is a point closest to <M p=".">O</M> Its distance to <M>O</M> is called the <b>lever arm</b> <M p=".">d</M> In the right triangle <M>{t`d = |\v{OP}|\sin\varphi`}</M> and therefore <M p=".">{t`|\v M_O| = |\v F|\,d`}</M> Force times lever arm – the door from the beginning: far away and across means a large lever arm.</p>
+            <p className="keep"><b>The lever arm.</b> On the line of action (the line the force arrow lies on) there is a point closest to <M p=".">O</M> Its distance to <M>O</M> is called the <b>lever arm</b> <M p=".">d</M> In the right triangle <M>{t`d = |\v{OP}|\sin\varphi`}</M> and therefore <M p=".">{t`|\v M_O| = |\v F|\,d`}</M> Force times lever arm – the door from the beginning: far away and across means a large lever arm.</p>
             <p className="lp-see"><b>What you should see:</b> The lever arm <M>d</M> (dashed, with a right-angle mark) is <em>not</em> the distance <M p=".">{t`|\v{OP}|`}</M> If you slide <M>P</M> along the line of action, <M>{t`|\v{OP}|`}</M> changes but neither <M>d</M> nor <M p=".">{t`\v M_O`}</M> The switch shows both ways of writing it in the notes: angle <M>\varphi</M> for <M>{t`\v{OP}\times\v F`}</M> and <M>{t`\pi-\varphi`}</M> for <M p=".">{t`\v F\times\v{PO}`}</M></p>
           </>}
         />
@@ -253,11 +253,11 @@ export default function K6Moment() {
         </Box>
         <T
           de={<>
-            <p>Das ist wichtig, weil man den Bezugspunkt frei wählen darf. Aber Vorsicht: Das <em>Moment</em> selbst ändert sich mit dem Punkt – nur sein Teil längs der Achse nicht. Probier es aus.</p>
+            <p className="keep">Das ist wichtig, weil man den Bezugspunkt frei wählen darf. Aber Vorsicht: Das <em>Moment</em> selbst ändert sich mit dem Punkt – nur sein Teil längs der Achse nicht. Probier es aus.</p>
             <p className="lp-see"><b>Was du sehen sollst:</b> Schiebe <M>{t`O'`}</M> auf der Achse. <M>{t`\v M_O`}</M> (orange, an <M p=")">O</M> bleibt, <M>{t`\v M_{O'}`}</M> (hell, an <M p=")">{t`O'`}</M> ändert Richtung und Länge. Die grünen Stücke auf der Achse – der Teil längs der Achse – sind immer gleich lang. Bei <M>{t`O' = O`}</M> fallen die beiden Pfeile zusammen. Die Knöpfe oben wählen die Kraft: «parallel zur Achse» macht <M>{t`\v M`}</M> waagrecht, und <M>{t`P = 0`}</M></p>
           </>}
           en={<>
-            <p>This matters because you may choose the reference point freely. But be careful: the <em>moment</em> itself changes with the point – only its part along the axis does not. Try it.</p>
+            <p className="keep">This matters because you may choose the reference point freely. But be careful: the <em>moment</em> itself changes with the point – only its part along the axis does not. Try it.</p>
             <p className="lp-see"><b>What you should see:</b> Slide <M>{t`O'`}</M> along the axis. <M>{t`\v M_O`}</M> (orange, at <M p=")">O</M> stays, <M>{t`\v M_{O'}`}</M> (light, at <M p=")">{t`O'`}</M> changes direction and length. The green pieces on the axis – the part along the axis – are always equally long. At <M>{t`O' = O`}</M> the two arrows coincide. The buttons at the top choose the force: «parallel to the axis» makes <M>{t`\v M`}</M> horizontal, and <M>{t`P = 0`}</M></p>
           </>}
         />
@@ -299,7 +299,7 @@ export default function K6Moment() {
       </Section>
 
       {/* ------------------------------------------------------------------ 6 */}
-      <Section id="missverstaendnisse" title={<T de="6. Häufige Missverständnisse" en="6. Common misconceptions" />}>
+      <Section long id="missverstaendnisse" title={<T de="6. Häufige Missverständnisse" en="6. Common misconceptions" />}>
         <Box kind="misconception" title={<T de="«Das Moment ist eine Eigenschaft der Kraft allein.»" en="“The moment is a property of the force alone.”" />}>
           <T
             de={<>Nein: <M>{t`\v M_O = \v{OP}\times\v F`}</M> hängt vom Bezugspunkt <M>O</M> ab, und <M>{t`\v M_O \neq \v M_{O'}`}</M> (S. 34, «Merke»). Dieselbe Kraft hat bezüglich verschiedener Punkte verschiedene Momente. Nur der Teil längs der Achse, <M p=",">{t`M_z`}</M> und damit die Leistung <M>{t`P = \omega M_z`}</M> ist für alle Punkte der Achse gleich.</>}

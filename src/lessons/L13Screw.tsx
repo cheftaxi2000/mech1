@@ -47,8 +47,8 @@ export default function L13Screw() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li>Die erste Zeile ist die Grundgleichung aus der Lektion <a href="#allgemein">Allgemeine Bewegung</a> (S. 22). Kennt man die Geschwindigkeit <M>{t`\v v_B`}</M> eines Punktes <M>B</M> und die Winkelgeschwindigkeit <M p=",">{t`\v\omega`}</M> kennt man die Geschwindigkeit jedes Punktes <M p=".">M</M></li>
               <li>Die geschweifte Klammer <M>{t`\{\v v_B, \v\omega\}`}</M> fasst diese zwei Vektoren zu einem Paar zusammen. Das Paar heisst <b>Kinemate in <M p=".">B</M></b> Auf S. 23 stand dafür schon «Kinemat in <M p="».">B</M></li>
               <li><b>Bewegungszustand</b> heisst: alle Geschwindigkeiten in diesem Augenblick. Die Kinemate ist sein «Steckbrief» – zwei Pfeile statt unendlich vieler.</li>
@@ -57,8 +57,8 @@ export default function L13Screw() {
             </ol>
           </>}
           en={<>
-            <p><b>How to read this:</b></p>
-            <ol>
+            <p className="keep"><b>How to read this:</b></p>
+            <ol className="keep">
               <li>The first line is the fundamental equation from the lesson <a href="#allgemein">General rigid-body motion</a> (p. 22). If you know the velocity <M>{t`\v v_B`}</M> of one point <M>B</M> and the angular velocity <M p=",">{t`\v\omega`}</M> you know the velocity of every point <M p=".">M</M></li>
               <li>The curly bracket <M>{t`\{\v v_B, \v\omega\}`}</M> puts these two vectors together into a pair. The pair is called the <b><span lang="de">Kinemate</span> at <M p=".">B</M></b> On p. 23 it already appeared as “<span lang="de">Kinemat in</span> <M p="”.">B</M></li>
               <li><b>State of motion</b> (<span lang="de">Bewegungszustand</span>) means: all velocities at this instant. The Kinemate is its “ID card” – two arrows instead of infinitely many.</li>
@@ -87,8 +87,8 @@ export default function L13Screw() {
         <T
           de={<>
             <p><b>Invariant</b> heisst «unverändert»: Eine Invariante ist eine Grösse, die gleich bleibt, egal welchen Punkt man als Bezugspunkt nimmt. Das Skript findet zwei davon.</p>
-            <h3>1. Invariante: <M>{t`\v\omega`}</M> ist überall gleich</h3>
-            <p><b>Anschaulich:</b> <M>{t`\v\omega`}</M> sagt, um welche Richtung und wie schnell sich der Körper dreht. Ein starrer Körper dreht sich aber immer <em>als Ganzes</em>. Klebe zwei kleine Achsenkreuze an verschiedene Stellen des Körpers: Nach kurzer Zeit haben sich beide um dieselbe Achsrichtung und um denselben Winkel gedreht. Täten sie es nicht, änderte sich der Winkel zwischen einer Linie des einen und einer Linie des anderen Kreuzes – und das verbietet die Starrheit (S. 12). (Vorsicht: Nicht jede einzelne Linie dreht sich um gleich viel – eine Linie entlang der Drehachse dreht sich gar nicht. Gleich ist die Drehung des ganzen Körpers.) Die Drehung gehört also zum ganzen Körper, nicht zu einem Punkt. Darum ist auch <M>{t`\v\omega`}</M> für alle Bezugspunkte dasselbe.</p>
+            <h3 className="keep">1. Invariante: <M>{t`\v\omega`}</M> ist überall gleich</h3>
+            <p className="keep"><b>Anschaulich:</b> <M>{t`\v\omega`}</M> sagt, um welche Richtung und wie schnell sich der Körper dreht. Ein starrer Körper dreht sich aber immer <em>als Ganzes</em>. Klebe zwei kleine Achsenkreuze an verschiedene Stellen des Körpers: Nach kurzer Zeit haben sich beide um dieselbe Achsrichtung und um denselben Winkel gedreht. Täten sie es nicht, änderte sich der Winkel zwischen einer Linie des einen und einer Linie des anderen Kreuzes – und das verbietet die Starrheit (S. 12). (Vorsicht: Nicht jede einzelne Linie dreht sich um gleich viel – eine Linie entlang der Drehachse dreht sich gar nicht. Gleich ist die Drehung des ganzen Körpers.) Die Drehung gehört also zum ganzen Körper, nicht zu einem Punkt. Darum ist auch <M>{t`\v\omega`}</M> für alle Bezugspunkte dasselbe.</p>
             <p><b>Mit Formeln</b> (die Rechnung von S. 22, mit <M>P</M> statt <M p="):">C</M> Angenommen, mit <M>P</M> als Bezugspunkt gehörte ein anderes <M>{t`\v\omega'`}</M> dazu:</p>
             <ol>
               <li>Mit <M>P</M> als Bezugspunkt: <M p=".">{t`\v v_M = \v v_P + \v\omega'\times\v{PM}`}</M></li>
@@ -97,19 +97,19 @@ export default function L13Screw() {
               <li>Vergleicht man die beiden Ausdrücke für <M p=",">{t`\v v_M`}</M> bleibt <M>{t`\v\omega'\times\v{PM} = \v\omega\times\v{PM}`}</M> für jeden Punkt <M p=".">M</M> Das geht nur mit <M p=".">{t`\v\omega' = \v\omega`}</M></li>
             </ol>
             <p>Die mitfahrende Kamera in der Lektion <a href="#allgemein">Allgemeine Bewegung</a> zeigt dasselbe: Ob man mit <M>B</M> oder mit <M>C</M> mitfährt – die Platte dreht sich um denselben Winkel.</p>
-            <h3>2. Invariante: der Teil von <M>{t`\v v`}</M> entlang <M>{t`\v\omega`}</M></h3>
-            <ol>
+            <h3 className="keep">2. Invariante: der Teil von <M>{t`\v v`}</M> entlang <M>{t`\v\omega`}</M></h3>
+            <ol className="keep">
               <li><M>{t`\v e_\omega = \v\omega/|\v\omega|`}</M> ist der Einheitsvektor in Richtung <M>{t`\v\omega`}</M> (Länge <M p=")">1</M></li>
               <li><M>{t`\v v_P\cdot\v e_\omega`}</M> ist die <b>Projektion</b> von <M>{t`\v v_P`}</M> auf die Richtung von <M p=":">{t`\v\omega`}</M> wie viel von <M>{t`\v v_P`}</M> entlang <M>{t`\v\omega`}</M> zeigt – wie der Schatten des Pfeils auf der <M>{t`\v\omega`}</M>-Geraden.</li>
               <li>Man bildet auf beiden Seiten der Grundgleichung das Skalarprodukt mit <M p=".">{t`\v e_\omega`}</M> Der letzte Term ist im Skript durchgestrichen, weil er null ist: Ein Kreuzprodukt steht senkrecht auf beiden Faktoren, also steht <M>{t`\v\omega\times\v{BP}`}</M> senkrecht auf <M p=",">{t`\v\omega`}</M> und seine Projektion auf <M>{t`\v\omega`}</M> ist <M p=".">0</M></li>
               <li>Übrig bleibt <M p=":">{t`\v v_P\cdot\v e_\omega = \v v_B\cdot\v e_\omega`}</M> dieselbe Zahl in jedem Punkt. Der zugehörige Vektor <M>{t`\v v_\omega = (\v v\cdot\v e_\omega)\,\v e_\omega`}</M> ist darum auch überall gleich.</li>
             </ol>
-            <p>Bei einer Schraube ist <M>{t`\v v_\omega`}</M> die Geschwindigkeit, mit der sie ins Holz vordringt – und die ist für alle Punkte der Schraube dieselbe. Im Bild unten kannst du <M>P</M> durch den Körper schieben:</p>
+            <p className="keep">Bei einer Schraube ist <M>{t`\v v_\omega`}</M> die Geschwindigkeit, mit der sie ins Holz vordringt – und die ist für alle Punkte der Schraube dieselbe. Im Bild unten kannst du <M>P</M> durch den Körper schieben:</p>
           </>}
           en={<>
             <p><b>Invariant</b> means “unchanged”: an invariant is a quantity that stays the same whichever point you take as the reference point. The notes find two of them.</p>
-            <h3>1st invariant: <M>{t`\v\omega`}</M> is the same everywhere</h3>
-            <p><b>Intuitively:</b> <M>{t`\v\omega`}</M> tells about which direction and how fast the body turns. But a rigid body always turns <em>as a whole</em>. Glue two small sets of axes at different places on the body: after a short time both have turned about the same axis direction and by the same angle. If they did not, the angle between a line of one set and a line of the other would change – and rigidity forbids that (p. 12). (Careful: not every single line turns by the same amount – a line along the axis of turning does not turn at all. What is the same is the turning of the whole body.) So the turning belongs to the whole body, not to a point. That is why <M>{t`\v\omega`}</M> is the same for every reference point.</p>
+            <h3 className="keep">1st invariant: <M>{t`\v\omega`}</M> is the same everywhere</h3>
+            <p className="keep"><b>Intuitively:</b> <M>{t`\v\omega`}</M> tells about which direction and how fast the body turns. But a rigid body always turns <em>as a whole</em>. Glue two small sets of axes at different places on the body: after a short time both have turned about the same axis direction and by the same angle. If they did not, the angle between a line of one set and a line of the other would change – and rigidity forbids that (p. 12). (Careful: not every single line turns by the same amount – a line along the axis of turning does not turn at all. What is the same is the turning of the whole body.) So the turning belongs to the whole body, not to a point. That is why <M>{t`\v\omega`}</M> is the same for every reference point.</p>
             <p><b>With formulas</b> (the calculation of p. 22, with <M>P</M> instead of <M p=").">C</M> Suppose that with <M>P</M> as the reference point another <M>{t`\v\omega'`}</M> belonged to it:</p>
             <ol>
               <li>With <M>P</M> as the reference point: <M p=".">{t`\v v_M = \v v_P + \v\omega'\times\v{PM}`}</M></li>
@@ -118,14 +118,14 @@ export default function L13Screw() {
               <li>Comparing the two expressions for <M>{t`\v v_M`}</M> leaves <M>{t`\v\omega'\times\v{PM} = \v\omega\times\v{PM}`}</M> for every point <M p=".">M</M> This is only possible with <M p=".">{t`\v\omega' = \v\omega`}</M></li>
             </ol>
             <p>The riding camera in the lesson <a href="#allgemein">General rigid-body motion</a> shows the same: whether you ride along with <M>B</M> or with <M>C</M> – the plate turns by the same angle.</p>
-            <h3>2nd invariant: the part of <M>{t`\v v`}</M> along <M>{t`\v\omega`}</M></h3>
-            <ol>
+            <h3 className="keep">2nd invariant: the part of <M>{t`\v v`}</M> along <M>{t`\v\omega`}</M></h3>
+            <ol className="keep">
               <li><M>{t`\v e_\omega = \v\omega/|\v\omega|`}</M> is the unit vector in the direction of <M>{t`\v\omega`}</M> (length <M p=").">1</M></li>
               <li><M>{t`\v v_P\cdot\v e_\omega`}</M> is the <b>projection</b> of <M>{t`\v v_P`}</M> onto the direction of <M p=":">{t`\v\omega`}</M> how much of <M>{t`\v v_P`}</M> points along <M>{t`\v\omega`}</M> – like the shadow of the arrow on the <M>{t`\v\omega`}</M> line.</li>
               <li>Take the dot product of both sides of the fundamental equation with <M p=".">{t`\v e_\omega`}</M> The last term is struck out in the notes because it is zero: a cross product is perpendicular to both factors, so <M>{t`\v\omega\times\v{BP}`}</M> is perpendicular to <M p=",">{t`\v\omega`}</M> and its projection onto <M>{t`\v\omega`}</M> is <M p=".">0</M></li>
               <li>What remains is <M p=":">{t`\v v_P\cdot\v e_\omega = \v v_B\cdot\v e_\omega`}</M> the same number at every point. So the corresponding vector <M>{t`\v v_\omega = (\v v\cdot\v e_\omega)\,\v e_\omega`}</M> is the same everywhere, too.</li>
             </ol>
-            <p>For a screw, <M>{t`\v v_\omega`}</M> is the speed at which it advances into the wood – and that is the same for all points of the screw. In the figure below you can move <M>P</M> through the body:</p>
+            <p className="keep">For a screw, <M>{t`\v v_\omega`}</M> is the speed at which it advances into the wood – and that is the same for all points of the screw. In the figure below you can move <M>P</M> through the body:</p>
           </>}
         />
         <InvariantExplorer />
@@ -147,24 +147,24 @@ export default function L13Screw() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die vier Zeilen:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man die vier Zeilen:</b></p>
+            <ol className="keep">
               <li>Die Grundgleichung für einen Punkt <M>P</M> auf der Geraden <M p=".">g</M> <M>g</M> geht durch <M>B</M> und steht senkrecht auf <M>{t`\v\omega`}</M> und auf <M p=".">{t`\v v_B^\perp`}</M></li>
               <li><M>{t`\v v_B`}</M> wird zerlegt: <M>{t`\v v_B = \v v_\omega + \v v_B^\perp`}</M> – der Teil entlang <M>{t`\v\omega`}</M> plus der Teil senkrecht dazu.</li>
               <li><M>{t`\v e^\perp`}</M> ist der Einheitsvektor in Richtung <M p=",">{t`\v v_B^\perp`}</M> und <M>{t`v_B^\perp`}</M> (ohne Strich) dessen Länge. Also <M p=".">{t`\v v_B^\perp = v_B^\perp\,\v e^\perp`}</M> Der Drehteil <M>{t`\v\omega\times\v{BP}`}</M> hat die Länge <M p=",">{t`\omega\,x`}</M> weil <M>{t`\v{BP}`}</M> (Länge <M p=")">x</M> senkrecht auf <M>{t`\v\omega`}</M> steht. Er steht senkrecht auf <M>{t`\v\omega`}</M> und auf <M p=",">g</M> zeigt also entlang <M>{t`\v e^\perp`}</M> – auf der Seite von <M>g</M> wie in der Figur <em>gegen</em> <M p=":">{t`\v v_B^\perp`}</M> <M p=".">{t`-\omega x\,\v e^\perp`}</M></li>
               <li>Zusammengefasst: Der Teil entlang <M>{t`\v\omega`}</M> bleibt <M p=",">{t`\v v_\omega`}</M> der senkrechte Teil hat die Länge <M p=".">{t`v_B^\perp - \omega x`}</M> Er wird kleiner, je weiter <M>P</M> von <M>B</M> weg ist.</li>
             </ol>
-            <p>Bei <M>{t`x = v_B^\perp/\omega`}</M> ist die Klammer null. Dort liegt der Punkt <M p=":">Z</M> Er hat nur noch <M p=".">{t`\v v_Z = \v v_\omega`}</M> Und nicht nur er: Schiebt man <M>Z</M> parallel zu <M>{t`\v\omega`}</M> weiter (zum Beispiel nach <M p=",">{t`Z'`}</M> ändert sich <M>{t`\v{BZ}`}</M> nur um ein Vielfaches von <M p=",">{t`\v\omega`}</M> und <M p=".">{t`\v\omega\times\v\omega = \v 0`}</M> Also hat die ganze Gerade durch <M>Z</M> parallel zu <M>{t`\v\omega`}</M> die Geschwindigkeit <M p=".">{t`\v v_\omega`}</M> Das ist die <b>Zentralachse</b> <M p=".">\zeta</M></p>
+            <p className="keep">Bei <M>{t`x = v_B^\perp/\omega`}</M> ist die Klammer null. Dort liegt der Punkt <M p=":">Z</M> Er hat nur noch <M p=".">{t`\v v_Z = \v v_\omega`}</M> Und nicht nur er: Schiebt man <M>Z</M> parallel zu <M>{t`\v\omega`}</M> weiter (zum Beispiel nach <M p=",">{t`Z'`}</M> ändert sich <M>{t`\v{BZ}`}</M> nur um ein Vielfaches von <M p=",">{t`\v\omega`}</M> und <M p=".">{t`\v\omega\times\v\omega = \v 0`}</M> Also hat die ganze Gerade durch <M>Z</M> parallel zu <M>{t`\v\omega`}</M> die Geschwindigkeit <M p=".">{t`\v v_\omega`}</M> Das ist die <b>Zentralachse</b> <M p=".">\zeta</M></p>
           </>}
           en={<>
-            <p><b>How to read the four lines:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the four lines:</b></p>
+            <ol className="keep">
               <li>The fundamental equation for a point <M>P</M> on the line <M p=".">g</M> <M>g</M> passes through <M>B</M> and is perpendicular to <M>{t`\v\omega`}</M> and to <M p=".">{t`\v v_B^\perp`}</M></li>
               <li><M>{t`\v v_B`}</M> is split: <M>{t`\v v_B = \v v_\omega + \v v_B^\perp`}</M> – the part along <M>{t`\v\omega`}</M> plus the part perpendicular to it.</li>
               <li><M>{t`\v e^\perp`}</M> is the unit vector in the direction of <M p=",">{t`\v v_B^\perp`}</M> and <M>{t`v_B^\perp`}</M> (without the bar) its length. So <M p=".">{t`\v v_B^\perp = v_B^\perp\,\v e^\perp`}</M> The turning part <M>{t`\v\omega\times\v{BP}`}</M> has the length <M p=",">{t`\omega\,x`}</M> because <M>{t`\v{BP}`}</M> (length <M p=")">x</M> is perpendicular to <M p=".">{t`\v\omega`}</M> It is perpendicular to <M>{t`\v\omega`}</M> and to <M p=",">g</M> so it points along <M>{t`\v e^\perp`}</M> – on the side of <M>g</M> taken in the figure <em>against</em> <M p=":">{t`\v v_B^\perp`}</M> <M p=".">{t`-\omega x\,\v e^\perp`}</M></li>
               <li>Collected: the part along <M>{t`\v\omega`}</M> stays <M p=",">{t`\v v_\omega`}</M> the perpendicular part has the length <M p=".">{t`v_B^\perp - \omega x`}</M> It gets smaller the further <M>P</M> is from <M p=".">B</M></li>
             </ol>
-            <p>At <M>{t`x = v_B^\perp/\omega`}</M> the bracket is zero. That is where the point <M>Z</M> lies. It only has <M p=".">{t`\v v_Z = \v v_\omega`}</M> And not only <M p=":">Z</M> moving <M>Z</M> on parallel to <M>{t`\v\omega`}</M> (for example to <M p=")">{t`Z'`}</M> changes <M>{t`\v{BZ}`}</M> only by a multiple of <M p=",">{t`\v\omega`}</M> and <M p=".">{t`\v\omega\times\v\omega = \v 0`}</M> So the whole line through <M>Z</M> parallel to <M>{t`\v\omega`}</M> has the velocity <M p=".">{t`\v v_\omega`}</M> This is the <b>central axis</b> (<span lang="de">Zentralachse</span>) <M p=".">\zeta</M></p>
+            <p className="keep">At <M>{t`x = v_B^\perp/\omega`}</M> the bracket is zero. That is where the point <M>Z</M> lies. It only has <M p=".">{t`\v v_Z = \v v_\omega`}</M> And not only <M p=":">Z</M> moving <M>Z</M> on parallel to <M>{t`\v\omega`}</M> (for example to <M p=")">{t`Z'`}</M> changes <M>{t`\v{BZ}`}</M> only by a multiple of <M p=",">{t`\v\omega`}</M> and <M p=".">{t`\v\omega\times\v\omega = \v 0`}</M> So the whole line through <M>Z</M> parallel to <M>{t`\v\omega`}</M> has the velocity <M p=".">{t`\v v_\omega`}</M> This is the <b>central axis</b> (<span lang="de">Zentralachse</span>) <M p=".">\zeta</M></p>
           </>}
         />
         <Derivation title={<T de="Fig. 3.16 Schritt für Schritt – bis zur Schraubung" en="Fig. 3.16 step by step – up to the screw motion" />}>
@@ -231,23 +231,23 @@ export default function L13Screw() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man das:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man das:</b></p>
+            <ol className="keep">
               <li>Für die Punkte auf <M>\zeta</M> ist die Kinemate besonders einfach: <M p=".">{t`\{\v v_\omega, \v\omega\}`}</M> Beide Vektoren zeigen in dieselbe Richtung (oder <M>{t`\v v_\omega`}</M> genau entgegen). Dieses Paar heisst <b>Schraube</b>.</li>
               <li>«<M p=":">{t`|\v v|_{min}`}</M> Minimaler Abstand» ist eine Kurzschrift: Die <em>kleinste</em> Geschwindigkeit haben die Punkte mit dem kleinsten Abstand von <M>\zeta</M> – die Punkte auf <M>\zeta</M> selbst. Die grösste hat der Punkt des Körpers, der am weitesten von <M>\zeta</M> weg ist. Die Formel dazu steht gleich unten.</li>
               <li><M>{t`|\v v_\omega| = \v v_B\cdot\v\omega/|\v\omega|`}</M> ist die Formel für die 2. Invariante: <M>{t`\v\omega/|\v\omega|`}</M> ist <M p=",">{t`\v e_\omega`}</M> also steht hier <M p=".">{t`\v v_B\cdot\v e_\omega`}</M> Genau genommen ist das eine Zahl mit Vorzeichen: Sie ist negativ, wenn <M>{t`\v v_\omega`}</M> gegen <M>{t`\v\omega`}</M> zeigt (Linksgewinde). Die Betragsstriche sind dann nicht wörtlich zu nehmen.</li>
             </ol>
           </>}
           en={<>
-            <p><b>How to read this:</b></p>
-            <ol>
+            <p className="keep"><b>How to read this:</b></p>
+            <ol className="keep">
               <li>For the points on <M>\zeta</M> the Kinemate is especially simple: <M p=".">{t`\{\v v_\omega, \v\omega\}`}</M> Both vectors point in the same direction (or <M>{t`\v v_\omega`}</M> exactly the opposite way). This pair is called a <b>screw</b> (<span lang="de">Schraube</span>).</li>
               <li>“<M p=":">{t`|\v v|_{min}`}</M> minimal distance” is shorthand: the <em>smallest</em> speed belongs to the points with the smallest distance from <M>\zeta</M> – the points on <M>\zeta</M> themselves. The largest belongs to the point of the body farthest from <M p=".">\zeta</M> The formula follows right below.</li>
               <li><M>{t`|\v v_\omega| = \v v_B\cdot\v\omega/|\v\omega|`}</M> is the formula for the 2nd invariant: <M>{t`\v\omega/|\v\omega|`}</M> is <M p=",">{t`\v e_\omega`}</M> so this says <M p=".">{t`\v v_B\cdot\v e_\omega`}</M> Strictly, this is a number with a sign: it is negative when <M>{t`\v v_\omega`}</M> points against <M>{t`\v\omega`}</M> (left-handed thread). The absolute-value bars are then not meant literally.</li>
             </ol>
           </>}
         />
-        <Box kind="supplement" title={<T de={<>Wie schnell ist ein Punkt im Abstand <M>d</M> von <M p="?">\zeta</M></>} en={<>How fast is a point at distance <M>d</M> from <M p="?">\zeta</M></>} />}>
+        <Box keep kind="supplement" title={<T de={<>Wie schnell ist ein Punkt im Abstand <M>d</M> von <M p="?">\zeta</M></>} en={<>How fast is a point at distance <M>d</M> from <M p="?">\zeta</M></>} />}>
           <T
             de={<>
               <p>Sei <M>d</M> der Abstand des Punktes <M>P</M> von der Zentralachse. Mit <M>Z</M> auf <M>\zeta</M> gilt <M p=".">{t`\v v_P = \v v_\omega + \v\omega\times\v{ZP}`}</M> Die beiden Teile stehen senkrecht aufeinander (der erste zeigt entlang <M p=",">{t`\v\omega`}</M> der zweite senkrecht dazu). Darum gilt Pythagoras. Und <M>{t`|\v\omega\times\v{ZP}| = \omega\,d`}</M> – vom Vektor <M>{t`\v{ZP}`}</M> zählt nur der Teil senkrecht zu <M p=",">{t`\v\omega`}</M> und der ist <M>d</M> lang:</p>
@@ -300,8 +300,8 @@ export default function L13Screw() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die drei Fälle</b> (<M>\mu</M> ist wie auf S. 15 die Rotationsachse):</p>
-            <ol>
+            <p className="keep"><b>So liest man die drei Fälle</b> (<M>\mu</M> ist wie auf S. 15 die Rotationsachse):</p>
+            <ol className="keep">
               <li><M p=":">{t`\v\omega = \v 0`}</M> Es gibt keine Drehung und darum keine Zentralachse – die Formel für <M>Z</M> müsste durch <M>{t`|\v\omega|^2 = 0`}</M> teilen. Alle Punkte bewegen sich gleich: eine Translation.</li>
               <li><M p=":">{t`\v v_B = \v 0`}</M> <M>B</M> ruht. Dann ist <M>{t`\v v_\omega = (\v v_B\cdot\v e_\omega)\,\v e_\omega = \v 0`}</M> – kein Gleiten, also eine reine Rotation. <M>B</M> liegt auf der Achse <M>\mu</M> (die hier <M>\zeta</M> ist).</li>
               <li><M p=":">{t`\v v_B \perp \v\omega`}</M> <M>B</M> bewegt sich, aber senkrecht zu <M p=".">{t`\v\omega`}</M> Wieder ist <M p=":">{t`\v v_\omega = \v 0`}</M> keine Schraubung, nur eine Drehung. Die Punkte auf <M>\zeta</M> haben jetzt die Geschwindigkeit <M>{t`\v 0`}</M> – <M>\zeta</M> ist die Rotationsachse, und <M>B</M> liegt nicht darauf.</li>
@@ -309,8 +309,8 @@ export default function L13Screw() {
             <p>Probier die drei Fälle aus. «Steigung» ist <M p=":">{t`p = v_\omega/\omega`}</M> wie weit der Körper pro Bogenmass Drehung entlang <M>\zeta</M> vorrückt (pro Umdrehung <M p=")">{t`2\pi p`}</M></p>
           </>}
           en={<>
-            <p><b>How to read the three cases</b> (<M>\mu</M> is the rotation axis, as on p. 15):</p>
-            <ol>
+            <p className="keep"><b>How to read the three cases</b> (<M>\mu</M> is the rotation axis, as on p. 15):</p>
+            <ol className="keep">
               <li><M p=":">{t`\v\omega = \v 0`}</M> there is no turning and therefore no central axis – the formula for <M>Z</M> would divide by <M p=".">{t`|\v\omega|^2 = 0`}</M> All points move alike: a translation.</li>
               <li><M p=":">{t`\v v_B = \v 0`}</M> <M>B</M> is at rest. Then <M>{t`\v v_\omega = (\v v_B\cdot\v e_\omega)\,\v e_\omega = \v 0`}</M> – no sliding, so a pure rotation. <M>B</M> lies on the axis <M>\mu</M> (which is <M>\zeta</M> here).</li>
               <li><M p=":">{t`\v v_B \perp \v\omega`}</M> <M>B</M> moves, but perpendicular to <M p=".">{t`\v\omega`}</M> Again <M p=":">{t`\v v_\omega = \v 0`}</M> no screw motion, only a turning. The points on <M>\zeta</M> now have the velocity <M>{t`\v 0`}</M> – <M>\zeta</M> is the rotation axis, and <M>B</M> is not on it.</li>
@@ -348,9 +348,9 @@ export default function L13Screw() {
         </Box>
         <T
           de={<>
-            <p>Zwei Hinweise zur Mitschrift: Der Punkt «<M>{t`\cdot`}</M>» in der zweiten und dritten Zeile ist ein Schreibfehler für «<M p="»">+</M> – gemeint ist die Grundgleichung <M p=",">{t`\v v_P = \v v_B + \v\omega\times\v{BP}`}</M> wie die nächste Zeile zeigt. Und <M>B</M> liegt im Ursprung, darum ist <M p=".">{t`\v{BP} = (x_P, y_P, z_P)`}</M></p>
-            <p><b>So liest man die Lösung:</b></p>
-            <ol>
+            <p className="keep">Zwei Hinweise zur Mitschrift: Der Punkt «<M>{t`\cdot`}</M>» in der zweiten und dritten Zeile ist ein Schreibfehler für «<M p="»">+</M> – gemeint ist die Grundgleichung <M p=",">{t`\v v_P = \v v_B + \v\omega\times\v{BP}`}</M> wie die nächste Zeile zeigt. Und <M>B</M> liegt im Ursprung, darum ist <M p=".">{t`\v{BP} = (x_P, y_P, z_P)`}</M></p>
+            <p className="keep"><b>So liest man die Lösung:</b></p>
+            <ol className="keep">
               <li><M>{t`\v\omega = (0, 2, 0)`}</M> hat die Länge <M p=",">2</M> also <M p=".">{t`\v e_\omega = (0, 1, 0)`}</M> Die Projektion ist <M p=".">{t`\v v_B\cdot\v e_\omega = 2`}</M> Damit <M>{t`\v v_\omega = 2\,\v e_\omega = (0, 2, 0)`}</M> und <M p=".">{t`\v v_B^\perp = \v v_B - \v v_\omega = (0, 0, 2)`}</M></li>
               <li>Ein Punkt <M>P</M> liegt auf <M p=",">\zeta</M> wenn er nur die Geschwindigkeit <M>{t`\v v_\omega`}</M> hat. Grundgleichung einsetzen und <M>{t`\v v_B`}</M> auf die andere Seite bringen: <M p=".">{t`\v\omega\times\v{BP} = \v v_\omega - \v v_B = (0, 0, -2)`}</M></li>
               <li>Das Kreuzprodukt ausgerechnet: <M p=".">{t`(0, 2, 0)\times(x_P, y_P, z_P) = (2z_P, 0, -2x_P)`}</M> Komponente für Komponente verglichen: <M>{t`2z_P = 0`}</M> und <M p=",">{t`-2x_P = -2`}</M> also <M>{t`z_P = 0`}</M> und <M p=".">{t`x_P = 1`}</M></li>
@@ -359,9 +359,9 @@ export default function L13Screw() {
             </ol>
           </>}
           en={<>
-            <p>Two remarks on the notes: the dot “<M>{t`\cdot`}</M>” in the second and third line is a slip for “<M p="”">+</M> – what is meant is the fundamental equation <M p=",">{t`\v v_P = \v v_B + \v\omega\times\v{BP}`}</M> as the next line shows. And <M>B</M> is at the origin, so <M p=".">{t`\v{BP} = (x_P, y_P, z_P)`}</M></p>
-            <p><b>How to read the solution:</b></p>
-            <ol>
+            <p className="keep">Two remarks on the notes: the dot “<M>{t`\cdot`}</M>” in the second and third line is a slip for “<M p="”">+</M> – what is meant is the fundamental equation <M p=",">{t`\v v_P = \v v_B + \v\omega\times\v{BP}`}</M> as the next line shows. And <M>B</M> is at the origin, so <M p=".">{t`\v{BP} = (x_P, y_P, z_P)`}</M></p>
+            <p className="keep"><b>How to read the solution:</b></p>
+            <ol className="keep">
               <li><M>{t`\v\omega = (0, 2, 0)`}</M> has length <M p=",">2</M> so <M p=".">{t`\v e_\omega = (0, 1, 0)`}</M> The projection is <M p=".">{t`\v v_B\cdot\v e_\omega = 2`}</M> Hence <M>{t`\v v_\omega = 2\,\v e_\omega = (0, 2, 0)`}</M> and <M p=".">{t`\v v_B^\perp = \v v_B - \v v_\omega = (0, 0, 2)`}</M></li>
               <li>A point <M>P</M> lies on <M>\zeta</M> if its velocity is only <M p=".">{t`\v v_\omega`}</M> Insert the fundamental equation and bring <M>{t`\v v_B`}</M> to the other side: <M p=".">{t`\v\omega\times\v{BP} = \v v_\omega - \v v_B = (0, 0, -2)`}</M></li>
               <li>The cross product worked out: <M p=".">{t`(0, 2, 0)\times(x_P, y_P, z_P) = (2z_P, 0, -2x_P)`}</M> Compared component by component: <M>{t`2z_P = 0`}</M> and <M p=",">{t`-2x_P = -2`}</M> so <M>{t`z_P = 0`}</M> and <M p=".">{t`x_P = 1`}</M></li>
@@ -404,7 +404,7 @@ export default function L13Screw() {
       </Section>
 
       {/* ------------------------------------------------------------------ 7 */}
-      <Section id="missverstaendnisse" title={<T de="7. Häufige Missverständnisse" en="7. Common misconceptions" />}>
+      <Section long id="missverstaendnisse" title={<T de="7. Häufige Missverständnisse" en="7. Common misconceptions" />}>
         <Box kind="misconception" title={<T de={<>«Die Zentralachse <M>\zeta</M> geht immer durch den Körper.»</>} en={<>“The central axis <M>\zeta</M> always passes through the body.”</>} />}>
           <T de={<>Nein. <M>\zeta</M> ist eine gedachte Gerade (Merke auf S. 25). Beim Würfel liegt sie zufällig auf einer Kante; beim Auto in der Kurve geht sie durch den Kurvenmittelpunkt, weit neben dem Auto.</>} en={<>No. <M>\zeta</M> is an imagined line (note on p. 25). For the cube it happens to lie on an edge; for a car in a bend it passes through the centre of the bend, far beside the car.</>} />
         </Box>

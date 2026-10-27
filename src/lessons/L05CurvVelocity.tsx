@@ -93,7 +93,7 @@ export default function L05CurvVelocity() {
         <T
           de={<>
             <p>Aus <a href="#geschwindigkeit">Geschwindigkeitsvektor &amp; Schnelligkeit</a> (S. 9) hatten wir <M p=".">{t`\dot{\v r} = \dot\rho\,\v e_\rho + \rho\,\dot{\v e}_\rho + \dot z\,\v e_z`}</M> Jetzt setzt man <M>{t`\dot{\v e}_\rho = \dot\varphi\,\v e_\varphi`}</M> ein – fertig. Die drei Terme sind drei Arten, sich zu bewegen:</p>
-            <ul>
+            <ul className="keep">
               <li><M p=":">{t`\dot\rho\,\v e_\rho`}</M> <b>weg von der Achse</b> (oder hin), so schnell, wie der Abstand <M>\rho</M> wächst.</li>
               <li><M p=":">{t`\rho\dot\varphi\,\v e_\varphi`}</M> <b>rundherum</b>, entlang des Kreises. Auf einem Kreis gilt: Weg ist Radius mal Winkel (Winkel im Bogenmass). Pro Zeit also <M p=".">{t`\rho\cdot\dot\varphi`}</M> Darum steht hier <M p=",">{t`\rho\dot\varphi`}</M> nicht nur <M p=".">{t`\dot\varphi`}</M></li>
               <li><M p=":">{t`\dot z\,\v e_z`}</M> <b>hoch oder runter</b>.</li>
@@ -102,7 +102,7 @@ export default function L05CurvVelocity() {
           </>}
           en={<>
             <p>From <a href="#geschwindigkeit">Velocity vector and speed</a> (p. 9) we had <M p=".">{t`\dot{\v r} = \dot\rho\,\v e_\rho + \rho\,\dot{\v e}_\rho + \dot z\,\v e_z`}</M> Now substitute <M>{t`\dot{\v e}_\rho = \dot\varphi\,\v e_\varphi`}</M> – done. The three terms are three ways of moving:</p>
-            <ul>
+            <ul className="keep">
               <li><M p=":">{t`\dot\rho\,\v e_\rho`}</M> <b>away from the axis</b> (or towards it), as fast as the distance <M>\rho</M> grows.</li>
               <li><M p=":">{t`\rho\dot\varphi\,\v e_\varphi`}</M> <b>around</b>, along the circle. On a circle, distance is radius times angle (angle in radians). Per time, therefore, <M p=".">{t`\rho\cdot\dot\varphi`}</M> That is why it says <M p=",">{t`\rho\dot\varphi`}</M> not just <M p=".">{t`\dot\varphi`}</M></li>
               <li><M p=":">{t`\dot z\,\v e_z`}</M> <b>up or down</b>.</li>
@@ -121,7 +121,7 @@ export default function L05CurvVelocity() {
         <T
           de={<>
             <p>Den Beweis macht ihr in der Hausübung. Verstehen kann man die Formel schon jetzt mit derselben Regel «Weg ist Radius mal Winkel»:</p>
-            <ul>
+            <ul className="keep">
               <li><M p=":">{t`\dot r\,\v e_r`}</M> <b>nach aussen</b> (oder innen), Betrag <M p=".">{t`\dot r`}</M></li>
               <li><M p=":">{t`r\dot\theta\,\v e_\theta`}</M> entlang des <b>Meridians</b>. Das ist ein Kreis mit Radius <M p=",">r</M> also Betrag <M p=".">{t`r\cdot\dot\theta`}</M></li>
               <li><M p=":">{t`r\sin\theta\,\dot\psi\,\v e_\psi`}</M> entlang des <b>Breitenkreises</b>. Sein Radius ist nur <M>{t`r\sin\theta`}</M> (am Pol 0, am Äquator <M p=").">r</M> also Betrag <M p=".">{t`r\sin\theta\cdot\dot\psi`}</M></li>
@@ -130,7 +130,7 @@ export default function L05CurvVelocity() {
           </>}
           en={<>
             <p>The proof is done in the homework. The formula can already be understood with the same rule “distance is radius times angle”:</p>
-            <ul>
+            <ul className="keep">
               <li><M p=":">{t`\dot r\,\v e_r`}</M> <b>outwards</b> (or inwards), speed <M p=".">{t`\dot r`}</M></li>
               <li><M p=":">{t`r\dot\theta\,\v e_\theta`}</M> along the <b>meridian</b>. That is a circle of radius <M p=",">r</M> so speed <M p=".">{t`r\cdot\dot\theta`}</M></li>
               <li><M p=":">{t`r\sin\theta\,\dot\psi\,\v e_\psi`}</M> along the <b>circle of latitude</b>. Its radius is only <M>{t`r\sin\theta`}</M> (0 at the pole, <M>r</M> at the equator), so speed <M p=".">{t`r\sin\theta\cdot\dot\psi`}</M></li>
@@ -162,7 +162,7 @@ export default function L05CurvVelocity() {
         <Box kind="lecture" src={<Src p={10} />}>
           <MD>{tr(t`\text{Gegeben: } \v r = \begin{pmatrix} at \\ at \\ b a^2 t^2 \end{pmatrix} \ \text{(Bahnkurve von } M\text{ in kartesischer Basis)}, \qquad \text{Gesucht: } \v v(t),\ \dot s(t),\ \v\tau(t)`, t`\text{Given: } \v r = \begin{pmatrix} at \\ at \\ b a^2 t^2 \end{pmatrix} \ \text{(trajectory of } M\text{ in the Cartesian basis)}, \qquad \text{Wanted: } \v v(t),\ \dot s(t),\ \v\tau(t)`)}</MD>
         </Box>
-        <Box kind="supplement" title={<T de="Lösung (im Skript nicht ausgeführt)" en="Solution (not worked out in the notes)" />}>
+        <Box keep kind="supplement" title={<T de="Lösung (im Skript nicht ausgeführt)" en="Solution (not worked out in the notes)" />}>
           <T
             de={<ol>
               <li><b>Geschwindigkeit:</b> jede Komponente nach <M>t</M> ableiten (kartesische Basis, <a href="#geschwindigkeit">Geschwindigkeitsvektor &amp; Schnelligkeit</a>): <M p=".">{t`\v v(t) = (a,\ a,\ 2ba^2t)`}</M></li>
@@ -185,7 +185,7 @@ export default function L05CurvVelocity() {
       </Section>
 
       {/* ------------------------------------------------------------------ 6 */}
-      <Section id="missverstaendnisse" title={<T de="6. Häufige Missverständnisse" en="6. Common misconceptions" />}>
+      <Section long id="missverstaendnisse" title={<T de="6. Häufige Missverständnisse" en="6. Common misconceptions" />}>
         <Box kind="misconception" title={<T de={<>«<M p=".">{t`\v v = \dot\rho\,\v e_\rho + \dot\varphi\,\v e_\varphi + \dot z\,\v e_z`}</M>»</>} en={<>“<M p=".">{t`\v v = \dot\rho\,\v e_\rho + \dot\varphi\,\v e_\varphi + \dot z\,\v e_z`}</M>”</>} />}>
           <T de={<>Da fehlt das <M p=".">\rho</M> Prüfe die Einheiten: <M>{t`\dot\varphi`}</M> hat die Einheit 1/s (Winkel pro Zeit), eine Geschwindigkeit braucht m/s. Erst <M>{t`\rho\dot\varphi`}</M> ist eine Geschwindigkeit in m/s: Weg auf dem Kreis ist Radius mal Winkel.</>} en={<>The <M>\rho</M> is missing. Check the units: <M>{t`\dot\varphi`}</M> has the unit 1/s (angle per time), a velocity needs m/s. Only <M>{t`\rho\dot\varphi`}</M> is a speed: distance on the circle is radius times angle.</>} />
         </Box>

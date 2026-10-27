@@ -827,3 +827,31 @@ span.w6-key.w6-c1 { border-color: var(--a-g); background: color-mix(in srgb, var
 .w6-trig thead th { background: color-mix(in srgb, var(--a-f) 14%, transparent); }
 .w6-thin .pl-curve { stroke-width: 1.7; }
 .build-date { margin-top: 28px; font-size: 0.8rem; color: var(--muted); text-align: center; }
+
+/* ---- Short version (Kurz): keep lecture boxes, key points, formulas, figures and animations; drop explanatory prose.
+   Anything that must stay carries the class `keep` (paragraphs/lists) or <Box keep>. <Long> hides the rest in code. ---- */
+.topbar .detail-toggle { margin-left: auto; flex: none; }
+.topbar .detail-toggle + .lang-toggle { margin-left: 0; }
+html[data-detail="short"] .lesson .lede,
+html[data-detail="short"] .lesson .connections,
+html[data-detail="short"] .lesson .observe,
+html[data-detail="short"] .lesson .vdemo-note,
+html[data-detail="short"] .lesson .fig-note,
+html[data-detail="short"] .lesson .small-note,
+html[data-detail="short"] .lesson .lp-see,
+html[data-detail="short"] .lesson .kf-see,
+html[data-detail="short"] .lesson .section > .kf-note,
+html[data-detail="short"] .lesson .box-intuition,
+html[data-detail="short"] .lesson .box-misconception:not(.keep),
+html[data-detail="short"] .lesson .box-supplement:not(.keep),
+html[data-detail="short"] .lesson details.more,
+html[data-detail="short"] .lesson .section.long-only,
+html[data-detail="short"] .lesson .section > h3:not(.keep),
+html[data-detail="short"] .lesson .section > :is(p, ul, ol):not(.keep),
+html[data-detail="short"] .lesson > :is(p, ul, ol):not(.keep),
+html[data-detail="short"] .lesson .derivation > div > :is(p, ul, ol):not(.keep) { display: none; }
+@media (max-width: 520px) {
+  .topbar { gap: 8px; }
+  .topbar .topbar-subject { display: none; }
+  .topbar .lang-toggle button { padding: 5px 9px; }
+}

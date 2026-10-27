@@ -42,8 +42,8 @@ export default function L07Rigid() {
           <MD>{t`\to\ \v a(t)\cdot\v b(t) = |\v a|\,|\v b|\cos\alpha \ \text{: konstant}`}</MD>
         </Box>
         <T
-          de={<p>Die Pfeile <M>{t`\v a`}</M> und <M>{t`\v b`}</M> zwischen Punkten des Körpers dürfen sich drehen – sie zeigen später im Allgemeinen woanders hin. Aber ihre <b>Längen</b> und der <b>Winkel</b> zwischen ihnen bleiben gleich. Darum ist auch das Skalarprodukt <M>{t`\v a\cdot\v b = |\v a|\,|\v b|\cos\alpha`}</M> konstant (siehe <a href="#vektoren">Vektoren</a>), obwohl sich <M>{t`\v a`}</M> und <M>{t`\v b`}</M> selbst ändern. Die handschriftliche Notiz im Skript sagt genau das: <M>{t`\dot{\v a} \ne \v 0`}</M> und <M p=",">{t`\dot{\v b} \ne \v 0`}</M> aber <M p=".">{t`(\v a\cdot\v b)^{\cdot} = 0`}</M></p>}
-          en={<p>The arrows <M>{t`\v a`}</M> and <M>{t`\v b`}</M> between points of the body may turn – in general they point elsewhere later. But their <b>lengths</b> and the <b>angle</b> between them stay the same. That is why the dot product <M>{t`\v a\cdot\v b = |\v a|\,|\v b|\cos\alpha`}</M> is constant (see <a href="#vektoren">Vectors</a>), although <M>{t`\v a`}</M> and <M>{t`\v b`}</M> themselves change. The handwritten note in the script says exactly this: <M>{t`\dot{\v a} \ne \v 0`}</M> and <M p=",">{t`\dot{\v b} \ne \v 0`}</M> but <M p=".">{t`(\v a\cdot\v b)^{\cdot} = 0`}</M></p>}
+          de={<p className="keep">Die Pfeile <M>{t`\v a`}</M> und <M>{t`\v b`}</M> zwischen Punkten des Körpers dürfen sich drehen – sie zeigen später im Allgemeinen woanders hin. Aber ihre <b>Längen</b> und der <b>Winkel</b> zwischen ihnen bleiben gleich. Darum ist auch das Skalarprodukt <M>{t`\v a\cdot\v b = |\v a|\,|\v b|\cos\alpha`}</M> konstant (siehe <a href="#vektoren">Vektoren</a>), obwohl sich <M>{t`\v a`}</M> und <M>{t`\v b`}</M> selbst ändern. Die handschriftliche Notiz im Skript sagt genau das: <M>{t`\dot{\v a} \ne \v 0`}</M> und <M p=",">{t`\dot{\v b} \ne \v 0`}</M> aber <M p=".">{t`(\v a\cdot\v b)^{\cdot} = 0`}</M></p>}
+          en={<p className="keep">The arrows <M>{t`\v a`}</M> and <M>{t`\v b`}</M> between points of the body may turn – in general they point elsewhere later. But their <b>lengths</b> and the <b>angle</b> between them stay the same. That is why the dot product <M>{t`\v a\cdot\v b = |\v a|\,|\v b|\cos\alpha`}</M> is constant (see <a href="#vektoren">Vectors</a>), although <M>{t`\v a`}</M> and <M>{t`\v b`}</M> themselves change. The handwritten note in the script says exactly this: <M>{t`\dot{\v a} \ne \v 0`}</M> and <M p=",">{t`\dot{\v b} \ne \v 0`}</M> but <M p=".">{t`(\v a\cdot\v b)^{\cdot} = 0`}</M></p>}
         />
       </Section>
 
@@ -56,8 +56,8 @@ export default function L07Rigid() {
           />
         </Box>
         <T
-          de={<p><b>So liest man den Satz:</b> Zeichne die Gerade durch <M>M</M> und <M p=".">N</M> Fälle von der Spitze jedes Geschwindigkeitspfeils das Lot auf diese Gerade. Die Stücke von <M>M</M> bzw. <M>N</M> bis zum Lotfusspunkt («Schatten», siehe <a href="#vektoren">Vektoren</a>) sind gleich lang und zeigen in dieselbe Richtung. Senkrecht zur Geraden dürfen sich die beiden Geschwindigkeiten beliebig unterscheiden – das ist die Drehung des Körpers. Der Strich in <M>{t`\v v'_M`}</M> heisst hier «Projektion», nicht «Ableitung».</p>}
-          en={<p><b>How to read the theorem:</b> draw the line through <M>M</M> and <M p=".">N</M> Drop a perpendicular from the tip of each velocity arrow onto this line. The pieces from <M>M</M> and <M>N</M> to the feet of the perpendiculars (“shadows”, see <a href="#vektoren">Vectors</a>) are equally long and point the same way. Perpendicular to the line the two velocities may differ arbitrarily – that is the turning of the body. The prime in <M>{t`\v v'_M`}</M> means “projection” here, not “derivative”.</p>}
+          de={<p className="keep"><b>So liest man den Satz:</b> Zeichne die Gerade durch <M>M</M> und <M p=".">N</M> Fälle von der Spitze jedes Geschwindigkeitspfeils das Lot auf diese Gerade. Die Stücke von <M>M</M> bzw. <M>N</M> bis zum Lotfusspunkt («Schatten», siehe <a href="#vektoren">Vektoren</a>) sind gleich lang und zeigen in dieselbe Richtung. Senkrecht zur Geraden dürfen sich die beiden Geschwindigkeiten beliebig unterscheiden – das ist die Drehung des Körpers. Der Strich in <M>{t`\v v'_M`}</M> heisst hier «Projektion», nicht «Ableitung».</p>}
+          en={<p className="keep"><b>How to read the theorem:</b> draw the line through <M>M</M> and <M p=".">N</M> Drop a perpendicular from the tip of each velocity arrow onto this line. The pieces from <M>M</M> and <M>N</M> to the feet of the perpendiculars (“shadows”, see <a href="#vektoren">Vectors</a>) are equally long and point the same way. Perpendicular to the line the two velocities may differ arbitrarily – that is the turning of the body. The prime in <M>{t`\v v'_M`}</M> means “projection” here, not “derivative”.</p>}
         />
         <SdpgDemo />
       </Section>
@@ -125,8 +125,8 @@ export default function L07Rigid() {
         </Box>
         <T
           de={<>
-            <p><b>So liest man die Lösung:</b></p>
-            <ol>
+            <p className="keep"><b>So liest man die Lösung:</b></p>
+            <ol className="keep">
               <li>Die Richtungen kennt man schon aus der Situation: <M>A</M> kann nur waagrecht gleiten, <M>B</M> nur senkrecht. Also <M>{t`\v v_A = (v_H, 0, 0)`}</M> und <M p=";">{t`\v v_B = (0, v_V, 0)`}</M> unbekannt ist nur <M p=".">{t`v_V`}</M></li>
               <li>Beide Punkte gehören zur starren Leiter, also gilt der SdpG entlang <M p=".">{t`\v{AB} = (L\cos\alpha, L\sin\alpha, 0)`}</M></li>
               <li>Skalarprodukte ausrechnen, <M>L</M> kürzen, nach <M>{t`v_V`}</M> auflösen.</li>
@@ -135,8 +135,8 @@ export default function L07Rigid() {
             <p>Die Figur im Skript nennt den Winkel am Boden <M p=",">\varphi</M> die Rechnung <M>\alpha</M> – es ist derselbe Winkel.</p>
           </>}
           en={<>
-            <p><b>How to read the solution:</b></p>
-            <ol>
+            <p className="keep"><b>How to read the solution:</b></p>
+            <ol className="keep">
               <li>The directions are known from the situation: <M>A</M> can only slide horizontally, <M>B</M> only vertically. So <M>{t`\v v_A = (v_H, 0, 0)`}</M> and <M p=";">{t`\v v_B = (0, v_V, 0)`}</M> only <M>{t`v_V`}</M> is unknown.</li>
               <li>Both points belong to the rigid ladder, so the SdpG holds along <M p=".">{t`\v{AB} = (L\cos\alpha, L\sin\alpha, 0)`}</M></li>
               <li>Compute the dot products, cancel <M p=",">L</M> solve for <M p=".">{t`v_V`}</M></li>
@@ -149,7 +149,7 @@ export default function L07Rigid() {
       </Section>
 
       {/* ------------------------------------------------------------------ 5 */}
-      <Section id="missverstaendnisse" title={<T de="5. Häufige Missverständnisse" en="5. Common misconceptions" />}>
+      <Section long id="missverstaendnisse" title={<T de="5. Häufige Missverständnisse" en="5. Common misconceptions" />}>
         <Box kind="misconception" title={<T de="«Im starren Körper haben alle Punkte dieselbe Geschwindigkeit.»" en="“In a rigid body all points have the same velocity.”" />}>
           <T de={<>Nein – nur die <em>Projektionen</em> auf die Verbindungsgerade sind gleich. Dreht sich der Körper, sind die Geschwindigkeiten verschieden (Leiter: <M>A</M> waagrecht, <M>B</M> senkrecht). Gleiche Geschwindigkeit überall gibt es nur bei der <a href="#translation">Translation</a>.</>} en={<>No – only the <em>projections</em> onto the connecting line are equal. If the body turns, the velocities differ (ladder: <M>A</M> horizontal, <M>B</M> vertical). The same velocity everywhere happens only in <a href="#translation">translation</a>.</>} />
         </Box>
