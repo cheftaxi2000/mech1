@@ -12,6 +12,7 @@ import { SG, SG_AXIS, SG_VERTS, SG_VPERP } from './screwGeom';
 import type { LabelPart } from './RichLabel';
 import { FullscreenButton, useFullscreen } from './useFullscreen';
 import { useFigureHeight } from './useNarrow';
+import { useInView } from './figUtils';
 
 const t = String.raw;
 type P3 = [number, number, number];
@@ -173,13 +174,14 @@ export function screwExplorerScene(mode: ScrewMode, p: number, u: number) {
 export function ScrewExplorer() {
   const tr = useTr(), lang = useLang();
   const [ref, full, toggleFull] = useFullscreen();
+  const seen = useInView(ref);
   const h = useFigureHeight(440, 340);
   const [mode, setMode] = useState<ScrewMode>('screw');
   const [p, setP] = useState(0.25);
   const [u, setU] = useState(0.62);
   const [play, setPlay] = useState(false);
   useEffect(() => {
-    if (!play) return;
+    if (!play || !seen) return;
     let raf = 0, last = performance.now();
     const tick = (now: number) => {
       const dt = Math.min(now - last, 100) / 1000; last = now;
@@ -188,7 +190,7 @@ export function ScrewExplorer() {
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [play]);
+  }, [play, seen]);
   const sc = useMemo(() => screwExplorerScene(mode, p, u), [mode, p, u]);
   const pitch = mode === 'screw' ? p : 0;
   const n = (x: number, d = 2) => fmtNum(x, d, lang, true);

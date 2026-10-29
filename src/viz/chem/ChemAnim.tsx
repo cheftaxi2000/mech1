@@ -10,7 +10,7 @@ const pts = (ps: P2[]) => ps.map((p) => `${p[0].toFixed(1)},${p[1].toFixed(1)}`)
 export function ChemAnim({ build, step, t }: { build: (step: number, t: number, lang: Lang) => CScene; step: number; t: number }) {
   const lang = useLang();
   const scene = useMemo(() => build(step, t, lang), [build, step, t, lang]);
-  const data = Object.fromEntries(Object.entries(scene.data).map(([k, v]) => [`data-${k}`, v.toFixed(4)]));
+  const data = Object.fromEntries(Object.entries(scene.data).map(([k, v]) => [`data-${k.toLowerCase()}`, v.toFixed(4)]));
   return (
     <div className="anim-fig chem-anim" {...data}>
       <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="xMidYMid meet">

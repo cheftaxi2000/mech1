@@ -132,3 +132,32 @@ export function ladderAt(L: number, phi0: number, vH: number, t: number) {
   const phi = Math.acos(Math.min(1, -xA / L));
   return { phi, ...ladderMZ(L, phi, vH) };
 }
+
+/* ---------------------------------------------------------------- ladder: polodes (fixed and moving centrode, app supplement) */
+/**
+ * The ladder's instantaneous centre Z = (−L cos φ, L sin φ) traces
+ *  - in the room (fixed polode, «Rastpolbahn»): the circle of radius L about the corner C, and
+ *  - in the ladder (moving polode, «Gangpolbahn»): the circle of radius L/2 about the middle M of the ladder (Thales: A, B, C and Z lie on it).
+ * The ladder moves as if the small circle rolled without slipping inside the big one (a Cardan circle pair).
+ * Consequently every point P of the ladder at the fraction s from A (s = 0: A, s = 1: B) runs on an ellipse with the
+ * semi-axes L(1−s) (horizontal) and sL (vertical) — the trammel of Archimedes; A and B run on straight lines.
+ */
+export function ladderPoint(L: number, phi: number, s: number): P2 {
+  return [-L * (1 - s) * Math.cos(phi), s * L * Math.sin(phi)];
+}
+/** Middle of the ladder. */
+export const ladderMiddle = (L: number, phi: number): P2 => ladderPoint(L, phi, 0.5);
+/** Z in the body frame of the ladder (origin M, first axis along A→B): the point (L/2)(cos(π − 2φ), sin(π − 2φ)) of the moving polode. */
+export function ladderZBody(L: number, phi: number): P2 {
+  return [(-L / 2) * Math.cos(2 * phi), (L / 2) * Math.sin(2 * phi)];
+}
+/** Body-frame point of the moving polode at body angle β, placed in the room for the ladder at angle φ. */
+export function movingPolodePoint(L: number, phi: number, beta: number): P2 {
+  const M = ladderMiddle(L, phi), a = phi + beta;
+  return [M[0] + (L / 2) * Math.cos(a), M[1] + (L / 2) * Math.sin(a)];
+}
+/** Velocity of the ladder point at fraction s when A slides left with v_H: v_P = ω̲ × ZP with ω from the instantaneous centre. */
+export function ladderPointVelocity(L: number, phi: number, vH: number, s: number): P2 {
+  const m = ladderMZ(L, phi, vH);
+  return planeVelocity(m.Z, [0, 0], m.w, ladderPoint(L, phi, s));
+}

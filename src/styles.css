@@ -344,8 +344,9 @@ b.bad { color: var(--bad); } b.ok { color: var(--ok); }
   .home-chapters { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); column-gap: 28px; }
 }
 /* previous / next lesson */
-.toggle { display: flex; align-items: center; gap: 10px; min-height: 40px; cursor: pointer; }
-.toggle input { width: 20px; height: 20px; margin: 0; flex: none; accent-color: var(--accent); cursor: pointer; }
+/* Not flex: a label with text, formulas and more text would otherwise be split into one column per child. */
+.toggle { display: block; position: relative; padding: 9px 0 9px 32px; min-height: 40px; cursor: pointer; line-height: 1.35; }
+.toggle input { position: absolute; left: 0; top: 10px; width: 20px; height: 20px; margin: 0; accent-color: var(--accent); cursor: pointer; }
 .numeric input { min-height: 44px; }
 /* 3D figures: reset-view button (top left; fullscreen sits top right); 3D steps keep the 4:3 frame of the 2D ones */
 .stepper-fig .scene { height: auto !important; aspect-ratio: 4 / 3; border: 1px solid var(--line); border-radius: 0; overflow: hidden; }
@@ -674,3 +675,27 @@ html[data-detail="short"] .lesson .derivation > div > :is(p, ul, ol):not(.keep) 
 .pgr-gap { stroke: var(--c-angle); stroke-width: 2.4; stroke-dasharray: 4 3; }
 .pgr-key { font-size: 12px; } .pgr-k1 { fill: var(--c-point); } .pgr-k2 { fill: var(--c-y-text); }
 .pgr-sl { display: grid; gap: 2px; max-width: 420px; margin: 4px auto; } .pgr-btns { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0; justify-content: center; }
+
+/* ladder polodes (app supplement) */
+.pd-fixed-all { fill: none; stroke: var(--c-angle); stroke-width: 1.2; stroke-dasharray: 4 4; opacity: 0.55; }
+.pd-fixed { fill: none; stroke: var(--c-angle); stroke-width: 4.5; stroke-linecap: round; }
+.pd-moving-all { fill: none; stroke: var(--c-rho); stroke-width: 1.2; stroke-dasharray: 4 4; opacity: 0.6; }
+.pd-moving { fill: none; stroke: var(--c-rho); stroke-width: 4.5; stroke-linecap: round; }
+.pd-path { fill: none; stroke: var(--c-point); stroke-width: 2.2; stroke-linecap: round; opacity: 0.85; }
+.pd-m { fill: var(--c-rho); }
+.pd-lab-fixed { color: var(--c-angle); } .pd-lab-moving { color: var(--c-rho); }
+
+/* Euler form: unit circle + cos/sin graph (Analysis week 6) */
+.eu-pair { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 8px 14px; align-items: center; }
+@media (max-width: 640px) { .eu-pair { grid-template-columns: 1fr; } }
+.eu-fig .pl-g { stroke: var(--c-y); fill: var(--c-y); } .eu-fig .pl-ink-g { color: var(--c-y-text); }
+.eu-fig .pl-curve.pl-asym { stroke-width: 5; stroke-linecap: round; }
+.eu-fig .pl-curve.pl-f, .eu-fig .pl-curve.pl-g { stroke-width: 2.6; }
+.eu-purple { color: var(--c-angle); font-weight: 600; }
+.eu-pair > .vdemo-fig { margin-inline: 0; width: 100%; max-width: none; }
+@media (min-width: 1024px) { figure.vdemo.eu-fig:has(> figcaption) { display: block; } figure.vdemo.eu-fig > figcaption { text-align: center; } }
+.eu-fig .controls { max-width: 420px; margin-inline: auto; }
+.eu-fig .pl-curve.pl-g { fill: none; }
+.eu-fig .pl-curve.pl-aux, .eu-fig .pl-line.pl-aux { stroke-width: 1.3; opacity: 0.65; }
+.cc-col { display: grid; gap: 6px; min-width: 0; }
+.cc-col > .vdemo-fig { margin-inline: 0; width: 100%; max-width: none; }

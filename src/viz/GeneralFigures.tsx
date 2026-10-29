@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { M } from '../components/Tex';
 import { fmtNum, useLang, useTr } from '../i18n';
 import { GEN, fieldFrame, mitfahrFrame, type Ride } from './genGeom';
-import { at } from './figUtils';
+import { at, useInView } from './figUtils';
 
 const t = String.raw;
 type V = readonly [number, number];
@@ -26,12 +26,14 @@ const RIDES: Record<Ride, [string, string]> = { rest: ['Kamera ruht', 'camera at
  * (or with C), without turning, sees only a turning about that point — by the same angle φ in both cases.
  */
 export function RideDemo() {
+  const host = useRef<HTMLElement>(null);
+  const seen = useInView(host);
   const tr = useTr(), lang = useLang();
   const [ride, setRide] = useState<Ride>('B');
   const [time, setTime] = useState(2.4);
   const [play, setPlay] = useState(false);
   useEffect(() => {
-    if (!play) return;
+    if (!play || !seen) return;
     let raf = 0, last = performance.now();
     const tick = (now: number) => {
       const dt = Math.min(now - last, 100) / 1000; last = now;
@@ -40,7 +42,7 @@ export function RideDemo() {
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [play]);
+  }, [play, seen]);
   const f = mitfahrFrame(ride, time);
   const deg = Math.round(f.phi / DEG);
   // angle arc at the riding point: from the direction to M at the start to the direction now
@@ -52,7 +54,7 @@ export function RideDemo() {
   })();
   const start = () => { if (time >= GEN.T_END - 0.01) setTime(0); setPlay((x) => !x); };
   return (
-    <figure className="vdemo">
+    <figure className="vdemo" ref={host}>
       <div className="v-presets">
         {(Object.keys(RIDES) as Ride[]).map((k) => <button key={k} type="button" aria-pressed={ride === k} onClick={() => setRide(k)}>{tr(...RIDES[k])}</button>)}
       </div>

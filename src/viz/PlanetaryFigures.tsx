@@ -3,7 +3,7 @@ import { M } from '../components/Tex';
 import { fmtNum, useLang, useTr } from '../i18n';
 import { GEAR, R3, TEETH, omega3, omegaArm, ratioRingFixed, startAngles, type P2 } from '../physics/planetary';
 import { RING_OUT, circlePts, clipToDisc, gearOutline, marks, stateFromAngles, velocityPicture, withArm } from './planetGeom';
-import { at, useReducedMotion } from './figUtils';
+import { at, useReducedMotion, useInView } from './figUtils';
 
 const t = String.raw;
 type V = readonly [number, number];
@@ -44,6 +44,8 @@ const PRESET_LABEL: Record<Preset, [React.ReactNode, React.ReactNode]> = {
  * Positive ω = counter-clockwise (as the arrows in Fig. 3.21).
  */
 export function PlanetaryGear() {
+  const host = useRef<HTMLElement>(null);
+  const seen = useInView(host);
   const tr = useTr(), lang = useLang();
   const reduced = useReducedMotion();
   const [w1, setW1] = useState(PRESETS.fig.w1);
@@ -56,7 +58,7 @@ export function PlanetaryGear() {
   rates.current = { w1, w2 };
   useEffect(() => { if (reduced) setPlay(false); }, [reduced]);
   useEffect(() => {
-    if (!play) return;
+    if (!play || !seen) return;
     let raf = 0, last = performance.now();
     const tick = (now: number) => {
       const dt = Math.min(now - last, 100) / 1000; last = now;
@@ -66,7 +68,7 @@ export function PlanetaryGear() {
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [play]);
+  }, [play, seen]);
 
   const g = GEAR, st = stateFromAngles(g, ang), mk = marks(st, g);
   const vp = velocityPicture(g, w1, w2, st, KV);
@@ -89,7 +91,7 @@ export function PlanetaryGear() {
   const ray = (tip: P2) => { const k = 1.18; return [sv([0, 0]), sv([k * tip[0], k * tip[1]])] as const; };
   const three: P2 = [st.A[0] - (R3(g) + 0.42) * vp.n[0], st.A[1] - (R3(g) + 0.42) * vp.n[1]];
   return (
-    <figure className="vdemo">
+    <figure className="vdemo" ref={host}>
       <div className="v-presets">
         {(Object.keys(PRESETS) as Preset[]).map((p) => <button key={p} type="button" aria-pressed={isP(p)} onClick={() => choose(p)}>{tr(...PRESET_LABEL[p])}</button>)}
       </div>

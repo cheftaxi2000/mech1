@@ -69,7 +69,7 @@ export const INK = {
 export const rect = (x0: number, y0: number, x1: number, y1: number): P2[] => [[x0, y0], [x1, y0], [x1, y1], [x0, y1]];
 
 /** Open beaker outline (a polyline) and its water body (a polygon). */
-export function beaker(sb: SB, x0: number, y0: number, x1: number, y1: number, waterTop: number, o = 1) {
-  sb.shape({ key: 'water', kind: 'polygon', cls: 'cs-water', pts: rect(x0, waterTop, x1, y1), o });
-  sb.shape({ key: 'glass', kind: 'polyline', cls: 'cs-glass', pts: [[x0, y0], [x0, y1], [x1, y1], [x1, y0]], o });
+export function beaker(sb: SB, x0: number, y0: number, x1: number, y1: number, waterTop: number, o = 1, id = '') {
+  sb.shape({ key: `water${id}`, kind: 'polygon', cls: 'cs-water', pts: rect(x0, waterTop, x1, y1), o });
+  sb.shape({ key: `glass${id}`, kind: 'polyline', cls: 'cs-glass', pts: [[x0, y0], [x0, y1], [x1, y1], [x1, y0]], o });
 }

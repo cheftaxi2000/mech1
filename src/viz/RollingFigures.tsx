@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { M } from '../components/Tex';
 import { fmtNum, useLang, useTr } from '../i18n';
 import { contactVelocity, momentaryCentre, slip, wheelVelocity, type P2 } from '../physics/rolling';
-import { at } from './figUtils';
+import { at, useInView } from './figUtils';
 
 const t = String.raw;
 type V = [number, number];
@@ -35,6 +35,8 @@ const PRESETS: Record<Preset, { vc: number; w: number; u: number; de: string; en
  * different ⇒ sliding. Arrows: v = v_C + ω × CP at the rim; purple dot: the momentary centre (v = 0).
  */
 export function RollingWheel() {
+  const host = useRef<HTMLElement>(null);
+  const seen = useInView(host);
   const tr = useTr(), lang = useLang();
     const [vc, setVc] = useState(1);
   const [w, setW] = useState(1);
@@ -46,7 +48,7 @@ export function RollingWheel() {
   const params = useRef({ vc, w, u });
   params.current = { vc, w, u };
   useEffect(() => {
-    if (!play) return;
+    if (!play || !seen) return;
     let raf = 0, last = performance.now();
     const tick = (now: number) => {
       const dt = Math.min(now - last, 100) / 1000; last = now;
@@ -60,7 +62,7 @@ export function RollingWheel() {
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [play]);
+  }, [play, seen]);
   const choose = (k: Preset) => { const p = PRESETS[k]; setVc(p.vc); setW(p.w); setU(p.u); };
 
   const C: V = [st.x, CY];
@@ -76,7 +78,7 @@ export function RollingWheel() {
     .filter((p) => p[0] > -10 && p[0] < 410);
   const ticks = Array.from({ length: 22 }, (_, i) => ((i * 20 + st.belt) % 440 + 440) % 440 - 20);
   return (
-    <figure className="vdemo">
+    <figure className="vdemo" ref={host}>
       <div className="v-presets">
         {(Object.keys(PRESETS) as Preset[]).map((k) => (
           <button key={k} type="button" aria-pressed={vc === PRESETS[k].vc && w === PRESETS[k].w && u === PRESETS[k].u} onClick={() => choose(k)}>{tr(PRESETS[k].de, PRESETS[k].en)}</button>

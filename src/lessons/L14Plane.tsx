@@ -6,6 +6,7 @@ import { AnimFigure } from '../viz/anim/AnimFigure';
 import { planeScene } from '../viz/anim/planeScene';
 import { ladderScene } from '../viz/anim/ladderScene';
 import { CentreDemo, WheelRays } from '../viz/PlaneFigures';
+import { PolodeDemo } from '../viz/PolodeFigure';
 
 const t = String.raw;
 
@@ -237,6 +238,25 @@ export default function L14Plane() {
           <T
             de={<p><b>SdpG oder Momentanzentrum?</b> Die SdpG (Lektion <a href="#sdpg">SdpG</a>) gibt <M>{t`v_V`}</M> direkt. Das Momentanzentrum gibt mehr: auch <M>\omega</M> und mit <M>{t`v = \omega r`}</M> die Geschwindigkeit jedes Punktes der Leiter, zum Beispiel der Mitte (Abstand <M>{t`L/2`}</M> von <M p=",">Z</M> denn die Diagonalen halbieren sich): <M p=".">{t`v_{\text{${tr('Mitte', 'mid')}}} = \frac{v_H}{2\sin\varphi}`}</M></p>}
             en={<p><b>SdpG or instantaneous centre?</b> The SdpG (lesson <a href="#sdpg">SdpG</a>) gives <M>{t`v_V`}</M> directly. The instantaneous centre gives more: also <M>\omega</M> and, with <M p=",">{t`v = \omega r`}</M> the velocity of every point of the ladder, for example of its middle (distance <M>{t`L/2`}</M> from <M p=",">Z</M> since the diagonals bisect each other): <M p=".">{t`v_{\text{${tr('Mitte', 'mid')}}} = \frac{v_H}{2\sin\varphi}`}</M></p>}
+          />
+        </Box>
+        <T
+          de={<p className="keep">Wohin wandert <M p=",">Z</M> wenn die Leiter weiterrutscht? Das Bild zeigt es in zwei Sichten: von aussen (im Raum) und von der Leiter aus. Beides sind Kreise, und der eine rollt im anderen – ein Zusatz der App, nicht aus dem Skript.</p>}
+          en={<p className="keep">Where does <M>Z</M> wander when the ladder keeps sliding? The figure shows it from two points of view: from outside (in the room) and from the ladder. Both are circles, and one rolls inside the other – an addition of the app, not from the notes.</p>}
+        />
+        <PolodeDemo />
+        <Box kind="supplement" title={<T de="Warum rollt der kleine Kreis im grossen?" en="Why does the small circle roll inside the big one?" />}>
+          <T
+            de={<>
+              <p><M>ZACB</M> ist ein Rechteck (zwei rechte Winkel in <M>A</M> und <M>B</M> kommen von den Loten, dazu der rechte Winkel in <M p=")">C</M> Die Diagonalen eines Rechtecks sind gleich lang und halbieren sich. Darum liegen <M p=",">{t`A, B, C, Z`}</M> alle auf dem Kreis um <M>M</M> mit Radius <M>{t`L/2`}</M> (Satz des Thales), und <M>{t`|\v{CZ}| = L`}</M> hält <M>Z</M> auf dem Kreis um <M>C</M> mit Radius <M p=".">L</M></p>
+              <p>Rollen ohne Gleiten heisst: In <M>Z</M> ruht der Punkt der Leiter, also bewegt sich <M>Z</M> auf beiden Kreisen gleich schnell. Auf dem grossen Kreis legt <M>Z</M> den Bogen <M>{t`L\,\Delta\varphi`}</M> zurück. Auf dem kleinen Kreis dreht sich der Berührpunkt um den Winkel <M p=",">{t`2\Delta\varphi`}</M> (der Mittelpunktswinkel ist doppelt so gross wie der Umfangswinkel), also um den Bogen <M>{t`\tfrac{L}{2}\cdot 2\Delta\varphi = L\,\Delta\varphi`}</M> – gleich lang. Zahlen und Ableitung sind in <code>plane.test.ts</code> geprüft.</p>
+              <p>Folge: <M>A</M> und <M>B</M> liegen auf dem kleinen Kreis, der doppelt so kleine Kreis rollt im grossen – das ist genau die Bedingung, dass jeder Kreispunkt auf einem Durchmesser des grossen Kreises hin- und herläuft (Kardan-Kreise). Für einen Punkt <M>P</M> im Abstand <M>{t`sL`}</M> von <M>A</M> folgt <M>{t`x = -(1-s)L\cos\varphi`}</M> und <M p=",">{t`y = sL\sin\varphi`}</M> also eine Ellipse mit den Halbachsen <M>{t`(1-s)L`}</M> und <M p=".">{t`sL`}</M></p>
+            </>}
+            en={<>
+              <p><M>ZACB</M> is a rectangle (the right angles at <M>A</M> and <M>B</M> come from the perpendiculars, plus the right angle at <M p=")">C</M> The diagonals of a rectangle are equally long and bisect each other. So <M p=",">{t`A, B, C, Z`}</M> all lie on the circle about <M>M</M> with radius <M>{t`L/2`}</M> (Thales), and <M>{t`|\v{CZ}| = L`}</M> keeps <M>Z</M> on the circle about <M>C</M> with radius <M p=".">L</M></p>
+              <p>Rolling without slipping means: at <M>Z</M> the point of the ladder is at rest, so <M>Z</M> moves equally fast on both circles. On the big circle <M>Z</M> covers the arc <M p=".">{t`L\,\Delta\varphi`}</M> On the small circle the contact point turns by the angle <M p=",">{t`2\Delta\varphi`}</M> (the central angle is twice the inscribed angle), so by the arc <M>{t`\tfrac{L}{2}\cdot 2\Delta\varphi = L\,\Delta\varphi`}</M> – equally long. The numbers and the derivative are checked in <code>plane.test.ts</code>.</p>
+              <p>Consequence: <M>A</M> and <M>B</M> lie on the small circle, which is half as big and rolls inside the big one – exactly the condition for every point of the circle to run back and forth on a diameter of the big circle (Cardan circles). For a point <M>P</M> at distance <M>{t`sL`}</M> from <M>A</M> we get <M>{t`x = -(1-s)L\cos\varphi`}</M> and <M p=",">{t`y = sL\sin\varphi`}</M> an ellipse with semi-axes <M>{t`(1-s)L`}</M> and <M p=".">{t`sL`}</M></p>
+            </>}
           />
         </Box>
       </Section>

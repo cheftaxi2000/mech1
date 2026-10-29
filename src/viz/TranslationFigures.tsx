@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { M } from '../components/Tex';
 import { fmtNum, useLang, useTr } from '../i18n';
 import { crankA, crankB, rodOmega, rodPoint, rodVelocity } from '../physics/translation';
-import { at } from './figUtils';
+import { at, useInView } from './figUtils';
 
 const t = String.raw;
 type V = [number, number];
@@ -16,14 +16,14 @@ function Arrow({ a, b, cls }: { a: V; b: V; cls: string }) {
   return <g className={cls}><line x1={a[0]} y1={a[1]} x2={b[0] - ux * 4} y2={b[1] - uy * 4} /><polygon points={head} /></g>;
 }
 
-function useLoop(play: boolean, speed: number, set: (f: (x: number) => number) => void) {
+function useLoop(play: boolean, speed: number, set: (f: (x: number) => number) => void, seen: boolean) {
   useEffect(() => {
-    if (!play) return;
+    if (!play || !seen) return;
     let raf = 0, last = performance.now();
     const tick = (now: number) => { const dt = Math.min(now - last, 100) / 1000; last = now; set((x) => x + dt * speed); raf = requestAnimationFrame(tick); };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [play, speed, set]);
+  }, [play, speed, set, seen]);
 }
 
 /* ------------------------------------------------------------------------------------------------ */
@@ -111,7 +111,8 @@ export function TranslationDemo() {
   const [mode, setMode] = useState<Mode>('circle');
   const [u, setU] = useState(0.12);
   const [play, setPlay] = useState(false);
-  useLoop(play, DEMO_SPEED, setU);
+  const host = useRef<HTMLElement>(null);
+  useLoop(play, DEMO_SPEED, setU, useInView(host));
   const { pts, vel, tips, labels, aLabel, bLabel } = demoFrame(mode, u);
   const uu = ((u % 1) + 1) % 1;
   const rect = RECT.map((c) => place(mode, c, u));
@@ -121,7 +122,7 @@ export function TranslationDemo() {
   const names = ['M', 'N', 'P'];
   const MODES: [Mode, string, string][] = [['line', 'geradlinig', 'straight'], ['curve', 'krummlinig', 'curved'], ['circle', 'kreisförmig', 'circular'], ['rot', 'Vergleich: Drehung', 'compare: rotation']];
   return (
-    <figure className="vdemo">
+    <figure className="vdemo" ref={host}>
       <div className="tabs" role="tablist">
         {MODES.map(([m, de, en]) => (
           <button key={m} role="tab" aria-selected={mode === m} className={mode === m ? 'active' : ''} onClick={() => setMode(m)}>{tr(de, en)}</button>
@@ -176,7 +177,8 @@ export function SliderCrank() {
   const tr = useTr(), lang = useLang();
   const [th, setTh] = useState(60);
   const [play, setPlay] = useState(false);
-  useLoop(play, 40, setTh);
+  const host = useRef<HTMLElement>(null);
+  useLoop(play, 40, setTh, useInView(host));
   const a = (((th % 360) + 360) % 360) * DEG, w = 1;
   const A = toS(crankA(a, R2)), B = toS(crankB(a, R2, L2));
   const ks = [0, 0.5, 1];
@@ -188,7 +190,7 @@ export function SliderCrank() {
   const lA: V = [A[0] + (18 * (A[0] - O2[0])) / out, A[1] + (18 * (A[1] - O2[1])) / out];
   const deg = Math.round(((th % 360) + 360) % 360);
   return (
-    <figure className="vdemo">
+    <figure className="vdemo" ref={host}>
       <div className="vdemo-fig wide">
         <svg viewBox={VB2.join(' ')} aria-label={tr('Kurbeltrieb', 'Slider crank')}>
           <circle cx={O2[0]} cy={O2[1]} r={S2 * R2} className="tr-path" />

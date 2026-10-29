@@ -2,7 +2,7 @@ import { Box, De, Section, Src } from '../components/Blocks';
 import { M, MD } from '../components/Tex';
 import { T, useTr } from '../i18n';
 import { StepPlayer } from '../viz/anim/StepPlayer';
-import { AngleExplorer, IPowers, MulAnimFig, MulExplorer } from '../viz/ana/W6Figures';
+import { AngleExplorer, EulerCircle, IPowers, MulAnimFig, MulExplorer } from '../viz/ana/W6Figures';
 
 const t = String.raw;
 
@@ -144,6 +144,7 @@ export default function A6Polarform() {
           de={<p className="keep"><M>{t`e^{i\varphi}`}</M> ist zunächst nur eine Abkürzung für <M p=":">{t`\cos\varphi + i\sin\varphi`}</M> der Punkt auf dem <b>Einheitskreis</b> (Radius 1) beim Winkel <M p=".">\varphi</M> Mal <M>r</M> gestreckt gibt <M p=".">z</M> Zum Beispiel <M p=".">{t`\sqrt3 + i = 2e^{i\pi/6}`}</M> Warum ausgerechnet «<M>e</M> hoch», zeigt der nächste Abschnitt.</p>}
           en={<p className="keep"><M>{t`e^{i\varphi}`}</M> is at first just shorthand for <M p=":">{t`\cos\varphi + i\sin\varphi`}</M> the point on the <b>unit circle</b> (radius 1) at angle <M p=".">\varphi</M> Stretched by <M>r</M> it gives <M p=".">z</M> For example <M p=".">{t`\sqrt3 + i = 2e^{i\pi/6}`}</M> Why it is “<M>e</M> to the power”, of all things, is shown in the next section.</p>}
         />
+        <EulerCircle />
       </Section>
 
       {/* ------------------------------------------------------------------ 5 */}

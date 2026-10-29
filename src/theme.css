@@ -90,7 +90,7 @@ code, kbd, samp, pre { font-family: var(--mono); }
 button { touch-action: manipulation; }
 
 p, li { text-wrap: pretty; }
-.lesson-wrap p, .lesson-wrap li { hyphens: auto; -webkit-hyphens: auto; }
+.lesson-wrap p, .lesson-wrap .para, .lesson-wrap li { hyphens: auto; -webkit-hyphens: auto; }
 .lesson-wrap p.lede { hyphens: manual; -webkit-hyphens: manual; }
 strong, b { font-weight: 700; }
 em { font-style: italic; }
@@ -228,7 +228,7 @@ a:hover { text-decoration-color: var(--ink); }
 .lesson > .section > .derivation:has(.stepper, figure),
 .lesson > .box:has(.stepper, figure.explorer),
 .lesson > .section > .box:has(.stepper, figure.explorer) { max-width: none; }
-.box:has(.stepper, figure.explorer) .box-body > :is(p, ul, ol) { max-width: var(--measure); }
+.box:has(.stepper, figure.explorer) .box-body > :is(p, .para, ul, ol) { max-width: var(--measure); }
 @media (max-width: 820px) { .content { padding-top: 32px; } }
 
 /* lesson head: chapter and source in the margin, the title large beside it */
