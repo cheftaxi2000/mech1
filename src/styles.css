@@ -856,3 +856,17 @@ html[data-detail="short"] .lesson .derivation > div > :is(p, ul, ol):not(.keep) 
   .topbar .topbar-subject { display: none; }
   .topbar .lang-toggle button { padding: 5px 9px; }
 }
+
+/* Fachwerk (Fig. 3.24) */
+.tr-bar { stroke: color-mix(in srgb, var(--muted) 78%, var(--fg)); stroke-width: 3.5; stroke-linecap: round; }
+.tr-bar.on { stroke: var(--accent); stroke-width: 6; }
+.tr-roll { fill: var(--bg); stroke: var(--fg); stroke-width: 1.5; }
+
+/* Parallelogrammregel (Fig. 3.25) */
+.pg-fig { padding: 8px 12px 12px; } .pg-svg { width: 100%; max-width: 440px; height: auto; display: block; margin: 0 auto; }
+.pg-bar { stroke-width: 5; stroke-linecap: round; } .pg-a { stroke: var(--c-x); } .pg-b { stroke: var(--c-point); opacity: 0.85; }
+.pg-name { font-size: 14px; fill: var(--fg); font-weight: 600; }
+.pg-v1 line, .pg-v1 polygon { stroke: var(--c-point); fill: var(--c-point); stroke-width: 2.6; } .pg-v2 line, .pg-v2 polygon { stroke: var(--c-y); fill: var(--c-y); stroke-width: 2.6; }
+.pg-gap { stroke: var(--c-angle); stroke-width: 2.4; stroke-dasharray: 4 3; }
+.pg-key { font-size: 12px; } .pg-k1 { fill: var(--c-point); } .pg-k2 { fill: var(--c-y-text); }
+.pg-sl { display: grid; gap: 2px; max-width: 420px; margin: 4px auto; } .pg-btns { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0; justify-content: center; }

@@ -188,3 +188,8 @@ Four implementer agents wrote 13 lessons from lectures 1–6 and the TA's exerci
 - New figures: `AsciiTable`, `CaesarWheel`, `Utf8Figure` (`TextFigures.tsx`); `CallTree` (a call tree drawn from the run, in step with the stepper, optional colouring of equal calls), `FibGrowth`, `DepthCompare` (`RecursionFigures.tsx`). Pure models `src/info/text.ts`, `src/info/recursion.ts` with tests.
 - Checked with g++: UTF-8 string size, stack overflow signal, 13!/Fibonacci overflow, bitset equality, sums with initializer lists; the notes' claims about F1 ≈ 10^9 calls and fib(50) with int are corrected (I-014, I-015); ZEBRA and the UTF-8 table (I-012, I-013).
 - Open: student's verdict on the Informatik lessons (all `draft`); optional: revisit tone of `i-algorithmus`; German command sheet `ThB_unknown_Info1.pdf` not yet used for terminology.
+
+## 2026-10-29 — Mechanik: Fachwerk + Parallelogrammregel (HS 2018 notes pp. 27–28)
+- Two new chapter-3 lessons before «Kraft»: `L16Fachwerk` (6-step `trussScene` animation, recipe, three ways to v_E, SdpG check) and `L17Parallelogramm` (rule, proof around the loop, `ParallelogramDemo`).
+- `physics/truss.ts` is the numeric source of truth (12 tests); every handwritten value re-derived. Source issue R-036.
+- Both `draft`. Not published to the claude.ai artifact.
