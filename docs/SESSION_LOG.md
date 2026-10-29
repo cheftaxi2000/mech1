@@ -193,3 +193,9 @@ Four implementer agents wrote 13 lessons from lectures 1–6 and the TA's exerci
 - Two new chapter-3 lessons before «Kraft»: `L16Fachwerk` (6-step `trussScene` animation, recipe, three ways to v_E, SdpG check) and `L17Parallelogramm` (rule, proof around the loop, `ParallelogramDemo`).
 - `physics/truss.ts` is the numeric source of truth (12 tests); every handwritten value re-derived. Source issue R-036.
 - Both `draft`. Not published to the claude.ai artifact.
+
+## 2026-10-29 — Redesign of the whole app (D-031)
+- Research with four parallel agents: educational layout references (Tufte CSS, Distill, Observable sources), type/colour (font metrics measured locally; web largely blocked), codebase audit, independent critique of the old screens.
+- New `src/theme.css` (single design system), `src/roles.css` (colour roles moved out of the deleted `design.css`), `styles.css` reduced to physics colours + figure mechanics. Self-hosted Source Serif 4 / IBM Plex Sans / IBM Plex Mono in `src/fonts/`.
+- Components: `<Section>` splits off section numbers; `LessonOutline` (rail ≥ 1360 px, top of the drawer below); top-bar tools fold behind «Ansicht» on phones; course index rebuilt as a list with still drawings; Box hides a title that only repeats its label; parallelogram figure classes renamed `pgr-*` (collided with the planetary gear's `pg-*`).
+- Checked: tsc, all unit tests, e2e (see below); screenshots desktop / iPad landscape / phone, light + dark, for index, subject page and several lessons of every subject.

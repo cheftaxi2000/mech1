@@ -1,103 +1,34 @@
+/* Figure styles: the physics colour system and the mechanics of figures, explorers and step animations.
+   Design tokens, type, chrome and all shared components are in theme.css (loaded after this file). */
 :root {
-  --bg: #fbfbfa; --panel: #ffffff; --fg: #1c2230; --muted: #64748b; --line: #e3e6eb;
-  --accent: #2563eb; --ok: #15803d; --bad: #b91c1c;
-  --lecture: #2563eb; --supplement: #7c3aed; --mis: #d97706; --review: #dc2626; --key: #0f766e; --intu: #0891b2;
-  --tint: 6%;
-  --scene-bg: #f6f7f9; --scene-fg: #64748b;
-  --c-x: #2563eb; --c-y: #d97706; --c-y-text: #b45309; --c-z: #16a34a; --c-z-text: #15803d; --c-rho: #0d9488; --c-rho-text: #0f766e; --c-r: #1c2230; --c-angle: #9333ea; --c-point: #e11d48; --c-force: #ea580c; --c-force-text: #c2410c; --c-vel: var(--c-point);
-  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  color: var(--fg); background: var(--bg);
+  --ok: #15803d; --bad: #b91c1c;
+  --scene-fg: #5c5850;
+  --c-x: #2563eb; --c-y: #d97706; --c-y-text: #b45309; --c-z: #16a34a; --c-z-text: #15803d; --c-rho: #0d9488; --c-rho-text: #0f766e; --c-r: #1f1d1a; --c-angle: #9333ea; --c-point: #e11d48; --c-force: #ea580c; --c-force-text: #c2410c; --c-vel: var(--c-point);
 }
 /* 3D scenes stay light in both themes: their labels are drawn into the WebGL image in dark ink. */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) { --c-x: #60a5fa; --c-y: #fbbf24; --c-y-text: #fbbf24; --c-z: #4ade80; --c-z-text: #4ade80; --c-rho: #2dd4bf; --c-rho-text: #2dd4bf; --c-r: #e5e7eb; --c-angle: #c084fc; --c-point: #fb7185; --c-force: #fb923c; --c-force-text: #fdba74; --c-vel: var(--c-point); --bg: #11141a; --panel: #181c24; --fg: #e5e7eb; --muted: #94a3b8; --line: #2a303b; --accent: #60a5fa; --tint: 14%; --scene-bg: #eef0f3; color-scheme: dark; }
+  :root:not([data-theme="light"]) { --c-x: #60a5fa; --c-y: #fbbf24; --c-y-text: #fbbf24; --c-z: #4ade80; --c-z-text: #4ade80; --c-rho: #2dd4bf; --c-rho-text: #2dd4bf; --c-r: #e8e4dc; --c-angle: #c084fc; --c-point: #fb7185; --c-force: #fb923c; --c-force-text: #fdba74; --c-vel: var(--c-point); --ok: #4ade80; --bad: #f87171; }
 }
-:root[data-theme="dark"] { --c-x: #60a5fa; --c-y: #fbbf24; --c-y-text: #fbbf24; --c-z: #4ade80; --c-z-text: #4ade80; --c-rho: #2dd4bf; --c-rho-text: #2dd4bf; --c-r: #e5e7eb; --c-angle: #c084fc; --c-point: #fb7185; --c-force: #fb923c; --c-force-text: #fdba74; --c-vel: var(--c-point); --bg: #11141a; --panel: #181c24; --fg: #e5e7eb; --muted: #94a3b8; --line: #2a303b; --accent: #60a5fa; --tint: 14%; --scene-bg: #eef0f3; color-scheme: dark; }
+:root[data-theme="dark"] { --c-x: #60a5fa; --c-y: #fbbf24; --c-y-text: #fbbf24; --c-z: #4ade80; --c-z-text: #4ade80; --c-rho: #2dd4bf; --c-rho-text: #2dd4bf; --c-r: #e8e4dc; --c-angle: #c084fc; --c-point: #fb7185; --c-force: #fb923c; --c-force-text: #fdba74; --c-vel: var(--c-point); --ok: #4ade80; --bad: #f87171; }
 * { box-sizing: border-box; }
-body { margin: 0; background: var(--bg); color: var(--fg); line-height: 1.6; font-size: 16.5px; }
-a { color: var(--accent); }
-h1 { font-size: 1.9rem; line-height: 1.2; margin: 0.2em 0; overflow-wrap: break-word; }
-h2 { font-size: 1.35rem; margin-top: 2.2em; padding-top: 0.6em; border-top: 1px solid var(--line); }
-h3 { font-size: 1.08rem; margin-top: 1.6em; }
-
-:root { --topbar: 52px; --gutter: clamp(16px, 3.4vw, 48px); --measure: 47rem; --wide: 80rem; }
-.layout { min-height: 100vh; }
-html { scroll-padding-top: calc(var(--topbar) + 8px); }
-/* top bar with the burger menu; the chapter list is a drawer, so the lesson gets the whole width */
-.topbar { position: sticky; top: 0; z-index: 30; height: var(--topbar); display: flex; align-items: center; gap: 12px; padding: 0 12px;
-  padding-left: max(12px, env(safe-area-inset-left)); background: color-mix(in srgb, var(--panel) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
-.topbar .brand { margin: 0; font-weight: 700; text-decoration: none; color: var(--fg); white-space: nowrap; }
-.topbar-topic { color: var(--muted); font-size: 0.92rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; flex: 1; }
-.topbar-topic::before { content: '·'; margin-right: 10px; }
-.topbar .lang-toggle { margin-left: auto; flex: none; }
-.burger { width: 44px; height: 44px; flex: none; display: grid; place-items: center; border: 0; border-radius: 10px; background: transparent; color: var(--fg); cursor: pointer; }
-.burger:hover { background: color-mix(in srgb, var(--fg) 7%, transparent); }
-.burger:focus-visible { outline: 2px solid var(--accent); }
-.burger svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
-.drawer { position: fixed; z-index: 40; top: var(--topbar); left: 0; bottom: 0; width: min(330px, 88vw); overflow-y: auto; padding: 14px 14px 40px;
-  background: var(--panel); border-right: 1px solid var(--line); box-shadow: 0 10px 40px rgb(0 0 0 / 0.18);
-  transform: translateX(-105%); transition: transform 0.22s ease; visibility: hidden; }
-.drawer.open { transform: none; visibility: visible; }
-.drawer-backdrop { position: fixed; inset: var(--topbar) 0 0 0; z-index: 35; background: rgb(0 0 0 / 0.28); opacity: 0; pointer-events: none; transition: opacity 0.2s; }
-.drawer-backdrop.open { opacity: 1; pointer-events: auto; }
-@media (prefers-reduced-motion: reduce) { .drawer, .drawer-backdrop { transition: none; } }
-.drawer ul, .home-chapters ul { list-style: none; padding: 0; margin: 0; }
-.drawer li a, .home-chapters li a { display: flex; align-items: center; gap: 8px; padding: 8px 8px; border-radius: 6px; text-decoration: none; color: var(--fg); font-size: 0.95rem; }
-.drawer li a.active { background: color-mix(in srgb, var(--accent) 14%, transparent); }
-.drawer li a.muted, .home-chapters li a.muted { color: var(--muted); }
-.home-chapters { margin-top: 24px; border: 1px solid var(--line); border-radius: 12px; padding: 6px 14px 12px; background: var(--panel); }
-.brand { font-weight: 700; text-decoration: none; color: var(--fg); display: block; margin-bottom: 14px; }
-.chapter-name { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); margin: 14px 0 4px; }
-.dot { width: 8px; height: 8px; border-radius: 50%; flex: none; background: var(--line); }
-.dot-draft { background: #f59e0b; } .dot-review { background: var(--accent); } .dot-complete { background: var(--ok); }
-
-.content { padding: 28px var(--gutter) 96px; width: 100%; }
-.lesson-head .crumbs { color: var(--muted); font-size: 0.88rem; }
-.lesson-head .sub { color: var(--muted); }
-.status { font-size: 0.75rem; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line); margin-left: 8px; }
-.status-review { border-color: var(--accent); color: var(--accent); }
-.lede { font-size: 1.08rem; }
-.placeholder { color: var(--muted); font-style: italic; }
-
-.src { display: inline-block; font-size: 0.78rem; font-weight: 600; color: var(--lecture); border: 1px solid color-mix(in srgb, var(--lecture) 40%, transparent); padding: 0 6px; border-radius: 4px; margin-left: 4px; white-space: nowrap; }
-.de .gloss { color: var(--muted); font-size: 0.9em; }
-
-.box { --c: var(--lecture); border-left: 4px solid var(--c); background: color-mix(in srgb, var(--c) var(--tint), var(--panel)); padding: 10px 16px; border-radius: 0 8px 8px 0; margin: 16px 0; }
-.box header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; margin-bottom: 4px; }
-.box-kind { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; color: var(--c); }
-.box-title { font-weight: 650; }
-.box-supplement { --c: var(--supplement); } .box-misconception { --c: var(--mis); } .box-review { --c: var(--review); }
-.box-key { --c: var(--key); } .box-intuition { --c: var(--intu); }
-.box-body > :first-child { margin-top: 0; } .box-body > :last-child { margin-bottom: 0; }
-
-.eq { display: flex; align-items: center; gap: 12px; overflow-x: auto; }
-.eq-body { flex: 1; min-width: 0; overflow-x: auto; } .eq-tag { color: var(--muted); }
 .tex-error { color: var(--bad); background: color-mix(in srgb, var(--bad) 10%, transparent); padding: 2px 4px; }
+b.bad { color: var(--bad); } b.ok { color: var(--ok); }
+.warn { color: var(--warn); }
+.tasks li { margin: 4px 0; }
 
-.derivation { border: 1px solid var(--line); border-radius: 8px; padding: 8px 14px; margin: 14px 0; background: var(--panel); }
-.derivation summary { cursor: pointer; font-weight: 600; }
-.steps li, .derivation li { margin: 6px 0; }
-
-.quiz { border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; margin: 14px 0; background: var(--panel); }
+/* quiz layout (quiz part) */
 .quiz-choices { list-style: none; padding: 0; display: grid; gap: 6px; }
-.quiz button, .tabs button, .numeric button { font: inherit; padding: 6px 12px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); cursor: pointer; text-align: left; }
 .quiz-choices button { width: 100%; }
-.quiz button.ok { border-color: var(--ok); } .quiz button.bad { border-color: var(--bad); }
-.quiz-feedback { margin-top: 8px; padding: 8px 12px; border-radius: 8px; background: color-mix(in srgb, var(--accent) var(--tint), var(--panel)); }
 .quiz-feedback.ok strong { color: var(--ok); } .quiz-feedback.bad strong { color: var(--bad); }
 .numeric { display: flex; gap: 8px; align-items: center; }
-.numeric input { font: inherit; width: 8em; padding: 5px 8px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); }
+.numeric input { font: inherit; width: 8em; padding: 5px 8px; }
 
-.explorer { margin: 16px 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--panel); }
-.tabs { display: flex; gap: 6px; padding: 10px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
-.tabs button.active { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); }
-.scene { position: relative; background: var(--scene-bg); touch-action: none; }
+/* explorer: tabs, 3D stage, side panel; fullscreen takes the screen (side panel right, or below in portrait) */
+.tabs { display: flex; gap: 2px; flex-wrap: wrap; }
+.scene { position: relative; touch-action: none; }
 .stage { position: relative; }
-.fs-btn { position: absolute; top: 8px; right: 8px; z-index: 3; width: 44px; height: 44px; display: grid; place-items: center; border-radius: 10px;
-  border: 1px solid #d5d9e0; background: rgb(255 255 255 / 0.88); color: #1c2230; cursor: pointer; box-shadow: 0 1px 4px rgb(0 0 0 / 0.12); }
-.fs-btn:hover { background: #fff; } .fs-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.fs-btn svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-/* fullscreen explorer: the 3D view takes the screen, sliders and readout in a side panel (bottom panel in portrait) */
+.fs-btn { position: absolute; z-index: 3; display: grid; place-items: center; }
+.fs-btn svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .explorer.is-full { position: fixed; inset: 0; z-index: 100; margin: 0; border: 0; border-radius: 0; display: grid;
   grid-template: "tabs side" auto "stage side" minmax(0, 1fr) / minmax(0, 1fr) min(360px, 36vw); }
 .explorer:fullscreen { width: 100vw; height: 100vh; }
@@ -110,33 +41,16 @@ html { scroll-padding-top: calc(var(--topbar) + 8px); }
   .explorer.is-full { grid-template: "tabs" auto "stage" minmax(0, 1fr) "side" auto / minmax(0, 1fr); }
   .explorer.is-full .side { border-left: 0; border-top: 1px solid var(--line); max-height: 42svh; }
 }
-.scene-hint { position: absolute; right: 10px; bottom: 6px; font-size: 0.72rem; color: var(--scene-fg); pointer-events: none; }
+.scene-hint { position: absolute; right: 10px; bottom: 6px; pointer-events: none; }
 
 .controls { padding: 10px 16px; display: grid; gap: 6px; }
 .slider { display: grid; grid-template-columns: 2em 1fr 4.5em; align-items: center; gap: 10px; }
-.slider .val { font-variant-numeric: tabular-nums; text-align: right; }
-.legend { list-style: none; padding: 0; margin: 0; display: flex; gap: 14px; flex-wrap: wrap; font-size: 0.86rem; }
+.slider .val { text-align: right; }
+.legend { list-style: none; padding: 0; margin: 0; display: flex; gap: 14px; flex-wrap: wrap; }
 .swatch { display: inline-block; width: 14px; height: 4px; border-radius: 2px; margin-right: 6px; vertical-align: middle; }
-.explorer figcaption { padding: 4px 16px 12px; }
-.readout th { text-align: left; font-weight: 600; padding-right: 14px; color: var(--muted); font-size: 0.9rem; }
-.warn { color: var(--mis); }
-.tasks li { margin: 4px 0; }
-
-.box details.more { margin-top: 8px; } .box details.more summary { cursor: pointer; color: var(--muted); font-size: 0.92rem; }
-b.bad { color: var(--bad); } b.ok { color: var(--ok); }
-
-@media (max-width: 820px) {
-  .content { padding: 18px 16px 60px; }
-}
+.readout th { text-align: left; padding-right: 14px; }
 .katex-display { overflow-x: auto; overflow-y: hidden; padding: 2px 0; position: relative; }
 .readout { display: block; overflow-x: auto; }
-.lang-toggle { display: inline-flex; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
-.lang-toggle button { font: inherit; font-size: 0.85rem; padding: 4px 12px; border: 0; background: var(--bg); color: var(--fg); cursor: pointer; }
-.lang-toggle button + button { border-left: 1px solid var(--line); }
-.lang-toggle button.active { background: var(--accent); color: var(--panel); font-weight: 600; }
-.lang-toggle button:focus-visible, .quiz button:focus-visible, .tabs button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.lesson-head .sub { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
-.lesson-head .sub .status { margin-left: 0; }
 
 /* ---- step-synchronised derivation animations ---- */
 .stepper { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 18px; align-items: start; margin: 10px 0 4px; }
@@ -188,35 +102,14 @@ b.bad { color: var(--bad); } b.ok { color: var(--ok); }
 .an-sq-x { fill: var(--c-x); fill-opacity: 0.16; stroke: var(--c-x); stroke-width: 1; }
 .an-sq-y { fill: var(--c-y); fill-opacity: 0.18; stroke: var(--c-y); stroke-width: 1; }
 .an-sq-rho { fill: var(--c-rho); fill-opacity: 0.1; stroke: var(--c-rho); stroke-width: 1; stroke-dasharray: 3 3; }
-.stepper-controls { display: flex; align-items: center; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
-.stepper-controls button { font: inherit; min-width: 44px; min-height: 44px; padding: 4px 12px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); cursor: pointer; }
-.stepper-controls button.primary { background: var(--accent); border-color: var(--accent); color: var(--panel); font-weight: 600; min-width: 7.5em; }
-.stepper-controls button:disabled { opacity: 0.4; cursor: default; }
-.stepper-controls button:focus-visible, .step-num:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.stepper-progress { display: flex; gap: 4px; flex: 1; min-width: 120px; }
-.stepper-progress span { flex: 1; height: 5px; border-radius: 3px; background: var(--line); overflow: hidden; }
-.stepper-progress i { display: block; height: 100%; background: var(--accent); }
-.stepper-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
-.stepper-steps li { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 8px; align-items: start; padding: 8px 10px 8px 6px; border-radius: 8px; border: 1px solid transparent; transition: background-color 0.25s, border-color 0.25s; }
-.stepper-steps li.active { background: color-mix(in srgb, var(--accent) var(--tint), var(--panel)); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
-.step-num { position: relative; width: 44px; height: 44px; padding: 0; border: 0; background: transparent; color: var(--fg); font: inherit; font-weight: 600; cursor: pointer; display: grid; place-items: center; }
-.step-num::before { content: ""; position: absolute; inset: 6px; border-radius: 50%; border: 1px solid var(--line); background: var(--bg); z-index: -1; }
-.step-num { z-index: 0; isolation: isolate; }
-.stepper-steps li.done .step-num::before { background: color-mix(in srgb, var(--accent) 18%, var(--panel)); }
-.stepper-steps li.active .step-num { color: var(--panel); }
-.stepper-steps li.active .step-num::before { background: var(--accent); border-color: var(--accent); }
-.step-text { padding-top: 11px; }
-.step-text > :first-child { margin-top: 0; } .step-text > :last-child { margin-bottom: 0; }
 @media (prefers-reduced-motion: reduce) { .stepper-steps li { transition: none; } }
 .nowrap { white-space: nowrap; }
 .motion-row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
-.motion-btn { font: inherit; min-height: 44px; padding: 4px 14px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); cursor: pointer; }
 .motion-note { color: var(--muted); font-size: 0.92rem; }
 .tasks details { margin-top: 4px; } .tasks summary { cursor: pointer; color: var(--muted); font-size: 0.92rem; }
 
 
 /* ---- vector figures (lesson vektoren) ---- */
-.vdemo { margin: 14px 0; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); padding: 10px 10px 12px; }
 .vdemo-fig { position: relative; container-type: inline-size; max-width: 520px; margin-inline: auto; }
 .vdemo-fig > svg { display: block; width: 100%; height: auto; touch-action: none; cursor: grab; }
 .vdemo-label { position: absolute; transform: translate(-50%, -50%); pointer-events: none; white-space: nowrap; font-size: clamp(13px, 4.2cqw, 19px); }
@@ -238,7 +131,6 @@ b.bad { color: var(--bad); } b.ok { color: var(--ok); }
 .v-result.neg { background: color-mix(in srgb, var(--bad) 12%, transparent); }
 .v-presets { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
 .v-presets button { font: inherit; min-width: 56px; min-height: 40px; padding: 2px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); cursor: pointer; }
-.v-presets button[aria-pressed="true"] { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); }
 .cross-demo figcaption, .explorer figcaption .v-result { margin-top: 4px; }
 .vdemo-note { margin: 8px 0 0; font-size: 0.95rem; }
 .slider.grow { flex: 1; grid-template-columns: 2em 1fr; }
@@ -344,19 +236,6 @@ b.bad { color: var(--bad); } b.ok { color: var(--ok); }
 
 .notes-overlay { position: absolute; inset: 0; z-index: 19; cursor: crosshair; background: color-mix(in srgb, #fde047 7%, transparent);
   outline: 2px dashed color-mix(in srgb, #d4a106 55%, transparent); outline-offset: -2px; border-radius: 8px; }
-.note-fab {
-  position: fixed; z-index: 25; right: max(18px, env(safe-area-inset-right)); bottom: max(18px, env(safe-area-inset-bottom));
-  display: flex; align-items: center; gap: 8px; height: 52px; padding: 0 18px 0 12px; border: 0; border-radius: 26px; cursor: pointer;
-  background: #fff176; color: #3d3322; font-family: inherit; font-size: 15px; font-weight: 600;
-  box-shadow: 0 2px 4px rgb(0 0 0 / 0.1), 0 10px 22px -8px rgb(0 0 0 / 0.4); transition: transform 0.15s, background 0.15s;
-}
-.note-fab:hover { transform: translateY(-2px) rotate(-1.5deg); }
-.note-fab:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
-.note-fab.active { background: var(--fg); color: var(--bg); }
-.note-fab svg { width: 28px; height: 28px; }
-.note-fab .fab-paper { fill: #ffe14d; stroke: #3d3322; stroke-width: 1.6; stroke-linejoin: round; }
-.note-fab .fab-fold { fill: #f5c400; stroke: #3d3322; stroke-width: 1.6; stroke-linejoin: round; }
-.note-fab .fab-plus, .note-fab .fab-x { fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; }
 .notes-hint {
   position: fixed; z-index: 26; left: 50%; bottom: max(84px, calc(env(safe-area-inset-bottom) + 84px)); transform: translateX(-50%);
   display: flex; align-items: center; gap: 12px; padding: 10px 10px 10px 16px; border-radius: 12px; width: max-content; max-width: calc(100vw - 32px);
@@ -437,23 +316,6 @@ b.bad { color: var(--bad); } b.ok { color: var(--ok); }
 .quiz-see { display: inline-block; margin-left: 6px; font-size: 0.9em; white-space: nowrap; }
 .quiz-part h2 { margin-top: 1.6em; }
 
-/* ==== Page layout: a readable text column, visuals break out to the full width ==========================
-   Prose (paragraphs, lists, boxes, headings) keeps a reading measure; figures, animations and explorers
-   use the whole content width (up to --wide), so on an iPad in landscape the visualisations get the room. */
-.lesson-head, .lesson { max-width: var(--wide); margin-inline: auto; }
-.lesson-head > *, .lesson > *, .lesson > .section > * { max-width: var(--measure); margin-inline: auto; }
-.lesson > :is(.section, figure, .stepper, .pair, .home-chapters),
-.lesson > .section > :is(figure, .stepper, .pair),
-.lesson > .derivation:has(.stepper, figure),
-.lesson > .section > .derivation:has(.stepper, figure),
-.lesson > .box:has(.stepper, figure.explorer),
-.lesson > .section > .box:has(.stepper, figure.explorer) { max-width: none; }
-/* a box that holds a figure keeps its text at the reading measure */
-.box:has(.stepper, figure.explorer) > .box-body > :is(p, ul, ol) { max-width: var(--measure); }
-@media (min-width: 1024px) {
-  body { font-size: 17px; }
-  .lede { font-size: 1.12rem; }
-}
 /* step-synchronised animations: big figure left, captions right; figure + controls always fit the screen */
 @media (min-width: 1024px) {
   .stepper { grid-template-columns: minmax(0, 1.55fr) minmax(19rem, 1fr); gap: 28px; }
@@ -482,52 +344,13 @@ b.bad { color: var(--bad); } b.ok { color: var(--ok); }
   .home-chapters { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); column-gap: 28px; }
 }
 /* previous / next lesson */
-.lesson-pager { max-width: var(--measure); margin: 56px auto 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.lesson-pager a { display: grid; gap: 2px; padding: 12px 16px; min-height: 64px; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); text-decoration: none; color: var(--fg); }
-.lesson-pager a:hover { border-color: var(--accent); }
-.lesson-pager a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.lesson-pager .pager-next { text-align: right; }
-.pager-dir { font-size: 0.8rem; color: var(--muted); }
-.pager-title { font-weight: 600; color: var(--accent); }
-@media (max-width: 520px) { .lesson-pager { grid-template-columns: 1fr; } }
-/* chapter list: page references; home page cards and «continue reading» */
-.li-title { flex: 1; min-width: 0; }
-.li-pages { flex: none; font-size: 0.78rem; color: var(--muted); font-variant-numeric: tabular-nums; }
-.home-chapters { border: 0; background: none; padding: 0; gap: 16px; }
-.home-chapters .chapter { border: 1px solid var(--line); border-radius: 12px; background: var(--panel); padding: 4px 12px 10px; margin-bottom: 16px; }
-@media (min-width: 900px) { .home-chapters .chapter { margin-bottom: 0; } }
-.resume { display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: 16px; margin: 22px auto 0; padding: 14px 18px; border-radius: 12px;
-  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent); background: color-mix(in srgb, var(--accent) var(--tint), var(--panel)); text-decoration: none; color: var(--fg); }
-.resume:hover { border-color: var(--accent); } .resume:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.resume-kind { grid-column: 1; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; color: var(--accent); }
-.resume-title { grid-column: 1; font-weight: 650; font-size: 1.1rem; }
-.resume-pages { grid-column: 2; grid-row: 1 / span 2; color: var(--muted); font-size: 0.9rem; }
-/* ---- controls: one consistent, touch-friendly look (≥ 44 px targets on the iPad) ---- */
-.v-presets button, .tabs button, .quiz button, .numeric button, .motion-btn { min-height: 44px; border-radius: 10px; transition: border-color 0.15s, background-color 0.15s; }
-.v-presets button:hover, .tabs button:hover, .quiz button:hover:not(:disabled), .numeric button:hover, .motion-btn:hover:not(:disabled), .stepper-controls button:hover:not(:disabled):not(.primary) { border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); }
-.v-presets button:focus-visible, .motion-btn:focus-visible, .numeric button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.motion-btn:disabled { opacity: 0.45; cursor: default; }
-.lang-toggle button { min-height: 36px; padding: 4px 14px; }
 .toggle { display: flex; align-items: center; gap: 10px; min-height: 40px; cursor: pointer; }
 .toggle input { width: 20px; height: 20px; margin: 0; flex: none; accent-color: var(--accent); cursor: pointer; }
-input[type="range"] { accent-color: var(--accent); min-height: 32px; margin: 0; cursor: pointer; }
 .numeric input { min-height: 44px; }
 /* 3D figures: reset-view button (top left; fullscreen sits top right); 3D steps keep the 4:3 frame of the 2D ones */
-.view-reset { position: absolute; top: 8px; left: 8px; z-index: 3; width: 44px; height: 44px; display: grid; place-items: center; border-radius: 10px;
-  border: 1px solid #d5d9e0; background: rgb(255 255 255 / 0.88); color: #1c2230; cursor: pointer; box-shadow: 0 1px 4px rgb(0 0 0 / 0.12); }
-.view-reset:hover { background: #fff; } .view-reset:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.view-reset svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .stepper-fig .scene { height: auto !important; aspect-ratio: 4 / 3; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
 @media (min-width: 1024px) { .stepper-fig .scene { max-width: calc((100svh - var(--topbar) - 104px) * 4 / 3); margin-inline: auto; } }
 @media (max-width: 860px) and (max-aspect-ratio: 4/5) { .stepper-fig .scene { max-width: calc((52svh - 70px) * 4 / 3); margin-inline: auto; } }
-/* print: the lesson text, formulas and current figure frames; no app chrome */
-@media print {
-  .topbar, .drawer, .drawer-backdrop, .note-fab, .notes-hint, .lesson-pager, .stepper-controls, .fs-btn, .view-reset, .scene-hint, .sticky { display: none !important; }
-  body { background: #fff; font-size: 11pt; } .content { padding: 0; }
-  .stepper { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important; } .stepper-fig { position: static !important; }
-  .box, figure, .stepper, .derivation { break-inside: avoid; }
-}
-/* ==== chapter 3b ==== (L10 Rollen, L11 Kreiselung, L12 allgemeine Bewegung) */
 .vdemo-label.halo { text-shadow: 0 0 2px var(--panel), 0 0 3px var(--panel), 0 0 4px var(--panel), 0 0 5px var(--panel); }
 .rl-mc-ring { fill: color-mix(in srgb, var(--c-angle) 12%, transparent); stroke: var(--c-angle); stroke-width: 2.4; }
 /* the two planes of the Kreiselung proof: E_M blue, E_N green (μ = E_M ∩ E_N is teal); stronger in dark mode */
@@ -595,16 +418,6 @@ input[type="range"] { accent-color: var(--accent); min-height: 32px; margin: 0; 
 .v-presets.za-left { justify-content: flex-start; }
 .v-result.za-gap { margin-top: 6px; }
 .za-muted { color: var(--muted); font-size: 0.88rem; }
-/* the note button shrinks to its icon while reading (it otherwise covers captions and read-outs) */
-.note-fab { transition: transform 0.15s, background 0.15s, width 0.2s, padding 0.2s; }
-.note-fab.compact { width: 48px; height: 48px; padding: 0; justify-content: center; border-radius: 50%; opacity: 0.92; }
-.note-fab.compact .note-fab-label { display: none; }
-.note-fab.compact:hover, .note-fab.compact:focus-visible { opacity: 1; }
-/* display formulas: boxes may be a little wider than prose on tablets (long lecture lines fit), and a
-   formula that still overflows shows a soft shadow at the edge where it continues (scroll cue) */
-@media (min-width: 1024px) {
-  .lesson > .box, .lesson > .section > .box, .lesson > .section > .derivation:not(:has(.stepper, figure)) { max-width: calc(var(--measure) + 10rem); }
-}
 .katex-display, .eq-body {
   background:
     linear-gradient(to right, var(--sbg, var(--bg)) 30%, transparent) left / 24px 100% no-repeat local,
@@ -612,7 +425,6 @@ input[type="range"] { accent-color: var(--accent); min-height: 32px; margin: 0; 
     radial-gradient(farthest-side at 0 50%, rgb(0 0 0 / 0.16), transparent) left / 10px 100% no-repeat scroll,
     radial-gradient(farthest-side at 100% 50%, rgb(0 0 0 / 0.16), transparent) right / 10px 100% no-repeat scroll;
 }
-.box { --sbg: color-mix(in srgb, var(--c) var(--tint), var(--panel)); }
 .eq-body .katex-display { background: none; }
 @media (max-width: 480px) { .katex-display { font-size: 0.93em; } }
 
@@ -826,12 +638,9 @@ span.w6-key.w6-c1 { border-color: var(--a-g); background: color-mix(in srgb, var
 .w6-trig th, .w6-trig td { border: 1px solid var(--line); padding: 4px 10px; text-align: center; }
 .w6-trig thead th { background: color-mix(in srgb, var(--a-f) 14%, transparent); }
 .w6-thin .pl-curve { stroke-width: 1.7; }
-.build-date { margin-top: 28px; font-size: 0.8rem; color: var(--muted); text-align: center; }
 
 /* ---- Short version (Kurz): keep lecture boxes, key points, formulas, figures and animations; drop explanatory prose.
    Anything that must stay carries the class `keep` (paragraphs/lists) or <Box keep>. <Long> hides the rest in code. ---- */
-.topbar .detail-toggle { margin-left: auto; flex: none; }
-.topbar .detail-toggle + .lang-toggle { margin-left: 0; }
 html[data-detail="short"] .lesson .lede,
 html[data-detail="short"] .lesson .quiz,
 html[data-detail="short"] .lesson .connections,
@@ -851,11 +660,6 @@ html[data-detail="short"] .lesson .section > h3:not(.keep),
 html[data-detail="short"] .lesson .section > :is(p, ul, ol):not(.keep),
 html[data-detail="short"] .lesson > :is(p, ul, ol):not(.keep),
 html[data-detail="short"] .lesson .derivation > div > :is(p, ul, ol):not(.keep) { display: none; }
-@media (max-width: 520px) {
-  .topbar { gap: 8px; }
-  .topbar .topbar-subject { display: none; }
-  .topbar .lang-toggle button { padding: 5px 9px; }
-}
 
 /* Fachwerk (Fig. 3.24) */
 .tr-bar { stroke: color-mix(in srgb, var(--muted) 78%, var(--fg)); stroke-width: 3.5; stroke-linecap: round; }
@@ -863,10 +667,10 @@ html[data-detail="short"] .lesson .derivation > div > :is(p, ul, ol):not(.keep) 
 .tr-roll { fill: var(--bg); stroke: var(--fg); stroke-width: 1.5; }
 
 /* Parallelogrammregel (Fig. 3.25) */
-.pg-fig { padding: 8px 12px 12px; } .pg-svg { width: 100%; max-width: 440px; height: auto; display: block; margin: 0 auto; }
-.pg-bar { stroke-width: 5; stroke-linecap: round; } .pg-a { stroke: var(--c-x); } .pg-b { stroke: var(--c-point); opacity: 0.85; }
-.pg-name { font-size: 14px; fill: var(--fg); font-weight: 600; }
-.pg-v1 line, .pg-v1 polygon { stroke: var(--c-point); fill: var(--c-point); stroke-width: 2.6; } .pg-v2 line, .pg-v2 polygon { stroke: var(--c-y); fill: var(--c-y); stroke-width: 2.6; }
-.pg-gap { stroke: var(--c-angle); stroke-width: 2.4; stroke-dasharray: 4 3; }
-.pg-key { font-size: 12px; } .pg-k1 { fill: var(--c-point); } .pg-k2 { fill: var(--c-y-text); }
-.pg-sl { display: grid; gap: 2px; max-width: 420px; margin: 4px auto; } .pg-btns { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0; justify-content: center; }
+.pgr-fig { padding: 8px 12px 12px; } .pgr-svg { width: 100%; max-width: 440px; height: auto; display: block; margin: 0 auto; }
+.pgr-bar { stroke-width: 5; stroke-linecap: round; } .pgr-a { stroke: var(--c-x); } .pgr-b { stroke: var(--c-point); opacity: 0.85; }
+.pgr-name { font-size: 14px; fill: var(--fg); font-weight: 600; }
+.pgr-v1 line, .pgr-v1 polygon { stroke: var(--c-point); fill: var(--c-point); stroke-width: 2.6; } .pgr-v2 line, .pgr-v2 polygon { stroke: var(--c-y); fill: var(--c-y); stroke-width: 2.6; }
+.pgr-gap { stroke: var(--c-angle); stroke-width: 2.4; stroke-dasharray: 4 3; }
+.pgr-key { font-size: 12px; } .pgr-k1 { fill: var(--c-point); } .pgr-k2 { fill: var(--c-y-text); }
+.pgr-sl { display: grid; gap: 2px; max-width: 420px; margin: 4px auto; } .pgr-btns { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0; justify-content: center; }

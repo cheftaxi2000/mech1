@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { CHAPTERS, SUBJECTS, TOPICS, chapterSubject, sourceLabel, topicSubject, type Subject } from '../content/curriculum';
 import { useTr } from '../i18n';
 import { AnaFigure, ChemFigure, InfoFigure, LaFigure, MechFigure } from './Figures';
@@ -20,62 +21,38 @@ export function Landing() {
   const chN = lessons('chem').length, chWeeks = Object.keys(CHAPTERS).filter((c) => chapterSubject(c) === 'chem').length;
   const infN = lessons('info').length, infWeeks = Object.keys(CHAPTERS).filter((c) => chapterSubject(c) === 'info').length;
   const anaN = lessons('ana').length, weeks = Object.keys(CHAPTERS).filter((c) => chapterSubject(c) === 'ana').length;
+  const rows: { s: Subject; fig: ReactNode; desc: [string, string]; meta: [string, string] }[] = [
+    { s: 'mech', fig: <MechFigure />, desc: ['Koordinaten, Geschwindigkeit und die Bewegung starrer Körper.', 'Coordinates, velocity and the motion of rigid bodies.'], meta: [`${mechN} Lektionen · Kurzfassung`, `${mechN} lessons · short version`] },
+    { s: 'ana', fig: <AnaFigure />, desc: ['Folgen, Grenzwerte, Ableitungen und komplexe Zahlen.', 'Sequences, limits, derivatives and complex numbers.'], meta: [`${weeks} Wochen · ${anaN} Lektionen`, `${weeks} weeks · ${anaN} lessons`] },
+    { s: 'la', fig: <LaFigure />, desc: ['Gleichungssysteme, Gauss-Verfahren und Matrizen als Transformationen.', 'Linear systems, Gaussian elimination and matrices as transformations.'], meta: [`${laWeeks} Wochen · ${laN} Lektionen`, `${laWeeks} weeks · ${laN} lessons`] },
+    { s: 'chem', fig: <ChemFigure />, desc: ['Atome, Gase, Energie und Entropie, bis zu den Orbitalen.', 'Atoms, gases, energy and entropy, up to orbitals.'], meta: [`${chWeeks} Wochen · ${chN} Lektionen`, `${chWeeks} weeks · ${chN} lessons`] },
+    { s: 'info', fig: <InfoFigure />, desc: ['C++ und was der Rechner dabei wirklich tut: Schritt für Schritt, mit Speicher und Ablauf vor Augen.', 'C++ and what the computer really does: step by step, with memory and execution in front of your eyes.'], meta: [`${infWeeks} Kapitel · ${infN} Lektionen`, `${infWeeks} chapters · ${infN} lessons`] },
+  ];
   return (
     <div className="landing">
       <header className="landing-head">
-        <div className="landing-eyebrow">ETH Zürich</div>
         <h1>Learning Lab</h1>
-        <p className="landing-sub">{tr('Wähle dein Fach.', 'Choose your subject.')}</p>
+        <p className="landing-sub">ETH Zürich · {tr('Wähle dein Fach.', 'Choose your subject.')}</p>
       </header>
-      <nav className="tiles" aria-label={tr('Fächer', 'Subjects')}>
-        <a className="tile tile-mech" href={`#${SUBJECT_ROUTE.mech}`}>
-          <div className="tile-fig"><MechFigure /></div>
-          <div className="tile-body">
-            <h2>{tr(...SUBJECTS.mech)}</h2>
-            <p>{tr('Koordinaten, Geschwindigkeit und die Bewegung starrer Körper.', 'Coordinates, velocity and the motion of rigid bodies.')}</p>
-            <div className="tile-foot"><span>{tr(`${mechN} Lektionen · Kurzfassung`, `${mechN} lessons · short version`)}</span><span className="tile-go">{tr('Öffnen', 'Open')}<i aria-hidden="true">›</i></span></div>
-          </div>
-        </a>
-        <a className="tile tile-ana" href={`#${SUBJECT_ROUTE.ana}`}>
-          <div className="tile-fig"><AnaFigure /></div>
-          <div className="tile-body">
-            <h2>{tr(...SUBJECTS.ana)}</h2>
-            <p>{tr('Folgen, Grenzwerte, Ableitungen und komplexe Zahlen.', 'Sequences, limits, derivatives and complex numbers.')}</p>
-            <div className="tile-foot"><span>{tr(`${weeks} Wochen · ${anaN} Lektionen`, `${weeks} weeks · ${anaN} lessons`)}</span><span className="tile-go">{tr('Öffnen', 'Open')}<i aria-hidden="true">›</i></span></div>
-          </div>
-        </a>
-        <a className="tile tile-la" href={`#${SUBJECT_ROUTE.la}`}>
-          <div className="tile-fig"><LaFigure /></div>
-          <div className="tile-body">
-            <h2>{tr(...SUBJECTS.la)}</h2>
-            <p>{tr('Gleichungssysteme, Gauss-Verfahren und Matrizen als Transformationen.', 'Linear systems, Gaussian elimination and matrices as transformations.')}</p>
-            <div className="tile-foot"><span>{tr(`${laWeeks} Wochen · ${laN} Lektionen`, `${laWeeks} weeks · ${laN} lessons`)}</span><span className="tile-go">{tr('Öffnen', 'Open')}<i aria-hidden="true">›</i></span></div>
-          </div>
-        </a>
-        <a className="tile tile-chem" href={`#${SUBJECT_ROUTE.chem}`}>
-          <div className="tile-fig"><ChemFigure /></div>
-          <div className="tile-body">
-            <h2>{tr(...SUBJECTS.chem)}</h2>
-            <p>{tr('Atome, Gase, Energie und Entropie, bis zu den Orbitalen.', 'Atoms, gases, energy and entropy, up to orbitals.')}</p>
-            <div className="tile-foot"><span>{tr(`${chWeeks} Wochen · ${chN} Lektionen`, `${chWeeks} weeks · ${chN} lessons`)}</span><span className="tile-go">{tr('Öffnen', 'Open')}<i aria-hidden="true">›</i></span></div>
-          </div>
-        </a>
-        <a className="tile tile-info" href={`#${SUBJECT_ROUTE.info}`}>
-          <div className="tile-fig"><InfoFigure /></div>
-          <div className="tile-body">
-            <h2>{tr(...SUBJECTS.info)}</h2>
-            <p>{tr('C++ und was der Rechner dabei wirklich tut: Schritt für Schritt, mit Speicher und Ablauf vor Augen.', 'C++ and what the computer really does: step by step, with memory and execution in front of your eyes.')}</p>
-            <div className="tile-foot"><span>{tr(`${infWeeks} Kapitel · ${infN} Lektionen`, `${infWeeks} chapters · ${infN} lessons`)}</span><span className="tile-go">{tr('Öffnen', 'Open')}<i aria-hidden="true">›</i></span></div>
-          </div>
-        </a>
-      </nav>
       {last && (
         <a className="resume" href={`#${last.id}`}>
-          <span className="resume-kind">{tr('Weiterlesen', 'Continue reading')} · {tr(...SUBJECTS[topicSubject(last)])}</span>
+          <span className="resume-kind">{tr('Weiterlesen', 'Continue reading')}</span>
           <span className="resume-title">{tr(...last.title)}</span>
-          <span className="resume-pages">{tr(sourceLabel(last)[0], sourceLabel(last)[1])} ›</span>
+          <span className="resume-pages">{tr(...SUBJECTS[topicSubject(last)])} · {tr(sourceLabel(last)[0], sourceLabel(last)[1])}</span>
         </a>
       )}
+      <nav className="tiles" aria-label={tr('Fächer', 'Subjects')}>
+        {rows.map((r) => (
+          <a key={r.s} className={`tile tile-${r.s}`} href={`#${SUBJECT_ROUTE[r.s]}`}>
+            <div className="tile-fig" aria-hidden="true">{r.fig}</div>
+            <div className="tile-body">
+              <h2>{tr(...SUBJECTS[r.s])}</h2>
+              <p>{tr(...r.desc)}</p>
+              <span className="tile-foot">{tr(...r.meta)}</span>
+            </div>
+          </a>
+        ))}
+      </nav>
       <p className="build-date">{tr('Stand', 'Version')}: {__BUILD_DATE__.split('-').reverse().join('.')}</p>
     </div>
   );

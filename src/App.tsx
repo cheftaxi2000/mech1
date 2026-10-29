@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState, type RefObject } from 'react';
 import { NotesLayer } from './notes/StickyNotes';
 import { NotesProvider, useNotes } from './notes/store';
 import { CHAPTERS, SUBJECTS, SUBJECT_SHORT, TOPICS, chapterSubject, sourceLabel, topicSubject, type Status, type Subject, type Topic } from './content/curriculum';
@@ -30,23 +30,95 @@ function TopicPage({ topic }: { topic: Topic }) {
   const lang = useLang(), tr = useTr();
   const wrapRef = useRef<HTMLDivElement>(null);
   const C = topic.component;
+  const [chNum, chName] = chapterParts(tr(...CHAPTERS[topic.chapter]));
   return (
-    <>
-      <header className="lesson-head">
-        <div className="crumbs">{tr(...SUBJECTS[topicSubject(topic)])} · {tr(...CHAPTERS[topic.chapter])} · {tr(sourceLabel(topic)[0], sourceLabel(topic)[1])}</div>
-        <h1>{tr(...topic.title)}</h1>
-        <div className="sub">
-          {lang === 'en' && <span lang="de"><em>{topic.title[0]}</em></span>}
-          <span className={`status status-${topic.status}`}>{tr(...STATUS_LABEL[topic.status])}</span>
+    <div className="lesson-layout">
+      <aside className="rail" aria-label={tr('In dieser Lektion', 'In this lesson')}>
+        <LessonOutline wrapRef={wrapRef} topicId={topic.id} />
+      </aside>
+      <div className="lesson-main">
+        <header className="lesson-head">
+          <div className="crumbs">
+            {chNum && <span className="crumb-ch">{/^\d+$/.test(chNum) ? tr(`Kapitel ${chNum}`, `Chapter ${chNum}`) : chNum}</span>}
+            <span className="crumb-name">{chName}</span>
+            <span className="crumb-src">{tr(sourceLabel(topic)[0], sourceLabel(topic)[1])}</span>
+          </div>
+          <h1>{tr(...topic.title)}</h1>
+          {(lang === 'en' || topic.status !== 'complete') && (
+            <div className="sub">
+              {lang === 'en' && <span lang="de" className="sub-de">{topic.title[0]}</span>}
+              {topic.status !== 'complete' && <span className={`status status-${topic.status}`}>{tr(...STATUS_LABEL[topic.status])}</span>}
+            </div>
+          )}
+        </header>
+        <div className="lesson-wrap" ref={wrapRef}>
+          {C ? <Suspense fallback={<p>{tr('Wird geladen …', 'Loading…')}</p>}><C /></Suspense>
+            : <p className="placeholder">{tr('Diese Lektion ist noch nicht geschrieben.', 'This lesson has not been written yet.')}</p>}
+          {C && <NotesLayer topic={topic.id} wrapRef={wrapRef} />}
         </div>
-      </header>
-      <div className="lesson-wrap" ref={wrapRef}>
-        {C ? <Suspense fallback={<p>{tr('Wird geladen …', 'Loading…')}</p>}><C /></Suspense>
-          : <p className="placeholder">{tr('Diese Lektion ist noch nicht geschrieben.', 'This lesson has not been written yet.')}</p>}
-        {C && <NotesLayer topic={topic.id} wrapRef={wrapRef} />}
+        <LessonPager topic={topic} />
       </div>
-      <LessonPager topic={topic} />
-    </>
+    </div>
+  );
+}
+
+/** "3 · Starrer Körper" → ["3", "Starrer Körper"]; names without a number stay whole. */
+const chapterParts = (s: string): [string, string] => { const i = s.indexOf(' · '); return i < 0 ? ['', s] : [s.slice(0, i), s.slice(i + 3)]; };
+
+interface OutlineItem { id: string; num: string; html: string }
+
+/**
+ * The sections of the open lesson, read from its rendered headings (so language and short version are always right),
+ * with the section being read marked. Shown as a rail beside the text on wide screens and at the top of the drawer.
+ */
+function LessonOutline({ wrapRef, topicId, onPick }: { wrapRef?: RefObject<HTMLDivElement | null>; topicId: string; onPick?: () => void }) {
+  const [items, setItems] = useState<OutlineItem[]>([]);
+  const [current, setCurrent] = useState('');
+  useEffect(() => {
+    const root = () => wrapRef?.current ?? document.querySelector('.lesson-wrap');
+    let raf = 0;
+    const read = () => {
+      const r = root();
+      if (!r) return;
+      const hs = [...r.querySelectorAll<HTMLElement>('article.lesson section.section > h2')].filter((h) => h.offsetParent !== null && h.parentElement?.id);
+      const next = hs.map((h) => ({ id: h.parentElement!.id, num: h.querySelector('.sec-num')?.textContent ?? '', html: (h.querySelector('.sec-title') ?? h).innerHTML }));
+      setItems((old) => (JSON.stringify(old) === JSON.stringify(next) ? old : next));
+    };
+    const schedule = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(read); };
+    read();
+    const mo = new MutationObserver(schedule);
+    const r = root();
+    if (r) mo.observe(r, { childList: true, subtree: true, characterData: true });
+    const det = new MutationObserver(schedule);
+    det.observe(document.documentElement, { attributes: true, attributeFilter: ['data-detail', 'lang'] });
+    return () => { mo.disconnect(); det.disconnect(); cancelAnimationFrame(raf); };
+  }, [wrapRef, topicId]);
+  useEffect(() => {
+    const on = () => {
+      let cur = '';
+      for (const it of items) {
+        const el = document.getElementById(it.id);
+        if (el && el.getBoundingClientRect().top < window.innerHeight * 0.3) cur = it.id;
+      }
+      setCurrent(cur);
+    };
+    on();
+    window.addEventListener('scroll', on, { passive: true });
+    return () => window.removeEventListener('scroll', on);
+  }, [items]);
+  if (items.length < 2) return null;
+  return (
+    <ol className="outline">
+      {items.map((it) => (
+        <li key={it.id}>
+          <a href={`#${topicId}`} aria-current={it.id === current ? 'location' : undefined}
+            onClick={(e) => { e.preventDefault(); document.getElementById(it.id)?.scrollIntoView({ block: 'start' }); onPick?.(); }}>
+            <span className="outline-num">{it.num}</span>
+            <span className="outline-title" dangerouslySetInnerHTML={{ __html: it.html }} />
+          </a>
+        </li>
+      ))}
+    </ol>
   );
 }
 
@@ -137,6 +209,7 @@ export function App() {
   const topic = TOPICS.find((t) => t.id === route);
   const subject: Subject | null = topic ? topicSubject(topic) : routeSubject(route);
   const [menu, setMenu] = useState(false);
+  const [tools, setTools] = useState(false);
   const forceEn = useForceEn();
   useEffect(() => { forceEn(subject === 'info'); }, [subject, forceEn]);
   useEffect(() => {
@@ -145,7 +218,7 @@ export function App() {
     window.addEventListener('keydown', key);
     return () => window.removeEventListener('keydown', key);
   }, [menu]);
-  useEffect(() => setMenu(false), [route]);
+  useEffect(() => { setMenu(false); setTools(false); }, [route]);
   useEffect(() => { if (topic) { try { localStorage.setItem(LAST_KEY, topic.id); } catch { /* not remembered; fine */ } } }, [topic]);
   useEffect(() => {
     if (subject) document.documentElement.dataset.subject = subject; else delete document.documentElement.dataset.subject;
@@ -162,12 +235,25 @@ export function App() {
         <a href="#" className="brand">Learning Lab</a>
         {subject && <a href={`#${SUBJECT_ROUTE[subject]}`} className="topbar-subject">{tr(...SUBJECTS[subject])}</a>}
         {topic && <span className="topbar-topic">{tr(...topic.title)}</span>}
-        {subject && <DetailToggle />}
-        {subject !== 'info' && <LangToggle />}
+        {/* language and reading depth; on a phone they fold behind one button so the bar keeps the lesson's name */}
+        <button type="button" className="tools-btn" onClick={() => setTools((o) => !o)} aria-expanded={tools} aria-controls="topbar-tools"
+          aria-label={tr('Ansicht', 'View')}>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10" /><circle cx="16" cy="7" r="2" /><circle cx="8" cy="17" r="2" /></svg>
+        </button>
+        <div id="topbar-tools" className={`topbar-tools${tools ? ' open' : ''}`}>
+          {subject && <DetailToggle />}
+          {subject !== 'info' && <LangToggle />}
+        </div>
         <ReadProgress route={route} />
       </header>
       <div className={`drawer-backdrop${menu ? ' open' : ''}`} onClick={() => setMenu(false)} aria-hidden="true" />
       <nav id="chapters" className={`drawer${menu ? ' open' : ''}`} aria-label={tr('Kapitel', 'Chapters')} inert={!menu}>
+        {topic && menu && (
+          <div className="drawer-outline">
+            <div className="chapter-name">{tr('In dieser Lektion', 'In this lesson')}</div>
+            <LessonOutline topicId={topic.id} onPick={() => setMenu(false)} />
+          </div>
+        )}
         <a className="drawer-all" href="#" onClick={() => setMenu(false)}>‹ {tr('Alle Fächer', 'All subjects')}</a>
         <div className="seg" role="group" aria-label={tr('Fach', 'Subject')}>
           {(Object.keys(SUBJECTS) as Subject[]).map((s) => (

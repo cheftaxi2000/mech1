@@ -33,7 +33,7 @@ test.describe('short version (Kurz)', () => {
       await page.waitForSelector('article.lesson');
       await page.waitForTimeout(400);
       const full = await count();
-      await page.getByRole('button', { name: 'Kurz' }).click();
+      await page.getByRole('button', { name: /^(Kurz|Short)$/ }).click(); // Informatik I is English only
       await page.waitForTimeout(200);
       const short = await count();
       expect(short.len).toBeLessThan(full.len * 0.8);

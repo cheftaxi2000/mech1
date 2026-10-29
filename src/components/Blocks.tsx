@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react';
-import { useLang, useTr } from '../i18n';
+import { Children, Fragment, isValidElement, type ReactNode } from 'react';
+import { T, useLang, useTr } from '../i18n';
 import { TOPICS, topicSubject } from '../content/curriculum';
 
 /**
@@ -63,11 +63,15 @@ export function Box({ kind, title, children, src, keep }: { kind: Kind; title?: 
   const label: [string, string] = kind === 'supplement' && topic && topicSubject(topic) !== 'mech' && topicSubject(topic) !== 'info'
     ? (topicSubject(topic) === 'la' || topicSubject(topic) === 'chem' ? ['Ergänzung – nicht in den Folien', 'Supplement – not in the slides'] : ['Ergänzung – nicht im Resümee', 'Supplement – not in the summary'])
     : LABEL[kind];
+  // a title that only repeats the label ("Key point" under "Key point") is not shown twice
+  const lang = useLang();
+  const shown = isValidElement<{ de: ReactNode; en: ReactNode }>(title) && title.type === T ? (lang === 'de' ? title.props.de : title.props.en) : title;
+  const echo = typeof shown === 'string' && shown.trim() === tr(...label);
   return (
     <aside className={`box box-${kind}${keep ? ' keep' : ''}`}>
       <header>
         <span className="box-kind">{tr(...label)}</span>
-        {title && <span className="box-title">{title}</span>}
+        {title && !echo && <span className="box-title">{title}</span>}
         {src}
       </header>
       <div className="box-body">{children}</div>
@@ -86,11 +90,35 @@ export function Derivation({ title, children, open = true }: { title: ReactNode;
   );
 }
 
+/**
+ * Splits a leading section number off a heading (`<T de="2. Titel" en="2. Title" />` or "2. Title") so it can be set
+ * apart typographically (it hangs in the margin on wide screens). Headings without a number are returned unchanged.
+ */
+const NUM = /^(\d+(?:\.\d+)*)\.?\s+/;
+function numbered(title: ReactNode): ReactNode {
+  const split = (x: unknown): [string, ReactNode] | null => {
+    if (typeof x === 'string') { const m = NUM.exec(x); return m ? [m[1], x.slice(m[0].length)] : null; }
+    if (isValidElement<{ children?: ReactNode }>(x) && x.type === Fragment) {
+      const kids = Children.toArray(x.props.children);
+      const head = typeof kids[0] === 'string' ? NUM.exec(kids[0]) : null;
+      return head ? [head[1], <>{(kids[0] as string).slice(head[0].length)}{kids.slice(1)}</>] : null;
+    }
+    return null;
+  };
+  if (isValidElement<{ de: ReactNode; en: ReactNode }>(title) && title.type === T) {
+    const a = split(title.props.de), b = split(title.props.en);
+    if (a && b && a[0] === b[0]) return <><span className="sec-num">{a[0]}</span><span className="sec-title"><T de={a[1]} en={b[1]} /></span></>;
+    return title;
+  }
+  const one = split(title);
+  return one ? <><span className="sec-num">{one[0]}</span><span className="sec-title">{one[1]}</span></> : title;
+}
+
 /** `long`: the whole section exists only in the full version. */
 export function Section({ id, title, children, long }: { id: string; title: ReactNode; children: ReactNode; long?: boolean }) {
   return (
     <section id={id} className={`section${long ? ' long-only' : ''}`}>
-      <h2>{title}</h2>
+      <h2>{numbered(title)}</h2>
       {children}
     </section>
   );

@@ -2,8 +2,9 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import 'katex/dist/katex.min.css';
 import './styles.css';
-import './design.css';
+import './roles.css';
 import './viz/info/info.css';
+import './theme.css';
 import { App } from './App';
 import { DetailProvider, LangProvider } from './i18n';
 

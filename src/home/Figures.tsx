@@ -1,18 +1,7 @@
-import { useEffect, useState } from 'react';
 
-/** True when the visitor asked for reduced motion: the figures then show one still frame. */
-export function useReducedMotion() {
-  const q = '(prefers-reduced-motion: reduce)';
-  const [r, setR] = useState(() => typeof window !== 'undefined' && window.matchMedia?.(q).matches);
-  useEffect(() => {
-    const m = window.matchMedia?.(q);
-    if (!m) return;
-    const on = () => setR(m.matches);
-    m.addEventListener('change', on);
-    return () => m.removeEventListener('change', on);
-  }, []);
-  return r;
-}
+/** The drawings on the course index are still pictures: motion there would only decorate (the lessons animate where it explains). */
+const STILL = true;
+
 
 /* ---------- Mechanik: a point circling the z-axis, with its foot point and the drop line ---------- */
 const O = { x: 142, y: 124 };
@@ -30,7 +19,7 @@ const f = (n: number) => n.toFixed(1);
 const ring = (h: number) => phis.map((p, i) => `${i ? 'L' : 'M'}${f(proj(p, h).x)} ${f(proj(p, h).y)}`).join(' ') + 'Z';
 
 export function MechFigure() {
-  const still = useReducedMotion();
+  const still = STILL;
   const M = phis.map((p) => proj(p, H)), F = phis.map((p) => proj(p, 0));
   const vals = (a: { x: number; y: number }[], k: 'x' | 'y') => a.map((p) => f(p[k])).join(';');
   const anim = (attr: string, values: string) => still ? null
@@ -93,7 +82,7 @@ const lp = (m: number[][], x: number, y: number) => ({ x: LO.x + LU * (m[0][0] *
 const lfmt = (pts: { x: number; y: number }[]) => pts.map((p) => `${f(p.x)},${f(p.y)}`).join(' ');
 
 export function LaFigure() {
-  const still = useReducedMotion();
+  const still = STILL;
   const frames = Array.from({ length: LN + 1 }, (_, k) => lm(k));
   const last = lm(Math.round(LN * 0.5)); // reduced motion: the transformed state
   const poly = (build: (m: number[][]) => { x: number; y: number }[]) => {
@@ -135,7 +124,7 @@ const orbit = (rx: number, ry: number, deg: number) => {
 const ORBITS = [orbit(94, 30, -24), orbit(94, 30, 36), orbit(94, 30, 96)];
 
 export function ChemFigure() {
-  const still = useReducedMotion();
+  const still = STILL;
   return (
     <svg className="fig fig-chem" viewBox="0 0 320 200" aria-hidden="true" focusable="false">
       {ORBITS.map((o, i) => <path key={i} className="fg-orbit" style={{ ['--i' as string]: i }} d={o.d} />)}
@@ -152,7 +141,7 @@ export function ChemFigure() {
 
 /** Informatik tile: a row of memory boxes, the instruction pointer hops from box to box, a register fills up. */
 export function InfoFigure() {
-  const still = useReducedMotion();
+  const still = STILL;
   const N = 7, W = 34, G = 7, X0 = (320 - (N * W + (N - 1) * G)) / 2;
   const x = (k: number) => X0 + k * (W + G);
   const path = [0, 1, 2, 3, 6, 7, 0]; // the hops of the box computer on the way through one subtraction

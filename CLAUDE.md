@@ -62,6 +62,7 @@ src/physics/      vec, coords, kinematics, rigid  (+ *.test.ts — the numeric s
 src/components/   Tex (KaTeX + lecture macros), Blocks (Box/Src/Derivation/De/Section), Quiz
 src/viz/          Scene (z-up r3f canvas), primitives (Arrow/Label/Curve/...), interactive figures (CoordinateExplorer, VectorFigures)
 src/lessons/      one file per topic, registered in src/content/curriculum.ts
+src/theme.css     the one design system (tokens, type, layout, shared components; D-031) — styles.css holds only physics colours + figure mechanics
 src/content/      curriculum registry, lint tests for lesson sources
 docs/             PLAN, PROGRESS, SOURCE_MAP, NOTATION, REVIEW_LOG, DECISIONS, SESSION_LOG
 e2e/              playwright specs

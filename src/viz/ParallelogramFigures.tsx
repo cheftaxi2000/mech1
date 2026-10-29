@@ -35,19 +35,19 @@ export function ParallelogramDemo() {
   
   const bar = (p: P2, q: P2, cls: string) => <line className={cls} x1={sv(p)[0]} y1={sv(p)[1]} x2={sv(q)[0]} y2={sv(q)[1]} />;
   return (
-    <figure className="vdemo pg-fig">
-      <svg viewBox="0 0 400 260" role="img" aria-label={tr('Parallelogramm mit zwei Wegen zur Geschwindigkeit von C', 'Parallelogram with two routes to the velocity of C')} className="pg-svg">
-        {bar(A, B, 'pg-bar pg-a')}{bar(D, C, 'pg-bar pg-a')}{bar(B, C, 'pg-bar pg-b')}{bar(A, D, 'pg-bar pg-b')}
+    <figure className="vdemo pgr-fig">
+      <svg viewBox="0 0 400 260" role="img" aria-label={tr('Parallelogramm mit zwei Wegen zur Geschwindigkeit von C', 'Parallelogram with two routes to the velocity of C')} className="pgr-svg">
+        {bar(A, B, 'pgr-bar pgr-a')}{bar(D, C, 'pgr-bar pgr-a')}{bar(B, C, 'pgr-bar pgr-b')}{bar(A, D, 'pgr-bar pgr-b')}
         {([['A', A, [-14, 14]], ['B', B, [10, 14]], ['C', C, [10, -8]], ['D', D, [-14, -8]]] as [string, P2, [number, number]][]).map(([n, p, o]) => (
-          <g key={n}><circle className="an-point" cx={sv(p)[0]} cy={sv(p)[1]} r={4.5} /><text className="pg-name" x={sv(p)[0] + o[0]} y={sv(p)[1] + o[1]}>{n}</text></g>
+          <g key={n}><circle className="an-point" cx={sv(p)[0]} cy={sv(p)[1]} r={4.5} /><text className="pgr-name" x={sv(p)[0] + o[0]} y={sv(p)[1] + o[1]}>{n}</text></g>
         ))}
-        <Arrow from={cC} to={tip(r.vC1)} cls="pg-v1" />
-        <Arrow from={cC} to={tip(r.vC2)} cls="pg-v2" />
-        {!closed && <line className="pg-gap" x1={tip(r.vC1)[0]} y1={tip(r.vC1)[1]} x2={tip(r.vC2)[0]} y2={tip(r.vC2)[1]} />}
-        <text className="pg-key pg-k1" x={cC[0] + 18} y={cC[1] + 40}>{tr('über B', 'via B')}</text>
-        <text className="pg-key pg-k2" x={cC[0] + 18} y={cC[1] + 56}>{tr('über D', 'via D')}</text>
+        <Arrow from={cC} to={tip(r.vC1)} cls="pgr-v1" />
+        <Arrow from={cC} to={tip(r.vC2)} cls="pgr-v2" />
+        {!closed && <line className="pgr-gap" x1={tip(r.vC1)[0]} y1={tip(r.vC1)[1]} x2={tip(r.vC2)[0]} y2={tip(r.vC2)[1]} />}
+        <text className="pgr-key pgr-k1" x={cC[0] + 18} y={cC[1] + 40}>{tr('über B', 'via B')}</text>
+        <text className="pgr-key pgr-k2" x={cC[0] + 18} y={cC[1] + 56}>{tr('über D', 'via D')}</text>
       </svg>
-      <div className="pg-sl">
+      <div className="pgr-sl">
         {names.map((n, i) => (
           <label key={i} className="slider">
             <span><M>{String.raw`\omega_${i + 1}`}</M></span>
@@ -56,7 +56,7 @@ export function ParallelogramDemo() {
           </label>
         ))}
       </div>
-      <div className="pg-btns">
+      <div className="pgr-btns">
         <button type="button" className="motion-btn" onClick={() => setW([1, 0.5, 1, 0.5])}>{tr('Gegenüberliegende gleich', 'Opposite bars equal')}</button>
         <button type="button" className="motion-btn" onClick={() => setW([1, 0.5, 0.5, 1])}>{tr('Zwei Stäbe vertauscht', 'Two bars swapped')}</button>
       </div>
