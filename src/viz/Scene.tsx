@@ -7,6 +7,8 @@ import type { ReactNode } from 'react';
 import { useTr } from '../i18n';
 
 const FOV = 38, REF_ASPECT = 1.25;
+/** Only automated browsers (e2e screenshots, review frames) need the drawing buffer kept; on a real iPad it costs memory and fill rate. */
+const AUTOMATED = typeof navigator !== 'undefined' && navigator.webdriver === true;
 /** On narrow (portrait) canvases widen the vertical field of view so the horizontal extent stays the same. */
 function FitWidth() {
   const { camera, size, invalidate } = useThree();
@@ -51,7 +53,7 @@ export function Scene({ children, height = 420, camera = [5.7, -5.7, 4.1], targe
       <Canvas
         frameloop="demand"
         camera={{ position: camera, up: [0, 0, 1], fov: FOV }}
-        gl={{ preserveDrawingBuffer: true, antialias: true }}
+        gl={{ preserveDrawingBuffer: AUTOMATED, antialias: true }}
       >
         <FitWidth />
         <TouchPolicy full={full} />

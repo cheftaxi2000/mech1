@@ -114,7 +114,7 @@ export function dispScene(m: string, c: string, lang: Lang): Scene {
   const cationTex = (x: typeof A) => String.raw`\mathrm{${x.symbol}}^{${x.z === 1 ? '' : x.z}+}`;
   for (const side of [0, 1]) {
     const x0 = 14 + side * 196;
-    beaker(sb, x0, 40, x0 + 176, 236, 62);
+    beaker(sb, x0, 40, x0 + 176, 236, 62, 1, String(side));
     sb.shape({ key: `strip${side}`, kind: 'polygon', cls: 'cs-strip', pts: rect(x0 + 24, 50, x0 + 52, 224) });
     sb.label(`strip${side}-l`, [x0 + 38, 252], String.raw`\mathrm{${A.symbol}}(${A.liquid ? 'l' : 's'})`, INK.fg, 1);
     // ions in solution: before = cations of B; after = cations of A (if the reaction takes place) or the same as before

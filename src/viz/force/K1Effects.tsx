@@ -1,24 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { M } from '../../components/Tex';
 import { fmtNum, useLang, useTr } from '../../i18n';
-import { useReducedMotion } from '../figUtils';
+import { useInView, useReducedMotion } from '../figUtils';
 import { Arrow, KLabel, t, type V } from './kfKit';
 
 const VB: [number, number, number, number] = [0, 0, 300, 150];
 const PERIOD = 2.6; // seconds of one run of the trolley
 
 /** Seconds into the current run (0 … PERIOD), looping; frozen at the end of a run under reduced motion. */
-function useRun(active: boolean): number {
+function useRun(active: boolean, seen: boolean): number {
   const reduced = useReducedMotion();
   const [s, setS] = useState(0);
   useEffect(() => {
-    if (!active || reduced) { setS(0); return; }
+    if (!active || reduced || !seen) { setS(0); return; }
     let raf = 0;
     const t0 = performance.now();
     const tick = (now: number) => { setS(((now - t0) / 1000) % (PERIOD + 0.5)); raf = requestAnimationFrame(tick); };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [active, reduced]);
+  }, [active, reduced, seen]);
   return reduced && active ? PERIOD * 0.8 : Math.min(s, PERIOD);
 }
 
@@ -32,7 +32,8 @@ export function K1Effects() {
   const [fl, setFl] = useState(6), [fr, setFr] = useState(0);
   const [sq, setSq] = useState(6);
   const net = fl - fr;
-  const run = useRun(net !== 0);
+  const host = useRef<HTMLElement>(null);
+  const run = useRun(net !== 0, useInView(host));
   const dir = Math.sign(net);
   const off = dir * Math.min(50, 2.4 * Math.abs(net) * run * run);
   const speed = dir * Math.min(62, 6.5 * Math.abs(net) * run);
@@ -47,7 +48,7 @@ export function K1Effects() {
   const pores: V[] = [[0.2, 0.3], [0.55, 0.22], [0.78, 0.5], [0.35, 0.65], [0.62, 0.74], [0.15, 0.7], [0.85, 0.2], [0.45, 0.45]];
 
   return (
-    <figure className="vdemo kf-wide">
+    <figure className="vdemo kf-wide" ref={host}>
       <div className="kf-pair">
         <div className="kf-panel">
           <div className="vdemo-fig">

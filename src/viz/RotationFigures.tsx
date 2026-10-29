@@ -9,7 +9,7 @@ import { DOOR, FOOT, doorFrame, doorPoint, footNumbers } from './rotGeom';
 import { Scene } from './Scene';
 import { Arrow, C, Curve, Dashed, Dot, Label } from './primitives';
 import { FullscreenButton, useFullscreen } from './useFullscreen';
-import { at } from './figUtils';
+import { at, useInView } from './figUtils';
 
 const t = String.raw;
 type V = [number, number];
@@ -60,6 +60,7 @@ function DoorBody({ beta, phi }: { beta: number; phi: number }) {
 export function RotationExplorer() {
   const tr = useTr(), lang = useLang();
   const [ref, full, toggleFull] = useFullscreen();
+  const seen = useInView(ref);
   const [w, setW] = useState(0.8);
   const [phi, setPhi] = useState(60 * DEG);
   const [tilt, setTilt] = useState(0);
@@ -68,12 +69,12 @@ export function RotationExplorer() {
   const [angles, setAngles] = useState(true);
   const [vel, setVel] = useState(false);
   useEffect(() => {
-    if (!play) return;
+    if (!play || !seen) return;
     let raf = 0, last = performance.now();
     const tick = (now: number) => { const dt = Math.min(now - last, 100) / 1000; last = now; setPhi((p) => p + w * dt); raf = requestAnimationFrame(tick); };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [play, w]);
+  }, [play, w, seen]);
   const beta = tilt * DEG;
   const { e } = doorFrame(beta);
   const omega = scale(w, e);

@@ -149,3 +149,6 @@ Offen: Polybox-Links nicht erreichbar; Übungen 2–4 handschriftlich (nur Bild)
 | i-bitfolgen | infln07 pp. 123–127 | draft | All bit strings: decision tree drawn from the run, copy vs. single string by reference; bitset equality tested with g++. |
 | i-strategien | infln07 pp. 127–131 | draft | Decrease/divide and conquer for the sum, recursion depth `DepthCompare` (n+1 vs ⌈log₂ n⌉+1 tested with the interpreter). |
 | i-fibonacci | infln07 pp. 131–133 | draft | fib call counts (`FibGrowth`, coloured call tree), iterative version, int overflow at F47 (g++); I-014, I-015. |
+
+## Visualisation upgrade 2026-10-29 (D-032)
+New figures: ladder polodes (ebene-bewegung), Euler circle with cos/sin graphs (ana-komplex), circular motion in components (kreisbewegung §4). Fixes: figure toggle layout, ch-redox DOM nesting/keys, iPad GL buffer. No new dependency. The three lessons keep their status (`complete` kreisbewegung stays signed off — the student should glance at the new §4 figure; ebene-bewegung `review`; ana-komplex `review`).

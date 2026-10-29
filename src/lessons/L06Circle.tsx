@@ -4,6 +4,7 @@ import { T, useTr } from '../i18n';
 import { StepPlayer } from '../viz/anim/StepPlayer';
 import { CircleAnim } from '../viz/anim/CircleAnim';
 import { RotationField } from '../viz/CircleFigures';
+import { CircleComponents } from '../viz/CircleComponents';
 
 const t = String.raw;
 
@@ -142,6 +143,7 @@ export default function L06Circle() {
             <p>The lecture slide (L5) does the same calculation in the cylindrical basis: <M p=".">{t`(0, 0, \dot\varphi)\times(R, 0, z_0) = (0, \dot\varphi R, 0) = \dot\varphi R\,\v e_\varphi`}</M> That is allowed because <M>{t`\v e_\rho, \v e_\varphi, \v e_z`}</M> is also a right-handed system of unit vectors.</p>
           </>}
         />
+        <CircleComponents />
       </Section>
 
       {/* ------------------------------------------------------------------ 5 */}

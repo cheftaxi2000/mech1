@@ -88,7 +88,7 @@ button, input, select, textarea { font-family: var(--sans); }
 code, kbd, samp, pre { font-family: var(--mono); }
 
 p, li { text-wrap: pretty; }
-.lesson-wrap p, .lesson-wrap li { hyphens: auto; -webkit-hyphens: auto; }
+.lesson-wrap p, .lesson-wrap .para, .lesson-wrap li { hyphens: auto; -webkit-hyphens: auto; }
 strong, b { font-weight: 620; }
 em { font-style: italic; }
 
@@ -233,11 +233,11 @@ a:hover { text-decoration-color: var(--ui); text-decoration-thickness: 2px; }
 .lesson > .section > .derivation:has(.stepper, figure),
 .lesson > .box:has(.stepper, figure.explorer),
 .lesson > .section > .box:has(.stepper, figure.explorer) { max-width: none; }
-.box:has(.stepper, figure.explorer) > .box-body > :is(p, ul, ol) { max-width: var(--measure); }
+.box:has(.stepper, figure.explorer) > .box-body > :is(p, .para, ul, ol) { max-width: var(--measure); }
 /* lecture boxes may run a little wider, so long lines of the Skript fit; their prose keeps the measure */
 @media (min-width: 1100px) {
   .lesson > .section > :is(.box-lecture, .box-uebung), .lesson > :is(.box-lecture, .box-uebung) { max-width: calc(var(--measure) + 7rem); }
-  :is(.box-lecture, .box-uebung) > .box-body > :is(p, ul, ol) { max-width: calc(var(--measure) - 1.25rem); }
+  :is(.box-lecture, .box-uebung) > .box-body > :is(p, .para, ul, ol) { max-width: calc(var(--measure) - 1.25rem); }
 }
 @media (max-width: 820px) { .content { padding-top: 28px; } }
 

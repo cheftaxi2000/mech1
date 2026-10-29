@@ -11,7 +11,7 @@ const DEG = Math.PI / 180;
 const t = String.raw;
 
 export { at, useReducedMotion } from './figUtils';
-import { at } from './figUtils';
+import { at, useInView } from './figUtils';
 
 /** SVG arc around O from angle a0 to a1 (radians, counter-clockwise, y up), radius r. */
 function arcPath(a0: number, a1: number, r: number) {
@@ -220,10 +220,12 @@ export const PV_TARGET: [number, number, number] = [0.8, 0.45, 0.85];
 export function PositionVectorFigure() {
   const tr = useTr(), lang = useLang();
   const [s, setS] = useState(PV_T0);
+  const host = useRef<HTMLElement>(null);
+  const seen = useInView(host);
   const [play, setPlay] = useState(false);
   const [parts, setParts] = useState(true);
   useEffect(() => {
-    if (!play) return;
+    if (!play || !seen) return;
     let raf = 0, last = performance.now();
     const tick = (now: number) => {
       const dt = Math.min(now - last, 100) / 1000; last = now;
@@ -232,12 +234,12 @@ export function PositionVectorFigure() {
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [play]);
+  }, [play, seen]);
   const r = pvMotion(s);
   const X: Vec3 = [r[0], 0, 0], XY: Vec3 = [r[0], r[1], 0];
   const f = (x: number) => fmtNum(x, 2, lang, true);
   return (
-    <figure className="explorer">
+    <figure className="explorer" ref={host}>
       <Scene height={400} camera={PV_CAMERA} target={PV_TARGET}>
         <Line points={[[0, 0, 0], [2.3, 0, 0]]} color={C.axis} lineWidth={1} />
         <Line points={[[0, 0, 0], [0, 1.9, 0]]} color={C.axis} lineWidth={1} />

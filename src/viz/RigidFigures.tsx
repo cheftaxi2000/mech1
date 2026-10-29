@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { M } from '../components/Tex';
 import { fmtNum, useLang, useTr } from '../i18n';
-import { at } from './figUtils';
+import { at, useInView } from './figUtils';
 
 const t = String.raw;
 type V = [number, number];
@@ -122,12 +122,14 @@ export function ladderFrame(alDeg: number) {
  * (the notes: the ladder moves up). The SdpG along AB gives v_V = v_H cot α. "Move the ladder" lets α grow.
  */
 export function LadderDemo() {
+  const host = useRef<HTMLElement>(null);
+  const seen = useInView(host);
   const tr = useTr(), lang = useLang();
   const [al, setAl] = useState(35);
   const [play, setPlay] = useState(false);
   const alRef = useRef(al); alRef.current = al;
   useEffect(() => {
-    if (!play) return;
+    if (!play || !seen) return;
     let raf = 0, last = performance.now();
     const tick = (now: number) => {
       const dt = Math.min(now - last, 100) / 1000; last = now;
@@ -139,12 +141,12 @@ export function LadderDemo() {
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [play]);
+  }, [play, seen]);
   const { a, A, B, u, vv, tipA, tipB, footA, footB, projA, projB, off } = ladderFrame(al);
   const f = (x: number) => fmtNum(x, 2, lang, true);
   const ln = (p: [V, V], cls: string) => <line x1={p[0][0]} y1={p[0][1]} x2={p[1][0]} y2={p[1][1]} className={cls} />;
   return (
-    <figure className="vdemo">
+    <figure className="vdemo" ref={host}>
       <div className="vdemo-fig wide">
         <svg viewBox={VB2.join(' ')} aria-label={tr('Gleitende Leiter', 'Sliding ladder')}>
           <line x1={20} y1={FLOOR} x2={WALL + 10} y2={FLOOR} className="ld-ground" />

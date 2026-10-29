@@ -11,6 +11,7 @@ import { FullscreenButton, useFullscreen } from './useFullscreen';
 import { at, combo } from './VectorFigures';
 import { PSI_COLOR } from './CoordinateExplorer';
 import { useFigureHeight } from './useNarrow';
+import { useInView } from './figUtils';
 
 const t = String.raw;
 
@@ -90,12 +91,13 @@ export function PathVelocity({ r, v: vel, T, t0, camera, target, note, axes = 2.
 }) {
   const tr = useTr(), lang = useLang();
   const [ref, full, toggleFull] = useFullscreen();
+  const seen = useInView(ref);
   const h = useFigureHeight(400, 330);
   const [time, setTime] = useState(t0);
   const [play, setPlay] = useState(false);
   const [parts, setParts] = useState(true);
   useEffect(() => {
-    if (!play) return;
+    if (!play || !seen) return;
     let raf = 0, last = performance.now();
     const tick = (now: number) => {
       const dt = Math.min(now - last, 100) / 1000; last = now;
@@ -104,7 +106,7 @@ export function PathVelocity({ r, v: vel, T, t0, camera, target, note, axes = 2.
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [play, T]);
+  }, [play, T, seen]);
   const p = r(time), v = vel(time), sdot = norm(v);
   const a1 = add(p, [arrow * v[0], 0, 0]), a2 = add(a1, [0, arrow * v[1], 0]), tip = add(p, scale(arrow, v));
   const tau = scale(1 / sdot, v);
@@ -196,6 +198,7 @@ const AHEAD = 6, BEHIND = 2.5; // seconds of the trajectory drawn ahead of / beh
 export function CurvilinearVelocity() {
   const tr = useTr(), lang = useLang();
   const [ref, full, toggleFull] = useFullscreen();
+  const seen = useInView(ref);
   const h = useFigureHeight(400, 330);
   const [mode, setMode] = useState<CMode>('cyl');
   const [rates, setRates] = useState<Q>(defaultRates('cyl'));
@@ -208,7 +211,7 @@ export function CurvilinearVelocity() {
   const live = useRef({ mode, rates, q0 }); live.current = { mode, rates, q0 };
 
   useEffect(() => {
-    if (!play) return;
+    if (!play || !seen) return;
     let raf = 0, last = performance.now();
     const tick = (now: number) => {
       const dt = Math.min(now - last, 100) / 1000; last = now;
@@ -223,7 +226,7 @@ export function CurvilinearVelocity() {
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [play]);
+  }, [play, seen]);
 
   const q = qAt(q0, rates, time);
   const reset = (m: CMode, keepRates = false) => {
