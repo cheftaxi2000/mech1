@@ -31,25 +31,19 @@ export function Landing() {
   return (
     <div className="landing">
       <header className="landing-head">
-        <span className="landing-place">ETH Zürich</span>
-        <h1>Learning Lab</h1>
-        <p className="landing-sub">{tr('Begleiter zu den Vorlesungen des ersten Semesters: jede Seite des Skripts erklärt, gezeichnet und zum Ausprobieren.', 'Companions to the first-semester lectures: every page of the notes explained, drawn and ready to try.')}</p>
+                <h1>Learning Lab</h1>
+        <p className="landing-sub">D-MAVT · {tr('1. Semester', '1st semester')}</p>
       </header>
       {last && (
         <a className="resume" href={`#${last.id}`}>
-          <span className="resume-kind">{tr('Weiterlesen', 'Continue reading')}</span>
           <span className="resume-title">{tr(...last.title)}</span>
-          <span className="resume-pages">{tr(...SUBJECTS[topicSubject(last)])}, {tr(sourceLabel(last)[0], sourceLabel(last)[1])}</span>
         </a>
       )}
       <nav className="tiles" aria-label={tr('Fächer', 'Subjects')}>
         {rows.map((r) => (
           <a key={r.s} className={`tile tile-${r.s}`} href={`#${SUBJECT_ROUTE[r.s]}`}>
-            <div className="tile-fig" aria-hidden="true">{r.fig}</div>
             <div className="tile-body">
               <h2>{tr(...SUBJECTS[r.s])}</h2>
-              <p>{tr(...r.desc).split('C++').flatMap((part, i) => (i ? [<span key={i} className="cpp">C++</span>, part] : [part]))}</p>
-              <span className="tile-foot">{tr(...r.meta)}</span>
             </div>
           </a>
         ))}

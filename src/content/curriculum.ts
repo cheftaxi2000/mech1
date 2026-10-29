@@ -14,7 +14,7 @@ export type Status = 'planned' | 'draft' | 'review' | 'complete';
 export type Subject = 'mech' | 'ana' | 'la' | 'chem' | 'info';
 export const SUBJECTS: Record<Subject, [string, string]> = {
   mech: ['Mechanik I', 'Mechanics 1'],
-  ana: ['Analysis 1', 'Analysis 1'],
+  ana: ['Analysis I', 'Analysis I'],
   la: ['Lineare Algebra I', 'Linear Algebra 1'],
   chem: ['Chemie', 'Chemistry'],
   info: ['Informatik I', 'Computer Science 1'],

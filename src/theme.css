@@ -460,7 +460,7 @@ pre.code, pre.code.sc-code { border-radius: 0; }
 .resume-pages { display: block; margin-top: 4px; font-family: var(--sans); font-size: 0.9375rem; color: var(--muted); }
 .resume:hover .resume-title { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.18em; }
 .tiles { display: grid; gap: 0; }
-.tile { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) 15rem; gap: 0 40px; align-items: center; padding: 1.4rem 0 2.2rem;
+.tile { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); gap: 0 40px; align-items: center; padding: 1.4rem 0 2.2rem;
   border-top: 2px solid var(--ink); color: var(--ink); text-decoration: none; background: none; border-radius: 0; }
 .tile-fig { order: 2; aspect-ratio: 16 / 10; display: grid; place-items: center; padding: 0; background: none; border: 0; border-radius: 0; }
 .tile-fig .fig { width: 100%; height: 100%; display: block; overflow: visible; }
@@ -480,7 +480,7 @@ pre.code, pre.code.sc-code { border-radius: 0; }
 .landing-place { display: block; font-family: var(--sans); font-size: 0.9375rem; font-weight: 600; line-height: 1.35; color: var(--ink); margin-bottom: 10px; }
 @media (min-width: 1400px) { .landing-place { top: 0.7rem; margin: 0; } }
 @media (max-width: 700px) {
-  .tile { grid-template-columns: minmax(0, 1fr) 7rem; gap: 0 18px; align-items: start; padding: 1.1rem 0 1.6rem; }
+  .tile { grid-template-columns: minmax(0, 1fr); gap: 0 18px; align-items: start; padding: 1.1rem 0 1.6rem; }
   .tile p { font-size: 1em; }
 }
 
