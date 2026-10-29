@@ -84,7 +84,7 @@ export function Derivation({ title, children, open = true }: { title: ReactNode;
   const tr = useTr();
   return (
     <details className="derivation" open={open}>
-      <summary>{tr('Herleitung', 'Derivation')}: {title}</summary>
+      <summary><span className="drv-kind">{tr('Herleitung', 'Derivation')}</span><span className="drv-title">{title}</span></summary>
       <div>{children}</div>
     </details>
   );

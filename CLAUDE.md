@@ -52,7 +52,7 @@ npm run build:artifact  # build for publishing (see below)
 ```
 
 **Where the student sees it:** the website https://cheftaxi2000.github.io/mech1/ (GitHub Pages, deployed automatically from `main` by `.github/workflows/pages.yml`, D-019) and the private artifact https://claude.ai/artifact/NKD6xQuLjVjgiubQrXyvy4. After changing lessons, run `npm run build:artifact` and republish to that same URL (details: `docs/DECISIONS.md` D-008). The page declares `capabilities: {db: {}, user: {}}` for the student's sticky notes (D-016) — omit `capabilities` on redeploys to keep it; never pass `{}` (that would revoke the notes' storage).
-In the cloud container, e2e needs `CHROMIUM_PATH=/opt/pw-browsers/chromium-1194/chrome-linux/chrome`.
+In the cloud container, e2e needs `CHROMIUM_PATH=/opt/pw-browsers/chromium`.
 E2E writes screenshots to `test-results/screens/` — **look at them** after changing a visual; passing tests do not prove a figure is right.
 
 ## Layout
@@ -62,7 +62,7 @@ src/physics/      vec, coords, kinematics, rigid  (+ *.test.ts — the numeric s
 src/components/   Tex (KaTeX + lecture macros), Blocks (Box/Src/Derivation/De/Section), Quiz
 src/viz/          Scene (z-up r3f canvas), primitives (Arrow/Label/Curve/...), interactive figures (CoordinateExplorer, VectorFigures)
 src/lessons/      one file per topic, registered in src/content/curriculum.ts
-src/theme.css     the one design system (tokens, type, layout, shared components; D-031) — styles.css holds only physics colours + figure mechanics
+src/theme.css     the one design system (tokens, type, margin-column layout, shared components; D-032, spec in DESIGN.md) — styles.css holds only physics colours + figure mechanics
 src/content/      curriculum registry, lint tests for lesson sources
 docs/             PLAN, PROGRESS, SOURCE_MAP, NOTATION, REVIEW_LOG, DECISIONS, SESSION_LOG
 e2e/              playwright specs

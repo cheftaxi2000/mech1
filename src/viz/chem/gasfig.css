@@ -13,7 +13,7 @@
 .gb-n2 circle { fill: var(--ch-s); stroke: color-mix(in srgb, var(--fg) 30%, transparent); stroke-width: 0.8; }
 .gb-n2:not(g) { fill: var(--ch-s); }
 .gb-vlab { font-size: clamp(13px, 4cqw, 19px); color: var(--ch-v-t); }
-.gb-legend { position: absolute; right: 6px; top: 4px; margin: 0; padding: 4px 8px; list-style: none; display: flex; gap: 12px; align-items: center; font-size: 0.9rem; background: color-mix(in srgb, var(--panel) 85%, transparent); border-radius: 8px; }
+.gb-legend { position: absolute; right: 6px; top: 4px; margin: 0; padding: 4px 8px; list-style: none; display: flex; gap: 12px; align-items: center; font-size: 0.9rem; background: color-mix(in srgb, var(--panel) 85%, transparent); border-radius: 0; }
 .gb-legend li { display: flex; gap: 5px; align-items: center; }
 .gb-body { display: grid; gap: 10px; margin-top: 8px; }
 .gb-controls { display: grid; gap: 4px; }
@@ -24,10 +24,10 @@
 .gb-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
 .gb-cp { color: var(--ch-p-t); }
 .gb-gauge { margin-top: 2px; }
-.gb-track { position: relative; height: 16px; border-radius: 8px; background: var(--fill-2, color-mix(in srgb, var(--fg) 8%, transparent)); overflow: visible; }
-.gb-track i { position: absolute; top: 0; bottom: 0; border-radius: 8px; transition: width 0.18s linear, left 0.18s linear; }
-.gb-track .gb-fill-p { background: var(--ch-p); } .gb-track .gb-fill-he { background: var(--ch-e); border-radius: 8px 0 0 8px; } .gb-track .gb-fill-n2 { background: var(--ch-s); border-radius: 0 8px 8px 0; }
-.gb-tick { position: absolute; top: -4px; bottom: -4px; width: 3px; margin-left: -1.5px; background: var(--fg); border-radius: 2px; }
+.gb-track { position: relative; height: 16px; border-radius: 0; background: var(--fill-2, color-mix(in srgb, var(--fg) 8%, transparent)); overflow: visible; }
+.gb-track i { position: absolute; top: 0; bottom: 0; border-radius: 0; transition: width 0.18s linear, left 0.18s linear; }
+.gb-track .gb-fill-p { background: var(--ch-p); } .gb-track .gb-fill-he { background: var(--ch-e); border-radius: 0; } .gb-track .gb-fill-n2 { background: var(--ch-s); border-radius: 0; }
+.gb-tick { position: absolute; top: -4px; bottom: -4px; width: 3px; margin-left: -1.5px; background: var(--fg); border-radius: 0; }
 .gb-scale { display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--muted); margin-top: 3px; }
 .gb-foot { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; justify-content: space-between; margin-top: 10px; }
 .gb-table { border-collapse: collapse; width: 100%; font-size: 0.95rem; }

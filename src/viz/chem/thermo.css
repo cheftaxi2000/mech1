@@ -76,7 +76,7 @@
 @media (prefers-reduced-motion: reduce) { .th-flow, .th-flow-rev { animation: none; } }
 
 /* figure frame: drawing left, controls right on wide screens */
-.th-fig { margin: 14px 0; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); padding: 10px 10px 12px; }
+.th-fig { margin: 2rem 0; border: 0; border-radius: 0; background: var(--field); padding: 14px 16px 16px; }
 .th-fig > .th-draw { max-width: 760px; margin-inline: auto; }
 .th-fig figcaption { display: grid; gap: 8px; margin-top: 8px; padding: 0 4px; }
 @media (min-width: 1024px) {
@@ -89,7 +89,7 @@
 .th-slider { grid-template-columns: 6.2em 1fr 6.4em; }
 .th-slider .val { white-space: nowrap; }
 @media (max-width: 520px) { .th-slider { grid-template-columns: 4.6em 1fr 5.6em; gap: 6px; } }
-.th-read { display: grid; gap: 4px; padding: 8px 12px; border-radius: 8px; background: color-mix(in srgb, var(--fg) 5%, transparent); overflow-x: auto; }
+.th-read { display: grid; gap: 4px; padding: 8px 12px; border-radius: 0; background: var(--paper); overflow-x: auto; }
 .th-read .katex { white-space: nowrap; }
 .th-read.ok { background: color-mix(in srgb, var(--ok) 12%, transparent); }
 .th-read.bad { background: color-mix(in srgb, var(--bad) 11%, transparent); }
@@ -118,7 +118,7 @@
 .th-temp-7 { fill: color-mix(in srgb, var(--ch-t) 82%, color-mix(in srgb, var(--ch-p) 45%, var(--panel))); }
 .th-temp-8 { fill: color-mix(in srgb, var(--ch-t) 93%, color-mix(in srgb, var(--ch-p) 45%, var(--panel))); }
 .th-phases { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-.th-phase { text-align: center; border: 1px solid var(--line); border-radius: 8px; padding: 4px; opacity: 0.55; }
-.th-phase.on { opacity: 1; border-color: var(--ch-s); background: color-mix(in srgb, var(--ch-s) 10%, transparent); }
+.th-phase { text-align: center; border: 0; border-radius: 0; padding: 4px; opacity: 0.5; background: var(--paper); }
+.th-phase.on { opacity: 1; box-shadow: inset 0 0 0 2px var(--ink); }
 .th-phase svg { width: 100%; height: auto; display: block; } .th-phase span { font-size: 0.85rem; }
 .th-draw-plot { min-width: 0; }

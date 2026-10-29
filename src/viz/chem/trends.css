@@ -5,7 +5,7 @@
 .tr-table th, .tr-table td { padding: 3px 6px; border-bottom: 1px solid var(--line); text-align: center; }
 .tr-table thead th { color: var(--muted); font-weight: 500; font-size: 0.82rem; }
 .tr-legend { display: flex; align-items: center; gap: 8px; max-width: 760px; margin: 8px auto 0; font-size: 0.85rem; }
-.tr-legend i { flex: 1; height: 10px; border-radius: 5px; border: 1px solid var(--line); }
+.tr-legend i { flex: 1; height: 10px; border-radius: 0; border: 1px solid var(--line); }
 .tr-facts { margin: 0; padding-left: 1.1em; font-size: 0.95rem; text-align: left; }
 .tr-ions .tr-grow { transition: r 0.6s ease; }
 @media (prefers-reduced-motion: reduce) { .tr-ions .tr-grow { transition: none; } }

@@ -39,7 +39,7 @@
 .cs-note-box { fill: color-mix(in srgb, var(--accent) 8%, var(--panel)); stroke: color-mix(in srgb, var(--accent) 50%, var(--line)); stroke-width: 1.4; }
 
 /* ---- figure shells ---- */
-.chfig { margin: 14px 0; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); overflow: hidden; }
+.chfig { margin: 14px 0; border: 1px solid var(--line); border-radius: 0; background: var(--panel); overflow: hidden; }
 .chfig-body { padding: 10px 14px; display: grid; gap: 10px; }
 .chfig-ctl { display: grid; gap: 6px; padding: 8px 14px 12px; border-top: 1px solid var(--line); }
 .chfig .anim-fig { border: 0; border-radius: 0; }
@@ -51,14 +51,14 @@
 .chfig-ok { color: var(--ch-v-t); font-weight: 600; } .chfig-bad { color: var(--ch-e-t); font-weight: 600; }
 .chfig .v-presets { justify-content: flex-start; }
 .chfig .v-presets button { min-width: 44px; }
-.ch-pill { display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px; border-radius: 999px; border: 1px solid var(--line); background: var(--fill); font-size: 0.95rem; }
-.ch-btn { font: inherit; min-width: 44px; min-height: 44px; padding: 4px 14px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); cursor: pointer; }
+.ch-pill { display: inline-flex; align-items: center; gap: 6px; padding: 2px 10px; border-radius: 0; border: 1px solid var(--line); background: var(--fill); font-size: 0.95rem; }
+.ch-btn { font: inherit; min-width: 44px; min-height: 44px; padding: 4px 14px; border-radius: 0; border: 1px solid var(--line); background: var(--bg); color: var(--fg); cursor: pointer; }
 .ch-btn:hover:not(:disabled) { border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); }
 .ch-btn:disabled { opacity: 0.4; cursor: default; }
 .ch-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .ch-btn.sm { min-width: 40px; min-height: 40px; padding: 2px 10px; }
 .ch-legend { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 0.92rem; align-items: center; }
-.ch-legend i { display: inline-block; width: 14px; height: 14px; border-radius: 50%; margin-right: 6px; vertical-align: -2px; border: 1.5px solid currentColor; }
+.ch-legend i { display: inline-block; width: 14px; height: 14px; border-radius: 0; margin-right: 6px; vertical-align: -2px; border: 1.5px solid currentColor; }
 .ch-legend i.cat { color: var(--ch-cat); background: color-mix(in srgb, var(--ch-cat) 55%, var(--panel)); }
 .ch-legend i.an { color: var(--ch-an); background: color-mix(in srgb, var(--ch-an) 55%, var(--panel)); }
 .ch-legend i.el { color: var(--ch-el); background: var(--ch-el); }

@@ -45,8 +45,8 @@
 .dn-n2 { fill: var(--ch-s); stroke: color-mix(in srgb, var(--fg) 30%, transparent); stroke-width: 0.6; }
 .dn-co2 { fill: var(--ch-g); stroke: color-mix(in srgb, var(--fg) 30%, transparent); stroke-width: 0.6; }
 .dn-m { display: block; font-size: 0.82rem; color: var(--muted); }
-.dn-bar { width: 100%; max-width: 150px; height: 12px; border-radius: 6px; background: color-mix(in srgb, var(--fg) 8%, transparent); overflow: hidden; }
-.dn-bar i { display: block; height: 100%; border-radius: 6px; }
+.dn-bar { width: 100%; max-width: 150px; height: 12px; border-radius: 0; background: color-mix(in srgb, var(--fg) 8%, transparent); overflow: hidden; }
+.dn-bar i { display: block; height: 100%; border-radius: 0; }
 .dn-bar i.dn-he { background: var(--ch-e); } .dn-bar i.dn-n2 { background: var(--ch-s); } .dn-bar i.dn-co2 { background: var(--ch-g); }
 .dn-rho { font-size: 0.98rem; }
 .dn-sum { margin-top: 10px; }
@@ -55,7 +55,7 @@
 
 /* ---- significant figures ---- */
 .sf-in { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 10px 0 4px; }
-.sf-in input { font: inherit; font-size: 1.1rem; padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--fg); width: 11em; }
+.sf-in input { font: inherit; font-size: 1.1rem; padding: 6px 10px; border: 1px solid var(--line); border-radius: 0; background: var(--bg); color: var(--fg); width: 11em; }
 .sf-digits { display: flex; flex-wrap: wrap; font-family: KaTeX_Main, "Times New Roman", serif; font-size: 2.2rem; line-height: 1.3; min-height: 2.6rem; }
 .sf-d { padding: 0 2px; color: var(--muted); border-bottom: 4px solid transparent; }
 .sf-d.sig { color: var(--fg); border-bottom-color: var(--ch-v); }

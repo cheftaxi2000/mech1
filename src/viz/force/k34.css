@@ -1,7 +1,7 @@
 /* Figures of the lessons «Systemabgrenzung» (K3) and «Verteilte Kräfte» (K4).
    Colours: outer forces vermilion (--c-force), inner forces grey (--muted), points red (--c-point), system frame blue (--accent). */
 
-.kf { margin: 14px 0; border: 1px solid var(--line); border-radius: 12px; background: var(--panel); padding: 10px 10px 12px; }
+.kf { margin: 14px 0; border: 1px solid var(--line); border-radius: 0; background: var(--panel); padding: 10px 10px 12px; }
 .kf-fig { position: relative; container-type: inline-size; margin-inline: auto; width: 100%; }
 .kf-fig > svg { display: block; width: 100%; height: auto; user-select: none; -webkit-user-select: none; }
 .kf-lbl { position: absolute; transform: translate(-50%, -50%); white-space: nowrap; pointer-events: none; line-height: 1;
@@ -39,29 +39,29 @@
 .kf-wheel { fill: var(--panel); stroke: var(--muted); stroke-width: 1.6px; }
 
 /* controls */
-.kf-body-chips { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; align-items: center; margin-bottom: 8px; }
+.kf-body-chips { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-start; align-items: center; margin-bottom: 8px; }
 .kf-body-chips .kf-cap { color: var(--muted); font-size: 0.9rem; margin-right: 2px; }
-.kf-chip { font: inherit; min-height: 44px; padding: 2px 14px; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); cursor: pointer; }
-.kf-chip[aria-pressed="true"] { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 14%, transparent); font-weight: 600; }
+.kf-chip { font: inherit; font-family: var(--sans); font-size: 0.875rem; font-weight: 500; min-height: 44px; padding: 2px 14px; border-radius: 0; border: 0; box-shadow: inset 0 0 0 1px var(--field-2); background: var(--paper); color: var(--fg); cursor: pointer; }
+.kf-chip[aria-pressed="true"] { box-shadow: none; background: var(--ink); color: var(--paper); font-weight: 600; }
 .kf-chip.small { min-height: 40px; padding: 2px 10px; font-size: 0.92rem; }
-.kf-chip:hover { border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); } .kf-chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.kf-chip:hover:not([aria-pressed="true"]) { background: var(--field-2); } .kf-chip:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 .kf-controls { display: grid; gap: 4px 22px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-top: 8px; padding: 0 4px; }
 .kf-slider { grid-template-columns: auto minmax(90px, 1fr) 5.2em; }
 .kf-slider .val { white-space: nowrap; }
 .kf-readout { margin-top: 8px; display: grid; gap: 8px; }
 .kf-lists { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 8px 14px; }
-.kf-list { border: 1px solid var(--line); border-radius: 10px; padding: 6px 10px 8px; background: var(--bg); }
+.kf-list { border: 0; border-radius: 0; padding: 8px 12px 10px; background: var(--paper); }
 .kf-list h4 { margin: 0 0 4px; font-size: 0.86rem; font-weight: 650; letter-spacing: 0.01em; display: flex; align-items: center; gap: 8px; }
-.kf-list h4 i { display: inline-block; width: 16px; height: 4px; border-radius: 2px; background: var(--muted); }
+.kf-list h4 i { display: inline-block; width: 16px; height: 4px; border-radius: 0; background: var(--muted); }
 .kf-list.out h4 i { background: var(--c-force); }
 .kf-items { display: flex; flex-wrap: wrap; gap: 4px; min-height: 36px; align-items: center; }
-.kf-item { font: inherit; min-height: 36px; padding: 0 9px; border-radius: 8px; border: 1px solid var(--line); background: var(--panel); color: var(--fg); cursor: pointer; }
+.kf-item { font: inherit; min-height: 36px; padding: 0 9px; border-radius: 0; border: 1px solid var(--line); background: var(--panel); color: var(--fg); cursor: pointer; }
 .kf-list.out .kf-item { border-color: color-mix(in srgb, var(--c-force) 55%, var(--line)); color: var(--c-force-text); }
 .kf-list.in .kf-item { color: var(--muted); }
-.kf-item[aria-pressed="true"], .kf-item:hover { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); }
-.kf-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.kf-item[aria-pressed="true"], .kf-item:hover { border-color: var(--ink); background: var(--field-2); }
+.kf-item:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
 .kf-empty { color: var(--muted); font-size: 0.9rem; }
-.kf-info { padding: 7px 12px; border-radius: 8px; background: color-mix(in srgb, var(--fg) 5%, transparent); font-size: 0.95rem; min-height: 3.1em; }
+.kf-info { padding: 7px 12px; border-radius: 0; background: var(--paper); font-size: 0.95rem; min-height: 3.1em; }
 .kf-info p { margin: 0; }
 .kf-sums { display: flex; flex-wrap: wrap; gap: 4px 20px; justify-content: center; }
 .kf-sums .v-result { padding: 3px 12px; }
@@ -95,7 +95,7 @@
 /* K4 */
 .kf-patch-row { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-bottom: 8px; }
 .kf-plots { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 10px; margin-top: 8px; }
-.kf-plot { border: 1px solid var(--line); border-radius: 10px; padding: 4px 6px 6px; background: var(--bg); }
+.kf-plot { border: 1px solid var(--line); border-radius: 0; padding: 4px 6px 6px; background: var(--bg); }
 .kf-plot .kf-fig { max-width: 420px; }
 .kf-plot figcaption { font-size: 0.86rem; color: var(--muted); text-align: center; margin: 0 0 2px; }
 .kf-axis { stroke: var(--muted); stroke-width: 1.4; fill: none; } .kf-tick { stroke: var(--muted); stroke-width: 1; }

@@ -4,7 +4,7 @@
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .pt-fig { --pt-metal: #a98a45; --pt-metalloid: #8570c4; --pt-nonmetal: #36a275; } }
 .pt-wrap { overflow-x: auto; }
 .pt-grid { display: grid; grid-template-columns: repeat(18, minmax(30px, 1fr)); grid-template-rows: repeat(7, auto) 10px repeat(2, auto); gap: 2px; min-width: 620px; }
-.pt-cell { font: inherit; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2px 0; min-height: 38px; border-radius: 4px; border: 1px solid transparent; color: var(--fg); cursor: pointer; line-height: 1.05; }
+.pt-cell { font: inherit; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 2px 0; min-height: 38px; border-radius: 0; border: 1px solid transparent; color: var(--fg); cursor: pointer; line-height: 1.05; }
 .pt-cell:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 .pt-cell.sel { border-color: var(--fg); box-shadow: 0 0 0 2px var(--panel), 0 0 0 4px var(--accent); z-index: 1; }
 .pt-z { font-size: 0.62rem; color: color-mix(in srgb, var(--fg) 70%, transparent); }
@@ -22,16 +22,16 @@
 .fam-noble { background: color-mix(in srgb, #a557d6 40%, var(--panel)); }
 .fam-other { background: color-mix(in srgb, var(--muted) 18%, var(--panel)); }
 .pt-legend { font-size: 0.88rem; }
-.pt-sw { border-radius: 3px !important; border: 1px solid var(--line) !important; }
+.pt-sw { border-radius: 0 !important; border: 1px solid var(--line) !important; }
 .pt-detail { grid-template-columns: auto 1fr; align-items: center; gap: 14px; }
-.pt-big { width: 92px; height: 92px; border-radius: 8px; display: grid; grid-template-rows: auto 1fr auto; justify-items: center; align-items: center; padding: 4px 6px; border: 1px solid var(--line-strong); }
+.pt-big { width: 92px; height: 92px; border-radius: 0; display: grid; grid-template-rows: auto 1fr auto; justify-items: center; align-items: center; padding: 4px 6px; border: 1px solid var(--line-strong); }
 .pt-big-z { font-size: 0.9rem; justify-self: start; } .pt-big-sym { font-size: 2rem; font-weight: 700; line-height: 1; } .pt-big-m { font-size: 0.85rem; font-variant-numeric: tabular-nums; }
 .pt-facts { display: grid; gap: 4px; }
 @media (max-width: 700px) { .pt-detail { grid-template-columns: 1fr; } }
 
 /* Periodic table grid (PeriodicGrid) */
 .pg { display: grid; grid-template-columns: repeat(18, minmax(0, 1fr)); grid-template-rows: repeat(5, auto); gap: 2px; container-type: inline-size; width: 100%; max-width: 760px; margin-inline: auto; }
-.pg-cell { display: flex; flex-direction: column; align-items: center; justify-content: center; aspect-ratio: 1 / 1; min-width: 0; padding: 0; border: 0; border-radius: 3px; background: var(--fill-2); color: var(--fg); font: inherit; line-height: 1; overflow: hidden; }
+.pg-cell { display: flex; flex-direction: column; align-items: center; justify-content: center; aspect-ratio: 1 / 1; min-width: 0; padding: 0; border: 0; border-radius: 0; background: var(--fill-2); color: var(--fg); font: inherit; line-height: 1; overflow: hidden; }
 button.pg-cell { cursor: pointer; }
 button.pg-cell:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; z-index: 1; }
 .pg-cell.ring { outline: 2.5px solid var(--fg); outline-offset: -1px; z-index: 1; }

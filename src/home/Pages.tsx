@@ -22,23 +22,24 @@ export function Landing() {
   const infN = lessons('info').length, infWeeks = Object.keys(CHAPTERS).filter((c) => chapterSubject(c) === 'info').length;
   const anaN = lessons('ana').length, weeks = Object.keys(CHAPTERS).filter((c) => chapterSubject(c) === 'ana').length;
   const rows: { s: Subject; fig: ReactNode; desc: [string, string]; meta: [string, string] }[] = [
-    { s: 'mech', fig: <MechFigure />, desc: ['Koordinaten, Geschwindigkeit und die Bewegung starrer Körper.', 'Coordinates, velocity and the motion of rigid bodies.'], meta: [`${mechN} Lektionen · Kurzfassung`, `${mechN} lessons · short version`] },
-    { s: 'ana', fig: <AnaFigure />, desc: ['Folgen, Grenzwerte, Ableitungen und komplexe Zahlen.', 'Sequences, limits, derivatives and complex numbers.'], meta: [`${weeks} Wochen · ${anaN} Lektionen`, `${weeks} weeks · ${anaN} lessons`] },
-    { s: 'la', fig: <LaFigure />, desc: ['Gleichungssysteme, Gauss-Verfahren und Matrizen als Transformationen.', 'Linear systems, Gaussian elimination and matrices as transformations.'], meta: [`${laWeeks} Wochen · ${laN} Lektionen`, `${laWeeks} weeks · ${laN} lessons`] },
-    { s: 'chem', fig: <ChemFigure />, desc: ['Atome, Gase, Energie und Entropie, bis zu den Orbitalen.', 'Atoms, gases, energy and entropy, up to orbitals.'], meta: [`${chWeeks} Wochen · ${chN} Lektionen`, `${chWeeks} weeks · ${chN} lessons`] },
-    { s: 'info', fig: <InfoFigure />, desc: ['C++ und was der Rechner dabei wirklich tut: Schritt für Schritt, mit Speicher und Ablauf vor Augen.', 'C++ and what the computer really does: step by step, with memory and execution in front of your eyes.'], meta: [`${infWeeks} Kapitel · ${infN} Lektionen`, `${infWeeks} chapters · ${infN} lessons`] },
+    { s: 'mech', fig: <MechFigure />, desc: ['Koordinaten, Geschwindigkeit und die Bewegung starrer Körper.', 'Coordinates, velocity and the motion of rigid bodies.'], meta: [`${mechN} Lektionen, auch als Kurzfassung`, `${mechN} lessons, also as a short version`] },
+    { s: 'ana', fig: <AnaFigure />, desc: ['Folgen, Grenzwerte, Ableitungen und komplexe Zahlen.', 'Sequences, limits, derivatives and complex numbers.'], meta: [`${anaN} Lektionen in ${weeks} Wochen`, `${anaN} lessons in ${weeks} weeks`] },
+    { s: 'la', fig: <LaFigure />, desc: ['Gleichungssysteme, Gauss-Verfahren und Matrizen als Transformationen.', 'Linear systems, Gaussian elimination and matrices as transformations.'], meta: [`${laN} Lektionen in ${laWeeks} Wochen`, `${laN} lessons in ${laWeeks} weeks`] },
+    { s: 'chem', fig: <ChemFigure />, desc: ['Atome, Gase, Energie und Entropie, bis zu den Orbitalen.', 'Atoms, gases, energy and entropy, up to orbitals.'], meta: [`${chN} Lektionen in ${chWeeks} Wochen`, `${chN} lessons in ${chWeeks} weeks`] },
+    { s: 'info', fig: <InfoFigure />, desc: ['C++ und was der Rechner dabei wirklich tut: Schritt für Schritt, mit Speicher und Ablauf vor Augen.', 'C++ and what the computer really does: step by step, with memory and execution in front of your eyes.'], meta: [`${infN} Lektionen in ${infWeeks} Kapiteln`, `${infN} lessons in ${infWeeks} chapters`] },
   ];
   return (
     <div className="landing">
       <header className="landing-head">
+        <span className="landing-place">ETH Zürich</span>
         <h1>Learning Lab</h1>
-        <p className="landing-sub">ETH Zürich · {tr('Wähle dein Fach.', 'Choose your subject.')}</p>
+        <p className="landing-sub">{tr('Begleiter zu den Vorlesungen des ersten Semesters: jede Seite des Skripts erklärt, gezeichnet und zum Ausprobieren.', 'Companions to the first-semester lectures: every page of the notes explained, drawn and ready to try.')}</p>
       </header>
       {last && (
         <a className="resume" href={`#${last.id}`}>
           <span className="resume-kind">{tr('Weiterlesen', 'Continue reading')}</span>
           <span className="resume-title">{tr(...last.title)}</span>
-          <span className="resume-pages">{tr(...SUBJECTS[topicSubject(last)])} · {tr(sourceLabel(last)[0], sourceLabel(last)[1])}</span>
+          <span className="resume-pages">{tr(...SUBJECTS[topicSubject(last)])}, {tr(sourceLabel(last)[0], sourceLabel(last)[1])}</span>
         </a>
       )}
       <nav className="tiles" aria-label={tr('Fächer', 'Subjects')}>
@@ -47,7 +48,7 @@ export function Landing() {
             <div className="tile-fig" aria-hidden="true">{r.fig}</div>
             <div className="tile-body">
               <h2>{tr(...SUBJECTS[r.s])}</h2>
-              <p>{tr(...r.desc)}</p>
+              <p>{tr(...r.desc).split('C++').flatMap((part, i) => (i ? [<span key={i} className="cpp">C++</span>, part] : [part]))}</p>
               <span className="tile-foot">{tr(...r.meta)}</span>
             </div>
           </a>

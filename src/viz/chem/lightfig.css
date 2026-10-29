@@ -18,8 +18,8 @@
 .lw-r.vis { display: none; }
 .lw-controls { display: grid; gap: 6px; margin-top: 16px; }
 .lw-table { margin-top: 8px; } .gb-table.lw-table td { text-align: left; }
-.lw-ebar { height: 12px; border-radius: 6px; background: color-mix(in srgb, var(--fg) 8%, transparent); overflow: hidden; margin-top: 8px; }
-.lw-ebar i { display: block; height: 100%; border-radius: 6px; transition: width 0.15s; }
+.lw-ebar { height: 12px; border-radius: 0; background: color-mix(in srgb, var(--fg) 8%, transparent); overflow: hidden; margin-top: 8px; }
+.lw-ebar i { display: block; height: 100%; border-radius: 0; transition: width 0.15s; }
 .lw-note { font-size: 0.85rem; color: var(--muted); margin-top: 3px; }
 /* Bohr explorer */
 .bx-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 12px; align-items: start; }
@@ -58,7 +58,7 @@
 /* cloud */
 .cf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 640px; margin-inline: auto; }
 .cf-panel { display: grid; justify-items: center; gap: 2px; }
-.cf-panel svg { width: 100%; height: auto; background: color-mix(in srgb, var(--fg) 3%, var(--panel)); border-radius: 10px; }
+.cf-panel svg { width: 100%; height: auto; background: color-mix(in srgb, var(--fg) 3%, var(--panel)); border-radius: 0; }
 .cf-t { font-size: 0.9rem; text-align: center; }
 .cf-orbit { fill: none; stroke: var(--ch-p); stroke-width: 2; stroke-dasharray: 6 4; }
 .cf-nuc { fill: var(--ch-t); }

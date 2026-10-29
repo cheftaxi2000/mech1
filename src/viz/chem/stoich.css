@@ -8,17 +8,17 @@
 .bal-head, .bal-row { display: grid; grid-template-columns: 3em 1fr 1fr; gap: 10px; align-items: center; }
 .bal-head { color: var(--muted); font-size: 0.85rem; }
 .bal-sq { display: flex; flex-wrap: wrap; gap: 3px; align-items: center; min-height: 24px; }
-.bal-sq i { width: 14px; height: 14px; border-radius: 3px; background: color-mix(in srgb, var(--ch-v) 55%, var(--panel)); border: 1px solid var(--ch-v); }
+.bal-sq i { width: 14px; height: 14px; border-radius: 0; background: color-mix(in srgb, var(--ch-v) 55%, var(--panel)); border: 1px solid var(--ch-v); }
 .bal-sq i.bad { background: color-mix(in srgb, var(--ch-e) 55%, var(--panel)); border-color: var(--ch-e); }
 .bal-sq b { margin-left: 6px; font-variant-numeric: tabular-nums; }
 
-.mc-custom input { font: inherit; width: 9em; padding: 4px 8px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); }
+.mc-custom input { font: inherit; width: 9em; padding: 4px 8px; border-radius: 0; border: 1px solid var(--line); background: var(--bg); color: var(--fg); }
 .mc-grid { display: grid; gap: 8px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .mc-grid label { display: grid; gap: 4px; }
-.mc-grid input { font: inherit; width: 100%; min-width: 0; padding: 6px 8px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); font-variant-numeric: tabular-nums; }
+.mc-grid input { font: inherit; width: 100%; min-width: 0; padding: 6px 8px; border-radius: 0; border: 1px solid var(--line); background: var(--bg); color: var(--fg); font-variant-numeric: tabular-nums; }
 .mc-bars { display: flex; gap: 8px; align-items: flex-end; height: 130px; padding-top: 6px; }
 .mc-bar { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; height: 100%; position: relative; font-size: 0.85rem; }
-.mc-bar i { display: block; width: 70%; background: color-mix(in srgb, var(--ch-n) 40%, var(--panel)); border: 1px solid var(--ch-n); border-radius: 4px 4px 0 0; }
+.mc-bar i { display: block; width: 70%; background: color-mix(in srgb, var(--ch-n) 40%, var(--panel)); border: 1px solid var(--ch-n); border-radius: 0; }
 .mc-bar.on i { background: var(--ch-n); }
 .mc-bar small { color: var(--muted); }
 @media (max-width: 600px) { .mc-grid { grid-template-columns: 1fr; } }

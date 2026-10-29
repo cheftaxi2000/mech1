@@ -39,10 +39,10 @@
 .lp-sliders .slider { grid-template-columns: 3.4em 1fr 4.4em; }
 .lp-toggles { display: flex; flex-wrap: wrap; gap: 4px 18px; justify-content: center; }
 .lp-everyday { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 12px 0; }
-.lp-everyday > figure { margin: 0; padding: 8px 8px 10px; border-radius: 12px; background: var(--fill, color-mix(in srgb, var(--fg) 4%, transparent)); text-align: center; }
+.lp-everyday > figure { margin: 0; padding: 8px 8px 10px; border-radius: 0; background: var(--fill, color-mix(in srgb, var(--fg) 4%, transparent)); text-align: center; }
 .lp-everyday svg { display: block; width: 100%; height: auto; }
 .lp-everyday figcaption { font-size: 0.92rem; line-height: 1.35; }
-.lp-everyday .lp-sign { display: inline-block; margin-top: 4px; padding: 1px 10px; border-radius: 999px; font-weight: 600; }
+.lp-everyday .lp-sign { display: inline-block; margin-top: 4px; padding: 1px 10px; border-radius: 0; font-weight: 600; }
 .lp-everyday .lp-sign.lp-plus { background: color-mix(in srgb, var(--c-z) 14%, transparent); color: var(--c-z-text); }
 .lp-everyday .lp-sign.lp-minus { background: color-mix(in srgb, var(--c-y) 16%, transparent); color: var(--c-y-text); }
 .lp-everyday .lp-sign.lp-zero { background: color-mix(in srgb, var(--muted) 14%, transparent); }
@@ -53,7 +53,7 @@
 .lp-marknum { fill: #fff; font: 700 11px system-ui, sans-serif; }
 .lp-markrows { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 4px; }
 .lp-markrows li { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 10px; }
-.lp-marknumhtml { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--c-point); color: #fff; font-size: 0.75rem; font-weight: 700; flex: none; }
+.lp-marknumhtml { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 0; background: var(--c-point); color: #fff; font-size: 0.75rem; font-weight: 700; flex: none; }
 .lp-markname { min-width: 11em; }
 .lp-mark-stem { stroke: var(--c-point); stroke-width: 1.4; opacity: 0.7; }
 .lp-glyph { fill: color-mix(in srgb, var(--muted) 12%, transparent); stroke: var(--fg); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; opacity: 0.8; }
@@ -73,11 +73,12 @@
 .lp-s-strip { stroke: var(--c-z); stroke-width: 10; stroke-linecap: round; opacity: 0.5; }
 .lp-s-arc { fill: none; stroke: var(--c-angle); stroke-width: 2.2; }
 .lp-s-rect { fill: color-mix(in srgb, var(--c-z) 22%, transparent); stroke: var(--c-z); stroke-width: 1.6; }
-.lp-see { border-left: 3px solid var(--accent); padding: 2px 0 2px 12px; margin: 12px 0 6px; }
+.lp-see { border: 0; padding: 0; margin: 1.6rem 0 0.7rem; font-family: var(--sans); font-size: 0.9375rem; line-height: 1.5; color: var(--ink-2); }
+.lp-see b { color: var(--ink); }
 /* 3D step figure with fullscreen */
 .lp-stage { position: relative; }
 .lp-stage .stage { position: relative; }
-.lp-eq { position: absolute; left: 58px; top: 10px; z-index: 2; max-width: calc(100% - 118px); overflow-x: auto; padding: 4px 10px; border-radius: 8px; font-size: 0.95rem; pointer-events: none;
+.lp-eq { position: absolute; left: 58px; top: 10px; z-index: 2; max-width: calc(100% - 118px); overflow-x: auto; padding: 4px 10px; border-radius: 0; font-size: 0.95rem; pointer-events: none;
   background: color-mix(in srgb, var(--panel) 94%, transparent); border: 1px solid var(--line); }
 .lp-stage.is-full { position: fixed; inset: 0; z-index: 100; background: var(--panel); display: grid; grid-template-rows: minmax(0, 1fr) auto; }
 .stepper-fig .lp-stage.is-full .scene, .lp-stage.is-full .scene { height: 100% !important; aspect-ratio: auto !important; max-width: none !important; border-radius: 0; border: 0; }

@@ -20,8 +20,8 @@
 .lf-stroke.lf-cat { stroke: var(--ch-cat); fill: var(--ch-cat); } .lf-stroke.lf-an { stroke: var(--ch-an); fill: var(--ch-an); }
 .lf-zero { stroke: var(--muted); stroke-width: 1.4; }
 .lf-box { fill: var(--fill); stroke: var(--line); stroke-width: 1.4; }
-.lf-chips { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
-.lf-chips button { font: inherit; font-size: 0.88rem; font-weight: 500; border: 0; border-radius: 980px; background: var(--fill-2); color: var(--fg); padding: 7px 14px; min-height: 36px; cursor: pointer; }
+.lf-chips { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-start; }
+.lf-chips button { font: inherit; font-size: 0.88rem; font-weight: 500; border: 0; border-radius: 0; background: var(--fill-2); color: var(--fg); padding: 7px 14px; min-height: 36px; cursor: pointer; }
 .lf-chips button[aria-pressed="true"] { background: var(--accent); color: #fff; }
 .lf-chips button:hover:not([aria-pressed="true"]) { background: color-mix(in srgb, var(--fg) 14%, var(--fill-2)); }
 .lf-behind { position: absolute; inset: 0; }

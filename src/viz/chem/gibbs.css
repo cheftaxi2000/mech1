@@ -4,7 +4,7 @@
 .gb-explorer .gb-bars { max-width: 320px; }
 .gb-verdict.ok { color: var(--ok); } .gb-verdict.bad { color: var(--bad); } .gb-verdict.eq { color: var(--ch-g-t); }
 .gb-verdict { font-weight: 500; }
-.gb-case { display: inline-grid; place-items: center; min-width: 1.35em; height: 1.35em; margin-right: 4px; border-radius: 50%; background: var(--ch-g); color: #fff; font-size: 0.8em; font-weight: 600; }
+.gb-case { display: inline-grid; place-items: center; min-width: 1.35em; height: 1.35em; margin-right: 4px; border-radius: 0; background: var(--ch-g); color: #fff; font-size: 0.8em; font-weight: 600; }
 .lf-chips button[aria-pressed="true"] .gb-case { background: #fff; color: var(--accent); }
 .gb-ledger { max-width: 640px; }
 .gb-readout { gap: 10px; }

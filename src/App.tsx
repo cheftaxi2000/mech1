@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useRef, useState, type RefObject } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { NotesLayer } from './notes/StickyNotes';
 import { NotesProvider, useNotes } from './notes/store';
 import { CHAPTERS, SUBJECTS, SUBJECT_SHORT, TOPICS, chapterSubject, sourceLabel, topicSubject, type Status, type Subject, type Topic } from './content/curriculum';
@@ -33,23 +33,15 @@ function TopicPage({ topic }: { topic: Topic }) {
   const [chNum, chName] = chapterParts(tr(...CHAPTERS[topic.chapter]));
   return (
     <div className="lesson-layout">
-      <aside className="rail" aria-label={tr('In dieser Lektion', 'In this lesson')}>
-        <LessonOutline wrapRef={wrapRef} topicId={topic.id} />
-      </aside>
       <div className="lesson-main">
         <header className="lesson-head">
-          <div className="crumbs">
-            {chNum && <span className="crumb-ch">{/^\d+$/.test(chNum) ? tr(`Kapitel ${chNum}`, `Chapter ${chNum}`) : chNum}</span>}
-            <span className="crumb-name">{chName}</span>
-            <span className="crumb-src">{tr(sourceLabel(topic)[0], sourceLabel(topic)[1])}</span>
+          <div className="lesson-meta">
+            {chNum && <span className="meta-ch">{/^\d+$/.test(chNum) ? tr(`Kapitel ${chNum}`, `Chapter ${chNum}`) : chNum}</span>}
+            <span className="meta-name">{chName}</span>
+            <span className="meta-src">{tr(sourceLabel(topic)[0], sourceLabel(topic)[1])}</span>
           </div>
           <h1>{tr(...topic.title)}</h1>
-          {(lang === 'en' || topic.status !== 'complete') && (
-            <div className="sub">
-              {lang === 'en' && <span lang="de" className="sub-de">{topic.title[0]}</span>}
-              {topic.status !== 'complete' && <span className={`status status-${topic.status}`}>{tr(...STATUS_LABEL[topic.status])}</span>}
-            </div>
-          )}
+          {lang === 'en' && <p lang="de" className="sub-de">{topic.title[0]}</p>}
         </header>
         <div className="lesson-wrap" ref={wrapRef}>
           {C ? <Suspense fallback={<p>{tr('Wird geladen …', 'Loading…')}</p>}><C /></Suspense>
@@ -69,13 +61,14 @@ interface OutlineItem { id: string; num: string; html: string }
 
 /**
  * The sections of the open lesson, read from its rendered headings (so language and short version are always right),
- * with the section being read marked. Shown as a rail beside the text on wide screens and at the top of the drawer.
+ * and the section being read (its heading above 30 % of the viewport).
  */
-function LessonOutline({ wrapRef, topicId, onPick }: { wrapRef?: RefObject<HTMLDivElement | null>; topicId: string; onPick?: () => void }) {
+function useOutline(topicId: string | undefined): { items: OutlineItem[]; current: string } {
   const [items, setItems] = useState<OutlineItem[]>([]);
   const [current, setCurrent] = useState('');
   useEffect(() => {
-    const root = () => wrapRef?.current ?? document.querySelector('.lesson-wrap');
+    if (!topicId) { setItems([]); return; }
+    const root = () => document.querySelector('.lesson-wrap');
     let raf = 0;
     const read = () => {
       const r = root();
@@ -86,13 +79,14 @@ function LessonOutline({ wrapRef, topicId, onPick }: { wrapRef?: RefObject<HTMLD
     };
     const schedule = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(read); };
     read();
+    // the lesson loads lazily: watch the main area, not only the lesson wrapper
     const mo = new MutationObserver(schedule);
-    const r = root();
-    if (r) mo.observe(r, { childList: true, subtree: true, characterData: true });
+    const main = document.querySelector('main.content');
+    if (main) mo.observe(main, { childList: true, subtree: true, characterData: true });
     const det = new MutationObserver(schedule);
     det.observe(document.documentElement, { attributes: true, attributeFilter: ['data-detail', 'lang'] });
     return () => { mo.disconnect(); det.disconnect(); cancelAnimationFrame(raf); };
-  }, [wrapRef, topicId]);
+  }, [topicId]);
   useEffect(() => {
     const on = () => {
       let cur = '';
@@ -106,6 +100,12 @@ function LessonOutline({ wrapRef, topicId, onPick }: { wrapRef?: RefObject<HTMLD
     window.addEventListener('scroll', on, { passive: true });
     return () => window.removeEventListener('scroll', on);
   }, [items]);
+  return { items, current };
+}
+
+/** The lesson's sections, with the one being read marked; at the top of the drawer. */
+function LessonOutline({ topicId, onPick }: { topicId: string; onPick?: () => void }) {
+  const { items, current } = useOutline(topicId);
   if (items.length < 2) return null;
   return (
     <ol className="outline">
@@ -119,6 +119,17 @@ function LessonOutline({ wrapRef, topicId, onPick }: { wrapRef?: RefObject<HTMLD
         </li>
       ))}
     </ol>
+  );
+}
+
+/** Running head: the section being read, in the top bar on wide screens. */
+function RunningHead({ topicId }: { topicId: string }) {
+  const { items, current } = useOutline(topicId);
+  const it = items.find((i) => i.id === current);
+  return (
+    <span className="topbar-section" aria-hidden="true">
+      {it && <>{it.num && <span className="num">{it.num}</span>}<span dangerouslySetInnerHTML={{ __html: it.html }} /></>}
+    </span>
   );
 }
 
@@ -143,13 +154,13 @@ function ChapterList({ route, onPick, subject }: { route: string; onPick?: () =>
     <>
       {Object.entries(CHAPTERS).filter(([ch]) => !subject || chapterSubject(ch) === subject).map(([ch, name]) => (
         <div key={ch} className="chapter">
-          <div className="chapter-name">{tr(...name)}</div>
+          <div className="chapter-name">{(() => { const [n, nm] = chapterParts(tr(...name)); return n ? <><span className="ch-num">{n}</span>{nm}</> : nm; })()}</div>
           <ul>
             {TOPICS.filter((t) => t.chapter === ch).map((t) => (
               <li key={t.id}>
                 <a href={`#${t.id}`} onClick={onPick} aria-current={t.id === route ? 'page' : undefined}
                   className={`${t.id === route ? 'active' : ''} ${t.status === 'planned' ? 'muted' : ''}`}>
-                  <span className={`dot dot-${t.status}`} /><span className="li-title">{tr(...t.title)}</span><span className="li-pages">{tr(sourceLabel(t)[2], sourceLabel(t)[3])}</span>
+                  <span className={`dot dot-${t.status}`} title={tr(...STATUS_LABEL[t.status])} /><span className="li-title">{tr(...t.title)}</span><span className="li-pages">{tr(sourceLabel(t)[2], sourceLabel(t)[3])}</span>
                 </a>
               </li>
             ))}
@@ -235,6 +246,7 @@ export function App() {
         <a href="#" className="brand">Learning Lab</a>
         {subject && <a href={`#${SUBJECT_ROUTE[subject]}`} className="topbar-subject">{tr(...SUBJECTS[subject])}</a>}
         {topic && <span className="topbar-topic">{tr(...topic.title)}</span>}
+        {topic && <RunningHead topicId={topic.id} />}
         {/* language and reading depth; on a phone they fold behind one button so the bar keeps the lesson's name */}
         <button type="button" className="tools-btn" onClick={() => setTools((o) => !o)} aria-expanded={tools} aria-controls="topbar-tools"
           aria-label={tr('Ansicht', 'View')}>
