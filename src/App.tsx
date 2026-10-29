@@ -81,7 +81,7 @@ function LessonOutline({ wrapRef, topicId, onPick }: { wrapRef?: RefObject<HTMLD
       const r = root();
       if (!r) return;
       const hs = [...r.querySelectorAll<HTMLElement>('article.lesson section.section > h2')].filter((h) => h.offsetParent !== null && h.parentElement?.id);
-      const next = hs.map((h) => ({ id: h.parentElement!.id, num: h.querySelector('.sec-num')?.textContent ?? '', html: (h.querySelector('.sec-title') ?? h).innerHTML }));
+      const next = hs.map((h) => ({ id: h.parentElement!.id, num: (h.querySelector('.sec-num')?.textContent ?? '').replace(/\.$/, ''), html: (h.querySelector('.sec-title') ?? h).innerHTML }));
       setItems((old) => (JSON.stringify(old) === JSON.stringify(next) ? old : next));
     };
     const schedule = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(read); };

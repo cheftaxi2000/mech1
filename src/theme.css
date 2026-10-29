@@ -303,6 +303,7 @@ p .src, li .src { font-size: 0.72em; }
 
 /* tables (shared base; subjects add their own colouring) */
 .lesson table { font-variant-numeric: tabular-nums; }
+@media (max-width: 600px) { .lesson table { display: block; max-width: 100%; overflow-x: auto; } }
 
 /* ---------------------------------------------------------------- figures: plates on the page */
 .explorer, .vdemo, .chfig, .th-fig, figure.kf-wide {

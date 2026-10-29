@@ -107,11 +107,11 @@ function numbered(title: ReactNode): ReactNode {
   };
   if (isValidElement<{ de: ReactNode; en: ReactNode }>(title) && title.type === T) {
     const a = split(title.props.de), b = split(title.props.en);
-    if (a && b && a[0] === b[0]) return <><span className="sec-num">{a[0]}</span><span className="sec-title"><T de={a[1]} en={b[1]} /></span></>;
+    if (a && b && a[0] === b[0]) return <><span className="sec-num">{a[0]}.</span>{' '}<span className="sec-title"><T de={a[1]} en={b[1]} /></span></>;
     return title;
   }
   const one = split(title);
-  return one ? <><span className="sec-num">{one[0]}</span><span className="sec-title">{one[1]}</span></> : title;
+  return one ? <><span className="sec-num">{one[0]}.</span>{' '}<span className="sec-title">{one[1]}</span></> : title;
 }
 
 /** `long`: the whole section exists only in the full version. */
