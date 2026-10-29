@@ -70,8 +70,10 @@
   :root:not([data-theme="light"])[data-subject="la"] { --accent: #2fb58f; } :root:not([data-theme="light"])[data-subject="info"] { --accent: #e070b0; }
   :root:not([data-theme="light"])[data-subject="chem"] { --accent: #f07a30; } :root:not([data-theme="light"])[data-subject="ana"] { --accent: #8a88ff; }
 }
-@media (min-width: 1000px) { :root { --side: 9.5rem; --gap: 1.75rem; } }
-@media (min-width: 1180px) { :root { --side: 11rem; --gap: 2rem; } }
+@media (min-width: 1000px) { :root { --side: 8.5rem; --gap: 1.5rem; --measure: 46rem; --page: 66rem; } }
+@media (min-width: 1180px) { :root { --side: 9rem; --gap: 1.75rem; } }
+/* tablet landscape and desktop: everything (type and columns, all in rem) grows with the screen so the page fills it */
+@media (min-width: 1000px) { html { font-size: clamp(16px, 1.6vw, 20px); } body { font-size: 1.125rem; } }
 
 /* ---------------------------------------------------------------- type
    Five sizes: 13 meta · 15 UI and margin · 18 body · 28 section · 52 lesson title (desktop and iPad). */
