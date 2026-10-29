@@ -3,18 +3,11 @@ import { M } from '../components/Tex';
 import { fmtNum, useLang, useTr } from '../i18n';
 import { crankA, crankB, rodOmega, rodPoint, rodVelocity } from '../physics/translation';
 import { at, useInView } from './figUtils';
+import { Arrow } from './arrow2d';
 
 const t = String.raw;
 type V = [number, number];
 const DEG = Math.PI / 180;
-
-function Arrow({ a, b, cls }: { a: V; b: V; cls: string }) {
-  const dx = b[0] - a[0], dy = b[1] - a[1], l = Math.hypot(dx, dy);
-  if (l < 1.5) return null;
-  const ux = dx / l, uy = dy / l, s = Math.min(9, 0.6 * l); // short arrows keep a short head
-  const head = `${b[0]},${b[1]} ${b[0] - s * ux + 0.45 * s * uy},${b[1] - s * uy - 0.45 * s * ux} ${b[0] - s * ux - 0.45 * s * uy},${b[1] - s * uy + 0.45 * s * ux}`;
-  return <g className={cls}><line x1={a[0]} y1={a[1]} x2={b[0] - ux * 4} y2={b[1] - uy * 4} /><polygon points={head} /></g>;
-}
 
 function useLoop(play: boolean, speed: number, set: (f: (x: number) => number) => void, seen: boolean) {
   useEffect(() => {

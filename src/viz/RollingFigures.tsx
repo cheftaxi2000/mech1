@@ -3,6 +3,7 @@ import { M } from '../components/Tex';
 import { fmtNum, useLang, useTr } from '../i18n';
 import { contactVelocity, momentaryCentre, slip, wheelVelocity, type P2 } from '../physics/rolling';
 import { at, useInView } from './figUtils';
+import { Arrow } from './arrow2d';
 
 const t = String.raw;
 type V = [number, number];
@@ -11,14 +12,6 @@ const PX = 52; // px per unit length (R = 1)
 const AS = 22; // px of arrow per unit of speed
 const GROUND = 196, CY = GROUND - PX, X_MIN = 70, X_MAX = 330;
 const RIM = Array.from({ length: 8 }, (_, i) => (i * Math.PI) / 4);
-
-function Arrow({ a, b, cls }: { a: V; b: V; cls: string }) {
-  const dx = b[0] - a[0], dy = b[1] - a[1], l = Math.hypot(dx, dy);
-  if (l < 1.5) return null;
-  const ux = dx / l, uy = dy / l, s = Math.min(9, 0.6 * l);
-  const head = `${b[0]},${b[1]} ${b[0] - s * ux + 0.45 * s * uy},${b[1] - s * uy - 0.45 * s * ux} ${b[0] - s * ux - 0.45 * s * uy},${b[1] - s * uy + 0.45 * s * ux}`;
-  return <g className={cls}><line x1={a[0]} y1={a[1]} x2={b[0] - ux * 4} y2={b[1] - uy * 4} /><polygon points={head} /></g>;
-}
 
 type Preset = 'roll' | 'locked' | 'spin' | 'belt';
 const PRESETS: Record<Preset, { vc: number; w: number; u: number; de: string; en: string }> = {

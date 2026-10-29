@@ -29,14 +29,15 @@ for (const c of [
     await page.goto(`/#${c.id}`);
     const fig = page.locator(c.fig).first();
     await fig.scrollIntoViewIfNeeded();
+    if (c.id === 'ebene-bewegung') await fig.locator('input[type=range]').first().fill('78'); // the longest slide, so it is still running afterwards
     await fig.getByRole('button', { name: c.play }).first().click();
-    expect(await frames(page, 600)).toBeGreaterThan(8);
+    expect(await frames(page, 450)).toBeGreaterThan(8);
     await page.evaluate(() => window.scrollTo(0, 0));
     await page.waitForTimeout(300); // let the IntersectionObserver report
-    const away = await frames(page, 600);
+    const away = await frames(page, 450);
     await fig.scrollIntoViewIfNeeded();
     await page.waitForTimeout(300);
-    const back = await frames(page, 600);
+    const back = await frames(page, 450);
     expect(away).toBeLessThan(6);
     expect(back).toBeGreaterThan(8);
   });

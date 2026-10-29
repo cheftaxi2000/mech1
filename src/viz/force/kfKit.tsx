@@ -3,6 +3,7 @@ import { M } from '../../components/Tex';
 import { useTr } from '../../i18n';
 import { at, useReducedMotion } from '../figUtils';
 import './force.css';
+import { arrowHeadPoints } from '../arrow2d';
 
 export type V = readonly [number, number];
 export const t = String.raw;
@@ -14,12 +15,10 @@ export function svgPt(svg: SVGSVGElement, vb: readonly number[], e: { clientX: n
 }
 
 export const f1 = (x: number) => x.toFixed(1);
-const pts = (ps: readonly V[]) => ps.map((p) => `${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(' ');
 
 /** Head polygon of an arrow ending in b (pointing from a to b). */
 export function headPoints(a: V, b: V, size = 11): string {
-  const dx = b[0] - a[0], dy = b[1] - a[1], l = Math.hypot(dx, dy) || 1, ux = dx / l, uy = dy / l, s = Math.min(size, 0.7 * l);
-  return pts([b, [b[0] - s * ux + 0.42 * s * uy, b[1] - s * uy - 0.42 * s * ux], [b[0] - s * ux - 0.42 * s * uy, b[1] - s * uy + 0.42 * s * ux]]);
+  return arrowHeadPoints(a, b, size, 0.7);
 }
 
 /**

@@ -44,7 +44,7 @@ export function Arrow({ from = [0, 0, 0], to, color, width = 2 }: { from?: Vec3;
     <group>
       <Line points={[from as [number, number, number], base]} color={color} lineWidth={width} />
       <mesh position={headPos} quaternion={quat}>
-        <coneGeometry args={[r, h, 20]} />
+        <coneGeometry args={[r, h, 36]} />
         <meshBasicMaterial color={color} />
       </mesh>
     </group>

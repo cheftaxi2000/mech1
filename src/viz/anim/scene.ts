@@ -95,8 +95,8 @@ export function labelOverlap(a: SceneLabel, b: SceneLabel): number {
 
 export function arrowHead(from: P2, to: P2, size = 7): P2[] {
   const dx = to[0] - from[0], dy = to[1] - from[1], len = Math.hypot(dx, dy) || 1;
-  const ux = dx / len, uy = dy / len;
-  return [to, [to[0] - size * ux + size * 0.45 * uy, to[1] - size * uy - size * 0.45 * ux], [to[0] - size * ux - size * 0.45 * uy, to[1] - size * uy + size * 0.45 * ux]];
+  const ux = dx / len, uy = dy / len, w = 0.46 * size, n = 0.74 * size; // notched head, like viz/arrow2d.tsx
+  return [to, [to[0] - size * ux + w * uy, to[1] - size * uy - w * ux], [to[0] - n * ux, to[1] - n * uy], [to[0] - size * ux - w * uy, to[1] - size * uy + w * ux]];
 }
 
 /** Collects shapes and labels; finish() drops invisible labels and clamps the rest into the frame. */

@@ -4,6 +4,7 @@ import { fmtNum, useLang, useTr } from '../i18n';
 import { GEAR, R3, TEETH, omega3, omegaArm, ratioRingFixed, startAngles, type P2 } from '../physics/planetary';
 import { RING_OUT, circlePts, clipToDisc, gearOutline, marks, stateFromAngles, velocityPicture, withArm } from './planetGeom';
 import { at, useReducedMotion, useInView } from './figUtils';
+import { Arrow } from './arrow2d';
 
 const t = String.raw;
 type V = readonly [number, number];
@@ -11,14 +12,6 @@ const VB: [number, number, number, number] = [0, 0, 400, 400];
 const S = 47, KV = 34 / S; // px per unit length; drawn velocity per unit (in length units)
 const sv = (p: P2): V => [200 + S * p[0], 200 - S * p[1]];
 const pts = (ps: readonly P2[]) => ps.map((p) => { const q = sv(p); return `${q[0].toFixed(1)},${q[1].toFixed(1)}`; }).join(' ');
-
-function Arrow({ a, b, cls }: { a: V; b: V; cls: string }) {
-  const dx = b[0] - a[0], dy = b[1] - a[1], l = Math.hypot(dx, dy);
-  if (l < 1.5) return null;
-  const ux = dx / l, uy = dy / l, s = Math.min(9, 0.6 * l);
-  const head = `${b[0]},${b[1]} ${b[0] - s * ux + 0.45 * s * uy},${b[1] - s * uy - 0.45 * s * ux} ${b[0] - s * ux - 0.45 * s * uy},${b[1] - s * uy + 0.45 * s * ux}`;
-  return <g className={cls}><line x1={a[0]} y1={a[1]} x2={b[0] - ux * 4} y2={b[1] - uy * 4} /><polygon points={head} /></g>;
-}
 
 type Preset = 'fig' | 'ring' | 'sun' | 'shift' | 'neg';
 const R1R2 = GEAR.R1 / GEAR.R2;
