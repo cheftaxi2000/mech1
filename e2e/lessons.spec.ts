@@ -92,7 +92,7 @@ for (const lang of LANGS) {
   test(`[${lang}] landing offers all subjects; each subject page lists its lessons`, async ({ page }) => {
     const errors = trackErrors(page);
     await open(page, lang);
-    await expect(page.getByRole('heading', { level: 1 })).toContainText('Learning Lab');
+    await expect(page.getByRole('heading', { level: 1 })).toContainText('D-MAVT');
     const tiles = page.locator('a.tile');
     await expect(tiles).toHaveCount(5);
     const i = lang === 'de' ? 0 : 1;

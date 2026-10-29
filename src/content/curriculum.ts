@@ -13,11 +13,11 @@ export type Status = 'planned' | 'draft' | 'review' | 'complete';
 /** The two courses ("Rubriken"). Each chapter belongs to one; navigation and prev/next stay inside a subject. */
 export type Subject = 'mech' | 'ana' | 'la' | 'chem' | 'info';
 export const SUBJECTS: Record<Subject, [string, string]> = {
-  mech: ['Mechanik I', 'Mechanics 1'],
+  mech: ['Mechanik I', 'Mechanics I'],
   ana: ['Analysis I', 'Analysis I'],
-  la: ['Lineare Algebra I', 'Linear Algebra 1'],
+  la: ['Lineare Algebra I', 'Linear Algebra I'],
   chem: ['Chemie', 'Chemistry'],
-  info: ['Informatik I', 'Computer Science 1'],
+  info: ['Informatik I', 'Computer Science I'],
 };
 /** Short names for narrow places (drawer switch). */
 export const SUBJECT_SHORT: Record<Subject, [string, string]> = {

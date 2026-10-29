@@ -243,7 +243,7 @@ export function App() {
           aria-label={menu ? tr('Kapitel schliessen', 'Close chapters') : tr('Kapitel', 'Chapters')}>
           <svg viewBox="0 0 24 24" aria-hidden="true">{menu ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}</svg>
         </button>
-        <a href="#" className="brand">Learning Lab</a>
+        <a href="#" className="brand">D-MAVT</a>
         {subject && <a href={`#${SUBJECT_ROUTE[subject]}`} className="topbar-subject">{tr(...SUBJECTS[subject])}</a>}
         {topic && <span className="topbar-topic">{tr(...topic.title)}</span>}
         {topic && <RunningHead topicId={topic.id} />}
