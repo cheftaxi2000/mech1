@@ -4,18 +4,12 @@ import { fmtNum, useLang, useTr } from '../i18n';
 import { wheelPointVelocity, type P2 } from '../physics/plane';
 import { CPLATE, CPRESETS, CPTS, KV, N_AB, U_AB, VBC, centreFrame, type CPreset } from './planeGeom';
 import { at } from './figUtils';
+import { Arrow } from './arrow2d';
 
 const t = String.raw;
 type V = readonly [number, number];
 const pts = (ps: readonly V[]) => ps.map((p) => `${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(' ');
 
-function Arrow({ a, b, cls }: { a: V; b: V; cls: string }) {
-  const dx = b[0] - a[0], dy = b[1] - a[1], l = Math.hypot(dx, dy);
-  if (l < 1.5) return null;
-  const ux = dx / l, uy = dy / l, s = Math.min(9, 0.6 * l);
-  const head = `${b[0]},${b[1]} ${b[0] - s * ux + 0.45 * s * uy},${b[1] - s * uy - 0.45 * s * ux} ${b[0] - s * ux - 0.45 * s * uy},${b[1] - s * uy + 0.45 * s * ux}`;
-  return <g className={cls}><line x1={a[0]} y1={a[1]} x2={b[0] - ux * 4} y2={b[1] - uy * 4} /><polygon points={head} /></g>;
-}
 /** Right-angle mark (9 px) at a between the directions toward q and toward b. */
 function RightAngle({ a, q, b, cls = 'gm-ra' }: { a: V; q: V; b: V; cls?: string }) {
   const u = (p: V): V => { const dx = p[0] - a[0], dy = p[1] - a[1], l = Math.hypot(dx, dy) || 1; return [dx / l, dy / l]; };

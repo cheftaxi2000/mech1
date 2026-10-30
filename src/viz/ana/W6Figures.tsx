@@ -5,9 +5,11 @@ import {
   angleTex, arg, bisectorGap, cabs, cx, div4, divPolar, fromPolar, mulPolar, naiveArctan, norm2pi, powerList,
   probePoint, roots, type C,
 } from '../../analysis/week6';
-import { HLine, PArrow, PLabel, Path, Plot, Pt, Seg, usePlot } from '../plot/Plot';
+import { Curve, HLine, PArrow, PLabel, Path, Plot, Pt, Seg, usePlot } from '../plot/Plot';
 import type { P2 } from '../plot/plotMath';
 import { useReducedMotion } from '../figUtils';
+import { useInView, useRaf } from '../chem/useFrames';
+import { angleOf, exactCosSin, unitPoint } from './eulerGeom';
 import {
   HALF_WIN, MUL_WIN, REGION_PRESETS, ROOT_WIN, arcPts, boundaryIncluded, circlePts, halfPlanePoly, halfScene, linePts,
   mulScene, rootAnimScene, satisfies, snapPolar, tipOffset, type Cond, type Win,
@@ -690,6 +692,86 @@ export function Bisector() {
         <div className={`v-result ${on ? 'pos' : ''}`}><M>{t`|z - a| ${eqv(da, lang)},\quad |z - b| ${eqv(db, lang)}`}</M> {on && <Mark ok />}</div>
         <p className="vdemo-note">{tr(<>Ziehe <M p=",">a</M> <M>b</M> oder <M p=".">z</M> Auf der violetten Geraden sind beide Abstände gleich: Das ist die Mittelsenkrechte der Strecke von <M>a</M> nach <M p=".">b</M></>,
           <>Drag <M p=",">a</M> <M p=",">b</M> or <M p=".">z</M> On the purple line both distances are equal: it is the perpendicular bisector of the segment from <M>a</M> to <M p=".">b</M></>)}</p>
+      </figcaption>
+    </figure>
+  );
+}
+
+/* =============================================================== 4 · Euler form: the unit circle and its two shadows */
+const EU_PRESETS = [0, 30, 45, 60, 90, 120, 180, 270];
+const TAU = 2 * PI;
+
+/**
+ * Euler form, section 4: e^{iφ} = cos φ + i sin φ is the point of the unit circle at the arc length φ. The horizontal
+ * shadow of the point is cos φ, the vertical one sin φ; on the right the same two numbers are drawn against φ, and the
+ * arc length φ is unrolled onto the axis (so φ in radians is a length). Drag in the plane, use the slider or Play.
+ */
+export function EulerCircle() {
+  const tr = useTr(), lang = useLang();
+  const [phi, setPhi] = useState(PI / 3);
+  const [playing, setPlaying] = useState(false);
+  const host = useRef<HTMLElement>(null);
+  const inView = useInView(host), reduced = useReducedMotion();
+  useRaf((dt) => setPhi((p) => norm2pi(p + 0.8 * dt)), playing && inView && !reduced);
+  const [c, s] = unitPoint(phi);
+  const deg = (phi * 180) / PI, ex = exactCosSin(deg);
+  const onDrag = (x: number, y: number, ph: 'down' | 'move' | 'up') => { if (ph !== 'up' && Math.hypot(x, y) > 0.08) { setPlaying(false); setPhi(angleOf(x, y)); } };
+  const rhs = (e: [string, number] | undefined, x: number) => (e ? (/^-?[01]$/.test(e[0]) ? `= ${e[0]}` : `= ${e[0]} \\approx ${nn(x, lang)}`) : eqv(x, lang));
+  const mid = phi / 2;
+  const q: 1 | -1 = s >= 0 ? 1 : -1;
+  const pressed = (d: number) => Math.abs(deg - d) < 1e-6;
+  const fix = (x: number) => (Math.abs(x) < 5e-3 ? 0 : x);
+  return (
+    <figure className="vdemo eu-fig" ref={host}>
+      <div className="v-presets">
+        {EU_PRESETS.map((d) => <button key={d} type="button" aria-pressed={pressed(d)} onClick={() => { setPlaying(false); setPhi((d * PI) / 180); }}><M>{ang((d * PI) / 180, lang) }</M></button>)}
+        <button type="button" className="motion-btn" aria-pressed={playing} onClick={() => setPlaying(!playing)}>{playing ? tr('Pause', 'Pause') : tr('Abspielen', 'Play')}</button>
+      </div>
+      <div className="controls">
+        <label className="slider wide-slider"><span><M>\varphi</M></span>
+          <input type="range" min={0} max={360} step={1} value={Math.round(deg) % 361} aria-label={tr('Winkel φ in Grad', 'Angle φ in degrees')}
+            onChange={(e) => { setPlaying(false); setPhi((+e.target.value * PI) / 180 % TAU); }} />
+          <span className="val">{Math.round(deg)}°</span></label>
+      </div>
+      <div className="eu-pair">
+        <div className="vdemo-fig">
+          <Plot x={[-1.5, 1.5]} y={[-1.5, 1.5]} w={300} h={300} grid={[0, 0]} tick={[0, 0]} axes={[t`\mathrm{Re}`, t`\mathrm{Im}`]} onDrag={onDrag}
+            label={tr('Einheitskreis: Punkt e^(iφ) mit Schatten cos φ und sin φ; ziehbar', 'Unit circle: point e^(iφ) with shadows cos φ and sin φ; draggable')}>
+            <Path pts={circlePts(1)} role="aux" dashed />
+            <Path pts={arcPts(1, 0, Math.max(phi, 1e-6))} role="asym" />
+            <Seg a={[c, s]} b={[c, 0]} role="aux" dashed /><Seg a={[c, s]} b={[0, s]} role="aux" dashed />
+            <Seg a={[0, 0]} b={[c, 0]} role="f" width={5} /><Seg a={[0, 0]} b={[0, s]} role="g" width={5} />
+            <PArrow a={[0, 0]} b={[c, s]} role="fg" />
+            <Pt x={c} y={s} role="pt" r={6} />
+            <PLabel x={1} y={0} tex="1" role="muted" dy={14} dx={6} small /><PLabel x={-1} y={0} tex="-1" role="muted" dy={14} dx={-6} small />
+            <PLabel x={0} y={1} tex="1" role="muted" dx={-11} small /><PLabel x={0} y={-1} tex="-1" role="muted" dx={-13} small />
+            <PLabel x={c} y={s} tex={t`e^{i\varphi}`} role="pt" dx={c >= 0 ? 14 : -14} dy={s >= 0 ? -12 : 12} anchor={c >= 0 ? 'l' : 'r'} small />
+            {Math.abs(c) > 0.2 && <PLabel x={c / 2} y={0} tex={t`\cos\varphi`} role="f" dy={q > 0 ? 14 : -14} small />}
+            {Math.abs(s) > 0.2 && <PLabel x={0} y={s / 2} tex={t`\sin\varphi`} role="g" dx={c >= 0 ? -10 : 10} anchor={c >= 0 ? 'r' : 'l'} small />}
+            {phi > 0.35 && <PLabel x={1.2 * Math.cos(mid)} y={1.2 * Math.sin(mid)} tex={t`\varphi`} role="asym" small />}
+          </Plot>
+        </div>
+        <div className="vdemo-fig">
+          <Plot x={[-0.5, 7.2]} y={[-1.5, 1.5]} w={420} h={300} grid={[0, 0]} tick={[0, 1]} axes={[t`\varphi`, '']}
+            label={tr('Kosinus (blau) und Sinus (gelb) als Funktion des Winkels φ; der Bogen ist auf die Achse abgerollt', 'Cosine (blue) and sine (yellow) against the angle φ; the arc is unrolled onto the axis')}>
+            <Curve f={Math.cos} dom={[0, TAU]} role="f" /><Curve f={Math.sin} dom={[0, TAU]} role="g" />
+            <Seg a={[phi, -1.4]} b={[phi, 1.4]} role="aux" dashed />
+            <Seg a={[0, 0]} b={[phi, 0]} role="asym" width={5} />
+            <Pt x={phi} y={c} role="f" r={5.5} /><Pt x={phi} y={s} role="g" r={5.5} />
+            {[0.5, 1, 1.5, 2].map((k) => <PLabel key={k} x={k * PI} y={0} tex={k === 1 ? '\\pi' : k === 2 ? '2\\pi' : k === 0.5 ? t`\tfrac{\pi}{2}` : t`\tfrac{3\pi}{2}`} role="muted" dy={14} small />)}
+            <PLabel x={0.05} y={1} tex={t`\cos\varphi`} role="f" dy={-12} anchor="l" small />
+            <PLabel x={PI / 2} y={1} tex={t`\sin\varphi`} role="g" dy={-12} small />
+          </Plot>
+        </div>
+      </div>
+      <figcaption className="vdemo-readout">
+        <div className="v-result"><M>{t`e^{i\varphi} = \cos\varphi + i\sin\varphi`}</M></div>
+        <div className="v-result pos"><M>{t`\varphi = ${ang(phi, lang)}\quad(${nn(deg, lang, 1)}^\circ)\quad ${eqv(phi, lang)}`}</M></div>
+        <div className="v-result"><M>{t`\cos\varphi ${rhs(ex?.cos, c)},\quad \sin\varphi ${rhs(ex?.sin, s)}`}</M></div>
+        <div className="v-result"><M>{t`e^{i\varphi} = ${cart({ re: fix(c), im: fix(s) } as C, lang)},\quad \cos^2\varphi + \sin^2\varphi = 1`}</M></div>
+        <p className="vdemo-note">{tr(
+          <>Ziehe in der Ebene (oder wähle einen Winkel). Der <span className="eu-purple">violette Bogen</span> auf dem Einheitskreis hat die Länge <M p=":">\varphi</M> so ist der Winkel im Bogenmass gemeint; rechts ist er auf die Achse abgerollt. Wie weit rechts der Punkt liegt, ist <M>{t`\cos\varphi`}</M> (blau), wie hoch er liegt, ist <M>{t`\sin\varphi`}</M> (gelb). Beide laufen als Wellen weiter, nach <M>{t`2\pi`}</M> ist man wieder am Start.</>,
+          <>Drag in the plane (or pick an angle). The <span className="eu-purple">purple arc</span> on the unit circle has the length <M p=":">\varphi</M> that is what the angle in radians means; on the right it is unrolled onto the axis. How far right the point lies is <M>{t`\cos\varphi`}</M> (blue), how high it lies is <M>{t`\sin\varphi`}</M> (yellow). Both continue as waves; after <M>{t`2\pi`}</M> you are back at the start.</>)}</p>
       </figcaption>
     </figure>
   );

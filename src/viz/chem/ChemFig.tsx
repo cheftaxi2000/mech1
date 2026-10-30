@@ -11,7 +11,7 @@ export function SceneFig({ scene, label, className, children, svgRef, onPointerD
   onPointerDown?: PointerEventHandler<SVGSVGElement>; onPointerMove?: PointerEventHandler<SVGSVGElement>; onPointerUp?: PointerEventHandler<SVGSVGElement>;
 }) {
   const { w, h } = scene;
-  const data = Object.fromEntries(Object.entries(scene.data).map(([k, v]) => [`data-${k}`, Number.isFinite(v) ? v.toFixed(4) : String(v)]));
+  const data = Object.fromEntries(Object.entries(scene.data).map(([k, v]) => [`data-${k.toLowerCase()}`, Number.isFinite(v) ? v.toFixed(4) : String(v)]));
   return (
     <div className={`anim-fig th-draw${className ? ` ${className}` : ''}`} style={{ ['--th-fs' as string]: `${((3.9 * 400) / w).toFixed(2)}cqw` }} {...data}>
       <svg ref={svgRef} viewBox={`0 0 ${w} ${h}`} preserveAspectRatio="xMidYMid meet" role="img" aria-label={label}

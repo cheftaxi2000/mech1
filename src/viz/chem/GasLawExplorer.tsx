@@ -4,7 +4,7 @@ import { fmtNum, tupleSep, useLang, useTr } from '../../i18n';
 import { MOLAR_VOLUME_STP, STP, cToK, kToC, type GasState } from '../../chem/gas';
 import { LAW_DEFS, RANGES, START, curve, lawConstant, lawState, niceMax, niceStep, type LawId } from '../../chem/lawExplorer';
 import { Curve, PLabel, Plot, Pt, Seg, VLine } from '../plot/Plot';
-import { useReducedMotion } from '../figUtils';
+import { useInView, useReducedMotion } from '../figUtils';
 import './gasfig.css';
 
 const t = String.raw;
@@ -40,8 +40,10 @@ export function GasLawExplorer() {
 
   // ping-pong sweep of the free variable
   const ph = useRef(0);
+  const host = useRef<HTMLElement>(null);
+  const seen = useInView(host);
   useEffect(() => {
-    if (!play) return;
+    if (!play || !seen) return;
     let raf = 0, last = performance.now();
     const r = RANGES[free];
     const tick = (now: number) => {
@@ -53,7 +55,7 @@ export function GasLawExplorer() {
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [play, free]);
+  }, [play, free, seen]);
   useEffect(() => { if (reduced) setPlay(false); }, [reduced]);
 
   const gridOf = (max: number) => niceStep(max);
@@ -121,7 +123,7 @@ export function GasLawExplorer() {
   const kind = (k: keyof GasState) => (k === free ? 'free' : def.fixed.includes(k) ? 'fixed' : 'follows');
   const rows = (['P', 'V', 'T', 'n'] as (keyof GasState)[]);
   return (
-    <figure className="vdemo gasfig gf">
+    <figure className="vdemo gasfig gf" ref={host}>
       <div className="v-presets gf-tabs" role="tablist" aria-label={tr('Gasgesetz wählen', 'Choose a gas law')}>
         {(Object.keys(LAW_DEFS) as LawId[]).map((id) => (
           <button type="button" role="tab" key={id} aria-selected={law === id} aria-pressed={law === id} onClick={() => { setLaw(id); setPlay(false); }}>{tr(...NAME[id])}</button>

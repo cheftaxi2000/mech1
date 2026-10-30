@@ -1,21 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { M } from '../components/Tex';
 import { fmtNum, useLang, useTr } from '../i18n';
 import { GEN, fieldFrame, mitfahrFrame, type Ride } from './genGeom';
-import { at } from './figUtils';
+import { at, useInView } from './figUtils';
+import { Arrow } from './arrow2d';
 
 const t = String.raw;
 type V = readonly [number, number];
 const DEG = Math.PI / 180;
 const pts = (ps: readonly V[]) => ps.map((p) => `${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(' ');
-
-function Arrow({ a, b, cls }: { a: V; b: V; cls: string }) {
-  const dx = b[0] - a[0], dy = b[1] - a[1], l = Math.hypot(dx, dy);
-  if (l < 1.5) return null;
-  const ux = dx / l, uy = dy / l, s = Math.min(9, 0.6 * l);
-  const head = `${b[0]},${b[1]} ${b[0] - s * ux + 0.45 * s * uy},${b[1] - s * uy - 0.45 * s * ux} ${b[0] - s * ux - 0.45 * s * uy},${b[1] - s * uy + 0.45 * s * ux}`;
-  return <g className={cls}><line x1={a[0]} y1={a[1]} x2={b[0] - ux * 4} y2={b[1] - uy * 4} /><polygon points={head} /></g>;
-}
 
 /* ------------------------------------------------------------------------------------------------ */
 const VB1: [number, number, number, number] = [0, 0, 400, 300];
@@ -26,12 +19,14 @@ const RIDES: Record<Ride, [string, string]> = { rest: ['Kamera ruht', 'camera at
  * (or with C), without turning, sees only a turning about that point — by the same angle φ in both cases.
  */
 export function RideDemo() {
+  const host = useRef<HTMLElement>(null);
+  const seen = useInView(host);
   const tr = useTr(), lang = useLang();
   const [ride, setRide] = useState<Ride>('B');
   const [time, setTime] = useState(2.4);
   const [play, setPlay] = useState(false);
   useEffect(() => {
-    if (!play) return;
+    if (!play || !seen) return;
     let raf = 0, last = performance.now();
     const tick = (now: number) => {
       const dt = Math.min(now - last, 100) / 1000; last = now;
@@ -40,7 +35,7 @@ export function RideDemo() {
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [play]);
+  }, [play, seen]);
   const f = mitfahrFrame(ride, time);
   const deg = Math.round(f.phi / DEG);
   // angle arc at the riding point: from the direction to M at the start to the direction now
@@ -52,7 +47,7 @@ export function RideDemo() {
   })();
   const start = () => { if (time >= GEN.T_END - 0.01) setTime(0); setPlay((x) => !x); };
   return (
-    <figure className="vdemo">
+    <figure className="vdemo" ref={host}>
       <div className="v-presets">
         {(Object.keys(RIDES) as Ride[]).map((k) => <button key={k} type="button" aria-pressed={ride === k} onClick={() => setRide(k)}>{tr(...RIDES[k])}</button>)}
       </div>

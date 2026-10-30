@@ -9,7 +9,8 @@ import { DOOR, FOOT, doorFrame, doorPoint, footNumbers } from './rotGeom';
 import { Scene } from './Scene';
 import { Arrow, C, Curve, Dashed, Dot, Label } from './primitives';
 import { FullscreenButton, useFullscreen } from './useFullscreen';
-import { at } from './figUtils';
+import { at, useInView } from './figUtils';
+import { Arrow as Arrow2 } from './arrow2d';
 
 const t = String.raw;
 type V = [number, number];
@@ -60,6 +61,7 @@ function DoorBody({ beta, phi }: { beta: number; phi: number }) {
 export function RotationExplorer() {
   const tr = useTr(), lang = useLang();
   const [ref, full, toggleFull] = useFullscreen();
+  const seen = useInView(ref);
   const [w, setW] = useState(0.8);
   const [phi, setPhi] = useState(60 * DEG);
   const [tilt, setTilt] = useState(0);
@@ -68,12 +70,12 @@ export function RotationExplorer() {
   const [angles, setAngles] = useState(true);
   const [vel, setVel] = useState(false);
   useEffect(() => {
-    if (!play) return;
+    if (!play || !seen) return;
     let raf = 0, last = performance.now();
     const tick = (now: number) => { const dt = Math.min(now - last, 100) / 1000; last = now; setPhi((p) => p + w * dt); raf = requestAnimationFrame(tick); };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [play, w]);
+  }, [play, w, seen]);
   const beta = tilt * DEG;
   const { e } = doorFrame(beta);
   const omega = scale(w, e);
@@ -209,12 +211,4 @@ export function FootDemo() {
 
 /** The point at distance d from p in the direction of q (an arrow that stops at the rim of a symbol). */
 const toward = (p: V, q: V, d: number): V => { const l = Math.hypot(q[0] - p[0], q[1] - p[1]); return [p[0] + (d * (q[0] - p[0])) / l, p[1] + (d * (q[1] - p[1])) / l]; };
-
-function Arrow2({ a, b, cls }: { a: V; b: V; cls: string }) {
-  const dx = b[0] - a[0], dy = b[1] - a[1], l = Math.hypot(dx, dy);
-  if (l < 1.5) return null;
-  const ux = dx / l, uy = dy / l, s = Math.min(9, 0.6 * l);
-  const head = `${b[0]},${b[1]} ${b[0] - s * ux + 0.45 * s * uy},${b[1] - s * uy - 0.45 * s * ux} ${b[0] - s * ux - 0.45 * s * uy},${b[1] - s * uy + 0.45 * s * ux}`;
-  return <g className={cls}><line x1={a[0]} y1={a[1]} x2={b[0] - ux * 4} y2={b[1] - uy * 4} /><polygon points={head} /></g>;
-}
 

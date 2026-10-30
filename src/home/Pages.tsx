@@ -31,25 +31,19 @@ export function Landing() {
   return (
     <div className="landing">
       <header className="landing-head">
-        <span className="landing-place">ETH Zürich</span>
-        <h1>Learning Lab</h1>
-        <p className="landing-sub">{tr('Begleiter zu den Vorlesungen des ersten Semesters: jede Seite des Skripts erklärt, gezeichnet und zum Ausprobieren.', 'Companions to the first-semester lectures: every page of the notes explained, drawn and ready to try.')}</p>
+                <h1>D-MAVT</h1>
+        <p className="landing-sub">{tr('I. Semester', 'Semester I')}</p>
       </header>
       {last && (
         <a className="resume" href={`#${last.id}`}>
-          <span className="resume-kind">{tr('Weiterlesen', 'Continue reading')}</span>
           <span className="resume-title">{tr(...last.title)}</span>
-          <span className="resume-pages">{tr(...SUBJECTS[topicSubject(last)])}, {tr(sourceLabel(last)[0], sourceLabel(last)[1])}</span>
         </a>
       )}
       <nav className="tiles" aria-label={tr('Fächer', 'Subjects')}>
         {rows.map((r) => (
           <a key={r.s} className={`tile tile-${r.s}`} href={`#${SUBJECT_ROUTE[r.s]}`}>
-            <div className="tile-fig" aria-hidden="true">{r.fig}</div>
             <div className="tile-body">
               <h2>{tr(...SUBJECTS[r.s])}</h2>
-              <p>{tr(...r.desc).split('C++').flatMap((part, i) => (i ? [<span key={i} className="cpp">C++</span>, part] : [part]))}</p>
-              <span className="tile-foot">{tr(...r.meta)}</span>
             </div>
           </a>
         ))}
@@ -73,7 +67,7 @@ export function SubjectPage({ subject }: { subject: Subject }) {
         <h1>{tr(...SUBJECTS[subject])}</h1>
         <p className="lede">{subject === 'mech'
           ? tr('Ein interaktiver Begleiter zum Skript der ETH-Vorlesung Mechanik I. Jede Lektion folgt dem Skript Seite für Seite, kennzeichnet klar, was aus der Vorlesung stammt und was Ergänzung ist, und erklärt in ein, zwei Sätzen, wo das Skript eine Lücke oder einen Fehler hat.',
-              'An interactive companion to the ETH Mechanics 1 lecture notes. Each lesson follows the notes page by page, marks clearly what comes from the lecture and what is a supplement, and explains in a sentence or two where the notes have a gap or a slip.')
+              'An interactive companion to the ETH Mechanics I lecture notes. Each lesson follows the notes page by page, marks clearly what comes from the lecture and what is a supplement, and explains in a sentence or two where the notes have a gap or a slip.')
           : subject === 'la'
           ? tr('Ein Kapitel pro Übungsstunde, nach den Folien von Mårten Olofsson und seinen interaktiven Visualisierungen. Das Ziel der Übung gilt hier auch: erst das Bild und die Intuition, dann die Rechnung.',
               'One chapter per exercise class, following the slides of Mårten Olofsson and his interactive visualisations. His aim is ours too: the picture and the intuition first, then the calculation.')

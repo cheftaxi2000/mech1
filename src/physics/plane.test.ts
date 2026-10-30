@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import {
-  centreFromTwo, cross2, ladderAt, ladderMZ, omegaFromTwo, outOfPlane, planeVelocity, restPoint, sdpgDefect2,
+  centreFromTwo, cross2, ladderAt, ladderMZ, ladderMiddle, ladderPoint, ladderPointVelocity, ladderZBody, movingPolodePoint, omegaFromTwo, outOfPlane, planeVelocity, restPoint, sdpgDefect2,
   tiltFromTwoDirections, tipsIntersection, wheelPointVelocity, type P2,
 } from './plane';
 import { rigidVelocity } from './rigid';
@@ -161,6 +161,62 @@ describe('p. 27: ladder solved with the Momentanzentrum (supplement, R-022)', ()
       expect((s2.phi - s.phi) / h).toBeCloseTo(s.w, 5); // φ decreases: clockwise turning
       expect((s2.B[1] - s.B[1]) / h).toBeCloseTo(-s.vV, 5); // B slides down with v_V
       expect((s2.A[0] - s.A[0]) / h).toBeCloseTo(-vH, 6);
+    }
+  });
+});
+
+describe('ladder polodes', () => {
+  const L = 1.3, PHIS = [0.2, 0.5, 0.9, 1.2, 1.5];
+  it('Z runs on the circle of radius L about the corner C (fixed polode)', () => {
+    for (const phi of PHIS) expect(len(ladderMZ(L, phi, 1).Z)).toBeCloseTo(L, 12);
+  });
+  it('Z, A, B and C lie on the circle of radius L/2 about the middle M (Thales), and M is the middle of AB', () => {
+    for (const phi of PHIS) {
+      const m = ladderMZ(L, phi, 1), M = ladderMiddle(L, phi);
+      expect(M[0]).toBeCloseTo((m.A[0] + m.B[0]) / 2, 12); expect(M[1]).toBeCloseTo((m.A[1] + m.B[1]) / 2, 12);
+      for (const P of [m.Z, m.A, m.B, m.C]) expect(len(sub(P, M))).toBeCloseTo(L / 2, 12);
+    }
+  });
+  it('the body-frame point of Z is the point of the moving polode at angle π − 2φ, and placing it in the room gives Z again', () => {
+    for (const phi of PHIS) {
+      const zb = ladderZBody(L, phi), z = ladderMZ(L, phi, 1).Z, p = movingPolodePoint(L, phi, Math.PI - 2 * phi);
+      expect(len(zb)).toBeCloseTo(L / 2, 12);
+      expect(Math.atan2(zb[1], zb[0])).toBeCloseTo(Math.PI - 2 * phi, 12);
+      expect(p[0]).toBeCloseTo(z[0], 12); expect(p[1]).toBeCloseTo(z[1], 12);
+    }
+  });
+  it('rolling without slipping: arc on the fixed polode = arc on the moving polode for every step of φ', () => {
+    const h = 1e-6;
+    for (const phi of PHIS) {
+      const z0 = ladderMZ(L, phi - h, 1).Z, z1 = ladderMZ(L, phi + h, 1).Z;
+      const fixedArc = len(sub(z1, z0)); // chord ≈ arc on the circle of radius L
+      const b0 = ladderZBody(L, phi - h), b1 = ladderZBody(L, phi + h);
+      expect(len(sub(b1, b0)) / fixedArc).toBeCloseTo(1, 6);
+    }
+  });
+  it('every point of the ladder runs on the ellipse with semi-axes L(1−s) and sL; A and B run on straight lines', () => {
+    for (const s of [0.15, 0.5, 0.8]) for (const phi of PHIS) {
+      const P = ladderPoint(L, phi, s);
+      expect((P[0] / (L * (1 - s))) ** 2 + (P[1] / (s * L)) ** 2).toBeCloseTo(1, 12);
+    }
+    for (const phi of PHIS) { expect(ladderPoint(L, phi, 0)[1]).toBe(0); expect(ladderPoint(L, phi, 1)[0]).toBeCloseTo(0, 15); }
+    for (const phi of PHIS) expect(len(ladderPoint(L, phi, 0.5))).toBeCloseTo(L / 2, 12);
+  });
+  it('v_P = ω × ZP agrees with the numerical derivative of the path, is ⊥ ZP and tangent to the ellipse', () => {
+    const vH = 0.8, L2 = 1.3, phi0 = 1.1, h = 1e-6;
+    for (const s of [0, 0.3, 0.5, 0.75, 1]) for (const t of [0, 0.2, 0.5]) {
+      const st = ladderAt(L2, phi0, vH, t);
+      const a = ladderAt(L2, phi0, vH, t - h), b = ladderAt(L2, phi0, vH, t + h);
+      const pa = ladderPoint(L2, a.phi, s), pb = ladderPoint(L2, b.phi, s);
+      const num: P2 = [(pb[0] - pa[0]) / (2 * h), (pb[1] - pa[1]) / (2 * h)];
+      const v = ladderPointVelocity(L2, st.phi, vH, s);
+      expect(v[0]).toBeCloseTo(num[0], 5); expect(v[1]).toBeCloseTo(num[1], 5);
+      const P = ladderPoint(L2, st.phi, s);
+      expect(dot(v, sub(P, st.Z))).toBeCloseTo(0, 10);
+      if (s > 0.05 && s < 0.95) { // gradient of x²/a² + y²/b² is normal to the ellipse
+        const g: P2 = [P[0] / (L2 * (1 - s)) ** 2, P[1] / (s * L2) ** 2];
+        expect(dot(v, g)).toBeCloseTo(0, 10);
+      }
     }
   });
 });

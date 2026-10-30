@@ -1,5 +1,6 @@
 import { useEffect, useState, type RefObject } from 'react';
 import { useReducedMotion } from '../figUtils';
+import { arrowHeadPoints } from '../arrow2d';
 
 /**
  * Small drawing helpers shared by the figures of the lessons «Leistung» and «Leistung bei Rotation» (K5, K6).
@@ -13,9 +14,9 @@ export function Arrow({ a, b, cls, double = false, head = 9 }: { a: V2; b: V2; c
   const dx = b[0] - a[0], dy = b[1] - a[1], l = Math.hypot(dx, dy);
   if (l < 2) return null;
   const ux = dx / l, uy = dy / l, s = Math.min(head, 0.55 * l);
-  const headAt = (px: number, py: number) => `${px},${py} ${px - s * ux + 0.46 * s * uy},${py - s * uy - 0.46 * s * ux} ${px - s * ux - 0.46 * s * uy},${py - s * uy + 0.46 * s * ux}`;
+  const headAt = (px: number, py: number) => arrowHeadPoints([px - ux, py - uy], [px, py], s, 1);
   const gap = double ? 0.85 * s : 0;
-  const end: V2 = [b[0] - ux * (0.7 * s + gap), b[1] - uy * (0.7 * s + gap)];
+  const end: V2 = [b[0] - ux * (0.74 * s + gap), b[1] - uy * (0.74 * s + gap)];
   return (
     <g className={`lp-a ${cls}`}>
       <line x1={a[0]} y1={a[1]} x2={end[0]} y2={end[1]} />

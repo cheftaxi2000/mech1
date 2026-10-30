@@ -9,6 +9,7 @@ import { CONE, H, MODES, R, U0, coneBodyPoint, kreiselFrame, M0, type Mode } fro
 import { Scene } from './Scene';
 import { Arrow, C, Dot, Label } from './primitives';
 import { FullscreenButton, useFullscreen } from './useFullscreen';
+import { useInView } from './figUtils';
 
 const t = String.raw;
 type P3 = [number, number, number];
@@ -51,18 +52,19 @@ function ConeBody({ phi, psi }: { phi: number; psi: number }) {
 export function KreiselExplorer() {
   const tr = useTr();
   const [ref, full, toggleFull] = useFullscreen();
+  const seen = useInView(ref);
   const [phi, setPhi] = useState(100 * DEG);
   const [mode, setMode] = useState<Mode>('roll');
   const [play, setPlay] = useState(false);
   const [vel, setVel] = useState(true);
   const [sphere, setSphere] = useState(true);
   useEffect(() => {
-    if (!play) return;
+    if (!play || !seen) return;
     let raf = 0, last = performance.now();
     const tick = (now: number) => { const dt = Math.min(now - last, 100) / 1000; last = now; setPhi((p) => (p + 0.45 * dt) % (2 * Math.PI)); raf = requestAnimationFrame(tick); };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [play]);
+  }, [play, seen]);
   const k = MODES[mode].k;
   const f = kreiselFrame(phi, k);
   const { L } = CONE;

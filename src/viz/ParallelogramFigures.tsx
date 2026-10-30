@@ -3,6 +3,9 @@ import { M } from '../components/Tex';
 import { fmtNum, useLang, useTr } from '../i18n';
 import { parallelogramRoutes } from '../physics/truss';
 import type { P2 } from '../physics/plane';
+import { Arrow as Arrow2D } from './arrow2d';
+
+const Arrow = ({ from, to, cls }: { from: [number, number]; to: [number, number]; cls: string }) => <Arrow2D a={from} b={to} cls={cls} />;
 
 const t = String.raw;
 // the parallelogram of Fig. 3.25: A bottom left, B bottom right, C top right, D top left; AB = DC = a, BC = AD = b
@@ -10,14 +13,6 @@ const a: P2 = [2.4, 0], b: P2 = [0.8, 1.5];
 const S = 62, OX = 90, OY = 222, KV = 40;
 const sv = (p: P2): [number, number] => [OX + S * p[0], OY - S * p[1]];
 const A: P2 = [0, 0], B: P2 = [a[0], a[1]], C: P2 = [a[0] + b[0], a[1] + b[1]], D: P2 = [b[0], b[1]];
-
-function Arrow({ from, to, cls }: { from: [number, number]; to: [number, number]; cls: string }) {
-  const dx = to[0] - from[0], dy = to[1] - from[1], l = Math.hypot(dx, dy);
-  if (l < 2) return null;
-  const ux = dx / l, uy = dy / l, s = Math.min(9, 0.6 * l);
-  const head = `${to[0]},${to[1]} ${to[0] - s * ux + 0.45 * s * uy},${to[1] - s * uy - 0.45 * s * ux} ${to[0] - s * ux - 0.45 * s * uy},${to[1] - s * uy + 0.45 * s * ux}`;
-  return <g className={cls}><line x1={from[0]} y1={from[1]} x2={to[0] - ux * 4} y2={to[1] - uy * 4} /><polygon points={head} /></g>;
-}
 
 /**
  * Fig. 3.25, the proof as a toy: A is held at rest, the four bars turn with ω₁ … ω₄. From A the velocity of C is found on two routes

@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { M } from '../../components/Tex';
 import { fmtNum, useLang, useTr } from '../../i18n';
 import { makeWalk, pathLength, pointAtLength, theoryMfp } from '../../chem/walk';
-import { useReducedMotion } from '../figUtils';
+import { useReducedMotion, useInView } from '../figUtils';
 import './gasfig.css';
 import './kinfig.css';
 
@@ -26,9 +26,11 @@ export function DiffusionWalk() {
   const [s, setS] = useState(total);
   const [playing, setPlaying] = useState(false);
   const started = useRef(false);
+  const host = useRef<HTMLElement>(null);
+  const seen = useInView(host);
   useEffect(() => { setS(reduced ? total : 0); setPlaying(!reduced); started.current = true; }, [total, reduced]);
   useEffect(() => {
-    if (!playing) return;
+    if (!playing || !seen) return;
     let raf = 0, last = performance.now();
     const tick = (now: number) => {
       setS((v) => { const n = v + ((now - last) / 1000) * SPEED * (P < 0.3 ? 2 : 1); if (n >= total) { setPlaying(false); return total; } return n; });
@@ -36,7 +38,7 @@ export function DiffusionWalk() {
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [playing, total, P]);
+  }, [playing, total, P, seen]);
   const { p, k } = pointAtLength(walk.path, s);
   const shown = [...walk.path.slice(0, k + 1), p];
   const cols = walk.collisionAt.filter((c) => c <= k);
@@ -48,7 +50,7 @@ export function DiffusionWalk() {
   const f = (x: number, d: number) => fmtNum(x, d, lang, true);
   const pts = (ps: readonly (readonly [number, number])[]) => ps.map((q) => `${(q[0] * PX).toFixed(1)},${(q[1] * PX).toFixed(1)}`).join(' ');
   return (
-    <figure className="vdemo kinfig dw">
+    <figure className="vdemo kinfig dw" ref={host}>
       <div className="dw-stage">
         <svg viewBox={`0 0 ${W * PX} ${H * PX}`} role="img" aria-label={tr('Ein Molekül zickzackt zwischen vielen anderen', 'One molecule zigzags among many others')}>
           <rect className="dw-box" x={0} y={0} width={W * PX} height={H * PX} />

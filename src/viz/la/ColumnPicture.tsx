@@ -5,6 +5,7 @@ import { T, useLang, useTr, type Lang } from '../../i18n';
 import { COL_PRESETS, colFrame, colModel, colPoints, colResult, countKey, type ColFrame, type ColModel } from '../../linalg/columnPicture';
 import { norm, type M2, type V2 } from '../../linalg/plane2';
 import { StepPlayer, type AnimStep } from '../anim/StepPlayer';
+import { useInView } from '../figUtils';
 import { Mat } from './Mat';
 import { PlaneView } from './PlaneView';
 import { colScene, dragSystem } from './colScene';
@@ -95,10 +96,10 @@ function Panel({ m, f, step, lang }: { m: ColModel; f: ColFrame; step: number; l
 }
 
 /* ---------- one frame of the figure ---------- */
-function useTau(running: boolean) {
+function useTau(running: boolean, seen: boolean) {
   const [tau, setTau] = useState(0);
   useEffect(() => {
-    if (!running) { setTau(0); return; }
+    if (!running || !seen) { setTau(0); return; }
     if (typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     let raf = 0, last = performance.now(), acc = 0, shown = 0;
     const tick = (now: number) => {
@@ -108,14 +109,14 @@ function useTau(running: boolean) {
     };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [running]);
+  }, [running, seen]);
   return running ? tau : 0;
 }
 
-function Frame({ m, step, tt, view, onHandle }: { m: ColModel; step: number; tt: number; view: View; onHandle: (id: string, at: V2, phase: string) => void }) {
+function Frame({ m, step, tt, view, seen, onHandle }: { m: ColModel; seen: boolean; step: number; tt: number; view: View; onHandle: (id: string, at: V2, phase: string) => void }) {
   const tr = useTr(), lang = useLang();
   const walking = step === 3 && tt >= 1 && (m.kind === 'infinite' || m.r === 0);
-  const tau = useTau(walking);
+  const tau = useTau(walking, seen);
   const f = colFrame(m, step, tt, tau);
   const sc = colScene(m, f, view, lang, tau);
   const handles = sc.handles.map((h) => ({ ...h, label: h.id === 'a1' ? tr('Spitze von a₁ ziehen', 'drag the tip of a₁') : h.id === 'a2' ? tr('Spitze von a₂ ziehen', 'drag the tip of a₂') : tr('Spitze von b ziehen', 'drag the tip of b') }));
@@ -140,6 +141,7 @@ export function ColumnPicture({ start = 0, presets }: { start?: number; presets?
   const steps = useMemo(() => colSteps(m, lang), [m, lang]);
   const [, bump] = useState(0);
   const figRef = useRef<HTMLElement>(null);
+  const seen = useInView(figRef);
   const load = (i: number) => { frozen.current = null; setSys((s) => ({ A: COL_PRESETS[i].A, b: COL_PRESETS[i].b, preset: i, gen: s.gen + 1 })); };
   // «show this case in the figure» buttons in the lesson text (ShowPreset) switch the preset and bring the figure into view
   useEffect(() => {
@@ -173,7 +175,7 @@ export function ColumnPicture({ start = 0, presets }: { start?: number; presets?
         ))}
       </div>
       <StepPlayer key={sys.gen} steps={steps} label={tr('Spaltenbild in vier Schritten: Spalten und Ziel, x₁a₁, x₂a₂ angehängt, Ax gegen b', 'Column picture in four steps: columns and target, x₁a₁, x₂a₂ attached, Ax against b')}>
-        {(step, tt) => <Frame m={m} step={step} tt={tt} view={view} onHandle={onHandle} />}
+        {(step, tt) => <Frame m={m} step={step} tt={tt} view={view} seen={seen} onHandle={onHandle} />}
       </StepPlayer>
       <T
         de={<p className="la-hint">Die Spitzen von <M p=",">{'a_1'}</M> <M>{'a_2'}</M> und <M>b</M> lassen sich ziehen (Raster <M p=");">{t`0{,}5`}</M> die Pfeiltasten verschieben die fokussierte Spitze.</p>}

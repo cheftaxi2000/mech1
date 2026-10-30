@@ -7,6 +7,7 @@ import { Scene } from './Scene';
 import { Arrow, Axes, C, Curve, Dot, Label } from './primitives';
 import { FullscreenButton, useFullscreen } from './useFullscreen';
 import { useFigureHeight } from './useNarrow';
+import { useInView } from './figUtils';
 
 const t = String.raw;
 const VS = 0.75; // arrow length per unit of speed
@@ -28,18 +29,19 @@ export const rfPoints = (phi: number) => BODY.map((p) => rot(p, phi));
 export function RotationField() {
   const tr = useTr(), lang = useLang();
   const [ref, full, toggleFull] = useFullscreen();
+  const seen = useInView(ref);
   const [w, setW] = useState(0.8);
   const [phi, setPhi] = useState(RF_PHI0);
   const h = useFigureHeight(400, 330);
   const [play, setPlay] = useState(false);
   const [wrongO, setWrongO] = useState(false);
   useEffect(() => {
-    if (!play) return;
+    if (!play || !seen) return;
     let raf = 0, last = performance.now();
     const tick = (now: number) => { const dt = Math.min(now - last, 100) / 1000; last = now; setPhi((p) => p + w * dt); raf = requestAnimationFrame(tick); };
     raf = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf);
-  }, [play, w]);
+  }, [play, w, seen]);
   const omega: Vec3 = [0, 0, w];
   const pts = BODY.map((p) => rot(p, phi));
   const wl = Math.sign(w) * Math.max(0.25, Math.abs(w) * 1.6);

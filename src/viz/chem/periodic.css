@@ -42,3 +42,6 @@ button.pg-cell:focus-visible { outline: 2px solid var(--accent); outline-offset:
 .pg-b-s { background: color-mix(in srgb, var(--ch-p) 45%, var(--panel)); }
 .pg-b-p { background: color-mix(in srgb, var(--ch-t) 38%, var(--panel)); }
 .pg-b-d { background: color-mix(in srgb, var(--ch-e) 45%, var(--panel)); }
+
+/* the periodic table is the widest figure of the course: give it more of the row so its cells stay big enough to tap on an iPad */
+@media (min-width: 1024px) { figure.vdemo:has(> .vdemo-fig .pg):has(> figcaption) { grid-template-columns: minmax(0, 2.15fr) minmax(250px, 1fr); } }
