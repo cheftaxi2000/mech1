@@ -38,8 +38,8 @@ export default function CH7Vsepr() {
           />
         </Box>
         <T
-          de={<p className="keep">In der flachen Zeichnung stehen die vier Cl im Kreuz, mit 90° zwischen Nachbarn. Das ist nur die Zeichnung. Im Raum können sich vier Bindungen weiter voneinander entfernen: bis 109,5°, in die Ecken eines Tetraeders. Wie das aussieht, zeigt der Explorer in Abschnitt 3.</p>}
-          en={<p className="keep">In the flat drawing the four Cl stand in a cross, with 90° between neighbours. That is only the drawing. In space four bonds can get farther away from each other: up to 109.5°, towards the corners of a tetrahedron. The explorer in section 3 shows what that looks like.</p>}
+          de={<p>In der flachen Zeichnung stehen die vier Cl im Kreuz, mit 90° zwischen Nachbarn. Das ist nur die Zeichnung. Im Raum können sich vier Bindungen weiter voneinander entfernen: bis 109,5°, in die Ecken eines Tetraeders. Wie das aussieht, zeigt der Explorer in Abschnitt 3.</p>}
+          en={<p>In the flat drawing the four Cl stand in a cross, with 90° between neighbours. That is only the drawing. In space four bonds can get farther away from each other: up to 109.5°, towards the corners of a tetrahedron. The explorer in section 3 shows what that looks like.</p>}
         />
         <LewisFigure id="CCl4" caption={<T de={<>Die Lewis-Struktur von <C p=":">CCl4</C> richtig verknüpft, aber flach.</>} en={<>The Lewis structure of <C p=":">CCl4</C> correctly connected, but flat.</>} />} />
       </Section>
@@ -144,8 +144,8 @@ export default function CH7Vsepr() {
           />
         </Box>
         <T
-          de={<p className="keep">Ein freies Paar gehört nur einem Kern und sitzt nahe an ihm; es breitet sich darum breiter aus als ein Bindungspaar, das zwischen zwei Kernen gespannt ist. Es drückt die Bindungen zusammen, zwei freie Paare noch mehr. Eine Doppelbindung enthält vier Elektronen in einer Richtung und drückt ebenfalls: Bei Phosgen weichen die Cl der <M>{t`\mathrm{C{=}O}`}</M>-Bindung aus (124,3°), untereinander kommen sie sich näher (111,4° statt 120°). Das einfache Modell kennt nur die idealen Winkel; die Verfeinerung sagt, in welche Richtung die echten abweichen.</p>}
-          en={<p className="keep">A lone pair belongs to only one nucleus and sits close to it; it therefore spreads out more widely than a bonding pair stretched between two nuclei. It pushes the bonds together, two lone pairs even more. A double bond holds four electrons in one direction and pushes as well: in phosgene the Cl atoms move away from the <M>{t`\mathrm{C{=}O}`}</M> bond (124.3°) and come closer to each other (111.4° instead of 120°). The simple model knows only the ideal angles; the refinement tells in which direction the real ones deviate.</p>}
+          de={<p>Ein freies Paar gehört nur einem Kern und sitzt nahe an ihm; es breitet sich darum breiter aus als ein Bindungspaar, das zwischen zwei Kernen gespannt ist. Es drückt die Bindungen zusammen, zwei freie Paare noch mehr. Eine Doppelbindung enthält vier Elektronen in einer Richtung und drückt ebenfalls: Bei Phosgen weichen die Cl der <M>{t`\mathrm{C{=}O}`}</M>-Bindung aus (124,3°), untereinander kommen sie sich näher (111,4° statt 120°). Das einfache Modell kennt nur die idealen Winkel; die Verfeinerung sagt, in welche Richtung die echten abweichen.</p>}
+          en={<p>A lone pair belongs to only one nucleus and sits close to it; it therefore spreads out more widely than a bonding pair stretched between two nuclei. It pushes the bonds together, two lone pairs even more. A double bond holds four electrons in one direction and pushes as well: in phosgene the Cl atoms move away from the <M>{t`\mathrm{C{=}O}`}</M> bond (124.3°) and come closer to each other (111.4° instead of 120°). The simple model knows only the ideal angles; the refinement tells in which direction the real ones deviate.</p>}
         />
         <AngleSqueeze />
       </Section>
@@ -194,8 +194,8 @@ export default function CH7Vsepr() {
           />
         </Box>
         <T
-          de={<p className="keep"><b>Wo ist «am meisten Platz»?</b> In der trigonalen Bipyramide sind die Plätze nicht gleich. Ein Platz am Äquator hat zwei Nachbarn im 90°-Abstand (oben und unten), ein Platz an der Spitze drei (die drei am Äquator). Freie Paare gehen darum an den Äquator: eines gibt die Wippe, zwei das T, drei lassen nur die zwei Spitzen übrig, also linear. Im Oktaeder sind alle Plätze gleich; das zweite freie Paar geht gegenüber vom ersten, und es bleibt ein Quadrat. Stelle im Explorer oben 5 oder 6 Domänen ein und füge freie Paare hinzu. (Die Begründung mit den 90°-Nachbarn steht nicht auf der Folie.)</p>}
-          en={<p className="keep"><b>Where is “most space”?</b> In the trigonal bipyramid the places are not equal. A place on the equator has two neighbours at 90° (top and bottom), a place at a tip has three (the three on the equator). So lone pairs go to the equator: one gives the seesaw, two the T, three leave only the two tips, so linear. In the octahedron all places are equal; the second lone pair goes opposite the first, and a square remains. Set 5 or 6 domains in the explorer above and add lone pairs. (The reasoning with the 90° neighbours is not on the slide.)</p>}
+          de={<p><b>Wo ist «am meisten Platz»?</b> In der trigonalen Bipyramide sind die Plätze nicht gleich. Ein Platz am Äquator hat zwei Nachbarn im 90°-Abstand (oben und unten), ein Platz an der Spitze drei (die drei am Äquator). Freie Paare gehen darum an den Äquator: eines gibt die Wippe, zwei das T, drei lassen nur die zwei Spitzen übrig, also linear. Im Oktaeder sind alle Plätze gleich; das zweite freie Paar geht gegenüber vom ersten, und es bleibt ein Quadrat. Stelle im Explorer oben 5 oder 6 Domänen ein und füge freie Paare hinzu. (Die Begründung mit den 90°-Nachbarn steht nicht auf der Folie.)</p>}
+          en={<p><b>Where is “most space”?</b> In the trigonal bipyramid the places are not equal. A place on the equator has two neighbours at 90° (top and bottom), a place at a tip has three (the three on the equator). So lone pairs go to the equator: one gives the seesaw, two the T, three leave only the two tips, so linear. In the octahedron all places are equal; the second lone pair goes opposite the first, and a square remains. Set 5 or 6 domains in the explorer above and add lone pairs. (The reasoning with the 90° neighbours is not on the slide.)</p>}
         />
       </Section>
     </article>
