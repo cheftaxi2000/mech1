@@ -285,3 +285,14 @@ All numbers are checked in `src/physics/kraeftegruppe.test.ts` / `force.test.ts`
 - Wahr/falsch: «M̲_O ist eine Eigenschaft der Kraft allein» (falsch); «F̲ × PO̲ = OP̲ × F̲» (wahr); «N·m und J sind dieselbe Grösse» (falsch).
 - Rad: r = 1,5 m, ω = 1 rad/s, F̲ = (0,7; 1,2) N (radial/tangential): F_t = 1,2 N, M_z = r F_t = 1,8 N·m, P = 1,8 W; die radiale Komponente trägt nichts bei.
 - Spat: a · (b × c) = b · (c × a) — am Volumenbild begründen.
+
+## Chemie Woche 7 — Bindung (exercise class 7, Brown)
+- EN trend along a row / down a column; true or false: the most easily ionisable elements are the most electronegative (false). (Ü7 Ex. 1)
+- Order by polarity: (a) C–F, O–F, Be–F (O–F < C–F < Be–F); (b) O–Cl, S–Br, C–P (ΔEN 0.5, 0.3, 0.4 → S–Br < C–P < O–Cl). (Ü7 Ex. 2)
+- True/false: O=O shorter than O–O (true); NH₃ has three lone pairs (false, one); C–Cl shorter than C–Br (true); larger ΔEN ⇒ stronger bond (not in general). (Ü7 Ex. 3)
+- Lattice energy vs. charge and size; order MgS, KI, GaN, LiBr (KI < LiBr < MgS < GaN). (Ü7 Ex. 5)
+- Formal charges of O=C=O and :O–C≡O: (Ü7 Ex. 6); XeO₃ structures K–N (Ü7 Ex. 7).
+- Bond angles of trigonal planar, tetrahedral, octahedral, linear (Ü7 Ex. 8); geometries for 3/0, 3/1, 2/2 domains (Ü7 Ex. 9).
+
+## Analysis Woche 7 (Ü7)
+- SC 9: smallest degree with zeros −1 − i, 0, 1 + i, −1 + i (5). SC 8: real zeros of x⁴ − x (2). SC 4: asymptote of cosh(2x) (e^{2x}/2). SC 12: ln x = o(√(x² + x)). SC 6: e^{−1/x} = o(x⁴) for x → 0⁺.

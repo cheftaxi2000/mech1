@@ -10,8 +10,8 @@ import { parseFormula } from './formula';
 import { HF, SLIDE23, dHrxn, hf, hessLevels, parseReaction, type Reaction, type Term } from './thermo';
 
 export interface HessLevel { tex: string; H: number }
-export interface HessStep { kind: 'unform' | 'form' | 'step'; species?: string; n?: number; dH: number }
-export interface HessRoute { levels: HessLevel[]; steps: HessStep[]; total: number; reactantsTex: string; productsTex: string }
+export interface HessStep { kind: 'unform' | 'form' | 'step'; species?: string; n?: number; dH: number; /** name of the arrow in the diagram (default ΔH_i) */ tex?: string }
+export interface HessRoute { levels: HessLevel[]; steps: HessStep[]; total: number; reactantsTex: string; productsTex: string; /** name of the direct arrow (default ΔH_rxn) */ netTex?: string }
 
 const ELEMENT_FORM: Record<string, { name: string; atoms: number }> = {
   H: { name: 'H2(g)', atoms: 2 }, O: { name: 'O2(g)', atoms: 2 }, N: { name: 'N2(g)', atoms: 2 }, F: { name: 'F2(g)', atoms: 2 }, Cl: { name: 'Cl2(g)', atoms: 2 },

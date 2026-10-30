@@ -1,0 +1,18 @@
+/* Analysis week 7 (W7Figures.tsx) */
+.w7-pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; max-width: 640px; margin-inline: auto; }
+@media (max-width: 560px) { .w7-pair { grid-template-columns: minmax(0, 1fr); } }
+.vdemo-fig.w7-plane { max-width: 440px; }
+.w7-anim { display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px; justify-items: center; padding: 6px; }
+.w7-anim-plane { width: 100%; max-width: 250px; }
+.w7-anim-text { display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.9rem; overflow-x: auto; max-width: 100%; justify-self: stretch; padding-inline: 8px; }
+.w7-anim-text > div { transition: opacity 0.2s ease; white-space: nowrap; }
+.w7-anim-single { max-width: 480px; margin-inline: auto; width: 100%; }
+.pl-w7-green { stroke: var(--c-z); fill: var(--c-z); } .pl-ink-w7-green { color: var(--c-z-text); }
+.pl-w7-blue { stroke: var(--a-f); fill: var(--a-f); } .pl-ink-w7-blue { color: var(--a-f); }
+.pl-w7-amber { stroke: var(--c-y); fill: var(--c-y); } .pl-ink-w7-amber { color: var(--c-y-text); }
+.pl-w7-axis { stroke: var(--a-g); stroke-width: 2; opacity: 0.55; }
+.pl-curve.pl-w7-green, .pl-curve.pl-w7-blue, .pl-curve.pl-w7-amber, .pl-curve.pl-pt { fill: none; }
+.vdemo-fig.w7-wide { max-width: 640px; }
+.w7-legend { display: flex; flex-wrap: wrap; gap: 4px; }
+.w7-legend .w7-key { background: var(--paper); border: 0; padding: 0.25rem 0.55rem; cursor: pointer; font-size: 1rem; }
+.w7-legend .w7-key[aria-pressed="false"] { opacity: 0.35; text-decoration: line-through; }

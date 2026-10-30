@@ -77,6 +77,9 @@ Lessons built by one implementer per week (worktrees), reviewed by the lead agai
 | ana-komplex | Ü6/1–7 | review | «Polarform und Eulerform»: only the new bits of pp. 1–4 (i-cycle figure, \|z\|, conj rules, division formula); polar form; AngleExplorer (arctan(b/a) vs true φ in all quadrants); Euler form; multiplication animation + MulExplorer (lengths multiply, angles add; ÷ mode); supplement why the angles add. `week6.ts`. |
 | ana-komplex-potenzen | Ü6/8–9, 11 | review | PowerSpiral; ·i as quarter turn; z⁴ = −16 animation; RootsExplorer (n-gon, start angle θ/n, step 2π/n, «Probe» animation); double-angle formulas. |
 | ana-komplex-bereiche | Ü6/10, 12 | review | Re(iz) > 1 animation; RegionExplorer (disc, half-plane, annulus, Re z ≥ Im z, intersection; test point with ✓/✗ per condition; solid/dashed boundaries); supplement perpendicular bisector. |
+| ana-nullstellen | Ü7/5–7 | draft | QuadraticExplorer (parabola + complex plane, discriminant), RootBuilder (drag real zeros / mirror pairs, degree = r_p + c_p, SC 9 preset), 6-step division animation (1 + i → 1 − i → z² − 2z + 2 → division → 2 ± 3i); supplement: why conjugate pairs; SC 8/9 worked; A-019. `week7.ts` + tests. |
+| ana-hyperbel | Ü7/8–10 | draft | cos(ix) = cosh x derivation, 5-step animation (e^x, halves, add → cosh, subtract → sinh, divide → tanh), HypExplorer, identities + derivatives derived, supplement unit hyperbola (HyperbolaFigure), InverseHyp (mirror at y = x, Arsinh derivation), SC 4. |
+| ana-groessen | Ü7/10–12 | draft | RatioExplorer (f/g on a log axis: x^a/e^{bx}, ln^c/x^a, ln ln, SC 12 B, x → 0⁺, SC 6 C), GrowthRace (log y, toggle curves), OrderExample (S. 12); A-020, A-021. |
 
 ## Lineare Algebra I (D-026)
 | Kapitel | Lektion | Status |
@@ -98,6 +101,7 @@ Offen: Folien der Übungen 3 und 5 fehlen (aus Zusammenfassungen und TA-Visualis
 | CH4 | ch-energie, ch-enthalpie | review |
 | CH5 | ch-entropie, ch-gibbs | review |
 | CH6 | ch-licht, ch-orbitale, ch-trends | review |
+| CH7 | ch-bindung, ch-kovalent, ch-lewis, ch-bindungsenthalpie, ch-vsepr | draft | Lecture 7 + exercise class 7 (sources `docs/chem/SOURCE_L7a.md`, `SOURCE_L7b.md`). Lewis symbols, NaCl transfer animation, Coulomb comparison, Born–Haber (Hess scene); covalent sharing animation, octet counter, polarity explorer (EN periodic table), dipole, ionic/covalent decision tree; HCN five-rules animation, formal charge / oxidation number explorer (electron colouring), charge scale, resonance (O₃, benzene), exceptions + XeO₃; bond-enthalpy diagrams, bond length/strength; VSEPR 3D explorer, removing atoms, lone-pair angles, NH₃ process. `chem/bonding.ts`, `chem/vsepr.ts` + tests; CH-013, CH-014. **Awaiting the student's review.** |
 
 Offen: Polybox-Links nicht erreichbar; Übungen 2–4 handschriftlich (nur Bild) — Werte aus Scans gelesen; iPad-Hochformat und Animationsframes nicht für alle Lektionen geprüft. Quellen: `docs/chem/SOURCE_*.md`.
 

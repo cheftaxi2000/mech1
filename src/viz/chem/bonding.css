@@ -1,0 +1,91 @@
+/* Chemistry, lecture 7: bonding, Lewis structures, polarity, VSEPR (BondFigures.tsx, VseprFigures.tsx). */
+.bd-bond { stroke: var(--fg); stroke-width: 2.1; stroke-linecap: round; }
+.bd-bond-faint { stroke: var(--fg); stroke-width: 1.2; stroke-linecap: round; opacity: 0.22; }
+.bd-bracket { fill: none; stroke: var(--fg); stroke-width: 1.6; }
+.bd-e { fill: var(--fg); stroke: none; }
+.bd-e-move { fill: var(--ch-el); stroke: var(--fg); stroke-width: 0.8; }
+.bd-e-ghost { fill: none; stroke: var(--muted); stroke-width: 0.8; stroke-dasharray: 2 2; }
+.bd-c0 { fill: var(--ch-p); } .bd-c1 { fill: var(--ch-t); } .bd-c2 { fill: var(--ch-v); }
+.bd-c3 { fill: var(--ch-n); } .bd-c4 { fill: var(--ch-s); } .bd-c5 { fill: var(--ch-e); }
+.bd-ring { fill: none; stroke: var(--ch-v); stroke-width: 1.4; stroke-dasharray: 4 3; }
+.bd-ring.bd-ring-off { stroke: var(--ch-e); }
+.bd-cloud { fill: color-mix(in srgb, var(--ch-p) 13%, transparent); stroke: color-mix(in srgb, var(--ch-p) 45%, transparent); stroke-width: 1; }
+.bd-na { fill: color-mix(in srgb, var(--ch-n) 20%, var(--panel)); stroke: var(--ch-n); stroke-width: 1.4; }
+.bd-cl { fill: color-mix(in srgb, var(--ch-v) 22%, var(--panel)); stroke: var(--ch-v); stroke-width: 1.4; }
+.bd-a-pull { stroke: var(--fg); stroke-width: 1.8; } .bd-a-pull-head { fill: var(--fg); }
+
+/* Lewis symbols row (slide 5) */
+.ls-big { display: flex; justify-content: center; align-items: center; min-height: 190px; }
+.ls-big svg { width: min(220px, 60%); height: auto; overflow: visible; }
+.ls-sym { font-family: KaTeX_Main, 'Times New Roman', serif; fill: var(--fg); }
+.ls-dot { fill: var(--fg); transition: opacity 0.25s ease, transform 0.25s ease; }
+.ls-row { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 2px; margin-top: 0.5rem; }
+.ls-row svg { width: 100%; height: auto; }
+.ls-row button { padding: 0.2rem 0; background: var(--paper); border: 0; cursor: pointer; }
+.ls-row button[aria-pressed="true"] { outline: 2px solid var(--fg); outline-offset: -2px; }
+
+/* polarity: two atoms and their shared cloud */
+.pol-svg { display: block; width: 100%; height: auto; }
+.pol-nuc { font-family: KaTeX_Main, 'Times New Roman', serif; fill: var(--fg); }
+.pol-scale-zone { stroke: none; }
+.pol-mark { fill: var(--fg); }
+.pol-tick { font-family: KaTeX_Main, serif; fill: var(--muted); font-size: 11px; }
+.pol-zone-label { font-size: 11px; fill: var(--muted); font-family: var(--sans, sans-serif); }
+.pol-dipole { stroke: var(--ch-n); stroke-width: 2.2; } .pol-dipole-head { fill: var(--ch-n); }
+.bd-picks { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+.bd-picks .bd-pick-label { font-size: 0.85rem; color: var(--muted); margin-right: 4px; min-width: 2.2rem; }
+.bd-table { border-collapse: collapse; font-variant-numeric: tabular-nums; margin-top: 0.4rem; width: 100%; }
+.bd-table th, .bd-table td { padding: 0.18rem 0.5rem; border-bottom: 1px solid var(--rule, var(--line)); text-align: center; }
+.bd-table th:first-child, .bd-table td:first-child { text-align: left; }
+.bd-table tr.sum td { border-top: 1.5px solid var(--fg); font-weight: 600; }
+.bd-verdict { margin: 0.4rem 0 0; }
+.bd-ok { color: var(--ch-v-t); } .bd-off { color: var(--ch-e-t); }
+.ink-c-fg-b { color: var(--fg); font-weight: 600; }
+
+/* decision diagram (exercise 7 p. 7) */
+.dec-svg { display: block; width: 100%; height: auto; }
+.dec-box { fill: var(--paper); stroke: var(--muted); stroke-width: 1.2; }
+.dec-box.on { stroke: var(--fg); stroke-width: 2; }
+.dec-edge { stroke: var(--muted); stroke-width: 1.2; fill: none; }
+.dec-edge.on { stroke: var(--fg); stroke-width: 2.4; }
+.dec-edge-head { fill: var(--muted); } .dec-edge.on + .dec-edge-head, .dec-edge-head.on { fill: var(--fg); }
+.dec-text { font-size: 13px; fill: var(--fg); font-family: var(--sans, sans-serif); }
+.dec-text.muted { fill: var(--muted); }
+.dec-text.on { font-weight: 650; }
+
+/* VSEPR (3D, painted back to front) */
+.vs-stick { stroke: var(--muted); stroke-width: 5; stroke-linecap: round; }
+.vs-center { fill: color-mix(in srgb, var(--ch-e) 70%, var(--panel)); stroke: var(--fg); stroke-width: 1.2; }
+.vs-outer { fill: color-mix(in srgb, var(--ch-v) 55%, var(--panel)); stroke: var(--fg); stroke-width: 1.1; }
+.vs-lobe { fill: color-mix(in srgb, var(--ch-g) 26%, transparent); stroke: var(--ch-g); stroke-width: 1.1; }
+.vs-far { filter: saturate(0.55) brightness(0.96); }
+.vs-e { fill: var(--ch-g); }
+.vs-ghost { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.vs-arc { fill: none; stroke: var(--ch-n); stroke-width: 1.6; }
+.vs-base { fill: color-mix(in srgb, var(--ch-v) 14%, transparent); stroke: var(--ch-v); stroke-width: 1.2; stroke-dasharray: 4 3; }
+.vs-fig .th-draw svg { cursor: grab; touch-action: none; }
+.vs-fig .th-draw svg:active { cursor: grabbing; }
+.vs-names { display: grid; grid-template-columns: auto 1fr; gap: 0.15rem 0.7rem; margin: 0.3rem 0; }
+.vs-names dt { color: var(--muted); }
+.vs-names dd { margin: 0; }
+
+/* angles squeezed by lone pairs (slide 30) */
+.sq-svg { display: block; width: 100%; height: auto; }
+.sq-wedge { fill: color-mix(in srgb, var(--ch-n) 14%, transparent); stroke: var(--ch-n); stroke-width: 1.2; }
+.sq-bond { stroke: var(--fg); stroke-width: 2; stroke-linecap: round; }
+.sq-ideal { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.sq-lobe { fill: color-mix(in srgb, var(--ch-g) 22%, transparent); stroke: var(--ch-g); stroke-width: 1; }
+.sq-sym { font-family: KaTeX_Main, serif; fill: var(--fg); font-size: 17px; }
+.sq-val { font-family: KaTeX_Main, serif; fill: var(--ch-n-t); font-size: 15px; }
+
+/* bond length / strength */
+.bl-atom { fill: color-mix(in srgb, var(--ch-p) 16%, var(--panel)); stroke: var(--fg); stroke-width: 1.1; }
+.bl-bar-h { fill: color-mix(in srgb, var(--ch-e) 55%, var(--panel)); }
+.bl-bar-l { fill: color-mix(in srgb, var(--ch-p) 45%, var(--panel)); }
+.bl-text { font-family: KaTeX_Main, serif; fill: var(--fg); font-size: 13px; }
+.bl-text.muted { fill: var(--muted); }
+
+/* resonance */
+.rs-partial { stroke: var(--fg); stroke-width: 2; stroke-dasharray: 4 3; stroke-linecap: round; }
+.rs-ring { fill: none; stroke: var(--fg); stroke-width: 2; }
+.rs-fade { transition: opacity 0.4s ease; }
