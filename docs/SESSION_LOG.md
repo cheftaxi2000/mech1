@@ -236,3 +236,7 @@ Four implementer agents wrote 13 lessons from lectures 1–6 and the TA's exerci
 - Pure scenes `src/viz/statik/statikScenes.ts` (+17 frame tests: inside, label overlap, final frames) and `StatikFigures.tsx` (11 explorers, 8 step animations), reusing the K7 scene renderer and arrow kit.
 - R-037 (Fig. 6.23 without solution; solved as a supplement).
 - Checked: tsc, unit tests, e2e for the six lessons (render, language leak, plain-text math, phone scroll, short version), screenshots of every figure and every animation step (iPad light, iPad dark, phone dark English). Not published to the claude.ai artifact.
+
+## 2026-11-02 (2) — Statik: critical review, plainer explanations
+- Correctness pass over all six lessons against the pages. Defect found: the ω arc of the seesaw explorer turned counter-clockwise, but the notes' formula P = −F_A ω a + F_B ω b assumes the side of F_B goes down (clockwise) → fixed. Code: the rAF loops of `SeesawExplorer` and `LinkageExplorer` ran while off-screen → paused with `useInView`.
+- Clarity: everyday-picture intuition boxes in S2–S6 (sled with ropes, door and hinges, turning wheel, carrying a board / steering wheel, picture on the wall); a «Das Wichtigste» box at the end of every lesson; S1 explains why "dot product with every v̲_O is zero" forces the zero vector; S4 explains the triple product as a volume.

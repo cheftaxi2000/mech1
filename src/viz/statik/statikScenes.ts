@@ -62,7 +62,8 @@ export function seesawScene(p: SeesawPar, lang: Lang): Scene {
   sb.label('lFB', [Rp[0] + 10, Rp[1] - fs * p.FB - 4], t`F_B`, FORCE, 1, 'l');
   sb.label('la', [(L[0] + P[0]) / 2, (L[1] + P[1]) / 2 + 16], 'a', 'fg');
   sb.label('lb', [(Rp[0] + P[0]) / 2, (Rp[1] + P[1]) / 2 + 16], 'b', 'fg');
-  arc('om', 'k7-om', P, 30, -0.9 * Math.PI, -0.35 * Math.PI, 1, 1);
+  // clockwise, as in the notes' formula P = −F_A ω a + F_B ω b (the side of F_B goes down)
+  arc('om', 'k7-om', P, 30, -0.35 * Math.PI, -0.9 * Math.PI, 1, 1);
   sb.label('lom', [P[0] + 6, P[1] + 40], t`\omega`, OMEGA, 1, 'l');
   if (p.mode === 'hebel') sb.label('lal', [P[0] - 26, P[1] + 30], t`\alpha`, OMEGA, 1, 'c');
   const s = p.mode === 'wippe' ? 1 : Math.sin(p.alpha);

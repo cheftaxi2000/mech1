@@ -15,6 +15,13 @@ export default function S6Gleichgewicht() {
         en={<p className="lede">Now everything comes together. A group of forces is in <b>equilibrium</b> if it is equivalent to the “zero group”: resultant zero and moment zero. These are six equations in space. With them one checks whether a body stays at rest, and computes unknown support forces.</p>}
       />
 
+      <Box kind="intuition">
+        <T
+          de={<p>Ein Bild hängt ruhig an der Wand. Damit das so bleibt, müssen zwei Dinge stimmen: Die Kräfte dürfen es nirgendwohin schieben (alle zusammen null) und nicht verdrehen (alle Momente zusammen null). Fehlt eines davon, rutscht es oder es kippt.</p>}
+          en={<p>A picture hangs still on the wall. For it to stay that way, two things must hold: the forces must not push it anywhere (all together zero) and must not twist it (all moments together zero). If one is missing, it slides or it tips.</p>}
+        />
+      </Box>
+
       {/* ------------------------------------------------------------------ 1 */}
       <Section id="bedingungen" title={<T de="1. Die Gleichgewichtsbedingungen" en="1. The equilibrium conditions" />}>
         <Box kind="lecture" src={<Src p={43} />} title={<T de="6.8 Kräftegruppe im Gleichgewicht" en={<>6.8 Group of forces in equilibrium (<span lang="de">Kräftegruppe im Gleichgewicht</span>)</>} />}>
@@ -137,6 +144,12 @@ A &= 10 + 2\sqrt2 \approx 12{,}83, &&\ \ B = 6\sqrt2 \approx 8{,}49
           <T
             de={<p>Man darf ihn frei wählen, aber am klügsten dort, wo möglichst viele <b>unbekannte</b> Kräfte angreifen: Ihre Momente fallen weg, und die Momentengleichung enthält weniger Unbekannte. Bei der Waage ist das das Lager <M p=".">A</M></p>}
             en={<p>It may be chosen freely, but most cleverly where as many <b>unknown</b> forces as possible act: their moments drop out, and the moment equation contains fewer unknowns. For the scale that is the support <M p=".">A</M></p>}
+          />
+        </Box>
+        <Box kind="key" title={<T de="Das Wichtigste" en="The essentials" />}>
+          <T
+            de={<ul><li>Gleichgewicht: <M>{t`\v R = \v 0`}</M> und <M p=".">{t`\v M_P = \v 0`}</M> Im Raum sind das 6 Gleichungen, in der Ebene 3.</li><li>Vorgehen: freischneiden, unbekannte Lagerkräfte einzeichnen, Gleichungen aufstellen.</li><li>Den Bezugspunkt für die Momente dort wählen, wo viele Unbekannte angreifen.</li></ul>}
+            en={<ul><li>Equilibrium: <M>{t`\v R = \v 0`}</M> and <M p=".">{t`\v M_P = \v 0`}</M> In space these are 6 equations, in the plane 3.</li><li>Procedure: cut free, draw the unknown support forces, set up the equations.</li><li>Choose the reference point for the moments where many unknowns act.</li></ul>}
           />
         </Box>
       </Section>

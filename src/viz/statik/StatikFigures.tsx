@@ -4,7 +4,7 @@ import { T, fmtNum, useLang, useTr, type Lang } from '../../i18n';
 import type { TestMotion } from '../../physics/statik';
 import type { P2 } from '../anim/geometry';
 import type { Scene } from '../anim/scene';
-import { useReducedMotion } from '../figUtils';
+import { useInView, useReducedMotion } from '../figUtils';
 import { SceneView, svgPoint } from '../force/K7Svg';
 import {
   AXIS_PROOF, SH, SW, axisProofScene, axisScene, coupleScene, cube39Scene, cube43Scene, discScene, equivScene, groupMomentAnim,
@@ -49,17 +49,19 @@ export function SeesawExplorer() {
   const [alpha, setAlpha] = useState(1.1);
   const [tilt, setTilt] = useState(0);
   const FB = 3, b = 1;
+  const box = useRef<HTMLElement>(null);
+  const visible = useInView(box);
   useEffect(() => {
-    if (reduced) return;
+    if (reduced || !visible) return;
     let raf = 0; const t0 = performance.now();
     const loop = (now: number) => { setTilt(0.06 * Math.sin((now - t0) / 500)); raf = requestAnimationFrame(loop); };
     raf = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(raf);
-  }, [reduced]);
+  }, [reduced, visible]);
   const scene = seesawScene({ mode, FA, FB, a, b, alpha, tilt: reduced ? 0.05 : tilt }, lang);
   const bal = (b / a) * FB;
   return (
-    <figure className="vdemo">
+    <figure className="vdemo" ref={box}>
       <SceneView scene={scene} W={SW} H={260} label={tr('Wippe oder Hebel mit zwei Kräften und ihren Leistungen bei einer kleinen Drehung', 'Seesaw or lever with two forces and their powers during a small rotation')} />
       <figcaption className="vdemo-readout">
         <Chips label={tr('Form', 'Shape')} value={mode} onPick={setMode} items={[{ id: 'wippe', label: <T de="Wippe" en="Seesaw" /> }, { id: 'hebel', label: <T de="Hebel" en="Lever" /> }]} />
@@ -261,16 +263,18 @@ export function LinkageExplorer() {
   const reduced = useReducedMotion();
   const [th, setTh] = useState(1.2);
   const [play, setPlay] = useState(false);
+  const box = useRef<HTMLElement>(null);
+  const visible = useInView(box);
   useEffect(() => {
-    if (!play) return;
+    if (!play || !visible) return;
     let raf = 0, last = performance.now();
     const loop = (now: number) => { const dt = (now - last) / 1000; last = now; setTh((x) => { const y = x + 0.6 * dt; return y > 2.2 ? 0.9 : y; }); raf = requestAnimationFrame(loop); };
     raf = requestAnimationFrame(loop);
     return () => cancelAnimationFrame(raf);
-  }, [play]);
+  }, [play, visible]);
   const scene = linkageScene(th, lang);
   return (
-    <figure className="vdemo">
+    <figure className="vdemo" ref={box}>
       <SceneView scene={scene} W={SW} H={SH} label={tr('Parallelogramm-Mechanismus: dieselbe Kraft in O und in A', 'Parallelogram mechanism: the same force at O and at A')} />
       <figcaption className="vdemo-readout">
         <Slider label={<M>\theta</M>} min={0.9} max={2.2} step={0.01} value={th} onChange={setTh} show={<M>{t`${Math.round((th * 180) / Math.PI)}^\circ`}</M>} />

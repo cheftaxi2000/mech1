@@ -15,6 +15,13 @@ export default function S5Spezielle() {
         en={<p className="lede">When may a group of forces be replaced by a simpler one? The theorem on static equivalence gives the answer: when the resultant and the moment stay the same. This lesson goes through the most important cases: moving a single force, combining two forces into one, and the case where that is impossible: the <b>couple</b>.</p>}
       />
 
+      <Box kind="intuition">
+        <T
+          de={<p>Zwei Leute tragen ein langes Brett, einer vorne, einer hinten. Wer näher an der Mitte der Last steht, trägt mehr. Die zwei Kräfte zusammen wirken wie eine einzige Kraft an einer bestimmten Stelle dazwischen. Drehst du dagegen ein Lenkrad mit beiden Händen, links hoch und rechts runter, heben sich die Kräfte auf und das Rad dreht sich trotzdem: Das lässt sich durch keine einzelne Kraft ersetzen.</p>}
+          en={<p>Two people carry a long board, one at the front, one at the back. Whoever stands closer to the middle of the load carries more. Together the two forces act like a single force at a certain place between them. If instead you turn a steering wheel with both hands, up on the left and down on the right, the forces cancel and the wheel still turns: that cannot be replaced by any single force.</p>}
+        />
+      </Box>
+
       {/* ------------------------------------------------------------------ 1 */}
       <Section id="einzelkraft" title={<T de="1. Eine Einzelkraft verschieben" en="1. Moving a single force" />}>
         <Box kind="lecture" src={<Src p={41} fig="Fig. 6.8, 6.9" />} title={<T de="6.7 Spezielle Kräftegruppen" en={<>6.7 Special groups of forces (<span lang="de">Spezielle Kräftegruppen</span>)</>} />}>
@@ -123,6 +130,12 @@ export default function S5Spezielle() {
           <T
             de={<p>Die Summe (Resultierende) ist null, das Moment nicht. Ein Lenkrad, an dem du links hoch und rechts runter drückst, bewegt sich nicht weg, dreht sich aber. Gleichgewicht verlangt beides: <M>{t`\v R = \v 0`}</M> <b>und</b> <M p=".">{t`\v M = \v 0`}</M></p>}
             en={<p>The sum (resultant) is zero, the moment is not. A steering wheel that you push up on the left and down on the right does not move away, but it turns. Equilibrium needs both: <M>{t`\v R = \v 0`}</M> <b>and</b> <M p=".">{t`\v M = \v 0`}</M></p>}
+          />
+        </Box>
+        <Box kind="key" title={<T de="Das Wichtigste" en="The essentials" />}>
+          <T
+            de={<ul><li>Eine Einzelkraft darf man nur längs ihrer Wirkungslinie verschieben, und nur am starren Körper.</li><li>Zwei nichtparallele Kräfte in einer Ebene: zum Schnittpunkt schieben, addieren, fertig. Zwei parallele Kräfte: Hebelgesetz <M p=".">{t`F_1 a = F_2 b`}</M></li><li>Entgegengesetzt gleiche parallele Kräfte bilden ein Kräftepaar: <M p=",">{t`\v R = \v 0`}</M> aber ein Moment <M>{t`b\,|\v F|`}</M> um jeden Punkt.</li></ul>}
+            en={<ul><li>A single force may only be slid along its line of action, and only on a rigid body.</li><li>Two non-parallel forces in a plane: slide to the intersection, add, done. Two parallel forces: law of the lever <M p=".">{t`F_1 a = F_2 b`}</M></li><li>Equal and opposite parallel forces form a couple: <M p=",">{t`\v R = \v 0`}</M> but a moment <M>{t`b\,|\v F|`}</M> about every point.</li></ul>}
           />
         </Box>
       </Section>

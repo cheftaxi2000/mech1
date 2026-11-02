@@ -15,6 +15,13 @@ export default function S2Resultierende() {
         en={<p className="lede">By the theorem on static equivalence one needs only two things from a group of forces: its resultant and its moment. This lesson deals with the first. The resultant is simply the sum of all force vectors: a sum for single forces, an integral for distributed forces.</p>}
       />
 
+      <Box kind="intuition">
+        <T
+          de={<p>Drei Kinder ziehen einen Schlitten an drei Seilen, jedes in eine andere Richtung. Wohin rutscht der Schlitten? So, als ob ein einziges Kind mit der <b>Summe</b> der drei Zugkräfte zöge. Dafür ist egal, wo die Seile am Schlitten festgebunden sind. Ob sich der Schlitten dabei auch dreht, hängt dagegen sehr wohl davon ab; das kommt in der nächsten Lektion.</p>}
+          en={<p>Three children pull a sled with three ropes, each in a different direction. Where does the sled slide? As if a single child pulled with the <b>sum</b> of the three pulls. For that it does not matter where the ropes are tied to the sled. Whether the sled also turns does depend on it; that comes in the next lesson.</p>}
+        />
+      </Box>
+
       {/* ------------------------------------------------------------------ 1 */}
       <Section id="summe" title={<T de="1. Die Resultierende als Vektorsumme" en="1. The resultant as a vector sum" />}>
         <Box kind="lecture" src={<Src p={38} fig="Fig. 6.3" />} title={<T de="6.2 Resultierende einer Kräftegruppe" en={<>6.2 Resultant of a group of forces (<span lang="de">Resultierende einer Kräftegruppe</span>)</>} />}>
@@ -108,6 +115,12 @@ R_y &= \int_0^\pi -q\,r\sin\varphi\,d\varphi = q\,r\cos\varphi\Big|_0^\pi = -2qr
           <T
             de={<p>Nur wenn alle Teilkräfte parallel sind. Hier zeigen sie in verschiedene Richtungen, und Vektoren addiert man mit Richtung. Die Beträge <M>{t`qr\,d\varphi`}</M> zusammen ergeben <M p=",">{t`q\pi r`}</M> die Vektorsumme nur <M p=".">{t`2qr`}</M></p>}
             en={<p>Only if all the partial forces are parallel. Here they point in different directions, and vectors are added with their direction. The magnitudes <M>{t`qr\,d\varphi`}</M> together give <M p=",">{t`q\pi r`}</M> the vector sum only <M p=".">{t`2qr`}</M></p>}
+          />
+        </Box>
+        <Box kind="key" title={<T de="Das Wichtigste" en="The essentials" />}>
+          <T
+            de={<ul><li>Die Resultierende ist die Summe aller Kraftvektoren, Komponente für Komponente.</li><li>Sie ist ein freier Vektor: Sie sagt, wie stark und wohin insgesamt gezogen wird, aber nicht wo.</li><li>Bei verteilten Kräften wird die Summe zum Integral. Gegenläufige Anteile heben sich auf, darum ist <M>{t`|\v R|`}</M> oft kleiner als die gesamte Last.</li></ul>}
+            en={<ul><li>The resultant is the sum of all force vectors, component by component.</li><li>It is a free vector: it says how hard and where to the whole group pulls, but not where it acts.</li><li>For distributed forces the sum becomes an integral. Opposite parts cancel, so <M>{t`|\v R|`}</M> is often smaller than the whole load.</li></ul>}
           />
         </Box>
       </Section>

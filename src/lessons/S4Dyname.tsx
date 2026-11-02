@@ -15,6 +15,13 @@ export default function S4Dyname() {
         en={<p className="lede">The moment of a group of forces depends on the reference point. But it need not be recomputed for every point: knowing it at a point <M>O</M> and the resultant, it follows at any other point <M>P</M> from a formula. It has the same shape as the <a href="#allgemein">fundamental equation of kinematics</a>. The pair of resultant and moment is called the <b>Dyname</b>.</p>}
       />
 
+      <Box kind="intuition">
+        <T
+          de={<p>Wie stark eine Kräftegruppe dreht, hängt davon ab, um welchen Punkt man fragt: Eine Kraft, die genau durch den Punkt geht, dreht um ihn gar nicht, um einen anderen Punkt schon. Man muss aber nicht für jeden Punkt neu rechnen. Es ist wie bei einem drehenden Rad: Kennt man die Geschwindigkeit der Achse und die Drehung, kennt man die Geschwindigkeit jedes Punktes.</p>}
+          en={<p>How strongly a group of forces turns depends on which point you ask about: a force passing straight through the point does not turn about it at all, about another point it does. But you need not recompute for every point. It is like a turning wheel: knowing the speed of the axle and the rotation, you know the speed of every point.</p>}
+        />
+      </Box>
+
       {/* ------------------------------------------------------------------ 1 */}
       <Section id="gruppe" title={<T de="1. Moment einer Kräftegruppe, Wechsel des Bezugspunktes" en="1. Moment of a group, change of reference point" />}>
         <Box kind="lecture" src={<Src p={40} />} title={<T de="6.5 Moment einer Kräftegruppe bezüglich eines Punktes" en={<>6.5 Moment of a group of forces about a point (<span lang="de">Moment einer Kräftegruppe</span>)</>} />}>
@@ -89,7 +96,7 @@ P' &= \v v_P\cdot\v R + \v\omega\cdot\v M_P = (\v v_O + \v\omega\times\v{OP})\cd
             <ol className="keep">
               <li>Die Bewegung wird in <M>P</M> beschrieben: <M>{t`\v v_P = \v v_O + \v\omega\times\v{OP}`}</M> (Grundgleichung).</li>
               <li>Die Kräfte werden in <M>P</M> beschrieben: <M>{t`\v M_P = \v M_O + \v R\times\v{OP}`}</M> (Abschnitt 1).</li>
-              <li>Beim Ausmultiplizieren entstehen zwei Zusatzglieder. <M>{t`(\v\omega\times\v{OP})\cdot\v R`}</M> ist ein Spatprodukt, und das darf man zyklisch vertauschen: <M p=".">{t`\v\omega\cdot(\v{OP}\times\v R)`}</M> Das andere ist <M p=",">{t`\v\omega\cdot(\v R\times\v{OP}) = -\v\omega\cdot(\v{OP}\times\v R)`}</M> also genau das Negative. Sie heben sich weg.</li>
+              <li>Beim Ausmultiplizieren entstehen zwei Zusatzglieder. <M>{t`(\v\omega\times\v{OP})\cdot\v R`}</M> ist ein Spatprodukt: das Volumen des schiefen Quaders, den die drei Vektoren aufspannen. Vertauscht man die drei der Reihe nach (zyklisch), bleibt das Volumen gleich: <M p=".">{t`\v\omega\cdot(\v{OP}\times\v R)`}</M> Das andere ist <M p=",">{t`\v\omega\cdot(\v R\times\v{OP}) = -\v\omega\cdot(\v{OP}\times\v R)`}</M> also genau das Negative. Sie heben sich weg.</li>
             </ol>
             <p className="keep">Kinemate und Dyname ändern sich beide mit dem Punkt, aber ihr «Produkt» <M>{t`\v v\cdot\v R + \v\omega\cdot\v M`}</M> bleibt gleich. Darum genügt es für die Statik, die Dyname in einem einzigen, bequem gewählten Punkt zu kennen.</p>
           </>}
@@ -98,7 +105,7 @@ P' &= \v v_P\cdot\v R + \v\omega\cdot\v M_P = (\v v_O + \v\omega\times\v{OP})\cd
             <ol className="keep">
               <li>The motion is described at <M p=":">P</M> <M>{t`\v v_P = \v v_O + \v\omega\times\v{OP}`}</M> (fundamental equation).</li>
               <li>The forces are described at <M p=":">P</M> <M>{t`\v M_P = \v M_O + \v R\times\v{OP}`}</M> (section 1).</li>
-              <li>Multiplying out gives two extra terms. <M>{t`(\v\omega\times\v{OP})\cdot\v R`}</M> is a triple product, which may be permuted cyclically: <M p=".">{t`\v\omega\cdot(\v{OP}\times\v R)`}</M> The other is <M p=",">{t`\v\omega\cdot(\v R\times\v{OP}) = -\v\omega\cdot(\v{OP}\times\v R)`}</M> exactly the negative. They cancel.</li>
+              <li>Multiplying out gives two extra terms. <M>{t`(\v\omega\times\v{OP})\cdot\v R`}</M> is a triple product: the volume of the slanted box spanned by the three vectors. Shifting the three round in order (cyclically) keeps the volume: <M p=".">{t`\v\omega\cdot(\v{OP}\times\v R)`}</M> The other is <M p=",">{t`\v\omega\cdot(\v R\times\v{OP}) = -\v\omega\cdot(\v{OP}\times\v R)`}</M> exactly the negative. They cancel.</li>
             </ol>
             <p className="keep">Kinemate and Dyname both change with the point, but their “product” <M>{t`\v v\cdot\v R + \v\omega\cdot\v M`}</M> stays the same. That is why in statics it is enough to know the Dyname at a single, conveniently chosen point.</p>
           </>}
@@ -118,6 +125,12 @@ P' &= \v v_P\cdot\v R + \v\omega\cdot\v M_P = (\v v_O + \v\omega\times\v{OP})\cd
           <T
             de={<p>Die Leistung ist eine physikalische Grösse; sie kümmert sich nicht um unsere Wahl. Ändert sich <M>{t`\v M`}</M> beim Wechsel des Punktes, ändert sich auch <M>{t`\v v`}</M> genau so, dass die Summe gleich bleibt (Abschnitt 2).</p>}
             en={<p>The power is a physical quantity; it does not care about our choice. If <M>{t`\v M`}</M> changes with the point, <M>{t`\v v`}</M> changes in exactly the way that keeps the sum the same (section 2).</p>}
+          />
+        </Box>
+        <Box kind="key" title={<T de="Das Wichtigste" en="The essentials" />}>
+          <T
+            de={<ul><li>Das Moment einer Kräftegruppe hängt vom Punkt ab, die Resultierende nicht.</li><li>Umrechnen von <M>O</M> nach <M p=":">P</M> <M p=".">{t`\v M_P = \v M_O + \v R\times\v{OP}`}</M></li><li>Die Dyname <M>{t`\{\v R, \v M_P\}`}</M> beschreibt die Kräftegruppe vollständig; die Leistung kommt in jedem Punkt gleich heraus.</li></ul>}
+            en={<ul><li>The moment of a group depends on the point, the resultant does not.</li><li>Converting from <M>O</M> to <M p=":">P</M> <M p=".">{t`\v M_P = \v M_O + \v R\times\v{OP}`}</M></li><li>The Dyname <M>{t`\{\v R, \v M_P\}`}</M> describes the group completely; the power comes out the same at every point.</li></ul>}
           />
         </Box>
       </Section>

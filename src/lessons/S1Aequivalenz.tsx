@@ -118,7 +118,7 @@ P(G) - P(G^*) &= \v v_O\cdot\underbrace{(\v R - \v R^*)}_{0} + \v\omega\cdot\und
             <p className="keep"><b>So liest man den Beweis.</b> Er benutzt die Formel <M>{t`P = \v R\cdot\v v_O + \v M_O\cdot\v\omega`}</M> aus der <a href="#leistung-kraeftegruppe">letzten Lektion</a>.</p>
             <ol className="keep">
               <li>Man zieht die zwei Leistungen voneinander ab. Übrig bleiben zwei Skalarprodukte mit den Differenzen <M>{t`\v R - \v R^*`}</M> und <M p=".">{t`\v M_O - \v M_O^*`}</M></li>
-              <li>Das soll für <b>jede</b> Bewegung null sein. Wähle zuerst eine reine Verschiebung (<M p=")">{t`\v\omega = 0`}</M> Dann bleibt <M p=".">{t`\v v_O\cdot(\v R - \v R^*) = 0`}</M> Ein Vektor, dessen Skalarprodukt mit jedem <M>{t`\v v_O`}</M> null ist, ist der Nullvektor: <M p=".">{t`\v R = \v R^*`}</M></li>
+              <li>Das soll für <b>jede</b> Bewegung null sein. Wähle zuerst eine reine Verschiebung (<M p=")">{t`\v\omega = 0`}</M> Dann bleibt <M p=".">{t`\v v_O\cdot(\v R - \v R^*) = 0`}</M> Ein Vektor, dessen Skalarprodukt mit <b>jedem</b> <M>{t`\v v_O`}</M> null ist, ist der Nullvektor. (Wähle <M>{t`\v v_O`}</M> in Richtung dieses Vektors selbst: Dann ist das Skalarprodukt seine Länge im Quadrat, und die ist nur für den Nullvektor null.) Also <M p=".">{t`\v R = \v R^*`}</M></li>
               <li>Wähle dann eine reine Drehung um <M>O</M> (<M p=")">{t`\v v_O = 0`}</M> Genauso folgt <M p=".">{t`\v M_O = \v M_O^*`}</M></li>
               <li>Umgekehrt: Sind beide gleich, ist die Differenz für jede Bewegung null. Also gilt «dann und nur dann».</li>
             </ol>
@@ -127,7 +127,7 @@ P(G) - P(G^*) &= \v v_O\cdot\underbrace{(\v R - \v R^*)}_{0} + \v\omega\cdot\und
             <p className="keep"><b>How to read the proof.</b> It uses the formula <M>{t`P = \v R\cdot\v v_O + \v M_O\cdot\v\omega`}</M> from the <a href="#leistung-kraeftegruppe">previous lesson</a>.</p>
             <ol className="keep">
               <li>Subtract the two powers. What remains are two dot products with the differences <M>{t`\v R - \v R^*`}</M> and <M p=".">{t`\v M_O - \v M_O^*`}</M></li>
-              <li>This must be zero for <b>every</b> motion. First choose a pure translation (<M p=")">{t`\v\omega = 0`}</M> Then <M>{t`\v v_O\cdot(\v R - \v R^*) = 0`}</M> remains. A vector whose dot product with every <M>{t`\v v_O`}</M> is zero is the zero vector: <M p=".">{t`\v R = \v R^*`}</M></li>
+              <li>This must be zero for <b>every</b> motion. First choose a pure translation (<M p=")">{t`\v\omega = 0`}</M> Then <M>{t`\v v_O\cdot(\v R - \v R^*) = 0`}</M> remains. A vector whose dot product with <b>every</b> <M>{t`\v v_O`}</M> is zero is the zero vector. (Choose <M>{t`\v v_O`}</M> in the direction of that vector itself: then the dot product is its length squared, which is zero only for the zero vector.) So <M p=".">{t`\v R = \v R^*`}</M></li>
               <li>Then choose a pure rotation about <M>O</M> (<M p=")">{t`\v v_O = 0`}</M> In the same way <M p=".">{t`\v M_O = \v M_O^*`}</M></li>
               <li>Conversely: if both are equal, the difference is zero for every motion. Hence “if and only if”.</li>
             </ol>
@@ -152,6 +152,12 @@ P(G) - P(G^*) &= \v v_O\cdot\underbrace{(\v R - \v R^*)}_{0} + \v\omega\cdot\und
           <T
             de={<p>Nur für den <b>starren</b> Körper als Ganzes. Ein Balken, der an den Enden belastet wird, biegt sich anders durch als einer mit der ganzen Last in der Mitte, und ein Mechanismus reagiert ganz anders (siehe <a href="#spezielle-kraeftegruppen">Spezielle Kräftegruppen</a>, Fig. 6.9). Äquivalenz ersetzt die Kräfte nur für die Frage nach Bewegung und Gleichgewicht des starren Körpers.</p>}
             en={<p>Only for the <b>rigid</b> body as a whole. A beam loaded at its ends bends differently from one with the whole load in the middle, and a mechanism reacts quite differently (see <a href="#spezielle-kraeftegruppen">Special groups of forces</a>, Fig. 6.9). Equivalence replaces the forces only for the question of motion and equilibrium of the rigid body.</p>}
+          />
+        </Box>
+        <Box kind="key" title={<T de="Das Wichtigste" en="The essentials" />}>
+          <T
+            de={<ul><li>Statik heisst: Der Körper bewegt sich nicht. Trotzdem fragt man, welche Leistung die Kräfte bei einer <b>gedachten</b> kleinen Bewegung hätten.</li><li>Zwei Kräftegruppen sind <b>statisch äquivalent</b>, wenn sie bei jeder solchen Bewegung gleich viel leisten. Dann darf man die eine durch die andere ersetzen.</li><li>Prüfen muss man nur zwei Dinge: gleiche Resultierende <M>{t`\v R`}</M> und gleiches Moment <M>{t`\v M_O`}</M> um einen Punkt.</li></ul>}
+            en={<ul><li>Statics means: the body does not move. Even so, one asks what power the forces would have for an <b>imagined</b> small motion.</li><li>Two groups of forces are <b>statically equivalent</b> if they deliver the same power for every such motion. Then one may replace the other.</li><li>Only two things need checking: the same resultant <M>{t`\v R`}</M> and the same moment <M>{t`\v M_O`}</M> about one point.</li></ul>}
           />
         </Box>
       </Section>

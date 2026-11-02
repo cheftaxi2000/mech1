@@ -15,6 +15,13 @@ export default function S3Moment() {
         en={<p className="lede">You already know the <a href="#leistung-rotation">moment</a> of a force from the power in rotation. Two additions come here. First: a force may be slid along its line of action, the moment stays the same (shifting theorem). Second: for a rotation about a fixed axis only one number counts, the moment about that axis.</p>}
       />
 
+      <Box kind="intuition">
+        <T
+          de={<p>Eine Tür öffnest du leicht, wenn du weit weg von den Scharnieren drückst, und schwer, wenn du nahe daran drückst. Und drückst du genau in Richtung der Scharniere, bewegt sie sich gar nicht. Wie stark eine Kraft dreht, hängt also von zwei Dingen ab: wie stark sie ist und wie weit ihre Linie an der Drehachse vorbeigeht. Dieser Abstand heisst Hebelarm.</p>}
+          en={<p>You open a door easily if you push far from the hinges, and with difficulty if you push close to them. And if you push straight towards the hinges, it does not move at all. How strongly a force turns therefore depends on two things: how strong it is and how far its line passes from the axis of rotation. That distance is called the lever arm.</p>}
+        />
+      </Box>
+
       {/* ------------------------------------------------------------------ 1 */}
       <Section id="punkt" title={<T de="1. Moment bezüglich eines Punktes" en="1. Moment about a point" />}>
         <Box kind="lecture" src={<Src p={39} />} title={<T de="6.3 Moment einer Kraft bezüglich eines Punktes" en={<>6.3 Moment of a force about a point (<span lang="de">Moment einer Kraft bezüglich eines Punktes</span>)</>} />}>
@@ -143,6 +150,12 @@ M_\gamma &= (\v F^\perp\times\v{AB})\cdot\v e_\gamma + \underbrace{(\v F_\gamma\
           <T
             de={<p><M>{t`\v M_B`}</M> ist ein Vektor, <M>{t`M_\gamma = \v e_\gamma\cdot\v M_B`}</M> eine Zahl mit Vorzeichen: der Anteil von <M>{t`\v M_B`}</M> längs der Achse. Positiv heisst: Die Kraft dreht im Rechtsschraubensinn um <M p=".">{t`\v e_\gamma`}</M></p>}
             en={<p><M>{t`\v M_B`}</M> is a vector, <M>{t`M_\gamma = \v e_\gamma\cdot\v M_B`}</M> a number with a sign: the part of <M>{t`\v M_B`}</M> along the axis. Positive means: the force turns in the right-hand screw sense about <M p=".">{t`\v e_\gamma`}</M></p>}
+          />
+        </Box>
+        <Box kind="key" title={<T de="Das Wichtigste" en="The essentials" />}>
+          <T
+            de={<ul><li>Moment um einen Punkt: <M p=",">{t`\v M_O = \v{OA}\times\v F`}</M> Betrag Kraft mal Hebelarm <M p=".">a</M></li><li>Eine Kraft darf man auf ihrer Wirkungslinie verschieben; das Moment bleibt gleich (Verschiebungssatz).</li><li>Moment um eine Achse: nur der Teil <M>{t`\v F^\perp`}</M> quer zur Achse zählt, mal sein Abstand <M>a</M> zur Achse. Schneidet die Linie die Achse oder ist sie parallel, ist es null.</li></ul>}
+            en={<ul><li>Moment about a point: <M p=",">{t`\v M_O = \v{OA}\times\v F`}</M> magnitude force times lever arm <M p=".">a</M></li><li>A force may be slid along its line of action; the moment stays the same (shifting theorem).</li><li>Moment about an axis: only the part <M>{t`\v F^\perp`}</M> across the axis counts, times its distance <M>a</M> from the axis. If the line meets the axis or is parallel to it, it is zero.</li></ul>}
           />
         </Box>
       </Section>
