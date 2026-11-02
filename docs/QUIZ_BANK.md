@@ -296,3 +296,13 @@ All numbers are checked in `src/physics/kraeftegruppe.test.ts` / `force.test.ts`
 
 ## Analysis Woche 7 (Ü7)
 - SC 9: smallest degree with zeros −1 − i, 0, 1 + i, −1 + i (5). SC 8: real zeros of x⁴ − x (2). SC 4: asymptote of cosh(2x) (e^{2x}/2). SC 12: ln x = o(√(x² + x)). SC 6: e^{−1/x} = o(x⁴) for x → 0⁺.
+
+## Kapitel 6 Statik (HS 2018 pp. 37–44)
+- Wippe: F_B = 3 N at b = 1 m; where must F_A = 2 N sit? (a = 1.5 m). Does the answer change for an inclined lever? (no, sin α cancels)
+- Fig. 6.2: name a test motion that shows the groups are not equivalent (translation along x).
+- Half circle, line load q: R̲ = ? (−2qr e̲_y); why not qπr?
+- Cube p. 39: why may one compute M̲_O with OB̲ instead of OA̲? (shifting theorem)
+- Moment about an axis is zero when …? (line meets the axis or is parallel to it)
+- M̲_P from M̲_O: give the formula; when is M̲_P = M̲_O for all P? (R̲ = 0, couple)
+- Two parallel forces 3 N at x = 0 and 1 N at x = 4: where is R̲? (x = 1)
+- Fig. 6.23: A, B? (10 + 2√2, 6√2)

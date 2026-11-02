@@ -307,3 +307,60 @@ Equation numbers in parentheses are the lecture's own.
 ### p. 36 — Figur 5.6 graphisch
 - **III** *in B:* G (red, down), velocity components of B in blue (v to the right, (√2/2)ωL up and left) → **P_B = −G (√2/2) ω L**. *in C:* velocity components of C (ωL/2 along the ladder-perpendicular direction, (√2/2)v …) with W (red) → **P_C = +W ω L/2 − W (√2/2) v**.
 - **IV** *in A:* R̲: components −(√2/2)W (to the left), (√2/2)W up, G down (red), v to the right (blue) → **R̲·v̲_A = −v (√2/2) W**. M̲_A: ⊙ ω (blue), ⊙ W L/2 (red), ⊗ (√2/2) G L (red) [*M̲_A = M̲_AW + M̲_AG*, *M̲_A bezüglich z Achse*] → **M̲_A·ω̲ = +W (L/2) ω − (√2/2) G L ω**.
+
+---
+## Kapitel 6 «Statik» (pp. 37–44)
+(Source: the student's Goodnotes PDF «2018 HS Mitschrift», uploaded 2026-11-02 as an 8-page excerpt = printed pages 37–44; read from the rendered pages. Typeset text of the notes in plain type, handwriting in *italics*, colours in brackets. Verified numbers: `src/physics/statik.test.ts`.)
+
+### p. 37 — 6 Statik; 6.1 Statische Äquivalenz v. Kräftegruppen
+- «Kräfte an ruhenden Systemen» [underbrace: v̲ = 0 ∀ Punkte!]. «Dennoch sprechen wir hauptsächlich über "Leistung": Ruhend ↔ Kräfte im "Gleichgewicht"». «Aussage zu Gleichgewicht ↔ Aussage über Leistung» (both underlined red).
+- Figure «Wippe-Schaukel-Waage»: beam on a pivot, F_A (red, down) at distance a on the left, F_B (red, down) at distance b on the right, ω (blue, about the pivot). P = −F_A·ω·a + F_B·ω·b = 0; F_A = (b/a)·F_B.
+- Figure «Hebel»: inclined lever, pivot, arm a (to F_A, up at the top end … drawn down), arm b (to F_B at the bottom), angle α, ω. P = −F_B·ω·b·sin α + F_A·ω·a·sin α; F_A = (b/a)·F_B.
+- **6.1 Statische Äquivalenz v. Kräftegruppen.** P{G} = P{G*} ∀ Starrkörperbewegungen. G, G*: Gruppen v. Kräften am (starren) Körper K. *R̲ = F̲₁ + F̲₂* (arrow to R̲ in Fig. 6.1).
+- **Figur 6.1: statisch äquivalente Gruppe:** beam with A₁, A, A₂ (distances a, a), F̲₁ at A₁ and F̲₂ at A₂ (red, down), R̲ (blue, down) at A; axes e̲_x, e̲_y. *Man muss für alle Starrkörperbewegungen sagen können, dass die Gruppen statisch äquivalent sind.*
+- **Figur 6.2: statisch NICHT äquivalente Gruppe:** the same beam, F̲₁ at A₁ (down), F̲₂* at A₂ at 45° (red, from the upper right), R̲ (blue) at A; a point P left of A₁ with a turning arrow. *Es reicht ein Gegenbeispiel zu finden. Beispiel hier Translation.*
+- **THEOREM zur statischen Äquivalenz:** «Zwei Kräftegruppen {G} und {G*} am Körper K sind dann und nur dann statisch äquivalent, wenn ihre Resultierenden [orange] und ihre Gesamtmomente [green] bezüglich eines beliebigen Bezugspunktes gleich sind.»
+- **Beweis:** *Bez. punkt: O, {v̲_O, ω̲}, G, G*.* P(G) = v̲_O·R̲ + ω̲·M̲_O; P(G*) = v̲_O·R̲* + ω̲·M̲_O*; P(G) − P(G*) = v̲_O·(R̲ − R̲*) [underbrace 0] + ω̲·(M̲_O − M̲_O*) [underbrace 0] =! 0 ∀ v̲_O, ω̲. ⇒ R̲ = R̲* [orange]; M̲_O = M̲_O* [green]. *{R̲, M̲_O} charakterisiert "Dyname" für {G}.*
+
+### p. 38 — 6.2 Resultierende einer Kräftegruppe
+- {G}: F̲₁, …, F̲_n: n-Einzelkräfte ↔ Kräftegruppe. R̲ = Σ_{i=1}^n F̲_i = R_x e̲_x + R_y e̲_y + R_z e̲_z [green, orange, purple]; R_x = Σ F_xi; R_y = Σ F_yi; R_z = Σ F_zi. *Freier Vektor* (red arrow to R̲). Margin: *Vektoren Summe ↳ gleiche Basis e̲_x, e̲_y, e̲_z*.
+- **Fig. 6.3: Resultierende von Einzelkräften:** a folded body with A₁, A₂, A₃ and F̲₁, F̲₂, F̲₃; to the right the polygon F̲₂, F̲₃, F̲₁ and R̲.
+- **Fig. 6.4: Resultierende von Kräfteverteilung:** half circle of radius r about M, axes x, y; an element at angle φ with arc r dφ and dF̲ (towards M); R̲ (down).
+- **Beispiel** (Fig. 6.4 again, annotated): *e̲_g* (red, radially outwards), *dF cos φ*, *dF sin φ* (purple components), *R̲ ← Freier Vektor*. *Linienkraftdichte: q̲ = −q e̲_g.* dF̲ = −q·r dφ e̲_g = −q·r dφ cos φ e̲_x + (−q·r dφ sin φ e̲_y). R_x = ∫₀^π −q·r cos φ dφ = 0 [small plot of cos on (0, π) with the two equal areas hatched]; R_y = ∫₀^π −q·r sin φ dφ = q·r·cos φ |₀^π = −2qr; **R̲ = −2qr e̲_y**.
+
+### p. 39 — 6.3 Moment einer Kraft bezüglich eines Punktes; 6.4 … bezüglich einer Achse (γ)
+- Sketch: O, A, F̲ on the line W (red), OA̲ (blue), a (green, perpendicular from O to W). M̲_O = OA̲ × F̲ = F̲ × AO̲; |M̲_O| = |F̲|·|AO̲|·sin α [underbrace on |AO̲| sin α: a]. → M̲_O: |M̲_O| = |F̲|·a, M̲_O ⊥ AO̲, W → "Verschiebungssatz". *a: Abstand O ↔ Wirkungslinie von F̲ ↳ d.h. Position von A auf W hat keinen Einfluss auf M̲_O ↳ dies beweist den "Verschiebungssatz".*
+- **Verschiebungssatz:** «Das Moment einer Kraft bezüglich eines beliebigen Punktes O bleibt gleich, wenn bei gleich bleibendem Vektoranteil der Angriffspunkt der Kraft längs ihrer Wirkungslinie verschoben wird.»
+- **Cube example** (side L, axes x, y, z, O at the origin, B on the x-axis at (L, 0, 0), A behind it): *F̲ = (0, F, 0)ᵀ, ? M̲_O. M̲_O = OA̲ × F̲ = OB̲ × F̲ = (0, 0, LF)ᵀ; (L, L, 0)ᵀ × (0, F, 0)ᵀ = (L, 0, 0)ᵀ × (0, F, 0)ᵀ.*
+- **6.4 Moment einer Kraft bezüglich einer Achse (γ).** Fig. 6.6 «Moment einer Kraft bezüglich der Achse γ»: vertical axis γ with e̲_γ and the turning arrow M_γ; points B′, B on the axis; plane E^⊥; A with F̲, its components F̲_γ (parallel to the axis) and F̲^⊥ (in E^⊥), lever a. *{A | F̲}* sketch with e̲_γ, B′, B, A, F̲.
+- [red] **M_γ := e̲_γ·M̲_B = e̲_γ·M̲_B′**; M_γ = e̲_γ·(F̲ × AB̲) = e̲_γ·(F̲ × AB̲′) + e̲_γ·(F̲ × B′B̲) [second term 0]; [underbrace M̲_B′]; AB̲ = AB̲′ + B′B̲; *M_γ: unabhängig von Lage von B auf γ*.
+- M_γ = (F̲^⊥ × AB̲)·e̲_γ + (F̲_γ × AB̲)·e̲_γ [second term 0]; M_γ = |F̲^⊥|·a → *Korollar 2*.
+
+### p. 40 — Korollar 1, 2; Würfel; 6.5 Moment einer Kräftegruppe bezüglich eines Punktes
+- **KOROLLAR 1:** «Das Moment einer Kraft {A | F̲ ≠ 0} bezüglich einer Achse γ verschwindet dann und nur dann, wenn die Wirkungslinie die Achse γ schneidet oder zu ihr parallel ist.» Margin: *M_γ = |F̲^⊥|·a; M_γ = 0 → |F̲^⊥| = 0 → F̲ ∥ e̲_γ; → F̲^⊥ ∥ BA̲ → a = 0.*
+- **KOROLLAR 2:** «Um das Moment einer Kraft {A | F̲ ≠ 0} bezüglich einer Achse γ zu erhalten, zerlege man F̲ vorerst in zwei Komponenten F̲_γ und F̲^⊥ und multipliziere den Betrag der zu γ normalen Komponente F̲^⊥ mit dem Abstand a zwischen der Achse und der Wirkungslinie von F̲^⊥ in A. Es gilt also |M_γ| = a |F̲^⊥| (6.11). Das Vorzeichen ergibt sich aus dem Drehsinn von F̲^⊥ bezüglich des Einheitsvektors e̲_γ auf der Achse.»
+- Two cube figures: M_γ = (r̲ × F̲)·e̲_z, axis z (red dotted) with ω (green). Left: r̲ (blue) from the origin along the bottom to the front right corner (distance a on the x-axis), F̲ (red) with F̲_γ (vertical) and F̲^⊥ (horizontal): **M_γ = F^⊥·a**. Right: r̲ to the corner (a, a, 0), |r̲| = √2 a, F̲^⊥ split along and normal to r̲ ((√2/2) F^⊥ normal): **M_γ = (√2/2) F^⊥·√2 a = F^⊥·a**.
+- **6.5 Moment einer Kräftegruppe bezüglich eines Punktes.** *{A_i | F̲_i}, i = 1, …, n.* O: M̲_O = Σ OA̲_i × F̲_i; P: M̲_P = Σ PA̲_i × F̲_i; M̲_O ≠ M̲_P «Punktgebundener Vektor». M̲_O ↔? M̲_P; PA̲_i = PO̲ + OA̲_i [sketch P, O, A_i]. M̲_P = Σ (PO̲ + OA̲_i) × F̲_i = PO̲ × F̲₁ + PO̲ × F̲₂ + … + OA̲₁ × F̲₁ + OA̲₂ × F̲₂ + … = PO̲ × (F̲₁ + … + F̲_n) [underbrace R̲] + Σ OA̲_i × F̲_i [underbrace M̲_O]. **Boxed: M̲_P = PO̲ × R̲ + M̲_O = M̲_O + PO̲ × R̲ = M̲_O + R̲ × OP̲.** *(Ähnlich zu ABBA Formel)*.
+
+### p. 41 — 6.6 Dyname; 6.7 Spezielle Kräftegruppen
+- **6.6 Dyname.** Für eine Kräftegruppe {G}: R̲: Resultierende, M̲_P: Moment der Kräftegruppe bezüglich P; {R̲, M̲_P}: Dyname in P → charakterisiert die Kräftegruppe. Leistung von {G} bei Starrkörperbewegung: *berechne in O:* P = v̲_O·R̲ + ω̲·M̲_O; *berechne in P:* P′ = v̲_P·R̲ + ω̲·M̲_P. P′ = v̲_P·R̲ + ω̲·M̲_P = (v̲_O + ω̲ × OP̲)·R̲ + ω̲·(M̲_O + R̲ × OP̲) = v̲_O·R̲ + ω̲·M̲_O + ω̲·(OP̲ × R̲) [struck] − ω̲·(OP̲ × R̲) [struck] = P.
+- **6.7 Spezielle Kräftegruppen.** {G} ↔ {G*} statisch äquivalent? R̲, M̲_O ↓ R̲*, M̲_O*: R̲ = R̲*; M̲_P = M̲_P*.
+- **Fig. 6.8: Äquivalente und nicht äquivalente Einzelkräfte:** F̲ at A, F̲′ at A′ (on the same line), F̲″ at A″ (parallel line). Ellipses: orange around F̲ and F̲′: *Ja*; red around F̲ and F̲″: *Nein*; green around F̲′ and F̲″: *Nein*. Box: *F̲₁ ↔ F̲₂ Einzelkräfte äquivalent, falls F̲₁ = F̲₂ und gleiche Wirkungslinie*.
+- **Fig. 6.11: 2 Kräfte mit gemeinsamem Angriffspunkt:** F̲₁, F̲₂ at A, R̲ as the diagonal of their parallelogram; a point B. *M̲_B = M̲_A [crossed out: 0] + R̲ × AB̲*.
+- **Fig. 6.9: Einzelkraft am Mechanismus:** a four-bar (parallelogram) linkage with two fixed supports; F̲ at A (*erbringt Leistung*) and the same F̲ at O on the support (*erbringt keine Leistung*); thin line from O to A. *Kann man nicht verschieben, weil nicht statisch äquivalent.*
+
+### p. 42 — Fig. 6.12; parallel forces; Kräftepaar
+- **Fig. 6.12: 2 nichtparallele Kräfte in der gleichen Ebene:** F̲₁ at A₁, F̲₂ at A₂, their lines meet in S; *F̲₁ verschieben*, *F̲₂ verschieben* (to S); R̲ at S and at A (grey). [pink] «2 ebene Kräfte auf Einzelkraft reduzierbar, falls nicht parallel».
+- **Beispiel: 2 parallele Kräfte mit R̲ ≠ 0:** vertical lines of action W₁ (F̲₁ at A), W₂ (F̲₂ at A), W_R (R̲, red) between them, distances a (orange, W₁ to W_R) and b (green, W_R to W₂); *Wirkungslinie*. *F̲₁, F̲₂ (W₁, W₂) äquivalent zu R̲ (W_{1,2}); R̲ = F̲₁ + F̲₂; R̲ wo W_R? → M̲_P(F̲₁, F̲₂) = M̲_P(R̲) [underbrace 0]; M_{P,z}: F₁·a − F₂·b = 0 → a/b = F₂/F₁.*
+- **Beispiel: 2 parallele Kräfte mit F̲₁ = −F̲₂:** F̲₁ (down) on W₁ at A, F̲₂ (up) on W₂ at A′; axes e̲_x, e̲_y, e̲_z at O. *R̲ = 0, nicht äquivalent zu Einzelkraft! "Kräftepaar". Dyname bezüglich O: R̲ = 0; M̲_O = F̲ × AO̲ + (−F̲) × A′O̲ = F̲ × (AO̲ − A′O̲) → M̲_O = F̲ × AA̲′ (AO̲ = AA̲′ + A′O̲). Dyname bezüglich P: R̲ = 0; M̲_P = M̲_O + R̲ × OP̲ [struck] = F̲ × AA̲′ = A′A̲ × F̲. ∀ Punkte! M̲_P = F̲ × AA̲′: Moment des Kräftepaars.*
+
+### p. 43 — Fig. 6.15–6.17; 6.8 Kräftegruppe im Gleichgewicht
+- **Fig. 6.15: Kräftepaar:** F̲ at A (down), −F̲ at A′ (up), distance b, M = b |F̲| (curved arrow); symbols ⊙ ↔ counter-clockwise arc, ⊗ ↔ clockwise arc.
+- **Fig. 6.16: statisch äquivalente Kräftepaare:** {F̲, −F̲} at distance b, and {F̲′, −F̲′} turned, at distance b′: |F̲′| = c |F̲|, b′ = b/c.
+- **Fig. 6.17: Zahnrad:** a small driving gear (Antrieb) on a big wheel (Widerstand); right: the wheel with F̲ at A (from the gear), −F̲ at the bearing B, distance b, M ⊗.
+- **6.8 Kräftegruppe im Gleichgewicht.** Falls: **R̲ = 0 und M̲_P = 0** (boxed) [*Gleichgewichtsbedingungen*]. R̲ = 0: Komponentenbedingungen *3×*; M̲_P = 0: Momentenbedingungen *3×*; In 3D: 6 Gleichungen.
+- **Beispiel** (cube, side a; axes x, y, z; points A, C, B on the bottom, D on the top; forces drawn with green and red arrows): *F̲_A = (−F, 0, 0)ᵀ, F̲_B = (0, F, 0)ᵀ, F̲_C = (0, 0, F)ᵀ, F̲_D = (F, −F, −F)ᵀ; in Gleichgewicht? Dyname in A: Σ F_x: −F + 0 + 0 + F =? 0 ✓; Σ F_y: 0 + F + 0 − F =? 0 ✓; Σ F_z: 0 + 0 + F − F =? 0 ✓ → Komponentenbedingungen erfüllt! M̲_A: F̲_C × CA̲ + F̲_B × BA̲ + F̲_D × DA̲ =? 0; (0,0,F)×(−a,0,0) + (0,F,0)×(−a,−a,0) + (F,−F,−F)×(0,−a,−a) =? 0; (0,−aF,0) + (0,0,aF) + (0,aF,−aF) =? 0 ✓ → Momentenbedingungen erfüllt! → Kräftegruppe in Gleichgewicht!*
+
+### p. 44 — Beispiele
+- **Fig. 6.23: zu Aufgabe 1:** a disc between two walls inclined at 45°, weight G̲ (down, *8*), F̲₁ (horizontal, from the left, *4*), F̲₂ (from the upper right at 45°, *10*), contact forces A̲ (from the lower left at 45°) and B̲ (from the lower right at 45°); handwritten red numbers 4, 8, 10. **No solution on the page** (→ R-037: solved as a supplement).
+- **Beispiel: Waage im Gleichgewicht:** a beam on a pivot with two weights; free-body: F₁ (down, left), F₂ (down, right), A_y (up), A_x at the pivot A_z; axes e̲_x, e̲_y, e̲_z. *GGB in A: Σ F_z = A_z = 0; Σ F_x = A_x = 0; Σ F_y = A_y − F₁ − F₂ = 0 → A_y = F₁ + F₂ (boxed; "Lagerkräfte"); Σ M_x^(A) = 0; Σ M_y^(A) = 0; Σ M_z^(A) = F₁·a₁ − F₂·a₂ = 0 → a₂ = a₁·F₁/F₂.*

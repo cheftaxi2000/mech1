@@ -1,0 +1,32 @@
+/* Chapter 6 «Statik» (statikScenes.ts). Builds on K7.css (forces, velocities, ω, power bars). */
+.st-beam { fill: none; stroke: var(--fg); stroke-width: 4; stroke-linecap: round; }
+.st-link { stroke: var(--fg); stroke-width: 5; stroke-linecap: round; }
+.st-joint { fill: var(--panel); stroke: var(--fg); stroke-width: 1.6; }
+.st-support { fill: color-mix(in srgb, var(--muted) 22%, transparent); stroke: var(--muted); stroke-width: 1.4; }
+.st-pin { fill: var(--fg); }
+.st-pt { fill: var(--panel); stroke: var(--fg); stroke-width: 1.5; }
+.st-edge { stroke: var(--fg); stroke-width: 1.4; stroke-opacity: 0.75; }
+.st-wall { stroke: var(--muted); stroke-width: 3; }
+.st-plane { fill: color-mix(in srgb, var(--muted) 10%, transparent); stroke: var(--muted); stroke-width: 1; }
+.st-line { stroke: var(--c-force); stroke-width: 1.2; stroke-dasharray: 6 5; stroke-opacity: 0.8; }
+.st-line-res { stroke: var(--fg); stroke-width: 1.2; stroke-dasharray: 6 5; }
+.st-lever { stroke: var(--c-z); stroke-width: 2.4; stroke-linecap: round; }
+.st-axis3 { stroke: var(--muted); stroke-width: 1.4; } .st-axis3-head { fill: var(--muted); }
+.st-axisg { stroke: var(--c-angle); stroke-width: 1.6; stroke-dasharray: 3 4; }
+.st-axisg-arrow { stroke: var(--c-angle); stroke-width: 2.4; } .st-axisg-arrow-head { fill: var(--c-angle); }
+.st-blue { stroke: var(--c-x); stroke-width: 3.4; stroke-linecap: round; } .st-blue-head { fill: var(--c-x); }
+.st-blue.ghost { stroke-width: 2.4; stroke-dasharray: 5 3; }
+.st-blue-mom { fill: none; stroke: var(--c-x); stroke-width: 2.6; stroke-linecap: round; } .st-blue-mom-head { fill: var(--c-x); }
+.st-blue-mom-dot { fill: var(--c-x); } .st-blue-mom-cross { stroke: var(--c-x); stroke-width: 2.2; }
+.st-res { stroke: var(--fg); stroke-width: 4; stroke-linecap: round; } .st-res-head { fill: var(--fg); }
+.st-r { stroke: var(--fg); stroke-width: 2; stroke-linecap: round; stroke-opacity: 0.7; } .st-r-head { fill: var(--fg); fill-opacity: 0.7; }
+.st-r.thin { stroke-width: 1.4; stroke-opacity: 0.5; }
+.st-mom { stroke: var(--c-angle); stroke-width: 3.4; stroke-linecap: round; } .st-mom-head { fill: var(--c-angle); }
+.st-comp-x { stroke: var(--c-x); stroke-width: 2.6; stroke-linecap: round; } .st-comp-x-head { fill: var(--c-x); }
+.st-comp-y { stroke: var(--c-y); stroke-width: 2.6; stroke-linecap: round; } .st-comp-y-head { fill: var(--c-y); }
+.k7-force.thin { stroke-width: 2; }
+.st-bar-red { fill: color-mix(in srgb, var(--c-force) 40%, transparent); stroke: var(--c-force); stroke-width: 1.4; }
+.st-bar-blue { fill: color-mix(in srgb, var(--c-x) 40%, transparent); stroke: var(--c-x); stroke-width: 1.4; }
+.st-controls { display: grid; gap: 0.4rem; }
+.st-drag svg { cursor: grab; touch-action: none; }
+.st-drag svg:active { cursor: grabbing; }

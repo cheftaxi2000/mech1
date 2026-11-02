@@ -228,3 +228,11 @@ Four implementer agents wrote 13 lessons from lectures 1–6 and the TA's exerci
 - Analysis A7 (3 lessons): `ana-nullstellen`, `ana-hyperbel`, `ana-groessen`. Model `src/analysis/week7.ts` + tests, `W7Figures.tsx`, `w7Scenes.ts` + tests.
 - Source issues A-019…A-021, CH-013, CH-014. Exercise questions to the quiz bank.
 - Checked: tsc, unit tests, full e2e (581 passed; the one failure, ch-vsepr short version at 82 % text, fixed by trimming `keep` and re-run), e2e for the 8 lessons (render, language leak, plain-text math, phone scroll), screenshots of every figure and every animation step (iPad landscape light; phone dark English for a sample). All new lessons `draft`. Artifact not republished.
+
+## 2026-11-02 — Mechanik Kapitel 6 «Statik» (HS 2018 notes pp. 37–44)
+- Read the 8 uploaded pages (rendered) and transcribed them in `docs/SOURCE_MAP.md` (Kapitel 6).
+- Six lessons, chapter `6 · Statik`: `statische-aequivalenz` (S1), `resultierende` (S2), `moment-achse` (S3), `dyname` (S4), `spezielle-kraeftegruppen` (S5), `gleichgewicht` (S6); all `draft`.
+- `src/physics/statik.ts` (group moment, Dyname, shift M̲_P = M̲_O + R̲ × OP̲, equivalence, axis moment and lever arm, half-circle sum, parallel forces, couples, linkage of Fig. 6.9, cube examples p. 39/40/43, Fig. 6.23, Waage) + 23 tests; every number of the pages re-derived.
+- Pure scenes `src/viz/statik/statikScenes.ts` (+17 frame tests: inside, label overlap, final frames) and `StatikFigures.tsx` (11 explorers, 8 step animations), reusing the K7 scene renderer and arrow kit.
+- R-037 (Fig. 6.23 without solution; solved as a supplement).
+- Checked: tsc, unit tests, e2e for the six lessons (render, language leak, plain-text math, phone scroll, short version), screenshots of every figure and every animation step (iPad light, iPad dark, phone dark English). Not published to the claude.ai artifact.
